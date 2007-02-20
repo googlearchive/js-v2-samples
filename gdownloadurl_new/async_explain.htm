@@ -45,7 +45,7 @@ GDownloadUrl("data.xml", function(data, status) {
   if(status==200) {
     var xml = GXml.parse(data);
     var markers = xml.documentElement.getElementsByTagName("marker");
-    for (var i = 0; i < markers.length; i++) {
+    for (var i = 0; i &lt; markers.length; i++) {
       var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
                               parseFloat(markers[i].getAttribute("lng")));
       map.addOverlay(new GMarker(point));

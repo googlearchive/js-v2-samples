@@ -22,13 +22,18 @@
         //   <marker lat="37.441" lng="-122.141"/>
         //   <marker lat="37.322" lng="-121.213"/>
         // </markers>
-        GDownloadUrl("data.xml", function(data) {
-          var xml = GXml.parse(data);
-          var markers = xml.documentElement.getElementsByTagName("marker");
-          for (var i = 0; i < markers.length; i++) {
-            var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
+        GDownloadUrl("data.xml", function(data, status) {
+          // To ensure against timeouts that return null data,
+          // always check status code is equal to 200 before processing
+          if(status==200) {
+            var xml = GXml.parse(data);
+            var markers = xml.documentElement.getElementsByTagName("marker");
+            for (var i = 0; i < markers.length; i++) {
+              var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
                                     parseFloat(markers[i].getAttribute("lng")));
-            map.addOverlay(new GMarker(point));
+              map.addOverlay(new GMarker(point));
+          } else if(status==-1) {
+	    alert("Data request timed out. Please try later.");
           }
         });
       }

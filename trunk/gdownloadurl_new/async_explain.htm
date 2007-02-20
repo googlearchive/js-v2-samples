@@ -20,7 +20,7 @@ You can read more about HTTP status codes <a
 href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">here</a>.
 </p>
 <p>
-In this example, we process the text if the request was successful, and then alert 
+In this example, we process the data if the request was successful, and then alert 
 errors if the request has timed out or errored. In your own applications, you may 
 decide to do more or less error checking, depending on your needs.
 </p>
@@ -29,6 +29,34 @@ When the download completes, we parse the XML with <a
 href="http://www.google.com/apis/maps/documentation/reference.html#GXml"><code>GXml</code></a> 
 and create a marker at each of those 
 points in the XML document.</p>
+
+<pre class="code">
+
+// Download the data in data.xml and load it on the map. The format we
+// expect is:
+// &lt;markers&gt;
+//   &lt;marker lat="37.441" lng="-122.141"/&gt;
+//   &lt;marker lat="37.322" lng="-121.213"/&gt;
+// &lt;/markers&gt;
+        
+GDownloadUrl("data.xml", function(data, status) {
+  // To ensure against HTTP errors that result in null or bad data,
+  // always check status code is equal to 200 before processing the data
+  if(status==200) {
+    var xml = GXml.parse(data);
+    var markers = xml.documentElement.getElementsByTagName("marker");
+    for (var i = 0; i < markers.length; i++) {
+      var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
+                              parseFloat(markers[i].getAttribute("lng")));
+      map.addOverlay(new GMarker(point));
+    }
+  } else if(status == -1) {
+    alert("Data request timed out. Please try later.");
+  } else { 
+    alert("Request resulted in error. Check XML file is retrievable.");
+  }
+});
+</pre>
 
 <p><a href="async.htm">View example (async.htm)</a>. This example uses the external 
 XML data file <a href="./data.xml">data.xml</a>.</p>

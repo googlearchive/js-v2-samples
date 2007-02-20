@@ -24,10 +24,10 @@ type="text/css"/>
         //   <marker lat="37.441" lng="-122.141"/>
         //   <marker lat="37.322" lng="-121.213"/>
         // </markers>
-        GDownloadUrl("data.xml", function(data, status) {
+        GDownloadUrl("data.xml", function(data, responseCode) {
           // To ensure against HTTP errors that result in null or bad data,
           // always check status code is equal to 200 before processing the data
-          if(status==200) {
+          if(responseCode == 200) {
             var xml = GXml.parse(data);
             var markers = xml.documentElement.getElementsByTagName("marker");
             for (var i = 0; i < markers.length; i++) {
@@ -35,7 +35,7 @@ type="text/css"/>
                                     parseFloat(markers[i].getAttribute("lng")));
               map.addOverlay(new GMarker(point));
 	    }
-          } else if(status == -1) {
+          } else if(responseCode == -1) {
 	    alert("Data request timed out. Please try later.");
           } else { 
             alert("Request resulted in error. Check XML file is retrievable.");

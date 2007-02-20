@@ -12,19 +12,18 @@ list of lat/lng coordinates in XML using the <a
 href="http://www.google.com/apis/maps/documentation/reference.html#GDownloadUrl"><code>GDownloadUrl</code></a> 
 method. It retrieves the resource from the given URL and calls the onload function 
 with the text of the document as first argument, and the HTTP response status code as the 
-second. 
-</p>
-<p>
-The HTTP status code for success is 200, so we check for that 
-before processing the data. Since there is no HTTP status code returned for 
-requests that time out, this method will return a -1 status in that case.
-In this example, we have an explicit test for timeout errors and a test for all other 
-errors. In your own applications, you may decide to do more or less comprehensive error 
-checking, depending on your needs.
+second. The HTTP status code for success is 200. Since there is no HTTP status code 
+returned for 
+requests that time out, <code>GDownloadURL</code> will return a status of -1 and null 
+data for timeouts.
 You can read more about HTTP status codes <a 
 href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">here</a>.
 </p>
-
+<p>
+In this example, we process the text if the request was successful, and then alert 
+errors if the request has timed out or errored. In your own applications, you may 
+decide to do more or less error checking, depending on your needs.
+</p>
 <p>
 When the download completes, we parse the XML with <a 
 href="http://www.google.com/apis/maps/documentation/reference.html#GXml"><code>GXml</code></a> 

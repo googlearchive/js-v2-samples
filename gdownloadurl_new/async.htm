@@ -23,8 +23,8 @@
         //   <marker lat="37.322" lng="-121.213"/>
         // </markers>
         GDownloadUrl("data.xml", function(data, status) {
-          // To ensure against timeouts that return null data,
-          // always check status code is equal to 200 before processing
+          // To ensure against HTTP errors that result in null or bad data,
+          // always check status code is equal to 200 before processing the data
           if(status==200) {
             var xml = GXml.parse(data);
             var markers = xml.documentElement.getElementsByTagName("marker");

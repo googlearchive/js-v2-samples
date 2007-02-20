@@ -32,7 +32,8 @@
               var point = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
                                     parseFloat(markers[i].getAttribute("lng")));
               map.addOverlay(new GMarker(point));
-          } else if(status==-1) {
+	    }
+          } else if(statu s== -1) {
 	    alert("Data request timed out. Please try later.");
           }
         });

@@ -30,7 +30,7 @@
       var mapNormalProj = G_NORMAL_MAP.getProjection();
       var mapZoom = map.getZoom();
 
-      var polyNumSides = 5;
+      var polyNumSides = 6;
       var polyRadius = 8;
       var polySideLength = 360/polyRadius;
       var polyPoints = new Array();
@@ -96,8 +96,8 @@
   <body onload="load()" onunload="GUnload()">
     <table width="300"> 
     <tr>
-    <td style="background-color:#FFFFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFFFF');">&nbsp;&nbsp;&nbsp;</a></div>
-    <td style="background-color:#00FFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FFFF');">&nbsp;&nbsp;&nbsp;</a></div>
+    <td style="background-color:#FFFFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFFFF');">&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td style="background-color:#00FFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FFFF');">&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td style="background-color:#00FF00;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FF00');">&nbsp;&nbsp;&nbsp;</a></div>
     <td style="background-color:#FFFF00;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFF00');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td style="background-color:#FF0000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FF0000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
@@ -112,10 +112,10 @@
     <td style="background-color:#C0C0C0;"><a href="#" style="text-decoration:none;" onclick="changeColor('#C0C0C0');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td style="background-color:#808080;"><a href="#" style="text-decoration:none;" onclick="changeColor('#808080');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td style="background-color:#000000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#000000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td> <input type="button" onclick="clearPolys()" value="Clear" /> </td>
     </tr>
     </table>
 
-    <input type="button" onclick="clearPolys()" value="Clear" />
 
     <div id="map" style="width: 500px; height: 300px"></div>
   </body>

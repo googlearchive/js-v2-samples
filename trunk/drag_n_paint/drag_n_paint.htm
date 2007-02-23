@@ -16,9 +16,7 @@
     //<![CDATA[
     var highlightCircle;
     var map;
-    var paintPolygons = new Array();
-    var paintPoints = new Array();
-    var STROKE_LENGTH = 30;
+    var paintPolys = new Array();
 
     // Creates a "circle" using 20-sided GPolygon at the given point
     // Circle polygon object is global variable as there is only one highlighted marker at a time
@@ -45,7 +43,14 @@
 	polyPoints.push(polyPoint);
       }
       var paintPoly = new GPolygon(polyPoints,"#000000",2,0.0,"#FF0000",.5);
+      paintPolys.push(paintPoly);
       map.addOverlay(paintPoly);
+   }
+
+   function clearPolys() {
+     for(var i = 0; i < paintPolys.length; i++) {
+       map.removeOverlay(paintPolys[i]);
+     }
    }
 
     function load() {
@@ -76,6 +81,7 @@
   </head>
 
   <body onload="load()" onunload="GUnload()">
+    <input type="button" onclick="clearPolys()" value="Clear Painted Polygons" /> 
     <div id="map" style="width: 500px; height: 300px"></div>
   </body>
 </html>

@@ -19,7 +19,6 @@
     var paintPolygons = new Array();
     var paintPoints = new Array();
     var STROKE_LENGTH = 30;
-    var mapNormalProj = G_NORMAL_MAP.getProjection();
 
     // Creates a "circle" using 20-sided GPolygon at the given point
     // Circle polygon object is global variable as there is only one highlighted marker at a time
@@ -28,7 +27,9 @@
     function drawCurrentMarker(marker){
       var markerPoint = marker.getPoint();
 
+      var mapNormalProj = G_NORMAL_MAP.getProjection();
       var mapZoom = map.getZoom();
+
       var polyNumSides = 5;
       var polyRadius = 3;
       var polySideLength = 360/polyRadius;

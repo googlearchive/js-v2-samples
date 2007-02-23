@@ -48,11 +48,11 @@
 
       for(var i = 0; i < paintPoints.length; i++) {
         var polyPoints = Array();
-        var centerPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
+        var centerPixel = mapNormalProj.fromLatLngToPixel(polyPoints[i], mapZoom);
         for (var a = 0; a<(polyNumSides+1); a++) {
           var aRad = polySideLength*a*(Math.PI/180);
-       	  var pixelX = clickedPixel.x + polyRadius * Math.cos(aRad);
-	  var pixelY = clickedPixel.y + polyRadius * Math.sin(aRad);
+       	  var pixelX = centerPixel.x + polyRadius * Math.cos(aRad);
+	  var pixelY = centerPixel.y + polyRadius * Math.sin(aRad);
 	  var polyPixel = new GPoint(pixelX,pixelY);
        	  var polyPoint = mapNormalProj.fromPixelToLatLng(polyPixel,mapZoom);
 	  polyPoints.push(polyPoint);

@@ -46,10 +46,10 @@
       var polyRadius = 3;
       var polySideLength = 360/polyRadius;
 
-/*
+
       for(var i = 0; i < paintPoints.length; i++) {
-        var polyPoints = Array();
-        var centerPixel = mapNormalProj.fromLatLngToPixel(polyPoints[i], mapZoom);
+        var polyPoints = new Array();
+        var centerPixel = mapNormalProj.fromLatLngToPixel(paintPoints[i], mapZoom);
         for (var a = 0; a<(polyNumSides+1); a++) {
           var aRad = polySideLength*a*(Math.PI/180);
        	  var pixelX = centerPixel.x + polyRadius * Math.cos(aRad);
@@ -62,7 +62,6 @@
         map.addOverlay(highlightCircle);
         paintPolygons.push(highlightCircle);
       }
-*/
    }
 
 

@@ -15,7 +15,6 @@
    <script type="text/javascript">
     //<![CDATA[
     var highlightCircle;
-    var currentMarker;
     var map;
     var paintPolygons = new Array();
     var paintPoints = new Array();
@@ -26,8 +25,8 @@
     // Circle polygon object is global variable as there is only one highlighted marker at a time
     // and we want to remove the previously placed polygon before placing a new one.
 
-    function highlightCurrentMarker(){
-      var markerPoint = currentMarker.getPoint();
+    function highlightCurrentMarker(marker){
+      var markerPoint = marker.getPoint();
 
       var mapZoom = map.getZoom();
       var polyNumSides = 5;
@@ -54,10 +53,6 @@
         map.addControl(new GSmallMapControl());
         map.addControl(new GMapTypeControl());
         map.setCenter(new GLatLng(37.4419, -122.1419), 13);
-        GEvent.addListener(map, "zoomend", function() {
-	  highlightCurrentMarker();	
-        });
-        // Initialize the array of GPolygons
 
         // Creates a marker at the given point with the given number label
         function createMarker(point) {
@@ -65,8 +60,7 @@
 	  
  	  // This line highlights the marker while dragging
           GEvent.addListener(marker, "drag", function() {
-	  currentMarker = marker;
-	  highlightCurrentMarker();	
+   	    drawCurrentMarker(marker);	
           });
 
           return marker;

@@ -63,10 +63,9 @@
         GEvent.addListener(map, "click", function(marker, point) {
           if (currentMarker) {
             map.removeOverlay(currentMarker);
-          } else {
+          } 
             currentMarker = createMarker(point);
             map.addOverlay(currentMarker);
-          }
         });	
 	
         // Creates a marker at the given point with the given number label

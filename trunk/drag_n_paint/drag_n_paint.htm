@@ -17,6 +17,7 @@
     var highlightCircle;
     var map;
     var paintPolys = new Array();
+    var currentMarker = null;
 
     // Creates a "circle" using 20-sided GPolygon at the given point
     // Circle polygon object is global variable as there is only one highlighted marker at a time
@@ -59,7 +60,15 @@
         map.addControl(new GSmallMapControl());
         map.addControl(new GMapTypeControl());
         map.setCenter(new GLatLng(37.4419, -122.1419), 13);
-
+        GEvent.addListener(map, "click", function(marker, point) {
+          if (currentMarker) {
+            map.removeOverlay(currentMarker);
+          } else {
+            currentMarker = createMarker(point);
+            map.addOverlay(currentMarker);
+          }
+        });	
+	
         // Creates a marker at the given point with the given number label
         function createMarker(point) {
           var marker = new GMarker(point, {draggable:true});
@@ -71,8 +80,6 @@
 
           return marker;
         }
-
-         map.addOverlay(createMarker(new GLatLng(37.4419,-122.1419)));
       }
     }
 

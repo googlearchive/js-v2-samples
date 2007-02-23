@@ -75,7 +75,7 @@
 	
         // Creates a marker at the given point with the given number label
         function createMarker(point) {
-          var marker = new GMarker(point, {draggable:true});
+          var marker = new GMarker(point, {draggable:true, bouncy:false, dragCrossMove:true, clickable:false});
 	  
  	  // This line highlights the marker while dragging
           GEvent.addListener(marker, "drag", function() {

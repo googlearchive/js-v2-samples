@@ -25,7 +25,7 @@
     // Circle polygon object is global variable as there is only one highlighted marker at a time
     // and we want to remove the previously placed polygon before placing a new one.
 
-    function highlightCurrentMarker(marker){
+    function drawCurrentMarker(marker){
       var markerPoint = marker.getPoint();
 
       var mapZoom = map.getZoom();

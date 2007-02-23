@@ -18,6 +18,7 @@
     var map;
     var paintPolys = new Array();
     var currentMarker = null;
+    var paintColor = "#FF0000";
 
     // Creates a "circle" using 20-sided GPolygon at the given point
     // Circle polygon object is global variable as there is only one highlighted marker at a time
@@ -29,8 +30,8 @@
       var mapNormalProj = G_NORMAL_MAP.getProjection();
       var mapZoom = map.getZoom();
 
-      var polyNumSides = 6;
-      var polyRadius = 6;
+      var polyNumSides = 5;
+      var polyRadius = 8;
       var polySideLength = 360/polyRadius;
       var polyPoints = new Array();
       var centerPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
@@ -43,7 +44,7 @@
        	var polyPoint = mapNormalProj.fromPixelToLatLng(polyPixel,mapZoom);
 	polyPoints.push(polyPoint);
       }
-      var paintPoly = new GPolygon(polyPoints,"#000000",2,0.0,"#FF0000",.5);
+      var paintPoly = new GPolygon(polyPoints,"#000000",0,0.0,paintColor,.5);
       paintPolys.push(paintPoly);
       map.addOverlay(paintPoly);
    }
@@ -53,6 +54,10 @@
        map.removeOverlay(paintPolys[i]);
      }
    }
+    
+    function changeColor(newColor) {
+      paintColor = newColor;
+    }
 
     function load() {
       if (GBrowserIsCompatible()) {
@@ -87,6 +92,8 @@
   </head>
 
   <body onload="load()" onunload="GUnload()">
+    <div style="background-color:#000000;"><a href="#" onclick="changeColor('#000000');">&nbsp;&nbsp;&nbsp;</a></div>
+
     <input type="button" onclick="clearPolys()" value="Clear Painted Polygons" /> 
     <div id="map" style="width: 500px; height: 300px"></div>
   </body>

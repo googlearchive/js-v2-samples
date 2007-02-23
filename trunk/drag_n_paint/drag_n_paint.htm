@@ -51,6 +51,7 @@
       var paintPoly = new GPolygon(polyPoints,"#000000",0,0.0,paintColor,.5);
       paintPolys.push(paintPoly);
       map.addOverlay(paintPoly);
+      document.getElementById("polyCount").innerHTML = paintPolys.length;
    }
 
    function clearPolys() {
@@ -100,8 +101,8 @@
   <body onload="load()" onunload="GUnload()">
     <table width="300"> 
     <tr>
-    <td class="swatch" style="background-color:#FFFFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFFFF');">&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#00FFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FFFF');">&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" style="background-color:#FFFFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFFFF');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" style="background-color:#00FFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FFFF');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td class="swatch" style="background-color:#00FF00;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FF00');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td class="swatch" style="background-color:#FFFF00;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFF00');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td class="swatch" style="background-color:#FF0000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FF0000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
@@ -122,6 +123,8 @@
 
 
     <div id="map" style="width: 500px; height: 300px"></div>
+    <div id="status" style="font-color:#ff0000;">Current poly count: <span id="polyCount">0</span></div>
+
   </body>
 </html>
 

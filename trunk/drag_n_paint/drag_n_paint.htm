@@ -60,8 +60,8 @@
      }
    }
     
-    function changeColor(newColor) {
-      paintColor = newColor;
+    function changeColor(swatchId) {
+      paintColor = document.getElementById("swatch"+swatchId).style.backgroundColor;
     }
 
     function load() {
@@ -101,22 +101,22 @@
   <body onload="load()" onunload="GUnload()">
     <table width="300"> 
     <tr>
-    <td class="swatch" style="background-color:#FFFFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFFFF');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#00FFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FFFF');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#00FF00;"><a href="#" style="text-decoration:none;" onclick="changeColor('#00FF00');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#FFFF00;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FFFF00');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#FF0000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FF0000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#FF00FF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#FF00FF');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#800080;"><a href="#" style="text-decoration:none;" onclick="changeColor('#800080');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#800000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#800000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#0000FF;"><a href="#" style="text-decoration:none;" onclick="changeColor('#0000FF');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#000080;"><a href="#" style="text-decoration:none;" onclick="changeColor('#000090');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#008080;"><a href="#" style="text-decoration:none;" onclick="changeColor('#008080');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#008000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#008000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#808000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#808000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#C0C0C0;"><a href="#" style="text-decoration:none;" onclick="changeColor('#C0C0C0');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#808080;"><a href="#" style="text-decoration:none;" onclick="changeColor('#808080');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
-    <td class="swatch" style="background-color:#000000;"><a href="#" style="text-decoration:none;" onclick="changeColor('#000000');">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch1" style="background-color:#FFFFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor(1);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch2" style="background-color:#00FFFF;"><a href="#" style="text-decoration:none;" onclick="changeColor(2);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch3" style="background-color:#00FF00;"><a href="#" style="text-decoration:none;" onclick="changeColor(3);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch4" style="background-color:#FFFF00;"><a href="#" style="text-decoration:none;" onclick="changeColor(4);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch5" style="background-color:#FF0000;"><a href="#" style="text-decoration:none;" onclick="changeColor(5);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch6" style="background-color:#FF00FF;"><a href="#" style="text-decoration:none;" onclick="changeColor(6);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch7" style="background-color:#800080;"><a href="#" style="text-decoration:none;" onclick="changeColor(7);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch8" style="background-color:#800000;"><a href="#" style="text-decoration:none;" onclick="changeColor(8);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch9" style="background-color:#0000FF;"><a href="#" style="text-decoration:none;" onclick="changeColor(9);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch10" style="background-color:#000080;"><a href="#" style="text-decoration:none;" onclick="changeColor(10);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch11" style="background-color:#008080;"><a href="#" style="text-decoration:none;" onclick="changeColor(11);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch12" style="background-color:#008000;"><a href="#" style="text-decoration:none;" onclick="changeColor(12);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch13" style="background-color:#808000;"><a href="#" style="text-decoration:none;" onclick="changeColor(13);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch14" style="background-color:#C0C0C0;"><a href="#" style="text-decoration:none;" onclick="changeColor(14);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch15" style="background-color:#808080;"><a href="#" style="text-decoration:none;" onclick="changeColor(15);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
+    <td class="swatch" id="swatch16" style="background-color:#000000;"><a href="#" style="text-decoration:none;" onclick="changeColor(16);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></div>
     <td> <input type="button" onclick="clearPolys()" value="Clear" /> </td>
     </tr>
     </table>

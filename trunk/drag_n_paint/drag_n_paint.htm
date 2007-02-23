@@ -27,6 +27,7 @@
 
     function highlightCurrentMarker(){
       var markerPoint = currentMarker.getPoint();
+      /*
       if(paintPoints.length == STROKE_LENGTH) {
         paintPoints.pop();
       }
@@ -35,10 +36,10 @@
 
       for(var i = 0; i < paintPolygons.length; i++) {
         if(paintPolygons[i]) { 
-          //map.removeOverlay(paintPolygons[i]);
+          map.removeOverlay(paintPolygons[i]);
         }
       }
-
+      */
 
       var mapNormalProj = G_NORMAL_MAP.getProjection();
       var mapZoom = map.getZoom();
@@ -47,9 +48,9 @@
       var polySideLength = 360/polyRadius;
 
 
-      for(var i = 0; i < paintPoints.length; i++) {
+      //for(var i = 0; i < paintPoints.length; i++) {
         var polyPoints = new Array();
-        var centerPixel = mapNormalProj.fromLatLngToPixel(paintPoints[i], mapZoom);
+        var centerPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
         for (var a = 0; a<(polyNumSides+1); a++) {
           var aRad = polySideLength*a*(Math.PI/180);
        	  var pixelX = centerPixel.x + polyRadius * Math.cos(aRad);
@@ -60,8 +61,8 @@
         }
         var highlightCircle = new GPolygon(polyPoints,"#000000",2,0.0,"#FF0000",.5);
         map.addOverlay(highlightCircle);
-        paintPolygons.push(highlightCircle);
-      }
+        //paintPolygons.push(highlightCircle);
+      //}
    }
 
 

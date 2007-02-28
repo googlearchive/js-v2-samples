@@ -10,7 +10,7 @@
     }
     </style>
 
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxT2MGhLvOJt8GrjSUL43OmcjQmGtxTaPEpHKK2neSdfBYbnzoxnoZ7Sww"
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxT2MGhLvOJt8GrjSUL43OmcjQmGtxTaPEpHKK2neSdfBYbnzoxnoZ7Sww&amp;svgf=t"
             type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
@@ -34,7 +34,8 @@
     var slingBottomPoint;
     var slingTopLine;
     var slingBottomLine;
-    var animCounter = 0;
+    var animCounter = 0; 
+    var currentMarker;
 
     function load() {
       if (GBrowserIsCompatible()) {
@@ -61,13 +62,14 @@
 	  
  	  // This line highlights the marker while dragging
           GEvent.addListener(marker, "drag", function() {
-            drawSlingshot(marker);
+            currentMarker = marker;
+            drawSlingshot();
           });
 
  	  // This line highlights the marker while dragging
           GEvent.addListener(marker, "dragend", function() {
-          mapCenter = map.getCenter();
-   	mapZoom = map.getZoom();
+            mapCenter = map.getCenter();
+     	    mapZoom = map.getZoom();
             centerPixel = mapNormalProj.fromLatLngToPixel(mapCenter, mapZoom);
 
             mapTarget = marker.getPoint();
@@ -86,32 +88,21 @@
 
     function drawSlingshot(marker) {
       var oldSlingBottomLine = slingBottomLine;
-      /*
-      var slingTopPoints =  new Array();
-      slingTopPoints.push(slingTopPoint);
-      slingTopPoints.push(marker.getPoint());
-      slingTopLine = new GPolyline(slingTopPoints, "#FF0000"); 
-      //map.addOverlay(slingTopLine);
-      var slingBottomPoints =  new Array();
-      slingBottomPoints.push(slingBottomPoint);
-      slingBottomPoints.push(marker.getPoint());
-      slingBottomLine = new GPolyline(slingBottomPoints, "#FF0000"); 
-      //map.addOverlay(slingBottomLine);
-      */
+
       var slingPoints = new Array();
       slingPoints.push(slingBottomPoint);
-      slingPoints.push(marker.getPoint());
+      slingPoints.push(currentMarker.getPoint());
       slingPoints.push(slingTopPoint);
-      slingBottomLine = new GPolygon(slingPoints,"#000000",2,.5,"#FF0000",.5);
+      slingPoints.push(slingBottomPoint);
+      slingBottomLine = new GPolygon(slingPoints,"#000000",2,.5,"#FF0000",.0);
       map.removeOverlay(oldSlingBottomLine);
       map.addOverlay(slingBottomLine);
 
-      mapTarget = marker.getPoint();
+      mapTarget = currentMarker.getPoint();
       mapZoom = map.getZoom();
       targetPixel = mapNormalProj.fromLatLngToPixel(mapTarget, mapZoom);
       
       drawPoly();             
-      // map.removeOverlay(oldSlingTopLine);
     }
  
    
@@ -129,8 +120,7 @@
      }
     
     function drawPoly() {
-
-	var polyPoints = Array();
+	var polyPoints = new Array();
 	var oldPolygon = polygon;
      	  for (var a = 0; a<(polygonNumSides+1); a++) {
 	    var aRad = (360/polygonNumSides)*a*(Math.PI/180);
@@ -151,10 +141,6 @@
   </head>
 
   <body onload="load()" onunload="GUnload()">
-    The Evolution of the Polygon
-    <br/><br/>
-    <input type="button" value="Restart" onclick="restartAnim();"/>
-
     <div id="map" style="width: 500px; height: 300px"></div>
 
   </body>

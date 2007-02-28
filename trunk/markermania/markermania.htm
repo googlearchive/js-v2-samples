@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxT2MGhLvOJt8GrjSUL43OmcjQmGtxTaPEpHKK2neSdfBYbnzoxnoZ7Sww&amp;svgf=t"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var map;
+    var currentMarker;
+    var currentOpacity = 1.0;
+    var highlightCircle;
+
+    // Create our "tiny" marker icon
+    var iconBlue = new GIcon();
+    iconBlue.image = "http://labs.google.com/ridefinder/images/mm_20_blue.png";
+    iconBlue.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+    iconBlue.iconSize = new GSize(12, 20);
+    iconBlue.shadowSize = new GSize(22, 20);
+    iconBlue.iconAnchor = new GPoint(6, 20);
+    iconBlue.infoWindowAnchor = new GPoint(5, 1);
+
+    var iconRed = new GIcon();
+    iconRed.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
+    iconRed.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+    iconRed.iconSize = new GSize(12, 20);
+    iconRed.shadowSize = new GSize(22, 20);
+    iconRed.iconAnchor = new GPoint(6, 20);
+    iconRed.infoWindowAnchor = new GPoint(5, 1);
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(40.713955826286046,-35.15625), 2);
+        tryMarker();
+      }
+    }
+   function tryMarker() {
+     if (currentMarker) {
+       map.removeOverlay(currentMarker);
+     } 
+     currentMarker = createMarker(map.getCenter());
+     map.addOverlay(currentMarker);
+     currentOpacity = 1.0;
+     setTimeout("highlightCurrentMarker()", 500);
+   }
+    
+   function createMarker(point) {
+     var markerOpts = {};        
+     markerOpts.title = document.getElementById("opt_title").value;
+
+     markerOpts.draggable = document.getElementById("opt_draggable").checked;
+     markerOpts.bouncy = document.getElementById("opt_bouncy").checked;
+     markerOpts.bounceGravity = parseFloat(document.getElementById("opt_bounceGravity").value);
+     markerOpts.dragCrossMove = document.getElementById("opt_dragCrossMove").checked;     
+     var marker = new GMarker(point, markerOpts);
+     return marker;           	  
+    }
+
+    function highlightCurrentMarker() {
+      var markerPoint = currentMarker.getPoint();
+
+      var polyPoints = Array();
+
+      map.removeOverlay(highlightCircle);
+
+      var mapNormalProj = G_NORMAL_MAP.getProjection();
+      var mapZoom = map.getZoom();
+      var clickedPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
+
+      var polySmallRadius = 20;
+
+      var polyNumSides = 20;
+      var polySideLength = 18;
+
+      for (var a = 0; a<(polyNumSides+1); a++) {
+	    var aRad = polySideLength*a*(Math.PI/180);
+	    var polyRadius = polySmallRadius; 
+       	    var pixelX = clickedPixel.x + polyRadius * Math.cos(aRad);
+	    var pixelY = clickedPixel.y + polyRadius * Math.sin(aRad);
+	    var polyPixel = new GPoint(pixelX,pixelY);
+	    var polyPoint = mapNormalProj.fromPixelToLatLng(polyPixel,mapZoom);
+	    polyPoints.push(polyPoint);
+      }
+      // Using GPolygon(points,  strokeColor?,  strokeWeight?,  strokeOpacity?,  fillColor?,  fillOpacity?)
+      if(currentOpacity < 0.1) currentOpacity = 0.0;
+      highlightCircle = new GPolygon(polyPoints, "#000000", 2, 0.0, "#FFFF00", currentOpacity);
+      map.addOverlay(highlightCircle);
+      if(currentOpacity > 0.3) {
+        currentOpacity -= .3;
+        setTimeout("highlightCurrentMarker()", 100);
+      }
+    }
+
+    //]]>
+    </script>
+  </head>
+
+  <body onload="load()" onunload="GUnload()">
+    title:<input type="text" id="opt_title" size="10" value="tooltip"/>
+    &nbsp;
+    icon: <select id="opt_icon"> 
+            <option value="iconBlue">blue</option> 
+            <option value="iconRed">blue</option> 
+          </select>
+    <br/>
+    draggable:<input type="checkbox" id="opt_draggable" CHECKED />
+    &nbsp;
+    bouncy:<input type="checkbox" id="opt_bouncy" CHECKED />
+    &nbsp;
+    dragCrossMove:<input type="checkbox" id="opt_dragCrossMove" CHECKED />
+    &nbsp;
+    bounceGravity:<input type="text" id="opt_bounceGravity" value="1" size="2" />
+    &nbsp;
+    <input type="button" onclick="tryMarker()" value="Try it!"/>
+
+    <div id="map" style="width: 500px; height: 300px"></div>
+    <div id="status"></div>
+  </body>
+</html>
+
+

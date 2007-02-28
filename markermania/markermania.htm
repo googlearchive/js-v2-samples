@@ -9,16 +9,13 @@
       behavior:url(#default#VML);
     }
     </style>
-
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxT2MGhLvOJt8GrjSUL43OmcjQmGtxTaPEpHKK2neSdfBYbnzoxnoZ7Sww&amp;svgf=t"
-            type="text/javascript"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
 
     var map;
     var currentMarker;
-    var currentOpacity = 1.0;
-    var highlightCircle;
 
     // Create our "tiny" marker icon
     var iconBlue = new GIcon();
@@ -50,55 +47,24 @@
      } 
      currentMarker = createMarker(map.getCenter());
      map.addOverlay(currentMarker);
-     currentOpacity = 1.0;
-     setTimeout("highlightCurrentMarker()", 500);
    }
     
    function createMarker(point) {
      var markerOpts = {};        
+     
+     if(document.getElementById("opt_icon").value == "default") markerOpts.icon = G_DEFAULT_ICON;
+     else if(document.getElementById("opt_icon").value == "iconBlue") markerOpts.icon = iconBlue;
+     else markerOpts.icon = iconRed;
+
      markerOpts.title = document.getElementById("opt_title").value;
 
      markerOpts.draggable = document.getElementById("opt_draggable").checked;
      markerOpts.bouncy = document.getElementById("opt_bouncy").checked;
      markerOpts.bounceGravity = parseFloat(document.getElementById("opt_bounceGravity").value);
      markerOpts.dragCrossMove = document.getElementById("opt_dragCrossMove").checked;     
+
      var marker = new GMarker(point, markerOpts);
      return marker;           	  
-    }
-
-    function highlightCurrentMarker() {
-      var markerPoint = currentMarker.getPoint();
-
-      var polyPoints = Array();
-
-      map.removeOverlay(highlightCircle);
-
-      var mapNormalProj = G_NORMAL_MAP.getProjection();
-      var mapZoom = map.getZoom();
-      var clickedPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
-
-      var polySmallRadius = 20;
-
-      var polyNumSides = 20;
-      var polySideLength = 18;
-
-      for (var a = 0; a<(polyNumSides+1); a++) {
-	    var aRad = polySideLength*a*(Math.PI/180);
-	    var polyRadius = polySmallRadius; 
-       	    var pixelX = clickedPixel.x + polyRadius * Math.cos(aRad);
-	    var pixelY = clickedPixel.y + polyRadius * Math.sin(aRad);
-	    var polyPixel = new GPoint(pixelX,pixelY);
-	    var polyPoint = mapNormalProj.fromPixelToLatLng(polyPixel,mapZoom);
-	    polyPoints.push(polyPoint);
-      }
-      // Using GPolygon(points,  strokeColor?,  strokeWeight?,  strokeOpacity?,  fillColor?,  fillOpacity?)
-      if(currentOpacity < 0.1) currentOpacity = 0.0;
-      highlightCircle = new GPolygon(polyPoints, "#000000", 2, 0.0, "#FFFF00", currentOpacity);
-      map.addOverlay(highlightCircle);
-      if(currentOpacity > 0.3) {
-        currentOpacity -= .3;
-        setTimeout("highlightCurrentMarker()", 100);
-      }
     }
 
     //]]>
@@ -106,24 +72,32 @@
   </head>
 
   <body onload="load()" onunload="GUnload()">
-    title:<input type="text" id="opt_title" size="10" value="tooltip"/>
-    &nbsp;
-    icon: <select id="opt_icon"> 
-            <option value="iconBlue">blue</option> 
-            <option value="iconRed">blue</option> 
-          </select>
-    <br/>
     draggable:<input type="checkbox" id="opt_draggable" CHECKED />
     &nbsp;
     bouncy:<input type="checkbox" id="opt_bouncy" CHECKED />
     &nbsp;
     dragCrossMove:<input type="checkbox" id="opt_dragCrossMove" CHECKED />
     &nbsp;
-    bounceGravity:<input type="text" id="opt_bounceGravity" value="1" size="2" />
+    bounceGravity: <select id="opt_bounceGravity">
+                     <option value="1.0" SELECTED>1.0</option>
+                     <option value="0.8">0.8</option>
+                     <option value="0.6">0.6</option>
+                     <option value="0.4">0.4</option>
+                     <option value="0.2">0.2</option>
+		   </select>
+    &nbsp;
+    <br/><br/>
+    title:<input type="text" id="opt_title" size="10" value="its tooltip time!"/>
+    &nbsp;
+    icon: <select id="opt_icon"> 
+            <option value="default" SELECTED>default</option> 
+            <option value="iconBlue">blue</option> 
+            <option value="iconRed">red</option> 
+          </select>
     &nbsp;
     <input type="button" onclick="tryMarker()" value="Try it!"/>
-
-    <div id="map" style="width: 500px; height: 300px"></div>
+    <br/><br/>
+    <div id="map" style="width: 450px; height: 250px"></div>
     <div id="status"></div>
   </body>
 </html>

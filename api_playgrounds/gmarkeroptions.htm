@@ -18,30 +18,24 @@
    //<![CDATA[
 
    var map;
-   var currentMarker;
 
    function load() {
      if (GBrowserIsCompatible()) {
        map = new GMap2(document.getElementById("map"));
        map.setCenter(new GLatLng(40.713955826286046,-35.15625), 2);
-       tryMarker();
        updateCode();
      }
    }
 
    function createAndAddMarker() {
-
      var code = [];
      code.push("var point = new GLatLng(40.71, 36.16);");
-     var point = map.getCenter();
 
      var opts = [];
-     var markerOpts = {};
 
      var val_title = el("opt_title").value;
      if (val_title) {
        opts.push("title: \"" + val_title + "\"");
-       markerOpts.title = val_title;
      }
 
      var val_icon = el("opt_icon").value;
@@ -50,7 +44,6 @@
        opts.push("icon: " + val_icon);
 
        if(val_icon == "iconBlue") {
-         markerOpts.icon = iconBlue;
          code.push("var iconBlue = new GIcon(); \n" 
            + "iconBlue.image = 'http://labs.google.com/ridefinder/images/mm_20_blue.png';\n"
            + "iconBlue.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';\n"
@@ -59,7 +52,6 @@
            + "iconBlue.iconAnchor = new GPoint(6, 20);\n"
            + "iconBlue.infoWindowAnchor = new GPoint(5, 1);\n");
        } else if(val_icon == "iconRed") {
-         markerOpts.icon = iconRed;
          code.push("var iconRed = new GIcon(); \n" 
            + "iconRed.image = 'http://labs.google.com/ridefinder/images/mm_20_red.png';\n"
            + "iconRed.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';\n"
@@ -96,11 +88,8 @@
      }
      code.push("var marker = new GMarker(point" +
          (opts.length ? ", options" : "") + ");");
-  //   currentMarker = new GMarker(point, markerOpts);
-  //   alert(markerOpts.bouncy);
 
      code.push("map.addOverlay(marker);");
-//     map.addOverlay(currentMarker);
 
      el("code").innerHTML = code.join("\n");
      eval(code.join("\n"));

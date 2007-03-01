@@ -98,19 +98,18 @@
      }
      code.push("var marker = new GMarker(point" +
          (opts.length ? ", options" : "") + ");");
-     currentMarker = new GMarker(point, markerOpts);
-     alert(markerOpts.bouncy);
+  //   currentMarker = new GMarker(point, markerOpts);
+  //   alert(markerOpts.bouncy);
 
      code.push("map.addOverlay(marker);");
-     map.addOverlay(currentMarker);
+//     map.addOverlay(currentMarker);
 
      el("code").innerHTML = code.join("\n");
+     eval(code.join("\n"));
    }
 
    function tryMarker() {
-     if (currentMarker) {
-       map.removeOverlay(currentMarker);
-     }
+     map.clearOverlays();
      createAndAddMarker();
    }
 

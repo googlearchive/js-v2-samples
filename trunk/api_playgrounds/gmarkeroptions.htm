@@ -23,11 +23,13 @@
      if (GBrowserIsCompatible()) {
        map = new GMap2(document.getElementById("map"));
        map.setCenter(new GLatLng(40.713955826286046,-35.15625), 2);
-       updateCode();
+       updateEvalCode();
      }
    }
 
-   function createAndAddMarker() {
+   function updateCode() {
+     map.clearOverlays();
+
      var code = [];
      code.push("var point = new GLatLng(40.71, 36.16);");
 
@@ -89,21 +91,13 @@
 
      el("code").innerHTML = code.join("\n");
      eval(code.join("\n"));
-   }
-
-   function tryMarker() {
-     map.clearOverlays();
-     createAndAddMarker();
+     prettyPrint();
    }
 
    function el(id) {
      return document.getElementById(id);
    }
 
-   function updateCode() {
-     tryMarker();
-     prettyPrint();
-   }
    //]]>
    </script>
 

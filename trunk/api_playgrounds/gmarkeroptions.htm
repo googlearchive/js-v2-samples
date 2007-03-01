@@ -70,6 +70,13 @@
 
        if(val_icon == "iconBlue") {
          markerOpts.icon = iconBlue;
+         code.push("var iconBlue = new GIcon(); \n" 
+           + "iconBlue.image = 'http://labs.google.com/ridefinder/images/mm_20_blue.png';\n"
+           + "iconBlue.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';\n"
+           + "iconBlue.iconSize = new GSize(12, 20);\n"
+           + "iconBlue.shadowSize = new GSize(22, 20);\n"
+           + "iconBlue.iconAnchor = new GPoint(6, 20);\n"
+           + "iconBlue.infoWindowAnchor = new GPoint(5, 1);\n");
        } else if(val_icon == "iconRed") {
          markerOpts.icon = iconRed;
        }

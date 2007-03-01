@@ -89,9 +89,9 @@
 
      code.push("map.addOverlay(marker);");
  
-     var codeHTML = code.joint("<br/>");
-     el("code").innerHTML = code.join("<br/>");
-     eval(code.replace("<br/>",""));
+     var codeHTML = code.join("<br/>");
+     el("code").innerHTML = codeHTML;
+     eval(codeHTML.replace("<br/>",""));
      prettyPrint();
    }
 

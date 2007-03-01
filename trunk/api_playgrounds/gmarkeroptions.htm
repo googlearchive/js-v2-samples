@@ -62,23 +62,6 @@
        opts.push("title: \"" + val_title + "\"");
        markerOpts.title = val_title;
      }
-     if (el("opt_draggable").checked) {
-       opts.push("draggable: true");
-       markerOpts.draggable = true;
-       if (!el("opt_bouncy").checked) {
-         opts.push("bouncy: false");
-         markerOpts.bouncy = false;
-       }  
-       var val_bounceGravity = parseFloat(el("opt_bounceGravity").value);
-       if (val_bounceGravity != 1.0) {
-         opts.push("bounceGravity: " + val_bounceGravity + "");
-         markerOpts.bounceGravity = val_bounceGravity;
-       }
-       if (el("opt_dragCrossMove").checked) {
-         opts.push("dragCrossMove: true");
-         markerOpts.dragCrossMove = true;
-       }
-     }
 
      var val_icon = el("opt_icon").value;
      if (val_icon != "default") {
@@ -89,6 +72,25 @@
          markerOpts.icon = iconBlue;
        } else if(val_icon == "iconRed") {
          markerOpts.icon = iconRed;
+       }
+     }
+
+     if (el("opt_draggable").checked) {
+       opts.push("draggable: true");
+       markerOpts.draggable = true;
+       if (el("opt_bouncy").checked) {
+         var val_bounceGravity = parseFloat(el("opt_bounceGravity").value);
+         if (val_bounceGravity != 1.0) {
+           opts.push("bounceGravity: " + val_bounceGravity + "");
+           markerOpts.bounceGravity = val_bounceGravity;
+         }
+       } else {
+         opts.push("bouncy: false");
+         markerOpts.bouncy = false;
+       }
+       if (el("opt_dragCrossMove").checked) {
+         opts.push("dragCrossMove: true");
+         markerOpts.dragCrossMove = true;
        }
      }
      

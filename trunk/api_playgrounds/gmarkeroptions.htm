@@ -67,21 +67,27 @@
        }
      }
 
-     if (el("opt_draggable").checked) {
-       opts.push("draggable: true");
-       if (el("opt_bouncy").checked) {
-         var val_bounceGravity = parseFloat(el("opt_bounceGravity").value);
-         if (val_bounceGravity != 1.0) {
-           opts.push("bounceGravity: " + val_bounceGravity + "");
+     if (el("opt_clickable").checked) {
+       opts.push("clickable: true");
+
+       if (el("opt_draggable").checked) {
+         opts.push("draggable: true");
+
+         if (el("opt_bouncy").checked) {
+           var val_bounceGravity = parseFloat(el("opt_bounceGravity").value);
+           if (val_bounceGravity != 1.0) {
+             opts.push("bounceGravity: " + val_bounceGravity + "");
+           }
+         } else {
+           opts.push("bouncy: false");
          }
-       } else {
-         opts.push("bouncy: false");
-       }
-       if (el("opt_dragCrossMove").checked) {
-         opts.push("dragCrossMove: true");
+
+         if (el("opt_dragCrossMove").checked) {
+           opts.push("dragCrossMove: true");
+         }
        }
      }
-     
+
      if (opts.length) {
        code.push("var options = { <br/>"
                 + opts.join(",<br/>") + "<br/>"
@@ -111,6 +117,8 @@
  </head>
 
  <body onload="load()" onunload="GUnload()">
+   clickable:<input type="checkbox" id="opt_clickable" onclick="updateCode()" />
+   &nbsp;
    draggable:<input type="checkbox" id="opt_draggable" onclick="updateCode()" />
    &nbsp;
    bouncy:<input type="checkbox" id="opt_bouncy" onclick="updateCode()" />

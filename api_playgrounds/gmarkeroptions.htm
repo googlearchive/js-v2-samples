@@ -80,16 +80,16 @@
      }
      
      if (opts.length) {
-       code.push("var options = {");
-       code.push(opts.join(",<br/>"));
-       code.push("};");
+       code.push("var options = { <br/>"
+                + opts.join(",<br/>")
+                + "};");
      }
      code.push("var marker = new GMarker(point" +
          (opts.length ? ", options" : "") + ");");
 
      code.push("map.addOverlay(marker);");
  
-     var codeHTML = code.join("<br/>");
+     var codeHTML = code.join("<br/><br/>");
      el("code").innerHTML = codeHTML;
 
      var codeJS = codeHTML.replace(/<br\/>/g,"\n");

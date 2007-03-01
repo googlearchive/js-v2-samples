@@ -46,21 +46,21 @@
        opts.push("icon: " + val_icon);
 
        if(val_icon == "iconBlue") {
-         code.push("var iconBlue = new GIcon(); \n" 
-           + "iconBlue.image = 'http://labs.google.com/ridefinder/images/mm_20_blue.png';\n"
-           + "iconBlue.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';\n"
-           + "iconBlue.iconSize = new GSize(12, 20);\n"
-           + "iconBlue.shadowSize = new GSize(22, 20);\n"
-           + "iconBlue.iconAnchor = new GPoint(6, 20);\n"
-           + "iconBlue.infoWindowAnchor = new GPoint(5, 1);\n");
+         code.push("var iconBlue = new GIcon(); <br/>" 
+           + "iconBlue.image = 'http://labs.google.com/ridefinder/images/mm_20_blue.png';<br/>"
+           + "iconBlue.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';<br/>"
+           + "iconBlue.iconSize = new GSize(12, 20);<br/>"
+           + "iconBlue.shadowSize = new GSize(22, 20);<br/>"
+           + "iconBlue.iconAnchor = new GPoint(6, 20);<br/>"
+           + "iconBlue.infoWindowAnchor = new GPoint(5, 1);<br/>");
        } else if(val_icon == "iconRed") {
-         code.push("var iconRed = new GIcon(); \n" 
-           + "iconRed.image = 'http://labs.google.com/ridefinder/images/mm_20_red.png';\n"
-           + "iconRed.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';\n"
-           + "iconRed.iconSize = new GSize(12, 20);\n"
-           + "iconRed.shadowSize = new GSize(22, 20);\n"
-           + "iconRed.iconAnchor = new GPoint(6, 20);\n"
-           + "iconRed.infoWindowAnchor = new GPoint(5, 1);\n");
+         code.push("var iconRed = new GIcon(); <br/>" 
+           + "iconRed.image = 'http://labs.google.com/ridefinder/images/mm_20_red.png';<br/>"
+           + "iconRed.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';<br/>"
+           + "iconRed.iconSize = new GSize(12, 20);<br/>"
+           + "iconRed.shadowSize = new GSize(22, 20);<br/>"
+           + "iconRed.iconAnchor = new GPoint(6, 20);<br/>"
+           + "iconRed.infoWindowAnchor = new GPoint(5, 1);<br/>");
        }
      }
 
@@ -81,16 +81,17 @@
      
      if (opts.length) {
        code.push("var options = {");
-       code.push(opts.join(",\n"));
+       code.push(opts.join(",<br/>"));
        code.push("};");
      }
      code.push("var marker = new GMarker(point" +
          (opts.length ? ", options" : "") + ");");
 
      code.push("map.addOverlay(marker);");
-
+ 
+     var codeHTML = code.joint("<br/>");
      el("code").innerHTML = code.join("<br/>");
-     eval(code.join("\n"));
+     eval(code.replace("<br/>",""));
      prettyPrint();
    }
 

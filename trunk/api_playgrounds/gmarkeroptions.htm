@@ -98,7 +98,7 @@
      }
      code.push("var marker = new GMarker(point" +
          (opts.length ? ", options" : "") + ");");
-     var currentMarker = new GMarker(point, markerOpts);
+     currentMarker = new GMarker(point, markerOpts);
 
      code.push("map.addOverlay(point);");
      map.addOverlay(currentMarker);

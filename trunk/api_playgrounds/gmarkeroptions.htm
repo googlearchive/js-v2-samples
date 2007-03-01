@@ -31,7 +31,10 @@
      map.clearOverlays();
 
      var code = [];
-     code.push("var point = new GLatLng(40.71, 36.16);");
+     var lat = map.getCenter().lat();
+     var lng = map.getCenter().lng();
+     code.push("var point = new GLatLng(" + lat.toFixed(6) 
+       + "," + lng.toFixed(6) + ");");
 
      var opts = [];
 
@@ -81,7 +84,7 @@
      
      if (opts.length) {
        code.push("var options = { <br/>"
-                + opts.join(",<br/>")
+                + opts.join(",<br/>") + "<br/>"
                 + "};");
      }
      code.push("var marker = new GMarker(point" +

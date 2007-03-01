@@ -64,20 +64,16 @@
 
      if (el("opt_draggable").checked) {
        opts.push("draggable: true");
-       markerOpts.draggable = true;
        if (el("opt_bouncy").checked) {
          var val_bounceGravity = parseFloat(el("opt_bounceGravity").value);
          if (val_bounceGravity != 1.0) {
            opts.push("bounceGravity: " + val_bounceGravity + "");
-           markerOpts.bounceGravity = val_bounceGravity;
          }
        } else {
          opts.push("bouncy: false");
-         markerOpts.bouncy = false;
        }
        if (el("opt_dragCrossMove").checked) {
          opts.push("dragCrossMove: true");
-         markerOpts.dragCrossMove = true;
        }
      }
      

@@ -50,39 +50,39 @@
    function generateCode() {
      // TODO cleanup this mess
      var code = [];
-     code.push("<span class='keyword'>var</span> point = " +
-         "<span class='keyword'>new</span> GLatLng(" +
-         "<span class='literal'>40.71</span>, " +
-         "<span class='literal'>36.16</span>);");
+     code.push("var point = new " +
+         "GLatLng(" +
+         "40.71, " +
+         "36.16);");
      var opts = [];
      var prev = false;
      if (el("opt_title").value) {
        opts.push("&nbsp;&nbsp;title: \"" +
-           "<span class='string'>" + el("opt_title").value +
-           "\"</span>");
+           "" + el("opt_title").value +
+           "\"");
        prev = true;
      }
      if (el("opt_draggable").checked) {
        if (prev) {
          opts[opts.length - 1] += ",";
        }
-       opts.push("&nbsp;&nbsp;draggable: <span class='keyword'>true</span>");
+       opts.push("&nbsp;&nbsp;draggable: true");
        prev = true;
      }
      if (el("opt_bouncy").checked) {
        if (prev) {
          opts[opts.length - 1] += ",";
        }
-       opts.push("&nbsp;&nbsp;bouncy: <span class='keyword'>" +
-           "true</span>");
+       opts.push("&nbsp;&nbsp;bouncy:" +
+           "true");
        prev = true;
      }
      if (el("opt_dragCrossMove").checked) {
        if (prev) {
          opts[opts.length - 1] += ",";
        }
-       opts.push("&nbsp;&nbsp;dragCrossMove: <span class='keyword'>" +
-           "true</span>");
+       opts.push("&nbsp;&nbsp;dragCrossMove: " +
+           "true");
        prev = true;
      }
      var grav = parseFloat(el("opt_bounceGravity").value);
@@ -90,8 +90,8 @@
        if (prev) {
          opts[opts.length - 1] += ",";
        }
-       opts.push("&nbsp;&nbsp;bounceGravity: <span class='literal'>" +
-           grav + "</span>");
+       opts.push("&nbsp;&nbsp;bounceGravity: " +
+           grav + "");
        prev = true;
      }
      var icon = el("opt_icon").value;
@@ -103,15 +103,15 @@
        opts.push("&nbsp;&nbsp;icon: " + icon);
      }
      if (opts.length) {
-       code.push("<span class='keyword'>var</span> options = {");
+       code.push("var options = {");
        Array.prototype.push.apply(code, opts);
        code.push("};");
      }
-     code.push("<span class='keyword'>var</span> marker = " +
-         "<span class='keyword'>new</span> GMarker(point" +
+     code.push("var marker = " +
+         "new GMarker(point" +
          (opts.length ? ", options" : "") + ");");
      code.push("map.addOverlay(point);");
-     return code.join("<br>");
+     return code.join("\n");
    }
 
    function tryMarker() {

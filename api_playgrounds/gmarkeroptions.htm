@@ -68,7 +68,6 @@
      }
 
      if (el("opt_clickable").checked) {
-       opts.push("clickable: true");
 
        if (el("opt_draggable").checked) {
          opts.push("draggable: true");
@@ -86,6 +85,8 @@
            opts.push("dragCrossMove: true");
          }
        }
+     } else {
+       opts.push("clickable: false");
      }
 
      if (opts.length) {

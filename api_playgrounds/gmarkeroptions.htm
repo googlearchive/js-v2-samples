@@ -49,67 +49,40 @@
    }
 
    function generateCode() {
-     // TODO cleanup this mess
+
      var code = [];
-     code.push("var point = new " +
-         "GLatLng(" +
-         "40.71, " +
-         "36.16);");
+     code.push("var point = new GLatLng(40.71, 36.16);");
      var opts = [];
      var prev = false;
      if (el("opt_title").value) {
-       opts.push("&nbsp;&nbsp;title: \"" +
-           "" + el("opt_title").value +
-           "\"");
+       opts.push("&nbsp;&nbsp;title: \"" + el("opt_title").value + "\"");
        prev = true;
      }
      if (el("opt_draggable").checked) {
-       if (prev) {
-         opts[opts.length - 1] += ",";
-       }
        opts.push("&nbsp;&nbsp;draggable: true");
-       prev = true;
      }
      if (el("opt_bouncy").checked) {
-       if (prev) {
-         opts[opts.length - 1] += ",";
-       }
-       opts.push("&nbsp;&nbsp;bouncy:" +
-           "true");
-       prev = true;
+       opts.push("&nbsp;&nbsp;bouncy: true");
      }
      if (el("opt_dragCrossMove").checked) {
-       if (prev) {
-         opts[opts.length - 1] += ",";
-       }
-       opts.push("&nbsp;&nbsp;dragCrossMove: " +
-           "true");
-       prev = true;
+       opts.push("&nbsp;&nbsp;dragCrossMove: true");
      }
      var grav = parseFloat(el("opt_bounceGravity").value);
      if (grav != 1.0) {
-       if (prev) {
-         opts[opts.length - 1] += ",";
-       }
-       opts.push("&nbsp;&nbsp;bounceGravity: " +
-           grav + "");
-       prev = true;
+       opts.push("&nbsp;&nbsp;bounceGravity: " + grav + "");
      }
      var icon = el("opt_icon").value;
      if (icon != "default") {
-       if (prev) {
-         opts[opts.length - 1] += ",";
-       }
        // TODO insert code for creating blue or red icons into code
        opts.push("&nbsp;&nbsp;icon: " + icon);
      }
+     
      if (opts.length) {
        code.push("var options = {");
-       Array.prototype.push.apply(code, opts);
+       code.push(opts.join(",\n"));
        code.push("};");
      }
-     code.push("var marker = " +
-         "new GMarker(point" +
+     code.push("var marker = new GMarker(point" +
          (opts.length ? ", options" : "") + ");");
      code.push("map.addOverlay(point);");
      return code.join("\n");

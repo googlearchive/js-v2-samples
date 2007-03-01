@@ -91,6 +91,7 @@
  
      var codeHTML = code.join("<br/>");
      el("code").innerHTML = codeHTML;
+     alert(codeHTML);
      var codeJS = codeHTML.replace("<br/>","\n");
      alert(codeJS);
      eval(codeJS);

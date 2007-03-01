@@ -91,7 +91,8 @@
  
      var codeHTML = code.join("<br/>");
      el("code").innerHTML = codeHTML;
-     eval(codeHTML.replace(/<br\/>/,""));
+     var codeJS = codeHTML.replace("<br/>","\n");
+     eval(codeJS);
      prettyPrint();
    }
 

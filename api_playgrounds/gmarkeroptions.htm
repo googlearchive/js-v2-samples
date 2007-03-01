@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+<script type="text/javascript">
+   //<![CDATA[
+
+   var map;
+   var currentMarker;
+
+   // Create our "tiny" marker icon
+   var iconBlue = new GIcon();
+   iconBlue.image = "http://labs.google.com/ridefinder/images/mm_20_blue.png";
+   iconBlue.shadow =
+"http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+   iconBlue.iconSize = new GSize(12, 20);
+   iconBlue.shadowSize = new GSize(22, 20);
+   iconBlue.iconAnchor = new GPoint(6, 20);
+   iconBlue.infoWindowAnchor = new GPoint(5, 1);
+
+   var iconRed = new GIcon();
+   iconRed.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
+   iconRed.shadow =
+"http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+   iconRed.iconSize = new GSize(12, 20);
+   iconRed.shadowSize = new GSize(22, 20);
+   iconRed.iconAnchor = new GPoint(6, 20);
+   iconRed.infoWindowAnchor = new GPoint(5, 1);
+
+   function load() {
+     if (GBrowserIsCompatible()) {
+       map = new GMap2(document.getElementById("map"));
+       map.setCenter(new GLatLng(40.713955826286046,-35.15625), 2);
+       tryMarker();
+       updateCode();
+     }
+   }
+
+   function generateCode() {
+     // TODO cleanup this mess
+     var code = [];
+     code.push("<span class='keyword'>var</span> point = " +
+         "<span class='keyword'>new</span> GLatLng(" +
+         "<span class='literal'>40.71</span>, " +
+         "<span class='literal'>36.16</span>);");
+     var opts = [];
+     var prev = false;
+     if (el("opt_title").value) {
+       opts.push("&nbsp;&nbsp;title: \"" +
+           "<span class='string'>" + el("opt_title").value +
+           "\"</span>");
+       prev = true;
+     }
+     if (el("opt_draggable").checked) {
+       if (prev) {
+         opts[opts.length - 1] += ",";
+       }
+       opts.push("&nbsp;&nbsp;draggable: <span class='keyword'>true</span>");
+       prev = true;
+     }
+     if (el("opt_bouncy").checked) {
+       if (prev) {
+         opts[opts.length - 1] += ",";
+       }
+       opts.push("&nbsp;&nbsp;bouncy: <span class='keyword'>" +
+           "true</span>");
+       prev = true;
+     }
+     if (el("opt_dragCrossMove").checked) {
+       if (prev) {
+         opts[opts.length - 1] += ",";
+       }
+       opts.push("&nbsp;&nbsp;dragCrossMove: <span class='keyword'>" +
+           "true</span>");
+       prev = true;
+     }
+     var grav = parseFloat(el("opt_bounceGravity").value);
+     if (grav != 1.0) {
+       if (prev) {
+         opts[opts.length - 1] += ",";
+       }
+       opts.push("&nbsp;&nbsp;bounceGravity: <span class='literal'>" +
+           grav + "</span>");
+       prev = true;
+     }
+     var icon = el("opt_icon").value;
+     if (icon != "default") {
+       if (prev) {
+         opts[opts.length - 1] += ",";
+       }
+       // TODO insert code for creating blue or red icons into code
+       opts.push("&nbsp;&nbsp;icon: " + icon);
+     }
+     if (opts.length) {
+       code.push("<span class='keyword'>var</span> options = {");
+       Array.prototype.push.apply(code, opts);
+       code.push("};");
+     }
+     code.push("<span class='keyword'>var</span> marker = " +
+         "<span class='keyword'>new</span> GMarker(point" +
+         (opts.length ? ", options" : "") + ");");
+     code.push("map.addOverlay(point);");
+     return code.join("<br>");
+   }
+
+   function tryMarker() {
+     if (currentMarker) {
+       map.removeOverlay(currentMarker);
+     }
+     currentMarker = createMarker(map.getCenter());
+     map.addOverlay(currentMarker);
+   }
+
+   function el(id) {
+     return document.getElementById(id);
+   }
+
+   function createMarker(point) {
+     var markerOpts = {};
+     if(el("opt_icon").value == "default") {
+       markerOpts.icon = G_DEFAULT_ICON;
+     } else if(el("opt_icon").value == "iconBlue") {
+       markerOpts.icon = iconBlue;
+     } else {
+       markerOpts.icon = iconRed;
+     }
+     markerOpts.title = el("opt_title").value;
+     markerOpts.draggable = el("opt_draggable").checked;
+     markerOpts.bouncy = el("opt_bouncy").checked;
+     markerOpts.bounceGravity = parseFloat(el("opt_bounceGravity").value);
+     markerOpts.dragCrossMove = el("opt_dragCrossMove").checked;
+     var marker = new GMarker(point, markerOpts);
+     return marker;
+   }
+
+   function updateCode() {
+     var html = generateCode();
+     el("code").innerHTML = html;
+   }
+   //]]>
+   </script>
+
+ </head>
+
+ <body onload="load()" onunload="GUnload()">
+   draggable:<input type="checkbox" id="opt_draggable"
+onchange="updateCode()" />
+   &nbsp;
+   bouncy:<input type="checkbox" id="opt_bouncy" onchange="updateCode()" />
+   &nbsp;
+   dragCrossMove:<input type="checkbox" id="opt_dragCrossMove"
+onchange="updateCode()"/>
+
+   &nbsp;
+   bounceGravity:
+     <select id="opt_bounceGravity" onchange="updateCode()">
+       <option value="1.0" SELECTED>1.0</option>
+       <option value="0.8">0.8</option>
+       <option value="0.6">0.6</option>
+       <option value="0.4">0.4</option>
+
+       <option value="0.2">0.2</option>
+  </select>
+   &nbsp;
+   <br/><br/>
+   title:<input type="text" id="opt_title" size="10" value=""
+       onkeyup="updateCode()" onchange="updateCode()"/>
+   &nbsp;
+   icon:
+   <select id="opt_icon" onchange="updateCode()">
+
+     <option value="default" SELECTED>default</option>
+     <option value="iconBlue">blue</option>
+     <option value="iconRed">red</option>
+   </select>
+   &nbsp;
+   <input type="button" onclick="tryMarker()"
+       value="Create marker with new options" width="100"/>
+   <br/><br/>
+
+   <table>
+     <tr>
+       <td>
+         <div id="map" style="width: 450px; height: 250px"></div>
+       </td>
+       <td>
+         <div id="code" class="code"></div>
+       </td>
+     </tr>
+
+   </table>
+ </body>
+</html>

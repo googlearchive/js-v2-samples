@@ -27,10 +27,11 @@
     var iconMole = new GIcon(); 
     iconMole.image = 'mole_down.png';
     iconMole.shadow = 'mole_down.png';
-    iconMole.iconSize = new GSize(36, 36);
-    iconMole.shadowSize = new GSize(36, 36);
+    iconMole.iconSize = new GSize(36, 42);
+    iconMole.shadowSize = new GSize(36, 42);
     iconMole.iconAnchor = new GPoint(6, 20);
     iconMole.infoWindowAnchor = new GPoint(5, 1);
+
     var gameTimer;
     var markers = [];
     var gameSeconds = 0;
@@ -53,6 +54,31 @@
         }
       }
     }
+
+    function createMarker(point) {
+      var marker = new GMarker(point, {icon:iconMole});
+      marker.whackState = "down";
+      GEvent.addListener(marker, "click", function() {
+        if(inGame() && marker.whackState == "up") {
+          currentScore++;
+          marker.setImage('mole_down.png');
+          marker.whackState = "almostDown";
+        } 
+     });
+      GEvent.addListener(marker, "mouseover", function() {
+        if(inGame() && marker.whackState == "up") {
+          marker.setImage('mole_scared.png');
+        }
+      });
+      GEvent.addListener(marker, "mouseout", function() {
+        if(inGame() && marker.whackState == "up") {
+          marker.setImage('mole_up.png');
+        }
+      });
+
+      return marker;
+    }
+
 
     function startGame() {
       for(var i = 0; i < markers.length; i++) {
@@ -86,30 +112,6 @@
       document.getElementById("time").innerHTML = gameTime - gameSeconds;
     }
     
-    function createMarker(point) {
-      var marker = new GMarker(point, {icon:iconMole});
-      marker.whackState = "down";
-      GEvent.addListener(marker, "click", function() {
-        if(inGame() && marker.whackState == "up") {
-          currentScore++;
-          marker.setImage('mole_down.png');
-          marker.whackState = "almostDown";
-        } 
-     });
-      GEvent.addListener(marker, "mouseover", function() {
-        if(inGame() && marker.whackState == "up") {
-          marker.setImage('mole_scared.png');
-        }
-      });
-      GEvent.addListener(marker, "mouseout", function() {
-        if(inGame() && marker.whackState == "up") {
-          marker.setImage('mole_up.png');
-        }
-      });
-
-      return marker;
-    }
-
     function popMoles() {
       var randomnumber=Math.floor(Math.random()*markers.length);
       var marker = markers[randomnumber];

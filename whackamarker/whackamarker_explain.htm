@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Marker Highlighting Clock Demo</title>
+<title>Creating Whack-A-Mole(ker) Using GMarker.setImage</title>
 <link href="http://www.google.com/apis/maps/base.css" rel="stylesheet" 
 type="text/css"/>
 </head>
@@ -13,7 +13,7 @@ type="text/css"/>
 In <code>load</code>, I set up the map and call <code>createMarker</code> for each of the points in the <code>moleLocations</code> array, adding each of the returned markers to a global <code>markers</code> array.
 </p>
 <p>
-In <code>createMarker</code>, I create a marker with the global <code>GIcon iconMole</code> which has the default <code>'mole_down.png' image for its <code>image</code> property. <br/>
+In <code>createMarker</code>, I create a marker with the global <code>GIcon iconMole</code> which has the default <code>'mole_down.png'</code> image for its <code>image</code> property. <br/>
 * Note that I created all the mole images with the same canvas size (36*42px), as calling <code>setImage</code> on <code>GMarker</code> will not resize the <code>GIcon</code>. The new image will just be resized to fit the original <code>GIcon.iconSize</code>.
 </p>
 <p>

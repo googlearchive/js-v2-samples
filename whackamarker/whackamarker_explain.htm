@@ -14,7 +14,7 @@ In <code>load</code>, I set up the map and call <code>createMarker</code> for ea
 </p>
 <p>
 In <code>createMarker</code>, I create a marker with the global <code>GIcon iconMole</code> which has the default <code>'mole_down.png'</code> image for its <code>image</code> property. <br/>
-* Note that I created all the mole images with the same canvas size (36*42px), as calling <code>setImage</code> on <code>GMarker</code> will not resize the <code>GIcon</code>. The new image will just be resized to fit the original <code>GIcon.iconSize</code>.
+<strong>Note:</strong> I created all the mole images with the same canvas size (36*42px), as calling <code>setImage</code> on <code>GMarker</code> will not resize the <code>GIcon</code>. The new image will just be resized to fit the original <code>GIcon.iconSize</code>.
 </p>
 <p>
 Still in <code>createMarker</code>, I extend <code>Marker</code> with a <code>whackState</code> property so I can keep track of the state of a mole hole. 

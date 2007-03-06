@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Marker Highlighting Demo</title>
+    <style type="text/css">
+      div.map {
+        width: 550px;
+        height: 400px;
+        margin: auto;
+        border: 3px double gray;
+    }
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    var clock = {
+        hour: -1,
+        minute: -1,
+        second: 0,
+        map: null,
+        hhand: null,
+        mhand: null,
+        tick: []
+    };
+
+    var RADIUS = 13;
+    var MINUTE_OFF = "minuteOff.png";
+    var MINUTE_ON = "minuteOn.png";
+    var SECOND_ON = "secondOn.png";
+    var SECOND_OFF = "secondOff.png";
+    var SLICE_ANGLE = 2.0*Math.PI/60.0;
+    var CENTER;
+
+    function setupMap() {
+      if (GBrowserIsCompatible()) {
+        CENTER = new GLatLng(-25.72, 133.74);
+        clock.map = new GMap2(document.getElementById("map"));
+        clock.map.setCenter(CENTER, 4);
+        clock.map.addControl(new GMapTypeControl());
+        setupTicks();
+      }
+    }
+
+    function minToLatLng(m, d) {
+      return new GLatLng(CENTER.lat() + (RADIUS - d)*Math.cos(m*SLICE_ANGLE),
+                         CENTER.lng() + (RADIUS - d)*Math.sin(m*SLICE_ANGLE));
+    }
+
+    function setupTicks() {
+      var secondIcon = new GIcon(false, SECOND_OFF);
+      secondIcon.iconSize = new GSize(16, 16);
+      secondIcon.iconAnchor = new GPoint(7, 7);
+      var minuteIcon = new GIcon(false, MINUTE_OFF);
+      minuteIcon.iconSize = new GSize(24, 24);
+      minuteIcon.iconAnchor = new GPoint(12, 12);
+      for (var i = 0; i < 60; ++i) {
+        var marker = new GMarker(minToLatLng(i, 0),
+            { icon: i % 5 == 0? minuteIcon: secondIcon });
+        clock.tick.push(marker);
+        clock.map.addOverlay(marker);
+      }
+      window.setInterval(clockTick, 200);
+      window.setTimeout(clockTick, 0);
+    }
+
+    function clockTick() {
+      var now = new Date();
+      var h = now.getHours() % 12;
+      var m = now.getMinutes();
+      var s = now.getSeconds();
+      if (h != clock.hour) {
+        clock.hour = h;
+        if (clock.hhand) {
+          clock.map.removeOverlay(clock.hhand);
+        }
+        clock.hhand = new GPolyline(
+            [ CENTER, minToLatLng(h*5 + m/12.0, 4.0) ], "#006000", 10, 0.9);
+        clock.map.addOverlay(clock.hhand);
+      }
+      if (m != clock.minute) {
+        clock.minute = m;
+        if (clock.mhand) {
+          clock.map.removeOverlay(clock.mhand);
+        }
+        clock.mhand = new GPolyline(
+            [ CENTER, minToLatLng(m, 1.5) ], "#008080", 6, 0.6);
+        clock.map.addOverlay(clock.mhand);
+      }
+      if (s != clock.second) {
+        clock.tick[clock.second].setImage(
+            clock.second % 5 == 0? MINUTE_OFF : SECOND_OFF);
+        clock.second = s;
+        clock.tick[s].setImage(s % 5 == 0? MINUTE_ON : SECOND_ON);
+      }
+    }
+    //]]>
+    </script>
+  </head>
+
+  <body onload="setupMap()" onunload="GUnload()">
+    <div id="map" class="map"></div>
+  </body>
+</html>
+

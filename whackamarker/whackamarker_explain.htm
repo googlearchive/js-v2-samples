@@ -10,22 +10,25 @@ type="text/css"/>
 <h3>Creating Whack-A-Mole(ker) Using GMarker.setImage()</h3>
 
 <p>
-* In load(), I set up the map and call createMarker() for each of the points in the moleLocations array, adding each of the returned markers to a global array.
+In <code>load</code>, I set up the map and call <code>createMarker</code> for each of the points in the <code>moleLocations</code> array, adding each of the returned markers to a global <code>markers</code> array.
 </p>
 <p>
-* In createMarker(), I create a marker with the iconMole GIcon, declared globally, which has the default "down" image for its <code>image</code> property. <em>Note that I created all the images with the same canvas size (36*42px), as calling setImage() on <code>GMarker</code> will not resize the <code>GIcon</code>. The new image will just be resized to fit the original <code>GIcon.iconSize</code>.</em>
+In <code>createMarker</code>, I create a marker with the global <code>GIcon iconMole</code> which has the default <code>'mole_down.png' image for its <code>image</code> property. <br/>
+* Note that I created all the mole images with the same canvas size (36*42px), as calling <code>setImage</code> on <code>GMarker</code> will not resize the <code>GIcon</code>. The new image will just be resized to fit the original <code>GIcon.iconSize</code>.
 </p>
 <p>
-* Still in createMarker(), I extend GMarker with a "whackState" property so I can keep track of the state of a mole hole. I also add click, mouseover, and mouseout listeners to the marker. In the click listener, I check if the game is being played and if the current marker is in the up whackState. If so, I increment the global <code>currentScore</code>, call marker.setImage('mole_down.png'), and change the <code>whackState</code> to 'almostDown.' In the mouseover and mouseout listeners, I toggle between mole_scared.png and mole_up.png if the mole is currently in the up <code>whackState</code>. Fast clickers will barely notice the (cute) <code>mouseover</code> state, but it's always nice to have a mouseover state to provide additional feedback to the player/user. 
+Still in <code>createMarker</code>, I extend <code>Marker</code> with a <code>whackState</code> property so I can keep track of the state of a mole hole. 
+I also add <code>click</code>, <code>mouseover</code>, and <code>mouseout</code> listeners to the marker. In the <code>click </code> listener, I check if the game is being played and if the current marker is in the up <code>whackState</code>. If so, I increment the global <code>currentScore</code>, call <code>marker.setImage('mole_down.png')</code>, and change the <code>whackState</code> to <code>almostDown</code>. In the <code>mouseover</code> and <code>mouseout</code> listeners, I toggle between <code>'mole_scared.png'</code> and <code>'mole_up.png'</code> if the mole is currently in the up <code>whackState</code>. 
+* Fast clickers will barely notice the <code>mouseover</code> state, but it's always nice to have a <code>mouseover</code> state to provide additional feedback to the player. 
 </p>
 <p>
-* When the player clicks the start button, I iterate through the markers array, calling <code>marker.setImage('mole_down.png')</code> and setting <code>whackState</code> to 'down.' I also reset the game seconds left and current score, and call <code>setInterval(popMoles, 1000)</code> so that the popMoles function will get called every second.
+When the player clicks the start button, I iterate through the <code>markers</code> array, calling <code>marker.setImage('mole_down.png')</code> and setting <code>whackState</code> to <code>'down'</code>. I also reset the game seconds left and current score, and call <code>setInterval(popMoles, 1000)</code> so that the <code>popMoles</code> function will get called every second.
 </p>
 <p>
-* In <code>popMoles</code>, I iterate through the markers array and pick a random number between 1 and 3 for each. If the marker is in the 'down' <code>whackState</code> and the random number picked is 1, I pop the mole up by calling <code>marker.setImage('mole_up.png')</code> and setting its whackState to 'up.' If the marker is in the 'almostDown' whackState, I set its whackState to 'down'. This intermediary state ensures that markers won't pop up immediately after getting whacked down. I then increment the game seconds and update the score. If the game seconds played equals the game duration (30), I call <code>endGame</code>.
+In <code>popMoles</code>, I iterate through the <code>markers</code> array and pick a random number between 1 and 3 for each. If the marker is in the down <code>whackState</code> and the random number picked is 1, I pop the mole up by calling <code>marker.setImage('mole_up.png')</code> and setting its <code>whackState</code> to up. If the marker is in the almostDown <code>whackState</code>, I set its <code>whackState</code> to down. This intermediary state ensures that markers won't pop up immediately after getting whacked down. I then increment the game seconds and update the score. If the game seconds played equals the game duration (30), I call <code>endGame</code>.
 </p>
 <p>
-* In <code>endGame</code>, I iterate through the markers array, calling <code>marker.setImage('mole_happy.png')</code> for every marker currently in the 'up' whackState. I also clear the timer that was calling popMoles every second.
+In <code>endGame</code>, I iterate through the <code>markers</code> array, calling <code>marker.setImage('mole_happy.png')</code> for every marker currently in the up <code>whackState</code>. I also clear the timer that was calling <code>popMoles</code> every second.
 </p>
 <p><a href="whackamarker.htm">View example (whackamarker.htm)</a>. 
 

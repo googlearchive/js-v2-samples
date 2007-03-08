@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Marker Highlighting Demo</title>
+    <title>Marker Highlighting Clock Demo</title>
     <style type="text/css">
       div.map {
         width: 550px;
@@ -43,7 +43,7 @@
         setupTicks();
       }
     }
-
+    
     function minToLatLng(m, d) {
       return new GLatLng(CENTER.lat() + (RADIUS - d)*Math.cos(m*SLICE_ANGLE),
                          CENTER.lng() + (RADIUS - d)*Math.sin(m*SLICE_ANGLE));
@@ -56,9 +56,13 @@
       var minuteIcon = new GIcon(false, MINUTE_OFF);
       minuteIcon.iconSize = new GSize(24, 24);
       minuteIcon.iconAnchor = new GPoint(12, 12);
+
       for (var i = 0; i < 60; ++i) {
-        var marker = new GMarker(minToLatLng(i, 0),
-            { icon: i % 5 == 0? minuteIcon: secondIcon });
+        if (i % 5 == 0) {
+          var marker = new GMarker(minToLatLng(i, 0), {icon: minuteIcon});
+        else {
+          var marker = new GMarker(minToLatLng(i, 0), {icon: secondIcon});
+        }
         clock.tick.push(marker);
         clock.map.addOverlay(marker);
       }
@@ -71,29 +75,40 @@
       var h = now.getHours() % 12;
       var m = now.getMinutes();
       var s = now.getSeconds();
+
       if (h != clock.hour) {
         clock.hour = h;
         if (clock.hhand) {
           clock.map.removeOverlay(clock.hhand);
         }
-        clock.hhand = new GPolyline(
-            [ CENTER, minToLatLng(h*5 + m/12.0, 4.0) ], "#006000", 10, 0.9);
+        var points = [ CENTER, minToLatLng(h*5 + m/12.0, 4.0)];
+        clock.hhand = new GPolyline(points, "#006000", 10, 0.9);
         clock.map.addOverlay(clock.hhand);
       }
+
       if (m != clock.minute) {
         clock.minute = m;
         if (clock.mhand) {
           clock.map.removeOverlay(clock.mhand);
         }
-        clock.mhand = new GPolyline(
-            [ CENTER, minToLatLng(m, 1.5) ], "#008080", 6, 0.6);
+        var points = [ CENTER, minToLatLng(m, 1.5) ];
+        clock.mhand = new GPolyline(points, "#008080", 6, 0.6);
         clock.map.addOverlay(clock.mhand);
       }
+
       if (s != clock.second) {
-        clock.tick[clock.second].setImage(
-            clock.second % 5 == 0? MINUTE_OFF : SECOND_OFF);
+        if  (clock.second % 5 == 0) {
+          clock.tick[clock.second].setImage(MINUTE_OFF);
+        } else {
+          clock.tick[clock.second].setImage(SECOND_OFF);
+        }
+
         clock.second = s;
-        clock.tick[s].setImage(s % 5 == 0? MINUTE_ON : SECOND_ON);
+        if  (s % 5 == 0) {
+          clock.tick[s].setImage(MINUTE_ON);
+        } else {
+          clock.tick[s].setImage(SECOND_ON);
+        }
       }
     }
     //]]>

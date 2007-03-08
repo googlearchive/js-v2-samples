@@ -15,25 +15,28 @@ Setting up the clock:
 We declare a global variable to keep track of the last hour/minute/second shown, as well as the polylines used for the hour/minute hands and the markers used for the clock ticks. We also declare global constants for our image strings, clock radius, and slice angle (the angle we need to move each minute, 2*Math.PI/60).
 </li>
 <li>
-After loading the map in setupMap, we plot the markers for the ticks in setupTicks. We first declare one GIcon for the seconds and one for the minutes, with an appropriate iconSize and iconAnchor. Then we create 60 markers around the circumfrence of the clock, using the minute icon every 5 ticks and the seconds icon for the rest. Each marker gets added to the ticks array. 
+After loading the map in <code>setupMap</code>, we plot the markers for the ticks in <code>setupTicks</code>. We first declare a <code>GIcon</code> for each tick type (marker/second). 
+Then we create 60 markers around the circumfrence of the clock, using the minute icon every 5 ticks and the seconds icon for the rest.  
 </li>
 </ul>
 
 Animating the clock:
 <ul>
 <li>
-At the end of setupTicks, we call setInterval on the clockTick function with 1000 milliseconds so that it's called once every second, and then we call setTimeout on clockTick with 0 milliseconds to call it immediately.
+After setting up the initial markers, we call <code>setInterval</code> on the <code>clockTick</code> function with 1000 milliseconds so that it's called once every second, and then we call <code>setTimeout</code> on <code>clockTick</code> with 0 milliseconds to call it immediately.
 </li>
 <li>
-In clockTick, we extract the current time from the javascript Date function into hours, minutes, and seconds variables. If the hour is not the same as the previously displayed hour, we remove the hour hand GPolyline from the map, re-create it pointing to the new hour, and add the new GPolyline to the map. We do the same for the minutes hand.
-If the second is not the same as the previously displayed second, we call setImage on the previous marker with the appropriate image (MINUTE_OFF or SECOND_OFF) so that it's no longer highlighted, and we call setImage on the current marker with the appropriate image (MINUTE_ON or SECOND_ON) so that it is highlighted.
+In <code>clockTick</code>, we extract the current time from the javascript <a href="http://www.w3schools.com/js/js_obj_date.asp"><code>Date</code></a> function into hours, minutes, and seconds variables. 
+If the hour is not the same as the previously displayed hour, we remove the hour hand's <code>GPolyline</code> from the map, re-create it pointing to the new hour, and add the new <code>GPolyline</code> to the map. We do the same for the minutes hand.
+If the second is not the same as the previously displayed second, we call <code>setImage</code> on the previous marker with the appropriate image (MINUTE_OFF or SECOND_OFF) so that it's no longer highlighted, and we call <code>setImage</code> on the current marker with the appropriate image (MINUTE_ON or SECOND_ON) so that it is highlighted.
 </li>
 </ul>
 
 Calculating hand/tick placement:
 <ul>
 <li>
-The minToLatLng function is used frequently throughout the code to figure out the point at which to place or marker or end a polyline. This function takes in two parameters. The first indicates the minute (0-59), and the second indicates an inner offset from the radius (used for creating hour/minute hands of different lengths). It then calculates the point using basic trig and the known center of the map.
+The <code>minToLatLng</code> function is used frequently throughout the code to figure out the point at which to place or marker or end a polyline. This function takes in two parameters. The first indicates the minute (0-59), and the second indicates an inner offset from the radius (used for creating hour/minute hands of different lengths). 
+It then calculates the point using basic trig on the known center of the map and the slice angle.
 </li>
 </ul>
 

@@ -60,7 +60,7 @@
       for (var i = 0; i < 60; ++i) {
         if (i % 5 == 0) {
           var marker = new GMarker(minToLatLng(i, 0), {icon: minuteIcon});
-        else {
+        } else {
           var marker = new GMarker(minToLatLng(i, 0), {icon: secondIcon});
         }
         clock.tick.push(marker);

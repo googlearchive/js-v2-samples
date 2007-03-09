@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<style type="text/css">
+td {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  height: 40px;
+  font-size: 11pt;
+}
+body {
+ font-family: Arial, sans serif;
+ font-size: 11pt;
+}
+</style>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxTu6vql14QQRGdE0pm9RMBqrjT6nxR68L_2eXF6mIAg3Zk89V9VbxVnQQ" 
+    type="text/javascript"></script>
+<script>
+
+var map;
+var worksheetJSON;
+var entries;
+var mapKey;
+var neededColumns = {"Title": "", "Latitude": "", 
+                     "Longitude": "", "Description": "", 
+                     "Rank": ""};
+var columns = [];
+
+/* *
+* Utility function to extract parameters appended to URL.
+* @param {String} name Name of parameter in URL
+* @return {String} Value of parameter, or "" if not found
+*/
+function getURLParam(name) {
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  return (results == null ? "" : results[1]);
+}
+
+/**
+* Function to create URL-friendly version of parameters.
+* @return {String} String of concatenated parameters
+*/
+function getParamsURL(){
+  var paramsURL = "";
+  
+  paramsURL += "&ssKey=" + document.getElementById("ssKey").value;
+  paramsURL += "&wsId=" + document.getElementById("wsId").value;
+  
+  for (var neededColumn in neededColumns) {
+   paramsURL += "&" + neededColumn + "=" +
+       document.getElementById("select" + neededColumn).value;
+  }
+
+  return paramsURL;
+}
+
+function generateKey() {
+  var siteUrl = document.getElementById("siteURL").value;
+  var targetPage = "http://www.google.com/maps/api_key";
+  var landingPage = "http://www.corp.google.com/~pamelafox/" +
+                    "trixsamples/makecustommap.htm" + "?generated=1" +
+                    getParamsURL();
+
+  var redirPage = targetPage + "?q=" + encodeURIComponent(landingPage) + 
+                  "&client=google-maps";
+  top.location = redirPage + "&url=" + encodeURIComponent(siteUrl);
+}
+
+/**
+ * Lists the entries from the spreadsheet feed in a table.
+ * If there are more than 5 rows, it truncates at row 3
+ * inserts an ellipsis, and then shows the final row.
+ * It populates the columns array simultaneously.
+ * @param {JSON} Callback response with JSON feed 
+ */
+function loadWorksheetJSON(json) {
+  removeOldResults();
+
+  worksheetJSON = json;
+
+  var p = document.createElement('p');
+  p.setAttribute('id', 'output');
+
+ 
+  var entry = json.feed.entry[0];
+
+  if(entry) {
+    for (var j in entry) {
+      var prefix = j.split("$")[0];
+      var column = j.split("$")[1];
+      if(prefix == "gsx") {
+        columns.push(column);
+      }
+    }
+
+    var t = document.getElementById("dataTBODY");
+    var headerTR = document.createElement("tr");
+
+    // Write out table header
+    var td = document.createElement("td");
+    var txt = document.createTextNode(" ");
+    td.style.backgroundColor = "#DDDDDD";
+    td.style.fontWeight = "bold";
+
+    td.appendChild(txt);
+    headerTR.appendChild(td);
+    for(var i = 0; i < columns.length; i++){
+      var td = document.createElement("td");
+      var txt = document.createTextNode(columns[i]);
+      td.style.backgroundColor = "#DDDDDD";
+      td.style.fontWeight = "bold";
+      td.appendChild(txt);
+      headerTR.appendChild(td);
+    }
+    t.appendChild(headerTR);
+
+    // write out data rows
+    var dString = "";
+    for (var i = 0; i < json.feed.entry.length; i++) {
+      var tr = document.createElement("tr");
+      var entry = json.feed.entry[i];
+      var td = document.createElement("td");
+      var txt = document.createTextNode(i+1);
+      td.style.backgroundColor = "#EEEEEE";
+      td.appendChild(txt);
+      tr.appendChild(td);
+
+      for (var j = 0; j < columns.length; j++) {
+        var cString = entry["gsx$" + columns[j]].$t;
+        var td = document.createElement("td");
+        var txt = document.createTextNode(cString);
+        td.appendChild(txt);
+        tr.appendChild(td);
+      }
+      t.appendChild(tr);
+    
+      // If we just reported 3rd row and table has more than 5 rows  
+      if (i == 2 && json.feed.entry.length > 5) {
+        i = json.feed.entry.length - 2;
+        var tr = document.createElement("tr");
+        var entry = json.feed.entry[i];
+        for (var j = 0; j < columns.length + 1; j++) {
+          var cString = "...";
+          var td = document.createElement("td");
+          var txt = document.createTextNode(cString);
+	  if(j == 0) td.style.backgroundColor = "#EEEEEE";
+          td.appendChild(txt);
+          tr.appendChild(td);
+        }
+        t.appendChild(tr);  
+      }
+    }
+  
+    document.getElementById('dataP').innerHTML = "";
+  
+    // Re-enable the ok button.
+    var okBUTTON = document.getElementById('okBUTTON');
+    okBUTTON.removeAttribute('disabled');
+
+    document.getElementById('customizeInner').style.display = "";
+    addDataSeries();
+  } else {
+    alert("No rows found. Check spreadsheet.");
+  }
+}
+ 
+function addDataSeries() {
+  var customizeTBODY = document.getElementById("customizeTABLEBODY");
+
+  for (var neededColumn in neededColumns) {
+    var customizeTR = document.createElement("TR");
+    var nameTD = document.createElement("TD");
+    var selectTD = document.createElement("TD");
+    var infoTD = document.createElement("TD");
+    nameTD.style.border = "0px";
+    selectTD.style.border = "0px";
+    infoTD.style.border = "0px";
+     
+    var xTxt = document.createTextNode(neededColumn);
+
+    var xSelect = document.createElement("select");  
+    xSelect.id = "select" + neededColumn;
+    xSelect.name = "select" + neededColumn;
+
+    var xOption = document.createElement("option");
+    xOption.setAttribute("value","");
+    var txt = document.createTextNode("-none selected-");
+    xOption.appendChild(txt);
+    xSelect.appendChild(xOption);
+    for (var j=0; j<columns.length; j++){
+      var xOption = document.createElement("option");
+      xOption.setAttribute("value",columns[j]);
+      var txt = document.createTextNode(columns[j]);
+      if(neededColumns[neededColumn] == columns[j]) {
+        xOption.setAttribute("selected", true);
+      } else if(neededColumn.toLowerCase() == columns[j].toLowerCase()) {
+        xOption.setAttribute("selected", true);
+      }
+      xOption.appendChild(txt);
+      xSelect.appendChild(xOption);
+    }
+     
+    nameTD.appendChild(xTxt);
+    selectTD.appendChild(xSelect);
+    customizeTR.appendChild(nameTD);
+    customizeTR.appendChild(selectTD);
+    customizeTR.appendChild(infoTD);
+    customizeTBODY.appendChild(customizeTR);
+  }
+ updateMapFrame();
+}
+
+
+function updateMapFrame() {
+  var mapTitle = document.getElementById("selectTitle").value;
+  var mapDescrip = document.getElementById("selectDescription").value;
+  var mapRank = document.getElementById("selectRank").value;
+  var mapLat = document.getElementById("selectLatitude").value;
+  var mapLng = document.getElementById("selectLongitude").value;
+  var ssKey = document.getElementById("ssKey").value;
+  var wsId = document.getElementById("wsId").value;
+  var mapWidth = document.getElementById("mapWidth").value;
+  var mapHeight = document.getElementById("mapHeight").value;
+
+  var frameURL = "custommap.htm?";
+  frameURL += "ssKey=" + ssKey + "&wsId=" + wsId;
+  frameURL += "&titleColumn=" + mapTitle + "&descriptionColumn=" + mapDescrip;
+  frameURL += "&latColumn=" + mapLat + "&lngColumn=" + mapLng;
+  if(mapRank != "-none selected-") frameURL += "&rankColumn=" + mapRank;
+  frameURL += "&useSidebar=true";
+  frameURL += "&mapWidth=" + mapWidth + "&mapHeight=" + mapHeight;
+  var iframeWidth = parseInt(mapWidth) + 200;
+  var iframeHeight = parseInt(mapHeight) + 100;
+
+  var mapFrameDIV = document.getElementById("mapFrame");
+  mapFrameDIV.innerHTML = "<iframe src='" + frameURL  
+      + "' width='" + iframeWidth + "' height='" 
+      + iframeHeight + "' frameborder='0'/>";
+
+  document.getElementById('p_ssKey').innerHTML = "\"" + ssKey + "\"";
+  document.getElementById('p_wsId').innerHTML = "\"" + wsId + "\"";
+  document.getElementById('p_useSidebar').innerHTML = "true";
+  document.getElementById('p_titleColumn').innerHTML = "\"" + mapTitle + "\"";
+  document.getElementById('p_descriptionColumn').innerHTML = "\"" + mapDescrip + "\"";
+  document.getElementById('p_latColumn').innerHTML = "\"" + mapLat + "\"";
+  document.getElementById('p_lngColumn').innerHTML = "\"" + mapLng + "\"";
+  document.getElementById('p_rankColumn').innerHTML = "\"" + mapRank + "\"";
+  document.getElementById('p_mapKey').innerHTML = mapKey;
+  document.getElementById('p_divWidth').innerHTML = parseInt(mapWidth) + 125;
+  document.getElementById('p_mapWidth').innerHTML = mapWidth;
+  document.getElementById('p_mapHeight').innerHTML = mapHeight;
+  document.getElementById('p_sidebarHeight').innerHTML = mapHeight;
+}
+
+/**
+ * Removes the output generated from the previous result.
+ */
+function removeOldResults() {
+  var table = document.getElementById('dataTBODY');
+  var rows = table.rows; 
+  while(rows.length) {
+     table.deleteRow(rows.length - 1); 
+  }
+  var table = document.getElementById('customizeTABLEBODY');
+  var rows = table.rows; 
+  while(rows.length) { 
+     table.deleteRow(rows.length - 1); 
+  }
+  columns.length = 0;
+}
+
+
+function getJSON(query) {
+  removeOldResults();
+
+  // Show a Loading.. indicator
+  var div = document.getElementById('data');
+  var p = document.createElement('p');
+  p.id = 'dataP';
+  p.appendChild(document.createTextNode('Loading...'));
+  div.appendChild(p);
+
+  var okBUTTON = document.getElementById('okBUTTON');
+  okBUTTON.disabled = 'true';
+
+  // Retrieve the JSON feed.
+  var script = document.createElement('script');
+
+  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list'
+                         + '/' + document.getElementById("ssKey").value
+                         + '/' + document.getElementById("wsId").value + '/public/values' +
+                        '?alt=json-in-script&callback=loadWorksheetJSON');
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+
+var KEY_RE = /^([a-zA-Z0-9\-\_=]{86})|(internal.*)$/
+
+function getKeyFromParams() {
+
+  if (getURLParam('key')) {
+    passedKey = getURLParam('key');
+    if (passedKey.match(KEY_RE)) {
+      return passedKey;
+    }
+  }
+  return "";
+}
+
+function populateForm() {
+  mapKey = getKeyFromParams();
+  var presetSpreadsheetKey = getURLParam("ssKey");
+  var presetWorksheetID = getURLParam("wsID");
+  var presetSiteURL = getURLParam("url");
+
+  if(presetSiteURL != "") {
+    document.getElementById("siteURL").value = presetSiteURL;
+    document.getElementById("generatedCodeDIV").style.display = "block";
+  }
+  if(presetSpreadsheetKey != "") {
+    document.getElementById("ssKey").value = presetSpreadsheetKey;
+  } 
+  if(presetWorksheetID != "") {
+    document.getElementById("wsId").value = presetWorksheetID;
+  } 
+
+  for(var neededColumn in neededColumns) {
+    neededColumns[neededColumn] = getURLParam(neededColumn);
+  }
+ 
+  getJSON();
+}
+  
+</script>
+<link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css">
+</head>
+<body onload="populateForm()">
+<h2>Create a map from a published Google Spreadsheet</h2>
+<p>Embed a dynamic map of a public <a
+href="http://spreadsheets.google.com/" target="_blank">Google
+Spreadsheet</a> on your webpage.
+After loading in your spreadsheet data and customizing the map,
+you can copy the generated code into your webpage. An example 
+spreadsheet's data and map of great Seattle restaurants has been 
+pre-loaded. You can view the
+original spreadsheet in 
+
+<a href="http://spreadsheets.google.com/pub?key=pnEs2B_37S-DGGFI6kdQZPQ" 
+target="new">HTML</a> or 
+<a 
+href="http://spreadsheets.google.com/feeds/list/o16162288751915453340.4402783830945175750/od6/public/values">XML</a>.
+<br/>
+
+<em>This wizard uses the <a href="http://www.google.com/apis/maps/documentation/" target="_blank">Google Maps API</a>
+ and <a href="http://code.google.com/apis/spreadsheets/overview.html">Google Spreadsheets API</a>.</em>
+</p>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/1b.gif" 
+style="vertical-align:middle"/> Load worksheet data</h3>
+<p>
+To find the spreadsheet and worksheet ID for your Google spreadsheet:
+</p>
+<ul>
+<li>Save and publish the spreadsheet (Warning! Don't publish private 
+data!)</li>
+
+<li>Click on "More Publishing Options," change file format to ATOM &
+generate URL</li>
+<li>The URL should look something like
+'http://spreadsheets.google.com/feeds/list/[spreadsheet
+key]/[worksheet id]/public/values.'
+<li>Find the parts of the URL that match the example below and paste
+them in.</li>
+
+</ul>
+<p>
+Click "Load Worksheet Data" button when done. If your worksheet loaded
+successfully & you're using Firefox, you'll see a snapshot of the
+column data below. Note that the first row is treated as the header
+row - so it's best to put descriptive column titles there (e.g.
+"year", "revenue").
+</p>
+<div style="float:left; padding:20px;">
+<form onsubmit="return false" name="loadData">
+<strong>Spreadsheet Key:</strong> <input type="text" id="ssKey"
+size="44" maxlength="43" value="o16162288751915453340.4402783830945175750"/>
+
+<br/><br/>
+<strong>Worksheet ID:</strong> <input type="text" id="wsId"
+size="4" value="od6" />
+<br/><br/>
+<button id='okBUTTON' onclick="getJSON();">Load
+Worksheet Data</button>
+
+</p>
+</form>
+</div>
+<br clear="all"/>
+
+<div id="data"></div>
+<table id="dataTABLE">
+ <tbody id="dataTBODY">
+ </tbody>
+</table>
+
+<br clear="all"/>
+
+<div id="customizeInner" style="width:600px; float:left;">
+
+<a name="invis">&nbsp;</a>
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/2b.gif" 
+style="vertical-align:middle"/>Customize Map Output</h3>
+<p>
+Choose the column names that will help us create your map.<br/>
+<em>Note that latitude and longitude are required-- if your spreadsheet 
+does not have latitude/longitude information, please visit the "Batch Geocode 
+Your Spreadsheet" wizard.</em>
+</p>
+<div id="customizeDIV" style="width:300px;">
+<form name="columns">&nbsp;
+  <table id="customizeTABLE" width="300" style="border:0px;" cellpadding="0" cellspacing="0">
+    <TBODY id="customizeTABLEBODY">
+    </TBODY>
+
+  </table>
+</form>
+<table id="customize2TABLE" width="300" style="border:0px;" cellpadding="0" cellspacing="0">
+ <tbody>
+ <tr> 
+  <td style="border:0px">Width:</td>
+  <td style="border:0px"><input name="mapWidth" id="mapWidth" size="3" value="450" type="text"></td>
+ </tr>
+ <tr>
+  <td style="border:0px">Height:</td>
+
+  <td style="border:0px"><input name="mapHeight" id="mapHeight" size="3" value="450" type="text"></td>
+ </tr>
+ <tr>
+  <td style="border:0px"></td>
+  <td style="border:0px"><input type="button" onclick="updateMapFrame();" value="Update Map"/></td>
+ </tr>
+ </tbody>
+</table>
+
+</div>
+
+</div>
+
+<div id="mapFrame" style="float:left; width:400px; clear:both;"></div>
+
+</div>
+
+<br clear="all"/>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/3b.gif" 
+style="vertical-align:middle"/>Generate Code</h3>
+<p>The Maps API requires a free API key that's associated with your
+<a href="http://www.google.com/accounts/"> Google Account</a> and the URL of your web site.
+By using these APIs you are agreeing to the Maps API <a href="http://www.google.com/apis/maps/terms.html">terms of use</a>.
+
+</p>
+
+<p>
+<strong>Site URL:</strong><input type="text" id="siteURL" value="http://"/>
+<input type="button" onclick="generateKey();" value="Generate Key"/>
+</p>
+
+<div id="generatedCodeDIV" style="display:none">
+<pre class="code" id="gHeadCode" style="width: 700px; overflow-x: scroll;">
+&lt;!-- ++Begin GSpreadsheets Map Wizard Generated Code++ --&gt;
+
+&lt;div style="width:<span id="p_divWidth"></span>px; font-family:Arial, 
+sans-serif; font-size:11px; border:1px solid black"&gt;
+  &lt;table id="cm_mapTABLE"&gt; &lt;tbody&gt; &lt;tr id="cm_mapTR"&gt;
+
+    &lt;td&gt; &lt;div id="cm_map" style="width:<span 
+id="p_mapWidth"></span>px; height:<span 
+id="p_mapHeight"></span>px"&gt;&lt;/div&gt; &lt;/td&gt;
+  &lt;/tr&gt; &lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<span id="p_mapKey"></span>" 
+  type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript"&gt;
+//&lt;![CDATA[
+var cm_map;
+var cm_mapMarkers = [];
+var cm_mapHTMLS = [];
+
+// Create a base icon for all of our markers that specifies the
+// shadow, icon dimensions, etc.
+var cm_baseIcon = new GIcon();
+cm_baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+cm_baseIcon.iconSize = new GSize(20, 34);
+cm_baseIcon.shadowSize = new GSize(37, 34);
+cm_baseIcon.iconAnchor = new GPoint(9, 34);
+cm_baseIcon.infoWindowAnchor = new GPoint(9, 2);
+cm_baseIcon.infoShadowAnchor = new GPoint(18, 25);
+
+// Change these parameters to customize map
+var param_wsId = <span id="p_wsId"></span>;
+var param_ssKey = <span id="p_ssKey"></span>;
+var param_useSidebar = <span id="p_useSidebar"></span>;
+var param_titleColumn = <span id="p_titleColumn"></span>;
+var param_descriptionColumn = <span id="p_descriptionColumn"></span>;
+var param_latColumn = <span id="p_latColumn"></span>;
+var param_lngColumn = <span id="p_lngColumn"></span>;
+var param_rankColumn = <span id="p_rankColumn"></span>;
+
+/**
+ * Loads map and calls function to load in worksheet data.
+ */
+function cm_load() {  
+  if (GBrowserIsCompatible()) {
+    // create the map
+    cm_map = new GMap2(document.getElementById("cm_map"));
+    cm_map.addControl(new GLargeMapControl());
+    cm_map.addControl(new GMapTypeControl());
+    cm_map.setCenter(new GLatLng( 43.907787,-79.359741), 9);
+    cm_getJSON();
+  } else {
+    alert("Sorry, the Google Maps API is not compatible with this browser");
+  } 
+}
+
+/**
+ * Function called when marker on the map is clicked.
+ * Opens an info window (bubble) above the marker.
+ * @param {Number} markerNum Number of marker in global array
+ */
+function cm_markerClicked(markerNum) {
+  cm_mapMarkers[markerNum].openInfoWindowHtml(cm_mapHTMLS[markerNum]);
+}
+
+/**
+ * Function that sorts 2 worksheet rows from JSON feed
+ * based on their rank column. Only called if column is defined.
+ * @param {rowA} Object Represents row in JSON feed
+ * @param {rowB} Object Represents row in JSON feed
+ * @return {Number} Difference between row values
+ */
+function cm_sortRows(rowA, rowB) {
+  var rowAValue = parseFloat(rowA["gsx$" + param_rankColumn].$t);
+  var rowBValue = parseFloat(rowB["gsx$" + param_rankColumn].$t);
+
+  return rowAValue - rowBValue;
+}
+
+/** 
+ * Called when JSON is loaded. Creates sidebar if param_sideBar is true.
+ * Sorts rows if param_rankColumn is valid column. Iterates through worksheet rows, 
+ * creating marker and sidebar entries for each row.
+ * @param {JSON} json Worksheet feed
+ */       
+function cm_loadMapJSON(json) {
+  var usingRank = false;
+
+  if(param_useSidebar == true) {
+    var sidebarTD = document.createElement("td");
+    sidebarTD.setAttribute("width","150");
+    sidebarTD.setAttribute("valign","top");
+    var sidebarDIV = document.createElement("div");
+    sidebarDIV.id = "sidebarDIV";
+    sidebarDIV.style.overflow = "auto";
+    sidebarDIV.style.height = "<span id="p_sidebarHeight"></span>px";
+    sidebarDIV.style.fontSize = "11px";
+    sidebarTD.appendChild(sidebarDIV);
+    document.getElementById("cm_mapTR").appendChild(sidebarTD);
+  }
+
+  var bounds = new GLatLngBounds();	  
+
+  if(json.feed.entry[0]["gsx$" + param_rankColumn]) {
+    usingRank = true;
+    json.feed.entry.sort(cm_sortRows);
+  }
+
+  for (var i = 0; i &lt; json.feed.entry.length; i++) {
+    var entry = json.feed.entry[i];
+    if(entry["gsx$" + param_latColumn]) {
+      var lat = parseFloat(entry["gsx$" + param_latColumn].$t);
+      var lng = parseFloat(entry["gsx$" + param_lngColumn].$t);
+      var point = new GLatLng(lat,lng);
+      var html = "&lt;div style='font-size:12px'&gt;";
+      html += "&lt;strong&gt;" + entry["gsx$"+param_titleColumn].$t 
+              + "&lt;/strong&gt;";
+      var label = entry["gsx$"+param_titleColumn].$t;
+      var rank = 0;
+      if(usingRank && entry["gsx$" + param_rankColumn]) {
+        rank = parseInt(entry["gsx$"+param_rankColumn].$t);
+      }
+      if(entry["gsx$" + param_descriptionColumn]) {
+        html += "&lt;br/&gt;" + entry["gsx$"+param_descriptionColumn].$t;
+      }
+      html += "&lt;/div&gt;";
+
+      // create the marker
+      var marker = cm_createMarker(point,label,html,rank);
+      cm_map.addOverlay(marker);
+      cm_mapMarkers.push(marker);
+      cm_mapHTMLS.push(html);
+      bounds.extend(point);
+	  
+      if(param_useSidebar == true) {
+        var markerA = document.createElement("a");
+        markerA.setAttribute("href","javascript:cm_markerClicked('" + i +"')");
+        var sidebarText= "";
+        if(usingRank) {
+          sidebarText += rank + ") ";
+        } 
+        sidebarText += label;
+        markerA.appendChild(document.createTextNode(sidebarText));
+        sidebarDIV.appendChild(markerA);
+        sidebarDIV.appendChild(document.createElement("br"));
+        sidebarDIV.appendChild(document.createElement("br"));
+      } 
+    }
+  }
+
+  cm_map.setZoom(cm_map.getBoundsZoomLevel(bounds));
+  cm_map.setCenter(bounds.getCenter());
+}
+
+/**
+ * Creates marker with ranked Icon or blank icon,
+ * depending if rank is defined. Assigns onclick function.
+ * @param {GLatLng} point Point to create marker at
+ * @param {String} title Tooltip title to display for marker
+ * @param {String} html HTML to display in InfoWindow
+ * @param {Number} rank Number rank of marker, used in creating icon
+ * @return {GMarker} Marker created
+ */
+function cm_createMarker(point, title, html, rank) {
+  var markerOpts = {};
+  var nIcon = new GIcon(cm_baseIcon);
+
+  if(rank &gt; 0 && rank &lt; 100){
+    nIcon.image = "http://www.corp.google.com/~pamelafox/" +
+        "trixsamples/markers_all/blue_marker" + rank + ".png";
+  } else { 
+    nIcon.image = "http://www.corp.google.com/~pamelafox/" +
+        "trixsamples/markers_all/blue_blank.png";
+  }
+
+  markerOpts.icon = nIcon;
+  markerOpts.title = title;		 
+  var marker = new GMarker(point, markerOpts);
+	
+  GEvent.addListener(marker, "click", function() {
+    marker.openInfoWindowHtml(html);
+  });
+  return marker;
+}
+
+
+cm_load();
+
+//]]&gt;
+
+&lt;/script&gt;
+</pre>
+</div>
+
+</body>
+</html>
+
+

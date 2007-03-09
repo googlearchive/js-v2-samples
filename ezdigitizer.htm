@@ -135,33 +135,12 @@
     //  This version only logs KML, but could be extended to log different types of output
 
     function logCoordinates(){
-
-       // check mode
-       if (polygonMode){
-	      // print coords header
-	      document.getElementById("coords").innerHTML =  header;
-
-	      // loop to print coords 
-	      for (var i = 0; i<(polyPoints.length); i++) {
-	        var lat = polyPoints[i].y;
-	        var longi = polyPoints[i].x;
-	        document.getElementById("coords").innerHTML += longi + ", " + lat + ", "+ polygonDepth + "\n";
-	      }
-	
-        } else {
-    
-      // print coords header
-      document.getElementById("coords").innerHTML =  header;
-
-      // loop to print coords 
       for (var i = 0; i<(polyPoints.length); i++) {
-        var lat = polyPoints[i].y;
-        var longi = polyPoints[i].x;
-        document.getElementById("coords").innerHTML += longi + ", " + lat + ",0\n";
-      }
-     }
-      document.getElementById("coords").innerHTML +=  footer;
- }
+	var lat = polyPoints[i].y;
+	var longi = polyPoints[i].x;
+	document.getElementById("coords").innerHTML += lat + ", " + longi + ", "+ polygonDepth + "\n";
+       }
+    }
 
 
  function showAddress(address) {

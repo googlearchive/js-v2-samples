@@ -135,6 +135,8 @@
     //  This version only logs KML, but could be extended to log different types of output
 
     function logCoordinates(){
+       document.getElementById("coords").innerHTML = "";
+
       for (var i = 0; i<(polyPoints.length); i++) {
 	var lat = polyPoints[i].y;
 	var longi = polyPoints[i].x;

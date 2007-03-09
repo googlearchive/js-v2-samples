@@ -223,13 +223,14 @@ function updateMapFrame() {
   var wsId = document.getElementById("wsId").value;
   var mapWidth = document.getElementById("mapWidth").value;
   var mapHeight = document.getElementById("mapHeight").value;
+  var useSidebar = document.getElementById("useSidebar").checked;
 
   var frameURL = "custommap.htm?";
   frameURL += "ssKey=" + ssKey + "&wsId=" + wsId;
   frameURL += "&titleColumn=" + mapTitle + "&descriptionColumn=" + mapDescrip;
   frameURL += "&latColumn=" + mapLat + "&lngColumn=" + mapLng;
   if(mapRank != "-none selected-") frameURL += "&rankColumn=" + mapRank;
-  frameURL += "&useSidebar=true";
+  frameURL += "&useSidebar=" + useSidebar;
   frameURL += "&mapWidth=" + mapWidth + "&mapHeight=" + mapHeight;
   var iframeWidth = parseInt(mapWidth) + 200;
   var iframeHeight = parseInt(mapHeight) + 100;
@@ -241,7 +242,7 @@ function updateMapFrame() {
 
   document.getElementById('p_ssKey').innerHTML = "\"" + ssKey + "\"";
   document.getElementById('p_wsId').innerHTML = "\"" + wsId + "\"";
-  document.getElementById('p_useSidebar').innerHTML = "true";
+  document.getElementById('p_useSidebar').innerHTML = useSidebar;
   document.getElementById('p_titleColumn').innerHTML = "\"" + mapTitle + "\"";
   document.getElementById('p_descriptionColumn').innerHTML = "\"" + mapDescrip + "\"";
   document.getElementById('p_latColumn').innerHTML = "\"" + mapLat + "\"";
@@ -438,6 +439,12 @@ Your Spreadsheet" wizard.</em>
 
   <td style="border:0px"><input name="mapHeight" id="mapHeight" size="3" value="450" type="text"></td>
  </tr>
+ <tr>
+  <td style="border:0px">Include sidebar?</td>
+
+  <td style="border:0px"><input name="useSidebar" id="useSidebar" type="checkbox" CHECKED></td>
+ </tr>
+
  <tr>
   <td style="border:0px"></td>
   <td style="border:0px"><input type="button" onclick="updateMapFrame();" value="Update Map"/></td>

@@ -243,11 +243,11 @@ function cm_createMarker(point, title, html, rank) {
   var nIcon = new GIcon(cm_baseIcon);
 
   if(rank > 0 && rank < 100){
-    nIcon.image = "http://www.corp.google.com/~pamelafox/" +
-        "trixsamples/markers_all/blue_marker" + rank + ".png";
+    nIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/blue/marker" + rank + ".png";
   } else { 
-    nIcon.image = "http://www.corp.google.com/~pamelafox/" +
-        "trixsamples/markers_all/blue_blank.png";
+    nIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/blue/blank.png";
   }
 
   markerOpts.icon = nIcon;

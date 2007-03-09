@@ -656,6 +656,23 @@ function cm_createMarker(point, title, html, rank) {
   return marker;
 }
 
+/**
+ * Creates a script tag in the page that loads in the 
+ * JSON feed for the specified key/ID. 
+ * Once loaded, it calls cm_loadMapJSON.
+ */
+function cm_getJSON() {
+
+  // Retrieve the JSON feed.
+  var script = document.createElement('script');
+
+  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list'
+                         + '/' + param_ssKey + '/' + param_wsId + '/public/values' +
+                        '?alt=json-in-script&callback=cm_loadMapJSON');
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
 
 cm_load();
 

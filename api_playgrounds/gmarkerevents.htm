@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+    <link rel="stylesheet" type="text/css" href="http://www.google.com/apis/maps/documentation/local_extensions.css" />
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script src="http://www.google.com/apis/maps/include/prettify.js" type="text/javascript"></script>
+ 
+<script type="text/javascript">
+   //<![CDATA[
+
+   var map;
+
+   function load() {
+     if (GBrowserIsCompatible()) {
+       map = new GMap2(document.getElementById("map"));
+       map.setCenter(new GLatLng(40.713955826286046,-35.15625), 2);
+       updateCode();
+     }
+   }
+
+   function updateCode() {
+     map.clearOverlays();
+     var eventNames = ["click"];
+
+     var code = [];
+     var lat = map.getCenter().lat();
+     var lng = map.getCenter().lng();
+     code.push("var point = new GLatLng(" + lat.toFixed(6) 
+       + "," + lng.toFixed(6) + ");");
+     code.push("var marker = new GMarker(point);");
+
+     for(var i = 0; i < eventNames.length; i++) {
+     code.push("GEvent.addListener(marker, 'click', function() {" 
+         + document.getElementById("event_"+eventNames[i]).value + "});"
+
+     code.push("map.addOverlay(marker);");
+ 
+     var codeHTML = code.join("<br/><br/>");
+     el("code").innerHTML = codeHTML;
+     var codeJS = codeHTML.replace(/<br\/>/g,"\n");
+     eval(codeJS);
+
+     prettyPrint();
+   }
+
+   function el(id) {
+     return document.getElementById(id);
+   }
+
+   //]]>
+   </script>
+
+ </head>
+
+ <body onload="load()" onunload="GUnload()">
+   &nbsp;
+   click:
+     <select id="event_click" onchange="updateCode()">
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
+       <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
+  </select>
+   &nbsp;
+   <br/><br/>
+
+    <div id="map" style="width: 500px; height: 250px"></div>
+
+    <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>
+
+   </table>
+ </body>
+</html>

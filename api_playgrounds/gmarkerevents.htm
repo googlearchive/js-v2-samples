@@ -38,10 +38,13 @@
        + "," + lng.toFixed(6) + ");");
      code.push("var marker = new GMarker(point);");
 
-     for(var i = 0; i < eventNames.length; i++) {
-     code.push("GEvent.addListener(marker, 'click', function() {" 
-         + document.getElementById("event_"+eventNames[i]).value 
-         + "});");
+     for (var i = 0; i < eventNames.length; i++) {
+       var eventAction = document.getElementById("event_"+eventNames[i]).value;
+       if (eventAction != ""){
+         code.push("GEvent.addListener(marker, 'click', function() {"); 
+         code.push(eventAction); 
+         code.push("});");
+       }
      }
 
      code.push("map.addOverlay(marker);");

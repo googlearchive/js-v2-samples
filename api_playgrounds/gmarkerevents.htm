@@ -44,7 +44,7 @@
        var eventAction = document.getElementById("event_"+eventNames[i]).value;
        if (eventAction != ""){
          code.push("GEvent.addListener(marker, '" + eventNames[i] + "', function() {"  
-             + "<br/>" + eventAction + "<br/>"
+             + "<br/>marker." + eventAction + ";<br/>"
              + "});");
        }
      }
@@ -77,10 +77,10 @@
    <code>click</code>:
    <select id="event_click" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
-       <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
-       <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
-       <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
+       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="setImage('blue.png')">setImage('blue.png')</option>
+       <option value="setImage('pink.png')">setImage('pink.png')</option>
+       <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>dblclick</code>:
    <select id="event_dblclick" onchange="updateCode()">

@@ -67,6 +67,10 @@
  </head>
 
  <body onload="load()" onunload="GUnload()">
+
+   <div id="map" style="width: 200px; float:left; height: 300px"></div>
+    
+   <div id="selects" style="float:left; width:100px;">
    &nbsp;
    click:
    <select id="event_click" onchange="updateCode()">
@@ -116,11 +120,7 @@
        <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
        <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
   </select>
-
-   &nbsp;
-   <br/><br/>
-
-    <div id="map" style="width: 500px; height: 250px"></div>
+  </div>
 
     <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>
 

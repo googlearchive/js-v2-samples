@@ -29,7 +29,7 @@
 
    function updateCode() {
      map.clearOverlays();
-     var eventNames = ["click"];
+     var eventNames = ["click","dblclick","mousedown","mouseup","mouseover","mouseout"];
 
      var code = [];
      var lat = map.getCenter().lat();
@@ -69,13 +69,54 @@
  <body onload="load()" onunload="GUnload()">
    &nbsp;
    click:
-     <select id="event_click" onchange="updateCode()">
+   <select id="event_click" onchange="updateCode()">
        <option value="" SELECTED></option>
        <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
        <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
        <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
        <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
   </select>
+   dblclick:
+   <select id="event_dblclick" onchange="updateCode()">
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
+       <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
+  </select>
+   mousedown:
+   <select id="event_mousedown" onchange="updateCode()">
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
+       <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
+  </select>
+   mouseup:
+   <select id="event_mouseup" onchange="updateCode()">
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
+       <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
+  </select>
+   mouseover:
+   <select id="event_mouseover" onchange="updateCode()">
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
+       <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
+  </select>
+   mouseout:
+   <select id="event_mouseout" onchange="updateCode()">
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">marker.openInfoWindow('hi')</option>
+       <option value="marker.setImage('blue.png')">marker.setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">marker.setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">marker.setImage('green.png')</option>
+  </select>
+
    &nbsp;
    <br/><br/>
 

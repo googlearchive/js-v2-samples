@@ -70,7 +70,6 @@
 
  <body onload="load()" onunload="GUnload()">
 
-   <div id="map" style="width: 270px; float:left; height: 275px"></div>
     
    <div id="selects" style="float:left; width:175px;">
    &nbsp;
@@ -106,6 +105,9 @@
        <option value="setImage('pink.png')">setImage('pink.png')</option>
        <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
+ </div>
+
+   <div id="selects" style="float:left; width:100px;"> 
    <code>mouseover</code>:
    <select id="event_mouseover" onchange="updateCode()">
        <option value="" SELECTED></option>
@@ -122,9 +124,7 @@
        <option value="setImage('pink.png')">setImage('pink.png')</option>
        <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
- </div>
 
-   <div id="selects" style="float:left; width:100px;"> 
    <code>infowindowopen</code>:
    <select id="event_infowindowopen" onchange="updateCode()">
        <option value="" SELECTED></option>
@@ -141,6 +141,9 @@
        <option value="setImage('pink.png')">setImage('pink.png')</option>
        <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
+  </div>
+
+   <div id="selects" style="float:left; width:100px;"> 
    <code>dragstart</code>:
    <select id="event_dragstart" onchange="updateCode()">
        <option value="" SELECTED></option>
@@ -165,11 +168,22 @@
        <option value="setImage('pink.png')">setImage('pink.png')</option>
        <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
-
+   <code>remove</code>:
+   <select id="event_remove" onchange="updateCode()">
+       <option value="" SELECTED></option>
+       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="setImage('blue.png')">setImage('blue.png')</option>
+       <option value="setImage('pink.png')">setImage('pink.png')</option>
+       <option value="setImage('green.png')">setImage('green.png')</option>
+  </select>
   </div>
 
+  <br/>
+   <div id="map" style="width: 270px; float:left; height: 275px"></div>
+
+  <br/>
   <br clear="all" />
-  <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>
+  <pre class="prettyprint" id="code" style="width:600px; overflow:auto;"></pre>
 
    </table>
  </body>

@@ -38,7 +38,7 @@
      var lng = map.getCenter().lng();
      code.push("var point = new GLatLng(" + lat.toFixed(6) 
        + "," + lng.toFixed(6) + ");");
-     code.push("var marker = new GMarker(point);");
+     code.push("var marker = new GMarker(point, {draggable:true});");
 
      for (var i = 0; i < eventNames.length; i++) {
        var eventAction = document.getElementById("event_"+eventNames[i]).value;

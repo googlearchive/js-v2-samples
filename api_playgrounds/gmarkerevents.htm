@@ -72,11 +72,10 @@
 
     
    <div id="selects" style="float:left; width:175px;">
-   &nbsp;
    <code>click</code>:
    <select id="event_click" onchange="updateCode()">
-       <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value=""></option>
+       <option value="openInfoWindow('hi!')" SELECTED>openInfoWindow('hi')</option>
        <option value="setImage('blue.png')">setImage('blue.png')</option>
        <option value="setImage('pink.png')">setImage('pink.png')</option>
        <option value="setImage('green.png')">setImage('green.png')</option>
@@ -110,9 +109,9 @@
    <div id="selects" style="float:left; width:175px;"> 
    <code>mouseover</code>:
    <select id="event_mouseover" onchange="updateCode()">
-       <option value="" SELECTED></option>
+       <option value=""></option>
        <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
+       <option value="setImage('blue.png')" SELECTED>setImage('blue.png')</option>
        <option value="setImage('pink.png')">setImage('pink.png')</option>
        <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
@@ -121,7 +120,7 @@
        <option value="" SELECTED></option>
        <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
        <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
+       <option value="setImage('pink.png')" SELECTED>setImage('pink.png')</option>
        <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
 
@@ -180,8 +179,6 @@
 
   <br clear="all"/>
   <br/>
-  <br/>
-
    <div id="map" style="width: 520px; clear:both; height: 275px"></div>
   <br clear="all" />
   <pre class="prettyprint" id="code" style="width:520px; overflow:auto;"></pre>

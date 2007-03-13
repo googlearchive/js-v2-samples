@@ -43,15 +43,9 @@
      for (var i = 0; i < eventNames.length; i++) {
        var eventAction = document.getElementById("event_"+eventNames[i]).value;
        if (eventAction != ""){
-         if (eventAction.charAt(0)=="a") {
-            code.push("GEvent.addListener(marker, '" + eventNames[i] + "', function() {"  
-               + "<br/>" + eventAction + ";<br/>"
-               + "});");
-	  } else {
-            code.push("GEvent.addListener(marker, '" + eventNames[i] + "', function() {"  
-               + "<br/>marker." + eventAction + ";<br/>"
-               + "});");
-          }
+          code.push("GEvent.addListener(marker, '" + eventNames[i] + "', function() {"  
+             + "<br/>" + eventAction + ";<br/>"
+             + "});");
        }
      }
 
@@ -80,71 +74,79 @@
    <div id="selects" style="float:left; width:175px;">
    <code>click</code>:
    <select id="event_click" onchange="updateCode()">
-       <option value=""></option>
-       <option value="openInfoWindow('hi!')" SELECTED>openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>dblclick</code>:
    <select id="event_dblclick" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>mousedown</code>:
    <select id="event_mousedown" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>mouseup</code>:
    <select id="event_mouseup" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
  </div>
 
    <div id="selects" style="float:left; width:175px;"> 
    <code>mouseover</code>:
    <select id="event_mouseover" onchange="updateCode()">
-       <option value=""></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')" SELECTED>setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="" SELECTED></option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>mouseout</code>:
    <select id="event_mouseout" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')" SELECTED>setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
 
    <code>infowindowopen</code>:
    <select id="event_infowindowopen" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>infowindowclose</code>:
    <select id="event_infowindowclose" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
   </div>
 
@@ -152,35 +154,34 @@
    <code>dragstart</code>:
    <select id="event_dragstart" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>drag</code>:
    <select id="event_drag" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>dragend</code>:
    <select id="event_dragend" onchange="updateCode()">
        <option value="" SELECTED></option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
+       <option value="marker.openInfoWindow('hi!')">openInfoWindow('hi')</option>
+       <option value="map.closeInfoWindow()">closeInfoWindow()</option>
+       <option value="marker.setImage('blue.png')">setImage('blue.png')</option>
+       <option value="marker.setImage('pink.png')">setImage('pink.png')</option>
+       <option value="marker.setImage('green.png')">setImage('green.png')</option>
   </select>
    <code>remove</code>:
    <select id="event_remove" onchange="updateCode()">
        <option value="" SELECTED></option>
        <option value="alert('hi')">alert('hi')</option>
-       <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
-       <option value="setImage('blue.png')">setImage('blue.png')</option>
-       <option value="setImage('pink.png')">setImage('pink.png')</option>
-       <option value="setImage('green.png')">setImage('green.png')</option>
   </select>
   </div>
 

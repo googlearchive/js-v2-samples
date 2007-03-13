@@ -43,9 +43,15 @@
      for (var i = 0; i < eventNames.length; i++) {
        var eventAction = document.getElementById("event_"+eventNames[i]).value;
        if (eventAction != ""){
-         code.push("GEvent.addListener(marker, '" + eventNames[i] + "', function() {"  
-             + "<br/>marker." + eventAction + ";<br/>"
-             + "});");
+         if (eventAction.charAt(0)=="a") {
+            code.push("GEvent.addListener(marker, '" + eventNames[i] + "', function() {"  
+               + "<br/>" + eventAction + ";<br/>"
+               + "});");
+	  } else {
+            code.push("GEvent.addListener(marker, '" + eventNames[i] + "', function() {"  
+               + "<br/>marker." + eventAction + ";<br/>"
+               + "});");
+          }
        }
      }
 
@@ -170,6 +176,7 @@
    <code>remove</code>:
    <select id="event_remove" onchange="updateCode()">
        <option value="" SELECTED></option>
+       <option value="alert('hi')">alert('hi')</option>
        <option value="openInfoWindow('hi!')">openInfoWindow('hi')</option>
        <option value="setImage('blue.png')">setImage('blue.png')</option>
        <option value="setImage('pink.png')">setImage('pink.png')</option>

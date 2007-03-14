@@ -163,9 +163,12 @@ function updateCode() {
      document.getElementById("p_showInfoWindow").innerHTML = "marker.openInfoWindowHtml(html);";
    }
    var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
-   infoWindowTEXT = infoWindowTEXT.replace("<","&lt;");
-   infoWindowTEXT = infoWindowTEXT.replace(">","&gt;");
-   document.getElementById("p_infoWindow").innerHTML = infoWindowTEXT;
+   if(infoWindowTEXT != "") {
+     infoWindowTEXT = infoWindowTEXT.replace("<","&lt;");
+     infoWindowTEXT = infoWindowTEXT.replace(">","&gt;");
+     document.getElementById("p_infoWindowHTML").innerHTML = 'var html = "' + infoWindowTEXT + '";';
+     document.getElementById("p_infoWindowEVENT").innerHTML = "GEvent.addListener(marker, 'click', function() { marker.openInfoWindowHtml(html); });"
+   }
 
    if(marker != null) {
      document.getElementById("p_markerPoint").innerHTML = marker.getPoint();
@@ -289,10 +292,9 @@ Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
         <span id="p_showMapTypeControl"></span>
 
         var marker = new GMarker(point);
-        var html = "<span id="p_infoWindow"></span>";
-        GEvent.addListener(marker, 'click', function() {
-          marker.openInfoWindowHtml(html);
-        });
+        <span id="p_infoWindowTEXT"></span>
+        <span id="p_infoWindowEVENT"></span>
+
         map.addOverlay(marker);
 
         <span id="p_showInfoWindow"></span>

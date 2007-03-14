@@ -201,7 +201,7 @@ function showAddress() {
         } else {
           map.clearOverlays();
           map.setCenter(point, 13);
-          marker = new GMarker(point);
+          marker = new GMarker(point, {draggable:true});
 	  GEvent.addListener(marker, 'click', function() {
             marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
           });
@@ -222,17 +222,24 @@ function showAddress() {
   </p>
 
 <h3><img src="http://www.google.com/uds/solutions/wizards/img/1b.gif" 
-style="vertical-align:middle"/> Customize Map Center & Info Window</h3>
-
+style="vertical-align:middle"/> Customize Map View & Marker Location</h3>
+  <p>First, enter the desired address/location in the box and press the button. If the marker is a little off, drag it around to where it should be.
+  Then use the map control to zoom in/out to the desired zoom level.
+  </p>
   <p>
-  Center the map at:
   <input type="text" size="60" id="addressTEXT" value="1600 Amphitheatre Pky, Mountain View, CA" />
-  <input type="button" value="Go!" onclick="showAddress()"/>
+  <input type="button" value="Create Marker Here" onclick="showAddress()"/>
   </p>
   <br/>
   <div id="map" style="width: 500px; margin-left: 20px; height: 300px"></div>
+
+<br clear="all"/>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/2b.gif" 
+style="vertical-align:middle"/>Customize Info Window & Map Controls</h3>
   <p>
   Show this text in info window when marker clicked (leave blank for no info window): &nbsp;
+  <br/>
   <input type="text" size="50" id="infoWindowTEXT" value="" />
   <br/><br/>
   Show info window when map loads: &nbsp;

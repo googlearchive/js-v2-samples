@@ -163,6 +163,8 @@ function updateCode() {
      document.getElementById("p_showInfoWindow").style.display = "";
    }
    var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
+   infoWindowTEXT = infoWindowTEXT.replace("<","&lt;");
+   infoWindowTEXT = infoWindowTEXT.replace(">","&gt;");
    document.getElementById("p_infoWindow").innerHTML = infoWindowTEXT;
 
    if(marker != null) {

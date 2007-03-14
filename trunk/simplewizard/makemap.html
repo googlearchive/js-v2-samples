@@ -157,7 +157,7 @@ function populateForm() {
   }
   var mapType = getURLParam("mapType");
   if(mapType != "") {
-    //map.setMapType(parseInt(mapType));
+    document.getElementById("mapTypeSELECT").selectedIndex = parseInt(mapType);
   }
 }
 

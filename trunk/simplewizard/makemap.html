@@ -240,23 +240,23 @@ style="vertical-align:middle"/>Customize Info Window & Map Controls</h3>
   <p>
   Show this text in info window when marker clicked (leave blank for no info window): &nbsp;
   <br/>
-  <input type="text" size="50" id="infoWindowTEXT" value="" />
+  <input type="text" size="50" id="infoWindowTEXT" value="" onkeyup="updateCode()" onkeypress="updateCode()" />
   <br/><br/>
   Show info window when map loads: &nbsp;
-  <input type="checkbox" id="infoWindowCHECKBOX" CHECKED />
+  <input type="checkbox" id="infoWindowCHECKBOX" CHECKED onclick="updateCode()" />
   <br/><br/>
   Show pan&zoom control: &nbsp;
-  <input type="checkbox" id="mapControlCHECKBOX" CHECKED />
+  <input type="checkbox" id="mapControlCHECKBOX" CHECKED onclick="updateCode()" />
   <br/><br/>
   Show map type control: &nbsp;
-  <input type="checkbox" id="mapTypeControlCHECKBOX" CHECKED />
+  <input type="checkbox" id="mapTypeControlCHECKBOX" CHECKED onclick="updateCode()" />
   <br/><br/>
 
   Map width: &nbsp;
-  <input type="text" size="3" id="mapWidthTEXT" value="500" />
+  <input type="text" size="3" id="mapWidthTEXT" value="500" onkeyup="updateCode()" onkeypress="updateCode()" />
   &nbsp; &nbsp; &nbsp;
   Map height: &nbsp;
-  <input type="text" size="3" id="mapHeightTEXT" value="300" />
+  <input type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateCode()" onkeypress="updateCode()" />
  
   <br/>
   </p>

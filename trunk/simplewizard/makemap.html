@@ -154,13 +154,13 @@ function populateForm() {
 function updateCode() {
    document.getElementById("p_mapKey").innerHTML = mapKey;
    if(document.getElementById("mapControlCHECKBOX").checked) {
-     document.getElementById("p_showMapControl").style.display = "";
+     document.getElementById("p_showMapControl").innerHTML = "map.addControl(new GSmallMapControl());";
    }
    if(document.getElementById("mapTypeControlCHECKBOX").checked) {
-     document.getElementById("p_showMapTypeControl").style.display = "";
+     document.getElementById("p_showMapTypeControl").innerHTML = "map.addControl(new GMapTypeControl());";
    }
    if(document.getElementById("infoWindowCHECKBOX").checked) {
-     document.getElementById("p_showInfoWindow").style.display = "";
+     document.getElementById("p_showInfoWindow").innerHTML = "marker.openInfoWindowHtml(html);";
    }
    var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
    infoWindowTEXT = infoWindowTEXT.replace("<","&lt;");
@@ -285,8 +285,8 @@ Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
         var point = new GLatLng<span id="p_markerPoint"></span>;
 
         map.setCenter(point, <span id="p_mapZoom"></span>);
-        <span id="p_showMapControl" style="display:none;">map.addControl(new GSmallMapControl());</span>
-        <span id="p_showMapTypeControl" style="display:none;">map.addControl(new GMapTypeControl());</span>
+        <span id="p_showMapControl"></span>
+        <span id="p_showMapTypeControl"></span>
 
         var marker = new GMarker(point);
         var html = "<span id="p_infoWindow"></span>";
@@ -295,7 +295,7 @@ Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
         });
         map.addOverlay(marker);
 
-        <span id="p_showInfoWindow" style="display:none;">marker.openInfoWindowHtml(html);</span>
+        <span id="p_showInfoWindow"></span>
       }
     }
 

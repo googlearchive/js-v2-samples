@@ -44,7 +44,10 @@ function getParamsURL(){
   var paramsURL = "";
   
   paramsURL += "&addressTEXT=" + document.getElementById("addressTEXT").value;
-  paramsURL += "&infoWindowTEXT=" + document.getElementById("infoWindowTEXT").value;
+  var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
+  infoWindowTEXT = infoWindowTEXT.replace("<","&lt;");
+  infoWindowTEXT = infoWindowTEXT.replace(">","&gt;");
+  paramsURL += "&infoWindowTEXT=" + escape(infoWindowTEXT);
   paramsURL += "&infoWindowCHECKBOX=" + document.getElementById("infoWindowCHECKBOX").checked;
   paramsURL += "&mapWidthTEXT=" + document.getElementById("mapWidthTEXT").value;
   paramsURL += "&mapHeightTEXT=" + document.getElementById("mapHeightTEXT").value;
@@ -97,7 +100,10 @@ function populateForm() {
     document.getElementById("addressTEXT").value = unescape(presetAddressTEXT);
   } 
   if(presetInfoWindowTEXT != "") {
-    document.getElementById("infoWindowTEXT").value = unescape(presetInfoWindowTEXT);
+    presetInfoWindowTEXT = unescape(presetInfoWindowTEXT);
+    presetInfoWindowTEXT = presetInfoWindowTEXT.replace("&lt;","<");
+    presetInfoWindowTEXT = presetInfoWindowTEXT.replace("&gt;",">");
+    document.getElementById("infoWindowTEXT").value = presetInfoWindowTEXT;
   } 
 
   var infoWindowCHECKBOX = getURLParam("infoWindowCHECKBOX");
@@ -156,7 +162,8 @@ function updateCode() {
    if(document.getElementById("infoWindowCHECKBOX").checked) {
      document.getElementById("p_showInfoWindow").style.display = "";
    }
-   document.getElementById("p_infoWindow").innerHTML = document.getElementById("infoWindowTEXT").value;
+   var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
+   document.getElementById("p_infoWindow").innerHTML = infoWindowTEXT;
 
    if(marker != null) {
      document.getElementById("p_markerPoint").innerHTML = marker.getPoint();

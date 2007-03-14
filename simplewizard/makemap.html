@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<script type="text/javascript"
+      src="http://maps.google.com/maps?file=api&amp;&v=2.75&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
+<style type="text/css">
+td {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  height: 40px;
+  font-size: 11pt;
+}
+body {
+ font-family: Arial, sans serif;
+ font-size: 11pt;
+}
+</style>
+<script>
+
+var map;
+var mapKey;
+var marker;
+var KEY_RE = /^([a-zA-Z0-9\-\_=]{86})|(internal.*)$/
+
+/* *
+* Utility function to extract parameters appended to URL.
+* @param {String} name Name of parameter in URL
+* @return {String} Value of parameter, or "" if not found
+*/
+function getURLParam(name) {
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  return (results == null ? "" : results[1]);
+}
+
+/**
+* Function to create URL-friendly version of parameters.
+* @return {String} String of concatenated parameters
+*/
+function getParamsURL(){
+  var paramsURL = "";
+  
+  paramsURL += "&addressTEXT=" + document.getElementById("addressTEXT").value;
+  paramsURL += "&infoWindowTEXT=" + document.getElementById("infoWindowTEXT").value;
+  paramsURL += "&infoWindowCHECKBOX=" + document.getElementById("infoWindowCHECKBOX").checked;
+  paramsURL += "&mapWidthTEXT=" + document.getElementById("mapWidthTEXT").value;
+  paramsURL += "&mapHeightTEXT=" + document.getElementById("mapHeightTEXT").value;
+  paramsURL += "&mapControlCHECKBOX=" + document.getElementById("mapControlCHECKBOX").checked;
+  paramsURL += "&mapTypeControlCHECKBOX=" + document.getElementById("mapTypeControlCHECKBOX").checked;
+  paramsURL += "&mapZoom=" + map.getZoom();
+  if(marker != null) {
+    paramsURL += "&markerPointLat=" + marker.getPoint().lat() + "&markerPointLng=" + marker.getPoint().lng(); 
+  }
+ 
+  return paramsURL;
+}
+
+function generateKey() {
+  var siteUrl = document.getElementById("siteURL").value;
+  var targetPage = "http://www.google.com/maps/api_key";
+  var landingPage = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+                    "simplewizard/makemap.html" + "?generated=1" +
+                    getParamsURL();
+
+  var redirPage = targetPage + "?q=" + encodeURIComponent(landingPage) + 
+                  "&client=google-maps";
+  top.location = redirPage + "&url=" + encodeURIComponent(siteUrl);
+}
+
+
+function getKeyFromParams() {
+
+  if (getURLParam('key')) {
+    passedKey = getURLParam('key');
+    if (passedKey.match(KEY_RE)) {
+      return passedKey;
+    }
+  }
+  return "";
+}
+
+function populateForm() {
+  mapKey = getKeyFromParams();
+
+  var presetAddressTEXT = getURLParam("addressTEXT");
+  var presetInfoWindowTEXT = getURLParam("infoWindowTEXT");
+  var presetSiteURL = getURLParam("url");
+ 
+  if (presetSiteURL != "") {
+    document.getElementById("siteURL").value = presetSiteURL;  
+    document.getElementById("generatedCodeDIV").style.display = "block";
+  }
+  if(presetAddressTEXT != "") {
+    document.getElementById("addressTEXT").value = unescape(presetAddressTEXT);
+  } 
+  if(presetInfoWindowTEXT != "") {
+    document.getElementById("infoWindowTEXT").value = unescape(presetInfoWindowTEXT);
+  } 
+
+  var infoWindowCHECKBOX = getURLParam("infoWindowCHECKBOX");
+  if(infoWindowCHECKBOX == "false") {
+    document.getElementById("infoWindowCHECKBOX").checked = false;
+  }
+
+  var mapControlCHECKBOX = getURLParam("mapControlCHECKBOX");
+  if(mapControlCHECKBOX == "false") {
+    document.getElementById("mapControlCHECKBOX").checked = false;
+  }
+
+  var mapTypeControlCHECKBOX = getURLParam("mapTypeControlCHECKBOX");
+  if(mapTypeControlCHECKBOX == "false") {
+    document.getElementById("mapTypeControlCHECKBOX").checked = false;
+  }
+
+  var mapWidthTEXT = getURLParam("mapWidthTEXT");
+  if(mapWidthTEXT != "") {
+    document.getElementById("mapWidthTEXT").value = mapWidthTEXT;
+  }
+  var mapHeightTEXT = getURLParam("mapHeightTEXT");
+  if(mapHeightTEXT != "") {
+    document.getElementById("mapHeightTEXT").value = mapHeightTEXT;
+  }
+  
+  var markerPointLat = getURLParam("markerPointLat");
+  var markerPointLng = getURLParam("markerPointLng");
+
+  if(markerPointLat != "" && markerPointLng != "") {
+    var point = new GLatLng(parseFloat(markerPointLat), parseFloat(markerPointLng));
+    map.clearOverlays();
+    map.setCenter(point, 13);
+    marker = new GMarker(point);
+    GEvent.addListener(marker, 'click', function() {
+      marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
+    });
+    map.addOverlay(marker);
+  }
+
+
+  var mapZoom = getURLParam("mapZoom");
+  if(mapZoom != "") {
+    map.setZoom(parseInt(mapZoom));
+  }
+}
+
+function updateCode() {
+   document.getElementById("p_mapKey").innerHTML = mapKey;
+   if(document.getElementById("mapControlCHECKBOX").checked) {
+     document.getElementById("p_showMapControl").style.display = "";
+   }
+   if(document.getElementById("mapTypeControlCHECKBOX").checked) {
+     document.getElementById("p_showMapTypeControl").style.display = "";
+   }
+   if(document.getElementById("infoWindowCHECKBOX").checked) {
+     document.getElementById("p_showInfoWindow").style.display = "";
+   }
+   document.getElementById("p_infoWindow").innerHTML = document.getElementById("infoWindowTEXT").value;
+
+   if(marker != null) {
+     document.getElementById("p_markerPoint").innerHTML = marker.getPoint();
+   }
+   document.getElementById("p_mapZoom").innerHTML = map.getZoom();
+   document.getElementById("p_mapWidth").innerHTML = document.getElementById("mapWidthTEXT").value;
+   document.getElementById("p_mapHeight").innerHTML = document.getElementById("mapHeightTEXT").value;
+  
+}
+
+function load() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map"));
+    map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+    map.addControl(new GSmallMapControl());
+    geocoder = new GClientGeocoder();
+    populateForm();
+    updateCode();
+  }
+}
+
+function showAddress() {
+  var address = document.getElementById("addressTEXT").value;
+  if (geocoder) {
+    geocoder.getLatLng(
+      address,
+      function(point) {
+        if (!point) {
+          alert(address + " not found");
+        } else {
+          map.clearOverlays();
+          map.setCenter(point, 13);
+          marker = new GMarker(point);
+	  GEvent.addListener(marker, 'click', function() {
+            marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
+          });
+          map.addOverlay(marker);
+        }
+      }
+    );
+  }
+}
+  
+</script>
+<link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css">
+</head>
+<body onload="load()">
+<h2>Create a map with a marker and optional info window.</h2>
+  <p>
+  This wizard uses the <a href="http://www.google.com/apis/maps/documentation/" target="_blank">Google Maps API</a>.
+  </p>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/1b.gif" 
+style="vertical-align:middle"/> Customize Map Center & Info Window</h3>
+
+  <p>
+  Center the map at:
+  <input type="text" size="60" id="addressTEXT" value="1600 Amphitheatre Pky, Mountain View, CA" />
+  <input type="button" value="Go!" onclick="showAddress()"/>
+  </p>
+  <br/>
+  <div id="map" style="width: 500px; margin-left: 20px; height: 300px"></div>
+  <p>
+  Show this text in info window: &nbsp;
+  <input type="text" size="50" id="infoWindowTEXT" value="This text will be in the bubble" />
+  <br/><br/>
+  Show info window when map loads: &nbsp;
+  <input type="checkbox" id="infoWindowCHECKBOX" CHECKED />
+  <br/><br/>
+  Show pan&zoom control: &nbsp;
+  <input type="checkbox" id="mapControlCHECKBOX" CHECKED />
+  <br/><br/>
+  Show map type control: &nbsp;
+  <input type="checkbox" id="mapTypeControlCHECKBOX" CHECKED />
+  <br/><br/>
+
+  Map width: &nbsp;
+  <input type="text" size="3" id="mapWidthTEXT" value="500" />
+  &nbsp; &nbsp; &nbsp;
+  Map height: &nbsp;
+  <input type="text" size="3" id="mapHeightTEXT" value="300" />
+ 
+  <br/>
+  </p>
+
+<br clear="all"/>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/3b.gif" 
+style="vertical-align:middle"/>Generate Code</h3>
+<p>The Maps API requires a free API key that's associated with your
+<a href="http://www.google.com/accounts/"> Google Account</a> and the URL of your web site.
+By using these APIs you are agreeing to the Maps API <a href="http://www.google.com/apis/maps/terms.html">terms of use</a>.
+
+</p>
+
+<p>
+Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
+<input type="button" onclick="generateKey();" value="Generate Key"/>
+</p>
+
+<div id="generatedCodeDIV" style="display:none">
+<pre class="code" id="gHeadCode" style="width: 700px; overflow-x: scroll;">
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="content-type" content="text/html; charset=utf-8"/&gt;
+    &lt;title&gt;Google Maps JavaScript API Example&lt;/title&gt;
+    &lt;script src="http://maps.google.com/maps?file=api&amp;v=2&key=<span id="p_mapKey"></span>"
+            type="text/javascript"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript"&gt;
+    //&lt;![CDATA[
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+        var point = new GLatLng<span id="p_markerPoint"></span>;
+
+        map.setCenter(point, <span id="p_mapZoom"></span>);
+        <span id="p_showMapControl" style="display:none;">map.addControl(new GSmallMapControl());</span>
+        <span id="p_showMapTypeControl" style="display:none;">map.addControl(new GMapTypeControl());</span>
+
+        var marker = new GMarker(point);
+        var html = "<span id="p_infoWindow"></span>";
+        GEvent.addListener(marker, 'click', function() {
+          marker.openInfoWindowHtml(html);
+        });
+        map.addOverlay(marker);
+
+        <span id="p_showInfoWindow" style="display:none;">marker.openInfoWindowHtml(html);</span>
+      }
+    }
+
+    //]]&gt;
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body onload="load()" onunload="GUnload()"&gt;
+    &lt;div id="map" style="width: <span id="p_mapWidth"></span>px; height: <span id="p_mapHeight"></span>px"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+</div>
+
+</body>
+</html>
+
+

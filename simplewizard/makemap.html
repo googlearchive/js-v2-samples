@@ -137,7 +137,7 @@ function populateForm() {
     var point = new GLatLng(parseFloat(markerPointLat), parseFloat(markerPointLng));
     map.clearOverlays();
     map.setCenter(point, 13);
-    marker = new GMarker(point);
+    marker = new GMarker(point, {draggable:true});
     GEvent.addListener(marker, 'click', function() {
       marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
     });

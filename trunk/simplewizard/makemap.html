@@ -54,6 +54,8 @@ function getParamsURL(){
   paramsURL += "&mapControlCHECKBOX=" + document.getElementById("mapControlCHECKBOX").checked;
   paramsURL += "&mapTypeControlCHECKBOX=" + document.getElementById("mapTypeControlCHECKBOX").checked;
   paramsURL += "&mapZoom=" + map.getZoom();
+  paramsURL += "&mapType=" + map.getCurrentMapType();
+
   if(marker != null) {
     paramsURL += "&markerPointLat=" + marker.getPoint().lat() + "&markerPointLng=" + marker.getPoint().lng(); 
   }
@@ -153,6 +155,10 @@ function populateForm() {
   if(mapZoom != "") {
     map.setZoom(parseInt(mapZoom));
   }
+  var mapType = getURLParam("mapType");
+  if(mapType != "") {
+    map.setMapType(parseInt(mapType));
+  }
 }
 
 function updateCode() {
@@ -200,6 +206,7 @@ function load() {
     map = new GMap2(document.getElementById("map"));
     map.setCenter(new GLatLng(37.4419, -122.1419), 13);
     map.addControl(new GSmallMapControl());
+    map.addControl(new GMapTypeControl());
     GEvent.addListener(map, "moveend", function(marker, point) {
       updateCode();
     });

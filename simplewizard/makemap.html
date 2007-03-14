@@ -288,7 +288,7 @@ style="vertical-align:middle"/>Customize Info Window & Map Controls</h3>
   <input type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateCode()" onkeypress="updateCode()" />
   <br/><br/>
   Default map type: &nbsp;
-  <select id="mapTypeSELECT">
+  <select id="mapTypeSELECT" onchange="updateCode()">
    <option value="G_NORMAL_MAP" SELECTED>Street Map</option>
    <option value="G_SATELLITE_MAP">Satellite Map</option>
    <option value="G_HYBRID_MAP">Hybrid Map</option>

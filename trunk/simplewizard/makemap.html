@@ -175,11 +175,6 @@ function updateCode() {
      document.getElementById("p_showMapTypeControl").innerHTML = "";
    }
 
-   if(document.getElementById("infoWindowCHECKBOX").checked) {
-     document.getElementById("p_showInfoWindow").innerHTML = "marker.openInfoWindowHtml(html);";
-   } else {
-     document.getElementById("p_showInfoWindow").innerHTML = "";
-   }
 
    var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
    if(infoWindowTEXT != "") {
@@ -187,9 +182,15 @@ function updateCode() {
      infoWindowTEXT = infoWindowTEXT.replace(">","&gt;");
      document.getElementById("p_infoWindowHTML").innerHTML = 'var html = "' + infoWindowTEXT + '";';
      document.getElementById("p_infoWindowEVENT").innerHTML = "GEvent.addListener(marker, 'click', function() { marker.openInfoWindowHtml(html); });"
+     if(document.getElementById("infoWindowCHECKBOX").checked) {
+       document.getElementById("p_showInfoWindow").innerHTML = "marker.openInfoWindowHtml(html);";
+     } else {
+       document.getElementById("p_showInfoWindow").innerHTML = "";
+     }
    } else {
      document.getElementById("p_infoWindowHTML").innerHTML = '';
      document.getElementById("p_infoWindowEVENT").innerHTML = ""
+     document.getElementById("p_showInfoWindow").innerHTML = "";
    }
 
    if(marker != null) {

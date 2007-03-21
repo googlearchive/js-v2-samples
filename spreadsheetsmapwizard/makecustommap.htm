@@ -262,12 +262,12 @@ function updateMapFrame() {
   
   if (document.getElementById('includeHeaderFooter').checked) {
     document.getElementById('p_htmlHeader') = 
-       "&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+       '&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
         &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
         &lt;head&gt; &lt;/head&gt;
-        &lt;body&gt;";
+        &lt;body&gt;';
     document.getElementById('p_htmlFooter') =
-       "&lt;/body&gt; &lt;/html&gt;";
+       '&lt;/body&gt; &lt;/html&gt;';
   }  
 }
 
@@ -519,6 +519,8 @@ By using these APIs you are agreeing to the Maps API <a href="http://www.google.
 
 <div id="generatedCodeDIV" style="display:none">
 <pre class="code" id="gHeadCode" style="width: 700px; overflow-x: scroll;">
+<span id="p_htmlHeader"></span>
+
 &lt;!-- ++Begin GSpreadsheets Map Wizard Generated Code++ --&gt;
 
 &lt;div style="width:<span id="p_divWidth"></span>px; font-family:Arial, 
@@ -749,6 +751,7 @@ cm_load();
 //]]&gt;
 
 &lt;/script&gt;
+<span id="p_htmlFooter"></span>
 </pre>
 </div>
 

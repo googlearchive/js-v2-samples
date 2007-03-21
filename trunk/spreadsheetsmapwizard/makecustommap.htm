@@ -224,6 +224,8 @@ function updateMapFrame() {
   var mapWidth = document.getElementById("mapWidth").value;
   var mapHeight = document.getElementById("mapHeight").value;
   var useSidebar = document.getElementById("useSidebar").checked;
+  var iconType = document.getElementById("iconType").value;
+  var iconOverType = document.getElementById("iconOverType").value;
 
   var frameURL = "custommap.htm?";
   frameURL += "ssKey=" + ssKey + "&wsId=" + wsId;
@@ -232,6 +234,8 @@ function updateMapFrame() {
   if(mapRank != "-none selected-") frameURL += "&rankColumn=" + mapRank;
   frameURL += "&useSidebar=" + useSidebar;
   frameURL += "&mapWidth=" + mapWidth + "&mapHeight=" + mapHeight;
+  frameURL += "&iconType=" + iconType + "&iconOverType=" + iconOverType;
+
   var iframeWidth = parseInt(mapWidth) + 200;
   var iframeHeight = parseInt(mapHeight) + 100;
 
@@ -253,6 +257,9 @@ function updateMapFrame() {
   document.getElementById('p_mapWidth').innerHTML = mapWidth;
   document.getElementById('p_mapHeight').innerHTML = mapHeight;
   document.getElementById('p_sidebarHeight').innerHTML = mapHeight;
+  document.getElementById('p_iconType').innerHTML = iconType;
+  document.getElementById('p_iconOverType').innerHTML = iconOverType;
+  
 }
 
 /**
@@ -444,7 +451,16 @@ Your Spreadsheet" wizard.</em>
 
   <td style="border:0px"><input name="useSidebar" id="useSidebar" type="checkbox" CHECKED></td>
  </tr>
-
+ <tr>
+  <td style="border:0px">Marker color:</td>
+  <td style="border:0px">
+    <select id="iconType">
+      <option value="red">red</option>
+      <option value="orange">orange</option>
+      <option value="green">green</option>
+      <option value="pink">pink</option>
+      <option value="blue">blue</option>
+    </select>
  <tr>
   <td style="border:0px"></td>
   <td style="border:0px"><input type="button" onclick="updateMapFrame();" value="Update Map"/></td>

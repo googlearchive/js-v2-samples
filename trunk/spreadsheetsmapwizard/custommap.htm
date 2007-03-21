@@ -72,6 +72,8 @@ var param_lngColumn = "";
 var param_rankColumn = "";
 var param_mapWidth;
 var param_mapHeight;
+var param_iconType = "";
+var param_iconOverType = "";
 
 /**
 * Utility function to extract parameters appended to URL.
@@ -99,6 +101,9 @@ function populateVars() {
   param_rankColumn = getURLParam("rankColumn");
   param_mapWidth = getURLParam("mapWidth");
   param_mapHeight = getURLParam("mapHeight");
+  param_iconType = getURLParam("iconType");
+  param_iconOverType = getURLParam("iconOverType");
+
 }
 
 /**
@@ -244,10 +249,10 @@ function cm_createMarker(point, title, html, rank) {
 
   if(rank > 0 && rank < 100){
     nIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/blue/marker" + rank + ".png";
+        "markers/" + param_iconType + "/marker" + rank + ".png";
   } else { 
     nIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/blue/blank.png";
+        "markers/" + param_iconType + "/blank.png";
   }
 
   markerOpts.icon = nIcon;

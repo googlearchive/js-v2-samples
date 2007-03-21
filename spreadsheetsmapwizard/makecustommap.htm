@@ -260,6 +260,15 @@ function updateMapFrame() {
   document.getElementById('p_iconType').innerHTML = "\"" + iconType + "\"";
   document.getElementById('p_iconOverType').innerHTML = "\"" + iconOverType + "\"";
   
+  if (document.getElementById('includeHeaderFooter').checked) {
+    document.getElementById('p_htmlHeader') = 
+       "&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+        &lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+        &lt;head&gt; &lt;/head&gt;
+        &lt;body&gt;";
+    document.getElementById('p_htmlFooter') =
+       "&lt;/body&gt; &lt;/html&gt;";
+  }  
 }
 
 /**
@@ -501,8 +510,11 @@ By using these APIs you are agreeing to the Maps API <a href="http://www.google.
 </p>
 
 <p>
-<strong>Site URL:</strong><input type="text" id="siteURL" value="http://"/>
+<strong>Site URL: </strong><input type="text" id="siteURL" value="http://"/>
 <input type="button" onclick="generateKey();" value="Generate Key"/>
+<br/>
+<strong>Check this box if you'd like an HTML header/footer generated: </strong> 
+<input type="checkbox" id="includeHeaderFooter" checked />
 </p>
 
 <div id="generatedCodeDIV" style="display:none">
@@ -603,10 +615,11 @@ function cm_loadMapJSON(json) {
     sidebarTD.setAttribute("width","150");
     sidebarTD.setAttribute("valign","top");
     var sidebarDIV = document.createElement("div");
-    sidebarDIV.id = "sidebarDIV";
+    sidebarDIV.id = "cm_sidebarDIV";
     sidebarDIV.style.overflow = "auto";
     sidebarDIV.style.height = "<span id="p_sidebarHeight"></span>px";
     sidebarDIV.style.fontSize = "11px";
+    sidebarDIV.style.color = "#000000";
     sidebarTD.appendChild(sidebarDIV);
     document.getElementById("cm_mapTR").appendChild(sidebarTD);
   }

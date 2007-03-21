@@ -547,6 +547,8 @@ var param_descriptionColumn = <span id="p_descriptionColumn"></span>;
 var param_latColumn = <span id="p_latColumn"></span>;
 var param_lngColumn = <span id="p_lngColumn"></span>;
 var param_rankColumn = <span id="p_rankColumn"></span>;
+var param_iconType = <span id="p_iconType"></span>;
+var param_iconOverType = <span id="p_iconType"></span>;
 
 /**
  * Loads map and calls function to load in worksheet data.
@@ -675,12 +677,18 @@ function cm_createMarker(point, title, html, rank) {
   var markerOpts = {};
   var nIcon = new GIcon(cm_baseIcon);
 
-  if(rank &gt; 0 && rank &lt; 100){
-    nIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/blue/marker" + rank + ".png";
+  if(rank &gt; 0 && rank &lt; 100) {
+    nIcon.imageOut = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/" + param_iconType + "/marker" + rank + ".png";
+    nIcon.imageOver = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/" + param_iconOverType + "/marker" + rank + ".png";
+    nIcon.image = nIcon.imageOut; 
   } else { 
-    nIcon.image = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/blue/blank.png";
+    nIcon.imageOut = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/" + param_iconType + "/blank.png";
+    nIcon.imageOver = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/" + param_iconOverType + "/blank.png";
+    nIcon.image = nIcon.imageOut;
   }
 
   markerOpts.icon = nIcon;
@@ -689,6 +697,18 @@ function cm_createMarker(point, title, html, rank) {
 	
   GEvent.addListener(marker, "click", function() {
     marker.openInfoWindowHtml(html);
+  });
+  GEvent.addListener(marker, "mouseover", function() {
+    marker.setImage(marker.getIcon().imageOver);
+  });
+  GEvent.addListener(marker, "mouseout", function() {
+    marker.setImage(marker.getIcon().imageOut);
+  });
+  GEvent.addListener(marker, "infowindowopen", function() {
+    marker.setImage(marker.getIcon().imageOver);
+  });
+  GEvent.addListener(marker, "infowindowclose", function() {
+    marker.setImage(marker.getIcon().imageOut);
   });
   return marker;
 }

@@ -259,17 +259,22 @@ function updateMapFrame() {
   document.getElementById('p_sidebarHeight').innerHTML = mapHeight;
   document.getElementById('p_iconType').innerHTML = "\"" + iconType + "\"";
   document.getElementById('p_iconOverType').innerHTML = "\"" + iconOverType + "\"";
-  
+}
+
+function updateCode() {
   if (document.getElementById('includeHeaderFooter').checked) {
-    document.getElementById('p_htmlHeader') = 
+    document.getElementById('p_htmlHeader').innerHTML = 
        '&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;' +
        '&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;' +
        '&lt;head&gt; &lt;/head&gt;' +
        '&lt;body&gt;';
-    document.getElementById('p_htmlFooter') =
+    document.getElementById('p_htmlFooter').innerHTML =
        '&lt;/body&gt; &lt;/html&gt;';
-  }  
-}
+  } else {
+    document.getElementById('p_htmlHeader').innerHTML = "";
+    document.getElementById('p_htmlFooter').innerHTML = "";
+  }
+}  
 
 /**
  * Removes the output generated from the previous result.

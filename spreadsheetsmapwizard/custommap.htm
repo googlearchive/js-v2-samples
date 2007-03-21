@@ -132,7 +132,8 @@ function cm_load() {
  * @param {Number} markerNum Number of marker in global array
  */
 function cm_markerClicked(markerNum) {
-  cm_mapMarkers[markerNum].openInfoWindowHtml(cm_mapHTMLS[markerNum]);
+  var marker = cm_mapMarkers[markerNum];
+  marker.openInfoWindowHtml(cm_mapHTMLS[markerNum]);
 }
 
 /**
@@ -272,6 +273,12 @@ function cm_createMarker(point, title, html, rank) {
     marker.setImage(marker.getIcon().imageOver);
   });
   GEvent.addListener(marker, "mouseout", function() {
+    marker.setImage(marker.getIcon().imageOut);
+  });
+  GEvent.addListener(marker, "infowindowopen", function() {
+    marker.setImage(marker.getIcon().imageOver);
+  });
+  GEvent.addListener(marker, "infowindowclose", function() {
     marker.setImage(marker.getIcon().imageOut);
   });
 

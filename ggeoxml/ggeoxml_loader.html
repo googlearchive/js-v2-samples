@@ -98,8 +98,11 @@ function addTR(id) {
   inputTD.appendChild(input);
 
   var nameTD = document.createElement("td");
+  var nameA = document.createElement("a");
+  nameA.href = layers[id].url;
   var name = document.createTextNode(layers[id].name);
-  nameTD.appendChild(name);
+  nameA.appendChild(name);
+  nameTD.appendChild(nameA);
 
   layerTR.appendChild(inputTD);
   layerTR.appendChild(nameTD);

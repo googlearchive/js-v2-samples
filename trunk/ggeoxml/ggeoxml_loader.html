@@ -57,7 +57,7 @@ function onLoad() {
   map = new GMap2(document.getElementById("map")); 
 
   map.setCenter(new GLatLng(37.422341, -122.085018), 5);
-  map.addControl(new GLargeMapControl());
+  map.addControl(new GSmallMapControl());
 
   document.getElementById("url").value = "http://";
 
@@ -135,7 +135,11 @@ function toggleGeoXML(id, checked) {
   </head>
 
   <body onload="onLoad()">
-
+    <br/>
+    <input id="url" value="" size="70"/>
+    <input type="button" value="Add" onClick="addGeoXML();"/>
+    <br/>
+    <br/>
     <div id="map" style="width: 400px; height: 400px; float:left; border: 1px solid black;"></div>
     <div id="sidebar" style="float:left; overflow-vertical:scroll; height: 400px; width:150px; border:1px solid black">
     <table id="sidebarTABLE">
@@ -144,11 +148,6 @@ function toggleGeoXML(id, checked) {
     </table>
     </div>
 
-    <br clear="all"/>
-    <br/>
-    <input id="url" value="" size="70"/>
-    <input type="button" value="Add" onClick="addGeoXML();"/>
-    <br/>
   </body>
 </html>
 

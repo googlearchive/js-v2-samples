@@ -59,8 +59,8 @@ function onLoad() {
   for(var layer in layers) {
     addTR(layer, layers[layer].name);
   }
-  var newEvt = document.createEventObject();
-  document.getElementById(layer).fireEvent('click', newEvt);
+  document.getElementById(layer).checked = true;
+  toggleGeoXML(layer, true);
 } 
 
 

@@ -59,8 +59,8 @@ function onLoad() {
   for(var layer in layers) {
     addTR(layer, layers[layer].name);
   }
-  var bla = document.getElementById(layer).checked;
-  //.fireEvent('click');
+  var newEvt = document.createEventObject();
+  document.getElementById(layer).fireEvent('click', newEvt);
 } 
 
 

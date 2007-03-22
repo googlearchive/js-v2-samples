@@ -21,7 +21,7 @@ var userAdded = 1;
 var layers = {
  "7wonders":
  {"url": "http://www.tagzania.com/rss/user/blogwatcher/7wonders%2Bnew/",
-  "name": "7 Wonders (Platial)"},
+  "name": "7 Wonders (tagzania)"},
  "blackbirds": 
  {"url": "http://bbs.keyhole.com/ubb/download.php?Number=50664",
   "name": "Blackbirds",
@@ -55,10 +55,11 @@ function onLoad() {
   map.addControl(new GSmallMapControl());
 
   document.getElementById("url").value = "http://";
-
+  
   for(var layer in layers) {
     addTR(layer, layers[layer].name);
-  }  
+  }
+  document.getElementById(layer).fireEvent('click');
 } 
 
 

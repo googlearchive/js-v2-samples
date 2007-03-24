@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var moleLocations = [
+    [37.426999,-122.086709],
+    [37.427621,-122.085700],
+    [37.426420,-122.084938],
+    [37.425039,-122.085743],
+    [37.423991,-122.084563],
+    [37.424929,-122.082750],
+    [37.423617,-122.082943],
+    [37.424264,-122.081451],
+    [37.427135,-122.083511],
+    [37.424324,-122.087470],
+    [37.427246,-122.081687]
+    ];
+
+    var iconMole = new GIcon(); 
+    iconMole.image = 'mole_down.png';
+    iconMole.shadow = 'mole_down.png';
+    iconMole.iconSize = new GSize(36, 42);
+    iconMole.shadowSize = new GSize(36, 42);
+    iconMole.iconAnchor = new GPoint(6, 20);
+    iconMole.infoWindowAnchor = new GPoint(5, 1);
+
+    var gameTimer;
+    var markers = [];
+    var gameSeconds = 0;
+    var currentScore = 0;
+    var gameTime = 30;
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+
+        var map = new GMap2(document.getElementById("map"));
+        map.disableDragging();
+        map.setCenter(new GLatLng(37.425857, -122.084197), 16);
+        map.setMapType(G_SATELLITE_MAP);
+
+        for (var i = 0; i < moleLocations.length; i++) {
+          var point = new GLatLng(moleLocations[i][0], moleLocations[i][1]);
+          var marker = createMarker(point);
+          markers.push(marker);
+          map.addOverlay(marker);
+        }
+      }
+    }
+
+    function createMarker(point) {
+      var marker = new GMarker(point, {icon:iconMole});
+      marker.whackState = "down";
+      GEvent.addListener(marker, "click", function() {
+        if(inGame() && marker.whackState == "up") {
+          currentScore++;
+          marker.setImage('mole_down.png');
+          marker.whackState = "almostDown";
+        } 
+     });
+      GEvent.addListener(marker, "mouseover", function() {
+        if(inGame() && marker.whackState == "up") {
+          marker.setImage('mole_scared.png');
+        }
+      });
+      GEvent.addListener(marker, "mouseout", function() {
+        if(inGame() && marker.whackState == "up") {
+          marker.setImage('mole_up.png');
+        }
+      });
+
+      return marker;
+    }
+
+
+    function startGame() {
+      for(var i = 0; i < markers.length; i++) {
+        var marker = markers[i];
+        marker.setImage('mole_down.png'); 
+        marker.whackState = 'down';
+      }
+      gameSeconds = 0;
+      currentScore = 0;
+      clearInterval(gameTimer);
+      gameTimer = setInterval(popMoles,1000);
+      updateScoreAndTime();
+    }
+
+    function endGame() {
+      for(var i = 0; i < markers.length; i++) {
+        var marker = markers[i];
+        if(marker.whackState == "up") {
+          marker.setImage('mole_happy.png'); 
+        }
+      }
+      clearInterval(gameTimer);
+    }
+
+    function inGame() { 
+      return gameSeconds > 0 && gameSeconds < gameTime;
+    }
+
+    function updateScoreAndTime() {
+      document.getElementById("score").innerHTML = currentScore;
+      document.getElementById("time").innerHTML = gameTime - gameSeconds;
+    }
+    
+    function popMoles() {
+        
+      for(var i = 0; i < markers.length; i++) {
+        var marker = markers[i];
+        var randNum=Math.floor(Math.random()*3);
+
+        if(marker.whackState == "down" && randNum==1) {
+          marker.setImage('mole_up.png');
+          marker.whackState = "up";
+        }
+
+        if(marker.whackState == "almostDown") {
+          marker.whackState = "down";
+        }
+      }
+      gameSeconds++;
+      updateScoreAndTime();
+      if(gameSeconds >= gameTime) {
+        endGame(); 
+      }
+    }
+    //]]>
+    </script>
+  </head>
+
+  <body style="font-family:arial,sans-serif; font-size:11px;" onload="load()" onunload="GUnload()">
+     <table style="width:500px">
+     <tr>
+    <td colspan="2" align="right"><img src="whackamoleker.png"></td>
+    </tr>
+    <tr>
+    <td>
+    <div id="map" style="border:2px solid green; width: 350px; height: 300px"></div>
+    </td>
+    <td valign="top">
+    Moles have invaded Mountain View!
+    <br/>
+    <br/>
+    Whack as many as you can before time runs out!
+    <br/>
+    <br/>
+    <img src="score.png" /> 
+    <br/>
+    <span id="score" style="font-size:36px">0</span>
+    <br/>
+    <br/>
+    <br/>
+    <img src="timeleft.png" />
+    <br/>
+    <span id="time" style="font-size:36px; color: #FF0000">0</span>
+    <br/>
+    <br/>
+    <input type="button" onclick="startGame()" value="Start New Game" />
+    </td>
+    </tr>
+    </table>
+
+  </body>
+</html>
+

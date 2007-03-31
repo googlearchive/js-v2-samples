@@ -455,22 +455,6 @@ hColor;
   } 
 }
 
-/**
- * Callback function for the GData JS Client Library to call when an error
- * occurs during the retrieval of the feed.  
- * @param {Error} e is an instance of an Error 
- */
-function handleGDError(e) {
-  alert('There has been an error trying to retrieve that feed. ' +
-         'Please check that you correctly typed the spreadsheet key ' +
-         'and worksheet ID, and that you have published the worksheet.'); 
-}
-
-/**
- * Uses the Javascript GData Client Library to send a query to 
- * retrieve spreadsheet feed, set the callback function to loadWorksheetJSON
- * and the error handling function to handleGDError.
- */
 function getJSON(query) {
   removeOldResults();
   
@@ -484,11 +468,14 @@ function getJSON(query) {
   var okBUTTON = document.getElementById('okBUTTON');
   okBUTTON.disabled = 'true';
 
-  var scriptE = document.createElement("script");
-  scriptE.src = ('http://spreadsheets.google.com/feeds/list/' + 
+  var script = document.createElement("script");
+  script.src = ('http://spreadsheets.google.com/feeds/list/' + 
                               document.getElementById("ssKey").value + '/' +  
                               document.getElementById("wsId").value + 
-                              '/public/values');
+                              '/public/values?alt=json-in-script&callback=loadWorksheetJSON');
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
 }
 
 /**

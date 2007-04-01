@@ -100,6 +100,9 @@
 	map.addOverlay(hazMarker);
 
         GEvent.addListener(map, "moveend", function() {
+          if (hazMarker) {
+            hazMarker.setPoint(map.getCenter());
+          }
           updateURL();
         });        
 	geocoder =  new GClientGeocoder();

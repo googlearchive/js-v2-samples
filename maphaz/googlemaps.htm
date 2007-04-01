@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps</title>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    body {
+      font-family:Arial,Helvetica,Sans Serif;
+      font-size:10pt;
+    }
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var map;
+    var geocoder = null;
+
+    var iconDefs = [
+      { "name" : "sinkhole1",
+        "fname" : "marker_sinkhole.png",
+        "width" : 186,
+        "height" : 205
+      },
+      { "name" : "sinkhole2",
+        "fname" : "marker_sinkhole2.png",
+        "width" : 218,
+        "height" : 194
+      },
+      { "name" : "earthquake1",
+        "fname" : "marker_earthquake1.png",
+        "width" : 200,
+        "height" : 285
+      },
+      { "name" : "bronto",
+        "fname" : "marker_bronto.png",
+        "width" : 245,
+        "height" : 80
+      },
+      { "name" : "godzilla",
+        "fname" : "marker_godzilla.png",
+        "width" : 89,
+        "height" : 127
+      },
+      { "name" : "bug",
+        "fname" : "marker_bug.png",
+        "width" : 115,
+        "height" : 115
+      },
+      { "name" : "blur",
+        "fname" : "marker_blur.png",
+        "width" : 239,
+        "height" : 240
+      }];
+
+    var hazMarker;
+    var customIcons = {};
+
+    function load() {
+      var param_trick = getURLParam("t");   
+      var param_lat = getURLParam("lat");
+      var param_lng = getURLParam("lng");
+      var param_zoom = getURLParam("zoom");
+      var param_icon = getURLParam("i");
+  
+      if (param_trick != "true") {     
+        document.getElementById("editTrick").style.display = "";
+        document.getElementById("msg").innerHTML = "<h3>Google Maps: Wishing you a happy April Fools!</h3>";
+      }
+
+      if (GBrowserIsCompatible()) {
+        // prepare icons
+        for (var i = 0; i < iconDefs.length; i++) {
+          var iconTemp = new GIcon();
+          iconTemp.image = iconDefs[i].fname;
+          iconTemp.iconSize = new GSize(iconDefs[i].width, iconDefs[i].height);
+          iconTemp.iconAnchor = new GPoint(iconDefs[i].width/2, iconDefs[i].height/2);
+          customIcons[iconDefs[i].name] = iconTemp;
+        }
+
+        map = new GMap2(document.getElementById("map"));
+
+	if(param_lat!="" && param_lng!="" && param_zoom!=""){
+	  map.setCenter(new GLatLng(parseFloat(param_lat),parseFloat(param_lng)),parseInt(param_zoom));
+	} else {
+          map.setCenter(new GLatLng(37.4419, -122.1419), 14);
+	}
+	map.setMapType(G_SATELLITE_MAP);
+	map.addControl(new GSmallMapControl());
+	if (param_icon != "") {
+          document.getElementById("hazTypes").selectedIndex = parseInt(param_icon);
+        } 
+
+        hazMarker = createMarker();
+	map.addOverlay(hazMarker);
+
+        GEvent.addListener(map, "moveend", function() {
+          updateURL();
+        });        
+	geocoder =  new GClientGeocoder();
+        updateURL();
+      }
+    }
+
+   function showAddress(address) {
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              map.setCenter(point, 13);
+              hazMarker.setPoint(point);
+              updateURL();
+            }
+          }
+        );
+      }
+    }
+
+    function createMarker() {
+      if (hazMarker) {
+        var currentPoint = hazMarker.getPoint();
+      } else { 
+        var currentPoint = map.getCenter();
+      }
+      var whichIcon = document.getElementById("hazTypes").value; 
+      var marker = new GMarker(currentPoint, {icon:customIcons[whichIcon],draggable:true, bouncy:false});
+      GEvent.addListener(marker, "dragend", function() {
+        updateURL();
+      });        
+      GEvent.addListener(marker, "mouseover", function() {
+        document.getElementById("editTrick").style.display = "";
+        document.getElementById("msg").innerHTML = "<h3>Google Maps: Wishing you a happy April Fools!</h3>";
+      });        
+
+      return marker;
+    }
+
+    function changeMarker() {
+      map.clearOverlays();
+      hazMarker = createMarker();      
+      map.addOverlay(hazMarker); 
+      updateURL();
+    }
+
+    function getURLParam( name )
+    {
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var tmpURL = window.location.href;
+      var results = regex.exec( tmpURL );
+      if( results == null )
+        return "";
+      else
+        return results[1];
+    }
+
+    function updateURL(){
+      var lat = hazMarker.getPoint().lat().toFixed(6);
+      var lng = hazMarker.getPoint().lng().toFixed(6);
+      var zoom = map.getZoom();
+      var icon = document.getElementById("hazTypes").selectedIndex; 
+      var mapURL = "http://imagine-it.org/google/gmaps-samples/maphaz/gpolyletters.htm?lat="+lat+"&lng="+lng+"&zoom="+zoom+"&i="+icon+"&t=true";
+      document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
+    }
+
+    //]]>
+    </script>
+  </head>
+  <body onload="load()" onunload="GUnload()">
+   <div id="msg">
+    <h3>Google Maps: Bringing you the latest in satellite imagery</h3>
+   </div>
+    <div id="map" style="width: 500px; height: 300px"></div>
+   <div id="editTrick" style="display:none;">
+   <br/> 
+   Create a new trick by customizing the map:
+    <br/>
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        1) Position the map: <input type="text" size="40" name="address" value="(Type address or region here)" />
+        <input type="submit" value="Find it!" />
+      </p>
+    </form>
+    2) Pick the trick type & drag it around to place it:  
+   &nbsp;&nbsp;
+   <select id="hazTypes" onchange="changeMarker()">
+    <option value="sinkhole1">sinkhole #1</option>
+    <option value="sinkhole2">sinkhole #2</option>
+    <option value="earthquake1">earthquake #1</option>
+    <option value="blur">blurred out</option>
+    <option value="bronto">bronto</option>
+    <option value="godzilla">godzilla</option>
+    <option value="bug">giant bug</option>
+   </select>
+    <br/><br/>
+    <div id="status" style="width:500px; color:#000000;"></div>
+    <br/>
+    </div>
+
+
+    <br/>
+  </body>
+</html>

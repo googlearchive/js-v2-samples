@@ -167,7 +167,7 @@
       var lng = hazMarker.getPoint().lng().toFixed(6);
       var zoom = map.getZoom();
       var icon = document.getElementById("hazTypes").selectedIndex; 
-      var mapURL = "http://imagine-it.org/google/gmaps-samples/maphaz/gpolyletters.htm?lat="+lat+"&lng="+lng+"&zoom="+zoom+"&i="+icon+"&t=true";
+      var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/maphaz/googlemaps.htm?lat="+lat+"&lng="+lng+"&zoom="+zoom+"&i="+icon+"&t=true";
       document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
     }
 

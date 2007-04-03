@@ -355,11 +355,11 @@ function createMarker(point, entryNum, isFound) {
   var nIcon = new GIcon(baseIcon);
   var number = entryNum + 1;
   if(isFound) {
-    nIcon.image = "http://www.corp.google.com/~pamelafox/trixsamples/"
-                  + "markers_all/green_marker" + number + ".png";
+    nIcon.image = "../markers/green/"
+                  + "marker" + number + ".png";
   } else {
-    nIcon.image = "http://www.corp.google.com/~pamelafox/trixsamples/"
-                + "markers_all/red_marker" + number + ".png";
+    nIcon.image = "../markers/green/"
+                + "marker" + number + ".png";
   }
 
   var identifier = document.getElementById("selectIdentifier").value;

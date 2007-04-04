@@ -37,7 +37,7 @@
    var colonWidth = 20;
       
     function load() {
-      if (GBrowserIsCompatible()) {
+      if (!GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
         map.setCenter(new GLatLng(-17.925236,25.8573), 18);
         map.setMapType(G_SATELLITE_MAP);

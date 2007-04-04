@@ -669,6 +669,7 @@ function cm_loadMapJSON(json) {
       if(param_useSidebar == true) {
         var markerA = document.createElement("a");
         markerA.setAttribute("href","javascript:cm_markerClicked('" + i +"')");
+        markerA.style.color = "#000000";
         var sidebarText= "";
         if(usingRank) {
           sidebarText += rank + ") ";

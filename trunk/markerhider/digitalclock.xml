@@ -52,17 +52,17 @@
         map.setMapType(G_SATELLITE_MAP);
 
         var iconHorizontal = new GIcon();
-        iconHorizontal.image = "http://www.imagine-it.org/google/gmaps-samples/markerhider/marker_hor.png";
+        iconHorizontal.image = "http://gmaps-samples.googlecode.com/svn/trunk/markerhider/marker_hor.png";
         iconHorizontal.iconSize = new GSize(21, 8);
         iconHorizontal.iconAnchor = new GPoint(10, 4);
 
         var iconVertical = new GIcon();
-        iconVertical.image = "http://www.imagine-it.org/google/gmaps-samples/markerhider/marker_vert.png";
+        iconVertical.image = "http://gmaps-samples.googlecode.com/svn/trunk/markerhider/marker_vert.png";
         iconVertical.iconSize = new GSize(8, 21); 
         iconVertical.iconAnchor = new GPoint(4, 10);
 
         var iconColon = new GIcon();
-        iconColon.image = "http://www.imagine-it.org/google/gmaps-samples/markerhider/marker_colon.png";
+        iconColon.image = "http://gmaps-samples.googlecode.com/svn/trunk/markerhider/marker_colon.png";
         iconColon.iconSize = new GSize(8, 21); 
         iconColon.iconAnchor = new GPoint(4, 10);
 

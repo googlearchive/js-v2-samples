@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-<ModulePrefs title="Google Maps Digi-Clock" height="210"/>
+<ModulePrefs title="Google Maps Digi-Clock" height="170"/>
 <UserPref name="lat" display_name="Latitude" datatype="string" required="true" default_value="-17.925236" />
 <UserPref name="lng" display_name="Longitude" datatype="string" required="true" default_value="25.8573" />
 <UserPref name="zoom" display_name="Zoom" datatype="string" required="true" default_value="18" />
@@ -160,7 +160,7 @@
     </script>
 
 
-    <div id="map" style="margin:auto; width: 100%; height: 200px"></div>
+    <div id="map" style="margin:auto; width: 100%; height: 165px"></div>
 
 ]]>
 </Content>

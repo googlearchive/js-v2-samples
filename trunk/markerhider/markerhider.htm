@@ -33,8 +33,6 @@
     function load() {
       if (GBrowserIsCompatible()) {
         var map = new GMap2(document.getElementById("map"));
-        map.addControl(new GSmallMapControl());
-        map.addControl(new GMapTypeControl());
         map.setCenter(new GLatLng(47.614495, -122.341861), 13);
 
         GDownloadUrl("markerdata.xml", function(data) {
@@ -76,8 +74,8 @@
   </script>
   </head>
   <body onload="load()" onunload="GUnload()">
-    <div id="map" style="float:left; width: 500px; height: 300px; border: 1px solid black"></div>
-    <div id="sidebar" style="float:left; width: 120px; height: 300px; border: 1px solid black; font-family:sans serif">
+    <div id="map" style="float:left; width: 380px; height: 300px; border: 1px solid black"></div>
+    <div id="sidebar" style="float:left; width: 120px; height: 300px; border: 1px solid black">
    <input type="checkbox" id="barCheckbox" onclick="toggleGroup('bar')" CHECKED />  
    Restaurants
    <br/>

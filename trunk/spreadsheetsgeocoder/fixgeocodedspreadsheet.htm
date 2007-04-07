@@ -432,7 +432,7 @@ function highlightMarker(entryNum){
  */
 function highlightRow(entryNum,fromMarker) {
   var hColor = "#dddddd";
-  for(var i = 0; i < entries.length; ++i) {
+  for(var i = 0; i < Math.min(entries.length, 99); ++i) {
     document.getElementById("latTD"+i).style.backgroundColor = "#FFFFFF";
     document.getElementById("lngTD"+i).style.backgroundColor = "#FFFFFF";
     document.getElementById("labelTD"+i).style.backgroundColor = "#FFFFFF";
@@ -442,8 +442,7 @@ function highlightRow(entryNum,fromMarker) {
     document.getElementById("latTD"+entryNum).style.backgroundColor = hColor;
     document.getElementById("lngTD"+entryNum).style.backgroundColor = hColor;
     document.getElementById("labelTD"+entryNum).style.backgroundColor = hColor;
-    document.getElementById("iconTD"+entryNum).style.backgroundColor = 
-hColor;
+    document.getElementById("iconTD"+entryNum).style.backgroundColor = hColor;
   }
   if(entryNum > -1) {
     var infoDiv = document.getElementById("infoDIV");

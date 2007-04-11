@@ -123,9 +123,9 @@
       var later = new Date("May 31 2007 0:09:00");
       var now = new Date();
 
-      var h = now.getHours() % 12;
-      var m = now.getMinutes();
-      var s = now.getSeconds();
+  //    var h = now.getHours() % 12;
+  //    var m = now.getMinutes();
+  //    var s = now.getSeconds();
 
       days = (later - now) / 1000 / 60 / 60 / 24;
       daysRound = Math.floor(days);
@@ -135,12 +135,12 @@
       minutesRound = Math.floor(minutes);
       GLog.write(daysRound + "," + hoursRound + "," + minutesRound);
 
-      toggleSegments("" + Math.floor(h/10), "day_10");
-      toggleSegments("" + h%10, "day_1");
-      toggleSegments("" + Math.floor(m/10), "hour_10");
-      toggleSegments("" + m%10, "hour_1");
-      toggleSegments("" + Math.floor(s/10), "min_10");
-      toggleSegments("" + s%10, "min_1");
+      toggleSegments("" + Math.floor(daysRound/10), "day_10");
+      toggleSegments("" + daysRound%10, "day_1");
+      toggleSegments("" + Math.floor(hoursRound/10), "hour_10");
+      toggleSegments("" + hoursRound%10, "hour_1");
+      toggleSegments("" + Math.floor(minutesRound/10), "min_10");
+      toggleSegments("" + minutesRound%10, "min_1");
     }
 
     function toggleSegments(number, place) {

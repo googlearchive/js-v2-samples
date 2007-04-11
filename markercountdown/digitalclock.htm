@@ -62,15 +62,15 @@
         markerIcons["col"] = iconColon;
 
 
-        addSegmentMarkers("hour_10", 0);
-        addSegmentMarkers("hour_1", numberWidth);
+        addSegmentMarkers("day_10", 0);
+        addSegmentMarkers("day_1", numberWidth);
         addColonMarker(numberWidth*2);
-        addSegmentMarkers("min_10", numberWidth*2+colonWidth);
-        addSegmentMarkers("min_1", numberWidth*3+colonWidth);
+        addSegmentMarkers("hour_10", numberWidth*2+colonWidth);
+        addSegmentMarkers("hour_1", numberWidth*3+colonWidth);
         addColonMarker(numberWidth*4+colonWidth);
-        addSegmentMarkers("sec_10", numberWidth*4+colonWidth*2);
-        addSegmentMarkers("sec_1", numberWidth*5+colonWidth*2);
-
+        addSegmentMarkers("min_10", numberWidth*4+colonWidth*2);
+        addSegmentMarkers("min_1", numberWidth*5+colonWidth*2);
+        GLog.write("done adding");
        window.setInterval(clockTick, 1000);
       }
     }
@@ -135,12 +135,12 @@
       minutesRound = Math.floor(minutes);
       GLog.write(daysRound + "," + hoursRound + "," + minutesRound);
 
-      toggleSegments("" + Math.floor(h/10), "hour_10");
-      toggleSegments("" + h%10, "hour_1");
-      toggleSegments("" + Math.floor(m/10), "min_10");
-      toggleSegments("" + m%10, "min_1");
-      toggleSegments("" + Math.floor(s/10), "sec_10");
-      toggleSegments("" + s%10, "sec_1");
+      toggleSegments("" + Math.floor(h/10), "day_10");
+      toggleSegments("" + h%10, "day_1");
+      toggleSegments("" + Math.floor(m/10), "hour_10");
+      toggleSegments("" + m%10, "hour_1");
+      toggleSegments("" + Math.floor(s/10), "min_10");
+      toggleSegments("" + s%10, "min_1");
     }
 
     function toggleSegments(number, place) {

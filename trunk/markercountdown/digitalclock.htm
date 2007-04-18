@@ -127,12 +127,12 @@
   //    var m = now.getMinutes();
   //    var s = now.getSeconds();
 
-      days = (later - now) / 1000 / 60 / 60 / 24;
-      daysRound = Math.floor(days);
-      hours = (later - now) / 1000 / 60 / 60 - (24 * daysRound);
-      hoursRound = Math.floor(hours);
-      minutes = (later - now) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
-      minutesRound = Math.floor(minutes);
+      var days = (later - now) / 1000 / 60 / 60 / 24;
+      var daysRound = Math.floor(days);
+      var hours = (later - now) / 1000 / 60 / 60 - (24 * daysRound);
+      var hoursRound = Math.floor(hours);
+      var minutes = (later - now) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+      var minutesRound = Math.floor(minutes);
       GLog.write(daysRound + "," + hoursRound + "," + minutesRound);
 
       toggleSegments("" + Math.floor(daysRound/10), "day_10");

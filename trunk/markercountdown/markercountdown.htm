@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+   <script src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" 
+    type="text/javascript"></script> 
+    <script type="text/javascript">
+    //<![CDATA[
+    var map;
+    var markers = { "day_10":[], 
+                    "day_1" :[],
+                    "hour_10" :[], 
+                    "hour_1"  :[],
+                    "min_10" :[],
+                    "min_1"  :[], 
+                    "colon" : []};
+      
+    var numberLayouts = {
+      "0" : [true,true,true,false,true,true,true],
+      "1" : [false,false,false,false,false,true,true],
+      "2" : [false,true,true,true,true,true,false],
+      "3" : [false,false,true,true,true,true,true],
+      "4" : [true,false,false,true,false,true,true],
+      "5" : [true,false,true,true,true,false,true],
+      "6" : [true,true,false,true,true,false,true],
+      "7" : [false,false,true,false,false,true,true],
+      "8" : [true,true,true,true,true,true,true],
+      "9" : [true,false,true,true,false,true,true]
+      };
+
+   var markerIcons = {};
+
+   var numberWidth = 60;
+   var numberHeight = 100;
+   var colonWidth = 20;
+      
+    function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(-17.925236,25.8573), 18);
+        map.setMapType(G_SATELLITE_MAP);
+
+        var iconHorizontal = new GIcon();
+        iconHorizontal.image = "marker_hor.png";
+        iconHorizontal.iconSize = new GSize(42, 16);
+        iconHorizontal.iconAnchor = new GPoint(21, 8);
+
+        var iconVertical = new GIcon();
+        iconVertical.image = "marker_vert.png";
+        iconVertical.iconSize = new GSize(16, 42); 
+        iconVertical.iconAnchor = new GPoint(8, 21);
+
+        var iconColon = new GIcon();
+        iconColon.image = "marker_colon.png";
+        iconColon.iconSize = new GSize(16, 42); 
+        iconColon.iconAnchor = new GPoint(8, 21);
+
+        markerIcons["hor"] = iconHorizontal;
+        markerIcons["vert"] = iconVertical;
+        markerIcons["col"] = iconColon;
+
+
+        addSegmentMarkers("day_10", 0);
+        addSegmentMarkers("day_1", numberWidth);
+        addColonMarker(numberWidth*2);
+        addSegmentMarkers("hour_10", numberWidth*2+colonWidth);
+        addSegmentMarkers("hour_1", numberWidth*3+colonWidth);
+        addColonMarker(numberWidth*4+colonWidth);
+        addSegmentMarkers("min_10", numberWidth*4+colonWidth*2);
+        addSegmentMarkers("min_1", numberWidth*5+colonWidth*2);
+       window.setInterval(clockTick, 1000);
+      }
+    }
+
+     // Creates a marker at the given point with the given number label
+    function createMarker(point, place, markerIcon) {
+      var marker = new GMarker(point, markerIcons[markerIcon]);
+      markers[place].push(marker);
+      map.addOverlay(marker);
+    }
+
+    function addColonMarker(offset) {
+      var mapNormalProj = G_NORMAL_MAP.getProjection();
+      var mapZoom = map.getZoom();
+      var centerPixel = mapNormalProj.fromLatLngToPixel(map.getCenter(), mapZoom);
+      var segmentWidth = numberWidth*.66;
+      var segmentHeight = numberHeight*.5;
+      var startPixel = new GPoint(centerPixel.x - (numberWidth*3) + offset,centerPixel.y - (numberHeight*.5) + segmentHeight);
+      createMarker(mapNormalProj.fromPixelToLatLng(startPixel,mapZoom), "colon", "col");
+    }
+
+    function addSegmentMarkers(place, offset) {
+      var segmentWidth = numberWidth*.66;
+      var segmentHeight = numberHeight*.5;
+
+      var mapNormalProj = G_NORMAL_MAP.getProjection();
+      var mapZoom = map.getZoom();
+      var centerPixel = mapNormalProj.fromLatLngToPixel(map.getCenter(), mapZoom);
+
+      var startPixel = new GPoint(centerPixel.x - (numberWidth*3) + offset,centerPixel.y - (numberHeight*.5));
+
+      var segmentPixel;
+      segmentPixel = new GPoint(startPixel.x, startPixel.y + segmentHeight/2.0);
+      createMarker(mapNormalProj.fromPixelToLatLng(segmentPixel,mapZoom), place, "vert");
+      segmentPixel = new GPoint(startPixel.x, startPixel.y + 3*segmentHeight/2.0);
+      createMarker(mapNormalProj.fromPixelToLatLng(segmentPixel,mapZoom), place, "vert");
+      segmentPixel = new GPoint(startPixel.x + segmentWidth/2.0, startPixel.y);
+      createMarker(mapNormalProj.fromPixelToLatLng(segmentPixel,mapZoom), place, "hor");
+      segmentPixel = new GPoint(startPixel.x + segmentWidth/2.0, startPixel.y + segmentHeight);
+      createMarker(mapNormalProj.fromPixelToLatLng(segmentPixel,mapZoom), place, "hor");
+      segmentPixel = new GPoint(startPixel.x + segmentWidth/2.0, startPixel.y + 2*segmentHeight);
+      createMarker(mapNormalProj.fromPixelToLatLng(segmentPixel,mapZoom), place, "hor");
+      segmentPixel = new GPoint(startPixel.x + segmentWidth, startPixel.y + segmentHeight/2.0);
+      createMarker(mapNormalProj.fromPixelToLatLng(segmentPixel,mapZoom), place, "vert");
+      segmentPixel = new GPoint(startPixel.x + segmentWidth, startPixel.y + 3*segmentHeight/2.0);
+      createMarker(mapNormalProj.fromPixelToLatLng(segmentPixel,mapZoom), place, "vert");
+    }
+ 
+    function clockTick() {
+      var later = new Date("May 31 2007 0:09:00");
+      var now = new Date();
+
+  //    var h = now.getHours() % 12;
+  //    var m = now.getMinutes();
+  //    var s = now.getSeconds();
+
+      var days = (later - now) / 1000 / 60 / 60 / 24;
+      var daysRound = Math.floor(days);
+      var hours = (later - now) / 1000 / 60 / 60 - (24 * daysRound);
+      var hoursRound = Math.floor(hours);
+      var minutes = (later - now) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+      var minutesRound = Math.floor(minutes);
+      GLog.write(daysRound + "," + hoursRound + "," + minutesRound);
+
+      toggleSegments("" + Math.floor(daysRound/10), "day_10");
+      toggleSegments("" + daysRound%10, "day_1");
+      toggleSegments("" + Math.floor(hoursRound/10), "hour_10");
+      toggleSegments("" + hoursRound%10, "hour_1");
+      toggleSegments("" + Math.floor(minutesRound/10), "min_10");
+      toggleSegments("" + minutesRound%10, "min_1");
+    }
+
+    function toggleSegments(number, place) {
+      var numberLayout = numberLayouts[number];
+      var placeMarkers = markers[place];
+
+      for (i = 0; i < placeMarkers.length; i++) {
+        if (placeMarkers[i].isHidden() && numberLayout[i]) { // if hidden and should be on
+          placeMarkers[i].show(); 
+        } else if (!placeMarkers[i].isHidden() && !numberLayout[i]) { // if showing and should be off
+          placeMarkers[i].hide();
+        } 
+      }
+    }
+
+    //]]>
+    </script>
+  </head>
+
+  <body onload="load()" onunload="GUnload()">
+    <div id="map" style="width: 500px; height: 300px"></div>
+  </body>
+</html>
+

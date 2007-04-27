@@ -50,7 +50,7 @@ function cm_load() {
     cm_map = new GMap2(document.getElementById("cm_map"));
     cm_map.addControl(new GSmallMapControl());
     cm_map.addControl(new GMapTypeControl());
-    cm_map.setCenter(new GLatLng( 43.907787,-79.359741), 12);
+    cm_map.setCenter(new GLatLng( 43.907787,-79.359741), 7);
 
     icon = new GIcon();
     icon.image = 'http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png';
@@ -96,8 +96,6 @@ function cm_loadMapJSON(json) {
     document.getElementById("cm_mapTR").appendChild(sidebarTD);
   }
 
-  var bounds = new GLatLngBounds();	  
-
   for (var i = 0; i < json.feed.entry.length; i++) {
     var entry = json.feed.entry[i];
     if (entry["gsx$" + param_latColumn]) {
@@ -120,7 +118,6 @@ function cm_loadMapJSON(json) {
       cm_map.addOverlay(marker);
       cm_mapMarkers.push(marker);
       cm_mapHTMLS.push(html);
-      bounds.extend(point);
 	  
       if(param_useSidebar == true) {
         var markerA = document.createElement("a");
@@ -136,8 +133,6 @@ function cm_loadMapJSON(json) {
     }
   }
 
-  cm_map.setZoom(cm_map.getBoundsZoomLevel(bounds));
-  cm_map.setCenter(bounds.getCenter());
 }
 
 

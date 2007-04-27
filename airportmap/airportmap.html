@@ -165,7 +165,7 @@ function cm_createMarker(point, title, html, rank) {
     marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/yellowcirclemarker.png');
   });
 
-  GEvent.addListener(marker, "infowindowclose", function() {
+  GEvent.addListener(marker, "mouseout", function() {
     marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png');
   });
 

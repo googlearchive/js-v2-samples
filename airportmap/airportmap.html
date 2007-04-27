@@ -175,6 +175,10 @@ function cm_createMarker(point, title, html, rank) {
     marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png');
   });
 
+  GEvent.addListener(marker, "infowindowclose", function() {
+    marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png');
+  });
+
   return marker;
 }
 

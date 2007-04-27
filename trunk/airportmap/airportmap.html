@@ -157,15 +157,12 @@ function cm_createMarker(point, title, html, rank) {
   var marker = new LabeledMarker(newPoint, markerOpts);
 
   GEvent.addListener(marker, "click", function() {
+    marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/yellowcirclemarker.png');
     marker.openInfoWindowHtml(html);
   });
 
   GEvent.addListener(marker, "mouseover", function() {
     marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/yellowcirclemarker.png');
-  });
-
-  GEvent.addListener(marker, "mouseout", function() {
-    marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png');
   });
 
   GEvent.addListener(marker, "infowindowclose", function() {

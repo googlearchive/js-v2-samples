@@ -48,7 +48,7 @@ function cm_load() {
   if (GBrowserIsCompatible()) {
     // create the map
     cm_map = new GMap2(document.getElementById("cm_map"));
-    cm_map.addControl(new GSmallMapControl());
+    cm_map.addControl(new GSmallZoomControl());
     cm_map.addControl(new GMapTypeControl());
     cm_map.setCenter(new GLatLng( 36.879620,-99.84375), 3);
 

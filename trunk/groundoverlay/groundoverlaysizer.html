@@ -74,8 +74,6 @@ function initialPosition() {
   map.addOverlay(marker_SW);
 
   updatePolyline();
-  updateGroundOverlay();
-  updateCode();  
 }
 
 function updatePolyline() {
@@ -92,6 +90,9 @@ function updatePolyline() {
   border = new GPolyline(points, "#fff600");
 
   map.addOverlay(border);
+
+  updateGroundOverlay();
+  updateCode();  
 }
 
 function updateGroundOverlay() {
@@ -177,7 +178,7 @@ function showAddress(address) {
 
     <br/>
     <input id="theUrl" type="text" size="45" value="http://bbs.keyhole.com/ubb/z0302a1700/etna.jpg"/>
-    <input type="button" value="Add GroundOverlay" onClick="addPolyline();"/>
+    <input type="button" value="Add GroundOverlay" onClick="initialPosition();"/>
     <br/><br/>
     <input type="radio" name="outputType" id="outputTypeKML" onchange="updateCode()"/> KML Output
     &nbsp; 

@@ -28,8 +28,8 @@ var geocoder = null;
 
 function onLoad() {
   map = new GMap2(document.getElementById("map"));
-  map.setMapType(G_SATELLITE_MAP);
   map.setCenter(new GLatLng(37.757687, 15.177612), 8);
+  map.setMapType(G_SATELLITE_MAP);
   map.addControl(new GSmallMapControl());
   map.addControl(new GMapTypeControl());
   icon_NE = new GIcon(); 

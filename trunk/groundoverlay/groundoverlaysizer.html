@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+  <title>GroundOverlay Sizer</title>
+  <link rel="stylesheet" type="text/css" href="http://www.google.com/apis/maps/documentation/local_extensions.css" />
+  <script src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" 
+      type="text/javascript"></script>
+  <script src="http://www.google.com/apis/maps/include/prettify.js" type="text/javascript">
+      </script>
+  <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+   }
+  </style>
+  <script type="text/javascript">
+var map = null;
+
+var marker_NE;
+var marker_SW;
+
+var border;
+var groundOverlay;
+
+var icon_NE;
+var icon_SW;
+
+var geocoder = null;
+
+function onLoad() {
+  map = new GMap2(document.getElementById("map"));
+  map.setCenter(new GLatLng(37.757687, 15.177612), 8);
+  map.addControl(new GSmallMapControl());
+  icon_NE = new GIcon(); 
+  icon_NE.image = 'http://imagine-it.org/google/marker_NE_icon.png';
+  icon_NE.shadow = '';
+  icon_NE.iconSize = new GSize(32, 32);
+  icon_NE.shadowSize = new GSize(22, 20);
+  icon_NE.iconAnchor = new GPoint(22, 10);
+  icon_NE.dragCrossImage = '';
+
+  icon_SW = new GIcon(); 
+  icon_SW.image = 'http://imagine-it.org/google/marker_SW_icon.png';
+  icon_SW.shadow = '';
+  icon_SW.iconSize = new GSize(32, 32);
+  icon_SW.shadowSize = new GSize(22, 20);
+  icon_SW.iconAnchor = new GPoint(6, 20);
+  icon_SW.dragCrossImage = '';
+
+  geocoder = new GClientGeocoder();
+} 
+
+function initialPosition() {
+  map.clearOverlays();
+  var bounds = map.getBounds();
+  var span = bounds.toSpan();
+  var newSW = new GLatLng(bounds.getSouthWest().lat() + span.lat()/5, 
+                          bounds.getSouthWest().lng() + span.lng()/5);
+  var newNE = new GLatLng(bounds.getNorthEast().lat() - span.lat()/5, 
+                          bounds.getNorthEast().lng() - span.lng()/5);
+
+  var newBounds = new GLatLngBounds(newSW, newNE);
+
+  marker_NE = new GMarker(newBounds.getNorthEast(), {draggable: true, icon: icon_NE});
+  GEvent.addListener(marker_NE, 'dragend', function() {
+    updatePolyline();
+  });
+
+  marker_SW = new GMarker(newBounds.getSouthWest(), {draggable: true, icon: icon_SW});
+  GEvent.addListener(marker_SW, 'dragend', function() {
+    updatePolyline();
+  });
+
+  map.addOverlay(marker_NE);
+  map.addOverlay(marker_SW);
+
+  updatePolyline();
+  updateGroundOverlay();
+  updateCode();  
+}
+
+function updatePolyline() {
+  if (border) {
+    map.removeOverlay(border);
+  }
+
+  var points = [
+      marker_NE.getPoint(),
+      new GLatLng(marker_SW.getPoint().lat(), marker_NE.getPoint().lng()),
+      marker_SW.getPoint(),
+      new GLatLng(marker_NE.getPoint().lat(), marker_SW.getPoint().lng()),
+      marker_NE.getPoint()];
+  border = new GPolyline(points, "#fff600");
+
+  map.addOverlay(border);
+}
+
+function updateGroundOverlay() {
+  if (groundOverlay) {
+    map.removeOverlay(groundOverlay);
+  }
+
+  groundOverlay = new GGroundOverlay (
+    document.getElementById("theUrl").value,
+    new GLatLngBounds(marker_SW.getPoint(), marker_NE.getPoint()));
+
+  map.addOverlay(groundOverlay);
+}
+
+function updateCode() {
+  var code = [];
+
+  if (document.getElementById("outputTypeJS").checked) {
+    code.push('var pointCenter = new GLatLng(' + map.getCenter().toUrlValue() + ');');
+    code.push('var map = new GMap2(document.getElementById("map"));');
+    code.push('map.setCenter(pointCenter, ' + map.getZoom() + ');');
+    code.push('');
+    code.push('var pointSW = new GLatLng(' + marker_SW.getPoint().toUrlValue() + ');');
+    code.push('var pointNE = new GLatLng(' + marker_NE.getPoint().toUrlValue() + ');');
+    code.push('');
+    code.push('var groundOverlay = new GGroundOverlay(');
+    code.push('   "' + document.getElementById("theUrl").value + '", ');
+    code.push('   new GLatLngBounds(pointSW, pointNE));');
+    code.push('');
+    code.push('map.addOverlay(groundOverlay);');
+    var codeHTML = code.join("<br/>");
+    document.getElementById("code").innerHTML = codeHTML;
+    prettyPrint();
+  } else {
+    code.push('&lt;?xml version="1.0" encoding="UTF-8"?&gt;');
+    code.push('&lt;kml xmlns="http://earth.google.com/kml/2.1"&gt;');
+    code.push('  &lt;Folder&gt;');
+    code.push('    &lt;name&gt;Ground Overlays&lt;/name&gt;');
+    code.push('    &lt;description&gt;Examples of ground overlays&lt;/description&gt;');
+    code.push('    &lt;GroundOverlay&gt;');
+    code.push('      &lt;Icon&gt;');
+    code.push('        &lt;href&gt; http://code.google.com/apis/kml/documentation/etna.jpg');
+    code.push('        &lt;/href&gt;');
+    code.push('      &lt;/Icon&gt;');
+    code.push('      &lt;LatLonBox&gt;');
+    code.push('        &lt;north&gt;' + marker_NE.getPoint().lat() + '&lt;/north&gt;');
+    code.push('        &lt;south&gt;' + marker_SW.getPoint().lat() + '&lt;/south&gt;');
+    code.push('        &lt;east&gt;' + marker_NE.getPoint().lng() + '&lt;/east&gt;');
+    code.push('        &lt;west&gt;' + marker_SW.getPoint().lng() + '&lt;/west&gt;');
+    code.push('      &lt;/LatLonBox&gt;');
+    code.push('    &lt;/GroundOverlay&gt;');
+    code.push('  &lt;/Folder&gt;');
+    code.push('&lt;/kml&gt;');
+    var codeHTML = code.join("<br/>");
+    document.getElementById("code").innerHTML = codeHTML;
+  }
+}
+
+function showAddress(address) {
+  if (geocoder) {
+    geocoder.getLatLng(address,
+        function(point) {
+          if (!point) {
+            alert(address + " not found");
+          } else {
+            map.setCenter(point, 13);
+          }
+        }
+    );
+  }
+}
+  </script>
+  </head>
+  <body onload="onLoad()">
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+        <input type="submit" value="Go!" />
+      </p>
+    </form>
+
+    <div id="map" style="width: 450px; height: 300px"></div>
+
+    <br/>
+    <input id="theUrl" type="text" size="45" value="http://bbs.keyhole.com/ubb/z0302a1700/etna.jpg"/>
+    <input type="button" value="Add GroundOverlay" onClick="addPolyline();"/>
+    <br/><br/>
+    <input type="radio" name="outputType" id="outputTypeKML" onchange="updateCode()"/> KML Output
+    &nbsp; 
+    <input type="radio" name="outputType" id="outputTypeJS" checked onchange="updateCode()"/> API Javascript Output 
+    
+    <pre class="prettyprint" id="code" style="overflow: auto; width: 450px;">
+    </pre>
+
+  </body>
+</html>
+

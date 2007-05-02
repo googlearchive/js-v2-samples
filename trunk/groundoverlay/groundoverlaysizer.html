@@ -30,6 +30,7 @@ function onLoad() {
   map = new GMap2(document.getElementById("map"));
   map.setCenter(new GLatLng(37.757687, 15.177612), 8);
   map.addControl(new GSmallMapControl());
+  map.addControl(new GMapTypeControl());
   icon_NE = new GIcon(); 
   icon_NE.image = 'http://imagine-it.org/google/marker_NE_icon.png';
   icon_NE.shadow = '';

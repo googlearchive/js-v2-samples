@@ -55,7 +55,7 @@
           icon.iconSize = new GSize(countryData[country].width, countryData[country].height);
           var marker = new GMarker(point, icon);
 
-          GEvent.addListener(marker, "dblclick", function() {
+          GEvent.addListener(marker, "click", function() {
             map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
           });
           return marker;

@@ -3,7 +3,7 @@
   <NetworkLink>
     <name>Yahoo! Pipes Example</name>
     <Link>
-      <href>http://pipes.yahoo.com/pipes/pipe.run?_id=AjnnIana2xG7EedQYEsBXw&_render=kml</href>
+      <href>http://pipes.yahoo.com/pipes/pipe.run?_id=AjnnIana2xG7EedQYEsBXw&amp;_render=kml</href>
     </Link>
   </NetworkLink>
 </kml>

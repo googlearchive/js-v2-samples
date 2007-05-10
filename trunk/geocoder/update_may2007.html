@@ -23,9 +23,10 @@
 
     var map;
     var geocoder = null;
+    var addressMarker;
 
     var countryData = {
-      "brazil": { lat: -23.529996, lng: -46.630096, address: "Avenida Lineu de Paula Machado 1263, São Paulo - SP Brazil"},
+      "brazil": { lat: -23.529996, lng: -46.630096, address: "Avenida Lineu de Paula Machado 1263, Sao Paulo - SP Brazil"},
       "poland": { lat: 52.389011, lng: 19.006348, address: ""},
       "czechrepublic": { lat: 49.781264, lng: 15.303955, address: ""},
       "portugal": { lat: 39.470125, lng: -8.063965, address: ""},
@@ -37,7 +38,7 @@
         map = new GMap2(document.getElementById("map"));
         map.addControl(new GSmallMapControl());
         map.addControl(new GMapTypeControl());
-        map.setCenter(new GLatLng(40.313043,56.074219), 2);
+        map.setCenter(new GLatLng(22.917922, -16.875), 2);
 
         // Create a base icon for all of our markers that specifies the
         // shadow, icon dimensions, etc.
@@ -75,7 +76,12 @@
             if (!point) {
               alert(address + " not found");
             } else {
-              map.setCenter(point, 13);
+              if (addressMarker) {
+                map.removeOverlay(addressMarker);
+              }
+              addressMarker = new GMarker(point);
+              map.setCenter(point, 15);
+              map.addOverlay(addressMarker);
             }
           }
         );

@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head> 
+<title>Taking Stock of Silicon Valley</title>
+<link href="siliconvalleymap.css" rel="stylesheet" type="text/css" />
+<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+            type="text/javascript"></script>
+<script src="http://gmaps-utility-library.googlecode.com/svn/trunk/labeledmarker/1.0/src/labeledmarker.js" 
+         type="text/javascript"></script>
+<script src="infobox.js" type="text/javascript"></script>
+<script src="baroverlay.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var StockMap = {
+  map: null,
+  mapMarkers: {},
+  lastMarker: null,
+  iconGreen: null,
+  iconRed: null
+};
+
+function windowHeight() {
+  // Standard browsers (Mozilla, Safari, etc.)
+  if (self.innerHeight) {
+    return self.innerHeight;
+  }
+  // IE 6
+  if (document.documentElement && document.documentElement.clientHeight) {
+   return document.documentElement.clientHeight;
+  }
+  // IE 5
+  if (document.body) {
+    return document.body.clientHeight;
+  }
+  // Just in case. 
+  return 0;
+}
+
+function handleResize() {
+  var height = windowHeight() - document.getElementById('toolbar').offsetHeight - 30;
+  document.getElementById('map').style.height = height + 'px';
+  document.getElementById('sidebar').style.height = height + 'px';
+}
+
+window.onresize = handleResize;
+
+/**
+ * Loads map and calls function to load in worksheet data.
+ */
+function load() {  
+  handleResize();
+
+  if (GBrowserIsCompatible()) {
+    // create the map
+    var centerLat = 37.400164;
+    var centerLng = -121.98394;
+    var zoomLevel = 11;
+    StockMap.map = new GMap2(document.getElementById("map"));
+    StockMap.map.addControl(new GSmallMapControl());
+    StockMap.map.addControl(new GMapTypeControl());
+    StockMap.map.setCenter(new GLatLng(centerLat, centerLng), zoomLevel);
+    StockMap.map.setMapType(G_SATELLITE_TYPE);
+
+    StockMap.iconGreen = new GIcon();
+    StockMap.iconGreen.image = 'marker_stock.png';
+    StockMap.iconGreen.imageOut = 'marker_stock.png';
+    StockMap.iconGreen.imageOver = 'marker_stock_over.png';
+    StockMap.iconGreen.iconSize = new GSize(44, 14);
+    StockMap.iconGreen.iconAnchor = new GPoint(16, 16);
+    StockMap.iconGreen.infoWindowAnchor = new GPoint(25, 7);
+
+    StockMap.iconRed = new GIcon();
+    StockMap.iconRed.image = 'marker_stock_red.png';
+    StockMap.iconRed.imageOut = 'marker_stock_red.png';
+    StockMap.iconRed.imageOver = 'marker_stock_over_red.png';
+    StockMap.iconRed.iconSize = new GSize(44, 14);
+    StockMap.iconRed.iconAnchor = new GPoint(16, 16);
+    StockMap.iconRed.infoWindowAnchor = new GPoint(25, 7);
+
+    getJSON();
+  } else {
+    alert("Sorry, the Google Maps API is not compatible with this browser");
+  } 
+}
+
+/**
+ * A wrapper to parse the values returned from the spreadsheet.
+ * GoogleFinance returns #N/A for some values, which we want to parse as 0.
+ * @param {String} cellText Text to parse
+ */
+function parseGF(cellText) {
+  if (cellText == "#N/A") {
+    return 0;
+  } else {
+    return parseFloat(cellText);
+  }
+}
+
+/** 
+ * Called when JSON is loaded. Creates sidebar if param_sideBar is true.
+ * Sorts rows if param_rankColumn is valid column. Iterates through worksheet rows, 
+ * creating marker and sidebar entries for each row.
+ * @param {JSON} json Worksheet feed
+ */       
+function loadMapJSON(json) {
+  StockMap.map.clearOverlays();
+  StockMap.lastMarker = null;
+  StockMap.mapMarkers.length = 0;
+  
+  var sidebarDIV = document.getElementById("sidebar-stocks");
+  while (sidebarDIV.firstChild) {
+    sidebarDIV.removeChild(sidebarDIV.firstChild);
+  }
+
+  var columnNames = ["ticker", "price", "priceopen", "high52", "low52",
+      "high", "low", "company", "pe", "change", "changepct", "percenttohigh",
+      "marketcap", "volume", "volumeavg", "eps", "ticker", "address"];
+
+  for (var i = 0; i < json.feed.entry.length; ++i) {
+    var entry = json.feed.entry[i];
+    if (entry["gsx$lat"]) {
+      var lat = parseFloat(entry["gsx$lat"].$t);
+      var lng = parseFloat(entry["gsx$lng"].$t);
+      var point = new GLatLng(lat,lng);
+      var html = [];
+      var columnVals = {};
+
+      for (var c = 0; c < columnNames.length; c++) {
+        var columnName = columnNames[c];
+        columnVals[columnName] = "";
+        if (entry["gsx$" + columnName]) {
+          columnVals[columnName] = entry["gsx$" + columnName].$t;
+        }
+      }
+
+      columnVals.change = parseGF(columnVals.change);
+      columnVals.marketcap = parseGF(columnVals.marketcap/1000000000).toFixed(2);
+      columnVals.volumeavg = parseGF(columnVals.volumeavg).toFixed(2);
+
+      var className = (columnVals.change < 0) ? "red" : "green";
+ 
+      html.push("<div class='" + className + "'>");
+      html.push("<h2 class='company'>" + columnVals.company +
+          "(" + columnVals.ticker + ")</h2>");
+      html.push("<em>" + columnVals.address + "<em><br/><br/>");     
+      html.push("<table width='100%' cellspacing='0' border='0'><tbody>");
+      html.push("<tr>");
+      html.push("<td rowspan='2'><span class='price'>" + columnVals.price + 
+          "</span></td>");
+      html.push("<td>&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;Open:&nbsp;</td>");
+      html.push("<td>" + columnVals.priceopen + "</td>");
+      html.push("<td>&nbsp;&nbsp;&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;Mkt Cap:&nbsp;</td>");
+      html.push("<td>" + columnVals.marketcap + "B</td>");
+      html.push("</tr>");
+      html.push("<tr>");
+      html.push("<td>&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;High&nbsp;</td>");
+      html.push("<td>" + columnVals.high + "</td>");
+      html.push("<td>&nbsp;&nbsp;&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;52Wk High:&nbsp;</td>");
+      html.push("<td>" + columnVals.high52 + "</td>"); 
+      html.push("</tr>");
+      html.push("<tr>");
+      html.push("<td>&nbsp;</td>");
+      html.push("<td>&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;Low:&nbsp;</td>");
+      html.push("<td>" + columnVals.low + "</td>");
+      html.push("<td>&nbsp;&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;52Wk Low:&nbsp;</td>");
+      html.push("<td>" + columnVals.low52 + "</td>");
+      html.push("</tr>");
+      html.push("<tr>");
+      var sign = (columnVals.change > 0) ? "+" : "";
+      html.push("<td class='change'>&nbsp;" + sign + columnVals.change + "</td>");
+      html.push("<td>&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;Vol:&nbsp;</td>");
+      html.push("<td>" + columnVals.volume + "</td>");
+      html.push("<td>&nbsp;&nbsp;&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;Avg Vol:&nbsp;</td>");
+      html.push("<td>" + columnVals.volumeavg + "M</td>");
+      html.push("</tr>");
+      html.push("<tr>");
+      html.push("<td class='change'>&nbsp;(" + columnVals.changepct + "%)</td>"); 
+      html.push("<td>&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;P/E:&nbsp;</td>");
+      html.push("<td>" + columnVals.pe + "</td>");
+      html.push("<td>&nbsp;&nbsp;&nbsp;</td>");
+      html.push("<td class='key'>&nbsp;EPS:&nbsp;</td>");
+      html.push("<td>" + columnVals.eps + "</td>");
+      html.push("</tbody></table>");
+      html.push("</div>");
+
+      var infoBoxHTML = html.join(" ");
+     
+      // create the marker
+      var marker = createMarker(point, infoBoxHTML, columnVals);
+      StockMap.map.addOverlay(marker);
+
+      // Check if marker has changed since last check
+      // Highlight with yellow border if it has
+      var lastMarker = StockMap.mapMarkers[columnVals.ticker];
+      if ((lastMarker && lastMarker.price != columnVals.price) || !lastMarker) { 
+        var polygon = createHighlightAroundMarker(marker);
+        marker.highlightPolygon = polygon;
+        StockMap.map.addOverlay(polygon);
+      }
+
+      StockMap.mapMarkers[columnVals.ticker] = marker;
+      createSidebarElement(columnVals.ticker, columnVals.pe);
+    }
+  }
+  var loadingImgDIV = document.getElementById("loadingImg");
+  loadingImgDIV.removeChild(loadingImgDIV.firstChild);
+
+  // Get ready to reload again in 10 minutes
+  setTimeout(getJSON, 600000);
+}
+
+/* Creates rectangle polygon around a marker
+ * @param {GMarker} marker The marker to place polygon around
+ * @return {GPolygon} The polygon created
+ */
+function createHighlightAroundMarker(marker) {
+  var mapProj = G_NORMAL_MAP.getProjection();
+  var mapZoom = StockMap.map.getZoom();
+  var leftOffset = 20;
+  var rightOffset = 30;
+  var vertOffset = 20;
+
+  var mPixel = mapProj.fromLatLngToPixel(marker.getPoint(), mapZoom);
+  var leftPixel = new GPoint(mPixel.x - leftOffset, mPixel.y - vertOffset);
+  var rightPixel = new GPoint(mPixel.x + rightOffset, mPixel.y - vertOffset);
+  var leftPixelBottom = new GPoint(mPixel.x - leftOffset, mPixel.y);
+  var rightPixelBottom = new GPoint(mPixel.x + rightOffset, mPixel.y);
+  var leftLatLng = mapProj.fromPixelToLatLng(leftPixel, mapZoom);  
+  var rightLatLng = mapProj.fromPixelToLatLng(rightPixel, mapZoom);  
+  var leftLatLngBottom = mapProj.fromPixelToLatLng(leftPixelBottom, mapZoom);  
+  var rightLatLngBottom = mapProj.fromPixelToLatLng(rightPixelBottom, mapZoom);  
+
+  var points = [leftLatLng, rightLatLng, rightLatLngBottom, 
+                leftLatLngBottom, leftLatLng];
+  var polygon = new GPolygon(points, "#000000", 0, 0.0, "#ffcc00", .5);
+  return polygon;
+}
+
+/* Creates div of varying width in sidebar.
+ * Associates click event listener with div.
+ * @param {String} label The text to write in the div
+ * @param {String} scaler The key for the marker hash
+ */
+function createSidebarElement(label, scaler) {
+  var sidebarDiv = document.getElementById('sidebar-stocks');
+	  
+  var markerA = document.createElement("a");
+
+  var sidebarText= document.createTextNode(label);
+  markerA.appendChild(sidebarText);
+
+  var labelDiv = document.createElement("div");
+  var labelWidth = parseGF(scaler) + 40;
+  labelDiv.style.width = parseInt(labelWidth) + "px";
+  labelDiv.className = "label";
+  labelDiv.appendChild(markerA);
+
+  GEvent.addDomListener(labelDiv, "click", function() {
+    sidebarClick(label);
+  });
+ 
+  GEvent.addDomListener(labelDiv, "mouseover", function() {
+    var mouseoverIcon = StockMap.mapMarkers[label].getIcon().imageOver;
+    StockMap.mapMarkers[label].setImage(mouseoverIcon);
+  });
+
+  GEvent.addDomListener(labelDiv, "mouseout", function() {
+    var mouseoutIcon = StockMap.mapMarkes[label].getIcon().imageOut;
+    StockMap.mapMarkers[label].setImage(mouseoutIcon);
+  });
+
+  sidebarDiv.appendChild(labelDiv);
+  sidebarDiv.appendChild(document.createElement("br"));
+}
+
+/**
+ * Creates marker for stock. Associates bars, infoboxes, 
+ * and event listeners with marker.
+ * @param {GLatLng} point Point to create marker at
+ * @param {String} html HTML to display in InfoWindow
+ * @param {Object} columnVals All the attributes of this stock
+ * @return {GMarker} Marker created
+ */
+function createMarker(point, html, columnVals) {
+
+  // Create LabeledMarker with either red or green icon
+  var icon = (columnVals.change < 0) ? StockMap.iconRed : StockMap.iconGreen;
+
+  var markerOpts = {
+    "icon": icon,
+    "clickable": true,
+    "labelText": columnVals.ticker,
+    "labelOffset": new GSize(-6, -16)
+  };
+
+  var newPoint = point;
+  var marker = new LabeledMarker(newPoint, markerOpts);
+
+  // Add event listeners for click/mouseover/mouseout
+
+  GEvent.addListener(marker, "click", function() {
+    markerClick(marker);
+  });
+
+  GEvent.addListener(marker, "mouseover", function() {
+    marker.setImage(marker.getIcon().imageOver);
+  });
+
+  GEvent.addListener(marker, "mouseout", function() {
+    marker.setImage(marker.getIcon().imageOut);
+  });
+
+  // Remember this for later
+  marker.price = columnVals.price;
+
+  // Create bar overlays (bar graph) for this marker
+  marker.barOverlays = [];
+
+  var maxBarHeight = 120;
+  var barWidth = 20;
+  var peBarHeight = parseFloat(columnVals.percenttohigh)*maxBarHeight;
+
+  var barOptions = {
+    "color": "#ffffff",
+    "height": peBarHeight,
+    "width": barWidth,
+    "horizontalOffset": -5,
+    "verticalOffset": 17
+  };
+
+  var bar = new Bar(point, barOptions);
+  marker.barOverlays["percenttohigh"] = bar;
+
+  barOptions.color = "#0000ff";
+  barOptions.height = maxBarHeight;
+
+  bar = new Bar(point, barOptions);
+  marker.barOverlays["high"] = bar;
+
+  // Create info box for this marker
+
+  var infoBoxOptions = {
+    "content": html,
+    "offsetHorizontal": -20,
+    "offsetVertical": 0,
+    "height": 200,
+    "width": 300
+  };
+ 
+  var infoBox = new InfoBox(point, infoBoxOptions);
+  marker.infoBox = infoBox;
+
+  GEvent.addListener(marker.infoBox, "closeclick", function() {
+    StockMap.lastMarkerClicked = false;
+    removeBarsOnMarkers(true);  
+  });
+
+  return marker;
+}
+
+/**
+ * Function called when stock is clicked in sidebar.
+ * Opens an info box and bar above the marker.
+ * @param {String} markerTicker Key of marker in global hash
+ */
+function sidebarClick(markerTicker) {
+  var marker = StockMap.mapMarkers[markerTicker];
+
+  markerClick(marker);
+
+  if (!StockMap.map.getBounds().contains(marker.getPoint())) {
+    StockMap.map.panTo(marker.getPoint());
+  }
+}
+
+/* Function called by sidebar and marker clicks.
+ * @param {GMarker} marker The marker to display info of
+ */
+function markerClick(marker) {
+  removeBarsOnMarkers();
+  showBarsOnMarker(marker);
+
+  marker.setImage(marker.getIcon().imageOver);
+
+  if (marker.highlightPolygon) {
+    StockMap.map.removeOverlay(marker.highlightPolygon);
+  }
+
+  if (StockMap.map.infoBox) {
+    StockMap.map.removeOverlay(StockMap.map.infoBox);
+  }
+  StockMap.map.infoBox = marker.infoBox;
+  StockMap.map.addOverlay(StockMap.map.infoBox);
+}
+
+/* Removes any bar overlays on the map, if exist
+ */
+function removeBarsOnMarkers() {
+  if (StockMap.lastMarker) {
+    StockMap.map.removeOverlay(StockMap.lastMarker.barOverlays["percenttohigh"]);
+    StockMap.map.removeOverlay(StockMap.lastMarker.barOverlays["high"]);
+  }
+}
+
+/* Shows bar overlays for desired marker
+ * @param {GMarker} marker The marker to show bar overlays for
+ */
+function showBarsOnMarker(marker) {
+  StockMap.map.addOverlay(marker.barOverlays["high"]);
+  StockMap.map.addOverlay(marker.barOverlays["percenttohigh"]);
+  StockMap.lastMarker = marker;
+}
+
+/**
+ * Creates a script tag in the page that loads in the 
+ * JSON feed for the specified key/ID. 
+ * Once loaded, it calls loadMapJSON.
+ */
+function getJSON() {
+  var loadingImgDIV = document.getElementById("loadingImg");
+  var img = document.createElement("img");
+  img.src = "http://storage.kanshin.com/free/.s.60x60/img_29/293536/k621487709.gif";
+  loadingImgDIV.appendChild(img);
+
+  // Spreadsheet feed parameters
+  var param_wsId = "od6";
+  var param_ssKey = "o16162288751915453340.400923631662144886";
+
+  // Retrieve the JSON feed.
+  var script = document.createElement('script');
+
+  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list'
+                         + '/' + param_ssKey + '/' + param_wsId + '/public/values' +
+                        '?alt=json-in-script&callback=loadMapJSON');
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+//]]>
+</script>
+
+</head>
+<body onload="load()" class="sidebar-right">
+  <div id="toolbar">
+    <table width="100%">
+    <tr>
+      <td width="80%"><h1>Taking Stock of Silicon Valley</h1></td>
+      <td width="20%" align="right"><div style="width:100px" id="loadingImg"></div></td>
+    </tr>
+    <tr>
+      <td>Quotes may be delayed up to 20 minutes. Information is provided 'as is' and solely for informational purposes, not for trading purposes or advice. </td>
+      <td><input type="button" onclick="getJSON()" value="Manual Refresh"/></td>
+    </tr>
+    </table>
+  </div>
+  <div id="content">
+    <div id="map-wrapper">
+      <div id="map">
+      </div>
+    </div>
+  <div id="sidebar">
+    <div id="sidebar-descrip">
+    Stocks are displayed according to their P/E ratio.
+    Click a stock to display more information on the map, including a bar graph comparing the stock's current price to its 52-week high.
+    <br/><br/>
+    </div>
+    <br/>
+    <div id="sidebar-stocks">
+    </div>
+  </div>
+ </div>
+</body> 
+</html>

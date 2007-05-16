@@ -12,9 +12,9 @@ xmlns:v="urn:schemas-microsoft-com:vml">
     </style>
     <script type="text/javascript"> 
    
-    var map;
-    var geoXml = new GGeoXml("http://kml.lover.googlepages.com/etna_ground_overlay.kml");
-    var toggleState = 1;
+var map;
+var geoXml = new GGeoXml("http://kml.lover.googlepages.com/etna_ground_overlay.kml");
+var toggleState = 1;
 
 function onLoad() {
   if (GBrowserIsCompatible()) {
@@ -41,11 +41,11 @@ function toggleMyKml() {
 
   <body onload="onLoad()">
 
-    <div id="map" style="width: 640px; height: 480px; float:left; border: 1px solid black;"></div>
+    <div id="map" style="width: 450px; height: 380px; float:left; border: 1px solid black;"></div>
     </div>
 
     <br clear="all"/>
     <br/>
-    <input type="button" value="Toggle Markers" onClick="toggleMyKml();"/>
+    <input type="button" value="Toggle KML" onClick="toggleMyKml();"/>
   </body>
 </html>

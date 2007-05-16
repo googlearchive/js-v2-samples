@@ -171,16 +171,16 @@ function showAddress(address) {
   <body onload="onLoad()">
     <form action="#" onsubmit="showAddress(this.address.value); return false">
       <p>
-        <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
-        <input type="submit" value="Go!" />
+        <input type="text" size="40" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+        <input type="submit" value="Center Map" />
       </p>
     </form>
 
     <div id="map" style="width: 450px; height: 300px"></div>
 
     <br/>
-    <input id="theUrl" type="text" size="45" value="http://bbs.keyhole.com/ubb/z0302a1700/etna.jpg"/>
-    <input type="button" value="Add GroundOverlay" onClick="initialPosition();"/>
+    <input id="theUrl" type="text" size="40" value="http://bbs.keyhole.com/ubb/z0302a1700/etna.jpg"/>
+    <input type="button" value="Add/Update" onClick="initialPosition();"/>
     <br/><br/>
     <input type="radio" name="outputType" id="outputTypeKML" onclick="updateCode()"/> KML Output
     &nbsp; 

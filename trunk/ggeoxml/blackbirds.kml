@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document>
+  <name>18-Blackbirds.kmz</name>
+  <Style id="khStyle772">
+    <IconStyle id="khIconStyle776">
+      <color>ffffff</color>
+      <Icon>
+        <href>root://icons/palette-3.png</href>
+        <x>224</x>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="khStyle645">
+    <IconStyle id="khIconStyle649">
+      <Icon>
+        <href>root://icons/palette-4.png</href>
+        <x>128</x>
+        <y>128</y>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="khStyle559">
+    <IconStyle id="khIconStyle563">
+      <color>ffffff</color>
+      <Icon>
+        <href>root://icons/palette-4.png</href>
+        <x>128</x>
+        <y>128</y>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+    <LabelStyle id="khLabelStyle565">
+      <color>ffffff</color>
+    </LabelStyle>
+  </Style>
+  <Style id="khStyle896">
+    <IconStyle id="khIconStyle900">
+      <Icon>
+        <href>root://icons/palette-3.png</href>
+        <x>224</x>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="khStyle777">
+    <IconStyle id="khIconStyle781">
+      <Icon>
+        <href>root://icons/palette-2.png</href>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="khStyle549">
+    <IconStyle id="khIconStyle553">
+      <color>ffffff</color>
+      <Icon>
+        <href>root://icons/palette-3.png</href>
+        <x>192</x>
+        <y>64</y>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="khStyle525">
+    <IconStyle id="khIconStyle529">
+      <Icon>
+        <href>root://icons/palette-4.png</href>
+        <x>128</x>
+        <y>128</y>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="khStyle1040">
+    <IconStyle id="khIconStyle1044">
+      <Icon>
+        <href>root://icons/palette-2.png</href>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="khStyle682">
+    <IconStyle id="khIconStyle686">
+      <color>ffffff</color>
+      <Icon>
+        <href>root://icons/palette-3.png</href>
+        <x>224</x>
+        <w>32</w>
+        <h>32</h>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Folder>
+    <description>Collection of 18 Blackbirds Visible Via Satellite
+
+Email me:- blackbird@ubero.us if you find anymore or know of any that have moved. This collection is only of the ones on the ground that you can see. Not the ones hidden under a roof in a museum.</description>
+    <name>All Blackbirds Visible by Satellite</name>
+    <open>1</open>
+    <Placemark>
+      <description>http://www.habu.org/a-12/06931.html</description>
+      <name>Blackbird 60-6931</name>
+      <LookAt id="khLookAt658">
+        <longitude>-93.20358348374444</longitude>
+        <latitude>44.89348460017628</latitude>
+        <range>185.0420667070287</range>
+        <tilt>3.152500726015212e-011</tilt>
+        <heading>38.78090377601164</heading>
+      </LookAt>
+      <styleUrl>#khStyle645</styleUrl>
+      <Style id="khStyle659">
+        <IconStyle id="khIconStyle663">
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point id="khPoint666">
+        <coordinates>-93.2034318363207,44.89324021392872,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/a-12/06925.html</description>
+      <name>Blackbird 60-6925</name>
+      <LookAt id="khLookAt675">
+        <longitude>-74.0012160911878</longitude>
+        <latitude>40.76453187420524</latitude>
+        <range>304.2282428546856</range>
+        <tilt>24.97140184228404</tilt>
+        <heading>-148.7684831053577</heading>
+      </LookAt>
+      <styleUrl>#khStyle525</styleUrl>
+      <Style id="khStyle676">
+        <IconStyle id="khIconStyle680">
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point id="khPoint683">
+        <coordinates>-74.00034225459726,40.76444750307658,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/sr-71/17968a.html</description>
+      <name>Blackbird 61-7968</name>
+      <LookAt id="khLookAt692">
+        <longitude>-77.33396911733117</longitude>
+        <latitude>37.51722335815408</latitude>
+        <range>465.5568768525247</range>
+        <tilt>-2.64784044530405e-010</tilt>
+        <heading>-52.43398516336845</heading>
+      </LookAt>
+      <styleUrl>#khStyle682</styleUrl>
+      <Style id="khStyle693">
+        <IconStyle id="khIconStyle697">
+          <color>ffffffff</color>
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point id="khPoint700">
+        <coordinates>-77.33437727650907,37.51734378121291,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/a-12/06930.html</description>
+      <name>Blackbird 60-6930</name>
+      <LookAt id="khLookAt709">
+        <longitude>-86.65442157488076</longitude>
+        <latitude>34.71193968921357</latitude>
+        <range>277.4966053603438</range>
+        <tilt>2.596365049736348e-011</tilt>
+        <heading>-97.34641271445713</heading>
+      </LookAt>
+      <styleUrl>root://styles#default</styleUrl>
+      <Style id="khStyle710">
+        <IconStyle id="khIconStyle714">
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point id="khPoint717">
+        <coordinates>-86.65471322283631,34.71211948753167,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/a-12/06937.html</description>
+      <name>Blackbird 60-6937</name>
+      <LookAt id="khLookAt726">
+        <longitude>-86.74153361880033</longitude>
+        <latitude>33.56293354540837</latitude>
+        <range>304.5694685671687</range>
+        <tilt>23.62786626365472</tilt>
+        <heading>133.1482022095123</heading>
+      </LookAt>
+      <styleUrl>root://styles#default</styleUrl>
+      <Style id="khStyle727">
+        <IconStyle id="khIconStyle731">
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point id="khPoint734">
+        <coordinates>-86.74132302722225,33.56276455813848,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/sr-71/17959a.html</description>
+      <name>Blackbird 61-7959</name>
+      <LookAt id="khLookAt743">
+        <longitude>-86.56221468831154</longitude>
+        <latitude>30.46584559040702</latitude>
+        <range>298.3022416257513</range>
+        <tilt>0.4994273941581361</tilt>
+        <heading>-20.59011472840682</heading>
+      </LookAt>
+      <styleUrl>#khStyle559</styleUrl>
+      <Style id="khStyle744">
+        <IconStyle id="khIconStyle748">
+          <color>ffffffff</color>
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+        <LabelStyle id="khLabelStyle750">
+          <color>ffffffff</color>
+        </LabelStyle>
+      </Style>
+      <Point id="khPoint751">
+        <coordinates>-86.56237003273328,30.4660607038533,0</coordinates>
+      </Point>
+    </Placemark>
+    <Folder>
+      <description>Blackbird 61-17967 has only just arrived here and is not in the satellite photo yet. 
+http://www.8afmuseum.net/</description>
+      <name>8th Airforce Museum</name>
+      <Placemark>
+        <description>http://www.habu.org/sr-71/17967.html</description>
+        <name>Blackbird 61-7967</name>
+        <LookAt id="khLookAt760">
+          <longitude>-93.68143903743867</longitude>
+          <latitude>32.51065247530116</latitude>
+          <range>413.1109658994019</range>
+          <tilt>2.905360686993507e-010</tilt>
+          <heading>-178.6065576474466</heading>
+        </LookAt>
+        <styleUrl>#khStyle772</styleUrl>
+        <Style id="khStyle761">
+          <IconStyle id="khIconStyle765">
+            <color>ffffffff</color>
+            <Icon>
+              <href>root://icons/palette-2.png</href>
+              <w>32</w>
+              <h>32</h>
+            </Icon>
+          </IconStyle>
+        </Style>
+        <Point id="khPoint768">
+          <coordinates>-93.68161555862477,32.51107317445053,0</coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>8th Airforce Museum</name>
+        <LookAt>
+          <longitude>-93.68396931579522</longitude>
+          <latitude>32.51330486722712</latitude>
+          <range>1147.655657952247</range>
+          <tilt>-7.302550156276273e-011</tilt>
+          <heading>58.20342084308275</heading>
+        </LookAt>
+        <styleUrl>#khStyle772</styleUrl>
+        <Point>
+          <coordinates>-93.68396931579524,32.51330486722712,0</coordinates>
+        </Point>
+      </Placemark>
+      <GroundOverlay>
+        <name>8th Airforce Museum Exhibits</name>
+        <Icon>
+          <href>http://web.aanet.com.au/farm/files/map.jpg</href>
+        </Icon>
+        <color>bcffffff</color>
+        <LatLonBox>
+          <north>32.51450051261378</north>
+          <south>32.51289280983101</south>
+          <east>-93.67909547993456</east>
+          <west>-93.68702315759492</west>
+          <rotation>-60.01390110461309</rotation>
+        </LatLonBox>
+      </GroundOverlay>
+      <GroundOverlay>
+        <name>Key</name>
+        <Icon>
+          <href>http://web.aanet.com.au/farm/files/key.gif</href>
+        </Icon>
+        <color>bcffffff</color>
+        <LatLonBox>
+          <north>32.51653140014771</north>
+          <south>32.51510682784626</south>
+          <east>-93.68038085398382</east>
+          <west>-93.68454356214988</west>
+          <rotation>-60.25505459363873</rotation>
+        </LatLonBox>
+      </GroundOverlay>
+    </Folder>
+    <Placemark>
+      <description>http://www.habu.org/sr-71/17979c.html</description>
+      <name>Blackbird 61-7979</name>
+      <LookAt id="khLookAt777">
+        <longitude>-98.62072776271417</longitude>
+        <latitude>29.3896890134789</latitude>
+        <range>346.7336390632863</range>
+        <tilt>0.4994273993941587</tilt>
+        <heading>29.16380335325352</heading>
+      </LookAt>
+      <styleUrl>#khStyle559</styleUrl>
+      <Style id="khStyle778">
+        <IconStyle id="khIconStyle782">
+          <color>ffffffff</color>
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+        <LabelStyle id="khLabelStyle784">
+          <color>ffffffff</color>
+        </LabelStyle>
+      </Style>
+      <Point id="khPoint785">
+        <coordinates>-98.62061714235152,29.38985432033368,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/a-12/06933.html</description>
+      <name>Blackbird 60-6933</name>
+      <LookAt id="khLookAt794">
+        <longitude>-117.1538903912328</longitude>
+        <latitude>32.72677857242636</latitude>
+        <range>354.8883033452568</range>
+        <tilt>-3.879469637582915e-010</tilt>
+        <heading>-11.08872611533965</heading>
+      </LookAt>
+      <styleUrl>root://styles#default</styleUrl>
+      <Style id="khStyle795">
+        <IconStyle id="khIconStyle799">
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point id="khPoint802">
+        <coordinates>-117.1536961027046,32.7270170346352,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/sr-71/17975.html</description>
+      <name>Blackbird 61-7975</name>
+      <LookAt>
+        <longitude>-117.2662823915082</longitude>
+        <latitude>33.88323228290322</latitude>
+        <range>160.6813190977108</range>
+        <tilt>-1.963500897078622e-010</tilt>
+        <heading>-14.81092226761962</heading>
+      </LookAt>
+      <styleUrl>#khStyle777</styleUrl>
+      <Point>
+        <coordinates>-117.2663303600491,33.88344828725811,0</coordinates>
+      </Point>
+    </Placemark>
+    <Folder>
+      <description>http://www.californiasciencecenter.org/</description>
+      <name>Exposition Park Blackbird 60-6927</name>
+      <GroundOverlay>
+        <name>Exposition Park</name>
+        <Icon>
+          <href>http://web.aanet.com.au/farm/files/ExpositionPark.jpg</href>
+        </Icon>
+        <LatLonBox id="khLatLonBox842">
+          <north>34.0181253265242</north>
+          <south>34.01099090110139</south>
+          <east>-118.2803693643184</east>
+          <west>-118.291908639584</west>
+        </LatLonBox>
+      </GroundOverlay>
+      <Placemark>
+        <description>Not visible in GE yet
+http://www.habu.org/a-12/06927a.html</description>
+        <name>Blackbird 60-6927</name>
+        <LookAt id="khLookAt828">
+          <longitude>-118.2839488874957</longitude>
+          <latitude>34.01635532226504</latitude>
+          <range>362.1277529117686</range>
+          <tilt>-7.58079643128803e-011</tilt>
+          <heading>0.00043653446134058</heading>
+        </LookAt>
+        <styleUrl>#khStyle896</styleUrl>
+        <Style>
+          <IconStyle>
+            <Icon>
+              <href>root://icons/palette-2.png</href>
+              <w>32</w>
+              <h>32</h>
+            </Icon>
+          </IconStyle>
+        </Style>
+        <Point id="khPoint829">
+          <coordinates>-118.284783795504,34.01529268823446,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Placemark>
+      <description>One plane may be 61-7962 (now in Duxford) and according to esterrett the other is 61-7980 but there is no proof of this apart from the process of elimination.</description>
+      <name>2 Blackbirds 61-7962 &amp; 61-7980</name>
+      <LookAt id="khLookAt861">
+        <longitude>-117.8840626168575</longitude>
+        <latitude>34.9531973269135</latitude>
+        <range>321.7468153711114</range>
+        <tilt>18.51384981965489</tilt>
+        <heading>-158.1466435927183</heading>
+      </LookAt>
+      <styleUrl>root://styles#default</styleUrl>
+      <Style id="khStyle862">
+        <IconStyle id="khIconStyle866">
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point id="khPoint869">
+        <coordinates>-117.8841945511271,34.9529830750697,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/sr-71/17955.html
+http://www.sr-71.org/photogallery/blackbird/17955/17955-2004-06.htm </description>
+      <name>Blackbird 61-7955</name>
+      <LookAt>
+        <longitude>-117.9208567993812</longitude>
+        <latitude>34.91259970149132</latitude>
+        <range>117.1813510386175</range>
+        <tilt>7.134260254854683e-010</tilt>
+        <heading>-3.629639965571837e-014</heading>
+      </LookAt>
+      <styleUrl>root://styles#default</styleUrl>
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>-117.920770799776,34.91256290304345,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <description>http://www.habu.org/a-12/06924.html
+http://www.habu.org/sr-71/17973.html</description>
+      <name>Blackbird 61-7973 and 60-6924</name>
+      <LookAt>
+        <longitude>-118.0859371516038</longitude>
+        <latitude>34.60278248445511</latitude>
+        <range>165.2728590554249</range>
+        <tilt>1.324010054487684e-010</tilt>
+        <heading>-90.6653759378281</heading>
+      </LookAt>
+      <styleUrl>#khStyle549</styleUrl>
+      <Style>
+        <IconStyle>
+          <color>ffffffff</color>
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>-118.0857952461983,34.60263271178458,0</coordinates>
+      </Point>
+    </Placemark>
+    <Folder>
+      <description>Home of Blackbird 61-7960</description>
+      <name>Castle Air Museum</name>
+      <GroundOverlay>
+        <name>Castle Air Museum</name>
+        <Icon>
+          <href>http://web.aanet.com.au/farm/files/61-7960.jpg</href>
+        </Icon>
+        <LatLonBox>
+          <north>37.36561902005171</north>
+          <south>37.36189766135099</south>
+          <east>-120.5744340779087</east>
+          <west>-120.5809088833866</west>
+          <rotation>-1.032210524049179</rotation>
+        </LatLonBox>
+      </GroundOverlay>
+      <Placemark>
+        <description>http://www.habu.org/sr-71/17960.html</description>
+        <name>Blackbird 61-7960</name>
+        <LookAt>
+          <longitude>-120.5779544637116</longitude>
+          <latitude>37.36417887919563</latitude>
+          <range>370.5358999240613</range>
+          <tilt>-8.575285985158604e-011</tilt>
+          <heading>-66.09032829102557</heading>
+        </LookAt>
+        <styleUrl>#khStyle1040</styleUrl>
+        <Point>
+          <coordinates>-120.5780837133394,37.36397569420524,0</coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Placemark>
+      <description>http://www.habu.org/sr-71/17963.html
+http://www.visi.com/~jweeks/aircraft/scan/beale100.gif</description>
+      <name>Blackbird 61-7963</name>
+      <LookAt>
+        <longitude>-121.431137729406</longitude>
+        <latitude>39.14579718481632</latitude>
+        <range>245.280247815064</range>
+        <tilt>-5.223141017569867e-010</tilt>
+        <heading>-154.7334258981653</heading>
+      </LookAt>
+      <styleUrl>root://styleMaps#default+nicon=0x307+hicon=0x317</styleUrl>
+      <Style>
+        <IconStyle>
+          <Icon>
+            <href>root://icons/palette-2.png</href>
+            <w>32</w>
+            <h>32</h>
+          </Icon>
+        </IconStyle>
+      </Style>
+      <Point>
+        <coordinates>-121.4312630604777,39.14539360396459,0</coordinates>
+      </Point>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>

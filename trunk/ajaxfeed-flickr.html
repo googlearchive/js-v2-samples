@@ -51,13 +51,14 @@
            
           for (var i = 0; i < result.feed.entries.length; i++) {            
 
-            // get latitude/longitude if available
+            // get latitude/longitude values from feed
+            // Also check if using IE or Mozilla
             if (navigator.userAgent.toLowerCase().indexOf("msie") < 0) {
               var latnode = result.feed.entries[i].xmlNode.getElementsByTagNameNS("http://www.w3.org/2003/01/geo/wgs84_pos#", "lat");
               var longnode = result.feed.entries[i].xmlNode.getElementsByTagNameNS("http://www.w3.org/2003/01/geo/wgs84_pos#", "long");
             } else {
-              var latnode = result.feed.entries[i].xmlNode.getElementsByTagName("http://www.w3.org/2003/01/geo/wgs84_pos#", "lat");
-              var longnode = result.feed.entries[i].xmlNode.getElementsByTagName("http://www.w3.org/2003/01/geo/wgs84_pos#", "long");
+              var latnode = result.feed.entries[i].xmlNode.getElementsByTagName("geo:lat");
+              var longnode = result.feed.entries[i].xmlNode.getElementsByTagName("geo:long");
             }
       
       

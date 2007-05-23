@@ -58,6 +58,7 @@
               var longnode = result.feed.entries[i].xmlNode.getElementsByTagNameNS("http://www.w3.org/2003/01/geo/wgs84_pos#", "long");
             } else {
               var latnode = result.feed.entries[i].xmlNode.getElementsByTagName("geo:lat");
+              GLog.write(latnode);
               var longnode = result.feed.entries[i].xmlNode.getElementsByTagName("geo:long");
             }
       

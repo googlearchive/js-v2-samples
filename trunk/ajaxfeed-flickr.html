@@ -56,19 +56,6 @@
               var latnode = result.feed.entries[i].xmlNode.getElementsByTagName("lat");
               var longnode = result.feed.entries[i].xmlNode.getElementsByTagName("long");
 
-             /*
-              var latnode = result.feed.entries[i].xmlNode.getElementsByTagNameNS("http://www.w3.org/2003/01/geo/wgs84_pos#", "lat");
-              var longnode = result.feed.entries[i].xmlNode.getElementsByTagNameNS("http://www.w3.org/2003/01/geo/wgs84_pos#", "long");
-             */
-            /*
-            if (navigator.userAgent.toLowerCase().indexOf("msie") < 0) {
-            } else {
-              var latnode = result.feed.entries[i].xmlNode.getElementsByTagName("geo:lat");
-              GLog.write(latnode[0].childNodes[0].nodeValue);
-              var longnode = result.feed.entries[i].xmlNode.getElementsByTagName("geo:long");
-            }
-            */
-      
             if ((latnode.length > 0) && (longnode.length > 0)) {
               var geolong = longnode[0].firstChild.nodeValue;
               var geolat = latnode[0].firstChild.nodeValue;             

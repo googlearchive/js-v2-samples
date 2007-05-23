@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google AJAX Feed API - GeoTagged Flickr Example</title>
+    <style type="text/css">      
+	  body {
+        background-color: white;
+        color: black;
+        font-family: Arial, sans-serif;
+        font-size: small;
+      }
+      td {
+        background-color : white;
+        text-align : left;
+        margin-bottom : 6px;
+      }
+      
+      table {
+        background-color : #f0f0f0;	
+      }
+    </style>
+      
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" type="text/javascript"></script>  
+    <script type="text/javascript" src="http://www.google.com/uds/loader?file=loader&v=1&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
+    <script type="text/javascript">
+
+    var feedUrl = "http://api.flickr.com/services/feeds/photos_public.gne?tags=geo,";
+
+    var map;
+    var mapPoints = [];   
+    var point;
+    var status;
+         
+    google.load("feeds", "1");
+    
+    function showFeed(extraTag) {               
+      clearMap(); 
+      extraTag = cleanString(extraTag);
+     
+      setStatus("<b>Loading feed... </b>");
+  
+      var feed = new google.feeds.Feed(feedUrl + extraTag + "&georss=true");
+     
+      feed.setResultFormat(google.feeds.Feed.MIXED_FORMAT);
+      feed.setNumEntries(50);
+      
+      feed.load(function(result) {
+        if (!result.error) {
+          setStatus("<b>Using feed: </b>" + feedUrl + extraTag + "&georss=true");
+           
+          for (var i = 0; i < result.feed.entries.length; i++) {            
+
+            // get latitude/longitude if available
+            var latnode = result.feed.entries[i].xmlNode.getElementsByTagNameNS("http://www.w3.org/2003/01/geo/wgs84_pos#", "lat");
+            var longnode = result.feed.entries[i].xmlNode.getElementsByTagNameNS("http://www.w3.org/2003/01/geo/wgs84_pos#", "long");
+      
+            if ((latnode.length > 0) && (longnode.length > 0)) {
+              var geolong = longnode[0].textContent;
+              var geolat = latnode[0].textContent;             
+                 
+              // Save in Map Points array      
+              point = new GLatLng(geolat, geolong);
+              point.name  =  result.feed.entries[i].title  + result.feed.entries[i].content;
+              mapPoints.push(point); 
+            }                
+          }
+        }
+        
+        // Show map if coordinates exist     
+        if (mapPoints.length > 0) {
+          showMap(); 
+        }  
+        else {
+          setStatus("");
+          alert("No tagged photos were found for tag(s): " + extraTag );
+        }                     
+      });
+    }
+
+    // Initialize map - called when page is loaded
+    function initMap(){
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.enableScrollWheelZoom();
+        map.setCenter(new GLatLng(2, -55), 1);
+        map.setMapType(G_SATELLITE_TYPE);
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());
+      }  
+    }
+
+    // Clear map points
+    function clearMap(){	  
+      mapPoints = []; 	     
+      map.clearOverlays();
+    }
+
+    // Show map when points exist
+    function showMap(){     
+      var bounds = new GLatLngBounds();
+      for (var i=0;i < mapPoints.length;i++)  {
+          map.addOverlay(createMarker(i));
+          bounds.extend(mapPoints[i]);
+       }
+
+      map.setCenter(bounds.getCenter());
+      map.setZoom(map.getBoundsZoomLevel(bounds));
+            
+    }
+
+    function createMarker(index) {
+      var marker = new GMarker(mapPoints[index]);
+      GEvent.addListener(marker, "click", function() {
+        marker.openInfoWindowHtml("<b>" + mapPoints[index].name + "</b>");
+      });
+      return marker;
+    }
+
+    function setStatus(msg){
+      status = document.getElementById("status");
+      status.innerHTML = msg;      
+    }
+
+    // String cleaning functions
+    function cleanString(str){
+      str = str.toLowerCase();
+      str = stripChar(str, " ");
+      return str;
+    }
+
+    function stripChar(str, schar) {
+      for(var i = 1; i < str.length; ++i){
+	    str = str.replace(schar, ""); 
+      }
+      return str;
+    }
+
+    </script>
+  </head>
+
+  <body onload="initMap()" onunload="GUnload()">
+    <h2>Google AJAX Feed API - Maps - GeoTagged Flickr Photo Example </h2>        
+    <form action="#" onsubmit="showFeed(this.extratag.value); return false">
+      <p>        
+        <input type="text" size="30" name="extratag"  value="Paris" />
+        <input type="submit" value="Enter Tag(s) - Ex: Paris" /> (separate multiple tags with comma)
+      </p>
+    </form>
+    <div id="map" style="width: 700px; height: 500px"></div>
+    <div id="status" ></div>
+  </body>
+</html>

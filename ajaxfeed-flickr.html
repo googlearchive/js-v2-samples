@@ -52,9 +52,8 @@
           for (var i = 0; i < result.feed.entries.length; i++) {            
 
             // get latitude/longitude values from feed
-            // Also check if using IE or Mozilla
-              var latnode = result.feed.entries[i].xmlNode.getElementsByTagName("lat");
-              var longnode = result.feed.entries[i].xmlNode.getElementsByTagName("long");
+            var latnode = result.feed.entries[i].xmlNode.getElementsByTagName("lat");
+            var longnode = result.feed.entries[i].xmlNode.getElementsByTagName("long");
 
             if ((latnode.length > 0) && (longnode.length > 0)) {
               var geolong = longnode[0].firstChild.nodeValue;

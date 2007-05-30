@@ -6,6 +6,8 @@
     <title>Google Maps JavaScript API Example</title>
     <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
       type="text/javascript"></script>
+    <!--<script src=" http://maps.google.com/?file=api&amp;v=2.x&amp;key=ABQIAAAAfAb2RNhzPaf0-W1mtifapBTZdFmpiU8vv3PBIA-hr88t-5BzzxR5q8w92SniiejAgqQXD97Dit5puA"
+      type="text/javascript"></script>  -->
 
     <style type="text/css">
       v\:* {
@@ -24,6 +26,7 @@
         color: #000000;
       }
     </style>
+
     <script type="text/javascript">
     //<![CDATA[
 
@@ -45,10 +48,8 @@
     }
     
     function setDirections(fromAddress, toAddress, locale) {
-      /*gdir.load("from: " + fromAddress + " to: " + toAddress,
-                { "locale": locale });*/
-      gdir.loadFromWaypoints([ fromAddress, toAddress, "48.-122" ],
-                      { "locale": locale });
+      gdir.load("from: " + fromAddress + " to: " + toAddress,
+                { "locale": locale });
     }
 
     function handleErrors(){
@@ -94,9 +95,9 @@
 
   <table>
    <tr><th align="right">From:&nbsp;</th>
+
    <td><input type="text" size="25" id="fromAddress" name="from"
      value="San Francisco"/></td>
-
    <th align="right">&nbsp;&nbsp;To:&nbsp;</th>
    <td align="right"><input type="text" size="25" id="toAddress" name="to"
      value="Mountain View" /></td></tr>

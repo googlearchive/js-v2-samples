@@ -39,7 +39,8 @@
           buttonHTML: "<img src='http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/release/examples/zoom-button.gif' />",
           buttonZoomingHTML: "<img src='http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/release/examples/zoom-button-activated.gif' />",
           buttonStartingStyle: {width: '24px', height: '24px'},
-          overlayRemoveTime: 1000
+          overlayRemoveTime: 1000,
+          stickyZoomEnabled: true
       };
 
       map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, {}), 
@@ -90,7 +91,7 @@
   </head>
 
   <body onload="setupMap()" onunload="GUnload()">
-    <div id="map" style="width: 450px; height: 400px"></div>
+    <div id="map" style="width: 450px; height: 250px"></div>
   </body>
 </html>
 

@@ -22,8 +22,34 @@
         map.addControl(new GLargeMapControl());
         map.setCenter(new GLatLng(48.25, 11.00), 4);
         map.enableDoubleClickZoom();
+        setupDragZoom();
         window.setTimeout(setupWeatherMarkers, 0);
       }
+    }
+
+    function setupDragZoom() {
+      /* first set of options is for the visual overlay.*/
+      var boxStyleOpts = {
+          opacity: .2,
+          border: "2px solid red"
+      };
+
+      /* second set of options is for everything else */
+      var otherOpts = {
+          buttonHTML: "<img src='zoom-button.gif' />",
+          buttonZoomingHTML: "<img src='zoom-button-activated.gif' />",
+          buttonStartingStyle: {width: '24px', height: '24px'}
+      };
+
+        /* third set of options specifies callbacks */
+      var callbacks = {
+          buttonclick: function(){GLog.write("Looks like you activated DragZoom!")},
+          dragstart: function(){GLog.write("Started to Drag . . .")},
+          dragging: function(x1,y1,x2,y2){GLog.write("Dragging, currently x="+x2+",y="+y2)},
+          dragend: function(nw,ne,se,sw,nwpx,nepx,sepx,swpx){GLog.write("Zoom! NE="+ne+";SW="+sw)}
+      };
+  
+      map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, callbacks));
     }
 
     function getWeatherIcon() {

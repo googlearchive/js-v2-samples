@@ -506,7 +506,8 @@ MarkerManager.prototype.updateMarkers_ = function() {
   var me = this;
   me.mapZoom_ = this.map_.getZoom();
   var newBounds = me.getMapGridBounds_();
-  
+  GLog.write("updating markers");
+
   // If the move does not include new grid sections,
   // we have no work to do:
   if (newBounds.equals(me.shownBounds_) && newBounds.z == me.shownBounds_.z) {

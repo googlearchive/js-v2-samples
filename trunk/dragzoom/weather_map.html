@@ -42,7 +42,8 @@
           overlayRemoveTime: 1000
       };
 
-      map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, {}));
+      map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, {}), 
+                                         new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(7, 7));
     }
 
     function getWeatherIcon() {

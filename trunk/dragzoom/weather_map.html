@@ -19,7 +19,7 @@
     function setupMap() {
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
-        map.addControl(new GLargeMapControl());
+        map.addControl(new GSmallMapControl());
         map.setCenter(new GLatLng(48.25, 11.00), 4);
         map.enableDoubleClickZoom();
         setupDragZoom();

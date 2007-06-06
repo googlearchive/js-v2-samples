@@ -36,19 +36,12 @@
 
       /* second set of options is for everything else */
       var otherOpts = {
-          buttonHTML: "<img src='zoom-button.gif' />",
-          buttonZoomingHTML: "<img src='zoom-button-activated.gif' />",
-          buttonStartingStyle: {width: '24px', height: '24px'}
+          buttonHTML: "<img src='http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/release/examples/zoom-button.gif' />",
+          buttonZoomingHTML: "<img src='http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/release/examples/zoom-button-activated.gif' />",
+          buttonStartingStyle: {width: '24px', height: '24px'},
+          overlayRemoveTime: 1000;
       };
 
-        /* third set of options specifies callbacks */
-      var callbacks = {
-          buttonclick: function(){GLog.write("Looks like you activated DragZoom!")},
-          dragstart: function(){GLog.write("Started to Drag . . .")},
-          dragging: function(x1,y1,x2,y2){GLog.write("Dragging, currently x="+x2+",y="+y2)},
-          dragend: function(nw,ne,se,sw,nwpx,nepx,sepx,swpx){GLog.write("Zoom! NE="+ne+";SW="+sw)}
-      };
-  
       map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, callbacks));
     }
 

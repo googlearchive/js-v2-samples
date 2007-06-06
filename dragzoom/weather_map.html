@@ -43,7 +43,7 @@
       };
 
       map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, {}), 
-                                         new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(7, 7));
+                                         new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(7, 7)));
     }
 
     function getWeatherIcon() {
@@ -90,10 +90,7 @@
   </head>
 
   <body onload="setupMap()" onunload="GUnload()">
-    <div id="map" style="margin: 5px auto; width: 650px; height: 400px"></div>
-    <div style="text-align: center; font-size: large;">
-      Random Weather Map
-    </div>
+    <div id="map" style="width: 450px; height: 400px"></div>
   </body>
 </html>
 

@@ -925,6 +925,7 @@ DragZoomControl.prototype.drag_ = function(e){
 DragZoomControl.prototype.mouseup_ = function(e){
   var G = this.globals;
   if (G.draggingOn) {
+    GLog.write("dragend1");
     var pos = this.getRelPos_(e);
     G.draggingOn = false;
     
@@ -934,7 +935,7 @@ DragZoomControl.prototype.mouseup_ = function(e){
     if (rect.top) rect.endY = rect.startY - rect.height;
 	
     this.resetDragZoom_();
-
+    GLog.write("dragend2");
     var nwpx = new GPoint(rect.startX, rect.startY);
     var nepx = new GPoint(rect.endX, rect.startY);
     var sepx = new GPoint(rect.endX, rect.endY);
@@ -962,7 +963,7 @@ DragZoomControl.prototype.mouseup_ = function(e){
 
     // invoke callback if provided
     if (G.callbacks.dragend != null) {
-      //G.callbacks.dragend(nw, ne, se, sw, nwpx, nepx, sepx, swpx);
+      G.callbacks.dragend(nw, ne, se, sw, nwpx, nepx, sepx, swpx);
     }
 		
     //re-init if sticky

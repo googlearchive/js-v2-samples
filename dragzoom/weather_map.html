@@ -946,6 +946,7 @@ DragZoomControl.prototype.mouseup_ = function(e){
     var sw = G.map.fromContainerPixelToLatLng(swpx); 
 
     var zoomAreaPoly = new GPolyline([nw, ne, se, sw, nw], G.style.outlineColor, G.style.outlineWidth + 1,.4);
+    GLog.write("dragend3");
 
     try{
       G.map.addOverlay(zoomAreaPoly);
@@ -960,6 +961,7 @@ DragZoomControl.prototype.mouseup_ = function(e){
     zoomLevel = G.map.getBoundsZoomLevel(oBounds);
     center = oBounds.getCenter();
     G.map.setCenter(center, zoomLevel);
+    GLog.write("dragend4");
 
     // invoke callback if provided
     if (G.callbacks.dragend != null) {

@@ -59,7 +59,7 @@ function MarkerManager(map, opt_opts) {
   me.numMarkers_ = [];
   me.numMarkers_[maxZoom] = 0;
 
-  GEvent.bind(map, "moveend", me, me.onMapMoveEnd_);
+//  GEvent.bind(map, "moveend", me, me.onMapMoveEnd_);
 
   // NOTE: These two closures provide easy access to the map.
   // They are used as callbacks, not as methods.

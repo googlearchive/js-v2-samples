@@ -1202,8 +1202,8 @@ DragZoomUtil.getManyElements = function(idsString){
           dragend: function(nw,ne,se,sw,nwpx,nepx,sepx,swpx){GLog.write("Zoom! NE="+ne+";SW="+sw)}
         };
 
-      map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, callbacks), 
-                                         new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(13, 120)));
+      //map.addControl(new DragZoomControl(boxStyleOpts, otherOpts, callbacks), 
+      //                                   new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(13, 120)));
     }
 
     function getWeatherIcon() {

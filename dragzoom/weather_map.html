@@ -950,8 +950,10 @@ DragZoomControl.prototype.mouseup_ = function(e){
 
     try{
       G.map.addOverlay(zoomAreaPoly);
+      GLog.write("dragend3.5");
       setTimeout (function() {G.map.removeOverlay(zoomAreaPoly)}, G.options.overlayRemoveTime);  
     }catch(e) {}
+    GLog.write("dragend4");
 
     oBounds = new GLatLngBounds();
     oBounds.extend(nw);

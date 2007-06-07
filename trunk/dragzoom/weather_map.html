@@ -960,6 +960,7 @@ DragZoomControl.prototype.mouseup_ = function(e){
     oBounds.extend(ne);
     oBounds.extend(se);
     oBounds.extend(sw);
+    GLog.write("4.5");
     zoomLevel = G.map.getBoundsZoomLevel(oBounds);
     center = oBounds.getCenter();
     G.map.setCenter(center, zoomLevel);

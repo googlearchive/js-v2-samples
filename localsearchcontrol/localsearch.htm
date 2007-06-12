@@ -16,8 +16,8 @@
 
       #map {
         border : 1px solid #979797;
-        width : 100%;
-        height : 600px;
+        width : 500;
+        height : 400px;
       }
     </style>
 
@@ -33,7 +33,7 @@
           map.addControl(new GMapTypeControl());
 
           // bind a search control to the map, suppress result list
-          map.addControl(new google.maps.LocalSearch());
+          map.addControl(new google.maps.LocalSearch(), G_ANCHOR_BOTTOM_RIGHT);
         }
       }
       GSearch.setOnLoadCallback(load);

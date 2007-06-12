@@ -33,7 +33,7 @@
           map.addControl(new GMapTypeControl());
 
           // bind a search control to the map, suppress result list
-          map.addControl(new google.maps.LocalSearch(), G_ANCHOR_BOTTOM_RIGHT);
+          map.addControl(new google.maps.LocalSearch(), new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10,10)));
         }
       }
       GSearch.setOnLoadCallback(load);

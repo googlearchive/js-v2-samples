@@ -37,8 +37,9 @@
       }
     }
 
-    function showAddress(address) {
+    function showAddress(address, countryCode) {
       if (geocoder) {
+        geocoder.setBaseCountryCode(countryCode);
         geocoder.getLatLng(address,
           function(point) {
             if (!point) {
@@ -56,15 +57,11 @@
       }
     }
 
-    function setCountryCode(countryCode) {
-      geocoder.setBaseCountryCode(countryCode);
-     }
-
     //]]>
     </script>
   </head>
   <body onload="load()" onunload="GUnload()">
-    <form action="#" onsubmit="setCountryCode(this.countrycode.value); showAddress(this.address.value); return false">
+    <form action="#" onsubmit="showAddress(this.address.value, this.countrycode.value); return false">
       <p>
         <input type="text" size="10" id="countrycode" name="countrycode" value="US" />
         <input type="text" size="60" id="addressInput" name="address" value="" />

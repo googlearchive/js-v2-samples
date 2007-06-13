@@ -25,14 +25,6 @@
     var geocoder = null;
     var addressMarker;
 
-    var countryData = {
-      "brazil": { lat: -23.529996, lng: -46.630096, address: "Avenida Lineu de Paula Machado 1263, Sao Paulo - SP Brazil"},
-      "poland": { lat: 52.389011, lng: 19.006348, address: "Stare Miasto Warsaw, Poland"},
-      "czechrepublic": { lat: 49.781264, lng: 15.303955, address: "Milady Horakove 100, 6000 Prague 6, Czech Republic"},
-      "portugal": { lat: 39.470125, lng: -8.063965, address: "Rua de S. Joao da Praca, 94 Lisboa Portugal"},
-      "hungary": { lat: 47.144897, lng: 19.116211, address: "V. Szerb Budapest, Hungary"}
-    };
-
     function load() {
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
@@ -40,31 +32,7 @@
         map.addControl(new GMapTypeControl());
         map.setCenter(new GLatLng(22.917922, -16.875), 2);
         map.setMapType(G_HYBRID_MAP);
-        // Create a base icon for all of our markers that specifies the
-        // shadow, icon dimensions, etc.
-        var baseIcon = new GIcon();
-        baseIcon.shadow = "icon_flagshadow.png";
-        baseIcon.iconSize = new GSize(21, 14);
-        baseIcon.shadowSize = new GSize(35, 27);
-        baseIcon.iconAnchor = new GPoint(9, 5);
 
-        function createMarker(point, country) {
-          // Create a lettered icon for this point using our icon class
-          var icon = new GIcon(baseIcon);
-          icon.image = "icon_" + country + ".png";
-          var marker = new GMarker(point, icon);
-
-          GEvent.addListener(marker, "click", function() {
-            map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
-          });
-          return marker;
-        }
-
-        for (var country in countryData) {
-          var point = new GLatLng(countryData[country].lat,
-                                  countryData[country].lng);
-          map.addOverlay(createMarker(point, country));
-        }
         geocoder = new GClientGeocoder();
       }
     }
@@ -72,7 +40,6 @@
     function showAddress(address) {
       if (geocoder) {
         setCountryCode();
-        GLog.write(geocoder.getBaseCountryCode());
         geocoder.getLatLng(address,
           function(point) {
             if (!point) {
@@ -82,7 +49,7 @@
                 map.removeOverlay(addressMarker);
               }
               addressMarker = new GMarker(point);
-              map.setCenter(point, 15);
+              map.setCenter(point);
               map.addOverlay(addressMarker);
             }
           }
@@ -90,14 +57,7 @@
       }
     }
 
-    function zoomTo(country) {
-      //map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
-      document.getElementById("addressInput").value = countryData[country].address;
-      showAddress(countryData[country].address);
-    }
-
     function setCountryCode() {
-      var countryCode = document.getElementById("countrycode").value;
       geocoder.setBaseCountryCode(countryCode);
      }
 
@@ -105,9 +65,9 @@
     </script>
   </head>
   <body onload="load()" onunload="GUnload()">
-    <form action="#" onsubmit="showAddress(this.address.value); return false">
+    <form action="#" onsubmit="setCountryCode(this.countrycode.value); showAddress(this.address.value); return false">
       <p>
-        <input type="text" size="10" id="countrycode" value="US" />
+        <input type="text" size="10" id="countrycode" name="countrycode" value="US" />
         <input type="text" size="60" id="addressInput" name="address" value="" />
         <input type="submit" value="Go!" />
       </p>

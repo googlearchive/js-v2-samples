@@ -64,8 +64,11 @@
               if (addressMarker) {
                 map.removeOverlay(addressMarker);
               }
+              var bounds = map.getBounds();
+              if (!bounds.contains(point)) {
+                map.panTo(point);
+              }
               addressMarker = new GMarker(point);
-              //map.setCenter(point, map.getZoom());
               map.addOverlay(addressMarker);
             }
           }
@@ -74,15 +77,9 @@
     }
 
     function zoomTo(country) {
-      //map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
       document.getElementById("addressInput").value = countryData[country].address;
       showAddress(countryData[country].address);
     }
-
-    function setCountryCode() {
-      var countryCode = document.getElementById("countrycode").value;
-      geocoder.setBaseCountryCode(countryCode);
-     }
 
     //]]>
     </script>
@@ -90,8 +87,7 @@
   <body onload="load()" onunload="GUnload()">
     <form action="#" onsubmit="showAddress(this.address.value); return false">
       <p>
-        <input type="text" size="10" id="countrycode" value="US" />
-        <input type="text" size="60" id="addressInput" name="address" value="230 1st Street" />
+        <input type="text" size="30" id="addressInput" name="address" value="230 1st Street" />
         <input type="submit" value="Go!" />
       </p>
     </form>

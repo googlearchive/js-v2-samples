@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script src="dragzoom_modded.js" type="text/javascript"></script>
+    <style type="text/css">
+      body {
+        font-family: Arial, sans serif;
+        font-size: 11px;
+      }
+      td {
+        text-align: center; 
+      }
+      img {
+        color: #000000;
+      }
+    </style>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var map;
+    var geocoder = null;
+    var addressMarker;
+
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());
+        map.setCenter(new GLatLng(41.77, -100.5), 2);
+        map.setMapType(G_NORMAL_MAP);
+        geocoder = new GClientGeocoder();
+
+        var otherOpts = {
+          buttonHTML: "Enter an address, and click to begin.",
+          buttonZoomingHTML: "Drag on the map to specify geocoder viewport. Click to end.",
+          stickyZoomEnabled: true
+        };
+
+        var callbacks = {
+          dragend: function(nw,ne,se,sw,nwpx,nepx,sepx,swpx){
+            var viewport = new GLatLngBounds(sw, ne);
+            geocoder.setViewport(viewport);
+            showAddress(document.getElementById('addressInput').value);
+          }
+        };
+        var dragZoomControl =  new DragZoomControl({}, otherOpts, callbacks);
+        map.addControl(dragZoomControl);
+      }
+    }
+
+    function showAddress(address) {
+      if (geocoder) {
+        geocoder.getLatLng(address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              if (addressMarker) {
+                map.removeOverlay(addressMarker);
+              }
+              addressMarker = new GMarker(point);
+              //map.setCenter(point, map.getZoom());
+              map.addOverlay(addressMarker);
+            }
+          }
+        );
+      }
+    }
+
+    function zoomTo(country) {
+      //map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
+      document.getElementById("addressInput").value = countryData[country].address;
+      showAddress(countryData[country].address);
+    }
+
+    function setCountryCode() {
+      var countryCode = document.getElementById("countrycode").value;
+      geocoder.setBaseCountryCode(countryCode);
+     }
+
+    //]]>
+    </script>
+  </head>
+  <body onload="load()" onunload="GUnload()">
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="10" id="countrycode" value="US" />
+        <input type="text" size="60" id="addressInput" name="address" value="230 1st Street" />
+        <input type="submit" value="Go!" />
+      </p>
+    </form>
+
+    <div id="map" style="width: 450px; height: 300px"></div>
+  </body>
+</html>
+

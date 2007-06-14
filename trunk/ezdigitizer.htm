@@ -52,15 +52,8 @@
 
 
     function mapClick(marker, clickedPoint) {
-
       polygonMode = document.getElementById("drawMode_polygon").checked;
-      oldMarker = marker;
-
       polyPoints.push(clickedPoint);
-
-      map.removeOverlay(oldMarker);
-      map.addOverlay(new GMarker(clickedPoint));
-
       drawCoordinates();
      }
 
@@ -100,20 +93,19 @@
     // drawCoordinates
     function drawCoordinates(){
       //Re-create Polyline/Polygon
-	  if (polygonMode) {
-	    polyShape = new GPolygon(polyPoints,lineColor,lineWeight,opacity,fillColor,opacity);
-	  } else {
-	    polyShape = new GPolyline(polyPoints,lineColor,lineWeight,opacity);
-	    }
-	  map.clearOverlays();
-	  map.addOverlay(polyShape);
+      GLog.write(polyPoints.length);
+      if (polygonMode) {
+        polyShape = new GPolygon(polyPoints,lineColor,lineWeight,opacity,fillColor,opacity);
+      } else {
+        polyShape = new GPolyline(polyPoints,lineColor,lineWeight,opacity);
+      }
+      map.clearOverlays();
+      map.addOverlay(polyShape);
 
-	  // Grab last point of polyPoints to add new marker
-	  var tmpPoint = polyPoints[polyPoints.length -1];
-	  map.addOverlay(new GMarker(tmpPoint));
-
-	  logCoordinates();
-	
+      // Grab last point of polyPoints to add new marker
+      var tmpPoint = polyPoints[polyPoints.length -1];
+      map.addOverlay(new GMarker(tmpPoint));
+      logCoordinates();	
     }
 
     // logCoordinates - prints out coordinates of global polyPoints array

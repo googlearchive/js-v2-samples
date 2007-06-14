@@ -38,10 +38,10 @@
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
         map.setCenter(new GLatLng(37.4224, -122.0838), 13);
-   	    map.addControl(new GLargeMapControl());
-	    map.addControl(new GMapTypeControl());
-	    GEvent.addListener(map, 'click', mapClick);
-		geocoder = new GClientGeocoder();
+   	map.addControl(new GLargeMapControl());
+	map.addControl(new GMapTypeControl());
+	GEvent.addListener(map, 'click', mapClick);
+	geocoder = new GClientGeocoder();
        }
     }
 
@@ -55,19 +55,10 @@
 
       var mapNormalProj = G_NORMAL_MAP.getProjection();
       var mapZoom = map.getZoom();
-     ////notneeded var oldPolygon = polygon;
-       
       polygonMode = document.getElementById("drawMode_polygon").checked;
-
       oldMarker = marker;
 
-      // Get new pixel and polypoint
-      // Push onto polypoints of existing polygon
-
-      var clickedPixel = mapNormalProj.fromLatLngToPixel(clickedPoint, mapZoom);
-      var polyPixel = new GPoint(clickedPixel.x,clickedPixel.y);
-      var polyPoint = mapNormalProj.fromPixelToLatLng(polyPixel,mapZoom);
-      polyPoints.push(polyPoint);
+      polyPoints.push(clickedPoint);
 
       map.removeOverlay(oldMarker);
       map.addOverlay(new GMarker(polyPoint));
@@ -81,8 +72,8 @@
         map.clearOverlays();
         polyShape = null;
         polyPoints = Array();
-      // logCoordinates();
-	    document.getElementById("coords").innerHTML =  "&lt;-- Click on the map to digitize!";
+        // logCoordinates();
+        document.getElementById("coords").innerHTML =  "&lt;-- Click on the map to digitize!";
       }
 
 
@@ -91,10 +82,8 @@
       function toggleDrawMode(){
         map.clearOverlays();
         polyShape = null;
-		polygonMode = document.getElementById("drawMode_polygon").checked;
-
-       // polyPoints = Array();
-      drawCoordinates();
+        polygonMode = document.getElementById("drawMode_polygon").checked;
+        drawCoordinates();
       }
 
 
@@ -112,9 +101,7 @@
 
     // drawCoordinates
     function drawCoordinates(){
-	
-	  //Re-create Polyline/Polygon
-
+      //Re-create Polyline/Polygon
 	  if (polygonMode) {
 	    polyShape = new GPolygon(polyPoints,lineColor,lineWeight,opacity,fillColor,opacity);
 	  } else {

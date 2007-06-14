@@ -53,8 +53,6 @@
 
     function mapClick(marker, clickedPoint) {
 
-      var mapNormalProj = G_NORMAL_MAP.getProjection();
-      var mapZoom = map.getZoom();
       polygonMode = document.getElementById("drawMode_polygon").checked;
       oldMarker = marker;
 
@@ -71,7 +69,7 @@
       function clearMap(){
         map.clearOverlays();
         polyShape = null;
-        polyPoints = Array();
+        polyPoints = [];
         // logCoordinates();
         document.getElementById("coords").innerHTML =  "&lt;-- Click on the map to digitize!";
       }

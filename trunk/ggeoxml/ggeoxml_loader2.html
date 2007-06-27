@@ -111,6 +111,7 @@ function toggleGeoXML(id, checked) {
   if (checked) {
     if (!layers[id].geoxml) {
       var geoXml = new GGeoXml(layers[id].url, function() {
+        GLog.write("here");
         zoomToGeoXML(geoXml);
         layers[id].geoxml = geoXml;
       });

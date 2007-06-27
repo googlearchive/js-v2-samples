@@ -97,7 +97,15 @@ function addTR(id) {
 function toggleGeoXML(id, checked) {
   if (checked) {
     var geoXml = new GGeoXml(layers[id].url, function() {
-       GLog.write(geoXml.getDefaultCenter());
+       var center = geoXml.getDefaultCenter();
+       var span = geoXml.getDefaultSpan();
+       var sw = new GLatLng(center.lat - span.lat / 2,
+                           center.lng - span.lng / 2);
+       var ne = new GLatLng(center.lat + span.lat / 2,
+                           center.lng + span.lng / 2);
+       var bounds = new GLatLngBounds(sw, ne);
+       map.setCenter(center);
+       map.setZoom(map.getBoundsZoomLevel(bounds));
      });
     layers[id].geoXml = geoXml;
 

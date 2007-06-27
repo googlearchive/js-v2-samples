@@ -97,6 +97,7 @@ function addTR(id) {
 function zoomToGeoXML(geoXml) {
   var center = geoXml.getDefaultCenter();
   var span = geoXml.getDefaultSpan();
+  GLog.write(span);
   var sw = new GLatLng(center.lat() - span.lat() / 2,
                        center.lng() - span.lng() / 2);
   var ne = new GLatLng(center.lat() + span.lat() / 2,

@@ -107,6 +107,7 @@ function toggleGeoXML(id, checked) {
        map.setCenter(center);
        map.setZoom(map.getBoundsZoomLevel(bounds));
        var overlay = geoXml.getTileLayerOverlay();
+       overlay.hide();
      });
     layers[id].geoXml = geoXml;
 

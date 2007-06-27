@@ -108,6 +108,7 @@ function zoomToGeoXML(geoXml) {
 }
 
 function toggleGeoXML(id, checked) {
+  GLog.write("toggling");
   if (checked) {
     if (!layers[id].geoxml) {
       var geoXml = new GGeoXml(layers[id].url, function() {

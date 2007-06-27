@@ -97,7 +97,6 @@ function addTR(id) {
 function zoomToGeoXML(geoXml) {
   var center = geoXml.getDefaultCenter();
   var span = geoXml.getDefaultSpan();
-  GLog.write(span);
   var sw = new GLatLng(center.lat() - span.lat() / 2,
                        center.lng() - span.lng() / 2);
   var ne = new GLatLng(center.lat() + span.lat() / 2,
@@ -108,11 +107,9 @@ function zoomToGeoXML(geoXml) {
 }
 
 function toggleGeoXML(id, checked) {
-  GLog.write("toggling");
   if (checked) {
     if (!layers[id].geoxml) {
       var geoXml = new GGeoXml(layers[id].url, function() {
-        GLog.write("here");
         zoomToGeoXML(geoXml);
         layers[id].geoxml = geoXml;
       });

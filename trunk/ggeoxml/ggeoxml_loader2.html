@@ -112,12 +112,12 @@ function toggleGeoXML(id, checked) {
       var geoXml = new GGeoXml(layers[id].url, function() {
         zoomToGeoXML(geoXml);
         layers[id].geoxml = geoXml;
-        GLog.write("Loaded");
+        document.getElementById("status").innerHTML = "";
       });
       layers[id].geoXml = geoXml;
     }
     map.addOverlay(layers[id].geoXml);
-    GLog.write("Loading...");
+    document.getElementById("status").innerHTML = "Loading...";
   
   } else if (layers[id].geoXml) {
     map.removeOverlay(layers[id].geoXml);
@@ -140,6 +140,7 @@ function toggleGeoXML(id, checked) {
     <tbody id="sidebarTBODY">
     </tbody>
     </table>
+    <div id="status"></div>
     </div>
 
   </body>

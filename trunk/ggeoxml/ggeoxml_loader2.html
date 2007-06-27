@@ -100,10 +100,10 @@ function toggleGeoXML(id, checked) {
        var center = geoXml.getDefaultCenter();
        var span = geoXml.getDefaultSpan();
        GLog.write(span);
-       var sw = new GLatLng(center.lat - span.lat / 2,
-                           center.lng - span.lng / 2);
-       var ne = new GLatLng(center.lat + span.lat / 2,
-                           center.lng + span.lng / 2);
+       var sw = new GLatLng(center.lat() - span.lat() / 2,
+                           center.lng() - span.lng() / 2);
+       var ne = new GLatLng(center.lat() + span.lat() / 2,
+                           center.lng() + span.lng() / 2);
        var bounds = new GLatLngBounds(sw, ne);
        map.setCenter(center);
        map.setZoom(map.getBoundsZoomLevel(bounds));

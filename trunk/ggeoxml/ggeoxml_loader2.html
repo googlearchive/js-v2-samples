@@ -108,24 +108,16 @@ function zoomToGeoXML(geoXml) {
 
 function toggleGeoXML(id, checked) {
   if (checked) {
-    if (layers[id].geoxml) {
-      var geoXml = layers[id].geoxml;
-      var overlay = geoXml.getTileLayerOverlay();
-      overlay.show();
-      zoomToGeoXML(geoXml);
-    } else {
-    var geoXml = new GGeoXml(layers[id].url, function() {
-       zoomToGeoXML(geoXml);
-       layers[id].geoxml = geoXml;
-     });
-    layers[id].geoXml = geoXml;
-
-    map.addOverlay(geoXml);
+    if (!layers[id].geoxml) {
+      var geoXml = new GGeoXml(layers[id].url, function() {
+        zoomToGeoXML(geoXml);
+        layers[id].geoxml = geoXml;
+      });
+      layers[id].geoXml = geoXml;
     }
+    map.addOverlay(layers[id].geoXml);
   } else if (layers[id].geoXml) {
-    var geoXml = layers[id].geoxml;
-    var overlay = geoXml.getTileLayerOverlay();
-    overlay.hide();
+    map.removeOverlay(layers[id].geoXml);
   }
 }
 

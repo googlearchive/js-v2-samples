@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+    <script type="text/javascript"> 
+   
+    var map;
+
+function onLoad() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map")); 
+    map.addControl(new GLargeMapControl());
+    map.setCenter(new GLatLng(36.108575, -115.174528), 14); 
+    map.addControl(new GLargeMapControl());
+    var do = new GDraggableObject(document.getElementById("photoToDrag"));
+    var geoXml = new GGeoXml("http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo&alt=kml&hl=en_US");
+    map.addOverlay(geoXml);
+  }
+} 
+
+</script>
+  </head>
+
+  <body onload="onLoad()">
+    <img src="http://picasaweb.google.com/s/v/21.10/img/picasaweblogo-en_US.gif" id="photoToDrag"/>
+    <div id="map" style="width: 500px; height: 480px; float:left; border: 1px solid black;"></div>
+    </div>
+
+  </body>
+</html>

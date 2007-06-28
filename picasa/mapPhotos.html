@@ -36,7 +36,8 @@ function onLoad() {
       var marker = new GMarker(latlng, {draggable:true, icon: icon});
       marker.setImage("http://lh3.google.com/picasateam/RoBHdfTZ7OI/AAAAAAAAABk/lb6AdOpWiZk/s72/IMG_0185.JPG");
       map.addOverlay(marker);
-      document.getElementById("photoToDrag").style.display = "none";
+      document.getElementById("photoToDrag").style.width = "0px";
+      document.getElementById("photoToDrag").style.height = "0px";
     });
      var geoXml = new GGeoXml("http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo&alt=kml&hl=en_US");
     map.addOverlay(geoXml);

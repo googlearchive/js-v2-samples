@@ -13,30 +13,20 @@ xmlns:v="urn:schemas-microsoft-com:vml">
     <script type="text/javascript"> 
    
     var map;
-    var geoXml = new GGeoXml("http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo&alt=kml&hl=en_US");
-    var toggleState = 1;
 
 function onLoad() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map")); 
     map.addControl(new GLargeMapControl());
-    map.setCenter(new GLatLng(49.496675,-102.65625), 3); 
+    map.setCenter(new GLatLng(36.108575, -115.174528), 14); 
     map.addControl(new GLargeMapControl());
+
+    var geoXml = new GGeoXml("http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo&alt=kml&hl=en_US");
     map.addOverlay(geoXml);
   }
 } 
 
-function toggleMyKml() {
-  if (toggleState == 1) {
-    map.removeOverlay(geoXml);
-    toggleState = 0;
-  } else {
-    map.addOverlay(geoXml);
-    toggleState = 1;
-  }
-}
 </script>
-
   </head>
 
   <body onload="onLoad()">
@@ -44,8 +34,5 @@ function toggleMyKml() {
     <div id="map" style="width: 640px; height: 480px; float:left; border: 1px solid black;"></div>
     </div>
 
-    <br clear="all"/>
-    <br/>
-    <input type="button" value="Toggle Markers" onClick="toggleMyKml();"/>
   </body>
 </html>

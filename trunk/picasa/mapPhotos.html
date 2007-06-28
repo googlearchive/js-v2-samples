@@ -20,12 +20,20 @@ function onLoad() {
     map.addControl(new GLargeMapControl());
     map.setCenter(new GLatLng(36.108575, -115.174528), 14); 
     map.addControl(new GLargeMapControl());
+    var icon = new GIcon();
+    icon.image = "";
+    icon.shadow = "http://picasaweb.google.com/s/v/21.10/img/marker-shadow.png";
+    icon.iconSize = new GSize(32, 32);
+    icon.shadowSize = new GSize(59, 32);
+    icon.iconAnchor = new GPoint(6, 20);
+    icon.infoWindowAnchor = new GPoint(5, 1);
+
     var photoToDrag = new GDraggableObject(document.getElementById("photoToDrag"));
     GEvent.addListener(photoToDrag, "dragend", function() {
       var ep = getElementPosition(document.getElementById("photoToDrag"));
       GLog.write(ep.left + "," + ep.top);
       var latlng = map.fromContainerPixelToLatLng(new GPoint(ep.left+16, ep.top+16));
-      var marker = new GMarker(latlng, {draggable:true});
+      var marker = new GMarker(latlng, {draggable:true, icon: icon});
       map.addOverlay(marker);
       document.getElementById("photoToDrag").style.display = "none";
     });

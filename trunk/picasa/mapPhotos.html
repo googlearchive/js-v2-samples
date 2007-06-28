@@ -34,6 +34,7 @@ function onLoad() {
       GLog.write(ep.left + "," + ep.top);
       var latlng = map.fromContainerPixelToLatLng(new GPoint(ep.left+16, ep.top+16));
       var marker = new GMarker(latlng, {draggable:true, icon: icon});
+      marker.setImage("http://lh3.google.com/picasateam/RoBHdfTZ7OI/AAAAAAAAABk/lb6AdOpWiZk/s72/IMG_0185.JPG");
       map.addOverlay(marker);
       document.getElementById("photoToDrag").style.display = "none";
     });

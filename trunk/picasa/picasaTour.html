@@ -61,7 +61,7 @@ function getJSON(albumUrl) {
 
 function loadAlbumJSON(json) {
   var waypoints = [];
-  for (var i = 0; i < json.feed.entry.length; i++) {
+  for (var i = 0; i < json.feed.entry.length && i < 25; i++) {
     var entry = json.feed.entry[i];i
     if (entry["georss$where"]) {
       var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;

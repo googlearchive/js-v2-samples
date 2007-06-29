@@ -59,12 +59,14 @@ function getJSON(albumUrl) {
 function loadAlbumJSON(json) {
   var waypoints = [];
   for (var i = 0; i < json.feed.entry.length; i++) {
-    var entry = json.feed.entry[i];
-    var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;
-    var lat = parseFloat(pos.split(" ")[0]);
-    var lng = parseFloat(pos.split(" ")[1]);
-    var latlng = new GLatLng(lat, lng);
-    waypoints.push(latlng);
+    var entry = json.feed.entry[i];i
+    if (entry["georss$where"]) {
+      var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;
+      var lat = parseFloat(pos.split(" ")[0]);
+      var lng = parseFloat(pos.split(" ")[1]);
+      var latlng = new GLatLng(lat, lng);
+      waypoints.push(latlng);
+    }
   }
   directions = new GDirections(map, document.getElementById("panel"));
   directions.loadFromWaypoints(waypoints);
@@ -114,7 +116,7 @@ function togglePhotos() {
 
   <body onload="onLoad()">
 
-    Album KML: <input type=text" value="http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo&alt=kml" id="albumKML"/>
+    Album KML: <input type=text" value="http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo&alt=kml" size="60" id="albumKML"/>
     <input type="button" value="Load Album & Route" onclick="loadAlbum();"/>
     <br/>
     <input type="button" value="Toggle Markers" onclick="toggleMarkers();" id="toggleMarkersButton" disabled/>

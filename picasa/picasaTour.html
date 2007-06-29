@@ -61,7 +61,7 @@ function loadAlbumJSON(json) {
   GEvent.addListener(directions, "addoverlay", function() {
     var numGeocodes = directions.getNumGeocodes();
     for (var i = 0; i < numGeocodes; i++) {
-      var marker = getMarker(i);
+      var marker = directions.getMarker(i);
       marker.hide();
     }
   });

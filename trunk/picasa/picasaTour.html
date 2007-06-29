@@ -45,8 +45,16 @@ function getJSON(albumUrl) {
   document.documentElement.firstChild.appendChild(script);
 }
 
-function loadAlbumJSON() {
+function loadAlbumJSON(json) {
   GLog.write("loaded");
+  for (var i = 0; i < json.feed.entry.length; i++) {
+    var entry = json.feed.entry[i];
+    var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;
+    var lat = parseFloat(pos.split(" ")[0]);
+    var lng = parseFloat(pos.split(" ")[1]);
+    var latlng = new GLatLng(lat, lng);
+    GLog.write(latlng);
+  }
 }
 </script>
   </head>

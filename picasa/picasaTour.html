@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+    <script type="text/javascript"> 
+   
+    var map;
+
+function onLoad() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map")); 
+    map.addControl(new GLargeMapControl());
+    map.setCenter(new GLatLng(36.108575, -115.174528), 14); 
+    map.addControl(new GLargeMapControl());
+
+    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo";
+    var geoXml = new GGeoXml(albumUrl + "&alt=kml&hl=en_US");
+    map.addOverlay(geoXml);
+    getJSON(albumUrl);
+  }
+} 
+
+/**
+ * Creates a script tag in the page that loads in the 
+ * JSON feed for the specified key/ID. 
+ * Once loaded, it calls cm_loadMapJSON.
+ */
+function getJSON(albumUrl) {
+
+  // Retrieve the JSON feed.
+  var script = document.createElement('script');
+
+  script.setAttribute('src', albumUrl + 
+                        '?alt=json-in-script&callback=loadAlbumJSON');
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+
+</script>
+  </head>
+
+  <body onload="onLoad()">
+
+    <div id="map" style="width: 500px; height: 480px; float:left; border: 1px solid black;"></div>
+    </div>
+
+  </body>
+</html>

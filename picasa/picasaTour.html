@@ -54,7 +54,6 @@ function loadAlbumJSON(json) {
     var lat = parseFloat(pos.split(" ")[0]);
     var lng = parseFloat(pos.split(" ")[1]);
     var latlng = new GLatLng(lat, lng);
-    GLog.write(latlng);
     waypoints.push(latlng);
   }
   var directions = new GDirections(map, document.getElementById("panel"));

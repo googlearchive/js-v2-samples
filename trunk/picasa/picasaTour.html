@@ -83,12 +83,16 @@ function toggleMarkers() {
 
 function toggleRoute() {
   var polyline = directions.getPolyline();
-  polyline.hide();
+  if (polyline.hidden) {
+    polyline.show();
+    polyline.hidden = false;
+  } else {
+    polyline.hide();
+    polyline.hidden = true;
+  }
 }
 
 function togglePhotos() {
-  geoxml.hide();
-  /*
   if (geoxml.hidden) {
     map.addOverlay(geoxml);
     geoxml.hidden = false;
@@ -96,7 +100,6 @@ function togglePhotos() {
     map.removeOverlay(geoxml);
     geoxml.hidden = true;
   }
-  */
 }
 
 </script>

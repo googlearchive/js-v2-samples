@@ -12,8 +12,9 @@ xmlns:v="urn:schemas-microsoft-com:vml">
     </style>
     <script type="text/javascript"> 
    
-    var map;
-
+var map;
+var directions;
+    
 function onLoad() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map")); 
@@ -56,21 +57,29 @@ function loadAlbumJSON(json) {
     var latlng = new GLatLng(lat, lng);
     waypoints.push(latlng);
   }
-  var directions = new GDirections(map, document.getElementById("panel"));
+  directions = new GDirections(map, document.getElementById("panel"));
   directions.loadFromWaypoints(waypoints);
   GEvent.addListener(directions, "addoverlay", function() {
-    var numGeocodes = directions.getNumGeocodes();
-    for (var i = 0; i < numGeocodes; i++) {
-      var marker = directions.getMarker(i);
-      marker.hide();
-    }
   });
 }
+
+function toggleMarkers() {
+  var numGeocodes = directions.getNumGeocodes();
+  for (var i = 0; i < numGeocodes; i++) {
+    var marker = directions.getMarker(i);
+    if (marker.isHidden()) {
+      marker.show();
+    } else {
+      marker.hide();
+    }
+  }
+}
+
 </script>
   </head>
 
   <body onload="onLoad()">
-
+    <input type="button" value="Toggle Markers" onclick="toggleMarkers();"/>
     <div id="map" style="width: 500px; height: 480px; border: 1px solid black;"></div>
     </div>
     <br/>

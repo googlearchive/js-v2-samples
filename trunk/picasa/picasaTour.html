@@ -48,6 +48,7 @@ function getJSON(albumUrl) {
 
 function loadAlbumJSON(json) {
   GLog.write("loaded");
+  var waypoints = [];
   for (var i = 0; i < json.feed.entry.length; i++) {
     var entry = json.feed.entry[i];
     var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;
@@ -55,7 +56,10 @@ function loadAlbumJSON(json) {
     var lng = parseFloat(pos.split(" ")[1]);
     var latlng = new GLatLng(lat, lng);
     GLog.write(latlng);
+    waypoints.push(latlng);
   }
+  var directions = new GDirections(map, document.getElementById("panel"));
+  directions.loadFromWaypoints(waypoints);
 }
 </script>
   </head>
@@ -64,6 +68,6 @@ function loadAlbumJSON(json) {
 
     <div id="map" style="width: 500px; height: 480px; float:left; border: 1px solid black;"></div>
     </div>
-
+    <div id="panel"></div>
   </body>
 </html>

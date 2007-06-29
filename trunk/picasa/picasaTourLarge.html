@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+    <script type="text/javascript"> 
+   
+var map;
+var directions;
+var geoxml;
+    
+function onLoad() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map")); 
+    map.addControl(new GLargeMapControl());
+    map.setCenter(new GLatLng(37.26, -112.949), 10); 
+    map.addControl(new GLargeMapControl());
+  }
+}
+ 
+function loadAlbum() {
+  if (directions) {
+    directions.clear();
+    map.clearOverlays();
+    document.getElementById("toggleMarkersButton").disabled = true;
+    document.getElementById("togglePhotosButton").disabled = true;
+    document.getElementById("toggleRouteButton").disabled = true;
+  }
+  var albumKML = document.getElementById("albumKML").value;
+  geoxml = new GGeoXml(albumKML);
+  geoxml.hidden = false;
+  map.addOverlay(geoxml);
+
+  // strip ?alt=kml
+  getJSON(albumKML.split("&")[0]);
+} 
+
+/**
+ * Creates a script tag in the page that loads in the 
+ * JSON feed for the specified key/ID. 
+ * Once loaded, it calls cm_loadMapJSON.
+ */
+function getJSON(albumUrl) {
+
+  // Retrieve the JSON feed.
+  var script = document.createElement('script');
+
+  script.setAttribute('src', albumUrl + 
+                        '&alt=json-in-script&callback=loadAlbumJSON');
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+
+function loadAlbumJSON(json) {
+  var waypoints = [];
+  for (var i = 0; i < json.feed.entry.length && i < 25; i++) {
+    var entry = json.feed.entry[i];i
+    if (entry["georss$where"]) {
+      var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;
+      var lat = parseFloat(pos.split(" ")[0]);
+      var lng = parseFloat(pos.split(" ")[1]);
+      var latlng = new GLatLng(lat, lng);
+      waypoints.push(latlng);
+    }
+  }
+  
+  directions = new GDirections(map, document.getElementById("panel"));
+  directions.loadFromWaypoints(waypoints);
+  GEvent.addListener(directions, "addoverlay", function() {
+    document.getElementById("toggleMarkersButton").disabled = false;
+    document.getElementById("togglePhotosButton").disabled = false;
+    document.getElementById("toggleRouteButton").disabled = false;
+    directions.getPolyline().hidden = false;
+  });
+}
+
+function toggleMarkers() {
+  var numGeocodes = directions.getNumGeocodes();
+  for (var i = 0; i < numGeocodes; i++) {
+    var marker = directions.getMarker(i);
+    if (marker.isHidden()) {
+      marker.show();
+    } else {
+      marker.hide();
+    }
+  }
+}
+
+function toggleRoute() {
+  var polyline = directions.getPolyline();
+  if (polyline.hidden) {
+    polyline.show();
+    polyline.hidden = false;
+  } else {
+    polyline.hide();
+    polyline.hidden = true;
+  }
+}
+
+function togglePhotos() {
+  if (geoxml.hidden) {
+    map.addOverlay(geoxml);
+    geoxml.hidden = false;
+  } else {
+    map.removeOverlay(geoxml);
+    geoxml.hidden = true;
+  }
+}
+
+</script>
+  </head>
+
+  <body onload="onLoad()" style="font-family: Arial, sans serif">
+
+    <input type=text" value="http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo&alt=kml" size="40" id="albumKML"/>
+    <input type="button" value="Load Album & Route" onclick="loadAlbum();"/>
+    <br/>
+    <div id="map" style="width:700px; height: 600px;"></div>
+    <br/>
+    <div style="text-align:center; width: 700px">
+    <input type="button" value="Toggle Markers" onclick="toggleMarkers();" id="toggleMarkersButton" disabled/>
+    &nbsp;|
+    <input type="button" value="Toggle Photos" onclick="togglePhotos();" id="togglePhotosButton" disabled/>
+    &nbsp;|
+    <input type="button" value="Toggle Route" onclick="toggleRoute();" id="toggleRouteButton" disabled/>
+    </div>
+    <div id="panel" style="overflow: auto; height: 200px; width: 700px">
+    </div>
+  </body>
+</html>

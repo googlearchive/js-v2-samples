@@ -51,6 +51,10 @@ function getJSON(albumUrl) {
 
 function loadAlbumJSON(json) {
   var waypoints = [];
+  var startAddress = document.getElementById("startAddress").value;
+  if (startAddress != "") {
+    waypoints.push(startAddress);
+  }
   for (var i = 0; i < json.feed.entry.length; i++) {
     var entry = json.feed.entry[i];
     var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;
@@ -106,6 +110,8 @@ function togglePhotos() {
   </head>
 
   <body onload="onLoad()">
+    Start Address:<input type="text" value="" id="startAddress"/>
+    <br/>
     <input type="button" value="Toggle Markers" onclick="toggleMarkers();" id="toggleMarkersButton" disabled/>
     &nbsp;|
     <input type="button" value="Toggle Photos" onclick="togglePhotos();" id="togglePhotosButton" disabled/>

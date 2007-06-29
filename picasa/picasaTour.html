@@ -118,13 +118,15 @@ function togglePhotos() {
 
     <input type=text" value="http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo&alt=kml" size="40" id="albumKML"/>
     <input type="button" value="Load Album & Route" onclick="loadAlbum();"/>
-    <br/>
+    <br/> <br/>
+    <div style="text-align:center">
     <input type="button" value="Toggle Markers" onclick="toggleMarkers();" id="toggleMarkersButton" disabled/>
     &nbsp;|
     <input type="button" value="Toggle Photos" onclick="togglePhotos();" id="togglePhotosButton" disabled/>
     &nbsp;|
     <input type="button" value="Toggle Route" onclick="toggleRoute();" id="toggleRouteButton" disabled/>
-    <br/>
+    </div>
+    <br/><br/>
     <div id="map" style="width: 500px; height: 480px; border: 1px solid black;"></div>
     </div>
     <br/>

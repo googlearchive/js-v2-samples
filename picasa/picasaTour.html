@@ -14,6 +14,7 @@ xmlns:v="urn:schemas-microsoft-com:vml">
    
 var map;
 var directions;
+var geoxml;
     
 function onLoad() {
   if (GBrowserIsCompatible()) {
@@ -24,7 +25,8 @@ function onLoad() {
     var albumUrl = "http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo";
 
 //    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo";
-    var geoXml = new GGeoXml(albumUrl + "&alt=kml&hl=en_US");
+    geoxml = new GGeoXml(albumUrl + "&alt=kml&hl=en_US");
+    geoxml.hidden = false;
     map.addOverlay(geoXml);
     getJSON(albumUrl);
   }
@@ -61,6 +63,9 @@ function loadAlbumJSON(json) {
   directions.loadFromWaypoints(waypoints);
   GEvent.addListener(directions, "addoverlay", function() {
     document.getElementById("toggleMarkersButton").disabled = false;
+    document.getElementById("togglePhotosButton").disabled = false;
+    document.getElementById("toggleRouteButton").disabled = false;
+    directions.getPolyline().hidden = false;
   });
 }
 
@@ -76,11 +81,28 @@ function toggleMarkers() {
   }
 }
 
+function toggleRoute() {
+  var polyline = directions.getPolyline();
+  polyline.hide();
+}
+
+function togglePhotos() {
+  if (geoxml.hidden) {
+    map.addOverlay(geoxml);
+    geoxml.hidden = false;
+  } else {
+    map.removeOverlay(geoxml);
+    geoxml.hidden = true;
+  }
+}
+
 </script>
   </head>
 
   <body onload="onLoad()">
     <input type="button" value="Toggle Markers" onclick="toggleMarkers();" id="toggleMarkersButton" disabled/>
+    <input type="button" value="Toggle Photos" onclick="togglePhotos();" id="togglePhotosButton" disabled/>
+    <input type="button" value="Toggle Route" onclick="toggleRoute();" id="toggleRouteButton" disabled/>
     <div id="map" style="width: 500px; height: 480px; border: 1px solid black;"></div>
     </div>
     <br/>

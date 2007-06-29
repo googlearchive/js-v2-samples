@@ -39,12 +39,15 @@ function getJSON(albumUrl) {
   var script = document.createElement('script');
 
   script.setAttribute('src', albumUrl + 
-                        '?alt=json-in-script&callback=loadAlbumJSON');
+                        '&alt=json-in-script&callback=loadAlbumJSON');
   script.setAttribute('id', 'jsonScript');
   script.setAttribute('type', 'text/javascript');
   document.documentElement.firstChild.appendChild(script);
 }
 
+function loadAlbumJSON() {
+  GLog.write("loaded");
+}
 </script>
   </head>
 

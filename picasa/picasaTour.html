@@ -22,13 +22,17 @@ function onLoad() {
     map.addControl(new GLargeMapControl());
     map.setCenter(new GLatLng(37.26, -112.949), 10); 
     map.addControl(new GLargeMapControl());
-    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo";
-
-//    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo";
-    geoxml = new GGeoXml(albumUrl + "&alt=kml&hl=en_US");
+  }
+}
+ 
+function loadAlbum() {
+   var albumKML = document.getElementById("albumKML").value;
+    geoxml = new GGeoXml(albumUrl);
     geoxml.hidden = false;
     map.addOverlay(geoxml);
-    getJSON(albumUrl);
+
+    // strip ?alt=kml
+    getJSON(albumKML.split("&")[0]);
   }
 } 
 
@@ -51,10 +55,6 @@ function getJSON(albumUrl) {
 
 function loadAlbumJSON(json) {
   var waypoints = [];
-  var startAddress = document.getElementById("startAddress").value;
-  if (startAddress != "") {
-    waypoints.push(startAddress);
-  }
   for (var i = 0; i < json.feed.entry.length; i++) {
     var entry = json.feed.entry[i];
     var pos = entry["georss$where"]["gml$Point"]["gml$pos"].$t;
@@ -110,7 +110,9 @@ function togglePhotos() {
   </head>
 
   <body onload="onLoad()">
-    Start Address:<input type="text" value="1300 Amphitheatre Parkway Mountain View, CA" id="startAddress"/>
+
+    Album KML: <input type=text" value="http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo&alt=kml" id="albumKML"/>
+    <input type="button" value="Load Album & Route" onclick="loadAlbum();"/>
     <br/>
     <input type="button" value="Toggle Markers" onclick="toggleMarkers();" id="toggleMarkersButton" disabled/>
     &nbsp;|

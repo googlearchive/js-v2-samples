@@ -27,7 +27,7 @@ function onLoad() {
  
 function loadAlbum() {
    var albumKML = document.getElementById("albumKML").value;
-    geoxml = new GGeoXml(albumUrl);
+    geoxml = new GGeoXml(albumKML);
     geoxml.hidden = false;
     map.addOverlay(geoxml);
 

@@ -26,8 +26,10 @@ function onLoad() {
 }
  
 function loadAlbum() {
-  directions.clear();
-  map.clearOverlays();
+  if (directions) {
+    directions.clear();
+    map.clearOverlays();
+  }
   var albumKML = document.getElementById("albumKML").value;
   geoxml = new GGeoXml(albumKML);
   geoxml.hidden = false;

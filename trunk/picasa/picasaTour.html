@@ -114,9 +114,9 @@ function togglePhotos() {
 </script>
   </head>
 
-  <body onload="onLoad()">
+  <body onload="onLoad()" style="font-family: Arial, sans serif">
 
-    <input type=text" value="http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo&alt=kml" size="50" id="albumKML"/>
+    <input type=text" value="http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo&alt=kml" size="40" id="albumKML"/>
     <input type="button" value="Load Album & Route" onclick="loadAlbum();"/>
     <br/>
     <div id="map" style="width:500px; height: 500px;"></div>
@@ -128,7 +128,7 @@ function togglePhotos() {
     &nbsp;|
     <input type="button" value="Toggle Route" onclick="toggleRoute();" id="toggleRouteButton" disabled/>
     </div>
-    <div id="panel" style="overflow: scroll; height: 200px; width: 500px">
+    <div id="panel" style="overflow: auto; height: 200px; width: 500px">
     Driving Directions will show up here once loaded.</div>
   </body>
 </html>

@@ -17,10 +17,9 @@ xmlns:v="urn:schemas-microsoft-com:vml">
 function onLoad() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map")); 
-    map.addControl(new GLargeMapControl());
     map.setCenter(new GLatLng(36.108575, -115.174528), 14); 
-    map.addControl(new GLargeMapControl());
-
+    map.addControl(new GSmallMapControl());
+   
     var tilelayer = new GTileLayer(new GCopyrightCollection(), 0, 17);
     tilelayer.getTileUrl = function(tile, zoom) {
       // A more interesting tile server would do something with the numbers

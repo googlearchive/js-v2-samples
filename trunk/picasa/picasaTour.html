@@ -58,6 +58,13 @@ function loadAlbumJSON(json) {
   }
   var directions = new GDirections(map, document.getElementById("panel"));
   directions.loadFromWaypoints(waypoints);
+  GEvent.addListener(directions, "addoverlay", function() {
+    var numGeocodes = directions.getNumGeocodes();
+    for (var i = 0; i < numGeocodes; i++) {
+      var marker = getMarker(i);
+      marker.hide();
+    }
+  });
 }
 </script>
   </head>

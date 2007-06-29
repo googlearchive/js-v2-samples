@@ -60,6 +60,7 @@ function loadAlbumJSON(json) {
   directions = new GDirections(map, document.getElementById("panel"));
   directions.loadFromWaypoints(waypoints);
   GEvent.addListener(directions, "addoverlay", function() {
+    document.getElementById("toggleMarkersButton").disabled = false;
   });
 }
 
@@ -79,7 +80,7 @@ function toggleMarkers() {
   </head>
 
   <body onload="onLoad()">
-    <input type="button" value="Toggle Markers" onclick="toggleMarkers();"/>
+    <input type="button" value="Toggle Markers" onclick="toggleMarkers();" id="toggleMarkersButton" disabled/>
     <div id="map" style="width: 500px; height: 480px; border: 1px solid black;"></div>
     </div>
     <br/>

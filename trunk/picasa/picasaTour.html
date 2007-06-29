@@ -20,8 +20,9 @@ function onLoad() {
     map.addControl(new GLargeMapControl());
     map.setCenter(new GLatLng(36.108575, -115.174528), 14); 
     map.addControl(new GLargeMapControl());
+    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo";
 
-    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo";
+//    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo";
     var geoXml = new GGeoXml(albumUrl + "&alt=kml&hl=en_US");
     map.addOverlay(geoXml);
     getJSON(albumUrl);

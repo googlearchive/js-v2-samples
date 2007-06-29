@@ -20,7 +20,9 @@ function onLoad() {
     map.addControl(new GLargeMapControl());
     map.setCenter(new GLatLng(37.26, -112.949), 10); 
     map.addControl(new GLargeMapControl());
-    G_PAUSE_ICON.image="";
+    G_PAUSE_ICON.iconSize = new GSize(16, 16);
+    G_START_ICON.iconSize = new GSize(16, 16);
+    G_END_ICON.iconSize = new GSize(16, 16);
     var albumUrl = "http://picasaweb.google.com/data/feed/base/user/kevin.smilak/albumid/4974033316286300177?kind=photo";
 
 //    var albumUrl = "http://picasaweb.google.com/data/feed/base/user/picasateam/albumid/5080138758345059425?kind=photo";

@@ -4,6 +4,7 @@
   <UserPref name="address" display_name="Location" 
     datatype="string" default_value="San Francisco" /> 
   <UserPref name="popupText" display_name="Popup Text" datatype="string" 
+      default_value="Edit gadget settings to customize the map." 
       required="false">
   </UserPref>
   <UserPref name="showPopup" display_name="Show Popup" datatype="bool"

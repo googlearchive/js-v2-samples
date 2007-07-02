@@ -110,7 +110,9 @@
         
         function addInfoWindowTextToMarker(marker) {
           this.popupText = this.prefs.getString("popupText");
+          alert("text:" + this.popupText);
           if(this.popupText) {
+            alert("here");
             GEvent.addListener(marker, "click", function() {
               marker.openInfoWindowHtml(this.popupText);
             });

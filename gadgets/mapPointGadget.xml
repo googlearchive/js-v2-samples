@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-  <ModulePrefs title="Map Point" height="300" author="author"/>
+  <ModulePrefs title="Map Point" height="300" author="author" >
+    <Require feature="setprefs" />
+  </ModulePrefs>
   <UserPref name="address" display_name="Location" 
     datatype="string" default_value="San Francisco" /> 
   <UserPref name="popupText" display_name="Popup Text" datatype="string" 
       default_value="Edit gadget settings to customize the map." 
-      required="false">
-  </UserPref>
+      required="false" />
   <UserPref name="showPopup" display_name="Show Popup" datatype="bool"
-  default_value="true">
-  </UserPref>
-  <UserPref name="mapType" display_name="Map Type" default_value="Map"
+  default_value="true" />
+  <UserPref name="mapType" display_name="Map Type" default_value="0"
       datatype="enum" required="true" >
     <EnumValue value="0" display_value="Map" />
     <EnumValue value="1" display_value="Satellite" />
@@ -37,8 +37,10 @@
       <EnumValue value="17" />
   </UserPref>    
   <UserPref name="showZoomControl" display_name="Show Zoom Control" datatype="bool"
-  default_value="true">
-  </UserPref>
+  default_value="true" />
+  <UserPref name="hiddenAddress" datatype="hidden" />
+  <UserPref name="hiddenLat" datatype="hidden" />
+  <UserPref name="hiddenLng" datatype="hidden" />
 
   <Content type="html"> 
     <![CDATA[
@@ -47,11 +49,12 @@
 
       <script type="text/javascript">
         var map;
+        var MODULE_ID = "mapPoint";
         var ERROR_POINT = new GLatLng(0, 0);
         var ERROR_ZOOM = 10;
         
         function load() {
-          this.prefs = new _IG_Prefs(__MODULE_ID__);
+          this.prefs = new _IG_Prefs(MODULE_ID);
 
           if (GBrowserIsCompatible()) {
             map = new GMap2(document.getElementById("map"));
@@ -65,33 +68,51 @@
               var mapType = G_SATELLITE_MAP;
             } else {
               var mapType = G_HYBRID_MAP;
-            }
-            
+            }           
             map.setMapType(mapType);
             
             var showZoomControl = this.prefs.getString("showZoomControl");
             if(showZoomControl == true) {
               map.addControl(new GSmallZoomControl());
-            }
-            
+            }           
+            var zoom = this.prefs.getInt("zoom");             
             var address = this.prefs.getString("address");   
-            var zoom = this.prefs.getInt("zoom");                          
+            var cachedAddress = this.prefs.getString("hiddenAddress");
             
-            var geocoder = new GClientGeocoder();
-            geocoder.getLatLng(address, function(point) {           
-              if (!point) {
-                var msg = "Unable to Display Location: " + address;
-                addMessageToMap(map, msg);
-              } else {
-                addMarkerToMap(map, point, zoom);
-              }
-            });
+            if(address != cachedAddress) {   
+              //this is a new address so geocode it to get the location 
+              geocodeAddressAndAddToMap(address, map, zoom)
+            } else {
+              //the address hasn't changed, so use the cached lat/lng data
+              addMarkerFromCache(map, zoom);
+            }                      
           }
         }
         
-        function addMarkerToMap(map, point, zoom) {
-          map.setCenter(point);
-          var marker = new GMarker(point);
+        function geocodeAddressAndAddToMap(address, map, zoom) {
+          var geocoder = new GClientGeocoder();
+          geocoder.getLatLng(address, function(point) {           
+            if (!point) {
+              var msg = "Unable to Display Location: " + address;
+              addMessageToMap(map, msg);
+            } else {
+              var latlng = new GLatLng(point.y, point.x);
+              addMarkerToMap(map, point, zoom);
+              cacheGeocode(address, point);
+            }
+          });       
+        }
+        
+        function addMarkerFromCache(map, zoom) {
+          var lat = this.prefs.getString("hiddenLat");
+          var lng = this.prefs.getString("hiddenLng");                   
+          var latlng = new GLatLng(lat, lng);
+          addMarkerToMap(map, latlng, zoom);         
+        }
+        
+        function addMarkerToMap(map, latlng, zoom) {
+          map.setCenter(latlng);
+          var marker = new GMarker(latlng);
           addInfoWindowTextToMarker(marker);
           map.addOverlay(marker);                  
           map.setZoom(zoom);      
@@ -110,15 +131,18 @@
         
         function addInfoWindowTextToMarker(marker) {
           this.popupText = this.prefs.getString("popupText");
-          alert("text:" + this.popupText);
           if(this.popupText) {
-            alert("here");
             GEvent.addListener(marker, "click", function() {
               marker.openInfoWindowHtml(this.popupText);
             });
           }              
         }
         
+        function cacheGeocode(address, point) {
+          this.prefs.set("hiddenLng", point.x);
+          this.prefs.set("hiddenLat", point.y);
+          this.prefs.set("hiddenAddress", address);
+        }
 
         _IG_RegisterOnloadHandler(load);
       </script>

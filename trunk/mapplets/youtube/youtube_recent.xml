@@ -6,8 +6,8 @@
              author_email="maps-devtools@google.com"
              author_affiliation="Google, Inc."
              author_location="Mountain View, CA"
-             screenshot="http://brandonbadger.googlepages.com/youtube_recent_mapplet_screenshot.png"
-             thumbnail="http://www.youtube.com/img/pic_youtubelogo_123x63.gif"
+             screenshot="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_screenshot.png"
+             thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_thumbnail.png"
              height="150">
   <Require feature="sharedmap"/>
 </ModulePrefs>
@@ -72,7 +72,7 @@
     html += "</div><br />";
     
     var embed = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";
-    html += "<div style=\"margin-left:auto; margin-right:auto;\">";
+    html += "<div style=\"\">";
     html += embed;
     html += "</div>";
     

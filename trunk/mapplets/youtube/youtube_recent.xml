@@ -205,29 +205,8 @@
     _IG_FetchXmlContent(url, this.dataCallback, { refreshInterval: 0 });
   }
   
-
-  
-  VideoDataMapper.prototype.parseVideoList = function(xml) {
-    var videoList = new Array();
-  
-    var video = new VideoData("brandon", 1234, "my video", 10, 3, 125, 
-      "my home video", 150, 12, 24, null, "http://tinyurl", 
-      "http:tinyurl/thumb", 33, -122);
-      
-    videoList[0] = video;
-    
-        var video = new VideoData("brandon", 1234, "my video2", 10, 3, 125, 
-      "my home video", 150, 12, 24, null, "http://tinyurl", 
-      "http:tinyurl/thumb", 33, -120);
-      
-    videoList[1] = video;
-  
-    return videoList;
-  }
-  
   var videoDataMapper = new VideoDataMapper();
-
-  
+ 
 </script>
 
 ]]></Content>

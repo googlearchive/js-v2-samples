@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="YouTube Videos - Recent Uploads"
+             description="Recent YouTube Videos with Location Data."
+             author="Brandon B."
+             author_email="maps-devtools@google.com"
+             author_affiliation="Google, Inc."
+             author_location="Mountain View, CA"
+             screenshot="http://brandonbadger.googlepages.com/youtube_recent_mapplet_screenshot.png"
+             thumbnail="http://www.youtube.com/img/pic_youtubelogo_123x63.gif"
+             height="150">
+  <Require feature="sharedmap"/>
+</ModulePrefs>
+<Content type="html"><![CDATA[
+
+<img src="http://www.youtube.com/img/pic_youtubelogo_123x63.gif"
+  style="display: block; margin-left: auto; margin-right: auto">
+  
+<script>
+ 
+  //class representing a single video data object
+  function VideoData(author, id, title, length_sec, rating_avg, rating_count,
+      description, view_count, upload_time, comment_count, tags, url,
+      thumbnail_url, lat, lng) {
+  
+    this.author = author;
+    this.id = id;
+    this.title = title;
+    this.length_sec = length_sec;
+    this.rating_avg = rating_avg;
+    this.rating_count = rating_count,
+    this.description = description;
+    this.view_count = view_count;
+    this.upload_time = upload_time;
+    this.comment_count = comment_count;
+    this.tags = tags;
+    this.url = url;
+    this.thumbnail_url = thumbnail_url;
+    this.lat = lat;
+    this.lng = lng;    
+           
+  }    
+  
+  VideoDataMapper.MAX_MARKERS_ON_MAP = 150;
+  VideoDataMapper.INIT_ZOOM_LEVEL = 4;
+  VideoDataMapper.INIT_LAT = 38.822591;
+  VideoDataMapper.INIT_LNG = -98.701172;
+  VideoDataMapper.VIDEO_WIDTH = 212;
+  VideoDataMapper.VIDEO_HEIGHT = 175;
+  
+  //class to manage loading of videos onto the map
+  function VideoDataMapper() {    
+    this.init();  
+  }
+  
+  VideoDataMapper.prototype.init = function() {
+    // Center the map in the Mediterranean and zoom out to a world view
+    var map = new GMap2();
+    var point = new GLatLng(VideoDataMapper.INIT_LAT, VideoDataMapper.INIT_LNG);
+    map.setCenter(point, VideoDataMapper.INIT_ZOOM_LEVEL);
+ 
+    var xml = this.getVideoData();  
+  }
+  
+  function getHtmlForVideoWindow(videoData) {
+    var html = "";
+    html += "<div style=\"font-size:12px; width:" + VideoDataMapper.VIDEO_WIDTH + "\"><b>" + videoData.title + "</b></div>";
+    
+    var link = "<a href=\"" + videoData.url + "\" target=\"_blank\">" + videoData.url + "</a><br />";
+    html += "<div style=\"font-size:11px;\">";
+    html += link;
+    html += "</div><br />";
+    
+    var embed = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";
+    html += "<div style=\"margin-left:auto; margin-right:auto;\">";
+    html += embed;
+    html += "</div>";
+    
+    return html;
+  }
+  
+  function addVideoMarkerToMap(map, videoData) {
+  
+    // Add a marker to the map
+    var point = new GLatLng(videoData.lat, videoData.lng);
+    var marker = new GMarker(point); 
+    map.addOverlay(marker);
+
+    // Make user clicks on the marker open the info window
+    GEvent.addListener(marker, "click", function() {
+      var message = getHtmlForVideoWindow(videoData);
+      marker.openInfoWindowHtml(message);
+    });
+  
+  }
+  
+  function parseVideoNode(videoNode) {
+    var videoData = null;
+    var author = null;
+    var id = null;
+    var title = null;
+    var length_sec = null;
+    var rating_avg = null;
+    var rating_count = null;
+    var description = null;
+    var view_count = null;
+    var upload_time = null;
+    var comment_count = null;
+    var tags = null;
+    var url = null;
+    var thumbnail_url = null;
+    var lat = null;
+    var lng = null;
+    
+    var nodeList = videoNode.childNodes;
+    for(var j = 0; j < nodeList.length; j++) {
+      var node = nodeList.item(j);
+      
+      if (node.nodeName == "author") {
+        author = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "id") {
+        id = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "title") {
+        title = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "length_seconds" && node.firstChild) {
+        length_sec = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "rating_avg") {
+        rating_avg = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "rating_count") {
+        rating_count = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "description") {
+        description = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "view_count") {
+        view_count = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "upload_time") {
+        upload_time = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "comment_count") {
+        comment_count = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "tags") {
+        tags = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "url") {
+        url = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "thumbnail_url") {
+        thumbnail_url = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "coordinates") {
+        var coordinates = node.firstChild.nodeValue;
+        if(coordinates) {
+          var latlng = coordinates.split(",");
+          lat = latlng[0];
+          lng = latlng[1];
+        }
+      }
+    }
+    
+    videoData = new VideoData(author, id, title, length_sec, rating_avg, rating_count,
+      description, view_count, upload_time, comment_count, tags, url,
+      thumbnail_url, lat, lng)
+    
+    return videoData;
+  }
+  
+  function displayCurrentData(map, videoDataList) {
+    if(videoDataList) {
+      for(var i = 0; i < videoDataList.length; i++) {
+        var videoData = videoDataList[i];
+        addVideoMarkerToMap(map, videoData);
+      }
+    }
+  }
+  
+  VideoDataMapper.prototype.dataCallback = function(response) {
+    var videoDataList = new Array();
+    
+    var videos = response.getElementsByTagName("video");
+    
+    // default response from youtube contains 400 videos
+    // newest videos aren't always available on youtube yet
+    // so take the videos from the end of the list
+    var newestVideoPos = videos.length - VideoDataMapper.MAX_MARKERS_ON_MAP;
+    for(var i = newestVideoPos; i < videos.length; i++) {
+      var videoNode = videos.item(i);
+      var videoData = parseVideoNode(videoNode);     
+      videoDataList[videoDataList.length] = videoData;     
+    }
+ 
+    var map = new GMap2();
+    displayCurrentData(map, videoDataList);
+  }
+  
+  VideoDataMapper.prototype.getVideoData = function() {
+    var url = "http://www.youtube.com/api2_rest?method=youtube.videos.list_recent_geotagged&dev_id=OcN9xXYar1g"; 
+    _IG_FetchXmlContent(url, this.dataCallback, { refreshInterval: 0 });
+  }
+  
+
+  
+  VideoDataMapper.prototype.parseVideoList = function(xml) {
+    var videoList = new Array();
+  
+    var video = new VideoData("brandon", 1234, "my video", 10, 3, 125, 
+      "my home video", 150, 12, 24, null, "http://tinyurl", 
+      "http:tinyurl/thumb", 33, -122);
+      
+    videoList[0] = video;
+    
+        var video = new VideoData("brandon", 1234, "my video2", 10, 3, 125, 
+      "my home video", 150, 12, 24, null, "http://tinyurl", 
+      "http:tinyurl/thumb", 33, -120);
+      
+    videoList[1] = video;
+  
+    return videoList;
+  }
+  
+  var videoDataMapper = new VideoDataMapper();
+
+  
+</script>
+
+]]></Content>
+</Module>

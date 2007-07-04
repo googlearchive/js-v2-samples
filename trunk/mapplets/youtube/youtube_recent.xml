@@ -233,7 +233,7 @@
     // newest videos aren't always available on youtube yet
     // so take the videos from the end of the list
     var newestVideoPos = videos.length - VideoDataMapper.MAX_MARKERS_ON_MAP;
-    for(var i = newestVideoPos; i < videos.length; i++) {
+    for(var i = videos.length - 1; i >= newestVideoPos; i--) {
       var videoNode = videos.item(i);
       var videoData = parseVideoNode(videoNode);     
       videoDataList[videoDataList.length] = videoData;     

@@ -42,7 +42,7 @@
   }    
   
   VideoDataMapper.MAX_MARKERS_ON_MAP = 100;
-  VideoDataMapper.INIT_ZOOM_LEVEL = 4;
+  VideoDataMapper.INIT_ZOOM_LEVEL = 2;
   VideoDataMapper.INIT_LAT = 38.822591;
   VideoDataMapper.INIT_LNG = -98.701172;
   VideoDataMapper.VIDEO_WIDTH = 212;

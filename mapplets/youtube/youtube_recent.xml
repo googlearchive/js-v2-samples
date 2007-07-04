@@ -74,7 +74,7 @@
     settingsPanelDiv.appendChild(descDiv);
     
     var reloadLink = createLink(null, "Reload", null, null);
-    settingsPanelDiv.appendChild(reloadLink);
+    //settingsPanelDiv.appendChild(reloadLink);
     
     var videoTableDiv = document.getElementById("videoTable");
   }

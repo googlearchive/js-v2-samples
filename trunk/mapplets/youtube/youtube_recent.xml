@@ -13,8 +13,14 @@
 </ModulePrefs>
 <Content type="html"><![CDATA[
 
-<img src="http://www.youtube.com/img/pic_youtubelogo_123x63.gif"
-  style="display: block; margin-left: auto; margin-right: auto;">
+<div class="controlPanl">
+<table><tr>
+<td><img src="http://www.youtube.com/img/pic_youtubelogo_123x63.gif"></td>
+<td><div id="settingsPanel"></div></td>
+</tr></table>
+</div>
+<div id="loading">Loading...</div>
+<div id="videoTable"></div>  
   
 <script>
  
@@ -43,8 +49,8 @@
   
   VideoDataMapper.MAX_MARKERS_ON_MAP = 100;
   VideoDataMapper.INIT_ZOOM_LEVEL = 2;
-  VideoDataMapper.INIT_LAT = 38.822591;
-  VideoDataMapper.INIT_LNG = -98.701172;
+  VideoDataMapper.INIT_LAT = 37.71859;
+  VideoDataMapper.INIT_LNG = 6.679688;
   VideoDataMapper.VIDEO_WIDTH = 212;
   VideoDataMapper.VIDEO_HEIGHT = 175;
   
@@ -54,12 +60,23 @@
   }
   
   VideoDataMapper.prototype.init = function() {
+
+    this.getVideoData();  
+    
     // Center the map in the Mediterranean and zoom out to a world view
     var map = new GMap2();
     var point = new GLatLng(VideoDataMapper.INIT_LAT, VideoDataMapper.INIT_LNG);
     map.setCenter(point, VideoDataMapper.INIT_ZOOM_LEVEL);
- 
-    var xml = this.getVideoData();  
+    
+    var settingsPanelDiv = document.getElementById("settingsPanel");
+    var desc = VideoDataMapper.MAX_MARKERS_ON_MAP + " recently uploaded YouTube Videos.";
+    var descDiv = createDiv(desc, null);
+    settingsPanelDiv.appendChild(descDiv);
+    
+    var reloadLink = createLink(null, "Reload", null, null);
+    settingsPanelDiv.appendChild(reloadLink);
+    
+    var videoTableDiv = document.getElementById("videoTable");
   }
   
   function getHtmlForVideoWindow(videoData) {
@@ -92,6 +109,7 @@
       marker.openInfoWindowHtml(message);
     });
   
+    return marker;
   }
   
   function parseVideoNode(videoNode) {
@@ -172,12 +190,37 @@
     return videoData;
   }
   
+  function selectMarker(marker, videoData) {  
+    var message = getHtmlForVideoWindow(videoData);
+    marker.openInfoWindowHtml(message);
+  }
+  
   function displayCurrentData(map, videoDataList) {
-    if(videoDataList) {
+    if(videoDataList) {    
+      var videoTable = createTable();     
+      
       for(var i = 0; i < videoDataList.length; i++) {
         var videoData = videoDataList[i];
-        addVideoMarkerToMap(map, videoData);
+        var marker = addVideoMarkerToMap(map, videoData);
+        
+        var row = createTableRow(videoTable);
+        row.onclick = methodClosure(
+                    this, selectMarker, [marker, videoData]);
+                
+        var imageCell = createTableCell(row, null);
+        var imageCellDiv = createDiv("<img src=\"" + videoData.thumbnail_url + "\" />", null);
+        imageCell.appendChild(imageCellDiv);
+        
+        var titleCell = createTableCell(row, null);
+        var titleCellDiv = createDiv(videoData.title, null);
+        titleCell.appendChild(titleCellDiv);
       }
+      
+      var loadingDiv = document.getElementById("loading");
+      removeChildren(loadingDiv);
+      
+      var tableDiv = document.getElementById("videoTable");
+      tableDiv.appendChild(videoTable);   
     }
   }
   
@@ -204,6 +247,70 @@
     var url = "http://www.youtube.com/api2_rest?method=youtube.videos.list_recent_geotagged&dev_id=OcN9xXYar1g"; 
     _IG_FetchXmlContent(url, this.dataCallback, { refreshInterval: 0 });
   }
+  
+  /**
+ * Various Static DOM Wrappers.
+*/
+function methodClosure(object, method, opt_argArray) {
+  return function() {
+    return method.apply(object, opt_argArray);
+  }
+}
+
+function methodCallback(object, method) {
+  return function() {
+    return method.apply(object, arguments);
+  }
+}
+
+function createDiv(opt_text, opt_className) {
+  var el = document.createElement("div");
+  if (opt_text) {
+    el.innerHTML = opt_text;
+  }
+  if (opt_className) { el.className = opt_className; }
+  return el;
+}
+
+function removeChildren(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+function cssSetClass(el, className) {
+  el.className = className;
+}
+
+function createTable(opt_className) {
+  var el = document.createElement("table");
+  if (opt_className) { el.className = opt_className; }
+  return el;
+}
+
+function createTableRow(table) {
+  var tr = table.insertRow(-1);
+  return tr;
+}
+
+function createTableCell(tr, opt_className) {
+  var td = tr.insertCell(-1);
+  if (opt_className) { td.className = opt_className; }
+  return td;
+}
+
+function createLink(href, text, opt_target, opt_className) {
+  var el = document.createElement("a");
+  el.href = href;
+  el.appendChild(document.createTextNode(text));
+  if (opt_className) {
+    el.className = opt_className;
+  }
+  if (opt_target) {
+    el.target = opt_target;
+  }
+  return el;
+}
   
   var videoDataMapper = new VideoDataMapper();
  

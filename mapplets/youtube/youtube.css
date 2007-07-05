@@ -1,0 +1,43 @@
+.yt-results {
+  margin-top : 10px;
+  width : 100%;
+}
+
+.yt-results table {
+  border : none;
+  border-collapse : collapse;
+  width : 100%;
+  cell-padding : 0px;
+}
+
+.yt-results .thumbnail {
+  border : none;
+  padding : none;
+  margin : none;	
+  width : 125px;
+  height : 100px;
+}
+
+.yt-results td {
+  cursor : pointer;	
+  padding : 2px;
+}
+
+.yt-results .even {
+  background-color : #CCCCCC;	
+}
+
+.yt-results .odd {
+  background-color : #FFFFFF;
+}
+
+.yt-loading-active {
+  display : block;
+  margin-top : 20px;
+  margin-left : auto;
+  margin-rigth : auto;
+}
+
+.yt-loading-idle {
+  display : none;
+}

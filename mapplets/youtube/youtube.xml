@@ -13,14 +13,12 @@
 </ModulePrefs>
 <Content type="html"><![CDATA[
 
-<div class="controlPanl">
-<table><tr>
-<td><img src="http://www.youtube.com/img/pic_youtubelogo_123x63.gif"></td>
-<td><div id="settingsPanel"></div></td>
-</tr></table>
-</div>
-<div id="loading">Loading...</div>
-<div id="videoTable"></div>  
+<style type="text/css">
+      @import url("http://brandonbadger.googlepages.com/youtube.css");
+</style>
+
+<div id="youtube" />
+
   
 <script>
  
@@ -45,6 +43,7 @@
     this.lat = lat;
     this.lng = lng;    
            
+    this.marker = null;
   }    
   
   VideoDataMapper.MAX_MARKERS_ON_MAP = 100;
@@ -60,23 +59,45 @@
   }
   
   VideoDataMapper.prototype.init = function() {
+    this.videoDataList = new Array();
 
     this.getVideoData();  
     
     // Center the map in the Mediterranean and zoom out to a world view
-    var map = new GMap2();
+    this.map = new GMap2();
     var point = new GLatLng(VideoDataMapper.INIT_LAT, VideoDataMapper.INIT_LNG);
-    map.setCenter(point, VideoDataMapper.INIT_ZOOM_LEVEL);
+    this.map.setCenter(point, VideoDataMapper.INIT_ZOOM_LEVEL);
     
-    var settingsPanelDiv = document.getElementById("settingsPanel");
-    var desc = VideoDataMapper.MAX_MARKERS_ON_MAP + " recently uploaded YouTube Videos.";
-    var descDiv = createDiv(desc, null);
-    settingsPanelDiv.appendChild(descDiv);
-    
+    this.youtubeDiv = document.getElementById("youtube");
+    this.initControlPanel();
+    this.youtubeDiv.appendChild(this.controlPanelDiv);
+   
     var reloadLink = createLink(null, "Reload", null, null);
     //settingsPanelDiv.appendChild(reloadLink);
     
-    var videoTableDiv = document.getElementById("videoTable");
+    this.loadingDiv = createDiv("Loading...", "yt-loading-active");
+    this.youtubeDiv.appendChild(this.loadingDiv);
+    
+    this.resultsTableDiv = createDiv(null, "yt-results");
+    this.youtubeDiv.appendChild(this.resultsTableDiv);
+  }
+  
+  VideoDataMapper.prototype.initControlPanel = function() {
+    this.controlPanelDiv = createDiv(null, "yt-control-panel");
+    
+    var table = createTable();
+    var row = createTableRow(table);
+    var imageTD = createTableCell(row, null);
+    var descTD = createTableCell(row, null);
+    
+    var imageDiv = createDiv("<img src=\"http://www.youtube.com/img/pic_youtubelogo_123x63.gif\">", null);
+    imageTD.appendChild(imageDiv);
+    
+    var desc = VideoDataMapper.MAX_MARKERS_ON_MAP + " recently uploaded YouTube Videos.";
+    var descDiv = createDiv(desc, null);
+    descTD.appendChild(descDiv);
+    
+    this.controlPanelDiv.appendChild(table);    
   }
   
   function getHtmlForVideoWindow(videoData) {
@@ -102,6 +123,7 @@
     var point = new GLatLng(videoData.lat, videoData.lng);
     var marker = new GMarker(point); 
     map.addOverlay(marker);
+    videoData.marker = marker;
 
     // Make user clicks on the marker open the info window
     GEvent.addListener(marker, "click", function() {
@@ -195,37 +217,52 @@
     marker.openInfoWindowHtml(message);
   }
   
-  function displayCurrentData(map, videoDataList) {
-    if(videoDataList) {    
-      var videoTable = createTable();     
+  VideoDataMapper.prototype.displayCurrentData = function() {
+    if(this.videoDataList) {    
+      var videoTable = createTable("yt-results-table");     
       
-      for(var i = 0; i < videoDataList.length; i++) {
-        var videoData = videoDataList[i];
-        var marker = addVideoMarkerToMap(map, videoData);
+      for(var i = 0; i < this.videoDataList.length; i++) {
+        var videoData = this.videoDataList[i];
+        var marker = addVideoMarkerToMap(this.map, videoData);
         
         var row = createTableRow(videoTable);
         row.onclick = methodClosure(
                     this, selectMarker, [marker, videoData]);
+         
+        var cellCss;       
+        if((i % 2) == 0) {
+          cellCss = "even";
+        } else {
+          cellCss = "odd";
+        }
                 
-        var imageCell = createTableCell(row, null);
-        var imageCellDiv = createDiv("<img src=\"" + videoData.thumbnail_url + "\" />", null);
+        var imageCell = createTableCell(row, cellCss);
+        var img = "<img src=\"" + videoData.thumbnail_url + "\" class=\"thumbnail\" />";
+        var imageCellDiv = createDiv(img, null);
         imageCell.appendChild(imageCellDiv);
         
-        var titleCell = createTableCell(row, null);
+        var titleCell = createTableCell(row, cellCss);
         var titleCellDiv = createDiv(videoData.title, null);
         titleCell.appendChild(titleCellDiv);
       }
+      this.resultsTableDiv.appendChild(videoTable);
       
-      var loadingDiv = document.getElementById("loading");
-      removeChildren(loadingDiv);
-      
-      var tableDiv = document.getElementById("videoTable");
-      tableDiv.appendChild(videoTable);   
+      cssSetClass(this.loadingDiv, "yt-loading-idle");      
     }
   }
   
+  VideoDataMapper.prototype.clearMarkers = function() {
+    for(var i = 0; i < this.videoDataList.length; i++) {
+      var videoData = this.videoDataList[i];
+      var marker = videoData.marker;
+      this.map.removeOverlay(marker);
+      this.videoDataList[i] = null;
+    }
+    this.videoDataList = new Array;
+  }
+  
   VideoDataMapper.prototype.dataCallback = function(response) {
-    var videoDataList = new Array();
+    this.ytMapplet.clearMarkers();
     
     var videos = response.getElementsByTagName("video");
     
@@ -236,11 +273,10 @@
     for(var i = videos.length - 1; i >= newestVideoPos; i--) {
       var videoNode = videos.item(i);
       var videoData = parseVideoNode(videoNode);     
-      videoDataList[videoDataList.length] = videoData;     
+      this.ytMapplet.videoDataList[this.ytMapplet.videoDataList.length] = videoData;     
     }
  
-    var map = new GMap2();
-    displayCurrentData(map, videoDataList);
+    this.ytMapplet.displayCurrentData();
   }
   
   VideoDataMapper.prototype.getVideoData = function() {
@@ -312,7 +348,7 @@ function createLink(href, text, opt_target, opt_className) {
   return el;
 }
   
-  var videoDataMapper = new VideoDataMapper();
+  this.ytMapplet = new VideoDataMapper();
  
 </script>
 

@@ -1,13 +1,16 @@
 .yt-results {
-  margin-top : 10px;
+  margin-top : 10px;  
+  margin-right : 10px;
+  font-family: arial, sans-serif;
+  font-size : 11px;
   width : 100%;
 }
 
 .yt-results table {
   border : none;
   border-collapse : collapse;
-  width : 100%;
   cell-padding : 0px;
+  width : 100%;
 }
 
 .yt-results .thumbnail {
@@ -21,6 +24,8 @@
 .yt-results td {
   cursor : pointer;	
   padding : 2px;
+  vertical-align : top;
+  height : 100px;
 }
 
 .yt-results .even {
@@ -29,6 +34,32 @@
 
 .yt-results .odd {
   background-color : #FFFFFF;
+}
+
+.yt-results .yt-video-overview div {
+  	
+}
+
+.yt-results .yt-video-title {
+  margin-top : 2px;
+  font-size : 12px;
+  font-weight : bold;
+  overflow : hidden;
+  white-space : nowrap;
+  width : 150px; 
+  height : 20px;
+}
+
+.yt-results .yt-video-desc {
+  font-size : 11px;
+  overflow : hidden;
+  width : 150px;
+  height : 50px;
+}
+
+.yt-results .yt-video-rating {
+  font-size : 11px;
+  overflow : hidden;
 }
 
 .yt-loading-active {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-<ModulePrefs title="YouTube Videos - Recent Uploads"
-             description="Recent YouTube Videos with Location Data."
+<ModulePrefs title="YouTube Videos"
+             description="YouTube videos from around the globe."
              author="Brandon B."
              author_email="maps-devtools@google.com"
              author_affiliation="Google, Inc."

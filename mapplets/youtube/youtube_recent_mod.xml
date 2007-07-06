@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="YouTube Videos"
+             description="YouTube videos from around the globe."
+             author="Brandon B."
+             author_email="maps-devtools@google.com"
+             author_affiliation="Google, Inc."
+             author_location="Mountain View, CA"
+             screenshot="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_screenshot.png"
+             thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_thumbnail.png"
+             height="200">
+  <Require feature="sharedmap"/>
+</ModulePrefs>
+<Content type="html"><![CDATA[
+
+<style type="text/css">
+      @import url("http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/youtube.css");
+</style>
+
+<div id="youtube" />
+
+  
+<script>
+ 
+  //class representing a single video data object
+  function VideoData(author, id, title, length_sec, rating_avg, rating_count,
+      description, view_count, upload_time, comment_count, tags, url,
+      thumbnail_url, lat, lng) {
+  
+    this.author = author;
+    this.id = id;
+    this.title = title;
+    this.length_sec = length_sec;
+    this.rating_avg = rating_avg;
+    this.rating_count = rating_count,
+    this.description = description;
+    this.view_count = view_count;
+    this.upload_time = upload_time;
+    this.comment_count = comment_count;
+    this.tags = tags;
+    this.url = url;
+    this.thumbnail_url = thumbnail_url;
+    this.lat = lat;
+    this.lng = lng;    
+           
+    this.marker = null;
+  }    
+  
+  VideoDataMapper.MAX_MARKERS_ON_MAP = 100;
+  VideoDataMapper.INIT_ZOOM_LEVEL = 2;
+  VideoDataMapper.INIT_LAT = 37.71859;
+  VideoDataMapper.INIT_LNG = 6.679688;
+  VideoDataMapper.VIDEO_WIDTH = 212;
+  VideoDataMapper.VIDEO_HEIGHT = 175;
+  VideoDataMapper.YOUTUBE_DEV_ID = "OcN9xXYar1g";
+  VideoDataMapper.DATA_URL = "http://www.youtube.com/api2_rest?method=youtube.videos.list_recent_geotagged&dev_id=" + VideoDataMapper.YOUTUBE_DEV_ID; 
+  
+  //class to manage loading of videos onto the map
+  function VideoDataMapper() {    
+    this.init();  
+  }
+  
+  VideoDataMapper.prototype.init = function() {
+    this.videoDataList = new Array();
+    
+    // Center the map in the Mediterranean and zoom out to a world view
+    this.map = new GMap2();
+    var point = new GLatLng(VideoDataMapper.INIT_LAT, VideoDataMapper.INIT_LNG);
+    this.map.setCenter(point, VideoDataMapper.INIT_ZOOM_LEVEL);
+    
+    this.youtubeDiv = document.getElementById("youtube");
+    this.initControlPanel();
+    this.youtubeDiv.appendChild(this.controlPanelDiv);
+   
+    var href = "JavaScript:this.ytMapplet.getVideoData();";
+    var reloadLink = createLink(href, "Reload", null, "yt-reload");
+    this.youtubeDiv.appendChild(reloadLink);
+    
+    this.loadingDiv = createDiv("Loading...", "yt-loading-active");
+    this.youtubeDiv.appendChild(this.loadingDiv);
+    
+    this.resultsTableDiv = createDiv(null, "yt-results");
+    this.youtubeDiv.appendChild(this.resultsTableDiv);
+    
+    this.getVideoData();  
+  }
+  
+  VideoDataMapper.prototype.initControlPanel = function() {
+    this.controlPanelDiv = createDiv(null, "yt-control-panel");
+    
+    var table = createTable();
+    var row = createTableRow(table);
+    var imageTD = createTableCell(row, null);
+    var descTD = createTableCell(row, null);
+    
+    var imageDiv = createDiv("<img src=\"http://www.youtube.com/img/pic_youtubelogo_123x63.gif\">", null);
+    imageTD.appendChild(imageDiv);
+    
+    var desc = VideoDataMapper.MAX_MARKERS_ON_MAP + " recently uploaded YouTube Videos.";
+    var descDiv = createDiv(desc, null);
+    descTD.appendChild(descDiv);
+    
+    this.controlPanelDiv.appendChild(table);    
+  }
+  
+  function getHtmlForVideoWindow(videoData) {
+    var html = "";
+    html += "<div style=\"font-size:12px; width:" + VideoDataMapper.VIDEO_WIDTH + "\"><b>" + videoData.title + "</b></div>";
+    
+    var link = "<a href=\"" + videoData.url + "\" target=\"_blank\">" + videoData.url + "</a><br />";
+    html += "<div style=\"font-size:11px;\">";
+    html += link;
+    html += "</div><br />";
+    
+    var embed = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";
+    html += "<div style=\"margin-left:auto; margin-right:auto;\">";
+    html += embed;
+    html += "</div>";
+    
+    return html;
+  }
+  
+  function addVideoMarkerToMap(map, videoData) {
+  
+    // Add a marker to the map
+    var point = new GLatLng(videoData.lat, videoData.lng);
+    var marker = new GMarker(point);
+    marker.setImage(videoData.thumbnail_url); 
+    map.addOverlay(marker);
+    videoData.marker = marker;
+
+    // Make user clicks on the marker open the info window
+    GEvent.addListener(marker, "click", function() {
+      var message = getHtmlForVideoWindow(videoData);   
+      marker.openInfoWindowHtml(message);
+    });
+  
+    return marker;
+  }
+  
+  function parseVideoNode(videoNode) {
+    var videoData = null;
+    var author = null;
+    var id = null;
+    var title = null;
+    var length_sec = null;
+    var rating_avg = null;
+    var rating_count = null;
+    var description = null;
+    var view_count = null;
+    var upload_time = null;
+    var comment_count = null;
+    var tags = null;
+    var url = null;
+    var thumbnail_url = null;
+    var lat = null;
+    var lng = null;
+    
+    var nodeList = videoNode.childNodes;
+    for(var j = 0; j < nodeList.length; j++) {
+      var node = nodeList.item(j);
+      
+      if (node.nodeName == "author") {
+        author = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "id") {
+        id = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "title") {
+        title = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "length_seconds" && node.firstChild) {
+        length_sec = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "rating_avg") {
+        rating_avg = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "rating_count") {
+        rating_count = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "description") {
+        description = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "view_count") {
+        view_count = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "upload_time") {
+        upload_time = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "comment_count") {
+        comment_count = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "tags") {
+        tags = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "url") {
+        url = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "thumbnail_url") {
+        thumbnail_url = node.firstChild.nodeValue;
+      }
+      if (node.nodeName == "coordinates") {
+        var coordinates = node.firstChild.nodeValue;
+        if(coordinates) {
+          var latlng = coordinates.split(",");
+          lat = latlng[0];
+          lng = latlng[1];
+        }
+      }
+    }
+    
+    videoData = new VideoData(author, id, title, length_sec, rating_avg, rating_count,
+      description, view_count, upload_time, comment_count, tags, url,
+      thumbnail_url, lat, lng)
+    
+    return videoData;
+  }
+  
+  function selectMarker(marker, videoData) {  
+    var message = getHtmlForVideoWindow(videoData);
+    marker.openInfoWindowHtml(message);
+  }
+  
+  VideoDataMapper.prototype.displayCurrentData = function() {
+    if(this.videoDataList) {    
+      var videoTable = createTable("yt-results-table");     
+      
+      for(var i = 0; i < this.videoDataList.length; i++) {
+        var videoData = this.videoDataList[i];
+        var marker = addVideoMarkerToMap(this.map, videoData);
+        
+        var row = createTableRow(videoTable);
+        row.onclick = methodClosure(
+                    this, selectMarker, [marker, videoData]);
+         
+        var cellCss;       
+        if((i % 2) == 0) {
+          cellCss = "even";
+        } else {
+          cellCss = "odd";
+        }
+                
+        var imageCell = createTableCell(row, cellCss);
+        var img = "<img src=\"" + videoData.thumbnail_url + "\" class=\"thumbnail\" />";
+        var imageCellDiv = createDiv(img, null);
+        imageCell.appendChild(imageCellDiv);
+        
+        var OverviewCell = createTableCell(row, cellCss);
+        OverviewCell.appendChild(this.getVideoOverviewDiv(videoData));
+      }
+      removeChildren(this.resultsTableDiv);
+      this.resultsTableDiv.appendChild(videoTable);
+      
+      cssSetClass(this.loadingDiv, "yt-loading-idle");      
+    }
+  }
+  
+  VideoDataMapper.prototype.getVideoOverviewDiv = function(videoData) {
+    
+    var titleDiv = createDiv(videoData.title, "yt-video-title");
+    var descDiv = createDiv(videoData.description, "yt-video-desc");
+    
+    var ratingText = "Rating: " + videoData.rating_avg;
+    var ratingsDiv = createDiv(ratingText, "yt-video-rating");
+    
+    var overviewDiv = createDiv(null, "yt-video-overview");
+    overviewDiv.appendChild(titleDiv);
+    overviewDiv.appendChild(descDiv);
+    overviewDiv.appendChild(ratingsDiv);
+  
+    return overviewDiv;
+  }
+  
+  VideoDataMapper.prototype.clearMarkers = function() {
+    for(var i = 0; i < this.videoDataList.length; i++) {
+      var videoData = this.videoDataList[i];
+      var marker = videoData.marker;
+      this.map.removeOverlay(marker);
+      this.videoDataList[i] = null;
+    }
+    this.videoDataList = new Array;
+  }
+  
+  VideoDataMapper.prototype.dataCallback = function(response) {
+    this.ytMapplet.clearMarkers();
+    
+    var videos = response.getElementsByTagName("video");
+    
+    // default response from youtube contains 400 videos
+    // newest videos aren't always available on youtube yet
+    // so take the videos from the end of the list
+    var newestVideoPos = videos.length - VideoDataMapper.MAX_MARKERS_ON_MAP;
+    for(var i = videos.length - 1; i >= newestVideoPos; i--) {
+      var videoNode = videos.item(i);
+      var videoData = parseVideoNode(videoNode);     
+      this.ytMapplet.videoDataList[this.ytMapplet.videoDataList.length] = videoData;     
+    }
+ 
+    this.ytMapplet.displayCurrentData();
+  }
+  
+  VideoDataMapper.prototype.getVideoData = function() {
+    cssSetClass(this.loadingDiv, "yt-loading-active");
+    
+    _IG_FetchXmlContent(VideoDataMapper.DATA_URL, this.dataCallback, { refreshInterval: 0 });
+  }
+  
+  /**
+ * Various Static DOM Wrappers.
+*/
+function methodClosure(object, method, opt_argArray) {
+  return function() {
+    return method.apply(object, opt_argArray);
+  }
+}
+
+function methodCallback(object, method) {
+  return function() {
+    return method.apply(object, arguments);
+  }
+}
+
+function createDiv(opt_text, opt_className) {
+  var el = document.createElement("div");
+  if (opt_text) {
+    el.innerHTML = opt_text;
+  }
+  if (opt_className) { el.className = opt_className; }
+  return el;
+}
+
+function removeChildren(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+function cssSetClass(el, className) {
+  el.className = className;
+}
+
+function createTable(opt_className) {
+  var el = document.createElement("table");
+  if (opt_className) { el.className = opt_className; }
+  return el;
+}
+
+function createTableRow(table) {
+  var tr = table.insertRow(-1);
+  return tr;
+}
+
+function createTableCell(tr, opt_className) {
+  var td = tr.insertCell(-1);
+  if (opt_className) { td.className = opt_className; }
+  return td;
+}
+
+function createLink(href, text, opt_target, opt_className) {
+  var el = document.createElement("a");
+  el.href = href;
+  el.appendChild(document.createTextNode(text));
+  if (opt_className) {
+    el.className = opt_className;
+  }
+  if (opt_target) {
+    el.target = opt_target;
+  }
+  return el;
+}
+  
+  this.ytMapplet = new VideoDataMapper();
+ 
+</script>
+
+]]></Content>
+</Module>

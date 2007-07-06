@@ -1,8 +1,14 @@
+.youtube {
+  font-family: arial, sans-serif;
+  font-size : 11px;
+}
+
 .yt-results {
   margin-top : 10px;  
   margin-right : 10px;
   font-family: arial, sans-serif;
   font-size : 11px;
+  clear : both;
   width : 100%;
 }
 
@@ -60,6 +66,14 @@
 .yt-results .yt-video-rating {
   font-size : 11px;
   overflow : hidden;
+}
+
+.yt-reload {
+  text-align : right;	
+  font-size : 11px;
+  display : block;
+  float : right;
+  margin-bottom : 2px;
 }
 
 .yt-loading-active {

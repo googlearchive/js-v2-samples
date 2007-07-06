@@ -8,7 +8,7 @@
              author_location="Mountain View, CA"
              screenshot="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_screenshot.png"
              thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_thumbnail.png"
-             height="150">
+             height="200">
   <Require feature="sharedmap"/>
 </ModulePrefs>
 <Content type="html"><![CDATA[
@@ -52,6 +52,8 @@
   VideoDataMapper.INIT_LNG = 6.679688;
   VideoDataMapper.VIDEO_WIDTH = 212;
   VideoDataMapper.VIDEO_HEIGHT = 175;
+  VideoDataMapper.YOUTUBE_DEV_ID = "OcN9xXYar1g";
+  VideoDataMapper.DATA_URL = "http://www.youtube.com/api2_rest?method=youtube.videos.list_recent_geotagged&dev_id=" + VideoDataMapper.YOUTUBE_DEV_ID; 
   
   //class to manage loading of videos onto the map
   function VideoDataMapper() {    
@@ -60,8 +62,6 @@
   
   VideoDataMapper.prototype.init = function() {
     this.videoDataList = new Array();
-
-    this.getVideoData();  
     
     // Center the map in the Mediterranean and zoom out to a world view
     this.map = new GMap2();
@@ -72,14 +72,17 @@
     this.initControlPanel();
     this.youtubeDiv.appendChild(this.controlPanelDiv);
    
-    var reloadLink = createLink(null, "Reload", null, null);
-    //settingsPanelDiv.appendChild(reloadLink);
+    var href = "JavaScript:this.ytMapplet.getVideoData();";
+    var reloadLink = createLink(href, "Reload", null, "yt-reload");
+    this.youtubeDiv.appendChild(reloadLink);
     
     this.loadingDiv = createDiv("Loading...", "yt-loading-active");
     this.youtubeDiv.appendChild(this.loadingDiv);
     
     this.resultsTableDiv = createDiv(null, "yt-results");
     this.youtubeDiv.appendChild(this.resultsTableDiv);
+    
+    this.getVideoData();  
   }
   
   VideoDataMapper.prototype.initControlPanel = function() {
@@ -244,6 +247,7 @@
         var OverviewCell = createTableCell(row, cellCss);
         OverviewCell.appendChild(this.getVideoOverviewDiv(videoData));
       }
+      removeChildren(this.resultsTableDiv);
       this.resultsTableDiv.appendChild(videoTable);
       
       cssSetClass(this.loadingDiv, "yt-loading-idle");      
@@ -295,8 +299,9 @@
   }
   
   VideoDataMapper.prototype.getVideoData = function() {
-    var url = "http://www.youtube.com/api2_rest?method=youtube.videos.list_recent_geotagged&dev_id=OcN9xXYar1g"; 
-    _IG_FetchXmlContent(url, this.dataCallback, { refreshInterval: 0 });
+    cssSetClass(this.loadingDiv, "yt-loading-active");
+    
+    _IG_FetchXmlContent(VideoDataMapper.DATA_URL, this.dataCallback, { refreshInterval: 0 });
   }
   
   /**

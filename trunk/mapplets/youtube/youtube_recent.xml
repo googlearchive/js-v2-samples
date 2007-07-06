@@ -127,7 +127,7 @@
 
     // Make user clicks on the marker open the info window
     GEvent.addListener(marker, "click", function() {
-      var message = getHtmlForVideoWindow(videoData);
+      var message = getHtmlForVideoWindow(videoData);   
       marker.openInfoWindowHtml(message);
     });
   
@@ -241,14 +241,29 @@
         var imageCellDiv = createDiv(img, null);
         imageCell.appendChild(imageCellDiv);
         
-        var titleCell = createTableCell(row, cellCss);
-        var titleCellDiv = createDiv(videoData.title, null);
-        titleCell.appendChild(titleCellDiv);
+        var OverviewCell = createTableCell(row, cellCss);
+        OverviewCell.appendChild(this.getVideoOverviewDiv(videoData));
       }
       this.resultsTableDiv.appendChild(videoTable);
       
       cssSetClass(this.loadingDiv, "yt-loading-idle");      
     }
+  }
+  
+  VideoDataMapper.prototype.getVideoOverviewDiv = function(videoData) {
+    
+    var titleDiv = createDiv(videoData.title, "yt-video-title");
+    var descDiv = createDiv(videoData.description, "yt-video-desc");
+    
+    var ratingText = "Rating: " + videoData.rating_avg;
+    var ratingsDiv = createDiv(ratingText, "yt-video-rating");
+    
+    var overviewDiv = createDiv(null, "yt-video-overview");
+    overviewDiv.appendChild(titleDiv);
+    overviewDiv.appendChild(descDiv);
+    overviewDiv.appendChild(ratingsDiv);
+  
+    return overviewDiv;
   }
   
   VideoDataMapper.prototype.clearMarkers = function() {

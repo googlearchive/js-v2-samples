@@ -373,6 +373,7 @@
       this.videoDataList[i] = null;
     }
     this.videoDataList = new Array;
+    this.curMarkerGroup = -1;
   }
   
   VideoDataMapper.prototype.dataCallback = function(response) {

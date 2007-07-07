@@ -305,9 +305,7 @@
         } 
         this.curMarkerGroup = groupNum;  
       }   
-    } else {
-      this.map.clearOverlays();
-    }
+    } 
   }
   
   VideoDataMapper.prototype.loadResultsTablePage = function(pageNum, mapGroupNum) {

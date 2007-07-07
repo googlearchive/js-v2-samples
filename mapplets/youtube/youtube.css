@@ -17,6 +17,7 @@
   border-collapse : collapse;
   cell-padding : 0px;
   width : 100%;
+  clear : both;
 }
 
 .yt-results .thumbnail {
@@ -69,11 +70,8 @@
 }
 
 .yt-reload {
-  text-align : right;	
-  font-size : 11px;
-  display : block;
-  float : right;
-  margin-bottom : 2px;
+  text-align : right;
+  width : 100%;
 }
 
 .yt-loading-active {
@@ -86,3 +84,30 @@
 .yt-loading-idle {
   display : none;
 }
+
+.yt-page-link {
+}
+
+.yt-result-nav-panel {
+  width : 100%;
+  height : 20px;
+  clear : both;
+  background-color : #FFFFFF;	
+}
+
+.yt-pages-title {
+	
+}
+
+.yt-nav-page-link-table {
+  width : 100%;
+  height : 20px;
+  margin-top : 5px;
+  margin-bottom : 2px;
+}
+
+.yt-nav-page-link-table td {
+  vertical-align : bottom;
+  text-size : 12px;
+}
+

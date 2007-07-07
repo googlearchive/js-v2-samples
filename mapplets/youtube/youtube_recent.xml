@@ -14,7 +14,7 @@
 <Content type="html"><![CDATA[
 
 <style type="text/css">
-      @import url("http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/youtube.css");
+      @import url("http://brandonbadger.googlepages.com/youtube.css");
 </style>
 
 <div id="youtube" />
@@ -48,6 +48,7 @@
   
   VideoDataMapper.MAX_MARKERS_ON_MAP = 108;
   VideoDataMapper.NUM_RESULT_PAGES = 6;
+  VideoDataMapper.NUM_MARKER_GROUPS = 2;
   VideoDataMapper.INIT_ZOOM_LEVEL = 2;
   VideoDataMapper.INIT_LAT = 37.71859;
   VideoDataMapper.INIT_LNG = 6.679688;
@@ -63,6 +64,7 @@
   
   VideoDataMapper.prototype.init = function() {
     this.videoDataList = new Array();
+    this.pageLinks = new Array();
     
     // Center the map in the Mediterranean and zoom out to a world view
     this.map = new GMap2();
@@ -70,6 +72,7 @@
     this.map.setCenter(point, VideoDataMapper.INIT_ZOOM_LEVEL);
     
     this.youtubeDiv = document.getElementById("youtube");
+    cssSetClass(this.youtubeDiv, "youtube");
     this.initControlPanel();
     this.youtubeDiv.appendChild(this.controlPanelDiv);
     
@@ -97,7 +100,7 @@
     imageTD.appendChild(imageDiv);
     
     var desc = "Recently uploaded YouTube Videos.";
-    var descDiv = createDiv(desc, null);
+    var descDiv = createDiv(desc, "yt-description-panel");
     descTD.appendChild(descDiv);
     
     this.controlPanelDiv.appendChild(table);    
@@ -115,12 +118,20 @@
     var titleCell = createTableCell(row, null);
     titleCell.appendChild(pagesTitle);
        
-    for (var i = 1; i <= VideoDataMapper.NUM_RESULT_PAGES; i++) {
-      var href = "JavaScript:this.ytMapplet.loadResultsTablePage(" + i + ");";
-      var link = createLink(href, i, null, null);
-      var cell = createTableCell(row, null);
-      cell.appendChild(link);
-    }   
+    for (var k = 1; k <= VideoDataMapper.NUM_MARKER_GROUPS; k++) {
+      for (var i = 1; i <= VideoDataMapper.NUM_RESULT_PAGES; i++) {
+        var pageNum = this.getTotalPageNum(i, k);
+        var cell = createTableCell(row, "yt-page-link-active");
+        if(pageNum == 1) {
+          this.curPageCell = cell;
+          cssSetClass(this.curPageCell, "yt-page-link-idle");
+        }
+        var href = "JavaScript:this.ytMapplet.handlePageClick(" + i + ", " + k + ");";
+        var link = createLink(href, pageNum, null, null);       
+        cell.appendChild(link);
+        this.pageLinks[pageNum] = cell;
+      }  
+    } 
     var href = "JavaScript:this.ytMapplet.getVideoData();";
     var reloadLink = createLink(href, "Reload", null, null);
     var reloadCell = createTableCell(row, "yt-reload");
@@ -130,6 +141,23 @@
     
     removeChildren(this.resultsNavPanelDiv);
     this.resultsNavPanelDiv.appendChild(navDiv);
+  }
+  
+  // returns the total page number given the marker group and pageNum pair
+  // each marker group has its own set of page numbers, starting at 1
+  VideoDataMapper.prototype.getTotalPageNum = function(pageNum, groupNum) {
+    var pageNum = (VideoDataMapper.NUM_RESULT_PAGES * (groupNum-1)) + pageNum;
+    return pageNum;
+  }
+  
+  VideoDataMapper.prototype.handlePageClick = function(pageNum, markerGroup) {
+    this.loadResultsTablePage(pageNum, markerGroup);
+     
+    var totalPageNum = this.getTotalPageNum(pageNum, markerGroup); 
+    var newLinkCell = this.pageLinks[totalPageNum];
+    cssSetClass(newLinkCell, "yt-page-link-idle");
+    cssSetClass(this.curPageCell, "yt-page-link-active");
+    this.curPageCell = newLinkCell;
   }
   
   function getHtmlForVideoWindow(videoData) {
@@ -161,6 +189,7 @@
     GEvent.addListener(marker, "click", function() {
       var message = getHtmlForVideoWindow(videoData);   
       marker.openInfoWindowHtml(message);
+      this.ytMapplet.curMarker = marker;
     });
   
     return marker;
@@ -245,14 +274,17 @@
   }
   
   function selectMarker(marker, videoData) {  
-    var message = getHtmlForVideoWindow(videoData);
-    marker.openInfoWindowHtml(message);
+    if(marker) {
+      var message = getHtmlForVideoWindow(videoData);
+      marker.openInfoWindowHtml(message);
+    }
   }
   
   VideoDataMapper.prototype.displayCurrentData = function() {
-    if(this.videoDataList) {    
-      this.loadMarkersOnMap(1); //adds markers to map and stores marker in videoData items
-      this.loadResultsTablePage(1);
+    if(this.videoDataList) {   
+      var initMarkerGroup = 1;
+      var initResultsPage = 1;      
+      this.loadResultsTablePage(initResultsPage, initMarkerGroup);
       
       cssSetClass(this.loadingDiv, "yt-loading-idle");     
       this.buildResultsNavPanel(); 
@@ -260,23 +292,34 @@
   }
   
   VideoDataMapper.prototype.loadMarkersOnMap = function(groupNum) {
-    if(this.videoDataList) {      
-      var start = (groupNum - 1) * VideoDataMapper.MAX_MARKERS_ON_MAP;
-      var end = start + VideoDataMapper.MAX_MARKERS_ON_MAP;     
+    if(this.videoDataList) {   
+      if(groupNum != this.curMarkerGroup) {   
+        this.map.clearOverlays();
+        this.map.closeInfoWindow();
+        var start = (groupNum - 1) * VideoDataMapper.MAX_MARKERS_ON_MAP;
+        var end = start + VideoDataMapper.MAX_MARKERS_ON_MAP;     
       
-      for(var i = start; i < end && i < this.videoDataList.length; i++) {
-        var videoData = this.videoDataList[i];
-        var marker = addVideoMarkerToMap(this.map, videoData);
-      }      
-    }   
+        for(var i = start; i < end && i < this.videoDataList.length; i++) {
+          var videoData = this.videoDataList[i];
+          var marker = addVideoMarkerToMap(this.map, videoData);
+        } 
+        this.curMarkerGroup = groupNum;  
+      }   
+    } else {
+      this.map.clearOverlays();
+    }
   }
   
-  VideoDataMapper.prototype.loadResultsTablePage = function(pageNum) {
+  VideoDataMapper.prototype.loadResultsTablePage = function(pageNum, mapGroupNum) {
+  
+    this.loadMarkersOnMap(mapGroupNum); //adds markers to map and stores marker in videoData items
+  
     if(this.videoDataList) {       
       var videoTable = createTable(null);    
       
       var numPerPage = parseInt(VideoDataMapper.MAX_MARKERS_ON_MAP / VideoDataMapper.NUM_RESULT_PAGES);
-      var start = (pageNum - 1) * numPerPage;
+      var groupStart = (mapGroupNum - 1) * VideoDataMapper.MAX_MARKERS_ON_MAP;
+      var start = (pageNum - 1) * numPerPage + groupStart;
       var end = start + numPerPage;      
       
       for(var i = start; i < end && i < this.videoDataList.length; i++) {
@@ -303,7 +346,8 @@
         OverviewCell.appendChild(this.getVideoOverviewDiv(videoData));
       }
       removeChildren(this.resultsTableDiv);
-      this.resultsTableDiv.appendChild(videoTable);
+      this.resultsTableDiv.appendChild(videoTable);   
+      this.curPageNum = pageNum;  
     }
   }
   
@@ -341,7 +385,8 @@
     // default response from youtube contains 400 videos
     // newest videos aren't always available on youtube yet
     // so take the videos from the end of the list
-    var newestVideoPos = videos.length - VideoDataMapper.MAX_MARKERS_ON_MAP;
+    var numShown = VideoDataMapper.MAX_MARKERS_ON_MAP * VideoDataMapper.NUM_MARKER_GROUPS;
+    var newestVideoPos = videos.length - numShown;
     for(var i = videos.length - 1; i >= newestVideoPos; i--) {
       var videoNode = videos.item(i);
       var videoData = parseVideoNode(videoNode);     

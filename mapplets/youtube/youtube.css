@@ -1,6 +1,11 @@
 .youtube {
   font-family: arial, sans-serif;
-  font-size : 11px;
+  font-size : 12px;
+}
+
+.yt-description-panel {
+  margin-left : 15px;
+  font-size : 14px;	
 }
 
 .yt-results {
@@ -76,9 +81,9 @@
 
 .yt-loading-active {
   display : block;
-  margin-top : 20px;
+  margin-top : 10px;
   margin-left : auto;
-  margin-rigth : auto;
+  margin-right : auto;
 }
 
 .yt-loading-idle {
@@ -86,6 +91,15 @@
 }
 
 .yt-page-link {
+}
+
+.yt-page-link-active a {
+	
+}
+
+.yt-page-link-idle a {
+  color : #000000;
+  text-decoration : none;
 }
 
 .yt-result-nav-panel {
@@ -108,6 +122,6 @@
 
 .yt-nav-page-link-table td {
   vertical-align : bottom;
-  text-size : 12px;
+  font-size : 13px;
 }
 

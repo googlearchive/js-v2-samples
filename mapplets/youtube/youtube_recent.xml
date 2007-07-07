@@ -96,7 +96,7 @@
     var imageDiv = createDiv("<img src=\"http://www.youtube.com/img/pic_youtubelogo_123x63.gif\">", null);
     imageTD.appendChild(imageDiv);
     
-    var desc = VideoDataMapper.MAX_MARKERS_ON_MAP + " recently uploaded YouTube Videos.";
+    var desc = "Recently uploaded YouTube Videos.";
     var descDiv = createDiv(desc, null);
     descTD.appendChild(descDiv);
     

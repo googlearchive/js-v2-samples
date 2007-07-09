@@ -20,7 +20,6 @@
 .yt-results table {
   border : none;
   border-collapse : collapse;
-  cell-padding : 0px;
   width : 100%;
   clear : both;
 }
@@ -28,7 +27,6 @@
 .yt-results .thumbnail {
   border : none;
   padding : none;
-  margin : none;	
   width : 125px;
   height : 100px;
 }

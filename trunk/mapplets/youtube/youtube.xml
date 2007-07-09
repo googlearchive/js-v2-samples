@@ -6,134 +6,17 @@
              author_email="maps-devtools@google.com"
              author_affiliation="Google, Inc."
              author_location="Mountain View, CA"
-             screenshot="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_screenshot.png"
-             thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_thumbnail.png"
+             screenshot="http://www.google.com/ig/modules/mapplets-youtube.png"
+             thumbnail="http://www.google.com/ig/modules/mapplets-youtube-thm.png"
              height="200">
   <Require feature="sharedmap"/>
 </ModulePrefs>
 <Content type="html"><![CDATA[
 
 <style type="text/css">
-.youtube {
-  font-family: arial, sans-serif;
-  font-size : 12px;
-}
-
-.yt-description-panel {
-  margin-left : 15px;
-  font-size : 14px;	
-}
-
-.yt-results {
-  margin-top : 10px;  
-  margin-right : 10px;
-  font-family: arial, sans-serif;
-  font-size : 11px;
-  clear : both;
-  width : 100%;
-}
-
-.yt-results table {
-  border : none;
-  border-collapse : collapse;
-  width : 100%;
-  clear : both;
-}
-
-.yt-results .thumbnail {
-  border : none;
-  padding : none;
-  width : 125px;
-  height : 100px;
-}
-
-.yt-results td {
-  cursor : pointer;	
-  padding : 2px;
-  vertical-align : top;
-  height : 100px;
-}
-
-.yt-results .even {
-  background-color : #CCCCCC;	
-}
-
-.yt-results .odd {
-  background-color : #FFFFFF;
-}
-
-.yt-results .yt-video-title {
-  margin-top : 2px;
-  font-size : 12px;
-  font-weight : bold;
-  overflow : hidden;
-  white-space : nowrap;
-  width : 150px; 
-  height : 20px;
-}
-
-.yt-results .yt-video-desc {
-  font-size : 11px;
-  overflow : hidden;
-  width : 150px;
-  height : 50px;
-}
-
-.yt-results .yt-video-rating {
-  font-size : 11px;
-  overflow : hidden;
-}
-
-.yt-reload {
-  text-align : right;
-  width : 100%;
-}
-
-.yt-loading-active {
-  display : block;
-  margin-top : 10px;
-  margin-left : auto;
-  margin-right : auto;
-}
-
-.yt-loading-idle {
-  display : none;
-}
-
-.yt-page-link {
-}
-
-.yt-page-link-active a {
-	
-}
-
-.yt-page-link-idle a {
-  color : #000000;
-  text-decoration : none;
-}
-
-.yt-result-nav-panel {
-  width : 100%;
-  height : 20px;
-  clear : both;
-  background-color : #FFFFFF;	
-}
-
-.yt-pages-title {
-	
-}
-
-.yt-nav-page-link-table {
-  width : 100%;
-  height : 20px;
-  margin-top : 5px;
-  margin-bottom : 2px;
-}
-
-.yt-nav-page-link-table td {
-  vertical-align : bottom;
-  font-size : 13px;
-}
+  <!--
+      @import url("http://www.google.com/ig/modules/mapplets-youtube.css");
+  -->
 </style>
 
 <div id="youtube" />

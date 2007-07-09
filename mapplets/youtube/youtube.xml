@@ -14,7 +14,7 @@
 <Content type="html"><![CDATA[
 
 <style type="text/css">
-      @import url("http://brandonbadger.googlepages.com/youtube.css");
+      @import url("http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/youtube.css");
 </style>
 
 <div id="youtube" />
@@ -189,7 +189,6 @@
     GEvent.addListener(marker, "click", function() {
       var message = getHtmlForVideoWindow(videoData);   
       marker.openInfoWindowHtml(message);
-      this.ytMapplet.curMarker = marker;
     });
   
     return marker;

@@ -189,7 +189,6 @@
     GEvent.addListener(marker, "click", function() {
       var message = getHtmlForVideoWindow(videoData);   
       marker.openInfoWindowHtml(message);
-      this.ytMapplet.curMarker = marker;
     });
   
     return marker;

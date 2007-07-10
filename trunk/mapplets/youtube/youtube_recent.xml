@@ -15,7 +15,7 @@
 
 <style type="text/css">
   <!--
-      @import url("http://brandonbadger.googlepages.com/youtube.css");
+      @import url("http://www.google.com/ig/modules/mapplets-youtube.css");
   -->
 </style>
 
@@ -175,6 +175,8 @@
     html += "<div style=\"margin-left:auto; margin-right:auto;\">";
     html += embed;
     html += "</div>";
+    
+    alert(html);
     
     return html;
   }

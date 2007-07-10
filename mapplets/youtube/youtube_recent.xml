@@ -172,9 +172,9 @@
     html += "</div><br />";
     
     var embed = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";
-    html += "<div style=\"margin-left:auto; margin-right:auto;\">";
+    //html += "<div style=\"margin-left:auto; margin-right:auto;\">";
     html += embed;
-    html += "</div>";
+    //html += "</div>";
     
     alert(html);
     

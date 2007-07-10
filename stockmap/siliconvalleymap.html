@@ -223,12 +223,9 @@ function loadMapJSON(json) {
 }
 
 function redrawHighlightPolys() {
-  GLog.write("redrawing");
   for (var ticker in StockMap.mapMarkers) {
     var marker = StockMap.mapMarkers[ticker];
-    GLog.write("iterating");
     if (marker.highlightPolygon) {
-      GLog.write("removing");
       StockMap.map.removeOverlay(marker.highlightPolygon);
       var polygon = createHighlightAroundMarker(marker);
       marker.highlightPolygon = polygon;

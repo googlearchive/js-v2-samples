@@ -225,6 +225,7 @@ function redrawHighlightPolys() {
   for (var i = 0; i < StockMap.mapMarkers.length; i++) {
     var marker = StockMap.mapMarkers[i];
     if (marker.highlightPolygon) {
+      GLog.write("removing");
       StockMap.map.removeOverlay(marker.highlightPolygon);
       var polygon = createHighlightAroundMarker(marker);
       marker.highlightPolygon = polygon;

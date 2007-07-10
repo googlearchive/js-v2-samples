@@ -77,7 +77,7 @@ function load() {
     StockMap.iconRed.iconAnchor = new GPoint(16, 16);
     StockMap.iconRed.infoWindowAnchor = new GPoint(25, 7);
 
-    GEvent.addListener(map, "zoomend", function() {
+    GEvent.addListener(StockMap.map, "zoomend", function() {
       redrawHighlightPolys();	
     });
     getJSON();

@@ -224,13 +224,16 @@ function loadMapJSON(json) {
 
 function redrawHighlightPolys() {
   GLog.write("redrawing");
-  for (var marker in StockMap.mapMarkers) {
+  for (var ticker in StockMap.mapMarkers) {
+    var marker = StockMap.mapMarkers[ticker];
     GLog.write("iterating");
+    if (marker.highlightPolygon) {
       GLog.write("removing");
       StockMap.map.removeOverlay(marker.highlightPolygon);
       var polygon = createHighlightAroundMarker(marker);
       marker.highlightPolygon = polygon;
       //StockMap.map.addOverlay(polygon);
+    }
   }
 }
 /* Creates rectangle polygon around a marker

@@ -164,21 +164,33 @@
   
   function getHtmlForVideoWindow(videoData) {
     var html = "";
-    //html += "<div style=\"font-size:12px; width:" + VideoDataMapper.VIDEO_WIDTH + "\"><b>" + videoData.title + "</b></div>";
+    html += "<div style=\"font-size:12px; width:" + VideoDataMapper.VIDEO_WIDTH + "\"><b>" + videoData.title + "</b></div>";
     
     var link = "<a href=\"" + videoData.url + "\" target=\"_blank\">" + videoData.url + "</a><br />";
-    //html += "<div style=\"font-size:11px;\">";
-    //html += link;
-    //html += "</div><br />";
+    html += "<div style=\"font-size:11px;\">";
+    html += link;
+    html += "</div><br />";
     
-    var embed = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";
-    //html += "<div style=\"margin-left:auto; margin-right:auto;\">";
+    var embed = getEmbedStringForVideoWindow(videoData);
+    html += "<div style=\"margin-left:auto; margin-right:auto;\">";
     html += embed;
-    //html += "</div>";
-    
-    html = "<embed src=\"http://www.youtube.com/v/GpVxsZojPUA\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"425\" height=\"350\"></embed>";
+    html += "</div>";
     
     alert(html);
+    
+    return html;
+  }
+  
+  function getEmbedStringForVideoWindow(videoData) {
+    var html = "";
+    //if(isIE()) {
+    //  html = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";   
+    //} else {
+      html = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";   
+    //}
+    
+    var browserName = navigator.appName;
+    alert("browser:" + browserName);
     
     return html;
   }

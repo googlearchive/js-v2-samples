@@ -184,10 +184,8 @@
   function getEmbedStringForVideoWindow(videoData) {
     var html = "";
     if (br_IsIE()) {
-    alert("IE");
       html = "<embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed>";   
     } else {
-    alert("not IE");
       html = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";   
     }
     

@@ -77,6 +77,9 @@ function load() {
     StockMap.iconRed.iconAnchor = new GPoint(16, 16);
     StockMap.iconRed.infoWindowAnchor = new GPoint(25, 7);
 
+    GEvent.addListener(map, "zoomend", function() {
+      redrawHighlightPolys();	
+    });
     getJSON();
   } else {
     alert("Sorry, the Google Maps API is not compatible with this browser");
@@ -218,6 +221,17 @@ function loadMapJSON(json) {
   setTimeout(getJSON, 600000);
 }
 
+function redrawHighlightPolys() {
+  for (var i = 0; i < StockMap.mapMarkers.length; i++) {
+    var marker = StockMap.mapMarkers[i];
+    if (marker.highlightPolygon) {
+      StockMap.map.removeOverlay(marker.highlightPolygon);
+      var polygon = createHighlightAroundMarker(marker);
+      marker.highlightPolygon = polygon;
+      StockMap.map.addOverlay(polygon);
+    }
+  }
+}
 /* Creates rectangle polygon around a marker
  * @param {GMarker} marker The marker to place polygon around
  * @return {GPolygon} The polygon created

@@ -223,9 +223,8 @@ function loadMapJSON(json) {
 
 function redrawHighlightPolys() {
   GLog.write("redrawing");
-  for (var i = 0; i < StockMap.mapMarkers.length; i++) {
+  for (var marker in StockMap.mapMarkers) {
     GLog.write("iterating");
-    var marker = StockMap.mapMarkers[i];
     if (marker.highlightPolygon) {
       GLog.write("removing");
       StockMap.map.removeOverlay(marker.highlightPolygon);

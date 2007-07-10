@@ -288,7 +288,7 @@ function createSidebarElement(label, scaler) {
   });
 
   GEvent.addDomListener(labelDiv, "mouseout", function() {
-    var mouseoutIcon = StockMap.mapMarkes[label].getIcon().imageOut;
+    var mouseoutIcon = StockMap.mapMarkers[label].getIcon().imageOut;
     StockMap.mapMarkers[label].setImage(mouseoutIcon);
   });
 

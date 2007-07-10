@@ -170,10 +170,21 @@
     html += link;
     html += "</div><br />";
     
-    var embed = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";
+    var embed = getEmbedStringForVideoWindow(videoData);
     html += "<div style=\"margin-left:auto; margin-right:auto;\">";
     html += embed;
     html += "</div>";
+    
+    return html;
+  }
+  
+  function getEmbedStringForVideoWindow(videoData) {
+    var html = "";
+    if (br_IsIE()) {
+      html = "<embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed>";   
+    } else {
+      html = "<object width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"><param name=\"movie\" value=\"http://www.youtube.com/v/" + videoData.id + "\"></param><param name=\"wmode\" value=\"transparent\"></param><embed src=\"http://www.youtube.com/v/" + videoData.id + "\" type=\"application/x-shockwave-flash\" wmode=\"transparent\" width=\"" + VideoDataMapper.VIDEO_WIDTH + "\" height=\"" + VideoDataMapper.VIDEO_HEIGHT + "\"></embed></object>";   
+    }
     
     return html;
   }
@@ -400,8 +411,26 @@
     
     _IG_FetchXmlContent(VideoDataMapper.DATA_URL, this.dataCallback, { refreshInterval: 0 });
   }
+
+// from common, user agent detector
+function br_AgentContains_(str) {
+  if (str in br_AgentContains_cache_) {
+    return br_AgentContains_cache_[str];
+  }
+
+  return br_AgentContains_cache_[str] =
+    (navigator.userAgent.toLowerCase().indexOf(str) != -1);
+}
+var br_AgentContains_cache_ = {};
+function br_IsIE() {
+  return br_AgentContains_('msie');
+}
+
+function br_IsOpera() {
+  return br_AgentContains_('opera');
+}
   
-  /**
+/**
  * Various Static DOM Wrappers.
 */
 function methodClosure(object, method, opt_argArray) {

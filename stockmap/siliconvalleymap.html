@@ -207,6 +207,7 @@ function loadMapJSON(json) {
       if ((lastMarker && lastMarker.price != columnVals.price) || !lastMarker) { 
         var polygon = createHighlightAroundMarker(marker);
         marker.highlightPolygon = polygon;
+        marker.hasPoly = true;
         StockMap.map.addOverlay(polygon);
       }
 
@@ -225,7 +226,7 @@ function redrawHighlightPolys() {
   GLog.write("redrawing");
   for (var marker in StockMap.mapMarkers) {
     GLog.write("iterating");
-    if (marker.highlightPolygon) {
+    if (marker.hasPoly) {
       GLog.write("removing");
       StockMap.map.removeOverlay(marker.highlightPolygon);
       var polygon = createHighlightAroundMarker(marker);

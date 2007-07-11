@@ -110,9 +110,11 @@ function toggleGeoXML(id, checked) {
   if (checked) {
     if (!layers[id].geoxml) {
       var geoXml = new GGeoXml(layers[id].url, function() {
-        zoomToGeoXML(geoXml);
-        layers[id].geoxml = geoXml;
-        document.getElementById("status").innerHTML = "";
+        if (geoXml.loadedCorrectly()) {
+          geoXml.goToDefaultViewport(map);
+          layers[id].geoxml = geoXml;
+          document.getElementById("status").innerHTML = "";
+        }
       });
       layers[id].geoXml = geoXml;
     }

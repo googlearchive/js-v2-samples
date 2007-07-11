@@ -122,7 +122,7 @@ InfoBox.prototype.redraw = function(force) {
   GLog.write(this.latlng_.lat());
   GLog.write(degHeight);
   GLog.write(bounds.getNorthEast().lat());
-  if (this.latlng_.lat() + degHeight > bounds.getNorthEast().lat()) {
+  if (!bounds.contains(this.latlng_.lat() - degHeight)) {
     this.map_.panTo(this.latlng_);
   }
   

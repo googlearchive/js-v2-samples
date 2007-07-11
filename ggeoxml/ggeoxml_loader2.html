@@ -111,7 +111,7 @@ function toggleGeoXML(id, checked) {
     if (!layers[id].geoxml) {
       var geoXml = new GGeoXml(layers[id].url, function() {
         if (geoXml.loadedCorrectly()) {
-          geoXml.goToDefaultViewport(map);
+          geoXml.gotoDefaultViewport(map);
           layers[id].geoxml = geoXml;
           document.getElementById("status").innerHTML = "";
         }

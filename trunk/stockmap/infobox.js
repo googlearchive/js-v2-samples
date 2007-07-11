@@ -118,7 +118,8 @@ InfoBox.prototype.redraw = function(force) {
   if (this.latlng_.lng() + degWidth > bounds.getNorthEast().lng()) {
     this.map_.panTo(this.latlng_);
   }   
- 
+
+  GLog.write(this.latlng_.lat()); 
   GLog.write(this.latlng_.lat() - degHeight);
   GLog.write(bounds.getNorthEast().lat());
   GLog.write(bounds.getSouthWest().lat());

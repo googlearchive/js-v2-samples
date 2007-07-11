@@ -123,8 +123,8 @@ InfoBox.prototype.redraw = function(force) {
   GLog.write(this.latlng_.lat() - degHeight);
   GLog.write(bounds.getNorthEast().lat());
   GLog.write(bounds.getSouthWest().lat());
-  
-  if (!bounds.contains(this.latlng_.lat() - degHeight)) {
+  var bottompt = new GLatLng( (this.latlng_.lat() - degHeight), this.latlng_.lng());
+  if (!bounds.contains(bottompt) {
     this.map_.panTo(this.latlng_);
   }
   

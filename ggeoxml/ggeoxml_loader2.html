@@ -108,7 +108,6 @@ function zoomToGeoXML(geoXml) {
 
 function toggleGeoXML(id, checked) {
   if (checked) {
-    if (!layers[id].geoxml) {
       var geoXml = new GGeoXml(layers[id].url, function() {
         if (geoXml.loadedCorrectly()) {
           geoXml.gotoDefaultViewport(map);
@@ -116,8 +115,7 @@ function toggleGeoXML(id, checked) {
           document.getElementById("status").innerHTML = "";
         }
       });
-      layers[id].geoXml = geoXml;
-    }
+    layers[id].geoXml = geoXml;
     map.addOverlay(layers[id].geoXml);
     document.getElementById("status").innerHTML = "Loading...";
   

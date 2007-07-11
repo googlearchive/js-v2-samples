@@ -107,11 +107,20 @@ InfoBox.prototype.redraw = function(force) {
 
   // if we go beyond map, pan map
   var mapWidth = this.map_.getSize().width;
+  var mapHeight = this.map_.getSize().height;
   var bounds = this.map_.getBounds();
   var boundsSpan = bounds.toSpan();
   var longSpan = boundsSpan.lng();
+  var latSpan = boundsSpan.lat();
   var degWidth = (this.width_/mapWidth) * longSpan;
+  var degHeight = (this.height_/mapHeight) * latSpan;
+
   if (this.latlng_.lng() + degWidth > bounds.getNorthEast().lng()) {
     this.map_.panTo(this.latlng_);
   }   
+ 
+  if (this.latlng_.lat() + degHeight > bounds.getNorthEast().lat()) {
+    this.map_.panTo(this.latlng_);
+  }
+  
 }

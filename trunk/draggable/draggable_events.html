@@ -27,14 +27,14 @@ function onLoad() {
 }
 
 function changeStatus(status) {
-//  document.getElementById("status").innerHTML += "<br/>" + status;
-  GLog.write(status);
+  document.getElementById("status").innerHTML = "Current event: " + status;
 } 
 </script>
   </head>
 
   <body onload="onLoad()">
+    <div id="status" style="font-family:Arial, sans serif"></div>
+    <br/>
     <img src="http://www.google.com/mapfiles/maps_res_logo.gif" id="photoToDrag"/>
-<!--    <div id="status" style="height:200px; overflow: scroll; width:100px; font-family:Arial, sans serif"></div>-->
   </body>
 </html>

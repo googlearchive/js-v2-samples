@@ -16,9 +16,7 @@ xmlns:v="urn:schemas-microsoft-com:vml">
 
 function onLoad() {
   if (GBrowserIsCompatible()) {
-    var objectToDrag = new GDraggableObject(document.getElementById("photoToDrag"));
-    objectToDrag.setDraggableCursor("hand");
-    objectToDrag.setDraggingCursor("hand");
+    var objectToDrag = new GDraggableObject(document.getElementById("photoToDrag"), {draggingCursor: "pointer", draggableCursor: "pointer");    
     GEvent.addListener(objectToDrag, "mousedown", function() { changeStatus("mousedown");});
     GEvent.addListener(objectToDrag, "mouseup", function() { changeStatus("mouseup");});
     GEvent.addListener(objectToDrag, "click", function() { changeStatus("click");});

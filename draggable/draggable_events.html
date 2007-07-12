@@ -17,13 +17,17 @@ xmlns:v="urn:schemas-microsoft-com:vml">
 function onLoad() {
   if (GBrowserIsCompatible()) {
     var objectToDrag = new GDraggableObject(document.getElementById("photoToDrag"));
-    var eventNames = ["mousedown", "mouseup", "click", "dragstart", "dragend", "drag"];
-    for (var i = 0; i < eventNames.length; i++) {
-      GEvent.addListener(objectToDrag, eventNames[i], function() {
-        document.getElementById("status").innerHTML = eventNames[i];
-      });
-    }
+    GEvent.addListener(objectToDrag, "mousedown", function() { changeStatus("mousedown");});
+    GEvent.addListener(objectToDrag, "mouseup", function() { changeStatus("mouseup");});
+    GEvent.addListener(objectToDrag, "click", function() { changeStatus("click");});
+    GEvent.addListener(objectToDrag, "dragstart", function() { changeStatus("dragstart");});
+    GEvent.addListener(objectToDrag, "dragend", function() { changeStatus("dragend");});
+    GEvent.addListener(objectToDrag, "drag", function() { changeStatus("drag");});
   }
+}
+
+function changeStatus(status) {
+  document.getElementById("status").innerHTML = status;
 } 
 </script>
   </head>

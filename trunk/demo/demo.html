@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps API Example - Google North America Offices</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxTPZYElJSBeBUeMSX5xXgq6lLjHthSAk20WnZ_iuuzhMt60X_ukms-AUg" type="text/javascript"></script>
+    <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxTPZYElJSBeBUeMSX5xXgq6lLjHthSAk20WnZ_iuuzhMt60X_ukms-AUg" type="text/javascript"></script>
+    <script src="google_northamerica_offices.js" type="text/javascript"></script>
+    <script src="http://www.google.com/uds/solutions/localsearch/gmlocalsearch.js" type="text/javascript"></script>
+    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/extmaptypecontrol/release/src/extmaptypecontrol.js" type="text/javascript"></script>
+    <style type="text/css">
+      @import url("http://www.google.com/uds/css/gsearch.css");
+      @import url("http://www.google.com/uds/solutions/localsearch/gmlocalsearch.css");
+    </style>
+    <script type="text/javascript">
+    //<![CDATA[
+    var map;
+    var mgr;
+    var dir;
+    var geocoder = null;
+    var icons = {};
+    GSearch.setOnLoadCallback(load);
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(50, -98), 3);
+        map.addControl(new google.maps.LocalSearch());
+        map.addControl(new GLargeMapControl()); 
+        map.addControl(new ExtMapTypeControl({showTraffic: true, showTrafficKey: true}));
+        map.addControl(new GOverviewMapControl());
+        map.enableDoubleClickZoom();
+
+        geocoder = new GClientGeocoder();
+        window.setTimeout(setupOfficeMarkers, 0);
+      }
+    }
+
+    function getIcon(images) {
+      var icon = null;
+      if (images) {
+        if (icons[images[0]]) {
+          icon = icons[images[0]];
+        } else {
+          icon = new GIcon(G_DEFAULT_ICON);
+          icon.image = "http://www.google.com/apis/maps/documentation/markermanager/" + images[0] + ".png";
+          var size = iconData[images[0]];
+          icon.iconSize = new GSize(size.width, size.height);
+          icon.iconAnchor = new GPoint(size.width >> 1, size.height >> 1);
+          icon.shadow = "http://www.google.com/apis/maps/documentation/markermanager/" + images[1] + ".png";
+          size = iconData[images[1]];
+          icon.shadowSize = new GSize(size.width, size.height);
+          icons[images[0]] = icon;
+        }
+      }
+      return icon;
+    }
+
+    function setupOfficeMarkers() {
+      mgr = new GMarkerManager(map);
+      for (var i in officeLayer) {
+        var layer = officeLayer[i];
+        var markers = [];
+        for (var j in layer["places"]) {
+          var place = layer["places"][j];
+          var icon = getIcon(place["icon"]);
+          var posn = new GLatLng(place["posn"][0], place["posn"][1]);
+          markers.push(createMarker(posn, place["name"], icon));
+        }
+        mgr.addMarkers(markers, layer["zoom"][0], layer["zoom"][1]);
+      }
+      mgr.refresh();
+    }
+
+    function createMarker(point, title, icon) {
+      var marker = new GMarker(point, {title: title, icon: icon});
+      marker.infoTabs = [
+        new GInfoWindowTab("Address", "<a href='javascript:getDirTo" + point + "'>Get Directions here</a>"),
+        new GInfoWindowTab("Hours", "This is tab #2 content")
+      ];
+     
+      GEvent.addListener(marker, "click", function () {
+        marker.openInfoWindowTabs(marker.infoTabs);
+      });
+      return marker;
+    }
+
+    function getDirTo(lat, lng) {
+      var panel = document.getElementById("dirPanel");
+      if (dir) {
+        dir.clear();
+      }
+      dir = new GDirections(map, panel);
+      var address = document.getElementById("address").value;
+      dir.load("from: " + address + " to:" + lat + "," + lng, {preserveViewport: true});     
+    }
+
+    function showAddress(address) {
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              map.setCenter(point, 13);
+              var marker = new GMarker(point);
+              map.addOverlay(marker);
+              marker.openInfoWindowHtml(address);
+            }
+          }
+        );
+      }
+    }
+
+    //]]>
+    </script>
+
+  </head>
+  <body onload="load()" onunload="GUnload()">
+    <div style="width: 800px; margin: 5px auto;">
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="60" name="address" id="address" value="" />
+        <input type="submit" value="Find" />
+      </p>
+    </form>
+    </div>
+    <div id="map" style="width: 800px; height: 600px; float:left"></div>
+    <div id="dirPanel" style="width:200px; height: 600px; overflow: auto; float:left"></div>
+  </body>
+</html>

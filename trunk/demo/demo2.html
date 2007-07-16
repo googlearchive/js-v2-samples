@@ -64,6 +64,12 @@
         icon.shadow = "";
         icons[1] = icon;
 
+        var icon = new GIcon(G_DEFAULT_ICON);
+        icon.image = "bluemarker_home.png";
+        icon.iconSize = new GSize(26, 36);
+        icon.shadow = "";
+
+        icons[2] = icon;
         G_END_ICON.image = "";
         G_END_ICON.shadow = "";
         window.setTimeout(setupOfficeMarkers, 0);
@@ -142,6 +148,8 @@
               alert(address + " not found");
             } else {
               map.setCenter(point, 11);
+              var marker = new GMarker(point, {icon:icons[2]});
+              map.addOverlay(marker);
             }
           }
         );

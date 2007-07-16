@@ -331,7 +331,7 @@ LocalSearch.prototype.setMarkers = function() {
     }
 
     this.idle = false;
-    this.selectMarker(0);
+    //this.selectMarker(0);
 
     this.addResultsControl(bestResultUrl);
 
@@ -429,7 +429,7 @@ LocalSearch.prototype.selectMarker = function(index) {
     cssSetClass(result.resultsListItem, css.result_list_item_selected);
   }
 
-  //result.marker.openInfoWindow(result.getHtml(), {maxWidth:300});
+  result.marker.openInfoWindow(result.getHtml(), {maxWidth:300});
 
   // set scroller
   if (index == 0) {

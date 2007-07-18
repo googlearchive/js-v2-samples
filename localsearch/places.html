@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>My Favorite Places - Google AJAX Search API demo</title>
+    <link href="http://www.google.com/uds/css/gsearch.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+
+    body {
+      background-color: white;
+      color: black;
+      font-family: Arial, sans-serif;
+      font-size: small;
+      margin: 15px;
+    }
+
+    a:link {
+      color: #0000cc;
+    }
+
+    a:active {
+      color: red;
+    }
+
+    a:visited {
+      color: #551a8b;
+    }
+
+    h1 {
+      font-size: x-large;
+      margin: 0;
+      margin-bottom: 0.25em;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+
+    #placelist {
+      width: 500px;
+    }
+
+    #search {
+      margin-bottom: 5px;
+    }
+
+    #searchform {
+      width : 100%;
+    }
+
+    #map {
+      border: 1px solid #979797;
+      height: 350px;
+    }
+
+    #results {
+      position: absolute;
+      left: 540px;
+    }
+
+    #searchwell {
+      width : 330px;
+    }
+
+    #searchwell .unselected {
+      padding-left: 18px;
+      padding-top: 1px;
+      background-image: url("http://labs.google.com/ridefinder/images/mm_20_yellow.png");
+      background-repeat: no-repeat;
+      background-position: top left;
+    }
+
+    .unselected .gs-watermark {
+      display: none;
+    }
+
+    #searchwell .select {
+      margin-bottom: 1em;
+    }
+
+    .unselected .select {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #7777cc;
+    }
+
+    #selected {
+      margin-top: 1em;
+    }
+
+    #selected .gs-result {
+      margin-bottom: 1em;
+    }
+
+    #selected .gs-result {
+      padding-left: 30px;
+      padding-top: 3px;
+      background-image: url("http://www.google.com/mapfiles/icon.png");
+      background-repeat: no-repeat;
+      background-position: top left;
+    }
+
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQ82LsCgTSsdpNEnBsExtoeJv4cdBSUkiLH6ntmAr_5O4EfjDwOa0oZBQ" type="text/javascript"></script>
+
+    <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQ82LsCgTSsdpNEnBsExtoeJv4cdBSUkiLH6ntmAr_5O4EfjDwOa0oZBQ" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    // Our global state
+    var gLocalSearch;
+    var gMap;
+    var gSelectedResults = [];
+    var gCurrentResults = [];
+    var gSearchForm;
+
+    // Create our "tiny" marker icon
+    var gSmallIcon = new GIcon();
+    gSmallIcon.image = "http://labs.google.com/ridefinder/images/mm_20_yellow.png";
+    gSmallIcon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+    gSmallIcon.iconSize = new GSize(12, 20);
+    gSmallIcon.shadowSize = new GSize(22, 20);
+    gSmallIcon.iconAnchor = new GPoint(6, 20);
+    gSmallIcon.infoWindowAnchor = new GPoint(5, 1);
+
+    // Set up the map and the local searcher.
+    function OnLoad() {
+
+      // Initialize the map
+      gMap = new GMap(document.getElementById("map"));
+      gMap.addControl(new GSmallMapControl());
+      gMap.addControl(new GMapTypeControl());
+      gMap.setCenter(new GLatLng(37.4419, -122.1419), 13);
+
+      // Initialize the local searcher
+      gLocalSearch = new GlocalSearch();
+      gLocalSearch.setSearchCompleteCallback(null, OnLocalSearch);
+
+      // Execute the initial search
+    }
+
+    function doSearch() {
+      var zip = document.getElementById("zipInput").value;
+      var cat = document.getElementById("catInput").value;
+      gLocalSearch.setCenterPoint(zip);
+      gLocalSearch.execute(cat);
+    }
+
+    // Called when Local Search results are returned, we clear the old
+    // results and load the new ones.
+    function OnLocalSearch() {
+      if (!gLocalSearch.results) return;
+      var searchWell = document.getElementById("searchwell");
+
+      // Clear the map and the old search well
+      searchWell.innerHTML = "";
+      for (var i = 0; i < gCurrentResults.length; i++) {
+        if (!gCurrentResults[i].selected()) {
+          gMap.removeOverlay(gCurrentResults[i].marker());
+        }
+      }
+
+      gCurrentResults = [];
+      for (var i = 0; i < gLocalSearch.results.length; i++) {
+        gCurrentResults.push(new LocalResult(gLocalSearch.results[i]));
+      }
+
+      var attribution = gLocalSearch.getAttribution();
+      if (attribution) {
+        document.getElementById("searchwell").appendChild(attribution);
+      }
+
+      // move the map to the first result
+      var first = gLocalSearch.results[0];
+      gMap.recenterOrPanToLatLng(new GPoint(parseFloat(first.lng), parseFloat(first.lat)));
+
+    }
+
+    // Cancel the form submission, executing an AJAX Search API search.
+    function CaptureForm(searchForm) {
+      gLocalSearch.execute(searchForm.input.value);
+      return false;
+    }
+
+
+
+    // A class representing a single Local Search result returned by the
+    // Google AJAX Search API.
+    function LocalResult(result) {
+      this.result_ = result;
+      this.resultNode_ = this.unselectedHtml();
+      document.getElementById("searchwell").appendChild(this.resultNode_);
+      gMap.addOverlay(this.marker(gSmallIcon));
+    }
+
+    // Returns the GMap marker for this result, creating it with the given
+    // icon if it has not already been created.
+    LocalResult.prototype.marker = function(opt_icon) {
+      if (this.marker_) return this.marker_;
+      var marker = new GMarker(new GLatLng(parseFloat(this.result_.lat),
+                                         parseFloat(this.result_.lng)),
+                               opt_icon);
+      GEvent.bind(marker, "click", this, function() {
+        marker.openInfoWindow(this.selected() ? this.selectedHtml() :
+                                                this.unselectedHtml());
+      });
+      this.marker_ = marker;
+      return marker;
+    }
+
+    // "Saves" this result if it has not already been saved
+    LocalResult.prototype.select = function() {
+      if (!this.selected()) {
+        this.selected_ = true;
+
+        // Remove the old marker and add the new marker
+        gMap.removeOverlay(this.marker());
+        this.marker_ = null;
+        gMap.addOverlay(this.marker(G_DEFAULT_ICON));
+
+        // Add our result to the saved set
+        document.getElementById("selected").appendChild(this.selectedHtml());
+
+        // Remove the old search result from the search well
+        this.resultNode_.parentNode.removeChild(this.resultNode_);
+      }
+    }
+
+    // Returns the HTML we display for a result before it has been "saved"
+    LocalResult.prototype.unselectedHtml = function() {
+      var container = document.createElement("div");
+      container.className = "unselected";
+      container.appendChild(this.result_.html.cloneNode(true));
+      var saveDiv = document.createElement("div");
+      saveDiv.className = "select";
+      saveDiv.innerHTML = "Save this location";
+      GEvent.bindDom(saveDiv, "click", this, function() {
+        gMap.closeInfoWindow();
+        this.select();
+        gSelectedResults.push(this);
+      });
+      container.appendChild(saveDiv);
+      return container;
+    }
+
+    // Returns the HTML we display for a result after it has been "saved"
+    LocalResult.prototype.selectedHtml = function() {
+      return this.result_.html.cloneNode(true);
+    }
+
+    // Returns true if this result is currently "saved"
+    LocalResult.prototype.selected = function() {
+      return this.selected_;
+    }
+
+    GSearch.setOnLoadCallback(OnLoad);
+    //]]>
+    </script>
+  </head>
+  <body onunload="GUnload()">
+    <h1>My Favorite Places</h1>
+    <p>Search for locations on the map below and save them to your list of favorite places.</p>
+    <div id="placelist">
+
+      <div id="search">
+        <div id="searchform">
+          <input type="text" id="zipInput" /> 
+          <select id="catInput">
+            <option value="restaurants">Restaurants</option>
+            <option value="bars">Bars</option>
+          </select>
+          <input type="button" value="Find" onclick="doSearch()"/>
+        </div>
+      </div>
+      <div id="results">
+        <div id="searchwell"></div>
+      </div>
+      <div id="map"></div>
+      <div id="selected"></div>
+    </div>
+
+  </body>
+</html>
+

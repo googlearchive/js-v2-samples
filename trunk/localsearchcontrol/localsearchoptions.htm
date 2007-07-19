@@ -55,9 +55,14 @@
        opts["searchFormHint"] = "\"" + searchFormHint + "\"";
        optsFound = true;
      }
+  
+     var onIdleCallback = document.getElementById("opt_onIdleCallback").checked;
+     if (onIdleCallback) {
+       opts["onIdleCallback"] = 'function() { alert("search control is idle");}';
+       optsFound = true;
+     }
 
      if (optsFound) {
-       GLog.write("found opts");
        inner = "options";
        code.push("var options = {");
        for (var opt in opts) {
@@ -90,13 +95,9 @@
  </head>
 
  <body onload="load()" onunload="GUnload()">
-   clickable:<input type="checkbox" id="opt_clickable" onclick="updateCode()" CHECKED/>
+   onIdleCallback:<input type="checkbox" id="opt_onIdleCallback" onclick="updateCode()" CHECKED/>
    &nbsp;
-   draggable:<input type="checkbox" id="opt_draggable" onclick="updateCode()" CHECKED/>
-   &nbsp;
-   bouncy:<input type="checkbox" id="opt_bouncy" onclick="updateCode()" />
-   &nbsp;
-   dragCrossMove:<input type="checkbox" id="opt_dragCrossMove" onclick="updateCode()"/>
+   onSearchCompleteCallback:<input type="checkbox" id="opt_onSearchCompleteCallback" onclick="updateCode()" CHECKED/>
 
    &nbsp;
    resultList:

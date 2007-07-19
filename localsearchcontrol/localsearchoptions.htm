@@ -44,8 +44,9 @@
      var inner = "";
      var resultList = document.getElementById("opt_resultList").value;
      if (resultList != "RESULT_LIST_INLINE") {
-        GLog.write("found result");
+        GLog.write(opts.length);
         opts["resultList"] = "google.maps.LocalSearch." + resultList;
+        GLog.write(opts.length);
      }
      if (opts.length > 0) {
        GLog.write("found opts");

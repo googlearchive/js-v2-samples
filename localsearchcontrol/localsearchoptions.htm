@@ -19,6 +19,9 @@
         width : 500px;
         height : 400px;
       }
+      #results {
+        width: 500px;
+      }
     </style>
 
 <script type="text/javascript">
@@ -30,7 +33,7 @@
    function load() {
      if (GBrowserIsCompatible()) {
        map = new GMap2(document.getElementById("map"));
-       map.setCenter(new GLatLng(40.713955826286046,-35.15625), 2);
+       map.setCenter(new GLatLng(37,-122), 14);
        updateCode();
      }
    }

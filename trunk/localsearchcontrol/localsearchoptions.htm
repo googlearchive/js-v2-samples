@@ -37,11 +37,29 @@
 
    function updateCode() {
      map.removeControl(searchcontrol);
-
+     var optsFound = false;
      var code = [];
-     code.push("searchcontrol = new google.maps.LocalSearch();"); 
+     var opts = [];
+     var optsCode = [];
+     var inner = "";
+     var resultList = document.getElementById("resultList").value;
+     if (resultList != "RESULT_LIST_INLINE") {
+        opts["resultList"] = "google.maps.LocalSearch." + resultList;
+     }
+     if (opts.length > 0) {
+       inner = "options";
+       code.push("var options = {");
+       for (var opt in opts) {
+         optsCode.push(opt + " : " + opts[opt]);
+       }
+       optsCodeHTML = optsCode.join(",<br/>");
+       code.push(optsCodeHTML);
+       code.push("};");
+     }
+     
+     code.push("searchcontrol = new google.maps.LocalSearch(" + inner + ");"); 
      code.push("map.addControl(searchcontrol);");
- 
+
      var codeHTML = code.join("<br/><br/>");
      el("code").innerHTML = codeHTML;
 
@@ -70,14 +88,11 @@
    dragCrossMove:<input type="checkbox" id="opt_dragCrossMove" onclick="updateCode()"/>
 
    &nbsp;
-   bounceGravity:
-     <select id="opt_bounceGravity" onchange="updateCode()">
-       <option value="1.0" SELECTED>1.0</option>
-       <option value="0.8">0.8</option>
-       <option value="0.6">0.6</option>
-       <option value="0.4">0.4</option>
-
-       <option value="0.2">0.2</option>
+   resultList:
+     <select id="opt_resultList" onchange="updateCode()">
+       <option value="RESULT_LIST_INLINE" SELECTED>Default</option>
+       <option value="RESULT_LIST_SUPPRESS">Suppressed</option>
+       <option value="document.getElementById('results')">External</option>
   </select>
    &nbsp;
    <br/><br/>
@@ -95,7 +110,7 @@
    <br/><br/>
 
     <div id="map" style="width: 500px; height: 250px"></div>
-
+    <div id="results"></div>
     <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>
 
    </table>

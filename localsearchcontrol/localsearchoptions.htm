@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <link rel="stylesheet" type="text/css" href="http://www.google.com/apis/maps/documentation/local_extensions.css" />
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script src="http://www.google.com/apis/maps/include/prettify.js" type="text/javascript"></script>
+     <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQ82LsCgTSsdpNEnBsExtoeJv4cdBSUkiLH6ntmAr_5O4EfjDwOa0oZBQ" type="text/javascript"></script>
+    <script src="http://www.google.com/uds/solutions/localsearch/gmlocalsearch.js" type="text/javascript"></script>
+    <style type="text/css">
+      @import url("http://www.google.com/uds/css/gsearch.css");
+      @import url("http://www.google.com/uds/solutions/localsearch/gmlocalsearch.css");
+
+      #map {
+        border : 1px solid #979797;
+        width : 500px;
+        height : 400px;
+      }
+    </style>
+
+<script type="text/javascript">
+   //<![CDATA[
+
+   var map;
+   var searchcontrol;
+
+   function load() {
+     if (GBrowserIsCompatible()) {
+       map = new GMap2(document.getElementById("map"));
+       map.setCenter(new GLatLng(40.713955826286046,-35.15625), 2);
+       updateCode();
+     }
+   }
+
+   function updateCode() {
+     map.removeControl(searchcontrol);
+
+     var code = [];
+     code.push("searchcontrol = new google.maps.LocalSearch();"); 
+     code.push("map.addControl(searchcontrol);");
+ 
+     var codeHTML = code.join("<br/><br/>");
+     el("code").innerHTML = codeHTML;
+
+     var codeJS = codeHTML.replace(/<br\/>/g,"\n");
+     eval(codeJS);
+
+     prettyPrint();
+   }
+
+   function el(id) {
+     return document.getElementById(id);
+   }
+
+   //]]>
+   </script>
+
+ </head>
+
+ <body onload="load()" onunload="GUnload()">
+   clickable:<input type="checkbox" id="opt_clickable" onclick="updateCode()" CHECKED/>
+   &nbsp;
+   draggable:<input type="checkbox" id="opt_draggable" onclick="updateCode()" CHECKED/>
+   &nbsp;
+   bouncy:<input type="checkbox" id="opt_bouncy" onclick="updateCode()" />
+   &nbsp;
+   dragCrossMove:<input type="checkbox" id="opt_dragCrossMove" onclick="updateCode()"/>
+
+   &nbsp;
+   bounceGravity:
+     <select id="opt_bounceGravity" onchange="updateCode()">
+       <option value="1.0" SELECTED>1.0</option>
+       <option value="0.8">0.8</option>
+       <option value="0.6">0.6</option>
+       <option value="0.4">0.4</option>
+
+       <option value="0.2">0.2</option>
+  </select>
+   &nbsp;
+   <br/><br/>
+   title:<input type="text" id="opt_title" size="10" value=""
+       onkeyup="updateCode()" onkeypress="updateCode()"/>
+   &nbsp;
+   icon:
+   <select id="opt_icon" onchange="updateCode()">
+
+     <option value="default" SELECTED>default</option>
+     <option value="iconBlue">blue</option>
+     <option value="iconRed">red</option>
+   </select>
+   &nbsp;
+   <br/><br/>
+
+    <div id="map" style="width: 500px; height: 250px"></div>
+
+    <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>
+
+   </table>
+ </body>
+</html>

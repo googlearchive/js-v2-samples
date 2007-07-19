@@ -52,7 +52,7 @@
      }
      var searchFormHint = document.getElementById("opt_searchFormHint").value;
      if (searchFormHint != "search the map") {
-       opts["searchFormHint"] = searchFormHint;
+       opts["searchFormHint"] = "\"" + searchFormHint + "\"";
        optsFound = true;
      }
 

@@ -39,7 +39,7 @@
         adsenseIcon.infoWindowAnchor = new GPoint(9, 0);
         adsenseIcon.infoShadowAnchor = new GPoint(9, 0);
         adsenseIcon.transparent = "admarker_transparent.png";
-        var html = '<div class="iwgeoad"><table><tbody><tr><td colspan="2"><div class="admsg">Sponsored Link</div></td></tr><tr><td><div class="head"><div class="title"><a href="http://www.google.com/jobs">Google Software Engineer Job</a></div><div><div>Google Cubicles.</div><div>Where Geniuses Roam.</div></div></div><div class="detls"><div class="phone">(323) 724-5900</div><div class="visurl">www.google.com/jobs</div><div class="addr">1300 Amphitheatre Parkway, Mountain View, CA 94040</div></div></td><td class="image"><div class="bdr"><img src="http://www.google.com/intl/en_us/images/maps_results_logo.gif" height="32" width="96"></div></td></tr></tbody></table></div>';
+        var html = '<div class="iwgeoad"><table><tbody><tr><td colspan="2"><div class="admsg">Sponsored Link</div></td></tr><tr><td><div class="head"><div class="title"><a href="http://www.google.com/jobs">Google Software Engineer Job</a></div><div><div>Google Cubicles.</div><div>Where Geniuses Roam.</div></div></div><div class="detls"><div class="phone">(323) 724-5900</div><div class="visurl">www.google.com/jobs</div><div class="addr">1300 Amphitheatre Parkway, Mountain View, CA 94040</div></div></td><td class="image"><div class="bdr"><img src="googlelogo.gif" height="32" width="96"></div></td></tr></tbody></table></div>';
         var marker = new GMarker(map.getCenter(), {icon: adsenseIcon});
         map.addOverlay(marker);
         GEvent.addListener(marker, "click", function() { 

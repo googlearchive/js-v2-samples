@@ -20,7 +20,6 @@
     var polygonMode;
     var polyPoints = [];
     var marker;
-    var geocoder = null;
 
     var fillColor = "#0000FF"; // blue fill
     var lineColor = "#000000"; // black line
@@ -34,7 +33,6 @@
         map.addControl(new GLargeMapControl());
         map.addControl(new GMapTypeControl());
 	GEvent.addListener(map, 'click', mapClick);
-        geocoder = new GClientGeocoder();
       }
     }
 
@@ -98,46 +96,22 @@
      }
    }
 
-   function showAddress(address) {
-     if (geocoder) {
-       geocoder.getLatLng(address,
-         function(point) {
-           if (!point) {
-             alert(address + " not found");
-           } else {
-	     clearMap();
-             map.setCenter(point, 13);
-           }
-         }
-       );
-     }
-   }
-
-
     //]]>
     </script>
 </head>
 <body onload="load()" onunload="GUnload()">
 
-Search for location (by geocoding and/or dragging)<br/>
-<form action="#" onsubmit="showAddress(this.address.value); return false">
-  <p>
-    <input type="text" size="40" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
-    <input type="submit" value="Geocode!" />
-  </p>
-</form>
-</p>
 Draw mode:
 <input type="radio" name="drawMode" id="drawMode_polyline" value="polyline" onclick="toggleDrawMode();" checked="checked" 
 />
 
-PolyLine
+Polyline
 <input type="radio" name="drawMode" id="drawMode_polygon" value="polygon" onclick="toggleDrawMode();">
 Polygon
    &nbsp;&nbsp;
 
 <input type="button" onclick="zoomToPoly();" value="Zoom to Poly"/>
-<input type="button" onclick="clearMap();" value="Clear Map"/>
+<input type="button" onclick="clearMap();" value="Remove Poly"/>
 <br/>
 <br/>
   <div id="map" style="width: 500px; height: 400px"></div>

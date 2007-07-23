@@ -90,7 +90,7 @@
         document.getElementById("status").innerHTML = "Area (square meters): " + polyShape.getArea()/(1000*1000);
       } else {
         polyShape = new GPolyline(polyPoints,lineColor,lineWeight,opacity);
-        document.getElementById("status").innerHTML = "Length (meters): "  polyShape.getLength()/1000;
+        document.getElementById("status").innerHTML = "Length (meters): " + polyShape.getLength()/1000;
         
       }
       map.clearOverlays();

@@ -69,19 +69,6 @@
       }
 
 
-    // Delete last Point
-    // This function removes the last point from the Polyline/Polygon and redraws
-    // map.
-
-    function deleteLastPoint(){
-      map.removeOverlay(polyShape);
-
-      // pop last element of polypoint array
-      polyPoints.pop();
-      drawCoordinates();
-     }
-
-
     // drawCoordinates
     function drawCoordinates(){
       //Re-create Polyline/Polygon
@@ -103,6 +90,13 @@
       map.addOverlay(polyShape);
     }
 
+   function zoomToPoly() {
+     if (polyShape && polyPoints.length > 0) {
+       var bounds = polyShape.getBounds();
+       map.setCenter(bounds.getCenter());
+       map.setZoom(map.getBoundsZoomLevel(bounds));
+     }
+   }
 
    function showAddress(address) {
      if (geocoder) {
@@ -142,7 +136,7 @@ PolyLine
 Polygon
    &nbsp;&nbsp;
 
-<input type="button" onclick="deleteLastPoint();" value="Delete Last Point"/>
+<input type="button" onclick="zoomToPoly();" value="Zoom to Poly"/>
 <input type="button" onclick="clearMap();" value="Clear Map"/>
 <br/>
 <br/>

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API Example</title>
+<style type="text/css">
+    body {
+      font-family:Arial,Helvetica,Sans Serif;
+      font-size:10pt;
+    }
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+<script type="text/javascript">
+    //<![CDATA[
+
+    var map;
+    var polyShape;
+    var polygonMode;
+    var polygonDepth = "20";
+    var polyPoints = [];
+    var marker;
+    var geocoder = null;
+
+    var fillColor = "#0000FF"; // blue fill
+    var lineColor = "#000000"; // black line
+    var opacity = .5;
+    var lineWeight = 2;
+    var kmlFillColor = "7dff0000"; // half-opaque blue fill
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(37.4224, -122.0838), 13);
+        map.addControl(new GLargeMapControl());
+        map.addControl(new GMapTypeControl());
+	GEvent.addListener(map, 'click', mapClick);
+        geocoder = new GClientGeocoder();
+      }
+    }
+
+
+   // mapClick - Handles the event of a user clicking anywhere on the map
+   // Adds a new point to the map and draws either a new line from the last point
+   // or a new polygon section depending on the drawing mode.
+    function mapClick(marker, clickedPoint) {
+      polygonMode = document.getElementById("drawMode_polygon").checked;
+
+      // Push onto polypoints of existing polygon
+      polyPoints.push(clickedPoint);
+      drawCoordinates();
+     }
+
+
+      // Clear current Map
+      function clearMap(){
+        map.clearOverlays();
+        polyPoints = [];
+	document.getElementById("coords").value =  "&lt;-- Click on the map to digitize!";
+      }
+
+
+      // Toggle from Polygon PolyLine mode
+
+      function toggleDrawMode(){
+        map.clearOverlays();
+        polyShape = null;
+        polygonMode = document.getElementById("drawMode_polygon").checked;
+        drawCoordinates();
+      }
+
+
+    // Delete last Point
+    // This function removes the last point from the Polyline/Polygon and redraws
+    // map.
+
+    function deleteLastPoint(){
+      map.removeOverlay(polyShape);
+
+      // pop last element of polypoint array
+      polyPoints.pop();
+      drawCoordinates();
+     }
+
+
+    // drawCoordinates
+    function drawCoordinates(){
+      //Re-create Polyline/Polygon
+      if (polygonMode) {
+        polyShape = new GPolygon(polyPoints,lineColor,lineWeight,opacity,fillColor,opacity);
+        document.getElementById("status").innerHTML = polyShape.getArea();
+      } else {
+        polyShape = new GPolyline(polyPoints,lineColor,lineWeight,opacity);
+        document.getElementById("status").innerHTML = polyShape.getLength();
+        
+      }
+      map.clearOverlays();
+
+      // Grab last point of polyPoints to add marker
+      marker = new GMarker(polyPoints[polyPoints.length -1]);
+      map.addOverlay(marker);
+      map.addOverlay(polyShape);
+    }
+
+
+   function showAddress(address) {
+     if (geocoder) {
+       geocoder.getLatLng(address,
+         function(point) {
+           if (!point) {
+             alert(address + " not found");
+           } else {
+	     clearMap();
+             map.setCenter(point, 13);
+           }
+         }
+       );
+     }
+   }
+
+
+    //]]>
+    </script>
+</head>
+<body onload="load()" onunload="GUnload()">
+<h3>EZ Google Maps Digitizer</h3>
+
+  <h4>Search for location (by geocoding and/or dragging)</h4>
+
+<form action="#" onsubmit="showAddress(this.address.value); return false">
+  <p>
+    <input type="text" size="40" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+    <input type="submit" value="Geocode!" />
+  </p>
+</form>
+</p>
+Draw mode:
+<input type="radio" name="drawMode" id="drawMode_polyline" value="polyline" onclick="toggleDrawMode();" checked="checked" 
+/>
+
+PolyLine
+<input type="radio" name="drawMode" id="drawMode_polygon" value="polygon" onclick="toggleDrawMode();">
+Polygon
+   &nbsp;&nbsp;
+
+<input type="button" onclick="deleteLastPoint();" value="Delete Last Point"/>
+<input type="button" onclick="clearMap();" value="Clear Map"/>
+<br/>
+<br/>
+  <div id="map" style="width: 600px; height: 500px"></div>
+  <div id="status" style="width:500px; height: 60px;"></div>
+
+  </tr>
+</table>
+</body>
+</html>
+

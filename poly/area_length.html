@@ -18,7 +18,6 @@
     var map;
     var polyShape;
     var polygonMode;
-    var polygonDepth = "20";
     var polyPoints = [];
     var marker;
     var geocoder = null;
@@ -27,7 +26,6 @@
     var lineColor = "#000000"; // black line
     var opacity = .5;
     var lineWeight = 2;
-    var kmlFillColor = "7dff0000"; // half-opaque blue fill
 
     function load() {
       if (GBrowserIsCompatible()) {
@@ -89,10 +87,10 @@
       //Re-create Polyline/Polygon
       if (polygonMode) {
         polyShape = new GPolygon(polyPoints,lineColor,lineWeight,opacity,fillColor,opacity);
-        document.getElementById("status").innerHTML = polyShape.getArea();
+        document.getElementById("status").innerHTML = "Area (square meters): " + polyShape.getArea()/(1000*1000);
       } else {
         polyShape = new GPolyline(polyPoints,lineColor,lineWeight,opacity);
-        document.getElementById("status").innerHTML = polyShape.getLength();
+        document.getElementById("status").innerHTML = "Length (meters): "  polyShape.getLength()/1000;
         
       }
       map.clearOverlays();

@@ -13,7 +13,8 @@
     function load() {
       if (GBrowserIsCompatible()) {
         var map = new GMap2(document.getElementById("map"));
-        map.setCenter(new GLatLng(37.423148, -122.084874), 13);
+        map.addControl(new GLargeMapControl());
+         map.setCenter(new GLatLng(37.423148, -122.084874), 13);
         var adsManager = new GAdsManager(map);
         adsManager.enable();
       }

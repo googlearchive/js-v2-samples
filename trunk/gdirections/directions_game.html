@@ -90,10 +90,11 @@
     function mapClick(marker, clickedPoint) {
       if (clickedPoint) {
         userPoints.push(clickedPoint);
-        drawCoordinates();
+        updateUserLine();
        } else if (marker.isEnd) {
         userPoints.push(marker.getPoint());
-        drawCoordinates();
+        updateUserLine();
+        map.removeOverlay(lastMarker);
        }
      }
 
@@ -103,19 +104,13 @@
        map.clearOverlays();
      }
 
-    // drawCoordinates
-    function drawCoordinates(){
+    function updateUserLine() {
       map.removeOverlay(userLine);
-      map.removeOverlay(lastMarker);
-      //Re-create Polyline/Polygon
       userLine = new GPolyline(userPoints);
-
-      // Grab last point of userPoints to add marker
-      lastMarker = new GMarker(userPoints[userPoints.length -1]);
-      map.addOverlay(lastMarker);
       map.addOverlay(userLine);
+      
+      lastMarker.setPoint(userPoints[userPoints.length - 1]);
     }
-
 </script>
 
 </head>

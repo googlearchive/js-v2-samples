@@ -151,8 +151,6 @@
 </head>
 
   <body style="font-family: Arial, sans serif;" onload="onLoad()">
-    <input type="button" onclick="newGame()" value="New Game"/>
-    &nbsp;
     <div style="float:left;">
     <table style="width:300px; border: solid 1px black">
     <tr>
@@ -172,11 +170,10 @@
       <td><span id="lengthScoreHigh"></span></td>
     </tr>
     </table>
-    <span id="status"></span>
-    <span id="areaScore"></span>
-    &nbsp;
-    <span id="lengthScore"></span>
-    <br/>
+    </div>
+    <div style="float:left;">
+    <input type="button" onclick="newGame()" value="New Game"/>
+    </div> 
     <br/>
     <div id="map" style="width: 550px; height: 480px; border: 1px solid black;"></div>
     <br/>

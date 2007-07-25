@@ -151,7 +151,7 @@
 </head>
 
   <body style="font-family: Arial, sans serif;" onload="onLoad()">
-    <div style="float:left;">
+    <div style="float:left; width:200px">
     <input type="button" onclick="newGame()" value="New Game"/>
     After pressing new game, try to guess the route from the start (green) icon to the end (red) icon. Click the red icon to end the game. 
     </div>
@@ -164,13 +164,13 @@
     </tr>
     <tr>
       <td>Current</td>
-      <td>High</td>
+      <td style="border-right: solid 1px black">High</td>
       <td>Current</td>
       <td>High</td>
     </tr>
     <tr>
       <td><span id="areaScoreCurrent">--</span></td>
-      <td><span id="areaScoreHigh">--</span></td>
+      <td><span id="areaScoreHigh" style="border-right: solid 1px black">--</span></td>
       <td><span id="lengthScoreCurrent">--</span></td>
       <td><span id="lengthScoreHigh">--</span></td>
     </tr>

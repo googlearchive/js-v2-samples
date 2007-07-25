@@ -46,6 +46,7 @@
       GEvent.addListener(directions, "load", function() {
         var route = directions.getRoute(0);
         markerStart = new GMarker(route.getStep(0).getLatLng(), {icon: G_START_ICON});
+        GLog.write(route.getNumSteps());
         markerEnd = new GMarker(route.getStep(route.getNumSteps()-1).getLatLng(), {icon: G_END_ICON});
         map.addOverlay(markerStart);
         map.addOverlay(markerEnd);

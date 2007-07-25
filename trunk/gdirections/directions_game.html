@@ -10,7 +10,8 @@
 
     var map;
     var directions;
-    
+    var geocoder;
+
     var userPoints = [];
     var userLine;
     var lastMarker;
@@ -23,6 +24,7 @@
       map.setCenter(new GLatLng(37.49975,-122.2629), 15);
 
       directions = new GDirections(null, null);
+      geocoder = new GClientGeocoder();
 
       GEvent.addListener(map, "click", mapClick);
     }
@@ -127,11 +129,35 @@
       } 
       lastMarker.setPoint(userPoints[userPoints.length - 1]);
     }
+    
+    function showAddress(address) {
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              map.setCenter(point, 13);
+              var marker = new GMarker(point);
+              map.addOverlay(marker);
+              marker.openInfoWindowHtml(address);
+            }
+          }
+        );
+      }
+    }
 </script>
 
 </head>
 
   <body style="font-family: Arial, sans serif;" onload="onLoad()">
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+        <input type="submit" value="Find" />
+      </p>
+    </form>
     <input type="button" onclick="newGame()" value="New Game"/>
     &nbsp;
     <span id="status"></span>
@@ -141,7 +167,5 @@
     <br/>
     <br/>
     <div id="map" style="width: 550px; height: 480px; border: 1px solid black;"></div>
-    <br/>
-    <a href="#" onclick="loadDirections()">load directions</a>
   </body>
 </html>

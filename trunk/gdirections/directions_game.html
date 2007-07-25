@@ -152,9 +152,14 @@
 
   <body style="font-family: Arial, sans serif;" onload="onLoad()">
     <div style="float:left;">
+    <input type="button" onclick="newGame()" value="New Game"/>
+    After pressing new game, try to guess the route from the start (green) icon to the end (red) icon. Click the red icon to end the game. 
+    </div>
+ 
+    <div style="float:left;">
     <table style="width:300px; border: solid 1px black">
     <tr>
-      <td colspan="2">AREA</td>
+      <td colspan="2" style="border-right: solid 1px black">AREA</td>
       <td colspan="2">LENGTH</td>
     </tr>
     <tr>
@@ -171,10 +176,9 @@
     </tr>
     </table>
     </div>
-    <div style="float:left;">
-    <input type="button" onclick="newGame()" value="New Game"/>
-    </div> 
-    <br/>
+
+    <br/><br/>
+
     <div id="map" style="clear: both; width: 550px; height: 480px; border: 1px solid black;"></div>
     <br/>
     <form action="#" onsubmit="showAddress(this.address.value); return false">

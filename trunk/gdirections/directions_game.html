@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <title>Google Maps API - Directions Example (directionsSimple.html)</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <style type="text/css">
+      v\:* {
+        behavior:url(#default#VML);
+      }
+    </style>
+    <script type="text/javascript"> 
+
+    var map;
+    var directionsPanel;
+    var polyPoints;
+    var polyPixels;
+    var polyShape;
+    var lastMarker;
+    var startPoint;
+    var endPoint;
+    var markerStart;
+    var markerEnd;
+    var totalArea;
+
+    function onLoad() {
+      polyPoints = [];
+      polyPixels = [];
+      map = new GMap2(document.getElementById("map"));
+      directionsPanel = document.getElementById("route");
+      map.setCenter(new GLatLng(37.49975,-122.2629), 15);
+      var directions = new GDirections(null, null);
+      var bounds = map.getBounds();
+      var southWest = bounds.getSouthWest();
+      var northEast = bounds.getNorthEast();
+      var northWest = new GLatLng(southWest.lat(), northEast.lng());
+      var southEast = new GLatLng(northEast.lat(), southWest.lng());
+      var poly = new GPolygon([southWest, southEast, northEast, northWest, southWest]);
+      totalArea = poly.getArea();
+      var lngSpan = northEast.lng() - southWest.lng();
+      var latSpan = northEast.lat() - southWest.lat();
+      startPoint = new GLatLng(southWest.lat() + latSpan * Math.random(),
+                          southWest.lng() + lngSpan * Math.random());
+      endPoint = new GLatLng(southWest.lat() + latSpan * Math.random(),
+                          southWest.lng() + lngSpan * Math.random());
+      GEvent.addListener(directions, "load", function() {
+        var route = directions.getRoute(0);
+        markerStart = new GMarker(route.getStep(0).getLatLng(), {icon: G_START_ICON});
+        markerEnd = new GMarker(route.getEndLatLng(), {icon: G_END_ICON});
+        map.addOverlay(markerStart);
+        map.addOverlay(markerEnd);
+        polyPoints.push(markerStart.getPoint());
+      });
+      directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getSteps: true});
+
+      GEvent.addListener(map, "click", mapClick);
+    }
+
+    function loadDirections() {
+      var directions = new GDirections(null, null);
+      GEvent.addListener(directions, "load", function() {
+        var route = directions.getRoute(0);
+        var rtPixels = [];
+        var rtPoints = [];
+        var dirPoly = directions.getPolyline();
+        for (var i = (dirPoly.getVertexCount()-1); i >= 0; i--) {
+          var dirPoint = dirPoly.getVertex(i);
+          var dirPixel = map.fromLatLngToDivPixel(dirPoint); 
+          rtPoints.push(dirPoint);
+          rtPixels.push(dirPixel);
+        }
+        var allPixels = polyPixels.concat(rtPixels);
+        var allPoints = polyPoints.concat(rtPoints);
+        var dirShape = new GPolyline(rtPoints, "#00ff00");
+        var allPolyShape = new GPolygon(allPoints, "#ff0000", 2, .2, "#ff0000", .2);
+        map.addOverlay(dirShape);
+        map.addOverlay(allPolyShape);
+        GLog.write(100-(allPolyShape.getArea()/totalArea)*100);
+        GLog.write(dirShape.getLength + "," + polyShape.getLength);
+      });
+      directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
+    }
+      
+    function mapClick(marker, clickedPoint) {
+      var mapNormalProj = G_NORMAL_MAP.getProjection();
+      var mapZoom = map.getZoom();
+
+      // Get new pixel and polypoint
+      // Push onto polypoints of existing polygon
+      var clickedPixel = map.fromLatLngToDivPixel(clickedPoint);
+      polyPoints.push(clickedPoint);
+      polyPixels.push(clickedPixel);
+      drawCoordinates();
+      var area = calculateArea(polyPixels);
+     }
+
+
+      // Clear current Map
+      function clearMap(){
+        polyPoints.length = 0;
+      }
+
+    function calculateArea(pts) {
+      var points = pts.slice();
+      var count = points.length;
+      var i;
+      var tally = 0;
+	
+	// add the first point to the end of the array
+	// Caution: "points" is passed by reference, so this affects the copy held by the
+	// calling code.
+	points[points.length] = points[0];
+	for(i = 0; i < count; i++) {
+          tally += points[i + 1].x * points[i].y;
+          tally -= points[i].x * points[i + 1].y;
+	}
+	return tally * 0.5;
+    }
+
+    // drawCoordinates
+    function drawCoordinates(){
+      map.removeOverlay(polyShape);
+      map.removeOverlay(lastMarker);
+      //Re-create Polyline/Polygon
+      polyShape = new GPolyline(polyPoints);
+
+      // Grab last point of polyPoints to add marker
+      lastMarker = new GMarker(polyPoints[polyPoints.length -1]);
+      map.addOverlay(lastMarker);
+      map.addOverlay(polyShape);
+    }
+
+</script>
+
+</head>
+
+  <body onload="onLoad()">
+
+    <div id="map" style="width: 74%; height: 480px; float:left; border: 1px solid black;"></div>
+    <div id="route" style="width: 25%; height:480px; float:right; border; 1px solid black;"></div>
+    <br/>
+    <a href="#" onclick="loadDirections()">load directions</a>
+  </body>
+</html>

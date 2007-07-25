@@ -48,6 +48,7 @@
                           southWest.lng() + lngSpan * Math.random());
 
       GEvent.addListener(directions, "load", function() {
+        document.getElementById("status").innerHTML = "";
         var route = directions.getRoute(0);
 
         markerStart = new GMarker(route.getStep(0).getLatLng());
@@ -63,10 +64,11 @@
         userPoints.push(markerStart.getPoint());
       });
 
+      document.getElementById("status").innerHTML = "Loading game...";
       directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
     }
 
-    function loadDirections() {
+    function endGame() {
       var dirPoints = [];
       var dirPoly = directions.getPolyline();
       for (var i = (dirPoly.getVertexCount()-1); i >= 0; i--) {
@@ -109,7 +111,7 @@
         userPoints.push(marker.getPoint());
         updateUserLine();
         map.removeOverlay(lastMarker);
-        loadDirections();
+        endGame();
        }
      }
 
@@ -131,6 +133,7 @@
   <body style="font-family: Arial, sans serif;" onload="onLoad()">
     <input type="button" onclick="newGame()" value="New Game"/>
     &nbsp;
+    <span id="status"></span>
     <span id="areaScore"></span>
     &nbsp;
     <span id="lengthScore"></span>

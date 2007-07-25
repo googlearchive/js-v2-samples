@@ -36,6 +36,8 @@
     function newGame() {
       clearGame();
 
+      document.getElementById("status").innerHTML = "Loading game...";
+
       var bounds = map.getBounds();
       var southWest = bounds.getSouthWest();
       var northEast = bounds.getNorthEast();
@@ -64,7 +66,6 @@
         userPoints.push(markerStart.getPoint());
       });
 
-      document.getElementById("status").innerHTML = "Loading game...";
       directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
     }
 

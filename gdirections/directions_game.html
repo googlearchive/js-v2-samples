@@ -78,7 +78,7 @@
         map.addOverlay(dirShape);
         map.addOverlay(allPolyShape);
         var areaScore = 100 - (allPolyShape.getArea()/totalArea)*100;
-        var lengthScore = 100 - ((Math.abs(dirShape.getLength() - polyShape.getLength())/dirShape.getLength())*100; 
+        var lengthScore = 100 - (Math.abs(dirShape.getLength() - polyShape.getLength())/dirShape.getLength())*100; 
         GLog.write(areaScore + "," + lengthScore);
       });
       directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
@@ -97,28 +97,10 @@
       var area = calculateArea(polyPixels);
      }
 
-
       // Clear current Map
       function clearMap(){
         polyPoints.length = 0;
       }
-
-    function calculateArea(pts) {
-      var points = pts.slice();
-      var count = points.length;
-      var i;
-      var tally = 0;
-	
-	// add the first point to the end of the array
-	// Caution: "points" is passed by reference, so this affects the copy held by the
-	// calling code.
-	points[points.length] = points[0];
-	for(i = 0; i < count; i++) {
-          tally += points[i + 1].x * points[i].y;
-          tally -= points[i].x * points[i + 1].y;
-	}
-	return tally * 0.5;
-    }
 
     // drawCoordinates
     function drawCoordinates(){

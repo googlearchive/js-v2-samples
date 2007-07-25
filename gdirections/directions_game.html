@@ -102,8 +102,10 @@
       if (areaScore > areaScoreHigh) areaScoreHigh = areaScore;
       if (lengthScore > lengthScoreHigh) lengthScoreHigh = lengthScore;
 
-      document.getElementById("areaScore").innerHTML = "Area Score: <b>" + areaScore + "/" + areaScoreHigh + "</b>";
-      document.getElementById("lengthScore").innerHTML = "Length Score: <b>" + lengthScore + "/" + lengthScoreHigh + "</b>";
+      document.getElementById("areaScoreCurrent").innerHTML = areaScore;
+      document.getElementById("lengthScoreCurrent").innerHTML = lengthScore;
+      document.getElementById("areaScoreHigh").innerHTML = areaScoreHigh;
+      document.getElementById("lengthScoreHigh").innerHTML = lengthScoreHigh;
     }
       
     function mapClick(marker, clickedPoint) {
@@ -151,6 +153,25 @@
   <body style="font-family: Arial, sans serif;" onload="onLoad()">
     <input type="button" onclick="newGame()" value="New Game"/>
     &nbsp;
+    <div>
+    <table>
+    <tr>
+      <td colspan="2">AREA</td>
+      <td colspan="2">LENGTH</td>
+    </tr>
+    <tr>
+      <td>Current</td>
+      <td>High</td>
+      <td>Current</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td><span id="areaScoreCurrent"></span></td>
+      <td><span id="areaScoreHigh"></span></td>
+      <td><span id="lengthScoreCurrent"></span></td>
+      <td><span id="lengthScoreHigh"></span></td>
+    </tr>
+    </table>
     <span id="status"></span>
     <span id="areaScore"></span>
     &nbsp;

@@ -36,6 +36,10 @@
     function newGame() {
       userPoints = [];
 
+      var bounds = map.getBounds();
+      var southWest = bounds.getSouthWest();
+      var northEast = bounds.getNorthEast();
+
       var lngSpan = northEast.lng() - southWest.lng();
       var latSpan = northEast.lat() - southWest.lat();
 

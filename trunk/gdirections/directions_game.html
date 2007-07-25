@@ -49,8 +49,10 @@
         markerStart = new GMarker(route.getStep(0).getLatLng(), {icon: G_START_ICON});
         GLog.write(route.getNumSteps());
         markerEnd = new GMarker(route.getEndLatLng(), {icon: G_END_ICON});
-        GLog.write(markerStart.getPoint());
-        GLog.write(markerEnd.getPoint());
+        GEvent.addListener(markerEnd, "click", function() {
+          polyPoints.push(markerEnd.getPoint());
+          drawCoordinates();
+        });
         map.addOverlay(markerStart);
         map.addOverlay(markerEnd);
         polyPoints.push(markerStart.getPoint());

@@ -91,14 +91,14 @@
 
       var areaScore = 100 - (allPolyShape.getArea()/totalArea)*200;
       var lengthScore = 100 - (Math.abs(dirLine.getLength() - userLine.getLength())/dirLine.getLength())*50; 
-      areaScore = areaScore.toFixed(2); 
-      lengthScore = lengthScore.toFixed(2);
+      areaScore = areaScore.toFixed(1); 
+      lengthScore = lengthScore.toFixed(1);
 
       if (areaScore > areaScoreHigh) areaScoreHigh = areaScore;
       if (lengthScore > lengthScoreHigh) lengthScoreHigh = lengthScore;
 
-      document.getElementById("areaScore").innerHTML = "<b>Area Score: </b>" + areaScore + "/" + areaScoreHigh;
-      document.getElementById("lengthScore").innerHTML = "<b>Length Score: </b>" + lengthScore + "/" + lengthScoreHigh;
+      document.getElementById("areaScore").innerHTML = "Area Score: <b>" + areaScore + "/" + areaScoreHigh + "</b>";
+      document.getElementById("lengthScore").innerHTML = "Length Score: <b>" + lengthScore + "/" + lengthScoreHigh + "</b>";
     }
       
     function mapClick(marker, clickedPoint) {
@@ -134,6 +134,7 @@
     <span id="areaScore"></span>
     &nbsp;
     <span id="lengthScore"></span>
+    <br/>
     <br/>
     <div id="map" style="width: 550px; height: 480px; border: 1px solid black;"></div>
     <br/>

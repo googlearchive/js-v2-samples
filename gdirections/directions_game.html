@@ -9,12 +9,11 @@
     <script type="text/javascript"> 
 
     var map;
-    var directionsPanel;
-    var userPoints;
+    var directions;
+    
+    var userPoints = [];
     var userLine;
     var lastMarker;
-    var totalArea;
-    var directions;
 
     function onLoad() {
       map = new GMap2(document.getElementById("map"));
@@ -22,24 +21,21 @@
 
       directions = new GDirections(null, null);
 
-      var bounds = map.getBounds();
-      var southWest = bounds.getSouthWest();
-      var northEast = bounds.getNorthEast();
-      var northWest = new GLatLng(southWest.lat(), northEast.lng());
-      var southEast = new GLatLng(northEast.lat(), southWest.lng());
-      var poly = new GPolygon([southWest, southEast, northEast, northWest, southWest]);
-      totalArea = poly.getArea();
-
       GEvent.addListener(map, "click", mapClick);
     }
   
+    function clearGame(){
+      userPoints.length = 0;
+      lastMarker = null;
+      map.clearOverlays();
+     }
+
     function newGame() {
-      userPoints = [];
+      clearGame();
 
       var bounds = map.getBounds();
       var southWest = bounds.getSouthWest();
       var northEast = bounds.getNorthEast();
-
       var lngSpan = northEast.lng() - southWest.lng();
       var latSpan = northEast.lat() - southWest.lat();
 
@@ -65,23 +61,31 @@
       });
 
       directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
-
-      GEvent.addListener(map, "click", mapClick);
     }
 
     function loadDirections() {
-      var route = directions.getRoute(0);
       var dirPoints = [];
       var dirPoly = directions.getPolyline();
       for (var i = (dirPoly.getVertexCount()-1); i >= 0; i--) {
         var dirPoint = dirPoly.getVertex(i);
         dirPoints.push(dirPoint);
       }
+
       var allPoints = userPoints.concat(dirPoints);
       var dirLine = new GPolyline(dirPoints, "#00ff00");
       var allPolyShape = new GPolygon(allPoints, "#ff0000", 2, .2, "#ff0000", .2);
+
       map.addOverlay(dirLine);
       map.addOverlay(allPolyShape);
+
+      var bounds = map.getBounds();
+      var southWest = bounds.getSouthWest();
+      var northEast = bounds.getNorthEast();
+      var northWest = new GLatLng(southWest.lat(), northEast.lng());
+      var southEast = new GLatLng(northEast.lat(), southWest.lng());
+      var poly = new GPolygon([southWest, southEast, northEast, northWest, southWest]);
+      var totalArea = poly.getArea();
+
       var areaScore = 100 - (allPolyShape.getArea()/totalArea)*200;
       var lengthScore = 100 - (Math.abs(dirLine.getLength() - userLine.getLength())/dirLine.getLength())*50; 
       GLog.write(areaScore + "," + lengthScore);
@@ -97,13 +101,6 @@
         map.removeOverlay(lastMarker);
         loadDirections();
        }
-     }
-
-     // Clear current Map
-     function clearMap(){
-       userPoints.length = 0;
-       lastMarker = null;
-       map.clearOverlays();
      }
 
     function updateUserLine() {

@@ -43,7 +43,7 @@
         var route = directions.getRoute(0);
         markerStart = new GMarker(route.getStep(0).getLatLng());
         markerEnd = new GMarker(route.getEndLatLng());
-        
+        markerEnd.isEnd = true;        
         /*
         GEvent.addListener(markerEnd, "click", function() {
           polyPoints.push(markerEnd.getPoint());
@@ -83,6 +83,8 @@
       if (clickedPoint) {
         polyPoints.push(clickedPoint);
         drawCoordinates();
+       } else if (marker.isEnd) {
+        polyPoints.push(marker.getPoint());
        }
      }
 

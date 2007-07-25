@@ -77,8 +77,9 @@
         var allPolyShape = new GPolygon(allPoints, "#ff0000", 2, .2, "#ff0000", .2);
         map.addOverlay(dirShape);
         map.addOverlay(allPolyShape);
-        GLog.write(100-(allPolyShape.getArea()/totalArea)*100);
-        GLog.write(dirShape.getLength() + "," + polyShape.getLength());
+        var areaScore = 100 - (allPolyShape.getArea()/totalArea)*100;
+        var lengthScore = 100 - ((Math.abs(dirShape.getLength() - polyShape.getLength())/dirShape.getLength())*100; 
+        GLog.write(areaScore + "," + lengthScore);
       });
       directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
     }

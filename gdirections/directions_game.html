@@ -95,12 +95,14 @@
         userPoints.push(marker.getPoint());
         updateUserLine();
         map.removeOverlay(lastMarker);
+        loadDirections();
        }
      }
 
      // Clear current Map
      function clearMap(){
        userPoints.length = 0;
+       lastMarker = null;
        map.clearOverlays();
      }
 

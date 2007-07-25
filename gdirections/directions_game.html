@@ -149,12 +149,6 @@
 </head>
 
   <body style="font-family: Arial, sans serif;" onload="onLoad()">
-    <form action="#" onsubmit="showAddress(this.address.value); return false">
-      <p>
-        <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
-        <input type="submit" value="Find" />
-      </p>
-    </form>
     <input type="button" onclick="newGame()" value="New Game"/>
     &nbsp;
     <span id="status"></span>
@@ -164,5 +158,12 @@
     <br/>
     <br/>
     <div id="map" style="width: 550px; height: 480px; border: 1px solid black;"></div>
+    <br/>
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+        <input type="submit" value="Find" />
+      </p>
+    </form>
   </body>
 </html>

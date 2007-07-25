@@ -16,7 +16,6 @@
     var map;
     var directionsPanel;
     var polyPoints;
-    var polyPixels;
     var polyShape;
     var lastMarker;
     var startPoint;
@@ -27,7 +26,6 @@
 
     function onLoad() {
       polyPoints = [];
-      polyPixels = [];
       map = new GMap2(document.getElementById("map"));
       directionsPanel = document.getElementById("route");
       map.setCenter(new GLatLng(37.49975,-122.2629), 15);
@@ -62,16 +60,12 @@
       var directions = new GDirections(null, null);
       GEvent.addListener(directions, "load", function() {
         var route = directions.getRoute(0);
-        var rtPixels = [];
         var rtPoints = [];
         var dirPoly = directions.getPolyline();
         for (var i = (dirPoly.getVertexCount()-1); i >= 0; i--) {
           var dirPoint = dirPoly.getVertex(i);
-          var dirPixel = map.fromLatLngToDivPixel(dirPoint); 
           rtPoints.push(dirPoint);
-          rtPixels.push(dirPixel);
         }
-        var allPixels = polyPixels.concat(rtPixels);
         var allPoints = polyPoints.concat(rtPoints);
         var dirShape = new GPolyline(rtPoints, "#00ff00");
         var allPolyShape = new GPolygon(allPoints, "#ff0000", 2, .2, "#ff0000", .2);
@@ -85,16 +79,8 @@
     }
       
     function mapClick(marker, clickedPoint) {
-      var mapNormalProj = G_NORMAL_MAP.getProjection();
-      var mapZoom = map.getZoom();
-
-      // Get new pixel and polypoint
-      // Push onto polypoints of existing polygon
-      var clickedPixel = map.fromLatLngToDivPixel(clickedPoint);
       polyPoints.push(clickedPoint);
-      polyPixels.push(clickedPixel);
       drawCoordinates();
-      var area = calculateArea(polyPixels);
      }
 
       // Clear current Map

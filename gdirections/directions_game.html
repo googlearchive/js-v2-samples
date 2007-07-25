@@ -78,7 +78,7 @@
         map.addOverlay(dirShape);
         map.addOverlay(allPolyShape);
         GLog.write(100-(allPolyShape.getArea()/totalArea)*100);
-        GLog.write(dirShape.getLength + "," + polyShape.getLength);
+        GLog.write(dirShape.getLength() + "," + polyShape.getLength());
       });
       directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
     }

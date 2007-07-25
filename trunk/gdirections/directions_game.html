@@ -47,7 +47,7 @@
       GEvent.addListener(directions, "load", function() {
         var route = directions.getRoute(0);
         markerStart = new GMarker(route.getStep(0).getLatLng());
-        markerStart.setImage("http://www.google.com/intl/en_us/mapfiles/dd-start.png");
+//        markerStart.setImage("http://www.google.com/intl/en_us/mapfiles/dd-start.png");
         GLog.write(route.getNumSteps());
         markerEnd = new GMarker(route.getEndLatLng(), {icon: G_END_ICON});
         GEvent.addListener(markerEnd, "click", function() {

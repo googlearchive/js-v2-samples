@@ -23,13 +23,14 @@
     var markerStart;
     var markerEnd;
     var totalArea;
+    var directions;
 
     function onLoad() {
       polyPoints = [];
       map = new GMap2(document.getElementById("map"));
       directionsPanel = document.getElementById("route");
       map.setCenter(new GLatLng(37.49975,-122.2629), 15);
-      var directions = new GDirections(null, null);
+      directions = new GDirections(null, null);
       var bounds = map.getBounds();
       var southWest = bounds.getSouthWest();
       var northEast = bounds.getNorthEast();
@@ -54,31 +55,27 @@
         map.addOverlay(markerEnd);
         polyPoints.push(markerStart.getPoint());
       });
-      directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getSteps: true});
+      directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
 
       GEvent.addListener(map, "click", mapClick);
     }
 
     function loadDirections() {
-      var directions = new GDirections(null, null);
-      GEvent.addListener(directions, "load", function() {
-        var route = directions.getRoute(0);
-        var rtPoints = [];
-        var dirPoly = directions.getPolyline();
-        for (var i = (dirPoly.getVertexCount()-1); i >= 0; i--) {
-          var dirPoint = dirPoly.getVertex(i);
-          rtPoints.push(dirPoint);
-        }
-        var allPoints = polyPoints.concat(rtPoints);
-        var dirShape = new GPolyline(rtPoints, "#00ff00");
-        var allPolyShape = new GPolygon(allPoints, "#ff0000", 2, .2, "#ff0000", .2);
-        map.addOverlay(dirShape);
-        map.addOverlay(allPolyShape);
-        var areaScore = 100 - (allPolyShape.getArea()/totalArea)*200;
-        var lengthScore = 100 - (Math.abs(dirShape.getLength() - polyShape.getLength())/dirShape.getLength())*50; 
-        GLog.write(areaScore + "," + lengthScore);
-      });
-      directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
+      var route = directions.getRoute(0);
+      var rtPoints = [];
+      var dirPoly = directions.getPolyline();
+      for (var i = (dirPoly.getVertexCount()-1); i >= 0; i--) {
+        var dirPoint = dirPoly.getVertex(i);
+        rtPoints.push(dirPoint);
+      }
+      var allPoints = polyPoints.concat(rtPoints);
+      var dirShape = new GPolyline(rtPoints, "#00ff00");
+      var allPolyShape = new GPolygon(allPoints, "#ff0000", 2, .2, "#ff0000", .2);
+      map.addOverlay(dirShape);
+      map.addOverlay(allPolyShape);
+      var areaScore = 100 - (allPolyShape.getArea()/totalArea)*200;
+      var lengthScore = 100 - (Math.abs(dirShape.getLength() - polyShape.getLength())/dirShape.getLength())*50; 
+      GLog.write(areaScore + "," + lengthScore);
     }
       
     function mapClick(marker, clickedPoint) {

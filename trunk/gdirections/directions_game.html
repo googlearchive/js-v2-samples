@@ -45,8 +45,8 @@
                           southWest.lng() + lngSpan * Math.random());
       GEvent.addListener(directions, "load", function() {
         var route = directions.getRoute(0);
-        markerStart = new GMarker(route.getStartGeocode(), {icon: G_START_ICON});
-        markerEnd = new GMarker(route.getEndGeocode(), {icon: G_END_ICON});
+        markerStart = new GMarker(route.getStep(0).getLatLng(), {icon: G_START_ICON});
+        markerEnd = new GMarker(route.getEndLatLng(), {icon: G_END_ICON});
         map.addOverlay(markerStart);
         map.addOverlay(markerEnd);
         polyPoints.push(markerStart.getPoint());

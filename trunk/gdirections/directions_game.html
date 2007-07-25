@@ -108,7 +108,11 @@
       map.removeOverlay(userLine);
       userLine = new GPolyline(userPoints);
       map.addOverlay(userLine);
-      
+
+      if (!lastMarker) {
+        lastMarker = new GMarker(userPoints[userPoints.length - 1]);
+        map.addOverlay(lastMarker);
+      } 
       lastMarker.setPoint(userPoints[userPoints.length - 1]);
     }
 </script>

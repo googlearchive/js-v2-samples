@@ -10,22 +10,18 @@
 
     var map;
     var directionsPanel;
-    var polyPoints;
-    var polyShape;
+    var userPoints;
+    var userLine;
     var lastMarker;
-    var startPoint;
-    var endPoint;
-    var markerStart;
-    var markerEnd;
     var totalArea;
     var directions;
 
     function onLoad() {
-      polyPoints = [];
       map = new GMap2(document.getElementById("map"));
-      directionsPanel = document.getElementById("route");
       map.setCenter(new GLatLng(37.49975,-122.2629), 15);
+
       directions = new GDirections(null, null);
+
       var bounds = map.getBounds();
       var southWest = bounds.getSouthWest();
       var northEast = bounds.getNorthEast();
@@ -33,29 +29,37 @@
       var southEast = new GLatLng(northEast.lat(), southWest.lng());
       var poly = new GPolygon([southWest, southEast, northEast, northWest, southWest]);
       totalArea = poly.getArea();
+
+      GEvent.addListener(map, "click", mapClick);
+    }
+  
+    function newGame() {
+      userPoints = [];
+
       var lngSpan = northEast.lng() - southWest.lng();
       var latSpan = northEast.lat() - southWest.lat();
+
       startPoint = new GLatLng(southWest.lat() + latSpan * Math.random(),
                           southWest.lng() + lngSpan * Math.random());
       endPoint = new GLatLng(southWest.lat() + latSpan * Math.random(),
                           southWest.lng() + lngSpan * Math.random());
+
       GEvent.addListener(directions, "load", function() {
         var route = directions.getRoute(0);
+
         markerStart = new GMarker(route.getStep(0).getLatLng());
         markerEnd = new GMarker(route.getEndLatLng());
         markerEnd.isEnd = true;        
-        /*
-        GEvent.addListener(markerEnd, "click", function() {
-          polyPoints.push(markerEnd.getPoint());
-          drawCoordinates();
-        }); 
-        */
+
         map.addOverlay(markerStart);
         map.addOverlay(markerEnd);
-        polyPoints.push(markerStart.getPoint());
+
         markerStart.setImage("http://www.google.com/intl/en_us/mapfiles/dd-start.png");
         markerEnd.setImage("http://www.google.com/intl/en_us/mapfiles/dd-end.png");
+        
+        userPoints.push(markerStart.getPoint());
       });
+
       directions.loadFromWaypoints([startPoint.toUrlValue(), endPoint.toUrlValue()], {getPolyline: true, getSteps: true});
 
       GEvent.addListener(map, "click", mapClick);
@@ -63,48 +67,49 @@
 
     function loadDirections() {
       var route = directions.getRoute(0);
-      var rtPoints = [];
+      var dirPoints = [];
       var dirPoly = directions.getPolyline();
       for (var i = (dirPoly.getVertexCount()-1); i >= 0; i--) {
         var dirPoint = dirPoly.getVertex(i);
-        rtPoints.push(dirPoint);
+        dirPoints.push(dirPoint);
       }
-      var allPoints = polyPoints.concat(rtPoints);
-      var dirShape = new GPolyline(rtPoints, "#00ff00");
+      var allPoints = userPoints.concat(dirPoints);
+      var dirLine = new GPolyline(dirPoints, "#00ff00");
       var allPolyShape = new GPolygon(allPoints, "#ff0000", 2, .2, "#ff0000", .2);
-      map.addOverlay(dirShape);
+      map.addOverlay(dirLine);
       map.addOverlay(allPolyShape);
       var areaScore = 100 - (allPolyShape.getArea()/totalArea)*200;
-      var lengthScore = 100 - (Math.abs(dirShape.getLength() - polyShape.getLength())/dirShape.getLength())*50; 
+      var lengthScore = 100 - (Math.abs(dirLine.getLength() - userLine.getLength())/dirLine.getLength())*50; 
       GLog.write(areaScore + "," + lengthScore);
     }
       
     function mapClick(marker, clickedPoint) {
       if (clickedPoint) {
-        polyPoints.push(clickedPoint);
+        userPoints.push(clickedPoint);
         drawCoordinates();
        } else if (marker.isEnd) {
-        polyPoints.push(marker.getPoint());
+        userPoints.push(marker.getPoint());
         drawCoordinates();
        }
      }
 
-      // Clear current Map
-      function clearMap(){
-        polyPoints.length = 0;
-      }
+     // Clear current Map
+     function clearMap(){
+       userPoints.length = 0;
+       map.clearOverlays();
+     }
 
     // drawCoordinates
     function drawCoordinates(){
-      map.removeOverlay(polyShape);
+      map.removeOverlay(userLine);
       map.removeOverlay(lastMarker);
       //Re-create Polyline/Polygon
-      polyShape = new GPolyline(polyPoints);
+      userLine = new GPolyline(userPoints);
 
-      // Grab last point of polyPoints to add marker
-      lastMarker = new GMarker(polyPoints[polyPoints.length -1]);
+      // Grab last point of userPoints to add marker
+      lastMarker = new GMarker(userPoints[userPoints.length -1]);
       map.addOverlay(lastMarker);
-      map.addOverlay(polyShape);
+      map.addOverlay(userLine);
     }
 
 </script>
@@ -112,9 +117,8 @@
 </head>
 
   <body onload="onLoad()">
-
-    <div id="map" style="width: 74%; height: 480px; float:left; border: 1px solid black;"></div>
-    <div id="route" style="width: 25%; height:480px; float:right; border; 1px solid black;"></div>
+    <input type="button" onclick="newGame()" value="New Game"/>
+    <div id="map" style="width: 550px; height: 480px; float:left; border: 1px solid black;"></div>
     <br/>
     <a href="#" onclick="loadDirections()">load directions</a>
   </body>

@@ -35,11 +35,36 @@ function setupMap() {
   }
 }
 
+    function showAddress(address) {
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              map.setCenter(point, 13);
+              var marker = new GMarker(point);
+              map.addOverlay(marker);
+              marker.openInfoWindowHtml(address);
+            }
+          }
+        );
+      }
+    }
+
     //]]>
     </script>
   </head>
 
   <body onload="setupMap()" onunload="GUnload()">
+    <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="60" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+        <input type="submit" value="Go!" />
+      </p>
+      <div id="map" style="width: 500px; height: 300px"></div>
+    </form>
 
     <div id="map" style="border:2px solid green; width: 800px; height: 600px"></div>
 

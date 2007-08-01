@@ -55,7 +55,8 @@
           var marker = new GMarker(point, icon);
 
           GEvent.addListener(marker, "click", function() {
-            map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
+            zoomTo(country);
+            //map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
           });
           return marker;
         }
@@ -89,7 +90,6 @@
     }
 
     function zoomTo(country) {
-      //map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 9);
       document.getElementById("addressInput").value = countryData[country].address;
       showAddress(countryData[country].address);
     }

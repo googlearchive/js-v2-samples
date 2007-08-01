@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Google Maps API Example - Panoramio layer</title>
+    <style type="text/css">
+      body { 
+        font-family: Arial, sans serif;
+        font-size: 11px;
+      }
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxTPZYElJSBeBUeMSX5xXgq6lLjHthSAk20WnZ_iuuzhMt60X_ukms-AUg"></script>
+    <script src="http://www.google.com/uds/solutions/slideshow/gfslideshow.js"
+      type="text/javascript"></script>
+    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js" type="text/javascript"></script>
+    <script src="pano_layer.js" type="text/javascript"></script>
+    <script src="pano_maptypecontrol.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+var map = null;
+
+function setupMap() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map"));
+    map.setCenter(new GLatLng(37.419322,-122.085228), 8);
+    map.addControl(new GSmallMapControl());
+    map.enableDoubleClickZoom();
+    map.enableScrollWheelZoom();
+    map.addControl(new PanoMapTypeControl()); 
+
+  }
+}
+
+    //]]>
+    </script>
+  </head>
+
+  <body onload="setupMap()" onunload="GUnload()">
+
+    <div id="map" style="border:2px solid green; width: 800px; height: 600px"></div>
+
+  </body>
+</html>
+
+

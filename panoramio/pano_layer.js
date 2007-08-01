@@ -36,7 +36,7 @@ PanoramioLayerCallback.prototype.createMarker = function(photo, baseIcon) {
              "<div style='overflow: hidden; width: 240px;'>" +
              "<p><a target='_blank' class='photo_title' href='" + photo.photo_url +
              "'><strong>" + photo.photo_title + "<\/strong><\/a></p>" +
-             "<p>Posted by <a target='_blank' href='" + photo.user_url + "'>" +
+             "<p>Posted by <a target='_blank' href='" + photo.owner_url + "'>" +
              photo.owner_name + "<\/a></p><\/div>" +
              "<\/div>";
 

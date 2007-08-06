@@ -78,7 +78,7 @@ ExtMapTypeControl.prototype.initialize = function(map) {
         me.trafficInfo = new GTrafficOverlay();
         me.trafficInfo.hidden = false; 
         map.addOverlay(me.trafficInfo);
-        GEvent.addListener(trafficInfo, "changed", function(hasTrafficInView) {
+        GEvent.addListener(me.trafficInfo, "changed", function(hasTrafficInView) {
           GLog.write(hasTrafficInView);
         });
       }

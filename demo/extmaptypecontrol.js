@@ -65,7 +65,7 @@ ExtMapTypeControl.prototype.initialize = function(map) {
    trafficDiv.style.marginRight = "8px";
    trafficDiv.firstChild.style.cssFloat = "left";
    trafficDiv.firstChild.style.styleFloat = "left";
-    GEvent.addDomListener(trafficDiv, "click", function() {
+   GEvent.addDomListener(trafficDiv, "click", function() {
       if (me.trafficInfo) {
         if (me.trafficInfo.hidden) {
           me.trafficInfo.hidden = false;
@@ -78,6 +78,9 @@ ExtMapTypeControl.prototype.initialize = function(map) {
         me.trafficInfo = new GTrafficOverlay();
         me.trafficInfo.hidden = false; 
         map.addOverlay(me.trafficInfo);
+        GEvent.addListener(trafficInfo, "changed", function(hasTrafficInView) {
+          GLog.write(hasTrafficInView);
+        });
       }
       me.toggleButton_(trafficDiv, !me.trafficInfo.hidden);
     });
@@ -93,6 +96,7 @@ ExtMapTypeControl.prototype.initialize = function(map) {
   map.getContainer().appendChild(container);
   
   GEvent.trigger(map, "maptypechanged");
+
   return container;
 }
 

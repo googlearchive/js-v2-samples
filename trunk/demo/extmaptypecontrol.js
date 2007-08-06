@@ -79,6 +79,11 @@ ExtMapTypeControl.prototype.initialize = function(map) {
         me.trafficInfo.hidden = false; 
         map.addOverlay(me.trafficInfo);
         GEvent.addListener(me.trafficInfo, "changed", function(hasTrafficInView) {
+          if (hasTrafficInView) {
+            trafficDiv.style.visibility = 'none';
+          } else {
+            trafficDiv.style.visibility = 'block';
+          }
         });
       }
       me.toggleButton_(trafficDiv, !me.trafficInfo.hidden);

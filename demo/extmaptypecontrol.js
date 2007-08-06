@@ -80,9 +80,10 @@ ExtMapTypeControl.prototype.initialize = function(map) {
         map.addOverlay(me.trafficInfo);
         GEvent.addListener(me.trafficInfo, "changed", function(hasTrafficInView) {
           if (hasTrafficInView) {
-            trafficDiv.style.visibility = 'none';
-          } else {
             trafficDiv.style.visibility = 'block';
+          } else {
+            GLog.write("hiding?");
+            trafficDiv.style.visibility = 'none';
           }
         });
       }

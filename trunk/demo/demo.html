@@ -40,12 +40,12 @@
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
         map.setCenter(new GLatLng(50, -98), 3);
-        map.setMapType(G_SATELLITE_MAP);
         map.addControl(new google.maps.LocalSearch());
         map.addControl(new TextualZoomControl());
         map.addControl(new ExtMapTypeControl({showTraffic: true}));
         map.addControl(new GOverviewMapControl());
         map.enableDoubleClickZoom();
+        map.setMapType(G_SATELLITE_MAP);
 
         geocoder = new GClientGeocoder();
 

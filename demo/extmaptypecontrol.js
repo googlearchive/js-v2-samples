@@ -65,28 +65,25 @@ ExtMapTypeControl.prototype.initialize = function(map) {
    trafficDiv.style.marginRight = "8px";
    trafficDiv.firstChild.style.cssFloat = "left";
    trafficDiv.firstChild.style.styleFloat = "left";
+   // Sending true makes overlay hidden by default
+   me.trafficInfo = new GTrafficOverlay(true);
+   // We have to do this so that we can sense if traffic is in view
+   map.addOverlay(me.trafficInfo);
+   GEvent.addListener(me.trafficInfo, "changed", function(hasTrafficInView) {
+     if (hasTrafficInView) {
+       trafficDiv.style.visibility = 'visible';
+     } else {
+       trafficDiv.style.visibility = 'hidden';
+     }
+   });
+
    GEvent.addDomListener(trafficDiv, "click", function() {
-      if (me.trafficInfo) {
-        if (me.trafficInfo.hidden) {
-          me.trafficInfo.hidden = false;
-          me.trafficInfo.show();
-        } else {
-          me.trafficInfo.hidden = true;
-          me.trafficInfo.hide();
-        }
-      } else {
-        me.trafficInfo = new GTrafficOverlay();
-        me.trafficInfo.hidden = false; 
-        map.addOverlay(me.trafficInfo);
-        GEvent.addListener(me.trafficInfo, "changed", function(hasTrafficInView) {
-          if (hasTrafficInView) {
-            trafficDiv.style.visibility = 'visible';
-          } else {
-            trafficDiv.style.visibility = 'hidden';
-          }
-        });
-      }
-      me.toggleButton_(trafficDiv, !me.trafficInfo.hidden);
+     if (me.trafficInfo.isHidden()) {
+      me.trafficInfo.show();
+     } else {
+       me.trafficInfo.hide();
+     }
+      me.toggleButton_(trafficDiv, !me.trafficInfo.isHidden());
     });
 
     me.toggleButton_(trafficDiv, false);
@@ -99,8 +96,6 @@ ExtMapTypeControl.prototype.initialize = function(map) {
 
   map.getContainer().appendChild(container);
   
-  GEvent.trigger(map, "maptypechanged");
-
   return container;
 }
 

@@ -68,7 +68,6 @@ ExtMapTypeControl.prototype.initialize = function(map) {
    // Sending true makes overlay hidden by default
    me.trafficInfo = new GTrafficOverlay(true);
    // We have to do this so that we can sense if traffic is in view
-   map.addOverlay(me.trafficInfo);
    GEvent.addListener(me.trafficInfo, "changed", function(hasTrafficInView) {
      if (hasTrafficInView) {
        trafficDiv.style.visibility = 'visible';
@@ -76,6 +75,7 @@ ExtMapTypeControl.prototype.initialize = function(map) {
        trafficDiv.style.visibility = 'hidden';
      }
    });
+   map.addOverlay(me.trafficInfo);
 
    GEvent.addDomListener(trafficDiv, "click", function() {
      if (me.trafficInfo.isHidden()) {

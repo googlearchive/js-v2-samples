@@ -42,7 +42,7 @@
       urchinTracker();
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map"));
-        map.setCenter(new GLatLng(52, -4), 3);
+        map.setCenter(new GLatLng(52, -4), 10);
         map.addControl(new google.maps.LocalSearch());
         map.addControl(new TextualZoomControl());
         map.addControl(new ExtMapTypeControl({showTraffic: true}));

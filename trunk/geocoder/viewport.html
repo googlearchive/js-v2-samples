@@ -45,6 +45,7 @@
         var callbacks = {
           dragend: function(nw,ne,se,sw,nwpx,nepx,sepx,swpx){
             var viewport = new GLatLngBounds(sw, ne);
+            geocoder = new GClientGeocoder();
             geocoder.setViewport(viewport);
             showAddress(document.getElementById('addressInput').value);
           }

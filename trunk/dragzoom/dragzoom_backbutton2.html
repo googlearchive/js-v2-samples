@@ -8,7 +8,6 @@
 		
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQGj0PqsCtxKvarsoS-iqLdqZSKfxRdmoPmGl7Y9335WLC36wIGYa6o5Q" type="text/javascript"></script>
     <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js"></script>
-
     <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/dragzoom/1.1/src/dragzoom.js" type="text/javascript"></script>
     <script type="text/javascript">
 
@@ -34,20 +33,20 @@
     ]
 
     var clusterIcon = new GIcon();
-    clusterIcon.shadow = 'mm_34_shadow.png';
+    clusterIcon.shadow = 'http://gmaps-utility-library-dev.googlecode.com/svn/trunk/dragzoom/examples/images/mm_34_shadow.png';
     clusterIcon.iconSize = new GSize(20, 34);
     clusterIcon.shadowSize = new GSize(37, 34);
     clusterIcon.iconAnchor = new GPoint(10, 34);
     clusterIcon.infoWindowAnchor = new GPoint(9, 2);
-    clusterIcon.image = 'mm_34_green.png';
+    clusterIcon.image = 'http://gmaps-utility-library-dev.googlecode.com/svn/trunk/dragzoom/examples/images/mm_34_green.png';
 
     var greenIcon = new GIcon();
-    greenIcon.shadow = 'mm_20_shadow.png';
+    greenIcon.shadow = 'http://gmaps-utility-library-dev.googlecode.com/svn/trunk/dragzoom/examples/images/mm_20_shadow.png';
     greenIcon.iconSize = new GSize(12, 20);
     greenIcon.shadowSize = new GSize(22, 20);
     greenIcon.iconAnchor = new GPoint(6, 20);
     greenIcon.infoWindowAnchor = new GPoint(5, 1);
-    greenIcon.image = 'mm_20_green.png';
+    greenIcon.image = 'http://gmaps-utility-library-dev.googlecode.com/svn/trunk/dragzoom/examples/images/mm_20_green.png';
 
     // Function to put the cluster marker and the individual markers into the MM
     function addMarkers() {

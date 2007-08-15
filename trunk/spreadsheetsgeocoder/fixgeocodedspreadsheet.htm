@@ -354,15 +354,17 @@ function createMarker(point, entryNum, isFound) {
   var nIcon = new GIcon(baseIcon);
   var number = entryNum + 1;
   if(isFound) {
-    //nIcon.image = "../markers/green/"
-    //              + "marker" + number + ".png";
-    nIcon.image = "http://www.tedmontgomery.com/tutorial/squares/squrblue.jpg";
+    nIcon.image = "../markers/green/"
+                  + "marker" + number + ".png";
+    //nIcon.image = "http://www.tedmontgomery.com/tutorial/squares/squrblue.jpg";
     nIcon.imageSame = nIcon.image;
   } else {
     nIcon.image = "../markers/green/"
                 + "marker" + number + ".png";
   }
-  nIcon.imageChanged = "http://www.tedmontgomery.com/tutorial/squares/squrgren.jpg";
+
+//  nIcon.imageChanged = "http://www.tedmontgomery.com/tutorial/squares/squrgren.jpg";
+  nIcon.imageChanged = "../markers/orange/marker" + number + ".png";
 
   var identifier = document.getElementById("selectIdentifier").value;
   var label =entries[entryNum]["gsx$" + identifier].$t;

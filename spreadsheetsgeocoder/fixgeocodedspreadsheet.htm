@@ -392,7 +392,7 @@ function createMarker(point, entryNum, isFound) {
   GEvent.addListener(marker, "dragend", function() {
     marker.setImage(marker.getIcon().imageChanged);
     document.getElementById("markerImg" + entryNum).src = 
-      "../markers/orange/marker" + entryNum + ".png";
+      "../markers/orange/marker" + number + ".png";
     var columnLatTD = document.getElementById("latTD" + entryNum);
     var columnLngTD = document.getElementById("lngTD" + entryNum);
     columnLatTD.innerHTML = marker.getPoint().lat().toFixed(6);

@@ -304,7 +304,7 @@ function addTableRow(columnLat, columnLng, label, entryNum, isFound){
     iconIMG.src = "../markers/red/marker" + number + ".png";
   }
   var iconA = document.createElement("A");
-  iconA.href = "javascript:map.setCenter('" + lat + "," + lng +"')";
+  iconA.href = "javascript:map.setCenter('" + columnLat + "," + columnLng +"')";
   
   iconA.appendChild(iconIMG);
   iconTD.appendChild(iconA);

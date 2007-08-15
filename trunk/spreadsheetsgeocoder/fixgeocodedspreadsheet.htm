@@ -304,7 +304,7 @@ function addTableRow(columnLat, columnLng, label, entryNum, isFound){
     iconIMG.src = "../markers/red/marker" + number + ".png";
   }
   var iconA = document.createElement("A");
-  iconA.href = "javascript:map.setCenter('" + columnLat + "," + columnLng +"')";
+  iconA.href = "javascript:map.setCenter(new GLatLng(" + columnLat + "," + columnLng +"))";
   
   iconA.appendChild(iconIMG);
   iconTD.appendChild(iconA);
@@ -392,7 +392,7 @@ function createMarker(point, entryNum, isFound) {
   GEvent.addListener(marker, "dragend", function() {
     marker.setImage(marker.getIcon().imageChanged);
     document.getElementById("markerImg" + entryNum).src = 
-      "../markers/green/marker" + entryNum + ".png";
+      "../markers/orange/marker" + entryNum + ".png";
     var columnLatTD = document.getElementById("latTD" + entryNum);
     var columnLngTD = document.getElementById("lngTD" + entryNum);
     columnLatTD.innerHTML = marker.getPoint().lat().toFixed(6);

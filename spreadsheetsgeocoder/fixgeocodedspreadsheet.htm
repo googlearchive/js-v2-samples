@@ -356,11 +356,13 @@ function createMarker(point, entryNum, isFound) {
   if(isFound) {
     nIcon.image = "../markers/green/"
                   + "marker" + number + ".png";
+    nIcon.imageSame = nIcon.image;
   } else {
     nIcon.image = "../markers/green/"
                 + "marker" + number + ".png";
   }
-
+  nIcon.imageChanged = "../markers/orange/" +
+                       "marker" + number + ".png";
   var identifier = document.getElementById("selectIdentifier").value;
   var label =entries[entryNum]["gsx$" + identifier].$t;
   var marker = new GMarker(point, {icon:nIcon, draggable:true});
@@ -384,6 +386,7 @@ function createMarker(point, entryNum, isFound) {
   });
 
   GEvent.addListener(marker, "dragend", function() {
+    marker.setImage(marker.getIcon().imageChanged);
     var columnLatTD = document.getElementById("latTD" + entryNum);
     var columnLngTD = document.getElementById("lngTD" + entryNum);
     columnLatTD.innerHTML = marker.getPoint().lat().toFixed(6);

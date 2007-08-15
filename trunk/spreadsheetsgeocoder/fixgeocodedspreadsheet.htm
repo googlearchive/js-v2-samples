@@ -28,8 +28,8 @@ var neededColumns = {"Identifier":0, "Address":1, "Lat":2, "Lng":3};
 // Create a base icon for all of our markers that specifies the
 // shadow, icon dimensions, etc.
 var baseIcon = new GIcon();
-baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
-baseIcon.iconSize = new GSize(20, 34);
+baseIcon.shadow = "";
+baseIcon.iconSize = new GSize(24, 24);
 baseIcon.shadowSize = new GSize(37, 34);
 baseIcon.iconAnchor = new GPoint(9, 34);
 baseIcon.infoWindowAnchor = new GPoint(9, 2);
@@ -354,15 +354,16 @@ function createMarker(point, entryNum, isFound) {
   var nIcon = new GIcon(baseIcon);
   var number = entryNum + 1;
   if(isFound) {
-    nIcon.image = "../markers/green/"
-                  + "marker" + number + ".png";
+    //nIcon.image = "../markers/green/"
+    //              + "marker" + number + ".png";
+    nIcon.image = "http://www.tedmontgomery.com/tutorial/squares/squrblue.jpg";
     nIcon.imageSame = nIcon.image;
   } else {
     nIcon.image = "../markers/green/"
                 + "marker" + number + ".png";
   }
-  nIcon.imageChanged = "../markers/orange/" +
-                       "marker" + number + ".png";
+  nIcon.imageChanged = "http://www.tedmontgomery.com/tutorial/squares/squrgren.jpg";
+
   var identifier = document.getElementById("selectIdentifier").value;
   var label =entries[entryNum]["gsx$" + identifier].$t;
   var marker = new GMarker(point, {icon:nIcon, draggable:true});

@@ -4,11 +4,6 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Google Maps JavaScript API Example</title>
-    <style type="text/css">
-    v\:* {
-      behavior:url(#default#VML);
-    }
-    </style>
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
       type="text/javascript"></script>
 
@@ -27,7 +22,9 @@
 
       var polyPoints = Array();
 
-      map.removeOverlay(highlightCircle);
+      if (highlightCircle) {
+        map.removeOverlay(highlightCircle);
+      }
 
       var mapNormalProj = G_NORMAL_MAP.getProjection();
       var mapZoom = map.getZoom();

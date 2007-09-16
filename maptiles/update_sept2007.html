@@ -101,7 +101,7 @@ function cm_loadMapJSON(json) {
 
   for (var i = 0; i < json.feed.entry.length; i++) {
     var entry = json.feed.entry[i];
-    if(entry["gsx$" + param_latColumn]) {
+    if(entry["gsx$" + param_latlngColumn]) {
       var latlng = entry["gsx$" + param_latlngColumn].$t;
       var lat = parseFloat(latlng.split(",")[0]);
       var lng = parseFloat(latlng.split(",")[1]);

@@ -103,8 +103,8 @@ function cm_loadMapJSON(json) {
     var entry = json.feed.entry[i];
     if(entry["gsx$" + param_latlngColumn]) {
       var latlng = entry["gsx$" + param_latlngColumn].$t;
-      var lat = parseFloat(latlng.split(",")[0]);
-      var lng = parseFloat(latlng.split(",")[1]);
+      var lat = parseFloat(latlng.split(",")[1]);
+      var lng = parseFloat(latlng.split(",")[0]);
       var point = new GLatLng(lat,lng);
       var html = "<div style='font-size:12px'>";
       html += "<strong>" + entry["gsx$"+param_titleColumn].$t 

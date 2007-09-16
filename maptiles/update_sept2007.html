@@ -37,9 +37,9 @@ function cm_load() {
   if (GBrowserIsCompatible()) {
     // create the map
     cm_map = new GMap2(document.getElementById("cm_map"));
-    cm_map.addControl(new GLargeMapControl());
+    cm_map.addControl(new GSmallMapControl());
     cm_map.addControl(new GMapTypeControl());
-    cm_map.setCenter(new GLatLng( 43.907787,-79.359741), 2);
+    cm_map.setCenter(new GLatLng(23.241346102386135, 143.4375), 2);
     cm_getJSON();
   } else {
     alert("Sorry, the Google Maps API is not compatible with this browser");
@@ -53,6 +53,7 @@ function cm_load() {
  */
 function cm_markerClicked(markerNum) {
   cm_mapMarkers[markerNum].openInfoWindowHtml(cm_mapHTMLS[markerNum]);
+  cm_map.setCenter(cm_mapMarkers[markerNum].getPoint(), 10);
 }
 
 /**
@@ -124,7 +125,6 @@ function cm_loadMapJSON(json) {
       cm_map.addOverlay(marker);
       cm_mapMarkers.push(marker);
       cm_mapHTMLS.push(html);
-      bounds.extend(point);
 	  
       if(param_useSidebar == true) {
         var markerA = document.createElement("a");
@@ -141,9 +141,6 @@ function cm_loadMapJSON(json) {
       } 
     }
   }
-
-  cm_map.setZoom(cm_map.getBoundsZoomLevel(bounds));
-  cm_map.setCenter(bounds.getCenter());
 }
 
 /**

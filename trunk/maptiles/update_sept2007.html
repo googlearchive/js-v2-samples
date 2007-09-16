@@ -12,7 +12,7 @@ var cm_mapHTMLS = [];
 // Create a base icon for all of our markers that specifies the
 // shadow, icon dimensions, etc.
 var cm_baseIcon = new GIcon();
-cm_baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+cm_baseIcon.shadow = "";
 cm_baseIcon.iconSize = new GSize(20, 34);
 cm_baseIcon.shadowSize = new GSize(37, 34);
 cm_baseIcon.iconAnchor = new GPoint(9, 34);
@@ -27,8 +27,8 @@ var param_titleColumn = "country";
 var param_descriptionColumn = "country";
 var param_latlngColumn = "latlng";
 var param_rankColumn = "";
-var param_iconType = "green";
-var param_iconOverType = "pink";
+var param_iconType = "blue";
+var param_iconOverType = "green";
 
 /**
  * Loads map and calls function to load in worksheet data.
@@ -159,19 +159,11 @@ function cm_createMarker(point, title, html, rank) {
   var markerOpts = {};
   var nIcon = new GIcon(cm_baseIcon);
 
-  if(rank > 0 && rank < 100) {
-    nIcon.imageOut = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/" + param_iconType + "/marker" + rank + ".png";
-    nIcon.imageOver = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/" + param_iconOverType + "/marker" + rank + ".png";
-    nIcon.image = nIcon.imageOut; 
-  } else { 
-    nIcon.imageOut = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/" + param_iconType + "/blank.png";
-    nIcon.imageOver = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-        "markers/" + param_iconOverType + "/blank.png";
-    nIcon.image = nIcon.imageOut;
-  }
+  nIcon.imageOut = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/circular/" + param_iconType + "circlemarker.png";
+  nIcon.imageOver = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+        "markers/circular/" + param_iconOverType + "circlemarker.png";
+  nIcon.image = nIcon.imageOut;
 
   markerOpts.icon = nIcon;
   markerOpts.title = title;		 

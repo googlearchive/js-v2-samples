@@ -29,7 +29,7 @@
           // Create and Center a Map
           var map = new GMap2(document.getElementById("map"));
           map.setCenter(new GLatLng(-16.48288,145.465926), 17);
-          map.addControl(new GLargeMapControl());
+          map.addControl(new GSmallMapControl());
           map.addControl(new GMapTypeControl());
 
           // bind a search control to the map, suppress result list
@@ -37,7 +37,7 @@
            searchFormHint : "restaurants",
            suppressInitialResultSelection : true
           };
-          map.addControl(new google.maps.LocalSearch(options), new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10,10)));
+          map.addControl(new google.maps.LocalSearch(options)));
         }
       }
       GSearch.setOnLoadCallback(load);

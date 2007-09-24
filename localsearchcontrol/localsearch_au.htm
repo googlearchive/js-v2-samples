@@ -40,11 +40,13 @@
          var options = {
            searchFormHint : "search for local businesses",
            resultList : google.maps.LocalSearch.RESULT_LIST_SUPPRESS,
+           linkTarget : GSearch.LINK_TARGET_BLANK,
            suppressInitialResultSelection : true
           };
           searchControl = new google.maps.LocalSearch(options);
           map.addControl(searchControl);
 
+          searchControl.focus();
           var html = "<div style='text-align: center; font-size: 11px; font-family: arial, sans serif'><font color='red'><i>New!</i></font> - Local business search tool.<br>Use it to find places (e.g. <a href='javascript:searchControl.execute(\"restaurants\")'>restaurants</a>, <a href='javascript:searchControl.execute(\"cafes\")'>cafes</a>) <br>around the map viewport. Give it a try!</div>";
           map.openInfoWindowHtml(map.getBounds().getSouthWest(), html);
 

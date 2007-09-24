@@ -36,7 +36,7 @@
         
           // Create and Center a Map
           map = new GMap2(document.getElementById("map"));
-          map.setCenter(new GLatLng(-16.4819338, 145.4649603), 17);
+          map.setCenter(new GLatLng(-16.483065510493518, 145.46324372291565), 17);
           map.addControl(new GSmallMapControl());
           map.addControl(new GMapTypeControl());
 
@@ -52,7 +52,7 @@
 
           searchControl.focus();
           var html = "<div style='text-align: center; font-size: 11px; font-family: arial, sans serif'><font color='red'><i>New!</i></font> - Local business search tool.<br>Use it to find places (e.g. <a href='javascript:searchControl.execute(\"restaurants\")'>restaurants</a>, <a href='javascript:searchControl.execute(\"cafes\")'>cafes</a>) <br>around the map viewport. Give it a try!</div>";
-          map.openInfoWindowHtml(map.getBounds().getSouthWest(), html);
+           map.openInfoWindowHtml(map.getBounds().getSouthWest(), html);
 
         }
       }

@@ -41,8 +41,7 @@
           map.addControl(searchControl);
 
           var html = "<center><font color='red'><i>New!</i></font> - Local business search tool.<br>Use it to find businessses (e.g. <a href='javascript:searchControl.execute(\"restaurants\")'>restaurants</a>, cafes) around the map viewport.<br>Give it a try!</center>";
-          map.openInfoWindowHtml(map.getBounds().getSouthWest(),
-"<center><font color='red'><i>New!</i></font> - Local business search tool.<br>Use it to find local goods and<br>services near the map center.<br>Give it a try today!</center>") ;
+          map.openInfoWindowHtml(map.getBounds().getSouthWest(), html);
 
         }
       }

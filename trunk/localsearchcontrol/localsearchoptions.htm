@@ -86,6 +86,12 @@
        optsFound = true;
      }
 
+     var suppressInitialResultSelection = document.getElementById("opt_suppressInitialResultSelection").checked;
+     if (suppressInitialResultSelection) {
+       opts["suppressInitialResultSelection"] = 'true';
+       optsFound = true;
+     }
+
      if (optsFound) {
        inner = "options";
        code.push("var options = {");
@@ -122,7 +128,9 @@
    onIdleCallback: <input type="checkbox" id="opt_onIdleCallback" onclick="updateCode()"/>
    &nbsp;
    onSearchCompleteCallback: <input type="checkbox" id="opt_onSearchCompleteCallback" onclick="updateCode()"/>
-
+   &nbsp;
+   suppressInitialResultSelection <input type="checkbox" id="opt_suppressInitialResultSelection" onclick="updateCode()"/>
+   &nbsp;
    &nbsp;
    resultList:
      <select id="opt_resultList" onchange="updateCode()">

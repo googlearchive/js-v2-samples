@@ -40,7 +40,7 @@
           searchControl = new google.maps.LocalSearch(options);
           map.addControl(searchControl);
 
-          var html = "<center><font color='red'><i>New!</i></font> - Local business search tool.<br>Use it to find businessses (e.g. <a href='javascript:searchControl.execute(\"restaurants\")'>restaurants</a>, cafes) around the map viewport.<br>Give it a try!</center>";
+          var html = "<div style='width:200px'><font color='red'><i>New!</i></font> - Local business search tool.<br>Use it to find businessses (e.g. <a href='javascript:searchControl.execute(\"restaurants\")'>restaurants</a>, cafes) around the map viewport. Give it a try!</div>";
           map.openInfoWindowHtml(map.getBounds().getSouthWest(), html);
 
         }

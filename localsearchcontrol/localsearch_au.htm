@@ -17,6 +17,10 @@
         width : 500px;
         height : 400px;
       }
+
+      #map .gmls {
+        width : 200px;
+      }
     </style>
 
     <script type="text/javascript">
@@ -35,6 +39,7 @@
           // bind a search control to the map, suppress result list
          var options = {
            searchFormHint : "search for local businesses",
+           resultList : google.maps.LocalSearch.RESULT_LIST_SUPPRESS,
            suppressInitialResultSelection : true
           };
           searchControl = new google.maps.LocalSearch(options);

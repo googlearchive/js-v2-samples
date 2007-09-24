@@ -68,6 +68,13 @@
         opts["resultList"] = resultList;
         optsFound = true;
      }
+
+     var linkTarget = document.getElementById("opt_linkTarget").value;
+     if (linkTarget != "GSearch.LINK_TARGET_SELF") {
+        opts["linkTarget"] = linkTarget;
+        optsFound = true;
+     }
+
      var searchFormHint = document.getElementById("opt_searchFormHint").value;
      if (searchFormHint != "search the map") {
        opts["searchFormHint"] = "\"" + searchFormHint + "\"";

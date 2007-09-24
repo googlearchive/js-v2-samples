@@ -39,7 +39,7 @@
           // bind a search control to the map, suppress result list
          var options = {
            searchFormHint : "search for local businesses",
-           resultList : google.maps.LocalSearch.RESULT_LIST_SUPPRESS,
+           resultList : document.getElementById('results'),
            linkTarget : GSearch.LINK_TARGET_BLANK,
            suppressInitialResultSelection : true
           };
@@ -58,5 +58,6 @@
   </head>
   <body onunload="GUnload()">
     <div id="map"></div>
+    <div id="results"></div>
   </body>
 </html>

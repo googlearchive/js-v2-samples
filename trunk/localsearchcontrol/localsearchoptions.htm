@@ -139,6 +139,13 @@
        <option value="document.getElementById('results')">External</option>
   </select>
    &nbsp;
+   linkTarget:
+     <select id="opt_linkTarget" onchange="updateCode()">
+       <option value="GSearch.LINK_TARGET_SELF" SELECTED>_self</option>
+       <option value="GSearch.LINK_TARGET_BLANK">_blank</option>
+       <option value="GSearch.LINK_TARGET_PARENT">_parent</option>
+       <option value="GSearch.LINK_TARGET_TOP">_top</option>
+     </select>
    <br/><br/>
    searchFormHint: <input type="text" id="opt_searchFormHint" size="20" value="search the map"
        onkeyup="updateCode()" onkeypress="updateCode()"/>

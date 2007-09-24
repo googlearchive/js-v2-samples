@@ -30,12 +30,12 @@
     <script type="text/javascript">
       //<![CDATA[
       var searchControl = null;
-
+      var map = null;
       function load() {
         if (GBrowserIsCompatible()) {
         
           // Create and Center a Map
-          var map = new GMap2(document.getElementById("map"));
+          map = new GMap2(document.getElementById("map"));
           map.setCenter(new GLatLng(-16.481718,145.463678), 17);
           map.addControl(new GSmallMapControl());
           map.addControl(new GMapTypeControl());

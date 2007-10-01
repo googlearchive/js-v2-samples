@@ -7,8 +7,7 @@
 // Key for steffen.meschkat@gmail.com for http://google.com/. Needed
 // to make geocoding work.
 var key =
-'ABQIAAAAxbUqKHbysaeYVxn1etTCYBSsTL4WIgxhMZ0' +
-'ZK_kHjwHeQuOD4xS7c0kJFKRlC35Wm4hRi_7aWTj1Rw';
+ 'ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow';
 
 function script(src) {
   var onerror =

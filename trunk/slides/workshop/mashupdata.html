@@ -1,0 +1,16 @@
+<ul>
+  <li>Information stored in Javascript</li>
+  <ul>
+    <li>Not index by search engines</li>
+    <li>Needs code to be added to a map</li>
+  </ul>
+  <li>(Much) Better way of doing things</li>
+  <ul>
+    <li>KML: rich, supported on Maps and Earth</li>
+    <li>GeoRSS: news feeds, supported on Maps</li>
+    <li>Both can be indexed by search engines</li>
+  </ul>
+  <li>Display whole laer in just 2 lines of code</li>
+</ul>
+<pre class="inline-code"><span class="kwd">var</span> kml = <span class="kwd">new</span> <span class="typ">GGeoXml</span>(<span class="str">"http://&middot;&middot;.kml"</span>);
+map.addOverlay(kml);</pre>

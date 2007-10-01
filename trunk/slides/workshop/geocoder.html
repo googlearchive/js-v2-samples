@@ -1,0 +1,20 @@
+<ul>
+  <li>Geocoder maps address to a point</li>
+  <ul><li>Uses callback approach</li></ul>
+  <li><tt>GClientGeocoder.getLatLng</tt></li>
+  <ul>
+    <li><tt>GLatLng</tt> point if successfull</li>
+    <li><tt>null</tt> if could not resolve the address</li>
+  </ul>
+  <li><tt>GClientGeocoder.getLocations</tt></li>
+  <ul>
+    <li><tt>Status.code</tt> holds request status</li>
+    <li>Multiple locations in <tt>Placemark</tt></li>
+    <li>Formatted address in xAL</li>
+  </ul>
+  <li>Geocoder dont's</li>
+  <ul>
+    <li>Don't create multiple geocoders</li>
+    <li>Don't repeatedly geocode same address</li>
+  </ul>
+</ul>

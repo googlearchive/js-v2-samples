@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+<Document>
+  <Placemark>
+    <name>Stanford University</name>
+    <description>
+      Stanford was founded by Leland and Jane Stanford ...
+    </description>
+    <Point>
+      <coordinates>-122.1699,37.42856,0</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+  <Document>
+    <Placemark>
+      <name>Stanford University</name>
+      <Point>
+        <coordinates>-122.161851, 37.425022, 0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Googleplex</name>
+      <Point>
+        <coordinates>-122.084681, 37.421901, 0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>De Anza College</name>
+      <Point>
+        <coordinates>-122.045832, 37.319527, 0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

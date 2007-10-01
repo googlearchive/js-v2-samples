@@ -1,0 +1,761 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Maps Mashups and Mapplets</title>
+    <!-- Mapplets Slides adapted from Thai Tran and Ben Appleton. -->
+
+    <script src="slides.js"></script>
+    <link href="slides.css" rel="stylesheet" type="text/css"/>
+
+    <script src="load_api.js" language="JavaScript"></script>
+    <script src="state.js" language="JavaScript"></script>
+    <script src="state_util.js" language="JavaScript"></script>
+    
+    <script src="mapsapi.js"></script>
+    <link href="mapsapi.css" rel="stylesheet" type="text/css"/>    
+
+    <script src="prettify.js"></script>
+    <link href="prettify.css" rel="stylesheet" type="text/css"/>    
+  </head>
+
+  <body onload="initmap('hamburg');initslides();prettyPrint()"
+        onunload="GUnload()">
+
+    <div id="bgpage" class="background">
+      <div id="bgmap" class="background"></div>
+    </div>
+
+    <div id="shade" class="shade"></div>
+
+    <div class="header">
+    </div>
+
+    <div id="footer" class="footer">
+      <div id="navigator"></div>
+    </div>
+
+    <!-- div id="logo" class="logo"
+         style="
+         font-size:80%;
+         position:absolute;
+         bottom:0.5em;
+         right:0.5em;
+         background-color:#0078d4;
+         padding:1em;
+         padding-top:4em;
+         padding-right:2em;
+         ">
+      <span style="color:#001d38">Google</span><br/>
+      <span style="color:#ffffff">Developer</span><br/>
+      <span style="color:#ffffff"
+            >Day</span><span style="color:#389aff">2007</span>
+    </div -->
+
+    <img id="logo2" class="logo position-corner-lr"
+         src="images/google-cubes.png"/>
+
+    <div id="slides" class="slides">
+      <div class="slide title"
+           onshow="d0('navigator','footer','logo','logo2');v0('bgpage')"
+           onhide="d1('navigator','footer','logo','logo2');v1('bgpage')">
+        
+        <div style="
+             position:relative;
+             float:left;
+             top:-1em;
+             background-color:#0078d4;
+             padding:1em;
+             padding-top:4em;
+             padding-right:2em;
+             ">
+          <span style="color:#001d38">Google</span><br/>
+          <span style="color:#ffffff">Developer</span><br/>
+          <span style="color:#ffffff">Day</span><span style="color:#389aff">2007</span>
+        </div>
+        
+        <!-- div style="float:right;padding:1em;font-size:small;width:50%;">
+          Status: Draft, almost final, as of 2007-05-29.
+          <br/>TODO:
+          <ul style="margin-top:0">
+            <li>Directions API, example doesn't work yet (directions
+            API is released Wed 2005-05-30).</li>
+          </ul>
+          <br/>NOTE:
+          <ul style="margin-top:0">
+            <li>Looks bad in IE</li>
+          </ul>
+        </div -->
+
+        <div style="position:relative;clear:both">
+          <div style="font-size:130%;font-weight:bold;white-space:nowrap">
+            Maps Mashups and Mapplets
+          </div>
+        </div>
+        
+        <div style="position:relative;"
+             class="venue">
+          <div style="font-size:100%;color:gray;font-weight:bold">
+            Steffen Meschkat
+          </div>
+        </div>
+
+        <img src="images/google-cubes-larger.png"
+             style="position:absolute;bottom:0.1em;right:0.1em;"/>
+             
+        <div style="position:absolute;bottom:1em;
+             font-size:70%;color:gray">Copyright 2007 Google, Inc.</div>
+      </div>
+      
+      <!-- div class="slide">
+        <iframe style="width:100%;height:100%;border:1px solid silver"
+                src="about:blank"
+        xsrc="http://maps.google.com/"></iframe>
+      </div -->
+
+      <div class="slide" steps="6">
+        <h1>Why Maps</h1>
+        <ul>
+          <li step="1">The other failsafe way of organizing information:</li>
+          <li step="2">0 &mdash; Search.</li>
+          <li step="3">1 &mdash; Order chronologically.</li>
+          <li step="4">2 &mdash; Draw a map.</li>
+          <li step="5">Putting it on a map is a great way to organize
+          information.</li>
+        </ul>
+      </div>
+
+      <div class="slide" steps="5">
+        <h1>Why Maps API</h1>
+        <ul>
+          <li step="1">&mdash; A library of "HTML elements" for places.</li>
+          <li step="2">&mdash; An "HTML element" with augmented behavior.</li>
+          <li step="3">&mdash; A page format for your content.</li>
+          <li step="4">&mdash; A mashup application component.</li>
+        </ul>
+      </div>
+      
+      <div class="slide">
+        <h1>The API at a Glance</h1>
+        <ul>
+          <li><b>Core</b>
+          <ul>
+            <li><code>GMap2</code>.</li>
+          </ul>
+          </li>
+          <li><b>User Interface</b>
+          <ul>
+            <li>Controls: <code>GLargeMapControl</code>,
+            <code>GZoomControl</code>, <code>GMapTypeControl</code>,
+            <code>GScaleControl</code>,
+            <code>GOverviewMapControl</code>.</li>
+          </ul>
+          </li>
+          <li><b>Content</b>
+          <ul>
+            <li>Map Type: Satellite, Street Map, Hybrid</li>
+            <li>Simple Overlays: <code>GMarker</code>,
+            <code>GPolyline</code>, <code>GPolygon</code>,
+            <code>GGroundOverlay</code>, <code>GScreenOverlay</code>,
+            <code>GInfoWindow</code>.</li>
+            <li>Complex Overlays: <code>GTrafficOverlay</code><span
+            class="new">new!</span>, <code>GGeoXml</code>.</li>
+          </ul>
+          </li>
+          <li><b>Services</b>
+          <ul>
+            <li>Geocoding: <code>GClientGeocoder</code>.</li>
+            <li>Driving directions: <code>GDirections</code><span
+            class="new">new!</span>.</li>
+            <li>AdSense for Maps: <code>GAdsManager</code><span
+            class="new">new!</span>.</li>
+          </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>The API at a Glance</h1>
+        <ul>
+          <li><b>Extension Interfaces</b>
+          <ul>
+            <li><code>GControl</code>, <code>GOverlay</code>,
+            <code>GTileLayer</code></li>
+          </ul>
+          </li>
+
+          <li><b>Components</b>
+          <ul>
+            <li><code>GKeyboard</code></li>
+            <li><code>GMarkerManager</code></li>
+          </ul>
+          </li>
+
+          <li><b>Utilities</b>
+          <ul>
+            <li><code>GEvent</code></li>
+            <li><code>GXmlHttp</code>, <code>GXml</code>,
+            <code>GXslt</code></li>
+            <li>Data: <code>GLatLng</code>, <code>GPoint</code>,
+            ...</li>
+          </ul>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="slide" floater="mapwidget"></div>
+
+      <div class="slide" floater="controls"></div>
+
+      <div class="slide" floater="content"></div>
+
+      <div class="slide" floater="behavior"></div>
+
+      <div class="slide" floater="content2"></div>
+
+      <div class="slide" floater="geocoder"></div>
+
+      <div class="slide" floater="directions"
+           onshow="setUpDirections()"
+           onhide="tearDownDirections()"
+      ></div>
+
+      <div class="slide">
+        <h1>Code</h1>
+
+<div class="example">
+<div class="semiopaque"></div>
+<div class="content">
+<pre class="prettyprint">
+&lt;html>
+  &lt;head>
+    &lt;script src="http://maps.google.com/?file=api">&lt;/script>
+  &lt;/head>
+  &lt;body onload="hello()">
+    &lt;div id="map" style="width:400px;height:300px">&lt;/div>
+    &lt;script>
+      function hello() {
+        var map = new GMap2(document.getElementById("map"));
+        var point = new GLatLng(37.71859, 6.679688);
+        map.setCenter(point, 2); 
+
+        var marker = new GMarker(point);
+        map.addOverlay(marker); 
+        marker.openInfoWindowHtml("Hello World!"); 
+      }
+    &lt;/script>
+  &lt;/body>
+&lt;/html></pre></div></div>
+      </div>
+
+
+      <div class="slide" floater="hello"></div>
+
+
+      <div class="slide">
+        <div class="banner">
+          <div class="semiopaque"></div>
+          <div class="content">
+            Since the Maps API was released two years ago, thousands
+            of websites use it to organize their information ...
+          </div>
+        </div>
+      </div>
+
+
+      <div class="slide" steps="4">
+        <h1>Today: Finding an Apartment</h1>
+
+        <div style="position:absolute;width:48%;top:15%;left:0%;z-index:1"
+             step="1">
+          <div>Go to a real estate web site:</div>
+          <img style="width:100%;border:1px solid gray;"
+               src="images/screen-housingmaps.png"/>
+          <div class="source">
+            <a href="http://www.housingmaps.com/">www.housingmaps.com</a>
+          </div>
+        </div>
+
+        <div style="position:absolute;width:48%;top:15%;right:0%;z-index:2"
+             step="2">
+          <div>How safe is the area?</div>
+          <img style="width:100%;border:1px solid gray;"
+               src="images/screen-chicagocrime.png"/>
+          <div class="source" style="text-align:right">
+            <a href="http://www.chicagocrime.org/map/">www.chicagocrime.org</a>
+          </div>
+        </div>
+
+        <div style="position:absolute;width:48%;top:30%;left:26%;z-index:3"
+             step="3">
+          <div class="source" style="text-align:right">
+            <a href="http://www.greatschools.net/schools.page?map=1&amp;city=Chicago&amp;state=IL">www.greatschools.net</a>
+          </div>
+          <img style="width:100%;border:1px solid gray;clear:right;"
+               src="images/screen-greatschools.png"/>
+          <div>Where are good schools?</div>
+        </div>
+      </div>
+
+
+      <!-- div class="slide" steps="3">
+        <h1>Today: Finding a Hotel</h1>
+
+        <div style="position:absolute;width:48%;top:15%;left:0%;z-index:1"
+             step="1">
+          <div>Find a hotel:</div>
+          <img style="width:100%;border:1px solid gray;"
+               src="images/screen-orbitz.png"/>
+        </div>
+
+        <div style="position:absolute;width:48%;top:15%;right:0%;z-index:2"
+             step="2">
+          <div>Get directions on Google Maps:</div>
+          <img style="width:100%;border:1px solid gray;"
+               src="images/screen-maps.png"/>
+        </div>
+      </div -->
+
+
+      <div class="slide" steps="3">
+        <h1>The gap between users and content</h1>
+
+        <div style="width:48%;float:left;margin-right:2em;" step="1">
+          <div style="margin-bottom:0.2em;">Some of the top sites that
+          use the Google Maps API</div>
+          <img style="width:100%;border:1px solid gray;"
+               src="images/stats-maps-api-2.png"/>
+          <div class="source" style="margin-top:0.2em;">Source:
+          Nielsen//NetRatings US audience (April 2007)</div>
+        </div>
+
+        <ul step="2">
+          <li>Millions of Google Maps users are searching for
+          <ul>
+            <li>hotels, restaurants, bars,</li>
+            <li>schools,</li>
+            <li>real estate,</li>
+            <li>photos,</li>
+            <li>reviews.</li>
+          </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- div class="slide">
+        <h1>But most users go directly to Google Maps</h1>
+        <img src="images/stats-maps-app.png"/>
+        <div class="source" style="margin-top:0.2em;">Source:
+        Nielsen//NetRatings US audience (April 2007)</div>
+      </div -->
+
+
+      <div class="slide">
+        <h1>Therefore: Mapplets!</h1>
+        <ul>
+          <li>&mdash; Bring your mashups to Google Maps users!</li>
+          <li>&mdash; Developer preview version of Mapplets:</li>
+        </ul>
+        <div class="banner">
+          <div class="semiopaque"></div>
+          <div class="content">
+            <a href="http://maps.google.com/preview">
+              http://maps.google.com/preview
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="slide" steps="5">
+        <h1>Mapplets are created from a mashup of APIs</h1>
+        <ul>
+          <li step="1"><b>Google Gadgets API</b>
+          <ul>
+            <li>Iframe that can contain any HTML and Javascript.</li>
+            <li>Accesses remote data.</li>
+            <li>Stores user preferences.</li>
+          </ul>
+          </li>
+          <li step="2"><b>Google Maps API</b>
+          <ul>
+            <li>Adds overlays to the map.</li>
+            <li>Listens to events such as user clicks on the map.</li>
+          </ul>
+          </li>
+          <li step="3">A Mapplet is a Google Maps API application
+          turned into a plugin for Google Maps: "Reverse Maps
+          API."</li>
+          <li step="4">Mapplets turn Google Maps into a "Mashup of
+          Mashups."</li>
+        </ul>
+      </div>
+
+      
+      <div class="slide">
+        <h1>Code</h1>
+<div class="example">
+<div class="semiopaque"></div>
+<div class="content">
+<pre class="content prettyprint">&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;Module>
+&lt;ModulePrefs>
+  <span class="mark">&lt;Require feature="sharedmap"/></span>
+&lt;/ModulePrefs>
+&lt;Content type="html">&lt;![CDATA[
+
+&lt;h2>Hello World!&lt;/h2>
+
+&lt;script> 
+  var map = new GMap2();
+  var point = new GLatLng(37.71859, 6.679688);
+  map.setCenter(point, 2); 
+
+  var marker = new GMarker(point);
+  map.addOverlay(marker); 
+  marker.openInfoWindowHtml("Hello World!"); 
+&lt;/script>
+
+]]>&lt;/Content>
+&lt;/Module></pre>
+</div>
+</div>
+      </div>
+
+      
+      <div class="slide">
+        <h1>High Level Architecture</h1>
+        <img style="width:100%" src="images/mapplets-architecture.png"/>
+      </div>
+
+
+
+      <div class="slide" steps="5">
+        <h1>How a Mapplet Communicates With Google Maps</h1>
+        <img src="images/mapplets-page.png"
+             style="float:right;width:50%;margin-left:0.2em;margin-bottom:0.2em;"/>
+        <ul>
+          <li step="1">All function calls are serialized and packetized.</li>
+          <li step="2">The mapplet creates an iframe in the maps.google.com
+          domain that includes the packet in the hash fragment of its
+          URL.</li>
+          <li step="3">When this iframe loads, it extracts the packet from the
+          hash fragment and forwards it to the map.</li>
+          <li step="4">All communication takes place in the browser. No server
+          round trips!</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Maps vs. Mapplets API: Asynchronous Calls</h1>
+        <ul>
+          <li>In the Mapplets API, calls that obtain a return value
+          from the map are asynchronous.</li>
+          <li><b>Maps API</b>:
+          <div class="codequote" style="float:left">
+            <div class="semiopaque"></div>
+            <div class="content">
+              <pre class="prettyprint">var zoom = map.getZoom();
+alert("Zoom level is " + zoom);</pre></div></div>
+          </li>
+          <li style="clear:left"><b>Mapplets API</b>:
+          <div class="codequote" style="float:left">
+            <div class="semiopaque"></div>
+            <div class="content">
+              <pre class="prettyprint">map.getZoomAsync(function (zoom) {
+  alert("Zoom level is " + zoom);
+});</pre></div></div>
+          </li>
+          <li style="clear:left">We have appended <code>Async</code>
+          onto the names of all affected methods.</li>
+      </div>
+
+      <div class="slide">
+        <h1>Maps vs. Mapplets API: Security Restrictions</h1>
+        <ul>
+          <li>Mapplets cannot change the standard behavior of Google
+          Maps.
+          <ul class="wider">
+            <li>E.g. mapplets can't disable dragging of the map.</li>
+          </ul>
+          </li>
+          <li>&nbsp;</li>
+          <li>Third-party Javascript cannot run within the Google Maps
+          page.
+          <ul class="wider">
+            <li>Custom controls and custom map types are not currently
+            supported.</li>
+            <li>We filter the contents of info windows to remove
+            all Javascript and and certain CSS properties.</li>
+            <li>However, iframe elements in the info window can
+            contain anything.</li>
+          </ul>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="slide">
+        <h1>Don't Do This!</h1>
+
+        <p>A lot of Google Maps mashups add markers to the
+        map using Javascript.</p>
+
+        <div class="example">
+          <div class="semiopaque"></div>
+          <div class="content">
+<pre class="prettyprint">var points = [ 
+  [ 32.638688,  -97.366505, "Fort Worth" ],
+  [ 37.425022, -122.161851, "Stanford University" ],
+  [ 37.421901, -122.084681, "Googleplex" ] 
+];
+
+for (var i = 0; i &lt; points.length; i++) {
+  var lat   = points[i][0];
+  var lng   = points[i][1];
+  var name  = points[i][2];
+  var marker = new GMarker(new GLatLng(lat, lng));
+  map.addOverlay(marker);
+  GEvent.addListener(marker, "click", function() {
+    marker.openInfoWindowHtml(name);
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>Instead, store your data in KML or GeoRSS</h1>
+        <ul>
+          <li><b>KML</b> is a rich format for describing geographic
+          data that can be read by Google Maps and Google Earth.</li>
+          <li>&nbsp;</li>
+          <li><b>GeoRSS</b> is an extension to embed geographic
+          coordinates in RSS feeds.</li>
+          <li>&nbsp;</li>
+          <li>Google now indexes all the KML and GeoRSS files on the
+          web and returns them as search results.</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>KML Example</h1>
+        <div class="example">
+          <div class="semiopaque"></div>
+          <div class="content">
+<pre class="prettyprint">&lt;?xml version="1.0" ?>
+&lt;kml xmlns="http://earth.google.com/kml/2.1">
+  &lt;Document>
+
+    &lt;Placemark>
+      &lt;name> Stanford University &lt;/name>
+      &lt;Point>
+        &lt;coordinates> -122.161851,37.425022,0 &lt;/coordinates>
+      &lt;/Point>
+    &lt;/Placemark>
+
+    &lt;Placemark>
+      &lt;name> Googleplex &lt;/name>
+      &lt;Point>
+        &lt;coordinates> -122.084681,37.421901,0 &lt;/coordinates>
+      &lt;/Point>
+    &lt;/Placemark>
+
+  &lt;/Document>
+&lt;/kml></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>Displaying KML/GeoRSS from a Mapplet</h1>
+        <p>Display a whole layer with just 2 lines of code!</p>
+        
+        <div class="example">
+          <div class="semiopaque"></div>
+          <div class="content">
+<pre class="prettyprint">var kml = new GGeoXml("http://www.foo.com/places.kml");
+map.addOverlay(kml);</pre>
+          </div>
+        </div>
+
+        <div class="bottom" style="font-size:small">The rest of the
+        slide intentionally left blank.</div>
+      </div>
+
+      <div class="slide">
+        <h1>How Mapplets fit into the Big Picture</h1>
+        <ul>
+          <li><b>MyMaps</b> drag and drop editor
+          <ul>
+            <li>You're creating a small map with only static data.</li>
+          </ul>
+          </li>
+          <li>&nbsp;</li>
+          <li><b>KML</b>
+          <ul>
+            <li>You're creating a large map or are including dynamic
+            data.</li>
+          </ul>
+          </li>
+          <li>&nbsp;</li>
+          <li><b>Mapplets</b>
+          <ul>
+            <li>You need an interactive user interface.</li>
+          </ul>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="slide">
+        <div class="banner">
+          <div class="semiopaque"></div>
+          <div class="content">
+            <a href="http://maps.google.com/preview">
+              http://maps.google.com/preview
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide"></div>
+    </div>
+
+    <div class="float" id="coverage">
+      <div class="semiopaque"></div>
+      <div class="content">
+        Coverage:
+        <a href="javascript:void(0)" onclick="go('us')">USA</a>, 
+        <a href="javascript:void(0)" onclick="go('ca')">Canada</a>, 
+        <a href="javascript:void(0)" onclick="go('uk')">UK</a>, 
+        <a href="javascript:void(0)" onclick="go('jp')">Japan</a>, 
+        <a href="javascript:void(0)" onclick="go('fr')">France</a>, 
+        <a href="javascript:void(0)" onclick="go('it')">Italy</a>, 
+        <a href="javascript:void(0)" onclick="go('de')">Germany</a>, 
+        <a href="javascript:void(0)" onclick="go('es')">Spain</a>, 
+        <a href="javascript:void(0)" onclick="go('au')">Australia</a>, 
+        <a href="javascript:void(0)" onclick="go('nz')">New Zealand</a>,
+        <a href="javascript:void(0)" onclick="go('oo')">Everywhere</a>.
+      </div>
+    </div>
+
+    <div class="float" id="mapwidget">
+      <div class="semiopaque"></div>
+      <div class="content">The Map Widget:
+      Drag,
+      <a href="javascript:void(0)"
+         onclick="toggleContinuousZoom(this)">Continuous Zoom</a>,
+      <a href="javascript:void(0)"
+         onclick="toggleClickToZoom(this)">Double Click to Zoom</a>,
+      <a href="javascript:void(0)"
+         onclick="toggleScrollWheelZoom(this)">Scrollwheel Zoom</a>.
+      </div>
+    </div>
+
+    <div class="float" id="controls">
+      <div class="semiopaque"></div>
+      <div class="content">Controls:
+        <a href="javascript:void(0)"
+           onclick="control('map')">Pan &amp; zoom</a>,
+        <a href="javascript:void(0)"
+           onclick="control('zoom')">Zoom</a>,
+        <a href="javascript:void(0)"
+           onclick="control('type')">Map type</a>,
+        <a href="javascript:void(0)"
+           onclick="control('scale')">Scale</a>,
+        <a href="javascript:void(0)"
+           onclick="control('overview')">Overview</a>,
+        <a href="javascript:void(0)"
+           onclick="control('panel')">Custom</a>.
+      </div>
+    </div>
+
+    <div class="float" id="content">
+      <div class="semiopaque"></div>
+      <div class="content">Content:
+      <a href="javascript:void(0)"
+         onclick="contentMarker()">Marker</a>,
+      <a href="javascript:void(0)"
+         onclick="contentInfoWindow()">Infowindows</a>,
+      <a href="javascript:void(0)"
+         onclick="contentPolyline()">Polylines</a>.
+      (<a href="javascript:void(0)"
+         onclick="map.clearOverlays()">Clear.</a>)
+      </div>
+    </div>
+
+    <div class="float" id="content2">
+      <div class="semiopaque"></div>
+      <div class="content">Content:
+      <a href="javascript:void(0)"
+         onclick="contentTileLayerOverlay()">TileLayerOverlay</a>,
+      <a href="javascript:void(0)"
+         onclick="contentGroundOverlay()">GroundOverlay</a>,
+      <a href="javascript:void(0)"
+         onclick="contentGeoXml()">Feeds</a>,
+      <a href="javascript:void(0)"
+         onclick="contentTraffic(this)">Traffic</a>.
+      (<a href="javascript:void(0)"
+         onclick="map.clearOverlays()">Clear.</a>)
+      </div>
+    </div>
+
+    <div class="float" id="custom">
+      <div class="semiopaque"></div>
+      <div class="content">Custom:
+      <a href="http://www.onnyturf.com/subwaymap.php">Map type</a>, 
+      <a href="http://berlin-a-z.info/REF.htm">Overlays</a>.
+      </div>
+    </div>
+
+    <div class="float" id="behavior">
+      <div class="semiopaque"></div>
+      <div class="content">Events, Behavior, and Animation:<br/>
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerOver()">Rollover</a>,
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerSet()">Set</a>,
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerMove()">Move</a>,
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerDrag()">Drag</a>.
+      (<a href="javascript:void(0)"
+      onclick="map.clearOverlays()">Clear.</a>)
+      </div>
+    </div>
+
+    <div class="float" id="geocoder">
+      <div class="semiopaque"></div>
+      <form action="javascript:void(0)">
+        <div class="content" style="white-space: nowrap">Geocoding:&nbsp;
+        <input type="text" size="40" name="address" 
+               value="1600 Amphitheatre Pky, Mountain View, CA"
+               onkeyup="event.stopPropagation();"/>
+        <input type="submit" onclick="showAddress(this.form.address)"
+               value="Go!"/>
+        </div>   
+      </form>
+    </div>
+    
+    <div class="float" id="directions">
+      <div class="semiopaque"></div>
+      <form action="javascript:void(0)">
+        <div class="content" style="white-space: nowrap">Directions:&nbsp;
+        <input type="text" size="40" name="query" 
+               value="Berlin to Hamburg"
+               onkeyup="event.stopPropagation();"/>
+        <input type="submit" onclick="showDirections(this.form.query)"
+               value="Go!"/>
+        </div>
+      </form>
+    </div>
+    
+    <div class="float" id="hello">
+      <div class="semiopaque"></div>
+      <div class="content">
+        <a href="javascript:void(0)" onclick="hello()" >Hello
+        World.</a> (<a
+        href="javascript:map.clearOverlays()">Clear.</a>)
+      </div>
+    </div>
+  </body>
+</html>

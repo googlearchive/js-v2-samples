@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var map;
+    var geocoder = null;
+    var addressMarker;
+    var addresses = [
+    "1521 1st Ave, Seattle, WA",
+    "2222 2nd Ave, Seattle, WA",
+    "14 Mercer St, Seattle, WA",
+    "1225 1st Ave, Seattle, WA",
+    "2230 1st Ave, Seattle, WA",
+    "1301 Alaskan Way, Seattle, WA",
+    "2234 2nd Ave, Seattle, WA",
+    "1416 E Olive Way, Seattle, WA",
+    "1908 Pike pl, Seattle, WA"];
+    var numGeocoded = 0;
+
+    function geocodeAll() {
+      if (numGeocoded < address.length) {
+        geocoder.getLocations(address[numGeocoded, addressResolved);
+      }
+    }
+
+   function addressResolved(response) {
+     var delay = 0;
+     if (response.Status.code == 620) {
+       // Too fast, try again, with a small pause
+       delay = 500;
+     } else {
+       if (reply.Status.code == 200) {
+         // Success; do something with the address.
+         place = response.Placemark[0];
+         point = new GLatLng(place.Point.coordinates[1],
+                             place.Point.coordinates[0]);
+         marker = new GMarker(point);
+         map.addOverlay(marker);
+       }
+       // Move onto the next address; this skips bad addresses, too.
+       numGeocoded += 1;
+     }
+     window.setTimeout(geocodeAll, delay);
+   }
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map"));
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());
+        map.setCenter(new GLatLng(22.917922, -16.875), 2);
+        map.setMapType(G_HYBRID_MAP);
+
+        geocoder = new GClientGeocoder();
+      }
+    }
+
+    //]]>
+    </script>
+
+  </head>
+  <body onload="load()" onunload="GUnload()">
+    <div id="map" style="width: 450px; height: 300px"></div>
+  </body>
+</html>
+
+

@@ -25,8 +25,8 @@
     var numGeocoded = 0;
 
     function geocodeAll() {
-      if (numGeocoded < address.length) {
-        geocoder.getLocations(address[numGeocoded], addressResolved);
+      if (numGeocoded < addresses.length) {
+        geocoder.getLocations(addresses[numGeocoded], addressResolved);
       }
     }
 

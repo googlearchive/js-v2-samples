@@ -36,7 +36,7 @@
        // Too fast, try again, with a small pause
        delay = 500;
      } else {
-       if (reply.Status.code == 200) {
+       if (response.Status.code == 200) {
          // Success; do something with the address.
          place = response.Placemark[0];
          point = new GLatLng(place.Point.coordinates[1],

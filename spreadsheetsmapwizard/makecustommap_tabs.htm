@@ -658,6 +658,8 @@ function cm_loadMapJSON(json) {
       if(usingRank && entry["gsx$" + param_rankColumn]) {
         rank = parseInt(entry["gsx$"+param_rankColumn].$t);
       }
+      var tab1 = "";
+      var tab2 = "";
       if(entry["gsx$" + param_tab1Column]) {
         var tab1 = entry["gsx$"+param_tab1Column].$t;
       }
@@ -726,7 +728,7 @@ function cm_createMarker(point, title, label1, tab1, label2, tab2, rank) {
   var marker = new GMarker(point, markerOpts);
 	
   GEvent.addListener(marker, "click", function() {
-    var tabs = [new GInfoWindowTab(label1, tab2), new GInfoWindowTab(label2, tab2)];
+    var tabs = [new GInfoWindowTab(label1, tab1), new GInfoWindowTab(label2, tab2)];
     marker.openInfoWindowTabsHtml(tabs);
   });
   GEvent.addListener(marker, "mouseover", function() {

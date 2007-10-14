@@ -99,7 +99,8 @@ function populateVars() {
   param_ssKey = getURLParam("ssKey");
   param_useSidebar = getURLParam("useSidebar");
   param_titleColumn = getURLParam("titleColumn");
-  param_descriptionColumn = getURLParam("descriptionColumn");
+  param_tab1Column = getURLParam("tab1Column");
+  param_tab2Column = getURLParam("tab2Column");
   param_latColumn = getURLParam("latColumn");
   param_lngColumn = getURLParam("lngColumn");
   param_rankColumn = getURLParam("rankColumn");
@@ -206,9 +207,7 @@ function cm_loadMapJSON(json) {
       }
       var tab1 = "";
       var tab2 = "";
-      GLog.write(param_tab1Column);
       if(entry["gsx$" + param_tab1Column]) {
-        GLog.write(tab1);
         tab1 = entry["gsx$"+param_tab1Column].$t;
       }
       if(entry["gsx$" + param_tab2Column]) {

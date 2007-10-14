@@ -206,6 +206,7 @@ function cm_loadMapJSON(json) {
       }
       var tab1 = "";
       var tab2 = "";
+      GLog.write(param_tab1Column);
       if(entry["gsx$" + param_tab1Column]) {
         GLog.write(tab1);
         tab1 = entry["gsx$"+param_tab1Column].$t;

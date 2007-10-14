@@ -204,9 +204,10 @@ function cm_loadMapJSON(json) {
       if( usingRank && entry["gsx$" + param_rankColumn]) {
         rank = parseInt(entry["gsx$" + param_rankColumn].$t);
       }
-
+      var tab1 = "";
+      var tab2 = "";
       if(entry["gsx$" + param_tab1Column]) {
-        var tab1 = entry["gsx$"+param_tab1Column].$t;
+        tab1 = entry["gsx$"+param_tab1Column].$t;
       }
       if(entry["gsx$" + param_tab2Column]) {
         var tab2 = entry["gsx$"+param_tab2Column].$t;

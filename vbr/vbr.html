@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script><style type="text/css">
+    v\:* {
+      behavior:url(#default#VML);
+    }
+    </style>
+	<script type="text/javascript">
+	var map;
+    var geoXml = new GGeoXml
+function load() {
+if (GBrowserIsCompatible()) {
+map = new GMap2(document.getElementById("map"));
+map.addControl(new GSmallMapControl());
+geoXml = new GGeoXml("http://gmaps-samples.googlecode.com/svn/trunk/vbr/vbr-example.kml");
+map.setCenter(new GLatLng(0,0), 1);
+map.addOverlay(geoXml);
+}
+}
+//]]>
+  </script>
+</head>
+
+
+<body onload="load()" onunload="GUnload()">
+
+<div id="map" style="width: 500px; height: 300px;"></div>
+
+</body>
+</html>

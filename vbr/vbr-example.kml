@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://earth.google.com/kml/2.0">
+<kml xmlns="http://earth.google.com/kml/2.2">
     <NetworkLink>
-        <description>Latest additions to Placeopedia, updates once you stop moving the map.</description>
+        <description>Panoramio Photos, updates once you stop moving the map.</description>
         <name>Placeopedia</name>
         <Link>
             <href>http://www.panoramio.com/kml.php</href>

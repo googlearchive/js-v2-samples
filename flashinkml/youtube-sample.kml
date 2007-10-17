@@ -2,7 +2,7 @@
 <kml xmlns="http://earth.google.com/kml/2.2">
 	<Placemark>
 		<name>Declan Butler's Avian Flu Outbreaks in Google Earth</name>
-		<description><![CDATA[<object width="240" height="200"><param name="movie" value="http://www.youtube.com/v/_N805-TyUiY"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/_N805-TyUiY" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object>]]></description>
+		<description><![CDATA[<object width="240" height="200"><param name="movie" value="http://www.youtube.com/v/_N805-TyUiY"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/_N805-TyUiY" type="application/x-shockwave-flash" wmode="transparent" width="240" height="200"></embed></object>]]></description>
 		<LookAt>
 			<longitude>101.5513816532019</longitude>
 			<latitude>13.65113039555518</latitude>

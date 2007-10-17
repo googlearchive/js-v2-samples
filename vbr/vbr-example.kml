@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+    <NetworkLink>
+        <description>Latest additions to Placeopedia, updates once you stop moving the map.</description>
+        <name>Placeopedia</name>
+        <Link>
+            <href>http://www.panoramio.com/kml.php</href>
+            <viewRefreshMode>onStop</viewRefreshMode>
+            <viewRefreshTime>1</viewRefreshTime>
+        </Link>
+    </NetworkLink>
+</kml>

@@ -13,7 +13,7 @@
     function initialize() {
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map_canvas"));
-        map.setCenter(new GLatLng(37.4419, -122.1419), 3);
+        map.setCenter(new GLatLng(42, -99), 3);
         map.addControl(new GSmallMapControl());
        	for (stateCode in states) { 
           var polygon = createPoly(stateCode);

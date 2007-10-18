@@ -597,7 +597,8 @@ function cm_load() {
  * @param {Number} markerNum Number of marker in global array
  */
 function cm_markerClicked(markerNum) {
-  cm_mapMarkers[markerNum].openInfoWindowHtml(cm_mapHTMLS[markerNum]);
+  var marker = cm_mapMarkers[markerNum];
+  GEvent.trigger(marker, "click");
 }
 
 /**

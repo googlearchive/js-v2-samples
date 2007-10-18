@@ -138,7 +138,7 @@ function cm_load() {
  */
 function cm_markerClicked(markerNum) {
   var marker = cm_mapMarkers[markerNum];
-  marker.openInfoWindowHtml(cm_mapHTMLS[markerNum]);
+  GEvent.trigger(marker, "click");
 }
 
 /**

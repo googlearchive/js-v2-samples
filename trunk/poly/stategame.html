@@ -19,17 +19,18 @@
         map = new GMap2(document.getElementById("map_canvas"));
         map.setCenter(new GLatLng(42, -99), 3);
         map.addControl(new GSmallMapControl());
-        console.log(stateCodes.length);
-       	for (stateCode in stateBorders) { 
-          var polygon = createPoly(stateCode);
-          map.addOverlay(polygon);
-        }
-        var randomNum = Math.floor(Math.random()*stateCodes.length);
       }
     }   
-  
-    function createPoly(stateCode) {
-       var polygon = new GPolygon(stateBorders[stateCode], "#f33f00", 0, 0, "#ff0000", 0.01);
+ 
+    function addPolys(opacity) {
+      for (stateCode in stateBorders) { 
+        var polygon = createPoly(stateCode, opacity);
+        map.addOverlay(polygon);
+      }
+    }
+
+    function createPoly(stateCode, opacity) {
+       var polygon = new GPolygon(stateBorders[stateCode], "#f33f00", 0, 0, "#ff0000", opacity);
        GEvent.addListener(polygon, "click", function(latlng) {
          if (inGame() && stateCode == currentStateCode) {
            map.openInfoWindow(latlng, "You found " + stateCode + "!");
@@ -45,6 +46,24 @@
       gameSeconds = 0;
       currentScore = 0;
       clearInterval(gameTimer);
+      map.clearOverlays();
+
+      var level = document.getElementById("level").value;
+      switch (level) {
+        case "Easy":
+         map.setMapType(G_NORMAL_MAP);
+         addPolys(.01);
+         break;
+        case "Medium":
+         map.setMapType(G_SATELLITE_MAP);
+         addPolys(1.0);
+         break;
+        case "Hard":
+         map.setMapType(G_SATELLITE_MAP);
+         addPolys(.01);
+         break;
+      }
+
       showNextState();
       gameTimer = setInterval(updateTime, 1000);
       updateTime();
@@ -78,9 +97,15 @@
 
   <body onload="initialize()" onunload="GUnload()">
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
-    <table>
+    <table style="width:500px;">
      <tr>
-     <td></td>
+     <td>
+       <select id="level">
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+       </select>
+     </td>
      <td>Score</td>
      <td>Time</td>
      <td>Find</td>

@@ -32,7 +32,7 @@
        var polygon = new GPolygon(stateBorders[stateCode], "#f33f00", 0, 0, "#ff0000", 0.01);
        GEvent.addListener(polygon, "click", function(latlng) {
          if (inGame() && stateCode == currentStateCode) {
-           map.openInfoWindow(latlng, "You clicked " + stateCode);
+           map.openInfoWindow(latlng, "You found " + stateCode + "!");
            currentScore++;
            document.getElementById("score").innerHTML = currentScore;
            showNextState();
@@ -61,7 +61,7 @@
     }
 
     function updateTime() {
-      console.log(gameSeconds);
+      document.getElementById("time").innerHTML = gameSeconds;
       gameSeconds++;
     }
     function inGame() { 
@@ -73,10 +73,23 @@
   </head>
 
   <body onload="initialize()" onunload="GUnload()">
+    <table>
+    <tr>
+    <td>
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
-     <input type="button" onclick="startGame()" value="Start New Game" />
-     <div id="score"></div>
+    </td>
+    <td>
+     <input type="button" onclick="startGame()" value="New Game" />
+     <br/>
+     Score: <br/>
+     <div id="score" style="front-size: 36px; color: #00ff00"></div>
+     Time: <br/>
+     <div id="time" style="front-size: 36px; color: #00ff00"></div>
+     Find: <br/>
      <div id="state"></div>
+    </td>
+    </tr>
+    </table>
     <br/>
   </body>
 </html>

@@ -29,7 +29,7 @@
     }   
   
     function createPoly(stateCode) {
-       var polygon = new GPolygon(states[stateCode], "#f33f00", 0, 0, "#ff0000", 0.01);
+       var polygon = new GPolygon(stateBorders[stateCode], "#f33f00", 0, 0, "#ff0000", 0.01);
        GEvent.addListener(polygon, "click", function(latlng) {
          if (inGame() && stateCode == currentStateCode) {
            map.openInfoWindow(latlng, "You clicked " + stateCode);
@@ -58,6 +58,10 @@
       clearInterval(gameTimer);
     }
 
+    function updateTime() {
+      console.log(gameSeconds);
+      gameSeconds++;
+    }
     function inGame() { 
       return gameSeconds > 0 && gameSeconds < gameTime;
     }

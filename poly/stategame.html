@@ -11,7 +11,7 @@
     var map;
     var gameTimer;
     var gameSeconds = 0;
-    var gameTime = 30;
+    var gameTime = 60;
     var currentStateCode;
 
     function initialize() {
@@ -61,9 +61,13 @@
     }
 
     function updateTime() {
-      document.getElementById("time").innerHTML = gameSeconds;
       gameSeconds++;
+      document.getElementById("time").innerHTML = gameSeconds;
+      if(gameSeconds >= gameTime) {
+        endGame(); 
+      }
     }
+
     function inGame() { 
       return gameSeconds > 0 && gameSeconds < gameTime;
     }
@@ -73,23 +77,15 @@
   </head>
 
   <body onload="initialize()" onunload="GUnload()">
-    <table>
-    <tr>
-    <td>
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
-    </td>
-    <td>
+    <br/>
      <input type="button" onclick="startGame()" value="New Game" />
-     <br/>
-     Score: <br/>
-     <div id="score" style="front-size: 36px; color: #00ff00"></div>
-     Time: <br/>
-     <div id="time" style="front-size: 36px; color: #00ff00"></div>
-     Find: <br/>
-     <div id="state"></div>
-    </td>
-    </tr>
-    </table>
+     Score: 
+     <span id="score" style="font-size: 36px; color: #00ff00"></span>
+     Time: 
+     <span id="time" style="font-size: 36px; color: #ff0000"></span>
+     Find: 
+     <span id="state"></span>
     <br/>
   </body>
 </html>

@@ -47,7 +47,7 @@ var stateBorders = {
 'CT' : [new GLatLng(42.016651, -71.806641), new GLatLng(41.335575, -71.828613), new GLatLng(41.269550, -72.971191), new GLatLng(40.996483, -73.652344), new GLatLng(42.065605, -73.454590), new GLatLng(42.016651, -71.806641)],
 'RI' : [new GLatLng(41.327328, -71.817627), new GLatLng(41.450962, -71.059570), new GLatLng(41.705730, -71.147461), new GLatLng(42.041134, -71.466064), new GLatLng(42.016651, -71.806641), new GLatLng(41.664703, -71.784668), new GLatLng(41.327328, -71.817627)]
 }; 
-var stateCodes = {
+var stateCodes = [
 { code: 'AL', name: 'Alabama'},
 { code: 'AZ', name: 'Arizona'},
 { code: 'AR', name: 'Arkansas'},

@@ -33,6 +33,8 @@
        GEvent.addListener(polygon, "click", function(latlng) {
          if (inGame() && stateCode == currentStateCode) {
            map.openInfoWindow(latlng, "You clicked " + stateCode);
+           currentScore++;
+           document.getElementById("score").innerHTML = currentScore;
            showNextState();
          }
        });
@@ -51,7 +53,7 @@
     function showNextState() {
       var randomNum = Math.floor(Math.random()*stateCodes.length);
       currentStateCode = stateCodes[randomNum].code;
-      alert(currentStateCode);
+      document.getElementById("state").innerHTML = stateCodes[randomNum].name;
     }
 
     function endGame() {
@@ -73,6 +75,8 @@
   <body onload="initialize()" onunload="GUnload()">
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
      <input type="button" onclick="startGame()" value="Start New Game" />
+     <div id="score"></div>
+     <div id="state"></div>
     <br/>
   </body>
 </html>

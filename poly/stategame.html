@@ -6,6 +6,11 @@
     <title>Google Maps JavaScript API Example: Simple Polygon</title>
     <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow"
       type="text/javascript"></script>
+    <style type="text/css"> 
+      body {
+        font-family: Arial, sans serif;
+      }
+    </style>
     <script src="states.js" type="text/javascript"></script>
     <script type="text/javascript">
     var map;
@@ -76,6 +81,7 @@
     }
 
     function endGame() {
+      map.openInfoWindow(map.getCenter(), "Game Over!");
       clearInterval(gameTimer);
     }
 

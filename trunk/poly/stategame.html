@@ -78,14 +78,25 @@
 
   <body onload="initialize()" onunload="GUnload()">
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
-    <br/>
+    <table>
+     <tr>
+     <td></td>
+     <td>Score</td>
+     <td>Time</td>
+     <td>Find</td>
+     </tr>
+     <tr>
+     <td>
      <input type="button" onclick="startGame()" value="New Game" />
-     Score: 
+     </td><td>
      <span id="score" style="font-size: 36px; color: #00ff00"></span>
-     Time: 
+     </td><td>
      <span id="time" style="font-size: 36px; color: #ff0000"></span>
-     Find: 
+     </td><td>
      <span id="state"></span>
+     </td>
+     </tr>
+    </table>
     <br/>
   </body>
 </html>

@@ -30,7 +30,7 @@
     }
 
     function createPoly(stateCode, opacity) {
-       var polygon = new GPolygon(stateBorders[stateCode], "#f33f00", 0, 0, "#ff0000", opacity);
+       var polygon = new GPolygon(stateBorders[stateCode], "#f33f00", opacity, 0, "#ff0000", 0);
        GEvent.addListener(polygon, "click", function(latlng) {
          if (inGame() && stateCode == currentStateCode) {
            map.openInfoWindow(latlng, "You found " + stateCode + "!");

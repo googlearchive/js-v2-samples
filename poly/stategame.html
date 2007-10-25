@@ -38,7 +38,7 @@
        var polygon = new GPolygon(stateBorders[stateCode], "#f33f00", opacity, opacity, "#ff0000", 0);
        GEvent.addListener(polygon, "click", function(latlng) {
          if (inGame() && stateCode == currentStateCode) {
-           map.openInfoWindow(latlng, "You found " + stateCode + "!");
+           map.openInfoWindow(latlng, "You got it!");
            currentScore++;
            document.getElementById("score").innerHTML = currentScore;
            showNextState();

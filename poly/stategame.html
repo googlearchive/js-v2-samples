@@ -21,7 +21,7 @@
 
     function initialize() {
       if (GBrowserIsCompatible()) {
-        map = new GMap2(document.getElementById("map_canvas"));
+        map = new GMap2(document.getElementById("map_canvas"), {draggableCursor: 'crosshair'});
         map.setCenter(new GLatLng(42, -99), 3);
         map.addControl(new GSmallMapControl());
       }

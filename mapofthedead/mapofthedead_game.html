@@ -167,7 +167,7 @@
             document.getElementById("score").innerHTML = currentScore;
             marker.isDead = true;
             marker.deadState = 1;
-            spawnZombie();
+            if (currentScore %2 == 0)  spawnZombie();
           }
         }
       }

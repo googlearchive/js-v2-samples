@@ -31,6 +31,7 @@
         new GKeyboardHandler(map);
         focusMap();
         GEvent.addDomListener(document, "keypress", handleKeyDown);
+        GEvent.addDomListener(document, "keydown", handleKeyDown);
         GEvent.addDomListener(document, "keyup", handleKeyDown);
 
         setupScreen();

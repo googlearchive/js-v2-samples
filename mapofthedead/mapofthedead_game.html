@@ -81,6 +81,8 @@
       clearInterval(gameTimer);
       clearInterval(spawnTimer);
       clearInterval(animTimer);
+
+      updateTime();
       document.getElementById("score").innerHTML = currentScore;
 
       zombies.length = 0;
@@ -90,7 +92,7 @@
       map.addOverlay(logo);
       spawnZombie();
       focusMap();
-
+      
       gameTimer = setInterval(updateTime, 1000);
       spawnTimer = window.setInterval(spawnZombie, 5000);
       animTimer = window.setInterval(moveZombies, 300);

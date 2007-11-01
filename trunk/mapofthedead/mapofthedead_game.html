@@ -99,10 +99,6 @@
     }
 
     function spawnZombie() {
-      if (zombies.length > 40) {
-        return;
-      }
-
       var bounds = map.getBounds();
       var southWest = bounds.getSouthWest();
       var northEast = bounds.getNorthEast();

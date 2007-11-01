@@ -189,7 +189,7 @@
 
     function updateTime() {
       gameSeconds++;
-      document.getElementById("time").innerHTML = gameSeconds;
+      document.getElementById("time").innerHTML = gameTime - gameSeconds;
       if(gameSeconds >= gameTime) {
         endGame(); 
       }

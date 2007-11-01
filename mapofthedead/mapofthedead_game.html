@@ -162,7 +162,7 @@
         var marker = zombies[i];
         if (!marker.isDead) {
           var dist = marker.getLatLng().distanceFrom(center);
-          if (dist < 20) {
+          if (dist < 25) {
             currentScore++;
             document.getElementById("score").innerHTML = currentScore;
             marker.isDead = true;

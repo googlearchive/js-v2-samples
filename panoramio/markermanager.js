@@ -105,9 +105,11 @@ function MarkerManager(map, opt_opts) {
     marker.isInfoWindowOpened = false;
 
     GEvent.addListener(marker, "infowindowopen", function() {
+      GLog.write(marker.getTitle() + " setting to true");
       marker.isInfoWindowOpened = true;
     });
     GEvent.addListener(marker, "infowindowclose", function() {
+      GLog.write(marker.getTitle() + " setting to false");
       marker.isInfoWindowOpened = false;
     });
   };

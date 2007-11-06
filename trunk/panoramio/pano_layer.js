@@ -44,7 +44,7 @@ PanoramioLayerCallback.prototype.createMarker = function(photo, baseIcon) {
   marker.html = html;
 
   GEvent.addListener(marker, "click", function() {
-    marker.openInfoWindow(marker.html);
+    marker.openInfoWindow(marker.html, {noCloseOnClick: true});
   });
  
   return marker;

@@ -99,10 +99,10 @@ function MarkerManager(map, opt_opts) {
   };
   me.addOverlay_ = function(marker) {
     if (!marker.isInfoWindowOpened) {
+      marker.isInfoWindowOpened = false;
       map.addOverlay(marker);
       me.shownMarkers_++;
     }
-    marker.isInfoWindowOpened = false;
 
     GEvent.addListener(marker, "infowindowopen", function() {
       GLog.write(marker.getTitle() + " setting to true");

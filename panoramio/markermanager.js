@@ -90,7 +90,9 @@ function MarkerManager(map, opt_opts) {
   // NOTE: These two closures provide easy access to the map.
   // They are used as callbacks, not as methods.
   me.removeOverlay_ = function(marker) {
+    GLog.write(marker.getTitle() + " removing?");
     if (!marker.isInfoWindowOpened) {
+      GLog.write("yes");
       map.removeOverlay(marker);
       me.shownMarkers_--;
     }

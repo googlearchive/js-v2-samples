@@ -25,6 +25,7 @@ PanoramioLayerCallback.prototype.createMarker = function(photo, baseIcon) {
   markerIcon.image = this.formImgUrl(photo.photo_id, "mini_square");
   var marker = new GMarker(new GLatLng(photo.latitude, photo.longitude), {icon: markerIcon, title: photo.photo_title});
 
+  GLog.write("creating" + title);
   if (photo.photo_title.length > 33) {
     photo.photo_title = photo.photo_title.substring(0, 33) + "&#8230;";
   }

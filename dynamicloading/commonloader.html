@@ -1,0 +1,18 @@
+<html>
+  <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow"></script>
+  <script>
+
+  function drawMap() {
+    if (google.maps.BrowserIsCompatible()) {
+      var map = new google.maps.Map2(document.getElementById('map'));
+      map.setCenter(new google.maps.LatLng(37.4419, -122.1419), 13);
+    }
+  }
+
+  function loadMap() {
+    google.load("maps", "2.x", {callback: drawMap });
+  }
+</script>
+<input type="button" value="Load Map!" onclick="loadMap()"/>
+<div style="width:400;height:400" id="map"></div>
+</html>

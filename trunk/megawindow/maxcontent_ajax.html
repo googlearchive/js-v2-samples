@@ -17,11 +17,17 @@
         map.addOverlay(marker);
 
         GEvent.addListener(marker, 'click', function() {
+          var maxContentDiv = document.createElement('div');
+          maxContentDiv.innerHTML = 'Loading...'
           marker.openInfoWindowHtml("<b>Click maximize button for more info.</b>",
-            {maxContent: "More Info", 
-             maxTitle: "<div id='moreinfo'>Loading...</div>"});
-          GDownloadUrl("ajax_content.html", function(data) {
-            document.getElementById("moreinfo").innerHTML = data;
+            {maxContent: maxContentDiv, 
+             maxTitle: "More Info"});
+
+          var iw = map.getInfoWindow();
+          GEvent.addListener(iw, "maximizeclick", function() {
+            GDownloadUrl("ajax_content.html", function(data) {
+              maxContentDiv.innerHTML = data;
+            });
           });
         });
       }

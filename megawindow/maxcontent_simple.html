@@ -16,20 +16,23 @@
         var marker = new GMarker(map.getCenter());
         map.addOverlay(marker);
 
+        var maxContent = "<center><img src='mega_splat.jpg' height='230' height='300'/></center>";
+        var maxTitle = "You asked for it!";
+
         GEvent.addListener(marker, 'click', function() {
           marker.openInfoWindowHtml("<b>Maximize me!</b>",
-            {maxContent: "<center><img src='mega_splat.jpg' height='230' height='300'/></center>",
-             maxTitle: "You asked for it!"});
+            {maxContent: maxContent,
+             maxTitle: maxTitle});
         });
 
-        var titleNode = document.createElement('div');
-        titleNode.innerHTML = 'some title';
         var contentNode = document.createElement('div');
-        contentNode.innerHTML = 'some content';
+        contentNode.innerHTML = maxContent;
+        var titleNode = document.createElement('div');
+        titleNode.innerHTML = maxTitle;
        
         GEvent.addListener(map, 'click', function(overlay, latlng) {
           if (latlng) {
-            map.openInfoWindowHtml(latlng, '<b>map click</b>', {
+            map.openInfoWindowHtml(latlng, '<b>Maximize me!</b>', {
               maxContent: contentNode,
               maxTitle: titleNode
             });

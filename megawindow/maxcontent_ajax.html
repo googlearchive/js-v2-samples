@@ -17,25 +17,13 @@
         map.addOverlay(marker);
 
         GEvent.addListener(marker, 'click', function() {
-          marker.openInfoWindowHtml("<b>marker click</b>",
-            {maxContent: "max content", 
-             maxTitle: "max title"});
+          marker.openInfoWindowHtml("<b>Click maximize button for more info.</b>",
+            {maxContent: "More Info", 
+             maxTitle: "<div id='moreinfo'>Loading...</div>"});
+          GDownloadUrl("ajax_content.html", function(data) {
+            document.getElementById("moreinfo").innerHTML = data;
+          });
         });
-
-        var titleNode = document.createElement('div');
-        titleNode.innerHTML = 'some title';
-        var contentNode = document.createElement('div');
-        contentNode.innerHTML = 'some content';
-       
-        GEvent.addListener(map, 'click', function(overlay, latlng) {
-          if (latlng) {
-            map.openInfoWindowHtml(latlng, '<b>map click</b>', {
-              maxContent: contentNode,
-              maxTitle: titleNode
-            });
-          }
-        });
-
       }
     }
 

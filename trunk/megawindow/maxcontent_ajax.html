@@ -19,7 +19,7 @@
         GEvent.addListener(marker, 'click', function() {
           var maxContentDiv = document.createElement('div');
           maxContentDiv.innerHTML = 'Loading...'
-          marker.openInfoWindowHtml("<b>Click maximize button for more info.</b>",
+          marker.openInfoWindowHtml("<div style='padding:5px'>Click maximize button for more info about the Google Bar!</div>",
             {maxContent: maxContentDiv, 
              maxTitle: "More Info"});
 
@@ -37,6 +37,6 @@
   </head>
 
   <body onload="initialize()" onunload="GUnload()">
-    <div id="map_canvas" style="width: 100%; height: 100%"></div>
+    <div id="map_canvas" style="width: 100%; height: 100%; font-family: Arial, sans serif"></div>
   </body>
 </html>

@@ -17,9 +17,9 @@
         map.addOverlay(marker);
 
         GEvent.addListener(marker, 'click', function() {
-          marker.openInfoWindowHtml("<b>marker click</b>",
-            {maxContent: "max content", 
-             maxTitle: "max title"});
+          marker.openInfoWindowHtml("<b>Are you ready? Maximize me!</b>",
+            {maxContent: "You asked for it!", 
+             maxTitle: "<img src='mega_splat.jpg' width='200' height='300'/>"});
         });
 
         var titleNode = document.createElement('div');

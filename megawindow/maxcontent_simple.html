@@ -9,7 +9,6 @@
     <script type="text/javascript">
 
     var map;
-    var iw;
     var marker;
 
     function initialize() {
@@ -21,27 +20,19 @@
         map.addOverlay(marker);
 
         GEvent.addListener(marker, 'click', function() {
-          marker.openInfoWindowHtml("<b>Hello</b>",
+          marker.openInfoWindowHtml("<b>marker click</b>",
             {maxContent: "max content", 
-             maxTitle: "max title!"});
-          iw = map.getInfoWindow();
-        });
- 
-        var titleNode = document.createElement('div');
-        titleNode.innerHTML = 'some title';
-        GEvent.addDomListener(titleNode, 'click', function() {
-          alert('title click');
+             maxTitle: "max title"});
         });
 
+        var titleNode = document.createElement('div');
+        titleNode.innerHTML = 'some title';
         var contentNode = document.createElement('div');
         contentNode.innerHTML = 'some content';
-        GEvent.addDomListener(contentNode, 'click', function() {
-          alert('content click');
-        });
        
-        GEvent.addListener(map, 'click', function(overlay, point) {
-          if (point) {
-            map.openInfoWindowHtml(point, 'map click', {
+        GEvent.addListener(map, 'click', function(overlay, latlng) {
+          if (latlng) {
+            map.openInfoWindowHtml(latlng, '<b>map click</b>', {
               maxContent: contentNode,
               maxTitle: titleNode
             });

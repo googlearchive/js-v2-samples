@@ -13,7 +13,7 @@
         var map = new GMap2(document.getElementById("map_canvas"));
         map.setCenter(new GLatLng(37.4419, -122.1419), 13);
 
-        var marker = new GMarker(map.getCenter(), markerOptions);
+        var marker = new GMarker(map.getCenter());
         GEvent.addListener(marker, "click", function () {
 	      marker.openInfoWindowHtml("Hello");
         });

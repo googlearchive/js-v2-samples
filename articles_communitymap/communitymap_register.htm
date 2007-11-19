@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <title> Community Map - Register/Login </title>
+  <script src="http://maps.google.com/maps?file=api&v=2&key=abcdef"
+      type="text/javascript"></script>
+  <script type="text/javascript">
+
+  function register() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var url = "communitymap_newuser.php?";
+    var params = "username=" + username + "&password=" + password;
+    GDownloadUrl(url, function(data, responseCode) {
+      if (data.length > 1) {
+        document.getElementById("message").innerHTML = "Successfully registered." + 
+          "<a href='login.htm'>Proceed to Login</a>.";
+      } else {
+        document.getElementById("message").innerHTML = "Username already exists. Try again.";
+      }
+    }, params);
+  }
+
+  </script>
+  </head>
+  <body>
+  <h1>Register for Community Map</h1>
+  <input type="text" id="username">
+  <input type="password" id="password">
+  <input type="button" onclick="register()" value="Register">
+  <div id="message"></div>
+  </body>
+</html>

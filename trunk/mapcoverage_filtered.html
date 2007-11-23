@@ -405,7 +405,7 @@
 			
 			function loadSheet(key){
 				//loads up the sheet with the associated key.
-				if (key != '') {
+				if (key.length < 2) {
 				  key = defaultKey;
 				}
 				alert(key);

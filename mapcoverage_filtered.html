@@ -362,12 +362,6 @@
 				}
 			}
 			
-			function defaultSpreadsheet(isDefault){
-				//are we loading the default spreadsheet?  if so, we'll show a message so users know why 
-				//they didn't get the spreadsheet they might have been expecting.
-				document.getElementById("default-message").style.display = isDefault ? '' : 'none';
-			}
-			
 			function hideRow(rowID) {
 				//marks a row as hidden and hides it with css.
 				//setting an easy property speeds up filtering, which skips hidden rows.
@@ -411,15 +405,10 @@
 			
 			function loadSheet(key){
 				//loads up the sheet with the associated key.
-				//if we aren't provided a key, we'll use the defaultSpreadsheet, and turn on
-				//the flag alerting the user that we're using the default spreadsheet.
-				if(!key) {
-					key = defaultKey;
-					defaultSpreadsheet(true);
-				} else {
-					defaultSpreadsheet(false);
+				if (key != '') {
+				  var key = defaultKey;
 				}
-				
+
 				//reset the application--this allows us to load multiple sheets sequentially wihtout reloading.
 				reset();
 				//turn on the 'Loading...' flag.  This will be turned off by constructTable.
@@ -479,15 +468,6 @@
 				//merely hides the loading flag and shows the data area.  
 				document.getElementById("loading-message").style.display = "none";
 				document.getElementById("dataContainer").style.display = "";
-			}
-			
-			function showOpenSheet() {
-				//This is the UI to present to the user who clicks the 'Load Different Sheet' link.
-				var result = window.prompt("Enter the URL containing the key, or just the key. Remember that the document must be published to be usable by this application.");
-				if(!result) return;
-				result = extractKey(result);
-				if(!result) {alert("No valid key could be extracted"); return;}
-				loadSheet(result);
 			}
 			
 			function extractKey(input) {

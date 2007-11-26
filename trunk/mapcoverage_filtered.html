@@ -267,7 +267,7 @@
 				var i,j;
 				for(i =0; i < _colHeaders.length; i++) {
 					//we start at 2 to skip over the 'Show all' and 'Custom Filter...' options.
-					for(j = 2; j < _colHeaders[i].dropDown.childNodes.length;j++) {
+					for(j = 1; j < _colHeaders[i].dropDown.childNodes.length;j++) {
 						_colHeaders[i].dropDown[j].text = trimDropDownValue(_colHeaders[i].dropDown[j].prettyValue);
 					}
 				}

@@ -308,22 +308,6 @@
 			
 			function selectChanged(obj) {
 				//the obj given is the dropDown object that was changed.
-			
-				//if they just selected 'Custom Filter...' then we need to allow them to 
-				//specify the filter and store the new func in the _colHeaders
-				//remember that every dropDown has a parentObj pointer to the _colHeader that it
-				//is associated with.
-				if(obj.selectedIndex == 1) {
-					// they're switching into custom filter mode for this column.
-					getFilterFunc(obj.parentObj.index);
-					obj.className = 'special';
-				} else {
-					//reset the text of the select box to 'Custom Filter...'
-					//and set the styling back, too.
-					obj.options[1].text = 'Custom Filter...';	
-					obj.options[1].style.backgroundColor = '';
-					obj.className = '';
-				}
 				
 				//it might seem like we only need to add the filtering for this one column that 
 				//was just changed.  But in reality, this would require a very complicated operation
@@ -333,11 +317,6 @@
 				resetFiltering();
 				for(var i = 0; i< _colHeaders.length; i++) {
 					if(_colHeaders[i].dropDown.selectedIndex == 0) continue; // 'Show All'
-					if(_colHeaders[i].dropDown.selectedIndex == 1) {
-						//only filter on the function if it actually exists--otherwise, treat it like 'Show All'
-						if(_colHeaders[i].filterFunc) filterBasedOn(i, _colHeaders[i].filterFunc); 
-						continue;
-					}
 					//one of the other options was picked.  just filter on the value they picked.
 					filterBasedOn(i,_colHeaders[i].dropDown.options[_colHeaders[i].dropDown.selectedIndex].value);
 				}

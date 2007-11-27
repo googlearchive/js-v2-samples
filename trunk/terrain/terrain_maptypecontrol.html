@@ -10,9 +10,9 @@
    <script type="text/javascript">
    function load() {
       if (GBrowserIsCompatible()) {
-        var map = new GMap2(document.getElementById("map1"));
-        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+        var map = new GMap2(document.getElementById("map"));
         map.addMapType(G_PHYSICAL_MAP);
+        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
         map.addControl(new GMapTypeControl());
         map.addControl(new GLargeMapControl());
       }

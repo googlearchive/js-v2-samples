@@ -29,6 +29,10 @@
 			table {
 				padding:0px 0px 0px 0px;
 			}
+			td {
+				border-bottom:1px solid #CCCCCC;
+				border-right:1px solid #CCCCCC;
+			}
 			a.button {
 				color:#000000;
 				text-decoration:none;
@@ -192,6 +196,11 @@
 						newData = entry[i][tempName] ? entry[i][tempName].$t : "";
 						newTD = document.createElement("td");
 						newTD.appendChild(document.createTextNode(newData));
+						if (newData.match("Yes")) newTD.style.backgroundColor = "#00FF00";
+						if (newData.match("Major roads")) newTD.style.backgroundColor = "#FF9900";
+						if (newData.match("Lacks street")) newTD.style.backgroundColor = "#FFCC00";
+						if (newData.match("Major cities")) newTD.style.backgroundColor = "#FFCC00";
+
 						//we'll be doing case-free comparisons.  We'll save time by just performing
 						//the lowercase transformation on the data once.
 						//this does not create memory leaks because none of the DOM elements points
@@ -214,7 +223,7 @@
 				//fill up the dropDown with all of the unique values we saw
 				populateDropDowns();
 				//apply the alternating yellow fill
-				reAlternate();
+				//reAlternate();
 				//show the table we just constructed, and hide the loading message... we're done!
 				doneLoading();
 			}
@@ -321,7 +330,7 @@
 					filterBasedOn(i,_colHeaders[i].dropDown.options[_colHeaders[i].dropDown.selectedIndex].value);
 				}
 				//we most likely need to realternate after filtering.
-				reAlternate();
+				//reAlternate();
 				
 			}
 			

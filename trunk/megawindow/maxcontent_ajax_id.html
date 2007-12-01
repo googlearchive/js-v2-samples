@@ -1,0 +1,44 @@
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps - Max Infowindow API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+
+        var marker = new GMarker(map.getCenter());
+        marker.id = "a";
+        map.addOverlay(marker);
+ 
+        GEvent.addListener(marker, 'click', function() {
+          var maxContentDiv = document.createElement('div');
+          maxContentDiv.innerHTML = 'Loading...'
+          marker.openInfoWindowHtml("<div style='padding:5px'>Click maximize button for more info about the Google Bar!</div>",
+            {maxContent: maxContentDiv, 
+             maxTitle: "More Info"});
+
+          var iw = map.getInfoWindow();
+          GEvent.addListener(iw, "maximizeclick", function() {
+            GLog.write("Opened info window for " + marker.id);
+            GDownloadUrl("ajax_content.html", function(data) {
+              maxContentDiv.innerHTML = data;
+            });
+          });
+        });
+      }
+    }
+
+    </script>
+  </head>
+
+  <body onload="initialize()" onunload="GUnload()">
+    <div id="map_canvas" style="width: 100%; height: 700px; font-family: Arial, sans serif"></div>
+  </body>
+</html>

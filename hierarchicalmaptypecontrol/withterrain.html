@@ -28,7 +28,7 @@
         // Set up map type menu relationships
         mapControl.clearRelationships();
         mapControl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Labels", false);
-        mapControl.addRelationship(G_PHYSICAL_MAP, G_PHYSICAL_MAP, "Labels");
+        mapControl.addRelationship(G_PHYSICAL_MAP, physWithLabelsMap, "Labels", false);
   
         // Add control after you've specified the relationships
         map.addControl(mapControl);

@@ -10,13 +10,6 @@
 
     function initialize() {
       if (GBrowserIsCompatible()) {
-        // define the crosshair tile layer and its required functions
-        var crossLayer = new GTileLayer(new GCopyrightCollection(""), 0, 15);
-        crossLayer.getTileUrl =  function(tile, zoom) {
-          return "./include/tile_crosshairs.png";
-        }
-        crossLayer.isPng = function() {return true;}
-
         // Create a new map type incorporating the tile layer
         var physWithLabels = [ G_PHYSICAL_MAP.getTileLayers()[0],
                               G_HYBRID_MAP.getTileLayers()[1] ];
@@ -26,7 +19,7 @@
         var map = new GMap2(document.getElementById("map_canvas"),
             { size: new GSize(640,320) } );
         map.addMapType(G_PHYSICAL_MAP);
-        map.addMapType(mtTerCross);
+        map.addMapType(physWithLabelsMap);
         map.setCenter(new GLatLng(37.4419, -122.1419), 4);
         map.addControl(new GLargeMapControl())
 

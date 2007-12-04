@@ -7,11 +7,6 @@
       type="text/javascript"></script>
   <script src="http://www.google.com/apis/maps/include/prettify.js" type="text/javascript">
       </script>
-  <style type="text/css">
-    v\:* {
-      behavior:url(#default#VML);
-   }
-  </style>
   <script type="text/javascript">
 var map = null;
 
@@ -23,6 +18,7 @@ var groundOverlay;
 
 var icon_NE;
 var icon_SW;
+var icon_move;
 
 var geocoder = null;
 
@@ -48,6 +44,14 @@ function onLoad() {
   icon_SW.iconAnchor = new GPoint(6, 20);
   icon_SW.dragCrossImage = '';
 
+  icon_move = new GIcon();
+  icon_move.image = 'http://imagine-it.org/google/marker_move_icon.png';
+  icon_move.shadow = '';
+  icon_move.iconSize = new GSize(32, 32);
+  icon_move.shadowSize = new GSize(6, 20);
+  icon_move.iconAnchor = new GPoint(6, 20);
+  icon_move.dragCrossImage = '';
+
   geocoder = new GClientGeocoder();
 } 
 
@@ -71,9 +75,14 @@ function initialPosition() {
   GEvent.addListener(marker_SW, 'dragend', function() {
     updatePolyline();
   });
+  
+  marker_move = new GMarker( new GLatLng(((marker_SW.getPoint().lat() + marker_NE.getPoint().lat()) / 2), (marker_NE.getPoint().lng() + marker_SW.getPoint().lng()) / 2), {draggable: true, icon: icon_move}) ;
+  GEvent.addListener(marker_move, 'dragend', function() { updatePolyline() ; }) ;
+  marker_move.savePoint = marker_move.getPoint() ;			// Save for later
 
   map.addOverlay(marker_NE);
   map.addOverlay(marker_SW);
+  map.addOverlay(marker_move);
 
   updatePolyline();
 }
@@ -82,6 +91,25 @@ function updatePolyline() {
   if (border) {
     map.removeOverlay(border);
   }
+
+
+  // Check for moved center...
+
+  if ( marker_move.getPoint() != marker_move.savePoint )
+  {
+    var x = marker_move.getPoint().lat() - marker_move.savePoint.lat() ;
+    var y = marker_move.getPoint().lng() - marker_move.savePoint.lng() ;
+    marker_SW.setPoint( new GLatLng( marker_SW.getPoint().lat() + x, marker_SW.getPoint().lng() + y) ) ;
+    marker_NE.setPoint( new GLatLng( marker_NE.getPoint().lat() + x, marker_NE.getPoint().lng() + y) ) ;
+
+  } else						// Center not moved so move center
+  {
+    var x = (marker_SW.getPoint().lat() + marker_NE.getPoint().lat()) / 2 ;
+    var y = (marker_NE.getPoint().lng() + marker_SW.getPoint().lng()) / 2 ;
+    marker_move.setPoint( new GLatLng(x,y) ) ;
+  }
+
+  marker_move.savePoint = marker_move.getPoint() ;			// Save for later
 
   var points = [
       marker_NE.getPoint(),

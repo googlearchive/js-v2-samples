@@ -49,7 +49,7 @@
     }
 
     function createCustomMap(copyrightCollection, prefix, bounds) {
-      var tileLayers = [ G_NORMAL_MAP.getTileLayers()[0], new GTileLayer(copyrightCollection , 0, 17)];
+      var tileLayers = [ G_PHYSICAL_MAP.getTileLayers()[0], new GTileLayer(copyrightCollection , 0, 17)];
       tileLayers[1].getTileUrl = function(a, b) { return customGetTileURL(a, b, prefix, bounds);};
       tileLayers[1].isPng = function() { return false; };
       tileLayers[1].getOpacity = function() { return .5; };

@@ -3,81 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
   <head>
     <meta http-equiv="content-type" content="text/html/xml; charset=utf-8"/>
-    <title>Test Map</title>
-
-    <style type="text/css">
-    v\:* {
-      behavior:url(#default#VML);
-    }
-    /* formatting for the title panel at the top containing the map title, CASA text and ucl logo */
-    table.heading {
-        color: #FFFFFF;
-        background: #75547A;
-        width: 100%;
-        border-style: none;
-        border-collapse: collapse;
-    }
-    table.heading td {
-        border-style: none;
-        padding: 0;
-    }
-    table.heading h1 {
-        font-size: 20px;
-	font-weight:bold;
-	color:#FFFFFF;
-        padding-left: 10px;
-	font-family: Arial, Helvetica, sans-serif;
-	padding-top: 8px;
-    }
-    /* the text in the title panel containing the map title and casa text */
-    .section_header_white {
-	font-size: 14px;
-	font-weight:bold;
-	color:#FFFFFF;
-	padding-left: 25px;
-	font-family: Arial, Helvetica, sans-serif;
-	padding-top: 25px;
-    }
-    /* the bar that sits under the UCL logo and above the map and scale panels */
-    .underucl {
-        color: #000000;
-        background: #000000;
-    }
-    /* the Google map itself */
-    .map { width: 75%; height: 100%; table.border: 0; }
-    /* text style on the scale panel */
-    .scale {
-        color: #FFFFFF;
-        background: #75547A;
-        width: 100%;
-        height: 100%;
-    }
-    /* formatting of the coloured boxes on the scale panel */
-    .scale_colour {
-        border-color: #000000;
-        border-style: none;
-        border-width: 1px;
-        width: 16px;
-        height: 16px;
-    }
-    /* formating on panel containing fader buttons */
-    .fader {
-        color: #ffffff;
-        background: #75547A;
-        border-color: #808080;
-        border-style: groove;
-        border-width: 2px;
-        text-align: center;
-        padding-top: 3px;
-        padding-bottom: 4px;
-        margin-top: 8px;
-    }
-
+    <title>Custom Map + HierarchicalMapTypeControl</title>
     </style>
-
-
-    <script src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAVvnv0zpl2H41dQ3i9tAy-RSf32p-Ei7CdmPKby-vKYiWeKT92hRonx8gUZtqBuqIhbUUiGt70rFieA"
-            type="text/javascript"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"      type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
 
@@ -124,46 +52,9 @@
         return prefix + "-tiles/" + f + ".png";
     }
 
-    function changeOpacity(op) {
-	//this works as long as there are at least two map types
-        var current=map.getCurrentMapType();
-        if (current==map.getMapTypes()[0])
-        	map.setMapType(map.getMapTypes()[1]);
-	else
-		map.setMapType(map.getMapTypes()[0]);
-        opacity=op;
-        map.setMapType(current); //was map.getMapTypes()[1]
-    }
-
-
-    function getWindowHeight() {
-        if (window.self&&self.innerHeight) {
-            return self.innerHeight;
-        }
-        if (document.documentElement&&document.documentElement.clientHeight) {
-            return document.documentElement.clientHeight;
-        }
-        return 0;
-    }
-
-    function resizeMapDiv() {
-        //Resize the height of the div containing the map.
-        //Do not call any map methods here as the resize is called before the map is created.
-    	var d=document.getElementById("map");
-        var offsetTop=0;
-        for (var elem=d; elem!=null; elem=elem.offsetParent) {
-            offsetTop+=elem.offsetTop;
-        }
-        var height=getWindowHeight()-offsetTop-16;
-        if (height>=0) {
-            d.style.height=height+"px";
-        }
-    }
-
-
     function load() {
       if (GBrowserIsCompatible()) {
-	     var tileLayers = [ 
+        var tileLayers = [ 
         {name: "Census Tracts 1990",prefix: "tgr06075trt00", bounds: new GLatLngBounds(new GLatLng(37.63982999908733,-123.17382499999998),new GLatLng(37.929823999084974,-122.28178))},
         {name: "Congressional Districts", prefix: "tgr06075cdc", bounds: new GLatLngBounds(new GLatLng(37.63982999908733,-123.17382499999998),new GLatLng(37.929823999084974,-122.28178))},
         {name: "Landmark Polygons", prefix: "tgr06075lpy", bounds: new GLatLngBounds(new GLatLng(37.63982999908733,-123.17382499999998),new GLatLng(37.929823999084974,-122.28178))},
@@ -211,58 +102,7 @@
     //]]>
     </script>
   </head>
-  <body onresize="resizeMapDiv()" onload="load()" onunload="GUnload()">
-    <table width="100%" class="heading">
-      <tr>
-        <td valign="top"><h1>Test Map</h1>
-          <span class="section_header_white">UCL CENTRE FOR ADVANCED SPATIAL ANALYSIS (CASA)</span>
-        </td>
-        <td valign="baseline"><img align="right" src="ucl75547A.gif" />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"><div class="underucl">&nbsp;</div>
-        </td>
-      </tr>
-    </table>
-
-    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td class="map"><div id="map"></div>
-        </td>
-        <td class="scale" valign="top">
-<table>
-<tr>
-<td bgcolor="#990099" class="scale_colour">&nbsp;</td>
-<td>First Colour</td>
-</tr>
-<tr>
-<td bgcolor="#00ffff" class="scale_colour">&nbsp;</td>
-<td>Second Colour</td>
-</tr>
-<tr>
-<td bgcolor="#ff33cc" class="scale_colour">&nbsp;</td>
-<td>Third Colour</td>
-</tr>
-<tr>
-<td bgcolor="#ffff00" class="scale_colour">&nbsp;</td>
-<td>Fourth Colour</td>
-</tr>
-<tr>
-<td bgcolor="#ff0033" class="scale_colour">&nbsp;</td>
-<td>Fifth Colour</td>
-</tr>
-</table>
-
-          <div class="fader">
-            <input type="button" value="Map" onClick="changeOpacity(0)" />
-            <input type="button" value="1/4" onClick="changeOpacity(0.25)" />
-            <input type="button" value="1/2" onClick="changeOpacity(0.5)" />
-            <input type="button" value="3/4" onClick="changeOpacity(0.75)" />
-            <input type="button" value="Data" onClick="changeOpacity(1.0)" />
-          </div>
-        </td>
-      </tr>
-    </table>
+  <body onload="load()" onunload="GUnload()">
+        <div id="map" style="width: 550px; height: 400px">
   </body>
 </html>

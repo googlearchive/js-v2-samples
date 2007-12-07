@@ -9,13 +9,9 @@
     <script type="text/javascript">
     //<![CDATA[
 
-    var centreLat=37.78482699908615;
-    var centreLon=-122.7278025;
-    var n_buttonText="Map"; //Text that shows up on the button for the custom layer (n=normal, s=sat)
-    var s_buttonText="Satellite";
-     var map; //the GMap2 itself
-    var opacity=0.5;
-	
+    var centreLat = 37.78482699908615;
+    var centreLon = -122.7278025;
+    var map;
     
     function customGetTileURL(a,b, prefix, bounds) {
       //converts tile x,y into keyhole string
@@ -52,52 +48,47 @@
         return prefix + "-tiles/" + f + ".png";
     }
 
+    function createCustomMap(copyrightCollection, prefix, bounds) {
+      var tileLayers = [ G_NORMAL_MAP.getTileLayers()[0], new GTileLayer(copyrightCollection , 0, 17)];
+      tileLayers[1].getTileUrl = function(a, b) { return customGetTileURL(a, b, prefix, bounds);};
+      tileLayers[1].isPng = function() { return false; };
+      tileLayers[1].getOpacity = function() { return opacity; };
+      return new GMapType(tileLayers, new GMercatorProjection(11), "Map", {maxResolution:10, minResolution:0, errorMessage:"Data not available"});
+     }
+
     function load() {
       if (GBrowserIsCompatible()) {
-        var tileLayers = [ 
+
+        var customTileLayers = [ 
         {name: "Census Tracts 1990",prefix: "tgr06075trt00", bounds: new GLatLngBounds(new GLatLng(37.63982999908733,-123.17382499999998),new GLatLng(37.929823999084974,-122.28178))},
         {name: "Congressional Districts", prefix: "tgr06075cdc", bounds: new GLatLngBounds(new GLatLng(37.63982999908733,-123.17382499999998),new GLatLng(37.929823999084974,-122.28178))},
         {name: "Landmark Polygons", prefix: "tgr06075lpy", bounds: new GLatLngBounds(new GLatLng(37.63982999908733,-123.17382499999998),new GLatLng(37.929823999084974,-122.28178))},
         {name: "Urban Areas", prefix: "UA_06075", bounds: new GLatLngBounds(new GLatLng(37.708131999086774,-122.51448299999997),new GLatLng(37.83242699908577,-122.327681))}];
-        var copyright = new GCopyright(1,
-                              new GLatLngBounds(new GLatLng(-90, -180),
-                                                new GLatLng(90, 180)),
-                              0,
-                              "<a href=\"http://www.casa.ucl.ac.uk\">CASA</a>");
-        var copyrightCollection = new GCopyrightCollection("GMapCreator");
+        var copyright = new GCopyright(1, new GLatLngBounds(new GLatLng(-90, -180), new GLatLng(90, 180)), 0, "<a href=\"http://www.casa.ucl.ac.uk\">CASA</a>");
+        var copyrightCollection = new GCopyrightCollection("ESRI, GMapCreator");
         copyrightCollection.addCopyright(copyright);
 
         var mapTypes = [];
         mapTypes.push(G_NORMAL_MAP);
         mapTypes.push(G_PHYSICAL_MAP);
-        var mapControl = new GHierarchicalMapTypeControl();
-        // Set up map type menu relationships
-        mapControl.clearRelationships();
+
+        var mapTypesControl = new GHierarchicalMapTypeControl();
+        mapTypesControl.clearRelationships();
         
-        for (var i = 0; i < (tileLayers.length); i++) {
-	      var customMap = createCustomMap(copyrightCollection, tileLayers[i].prefix, tileLayers[i].bounds);
-	      mapTypes.push(customMap);
-	      mapControl.addRelationship(G_NORMAL_MAP, customMap, tileLayers[i].name);
+        for (var i = 0; i < (customTileLayers.length); i++) {
+	  var customMap = createCustomMap(copyrightCollection, customTileLayers[i].prefix, customTileLayers[i].bounds);
+	  mapTypes.push(customMap);
+	  mapTypesControl.addRelationship(G_NORMAL_MAP, customMap, customTileLayers[i].name);
         }
     
         //Now create the custom map. Would normally be G_NORMAL_MAP,G_SATELLITE_MAP,G_HYBRID_MAP
         map = new GMap2(document.getElementById("map"),{mapTypes:mapTypes});
-        map.setCenter(new GLatLng(centreLat, centreLon), 10);
+        map.setCenter(new GLatLng(centreLat, centreLon), 8);
         map.addControl(new GLargeMapControl());
-        map.addControl(mapControl);
+        map.addControl(mapTypesControl);
         map.enableContinuousZoom();
-        
       }
     }
-
-    function createCustomMap(copyrightCollection, prefix, bounds) {
-      var n_tileLayers = [ G_NORMAL_MAP.getTileLayers()[0], new GTileLayer(copyrightCollection , 0, 17)];
-      n_tileLayers[1].getTileUrl = function(a, b) { return customGetTileURL(a, b, prefix, bounds);};
-      n_tileLayers[1].isPng = function() { return false; };
-      n_tileLayers[1].getOpacity = function() { return opacity; };
-      return new GMapType(n_tileLayers, new GMercatorProjection(11), n_buttonText, {maxResolution:10, minResolution:0, errorMessage:"Data not available"});
-     }
-
     //]]>
     </script>
   </head>

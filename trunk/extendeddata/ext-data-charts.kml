@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+  <Document>
+    <name></name>
+    <open>1</open>
+    <Style id="pizza">
+      <BalloonStyle>
+        <text><![CDATA[<img src="http://chart.apis.google.com/chart?cht=bvs&chs=200x150&chd=t:$[PizzaDeliveries1],$[PizzaDeliveries2],$[PizzaDeliveries3],$[PizzaDeliveries4],$[PizzaDeliveries5],$[PizzaDeliveries6]&chxt=x,x,y&chxl=0:|$[PizzaDeliveries1/displayName]|$[PizzaDeliveries2/displayName]|$[PizzaDeliveries3/displayName]|$[PizzaDeliveries4/displayName]|$[PizzaDeliveries5/displayName]|$[PizzaDeliveries6/displayName]|1:|$[RelationshipDataPoint1]|$[RelationshipDataPoint2]|$[RelationshipDataPoint3]|$[RelationshipDataPoint4]|$[RelationshipDataPoint5]|$[RelationshipDataPoint6]&chtt=Pizza%20Deliveries|by%20Relationship%20Progress"/>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Placemark>
+      <name>Pizza Deliveries</name>
+      <visibility>1</visibility>
+      <styleUrl>#pizza</styleUrl>
+      <Snippet>Relationship versus Pizza</Snippet>
+      <ExtendedData>
+        <Data name="PizzaDeliveries1">
+          <displayName>Jul</displayName>
+          <value>10</value>
+        </Data>
+        <Data name="PizzaDeliveries2">
+          <displayName>Aug</displayName>
+          <value>15</value>
+        </Data>
+        <Data name="PizzaDeliveries3">
+          <displayName>Sep</displayName>
+          <value>25</value>
+        </Data>
+        <Data name="PizzaDeliveries4">
+          <displayName>Oct</displayName>
+          <value>13</value>
+        </Data>
+        <Data name="PizzaDeliveries5">
+          <displayName>Nov</displayName>
+          <value>3</value>
+        </Data>
+        <Data name="PizzaDeliveries6">
+          <displayName>Dec</displayName>
+          <value>35</value>
+        </Data>
+        <Data name="RelationshipDataPoint1">
+          <value>Start</value>
+        </Data>
+        <Data name="RelationshipDataPoint2">
+          <value />
+        </Data>
+        <Data name="RelationshipDataPoint3">
+          <value />
+        </Data>
+        <Data name="RelationshipDataPoint4">
+          <value>Thanksgiving</value>
+        </Data>
+        <Data name="RelationshipDataPoint5">
+          <value />
+        </Data>
+        <Data name="RelationshipDataPoint6">
+          <value>End</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-74.01490535558324,40.70396174218289,0</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Pizza Deliveries</name>
+      <visibility>1</visibility>
+      <styleUrl>#pizza</styleUrl>
+      <Snippet>Relationship versus Pizza</Snippet>
+      <ExtendedData>
+        <Data name="PizzaDeliveries1">
+          <displayName>Jul</displayName>
+          <value>35</value>
+        </Data>
+        <Data name="PizzaDeliveries2">
+          <displayName>Aug</displayName>
+          <value>25</value>
+        </Data>
+        <Data name="PizzaDeliveries3">
+          <displayName>Sep</displayName>
+          <value>10</value>
+        </Data>
+        <Data name="PizzaDeliveries4">
+          <displayName>Oct</displayName>
+          <value>1</value>
+        </Data>
+        <Data name="PizzaDeliveries5">
+          <displayName>Nov</displayName>
+          <value>15</value>
+        </Data>
+        <Data name="PizzaDeliveries6">
+          <displayName>Dec</displayName>
+          <value>1</value>
+        </Data>
+        <Data name="RelationshipDataPoint1">
+          <value>Start diet</value>
+        </Data>
+        <Data name="RelationshipDataPoint2">
+          <value />
+        </Data>
+        <Data name="RelationshipDataPoint3">
+          <value />
+        </Data>
+        <Data name="RelationshipDataPoint4">
+          <value>Thanksgiving</value>
+        </Data>
+        <Data name="RelationshipDataPoint5">
+          <value />
+        </Data>
+        <Data name="RelationshipDataPoint6">
+          <value>Diet #2</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-74.01226186150409,40.71102117631752,0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

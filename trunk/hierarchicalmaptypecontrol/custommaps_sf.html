@@ -83,7 +83,7 @@
     
         //Now create the custom map. Would normally be G_NORMAL_MAP,G_SATELLITE_MAP,G_HYBRID_MAP
         map = new GMap2(document.getElementById("map"),{mapTypes:mapTypes});
-        map.setCenter(new GLatLng(centreLat, centreLon), 8);
+        map.setCenter(new GLatLng(centreLat, centreLon), 9);
         map.addControl(new GLargeMapControl());
         map.addControl(mapTypesControl);
         map.enableContinuousZoom();

@@ -78,7 +78,7 @@
         for (var i = 0; i < (customTileLayers.length); i++) {
 	  var customMap = createCustomMap(copyrightCollection, customTileLayers[i].prefix, customTileLayers[i].bounds);
 	  mapTypes.push(customMap);
-	  mapTypesControl.addRelationship(G_NORMAL_MAP, customMap, customTileLayers[i].name);
+	  mapTypesControl.addRelationship(G_PHYSICAL_MAP, customMap, customTileLayers[i].name);
         }
     
         //Now create the custom map. Would normally be G_NORMAL_MAP,G_SATELLITE_MAP,G_HYBRID_MAP
@@ -86,6 +86,7 @@
         map.setCenter(new GLatLng(centreLat, centreLon), 9);
         map.addControl(new GLargeMapControl());
         map.addControl(mapTypesControl);
+        map.setMapType(G_PHYSICAL_MAP);
         map.enableContinuousZoom();
       }
     }

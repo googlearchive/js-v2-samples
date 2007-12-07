@@ -52,7 +52,7 @@
       var tileLayers = [ G_NORMAL_MAP.getTileLayers()[0], new GTileLayer(copyrightCollection , 0, 17)];
       tileLayers[1].getTileUrl = function(a, b) { return customGetTileURL(a, b, prefix, bounds);};
       tileLayers[1].isPng = function() { return false; };
-      tileLayers[1].getOpacity = function() { return opacity; };
+      tileLayers[1].getOpacity = function() { return .5; };
       return new GMapType(tileLayers, new GMercatorProjection(11), "Map", {maxResolution:10, minResolution:0, errorMessage:"Data not available"});
      }
 

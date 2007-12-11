@@ -86,12 +86,6 @@
         optsFound = true;
      }
 
-     var searchFormHint = document.getElementById("opt_searchFormHint").value;
-     if (searchFormHint != "search the map") {
-       opts["searchFormHint"] = "\"" + searchFormHint + "\"";
-       optsFound = true;
-     }
-  
      var onIdleCallback = document.getElementById("opt_onIdleCallback").checked;
      if (onIdleCallback) {
        opts["onIdleCallback"] = 'function() { alert("search control is idle");}';
@@ -167,10 +161,6 @@
    &nbsp;
    <br/><br/>
    suppressInitialResultSelection <input type="checkbox" id="opt_suppressInitialResultSelection" onclick="updateCode()"/>
-   &nbsp;
-   &nbsp;
-   searchFormHint: <input type="text" id="opt_searchFormHint" size="20" value="search the map"
-       onkeyup="updateCode()" onkeypress="updateCode()"/>
    &nbsp;
    <br/><br/>
 

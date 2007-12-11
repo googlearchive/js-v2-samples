@@ -119,9 +119,11 @@
        optsCodeHTML = optsCode.join(",<br/>");
        code.push(optsCodeHTML);
        code.push("};");
+       code.push('map = new GMap2(document.getElementById("map"), {googleBarOptions: ' + inner + '});');
+     } else {
+       code.push('map = new GMap2(document.getElementById("map"));');
      }
-     
-     code.push('map = new GMap2(document.getElementById("map"), {googleBarOptions: ' + inner + '});');
+ 
      code.push('map.setCenter(new GLatLng(37,-122), 14);');
      code.push('map.enableGoogleBar()');
 

@@ -148,17 +148,17 @@
  <body onload="load()" onunload="GUnload()">
    resultList:
      <select id="opt_resultList" onchange="updateCode()">
-       <option value="google.maps.LocalSearch.RESULT_LIST_INLINE" SELECTED>Default</option>
-       <option value="google.maps.LocalSearch.RESULT_LIST_SUPPRESS">Suppressed</option>
+       <option value="G_GOOGLEBAR_RESULT_LIST_INLINE" SELECTED>Default</option>
+       <option value="G_GOOGLEBAR_RESULT_LIST_SUPPRESS">Suppressed</option>
        <option value="document.getElementById('results')">External</option>
   </select>
    &nbsp;
    linkTarget:
      <select id="opt_linkTarget" onchange="updateCode()">
-       <option value="GSearch.LINK_TARGET_SELF" SELECTED>_self</option>
-       <option value="GSearch.LINK_TARGET_BLANK">_blank</option>
-       <option value="GSearch.LINK_TARGET_PARENT">_parent</option>
-       <option value="GSearch.LINK_TARGET_TOP">_top</option>
+       <option value="G_GOOGLEBAR_LINK_TARGET_SELF" SELECTED>_self</option>
+       <option value="G_GOOGLEBAR_LINK_TARGET_BLANK">_blank</option>
+       <option value="G_GOOGLEBAR_LINK_TARGET_PARENT">_parent</option>
+       <option value="G_GOOGLEBAR_LINK_TARGET_TOP">_top</option>
      </select>
    <br/><br/>
    onIdleCallback: <input type="checkbox" id="opt_onIdleCallback" onclick="updateCode()"/>

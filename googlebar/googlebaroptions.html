@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <style type="text/css">
+    /* pretty printing styles.  See prettify.js */
+    .str { color: #080; }
+    .kwd { color: #008; }
+    .com { color: #800; }
+    .typ { color: #606; }
+    .lit { color: #066; }
+    .pun { color: #660; }
+    .pln { color: #000; }
+    .tag { color: #008; }
+    .atn { color: #606; }
+    .atv { color: #080; }
+
+    pre.prettyprint { padding: 0.5 em; border: 1px solid #888; background-color:#fffff9}
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script src="http://www.google.com/apis/maps/include/prettify.js" type="text/javascript"></script>
+     <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQ82LsCgTSsdpNEnBsExtoeJv4cdBSUkiLH6ntmAr_5O4EfjDwOa0oZBQ" type="text/javascript"></script>
+    <script src="http://www.google.com/uds/solutions/localsearch/gmlocalsearch.js" type="text/javascript"></script>
+    <style type="text/css">
+      @import url("http://www.google.com/uds/css/gsearch.css");
+      @import url("http://www.google.com/uds/solutions/localsearch/gmlocalsearch.css");
+
+      #map {
+        border : 1px solid #979797;
+        width : 500px;
+        height : 400px;
+      }
+      #results {
+        width: 500px;
+      }
+    </style>
+
+<script type="text/javascript">
+   //<![CDATA[
+
+   var map;
+
+   function load() {
+     if (GBrowserIsCompatible()) {
+       updateCode();
+     }
+   }
+
+   function updateCode() {
+     _uacct = "UA-2270875-1";
+     urchinTracker();
+     map = new GMap2(document.getElementById("map"));
+     map.setCenter(new GLatLng(37,-122), 14);
+     map.enableGoogleBar();
+
+     var optsFound = false;
+     var code = [];
+     var opts = {};
+     var optsCode = [];
+     var inner = "";
+     var resultList = document.getElementById("opt_resultList").value;
+     if (resultList != "google.maps.LocalSearch.RESULT_LIST_INLINE") {
+        opts["resultList"] = resultList;
+        optsFound = true;
+     }
+
+     var linkTarget = document.getElementById("opt_linkTarget").value;
+     var optsFound = false;
+     var code = [];
+     var opts = {};
+     var optsCode = [];
+     var inner = "";
+     var resultList = document.getElementById("opt_resultList").value;
+     if (resultList != "google.maps.LocalSearch.RESULT_LIST_INLINE") {
+        opts["resultList"] = resultList;
+        optsFound = true;
+     }
+
+     var linkTarget = document.getElementById("opt_linkTarget").value;
+     if (linkTarget != "GSearch.LINK_TARGET_SELF") {
+        opts["linkTarget"] = linkTarget;
+        optsFound = true;
+     }
+
+     var searchFormHint = document.getElementById("opt_searchFormHint").value;
+     if (searchFormHint != "search the map") {
+       opts["searchFormHint"] = "\"" + searchFormHint + "\"";
+       optsFound = true;
+     }
+  
+     var onIdleCallback = document.getElementById("opt_onIdleCallback").checked;
+     if (onIdleCallback) {
+       opts["onIdleCallback"] = 'function() { alert("search control is idle");}';
+       optsFound = true;
+     }
+
+     var onSearchCompleteCallback = document.getElementById("opt_onSearchCompleteCallback").checked;
+     if (onSearchCompleteCallback) {
+       opts["onSearchCompleteCallback"] = 'function() { alert("search is complete");}';
+       optsFound = true;
+     }
+
+     var suppressInitialResultSelection = document.getElementById("opt_suppressInitialResultSelection").checked;
+     if (suppressInitialResultSelection) {
+       opts["suppressInitialResultSelection"] = 'true';
+       optsFound = true;
+     }
+
+     if (optsFound) {
+       inner = "options";
+       code.push("var options = {");
+       for (var opt in opts) {
+         optsCode.push(opt + " : " + opts[opt]);
+       }
+       optsCodeHTML = optsCode.join(",<br/>");
+       code.push(optsCodeHTML);
+       code.push("};");
+     }
+     
+     code.push('map = new GMap2(document.getElementById("map"), {googleBarOptions: ' + inner + '});');
+     code.push('map.setCenter(new GLatLng(37,-122), 14);');
+     code.push('map.enableGoogleBar()');
+
+     var codeHTML = code.join("<br/><br/>");
+     el("code").innerHTML = codeHTML;
+
+     var codeJS = codeHTML.replace(/<br\/>/g,"\n");
+     eval(codeJS);
+
+     prettyPrint();
+   }
+
+   function el(id) {
+     return document.getElementById(id);
+   }
+
+   //]]>
+   </script>
+
+ </head>
+
+ <body onload="load()" onunload="GUnload()">
+   resultList:
+     <select id="opt_resultList" onchange="updateCode()">
+       <option value="google.maps.LocalSearch.RESULT_LIST_INLINE" SELECTED>Default</option>
+       <option value="google.maps.LocalSearch.RESULT_LIST_SUPPRESS">Suppressed</option>
+       <option value="document.getElementById('results')">External</option>
+  </select>
+   &nbsp;
+   linkTarget:
+     <select id="opt_linkTarget" onchange="updateCode()">
+       <option value="GSearch.LINK_TARGET_SELF" SELECTED>_self</option>
+       <option value="GSearch.LINK_TARGET_BLANK">_blank</option>
+       <option value="GSearch.LINK_TARGET_PARENT">_parent</option>
+       <option value="GSearch.LINK_TARGET_TOP">_top</option>
+     </select>
+   <br/><br/>
+   onIdleCallback: <input type="checkbox" id="opt_onIdleCallback" onclick="updateCode()"/>
+   &nbsp;
+   onSearchCompleteCallback: <input type="checkbox" id="opt_onSearchCompleteCallback" onclick="updateCode()"/>
+   &nbsp;
+   <br/><br/>
+   suppressInitialResultSelection <input type="checkbox" id="opt_suppressInitialResultSelection" onclick="updateCode()"/>
+   &nbsp;
+   &nbsp;
+   searchFormHint: <input type="text" id="opt_searchFormHint" size="20" value="search the map"
+       onkeyup="updateCode()" onkeypress="updateCode()"/>
+   &nbsp;
+   <br/><br/>
+
+    <div id="map" style="width: 500px; height: 250px"></div>
+    <div id="results"></div>
+    <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>
+    <a href="http://www.google.com/uds/solutions/localsearch/reference.html">Read the developer guide for more info on these options.</a>
+   </table>
+ </body>
+</html>

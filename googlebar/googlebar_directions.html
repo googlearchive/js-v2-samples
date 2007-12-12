@@ -35,7 +35,7 @@
       GEvent.addListener(dir, "load", function() {
         document.getElementById("results").innerHTML += markerResult.result.titleNoFormatting + " " + dir.getDistance().html + "<br/>";
       });
-      dir.load("from: " + document.getElementById("address") + " to: " + lat + "," + lng);
+      dir.load("from: " + document.getElementById("address").value + " to: " + lat + "," + lng);
     }
 
     //]]>
@@ -43,7 +43,7 @@
   </head>
 
   <body onload="load()" onunload="GUnload()">
-    <input id="address" type="text" value="Mountain View, CA" />
+    Enter start address: <input id="address" type="text" value="Mountain View, CA" />
     <div id="map" style="width: 500px; height: 350px"></div>
     <div id="results" style="width: 500px;"></div>
   </body>

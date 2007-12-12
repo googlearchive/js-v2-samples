@@ -99,6 +99,18 @@
        optsFound = true;
      }
 
+     var suppressZoomToBounds = document.getElementById("opt_suppressZoomToBounds").checked;
+     if (suppressZoomToBounds) {
+       opts["suppressZoomToBounds"] = 'true';
+       optsFound = true;
+     }
+
+     var searchFormHint = document.getElementById("opt_searchFormHint").value;
+     if (searchFormHint != "search the map") {
+       opts["searchFormHint"] = "\"" + searchFormHint + "\"";
+       optsFound = true;
+     }
+
      if (optsFound) {
        inner = "options";
        code.push("var options = {");
@@ -157,7 +169,12 @@
    <br/><br/>
    suppressInitialResultSelection <input type="checkbox" id="opt_suppressInitialResultSelection" onclick="updateCode()"/>
    &nbsp;
+   suppressZoomToBounds <input type="checkbox" id="opt_suppressZoomToBounds" onclick="updateCode()"/>
+   &nbsp;
    <br/><br/>
+   &nbsp;
+   searchFormHint: <input type="text" id="opt_searchFormHint" size="20" value="search the map"
+       onkeyup="updateCode()" onkeypress="updateCode()"/>
 
     <div id="map" style="width: 500px; height: 250px"></div>
     <div id="results"></div>

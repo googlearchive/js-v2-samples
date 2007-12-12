@@ -24,10 +24,19 @@
     function processMarkers(markers) {
       // note: markers is an array of LocalResult
       for (var i = 0; i < markers.length; i++) {
-        var lat = markers[i].result.lat;
-        var lng = markers[i].result.lng;
-        GLog.write(lat + "," + lng);
+        getDirections(markers[i]);
       }
+    }
+
+    function getDirections(markerResult) {
+      var lat = markerResult.result.lat;
+      var lng = markerResult.result.lng;
+      GLog.write(lat + "," + lng);
+      var dir = new GDirections();
+      GEvent.addListener(dir, "load", function() {
+        GLog.write(dir.getStatus().code);
+      });
+      dir.load("from: " + lat + "," + lng + " to: " + "2680 Fayette Dr Mountain View CA");
     }
 
     //]]>

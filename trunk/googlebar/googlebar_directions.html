@@ -16,7 +16,7 @@
         var opts = { onMarkersSetCallback: processMarkers };
         map = new GMap2(document.getElementById("map"), {googleBarOptions: opts});
         map.addControl(new GSmallMapControl());
-        map.setCenter(new GLatLng(-37, 122), 16);
+        map.setCenter(new GLatLng(37, -122), 16);
         map.enableGoogleBar();
       }
     }
@@ -36,7 +36,7 @@
       GEvent.addListener(dir, "load", function() {
         GLog.write(dir.getStatus().code);
       });
-      dir.load("from: " + lat + "," + lng + " to: " + "-37, 122");
+      dir.load("from: " + lat + "," + lng + " to: " + "37, -122");
     }
 
     //]]>

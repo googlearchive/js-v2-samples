@@ -31,12 +31,11 @@
     function getDirections(markerResult) {
       var lat = markerResult.result.lat;
       var lng = markerResult.result.lng;
-      GLog.write(lat + "," + lng);
       var dir = new GDirections();
       GEvent.addListener(dir, "load", function() {
         document.getElementById("results").innerHTML += markerResult.result.titleNoFormatting + " " + dir.getDistance().html + "<br/>";
       });
-      dir.load("from: " + lat + "," + lng + " to: " + "37, -122");
+      dir.load("from: " + document.getElementById("address") + " to: " + lat + "," + lng);
     }
 
     //]]>
@@ -44,6 +43,7 @@
   </head>
 
   <body onload="load()" onunload="GUnload()">
+    <input id="address" type="text" value="Mountain View, CA" />
     <div id="map" style="width: 500px; height: 350px"></div>
     <div id="results" style="width: 500px;"></div>
   </body>

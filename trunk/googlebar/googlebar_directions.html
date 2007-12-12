@@ -57,7 +57,7 @@
       GEvent.addListener(dir, "load", function() {
         document.getElementById("results").innerHTML += markerResult.result.titleNoFormatting + " " + dir.getDistance().html + "<br/>";
       });
-      dir.load("from: " + point.lat() + "," + point.lng()  + " to: " + lat + "," + lng);
+      dir.load("from: " + start.lat() + "," + start.lng()  + " to: " + lat + "," + lng);
     }
 
     //]]>

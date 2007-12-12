@@ -34,7 +34,7 @@
       GLog.write(lat + "," + lng);
       var dir = new GDirections();
       GEvent.addListener(dir, "load", function() {
-        GLog.write(markerResult.result.titleNoFormatting + " " + dir.getDistance().html);
+        document.getElementById("results").innerHTML += markerResult.result.titleNoFormatting + " " + dir.getDistance().html + "<br/>";
       });
       dir.load("from: " + lat + "," + lng + " to: " + "37, -122");
     }
@@ -45,5 +45,6 @@
 
   <body onload="load()" onunload="GUnload()">
     <div id="map" style="width: 500px; height: 350px"></div>
+    <div id="results" style="width: 500px;"></div>
   </body>
 </body>

@@ -11,7 +11,7 @@
 
     var map;
     var start;
-
+  
     function load() {
       if (GBrowserIsCompatible()) {
         var opts = { onMarkersSetCallback: processMarkers, resultList : G_GOOGLEBAR_RESULT_LIST_SUPPRESS, suppressInitialResultSelection : true, showOnLoad: true};
@@ -24,6 +24,7 @@
 
     function locateAddress() {
       var address = document.getElementById("address").value;
+      var geocoder = new GClientGeocoder();
       if (geocoder) {
         geocoder.getLatLng(
           address,

@@ -10,6 +10,7 @@
     //<![CDATA[
 
     var map;
+    var start;
 
     function load() {
       if (GBrowserIsCompatible()) {
@@ -18,6 +19,26 @@
         map.addControl(new GSmallMapControl());
         map.setCenter(new GLatLng(37, -122), 16);
         map.enableGoogleBar();
+      }
+    }
+
+    function locateAddress() {
+      var address = document.getElementById("address").value;
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              map.setCenter(point, 13);
+              var marker = new GMarker(point);
+              map.addOverlay(marker);
+              marker.openInfoWindowHtml(address);
+              start = point;
+            }
+          }
+        );
       }
     }
 
@@ -35,7 +56,7 @@
       GEvent.addListener(dir, "load", function() {
         document.getElementById("results").innerHTML += markerResult.result.titleNoFormatting + " " + dir.getDistance().html + "<br/>";
       });
-      dir.load("from: " + document.getElementById("address").value + " to: " + lat + "," + lng);
+      dir.load("from: " + point.lat() + "," + point.lng()  + " to: " + lat + "," + lng);
     }
 
     //]]>
@@ -43,7 +64,8 @@
   </head>
 
   <body onload="load()" onunload="GUnload()">
-    Enter start address: <input id="address" type="text" value="Mountain View, CA" />
+    <input id="address" type="text" value="Mountain View, CA" /> <input type="button" value="Set start address" onclick="locateAddress()"/>
+    <br/><br/>
     <div id="map" style="width: 500px; height: 350px"></div>
     <div id="results" style="width: 500px;"></div>
   </body>

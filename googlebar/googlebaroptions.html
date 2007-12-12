@@ -134,14 +134,15 @@
      }
  
      code.push('map.setCenter(new GLatLng(37,-122), 14);');
-     code.push('map.enableGoogleBar()');
+     code.push('map.addControl(new GSmallMapControl());');
+     code.push('map.enableGoogleBar();');
 
      var codeHTML = code.join("<br/><br/>");
      el("code").innerHTML = codeHTML;
 
      var codeJS = codeHTML.replace(/<br\/>/g,"\n");
      eval(codeJS);
-
+     
      prettyPrint();
    }
 

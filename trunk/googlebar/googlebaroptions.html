@@ -162,20 +162,20 @@
        <option value="G_GOOGLEBAR_LINK_TARGET_TOP">_top</option>
      </select>
    <br/><br/>
-   onIdleCallback: <input type="checkbox" id="opt_onIdleCallback" onclick="updateCode()"/>
+   onIdleCallback: <input type="checkbox" id="opt_onIdleCallback"/>
    &nbsp;
-   onSearchCompleteCallback: <input type="checkbox" id="opt_onSearchCompleteCallback" onclick="updateCode()"/>
-   &nbsp;
-   <br/><br/>
-   suppressInitialResultSelection <input type="checkbox" id="opt_suppressInitialResultSelection" onclick="updateCode()"/>
-   &nbsp;
-   suppressZoomToBounds <input type="checkbox" id="opt_suppressZoomToBounds" onclick="updateCode()"/>
+   onSearchCompleteCallback: <input type="checkbox" id="opt_onSearchCompleteCallback"/>
    &nbsp;
    <br/><br/>
+   suppressInitialResultSelection <input type="checkbox" id="opt_suppressInitialResultSelection"/>
    &nbsp;
-   searchFormHint: <input type="text" id="opt_searchFormHint" size="20" value="search the map"
-       onkeyup="updateCode()" onkeypress="updateCode()"/>
-
+   suppressZoomToBounds <input type="checkbox" id="opt_suppressZoomToBounds"/>
+   <br/><br/>
+   &nbsp;
+   searchFormHint: <input type="text" id="opt_searchFormHint" size="20" value="search the map"/>
+   &nbsp;
+   <input type="button" value="Update" onclick="updateCode()"/>
+   <br/> 
     <div id="map" style="width: 500px; height: 250px"></div>
     <div id="results"></div>
     <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>

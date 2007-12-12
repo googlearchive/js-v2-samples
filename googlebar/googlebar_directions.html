@@ -34,7 +34,7 @@
       GLog.write(lat + "," + lng);
       var dir = new GDirections();
       GEvent.addListener(dir, "load", function() {
-        GLog.write(dir.getStatus().code);
+        GLog.write(dir.getDistance());
       });
       dir.load("from: " + lat + "," + lng + " to: " + "37, -122");
     }

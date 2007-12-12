@@ -13,7 +13,7 @@
 
     function load() {
       if (GBrowserIsCompatible()) {
-        var opts = { onMarkersSetCallback: processMarkers };
+        var opts = { onMarkersSetCallback: processMarkers, resultList : G_GOOGLEBAR_RESULT_LIST_SUPPRESS, suppressInitialResultSelection : true, showOnLoad: true};
         map = new GMap2(document.getElementById("map"), {googleBarOptions: opts});
         map.addControl(new GSmallMapControl());
         map.setCenter(new GLatLng(37, -122), 16);

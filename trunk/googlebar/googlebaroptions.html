@@ -105,6 +105,12 @@
        optsFound = true;
      }
 
+     var showOnLoad = document.getElementById("opt_showOnLoad").checked;
+     if (showOnLoad) {
+       opts["showOnLoad"] = 'true';
+       optsFound = true;
+     }
+
      var searchFormHint = document.getElementById("opt_searchFormHint").value;
      if (searchFormHint != "search the map") {
        opts["searchFormHint"] = "\"" + searchFormHint + "\"";
@@ -171,15 +177,18 @@
    &nbsp;
    suppressZoomToBounds <input type="checkbox" id="opt_suppressZoomToBounds"/>
    <br/><br/>
-   &nbsp;
    searchFormHint: <input type="text" id="opt_searchFormHint" size="20" value="search the map"/>
    &nbsp;
-   <input type="button" value="Update" onclick="updateCode()"/>
+   showOnLoad <input type="checkbox" id="opt_showOnLoad"/>
+   <br/><br/>
+   <input type="button" value="Update Code and Map" onclick="updateCode()"/>
    <br/> 
     <div id="map" style="width: 500px; height: 250px"></div>
     <div id="results"></div>
     <pre class="prettyprint" id="code" style="width:500px; overflow:auto;"></pre>
+    <!--
     <a href="http://www.google.com/uds/solutions/localsearch/reference.html">Read the developer guide for more info on these options.</a>
+    -->
    </table>
  </body>
 </html>

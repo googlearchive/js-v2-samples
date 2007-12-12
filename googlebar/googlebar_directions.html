@@ -24,8 +24,8 @@
     function processMarkers(markers) {
       // note: markers is an array of LocalResult
       for (var i = 0; i < markers.length; i++) {
-        var lat = markers[i].lat;
-        var lng = markers[i].lng;
+        var lat = markers[i].result.lat;
+        var lng = markers[i].result.lng;
         GLog.write(lat + "," + lng);
       }
     }

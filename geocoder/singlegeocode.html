@@ -27,9 +27,12 @@
               alert(address + " not found");
             } else {
               map.setCenter(point, 13);
-              var marker = new GMarker(point);
+              var marker = new GMarker(point, {draggable: true});
               map.addOverlay(marker);
               marker.openInfoWindowHtml(point.toString());
+              GEvent.addListener(marker, "dragend", function() {
+                marker.openInfoWindowHtml(point.toString());
+              });
             }
           }
         );

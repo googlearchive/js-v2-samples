@@ -29,10 +29,13 @@
               map.setCenter(point, 13);
               var marker = new GMarker(point, {draggable: true});
               map.addOverlay(marker);
-              marker.openInfoWindowHtml(point.toString());
               GEvent.addListener(marker, "dragend", function() {
-                marker.openInfoWindowHtml(point.toString());
+                marker.openInfoWindowHtml(marker.getLatLng().toString());
               });
+              GEvent.addListener(marker, "click", function() {
+                marker.openInfoWindowHtml(marker.getLatLng().toString());
+              });
+	      GEvent.trigger(marker, "click");
             }
           }
         );

@@ -58,7 +58,7 @@
         </Data>
       </ExtendedData>
       <Point>
-        <coordinates>-74.01490535558324,40.70396174218289,0</coordinates>
+        <coordinates>-73.95844,40.806305,0</coordinates>
       </Point>
     </Placemark>
     <Placemark>
@@ -111,7 +111,7 @@
         </Data>
       </ExtendedData>
       <Point>
-        <coordinates>-74.01226186150409,40.71102117631752,0</coordinates>
+        <coordinates>-73.966021,40.782403,0</coordinates>
       </Point>
     </Placemark>
   </Document>

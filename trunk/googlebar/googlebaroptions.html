@@ -85,7 +85,7 @@
 
      var onGenerateMarkerHtmlCallback = document.getElementById("opt_onGenerateMarkerHtmlCallback").checked;
      if (onGenerateMarkerHtmlCallback) {
-       opts["onGenerateMarkerHtmlCallback"] = 'function() { alert("generating html");}';
+       opts["onGenerateMarkerHtmlCallback"] = 'function() { return "new html"; }';
        optsFound = true;
      }
 

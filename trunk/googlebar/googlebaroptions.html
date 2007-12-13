@@ -85,13 +85,13 @@
 
      var onGenerateMarkerHtmlCallback = document.getElementById("opt_onGenerateMarkerHtmlCallback").checked;
      if (onGenerateMarkerHtmlCallback) {
-       opts["onGenerateMarkerHtmlCallback"] = 'function() { alert("search is complete");}';
+       opts["onGenerateMarkerHtmlCallback"] = 'function() { alert("generating html");}';
        optsFound = true;
      }
 
      var onMarkersSetCallback = document.getElementById("opt_onMarkersSetCallback").checked;
      if (onMarkersSetCallback) {
-       opts["onMarkersSetCallback"] = 'function() { alert("search is complete");}';
+       opts["onMarkersSetCallback"] = 'function() { alert("markers set");}';
        optsFound = true;
      }
 

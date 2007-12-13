@@ -60,25 +60,13 @@
      var optsCode = [];
      var inner = "";
      var resultList = document.getElementById("opt_resultList").value;
-     if (resultList != "google.maps.LocalSearch.RESULT_LIST_INLINE") {
+     if (resultList != "G_GOOGLEBAR_RESULT_LIST_INLINE") {
         opts["resultList"] = resultList;
         optsFound = true;
      }
 
      var linkTarget = document.getElementById("opt_linkTarget").value;
-     var optsFound = false;
-     var code = [];
-     var opts = {};
-     var optsCode = [];
-     var inner = "";
-     var resultList = document.getElementById("opt_resultList").value;
-     if (resultList != "google.maps.LocalSearch.RESULT_LIST_INLINE") {
-        opts["resultList"] = resultList;
-        optsFound = true;
-     }
-
-     var linkTarget = document.getElementById("opt_linkTarget").value;
-     if (linkTarget != "GSearch.LINK_TARGET_SELF") {
+     if (linkTarget != "G_GOOGLEBAR_LINK_TARGET_SELF") {
         opts["linkTarget"] = linkTarget;
         optsFound = true;
      }

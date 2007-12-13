@@ -30,10 +30,10 @@
               var marker = new GMarker(point, {draggable: true});
               map.addOverlay(marker);
               GEvent.addListener(marker, "dragend", function() {
-                marker.openInfoWindowHtml(marker.getLatLng().toString());
+                marker.openInfoWindowHtml(marker.getLatLng().toUrlValue(6));
               });
               GEvent.addListener(marker, "click", function() {
-                marker.openInfoWindowHtml(marker.getLatLng().toString());
+                marker.openInfoWindowHtml(marker.getLatLng().toUrlValue(6));
               });
 	      GEvent.trigger(marker, "click");
             }

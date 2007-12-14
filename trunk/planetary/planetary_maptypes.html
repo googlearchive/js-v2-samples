@@ -1,0 +1,90 @@
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+  <script type="text/javascript">
+
+function initialize() {
+  if (GBrowserIsCompatible()) {
+    var map1 = new GMap2(document.getElementById("moon_maps"), {
+        mapTypes : G_MOON_MAP_TYPES 
+        });
+    map1.setCenter(new GLatLng(0, 0), 2);
+    map1.addControl(new GLargeMapControl());
+    map1.addControl(new GMapTypeControl());      
+
+    var map = new GMap2(document.getElementById("moon1"), {
+          mapTypes: [G_MOON_ELEVATION_MAP ]
+    });
+    map.setCenter(new GLatLng(0,0),2);
+    map.enableScrollWheelZoom();
+    var map = new GMap2(document.getElementById("moon2"), {
+          mapTypes: [G_MOON_VISIBLE_MAP ]
+    });
+    map.setCenter(new GLatLng(0,0),2);
+    map.enableScrollWheelZoom();
+    var map = new GMap2(document.getElementById("mars1"), {
+          mapTypes:[ G_MARS_ELEVATION_MAP ]
+    });
+    map.setCenter(new GLatLng(0,0),2);
+    map.enableScrollWheelZoom();
+    var map = new GMap2(document.getElementById("mars2"), {
+          mapTypes:[ G_MARS_VISIBLE_MAP ]
+    });
+    map.setCenter(new GLatLng(0,0),2);
+    map.enableScrollWheelZoom();
+    var map = new GMap2(document.getElementById("mars3"), {
+          mapTypes:[ G_MARS_INFRARED_MAP ]
+    });
+    map.setCenter(new GLatLng(0,0),2);
+    map.enableScrollWheelZoom();
+
+    var map2 = new GMap2(document.getElementById("mars_maps"), {
+        mapTypes : G_MARS_MAP_TYPES 
+        });
+    map2.setCenter(new GLatLng(0, 0), 2);
+    map2.addControl(new GLargeMapControl());
+    map2.addControl(new GMapTypeControl());      
+
+    var map3 = new GMap2(document.getElementById("sky_map"), {
+        mapTypes : G_SKY_MAP_TYPES
+        });
+    map3.setCenter(new GLatLng(0, 0), 2);
+    map3.addControl(new GLargeMapControl());
+    map3.addControl(new GMapTypeControl());      
+  }
+}
+  </script>
+</head>
+
+<body onload="initialize()" onunload="GUnload()">
+
+  <div id="moon_maps" style="width: 500px; height: 300px"></div>
+  <br/>
+    <div id="moon1" style="float: left; width: 170px; height: 90px; overflow: hidden"></div>
+    <p>
+    <div id="moon2" style="float: left; width: 170px; height: 90px; overflow: hidden"></div>
+<p>
+
+<div style='width: 700px;'>
+  <div style='float: right'>
+    <div id="mars1" style="width: 170px; height: 90px; overflow: hidden"></div>
+    <p>
+    <div id="mars2" style="width: 170px; height: 90px; overflow: hidden"></div>
+    <p>
+    <div id="mars3" style="width: 170px; height: 90px; overflow: hidden"></div>
+  </div>
+  <div id="mars_maps" style="width: 500px; height: 300px; overflow: hidden"></div>
+
+</div>
+<p>
+<div style='width: 700px;'>
+  <div id="sky_map" style="width: 500px; height: 300px; overflow: hidden"></div>
+  <p>
+</div>
+</body>
+</html>

@@ -5,15 +5,18 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Google Maps JavaScript API Example</title>
     <script type="text/javascript">
-
     //<![CDATA[
+    var map;
 
     function loadMap() {
       if (GBrowserIsCompatible()) {
-        var map = new GMap2(document.getElementById("map"));
-        map.setCenter(new GLatLng(37.4419, -122.1419), 6);
-        map.addOverlay(new GMarker(map.getCenter()));
+        map = new GMap2(document.getElementById("map"));
       }
+    }
+
+    function setupMap() {
+      map.setCenter(new GLatLng(37.4419, -122.1419), 6);
+      map.addOverlay(new GMarker(map.getCenter()));
     }
 
     function loadScript() {
@@ -29,5 +32,6 @@
   <body onload="">
     <div id="map" style="width: 500px; height: 300px"></div>
     <input type="button" value="load map script" onclick="loadScript();"/>
+    <input type="button" value="set center and stuff" onclick="setupMap();"/>
   </body>
 </html>

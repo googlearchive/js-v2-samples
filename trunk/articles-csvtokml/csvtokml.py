@@ -1,4 +1,4 @@
-﻿import geocoding2
+﻿import geocoding_for_kml
 import csv
 import xml.dom.minidom
 

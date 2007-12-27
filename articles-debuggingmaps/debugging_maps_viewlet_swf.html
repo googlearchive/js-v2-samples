@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0021)http://www.qarbon.com -->
+<html>
+  <head>
+    <title>debugging_maps</title>
+    <meta name="Keywords" content="qarbon,viewlet,viewletbuilder,demo software,animation software,on line training,flash tutorial,flash demo,multimedia presentation,interactive software,training,software,online presentation,it help desk software,presentation software,learning software,online documentation,simulation software,viewlets"/>
+    <meta name="Description" content="" />
+    <script language="javascript">
+<!--
+var browserName=navigator.appName;
+if (browserName=="Netscape")
+{
+   function closeWindow()
+   {
+     window.open('','_parent','');
+     window.close();
+   }
+}
+else
+{
+  if (browserName=="Microsoft Internet Explorer")
+  {
+     function closeWindow()
+     {
+        window.opener = "whocares";
+        window.close();
+     }
+  }
+}
+function displayUrlNewWindow(url, width, height, displayToolbars, displayScrollbars, resizable) {
+   var properties = "width=" + width + ",height=" + height;
+   properties += ",location,directories,status,menubar,copyhistory";
+   if (displayToolbars) properties += ",toolbar";
+   if (displayScrollbars) properties += ",scrollbars";
+   if (resizable) properties += ",resizable";
+   window.open(url, "_blank", properties);
+}
+function displayUrlSameWindow(url) {
+   window.open(url, "_self");
+}
+function displayUrlOtherWindow(url, otherWindow) {
+   window.open(url, otherWindow);
+}
+function sendEmail(address, subject, body) {
+   var first = true;
+   var href = "mailto:" + address;
+   if (subject!=""){ href += "?subject=" + escape(subject); first = false; }
+   if (body!=""){
+      if (first) {href += "?";} else {href += "&";}
+      href += "body=" + escape(body); first = false;
+   }
+   window.location.href = href;
+}
+function getParameters_(queryString)
+{
+  if(queryString==null)
+  return "";
+  var querySubstr = "";
+  if(queryString.length>1)
+  querySubstr = queryString.substring(1, queryString.length);
+  querySubstr = querySubstr.replace("&", "%26");
+  return querySubstr;
+}
+function getParameters()
+{
+  var par = getParameters_(window.location.search);
+  return par;
+}
+// -->
+</script>
+
+
+
+
+    <script language="JavaScript" src="JavaScriptFlashGateway.js"></script>
+    <script language="JavaScript">
+        var jsfgid = new Date().getTime();
+        var flashProxy = new FlashProxy(jsfgid, 'JavaScriptFlashGateway.swf');
+    </script>
+
+  </head>
+  <body bgcolor="#ffffff" >
+    <center>
+      <script language="JavaScript">
+      <!--
+
+      var flashTag = new FlashTag("debugging_maps.swf", "1010", "648");
+      flashTag.setId("debugging_maps");
+      flashTag.setFlashvars("jsfgid="+jsfgid+"&__variables__="+getParameters()+"");
+      flashTag.write(document);
+      //-->
+      </script>
+    
+    </center>
+  </body>
+</html>

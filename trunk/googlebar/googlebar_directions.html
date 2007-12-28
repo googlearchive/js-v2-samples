@@ -65,7 +65,7 @@
         td.appendChild(document.createTextNode(markerResult.result.titleNoFormatting));
         tr.appendChild(td);
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(dir.getDistance().html));
+        td.innerHTML = dir.getDistance().html;
         tr.appendChild(td);
         tbody.appendChild(tr);
       });

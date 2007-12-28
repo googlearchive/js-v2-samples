@@ -17,7 +17,8 @@
         var opts = { onMarkersSetCallback: processMarkers, resultList : G_GOOGLEBAR_RESULT_LIST_SUPPRESS, suppressInitialResultSelection : true, showOnLoad: true};
         map = new GMap2(document.getElementById("map"), {googleBarOptions: opts});
         map.addControl(new GSmallMapControl());
-        map.setCenter(new GLatLng(37, -122), 16);
+        start = new GLatLng(37.4035737, -122.0730400);
+        map.setCenter(start, 13);
         map.enableGoogleBar();
       }
     }

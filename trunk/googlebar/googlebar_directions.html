@@ -46,17 +46,28 @@
 
     function processMarkers(markers) {
       // note: markers is an array of LocalResult
+      var table = document.createElement('table');
+      var tbody = document.createElement('tbody');
+      table.appendChild(tbody);
+      document.getElementById("results").appendChild(table);
       for (var i = 0; i < markers.length; i++) {
-        getDirections(markers[i]);
+        getDirections(markers[i], tbody);
       }
     }
 
-    function getDirections(markerResult) {
+    function getDirections(markerResult, tbody) {
       var lat = markerResult.result.lat;
       var lng = markerResult.result.lng;
       var dir = new GDirections();
       GEvent.addListener(dir, "load", function() {
-        document.getElementById("results").innerHTML += markerResult.result.titleNoFormatting + " " + dir.getDistance().html + "<br/>";
+        var tr = document.createElement('tr');
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(markerResult.result.titleNoFormatting));
+        tr.appendChild(td);
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(dir.getDistance().html));
+        tr.appendChild(td);
+        tbody.appendChild(tr);
       });
       dir.load("from: " + start.lat() + "," + start.lng()  + " to: " + lat + "," + lng);
     }

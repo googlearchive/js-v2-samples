@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>
+			Caucus map
+		</title>
+		<script type="text/javascript">
+			document.write(
+				'<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=' +
+				{
+					'gigapad': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxTCDaeoAnk9GZSdGi854AcXbJXoXRS9QqxqDWHL54Twi5thIIANaCUAeA',
+					'mg.to': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxQjDwyFD3YNj60GgWGUlJCU_q5i9hRnvuPxZd7ID_efv8JjDf5c7cLpFw'
+				}[location.host] +
+				'" type="text/javascript"><\/script>'
+			);
+		</script>
+
+		<script type="text/javascript" src="jquery-1.2.1.js"></script>
+		<script type="text/javascript" src="data.js"></script>
+		<script type="text/javascript" src="map.js"></script>
+		
+		<style type="text/css">
+	* { font-family: Arial,sans-serif; font-size: 10pt; }
+	#outer {}
+	#eventbar { display:none; }
+	#links { margin-bottom:4px; }
+	#news { margin-top:4px; padding:4px; }
+	#clicknote { display:none; }
+	h2 { font-size:11pt; margin:0; padding:0; }
+	#loading { font-weight:normal; }
+	.NewsHeading { padding-left:4px; }
+	.NewsList { background-color:white; padding:2px; margin:4px; }
+	.NewsList a { text-decoration:none; }
+	.NewsList  a:hover { text-decoration:underline; }
+	.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }
+	.favicon { width:16; height:16; float:left; padding:2px 4px 2px 2px; }
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr valign="top">
+				<td>
+					<div id="map" style="width: 700px; height: 450px">
+					</div>
+				</td>
+				<td valign="top">
+					
+					<div id="eventbar">
+						<select id="lstRegions">
+							<option value="">
+								Zoom to a region
+							</option>
+						</select>
+						<input type="checkbox" checked id="chkEvents" style="margin-left:16px;" />
+						<label for="chkEvents">Show Events</label>
+						
+						<div id="links">
+							<a href="http://www.desmoinesregister.com/apps/pbcs.dll/article?AID=/20071219/NEWS09/71219068" target="_blank">How the caucuses work</a>
+							|
+							<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>
+						</div>
+						
+						<div id="news">
+							<h2 id="clicknote">Rest the mouse over the map for regional news</h2>
+							<p>
+								On January 3, Democratic and Republican voters will gather in Iowa for precinct caucuses. Unlike the the primary elections with secret ballots in other states, the Iowa caucuses are open meetings with votes taken by paper ballot, a show of hands, or by standing in groups for each candidate.
+							</p>
+							<p>
+								Iowa is the first state in the nation to vote on candidates, often guiding the primary vote for the rest of the United States.
+							</p>
+							<div style="height:2em;">
+								&nbsp;
+							</div>
+						</div>
+					</div>
+					
+					<div id="votesbar">
+						<h1 id="votestitle">Caucus Results</h1>
+						<div id="results">
+						</div>
+					</div>
+				
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,3 +1,5 @@
+alert('test');
+
 // hoverize.js
 // Based on hoverintent plugin for jQuery
 

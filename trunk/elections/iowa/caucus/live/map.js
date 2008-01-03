@@ -285,7 +285,11 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#legend .legendvotes { font-size:18px; }',
 				'#legend .legendclear { clear:left; }',
 				'#legend .legendreporting { font-size:20px; }',
-			'</style>'
+			'</style>',
+			'<div id="legend" style="width: 700px; height: 140px">',
+			'</div>',
+			'<div id="map" style="width: 700px; height: 430px">',
+			'</div>',
 		] : mapplet ? [
 			'<style type="text/css">',
 				'* { font-family: Arial,sans-serif; font-size: 10pt; }',

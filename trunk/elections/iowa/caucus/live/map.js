@@ -68,11 +68,7 @@
 
 var opt = window.opt || {};
 
-console.log( jQuery, $ );
-
 (function( $ ) {
-
-console.log( jQuery, $ );
 
 var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 //var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';

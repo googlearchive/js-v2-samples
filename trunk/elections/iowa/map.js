@@ -73,6 +73,8 @@ var opt = window.opt || {};
 var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 //var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
 
+
+
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
 	script.type = 'text/javascript';
@@ -235,6 +237,73 @@ function GAsync( obj ) {
 	}
 	
 	var mapplet = ! window.GBrowserIsCompatible;
+	
+	document.write( (
+		opt.projector ? [
+			'<style type="text/css">',
+				'* { font-family: Arial,sans-serif; font-size: 10pt; }',
+				'#outer {}',
+				'#eventbar { display:none; }',
+				'#links { margin-bottom:4px; }',
+				'#news { margin-top:4px; padding:4px; }',
+				'#clicknote { display:none; }',
+				'h2 { font-size:11pt; margin:0; padding:0; }',
+				'#loading { font-weight:normal; }',
+				'.NewsHeading { padding-left:4px; }',
+				'.NewsList { background-color:white; padding:2px; margin:4px; }',
+				'.NewsList a { text-decoration:none; }',
+				'.NewsList  a:hover { text-decoration:underline; }',
+				'.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }',
+				'.favicon { width:16; height:16; float:left; padding:2px 4px 2px 2px; }',
+				'#legend table { width:100%; }',
+				'#legend .legendboxtd { width:7%; }',
+				'#legend .legendnametd { font-size:24px; width:18%; }',
+				'#legend .legendbox { height:36px; width:36px; float:left; margin-right:4px; }',
+				'#legend .legendname { font-size:24px; }',
+				'#legend .legendvotes { font-size:18px; }',
+				'#legend .legendclear { clear:left; }',
+				'#legend .legendreporting { font-size:20px; }',
+			'</style>'
+		] : mapplet ? [
+			'<style type="text/css">',
+				'* { font-family: Arial,sans-serif; font-size: 10pt; }',
+				'#outer {}',
+				'#links { margin-bottom:4px; }',
+				'#news { margin-top:4px; padding:4px; }',
+				'#clicknote { display:none; }',
+				'h2 { font-size:14pt; margin:0; padding:0; }',
+				'#loading { font-weight:normal; }',
+				'.NewsHeading { padding-left:4px; }',
+				'.NewsList { background-color:white; padding:2px; margin:4px; }',
+				'.NewsList a { text-decoration:none; }',
+				'.NewsList  a:hover { text-decoration:underline; }',
+				'.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }',
+				'.favicon { width:16; height:16; float:left; margin:2px 4px 2px 2px; }',
+				'.Video { margin-top:4px; }',
+				'.VideoHeading { font-size:125%; }',
+				'.VideoTitle { font-size:110%; }',
+				'.VideoThumb { float:left; margin-right:8px; }',
+				'.VideoBorder { clear:left; }',
+			'</style>'
+		] : [
+			'<style type="text/css">',
+				'* { font-family: Arial,sans-serif; font-size: 10pt; }',
+				'#outer {}',
+				'#eventbar { display:none; }',
+				'#links { margin-bottom:4px; }',
+				'#news { margin-top:4px; padding:4px; }',
+				'#clicknote { display:none; }',
+				'h2 { font-size:11pt; margin:0; padding:0; }',
+				'#loading { font-weight:normal; }',
+				'.NewsHeading { padding-left:4px; }',
+				'.NewsList { background-color:white; padding:2px; margin:4px; }',
+				'.NewsList a { text-decoration:none; }',
+				'.NewsList  a:hover { text-decoration:underline; }',
+				'.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }',
+				'.favicon { width:16; height:16; float:left; padding:2px 4px 2px 2px; }',
+			'</style>'
+		] ).join('') );
+	
 	var args = arguments, nArgs = args.length - 1;
 	var results = [], nCalls = 0;
 	

@@ -1,7 +1,7 @@
 // hoverize.js
 // Based on hoverintent plugin for jQuery
 
-(function() {
+(function( $ ) {
 	
 	var opt = {
 		slop: 7,
@@ -64,11 +64,15 @@
 			}
 		};
 	}
-})();
+})( jQuery );
 
 var opt = window.opt || {};
 
-(function() {
+console.log( jQuery, $ );
+
+(function( $ ) {
+
+console.log( jQuery, $ );
 
 var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 //var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
@@ -343,7 +347,22 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'.NewsList  a:hover { text-decoration:underline; }',
 				'.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }',
 				'.favicon { width:16; height:16; float:left; padding:2px 4px 2px 2px; }',
-			'</style>'
+			'</style>',
+			'<table>',
+				'<tr valign="top">',
+					'<td>',
+						'<div id="map" style="width: 700px; height: 450px">',
+						'</div>',
+					'</td>',
+					'<td valign="top">',
+						'<div id="votesbar">',
+							'<h1 id="votestitle">Caucus Results</h1>',
+							'<div id="results">',
+							'</div>',
+						'</div>',
+					'</td>',
+				'</tr>',
+			'</table>'
 		] ).join('') );
 
 if( 0 ) {
@@ -826,7 +845,7 @@ function load() {
 	
 	if( mapplet ) showVotes();
 	
-	var q = location.search.slice(1);
+	var q = opt.party || location.search.slice(1);
 	var party = parties.by.name[q];
 	if( party ) {
 		$('#votestitle').html( party.shortName + ' Caucus Results' );
@@ -992,4 +1011,5 @@ function download( url, ready ) {
 
 $(window).bind( 'load', load ).bind( 'onunload', GUnload );
 
-})();
+})( jQuery );
+

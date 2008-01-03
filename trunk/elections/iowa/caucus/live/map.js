@@ -289,7 +289,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 			'<div id="legend" style="width: 700px; height: 140px">',
 			'</div>',
 			'<div id="map" style="width: 700px; height: 430px">',
-			'</div>',
+			'</div>'
 		] : mapplet ? [
 			'<style type="text/css">',
 				'* { font-family: Arial,sans-serif; font-size: 10pt; }',

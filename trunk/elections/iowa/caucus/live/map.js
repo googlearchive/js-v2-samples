@@ -238,6 +238,24 @@ function GAsync( obj ) {
 	
 	var mapplet = ! window.GBrowserIsCompatible;
 	
+	var args = arguments, nArgs = args.length - 1;
+	var results = [], nCalls = 0;
+	
+	for( var iArg = 1;  iArg < nArgs;  ++iArg ) {
+		var name = args[iArg];
+		if( typeof name == 'object' )
+			obj = name;
+		else
+			queue( nCalls++, name, args[iArg+1] );
+	}
+	
+	if( ! mapplet )
+		callback();
+}
+
+//var mapplet = location.host == 'gmodules.com';
+var mapplet = ! window.GBrowserIsCompatible;
+
 	document.write( (
 		opt.projector ? [
 			'<style type="text/css">',
@@ -327,24 +345,6 @@ function GAsync( obj ) {
 				'.favicon { width:16; height:16; float:left; padding:2px 4px 2px 2px; }',
 			'</style>'
 		] ).join('') );
-	
-	var args = arguments, nArgs = args.length - 1;
-	var results = [], nCalls = 0;
-	
-	for( var iArg = 1;  iArg < nArgs;  ++iArg ) {
-		var name = args[iArg];
-		if( typeof name == 'object' )
-			obj = name;
-		else
-			queue( nCalls++, name, args[iArg+1] );
-	}
-	
-	if( ! mapplet )
-		callback();
-}
-
-//var mapplet = location.host == 'gmodules.com';
-var mapplet = ! window.GBrowserIsCompatible;
 
 if( 0 ) {
 	var gFeedURLs = {

@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs
+		title="Iowa Caucus News and Events"
+		author="Michael Geary"
+		author_email="mapplet.feedback@mg.to"
+		description="Iowa Caucus news and results"
+		thumbnail="http://www.google.com/mapfiles/mapplets/iowacaucus/iowacaucus-thumb.png"
+		screenshot="http://www.google.com/mapfiles/mapplets/iowacaucus/iowacaucus.png"
+>
+	<Require feature="sharedmap"/>
+	<Require feature="dynamic-height"/>
+</ModulePrefs>
+<Content type="html"><![CDATA[
+
+<style type="text/css">
+	* { font-family: Arial,sans-serif; font-size: 10pt; }
+	#outer {}
+	#links { margin-bottom:4px; }
+	#news { margin-top:4px; padding:4px; }
+	#clicknote { display:none; }
+	h2 { font-size:14pt; margin:0; padding:0; }
+	#loading { font-weight:normal; }
+	.NewsHeading { padding-left:4px; }
+	.NewsList { background-color:white; padding:2px; margin:4px; }
+	.NewsList a { text-decoration:none; }
+	.NewsList  a:hover { text-decoration:underline; }
+	.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }
+	.favicon { width:16; height:16; float:left; margin:2px 4px 2px 2px; }
+	.Video { margin-top:4px; }
+	.VideoHeading { font-size:125%; }
+	.VideoTitle { font-size:110%; }
+	.VideoThumb { float:left; margin-right:8px; }
+	.VideoBorder { clear:left; }
+</style>
+
+<script type="text/javascript">
+/*
+ * jQuery 1.2.1 - New Wave Javascript
+ *
+ * Copyright (c) 2007 John Resig (jquery.com)
+ * Dual licensed under the MIT (MIT-LICENSE.txt)
+ * and GPL (GPL-LICENSE.txt) licenses.
+ *
+ * $Date: 2007-09-16 23:42:06 -0400 (Sun, 16 Sep 2007) $
+ * $Rev: 3353 $
+ */
+(function(){if(typeof jQuery!="undefined")var _jQuery=jQuery;var jQuery=window.jQuery=function(selector,context){return this instanceof jQuery?this.init(selector,context):new jQuery(selector,context);};if(typeof $!="undefined")var _$=$;window.$=jQuery;var quickExpr=/^[^<]*(<(.|\s)+>)[^>]*$|^#(\w+)$/;jQuery.fn=jQuery.prototype={init:function(selector,context){selector=selector||document;if(typeof selector=="string"){var m=quickExpr.exec(selector);if(m&&(m[1]||!context)){if(m[1])selector=jQuery.clean([m[1]],context);else{var tmp=document.getElementById(m[3]);if(tmp)if(tmp.id!=m[3])return jQuery().find(selector);else{this[0]=tmp;this.length=1;return this;}else
+selector=[];}}else
+return new jQuery(context).find(selector);}else if(jQuery.isFunction(selector))return new jQuery(document)[jQuery.fn.ready?"ready":"load"](selector);return this.setArray(selector.constructor==Array&&selector||(selector.jquery||selector.length&&selector!=window&&!selector.nodeType&&selector[0]!=undefined&&selector[0].nodeType)&&jQuery.makeArray(selector)||[selector]);},jquery:"1.2.1",size:function(){return this.length;},length:0,get:function(num){return num==undefined?jQuery.makeArray(this):this[num];},pushStack:function(a){var ret=jQuery(a);ret.prevObject=this;return ret;},setArray:function(a){this.length=0;Array.prototype.push.apply(this,a);return this;},each:function(fn,args){return jQuery.each(this,fn,args);},index:function(obj){var pos=-1;this.each(function(i){if(this==obj)pos=i;});return pos;},attr:function(key,value,type){var obj=key;if(key.constructor==String)if(value==undefined)return this.length&&jQuery[type||"attr"](this[0],key)||undefined;else{obj={};obj[key]=value;}return this.each(function(index){for(var prop in obj)jQuery.attr(type?this.style:this,prop,jQuery.prop(this,obj[prop],type,index,prop));});},css:function(key,value){return this.attr(key,value,"curCSS");},text:function(e){if(typeof e!="object"&&e!=null)return this.empty().append(document.createTextNode(e));var t="";jQuery.each(e||this,function(){jQuery.each(this.childNodes,function(){if(this.nodeType!=8)t+=this.nodeType!=1?this.nodeValue:jQuery.fn.text([this]);});});return t;},wrapAll:function(html){if(this[0])jQuery(html,this[0].ownerDocument).clone().insertBefore(this[0]).map(function(){var elem=this;while(elem.firstChild)elem=elem.firstChild;return elem;}).append(this);return this;},wrapInner:function(html){return this.each(function(){jQuery(this).contents().wrapAll(html);});},wrap:function(html){return this.each(function(){jQuery(this).wrapAll(html);});},append:function(){return this.domManip(arguments,true,1,function(a){this.appendChild(a);});},prepend:function(){return this.domManip(arguments,true,-1,function(a){this.insertBefore(a,this.firstChild);});},before:function(){return this.domManip(arguments,false,1,function(a){this.parentNode.insertBefore(a,this);});},after:function(){return this.domManip(arguments,false,-1,function(a){this.parentNode.insertBefore(a,this.nextSibling);});},end:function(){return this.prevObject||jQuery([]);},find:function(t){var data=jQuery.map(this,function(a){return jQuery.find(t,a);});return this.pushStack(/[^+>] [^+>]/.test(t)||t.indexOf("..")>-1?jQuery.unique(data):data);},clone:function(events){var ret=this.map(function(){return this.outerHTML?jQuery(this.outerHTML)[0]:this.cloneNode(true);});var clone=ret.find("*").andSelf().each(function(){if(this[expando]!=undefined)this[expando]=null;});if(events===true)this.find("*").andSelf().each(function(i){var events=jQuery.data(this,"events");for(var type in events)for(var handler in events[type])jQuery.event.add(clone[i],type,events[type][handler],events[type][handler].data);});return ret;},filter:function(t){return this.pushStack(jQuery.isFunction(t)&&jQuery.grep(this,function(el,index){return t.apply(el,[index]);})||jQuery.multiFilter(t,this));},not:function(t){return this.pushStack(t.constructor==String&&jQuery.multiFilter(t,this,true)||jQuery.grep(this,function(a){return(t.constructor==Array||t.jquery)?jQuery.inArray(a,t)<0:a!=t;}));},add:function(t){return this.pushStack(jQuery.merge(this.get(),t.constructor==String?jQuery(t).get():t.length!=undefined&&(!t.nodeName||jQuery.nodeName(t,"form"))?t:[t]));},is:function(expr){return expr?jQuery.multiFilter(expr,this).length>0:false;},hasClass:function(expr){return this.is("."+expr);},val:function(val){if(val==undefined){if(this.length){var elem=this[0];if(jQuery.nodeName(elem,"select")){var index=elem.selectedIndex,a=[],options=elem.options,one=elem.type=="select-one";if(index<0)return null;for(var i=one?index:0,max=one?index+1:options.length;i<max;i++){var option=options[i];if(option.selected){var val=jQuery.browser.msie&&!option.attributes["value"].specified?option.text:option.value;if(one)return val;a.push(val);}}return a;}else
+return this[0].value.replace(/\r/g,"");}}else
+return this.each(function(){if(val.constructor==Array&&/radio|checkbox/.test(this.type))this.checked=(jQuery.inArray(this.value,val)>=0||jQuery.inArray(this.name,val)>=0);else if(jQuery.nodeName(this,"select")){var tmp=val.constructor==Array?val:[val];jQuery("option",this).each(function(){this.selected=(jQuery.inArray(this.value,tmp)>=0||jQuery.inArray(this.text,tmp)>=0);});if(!tmp.length)this.selectedIndex=-1;}else
+this.value=val;});},html:function(val){return val==undefined?(this.length?this[0].innerHTML:null):this.empty().append(val);},replaceWith:function(val){return this.after(val).remove();},eq:function(i){return this.slice(i,i+1);},slice:function(){return this.pushStack(Array.prototype.slice.apply(this,arguments));},map:function(fn){return this.pushStack(jQuery.map(this,function(elem,i){return fn.call(elem,i,elem);}));},andSelf:function(){return this.add(this.prevObject);},domManip:function(args,table,dir,fn){var clone=this.length>1,a;return this.each(function(){if(!a){a=jQuery.clean(args,this.ownerDocument);if(dir<0)a.reverse();}var obj=this;if(table&&jQuery.nodeName(this,"table")&&jQuery.nodeName(a[0],"tr"))obj=this.getElementsByTagName("tbody")[0]||this.appendChild(document.createElement("tbody"));jQuery.each(a,function(){var elem=clone?this.cloneNode(true):this;if(!evalScript(0,elem))fn.call(obj,elem);});});}};function evalScript(i,elem){var script=jQuery.nodeName(elem,"script");if(script){if(elem.src)jQuery.ajax({url:elem.src,async:false,dataType:"script"});else
+jQuery.globalEval(elem.text||elem.textContent||elem.innerHTML||"");if(elem.parentNode)elem.parentNode.removeChild(elem);}else if(elem.nodeType==1)jQuery("script",elem).each(evalScript);return script;}jQuery.extend=jQuery.fn.extend=function(){var target=arguments[0]||{},a=1,al=arguments.length,deep=false;if(target.constructor==Boolean){deep=target;target=arguments[1]||{};}if(al==1){target=this;a=0;}var prop;for(;a<al;a++)if((prop=arguments[a])!=null)for(var i in prop){if(target==prop[i])continue;if(deep&&typeof prop[i]=='object'&&target[i])jQuery.extend(target[i],prop[i]);else if(prop[i]!=undefined)target[i]=prop[i];}return target;};var expando="jQuery"+(new Date()).getTime(),uuid=0,win={};jQuery.extend({noConflict:function(deep){window.$=_$;if(deep)window.jQuery=_jQuery;return jQuery;},isFunction:function(fn){return!!fn&&typeof fn!="string"&&!fn.nodeName&&fn.constructor!=Array&&/function/i.test(fn+"");},isXMLDoc:function(elem){return elem.documentElement&&!elem.body||elem.tagName&&elem.ownerDocument&&!elem.ownerDocument.body;},globalEval:function(data){data=jQuery.trim(data);if(data){if(window.execScript)window.execScript(data);else if(jQuery.browser.safari)window.setTimeout(data,0);else
+eval.call(window,data);}},nodeName:function(elem,name){return elem.nodeName&&elem.nodeName.toUpperCase()==name.toUpperCase();},cache:{},data:function(elem,name,data){elem=elem==window?win:elem;var id=elem[expando];if(!id)id=elem[expando]=++uuid;if(name&&!jQuery.cache[id])jQuery.cache[id]={};if(data!=undefined)jQuery.cache[id][name]=data;return name?jQuery.cache[id][name]:id;},removeData:function(elem,name){elem=elem==window?win:elem;var id=elem[expando];if(name){if(jQuery.cache[id]){delete jQuery.cache[id][name];name="";for(name in jQuery.cache[id])break;if(!name)jQuery.removeData(elem);}}else{try{delete elem[expando];}catch(e){if(elem.removeAttribute)elem.removeAttribute(expando);}delete jQuery.cache[id];}},each:function(obj,fn,args){if(args){if(obj.length==undefined)for(var i in obj)fn.apply(obj[i],args);else
+for(var i=0,ol=obj.length;i<ol;i++)if(fn.apply(obj[i],args)===false)break;}else{if(obj.length==undefined)for(var i in obj)fn.call(obj[i],i,obj[i]);else
+for(var i=0,ol=obj.length,val=obj[0];i<ol&&fn.call(val,i,val)!==false;val=obj[++i]){}}return obj;},prop:function(elem,value,type,index,prop){if(jQuery.isFunction(value))value=value.call(elem,[index]);var exclude=/z-?index|font-?weight|opacity|zoom|line-?height/i;return value&&value.constructor==Number&&type=="curCSS"&&!exclude.test(prop)?value+"px":value;},className:{add:function(elem,c){jQuery.each((c||"").split(/\s+/),function(i,cur){if(!jQuery.className.has(elem.className,cur))elem.className+=(elem.className?" ":"")+cur;});},remove:function(elem,c){elem.className=c!=undefined?jQuery.grep(elem.className.split(/\s+/),function(cur){return!jQuery.className.has(c,cur);}).join(" "):"";},has:function(t,c){return jQuery.inArray(c,(t.className||t).toString().split(/\s+/))>-1;}},swap:function(e,o,f){for(var i in o){e.style["old"+i]=e.style[i];e.style[i]=o[i];}f.apply(e,[]);for(var i in o)e.style[i]=e.style["old"+i];},css:function(e,p){if(p=="height"||p=="width"){var old={},oHeight,oWidth,d=["Top","Bottom","Right","Left"];jQuery.each(d,function(){old["padding"+this]=0;old["border"+this+"Width"]=0;});jQuery.swap(e,old,function(){if(jQuery(e).is(':visible')){oHeight=e.offsetHeight;oWidth=e.offsetWidth;}else{e=jQuery(e.cloneNode(true)).find(":radio").removeAttr("checked").end().css({visibility:"hidden",position:"absolute",display:"block",right:"0",left:"0"}).appendTo(e.parentNode)[0];var parPos=jQuery.css(e.parentNode,"position")||"static";if(parPos=="static")e.parentNode.style.position="relative";oHeight=e.clientHeight;oWidth=e.clientWidth;if(parPos=="static")e.parentNode.style.position="static";e.parentNode.removeChild(e);}});return p=="height"?oHeight:oWidth;}return jQuery.curCSS(e,p);},curCSS:function(elem,prop,force){var ret,stack=[],swap=[];function color(a){if(!jQuery.browser.safari)return false;var ret=document.defaultView.getComputedStyle(a,null);return!ret||ret.getPropertyValue("color")=="";}if(prop=="opacity"&&jQuery.browser.msie){ret=jQuery.attr(elem.style,"opacity");return ret==""?"1":ret;}if(prop.match(/float/i))prop=styleFloat;if(!force&&elem.style[prop])ret=elem.style[prop];else if(document.defaultView&&document.defaultView.getComputedStyle){if(prop.match(/float/i))prop="float";prop=prop.replace(/([A-Z])/g,"-$1").toLowerCase();var cur=document.defaultView.getComputedStyle(elem,null);if(cur&&!color(elem))ret=cur.getPropertyValue(prop);else{for(var a=elem;a&&color(a);a=a.parentNode)stack.unshift(a);for(a=0;a<stack.length;a++)if(color(stack[a])){swap[a]=stack[a].style.display;stack[a].style.display="block";}ret=prop=="display"&&swap[stack.length-1]!=null?"none":document.defaultView.getComputedStyle(elem,null).getPropertyValue(prop)||"";for(a=0;a<swap.length;a++)if(swap[a]!=null)stack[a].style.display=swap[a];}if(prop=="opacity"&&ret=="")ret="1";}else if(elem.currentStyle){var newProp=prop.replace(/\-(\w)/g,function(m,c){return c.toUpperCase();});ret=elem.currentStyle[prop]||elem.currentStyle[newProp];if(!/^\d+(px)?$/i.test(ret)&&/^\d/.test(ret)){var style=elem.style.left;var runtimeStyle=elem.runtimeStyle.left;elem.runtimeStyle.left=elem.currentStyle.left;elem.style.left=ret||0;ret=elem.style.pixelLeft+"px";elem.style.left=style;elem.runtimeStyle.left=runtimeStyle;}}return ret;},clean:function(a,doc){var r=[];doc=doc||document;jQuery.each(a,function(i,arg){if(!arg)return;if(arg.constructor==Number)arg=arg.toString();if(typeof arg=="string"){arg=arg.replace(/(<(\w+)[^>]*?)\/>/g,function(m,all,tag){return tag.match(/^(abbr|br|col|img|input|link|meta|param|hr|area)$/i)?m:all+"></"+tag+">";});var s=jQuery.trim(arg).toLowerCase(),div=doc.createElement("div"),tb=[];var wrap=!s.indexOf("<opt")&&[1,"<select>","</select>"]||!s.indexOf("<leg")&&[1,"<fieldset>","</fieldset>"]||s.match(/^<(thead|tbody|tfoot|colg|cap)/)&&[1,"<table>","</table>"]||!s.indexOf("<tr")&&[2,"<table><tbody>","</tbody></table>"]||(!s.indexOf("<td")||!s.indexOf("<th"))&&[3,"<table><tbody><tr>","</tr></tbody></table>"]||!s.indexOf("<col")&&[2,"<table><tbody></tbody><colgroup>","</colgroup></table>"]||jQuery.browser.msie&&[1,"div<div>","</div>"]||[0,"",""];div.innerHTML=wrap[1]+arg+wrap[2];while(wrap[0]--)div=div.lastChild;if(jQuery.browser.msie){if(!s.indexOf("<table")&&s.indexOf("<tbody")<0)tb=div.firstChild&&div.firstChild.childNodes;else if(wrap[1]=="<table>"&&s.indexOf("<tbody")<0)tb=div.childNodes;for(var n=tb.length-1;n>=0;--n)if(jQuery.nodeName(tb[n],"tbody")&&!tb[n].childNodes.length)tb[n].parentNode.removeChild(tb[n]);if(/^\s/.test(arg))div.insertBefore(doc.createTextNode(arg.match(/^\s*/)[0]),div.firstChild);}arg=jQuery.makeArray(div.childNodes);}if(0===arg.length&&(!jQuery.nodeName(arg,"form")&&!jQuery.nodeName(arg,"select")))return;if(arg[0]==undefined||jQuery.nodeName(arg,"form")||arg.options)r.push(arg);else
+r=jQuery.merge(r,arg);});return r;},attr:function(elem,name,value){var fix=jQuery.isXMLDoc(elem)?{}:jQuery.props;if(name=="selected"&&jQuery.browser.safari)elem.parentNode.selectedIndex;if(fix[name]){if(value!=undefined)elem[fix[name]]=value;return elem[fix[name]];}else if(jQuery.browser.msie&&name=="style")return jQuery.attr(elem.style,"cssText",value);else if(value==undefined&&jQuery.browser.msie&&jQuery.nodeName(elem,"form")&&(name=="action"||name=="method"))return elem.getAttributeNode(name).nodeValue;else if(elem.tagName){if(value!=undefined){if(name=="type"&&jQuery.nodeName(elem,"input")&&elem.parentNode)throw"type property can't be changed";elem.setAttribute(name,value);}if(jQuery.browser.msie&&/href|src/.test(name)&&!jQuery.isXMLDoc(elem))return elem.getAttribute(name,2);return elem.getAttribute(name);}else{if(name=="opacity"&&jQuery.browser.msie){if(value!=undefined){elem.zoom=1;elem.filter=(elem.filter||"").replace(/alpha\([^)]*\)/,"")+(parseFloat(value).toString()=="NaN"?"":"alpha(opacity="+value*100+")");}return elem.filter?(parseFloat(elem.filter.match(/opacity=([^)]*)/)[1])/100).toString():"";}name=name.replace(/-([a-z])/ig,function(z,b){return b.toUpperCase();});if(value!=undefined)elem[name]=value;return elem[name];}},trim:function(t){return(t||"").replace(/^\s+|\s+$/g,"");},makeArray:function(a){var r=[];if(typeof a!="array")for(var i=0,al=a.length;i<al;i++)r.push(a[i]);else
+r=a.slice(0);return r;},inArray:function(b,a){for(var i=0,al=a.length;i<al;i++)if(a[i]==b)return i;return-1;},merge:function(first,second){if(jQuery.browser.msie){for(var i=0;second[i];i++)if(second[i].nodeType!=8)first.push(second[i]);}else
+for(var i=0;second[i];i++)first.push(second[i]);return first;},unique:function(first){var r=[],done={};try{for(var i=0,fl=first.length;i<fl;i++){var id=jQuery.data(first[i]);if(!done[id]){done[id]=true;r.push(first[i]);}}}catch(e){r=first;}return r;},grep:function(elems,fn,inv){if(typeof fn=="string")fn=eval("false||function(a,i){return "+fn+"}");var result=[];for(var i=0,el=elems.length;i<el;i++)if(!inv&&fn(elems[i],i)||inv&&!fn(elems[i],i))result.push(elems[i]);return result;},map:function(elems,fn){if(typeof fn=="string")fn=eval("false||function(a){return "+fn+"}");var result=[];for(var i=0,el=elems.length;i<el;i++){var val=fn(elems[i],i);if(val!==null&&val!=undefined){if(val.constructor!=Array)val=[val];result=result.concat(val);}}return result;}});var userAgent=navigator.userAgent.toLowerCase();jQuery.browser={version:(userAgent.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/)||[])[1],safari:/webkit/.test(userAgent),opera:/opera/.test(userAgent),msie:/msie/.test(userAgent)&&!/opera/.test(userAgent),mozilla:/mozilla/.test(userAgent)&&!/(compatible|webkit)/.test(userAgent)};var styleFloat=jQuery.browser.msie?"styleFloat":"cssFloat";jQuery.extend({boxModel:!jQuery.browser.msie||document.compatMode=="CSS1Compat",styleFloat:jQuery.browser.msie?"styleFloat":"cssFloat",props:{"for":"htmlFor","class":"className","float":styleFloat,cssFloat:styleFloat,styleFloat:styleFloat,innerHTML:"innerHTML",className:"className",value:"value",disabled:"disabled",checked:"checked",readonly:"readOnly",selected:"selected",maxlength:"maxLength"}});jQuery.each({parent:"a.parentNode",parents:"jQuery.dir(a,'parentNode')",next:"jQuery.nth(a,2,'nextSibling')",prev:"jQuery.nth(a,2,'previousSibling')",nextAll:"jQuery.dir(a,'nextSibling')",prevAll:"jQuery.dir(a,'previousSibling')",siblings:"jQuery.sibling(a.parentNode.firstChild,a)",children:"jQuery.sibling(a.firstChild)",contents:"jQuery.nodeName(a,'iframe')?a.contentDocument||a.contentWindow.document:jQuery.makeArray(a.childNodes)"},function(i,n){jQuery.fn[i]=function(a){var ret=jQuery.map(this,n);if(a&&typeof a=="string")ret=jQuery.multiFilter(a,ret);return this.pushStack(jQuery.unique(ret));};});jQuery.each({appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after",replaceAll:"replaceWith"},function(i,n){jQuery.fn[i]=function(){var a=arguments;return this.each(function(){for(var j=0,al=a.length;j<al;j++)jQuery(a[j])[n](this);});};});jQuery.each({removeAttr:function(key){jQuery.attr(this,key,"");this.removeAttribute(key);},addClass:function(c){jQuery.className.add(this,c);},removeClass:function(c){jQuery.className.remove(this,c);},toggleClass:function(c){jQuery.className[jQuery.className.has(this,c)?"remove":"add"](this,c);},remove:function(a){if(!a||jQuery.filter(a,[this]).r.length){jQuery.removeData(this);this.parentNode.removeChild(this);}},empty:function(){jQuery("*",this).each(function(){jQuery.removeData(this);});while(this.firstChild)this.removeChild(this.firstChild);}},function(i,n){jQuery.fn[i]=function(){return this.each(n,arguments);};});jQuery.each(["Height","Width"],function(i,name){var n=name.toLowerCase();jQuery.fn[n]=function(h){return this[0]==window?jQuery.browser.safari&&self["inner"+name]||jQuery.boxModel&&Math.max(document.documentElement["client"+name],document.body["client"+name])||document.body["client"+name]:this[0]==document?Math.max(document.body["scroll"+name],document.body["offset"+name]):h==undefined?(this.length?jQuery.css(this[0],n):null):this.css(n,h.constructor==String?h:h+"px");};});var chars=jQuery.browser.safari&&parseInt(jQuery.browser.version)<417?"(?:[\\w*_-]|\\\\.)":"(?:[\\w\u0128-\uFFFF*_-]|\\\\.)",quickChild=new RegExp("^>\\s*("+chars+"+)"),quickID=new RegExp("^("+chars+"+)(#)("+chars+"+)"),quickClass=new RegExp("^([#.]?)("+chars+"*)");jQuery.extend({expr:{"":"m[2]=='*'||jQuery.nodeName(a,m[2])","#":"a.getAttribute('id')==m[2]",":":{lt:"i<m[3]-0",gt:"i>m[3]-0",nth:"m[3]-0==i",eq:"m[3]-0==i",first:"i==0",last:"i==r.length-1",even:"i%2==0",odd:"i%2","first-child":"a.parentNode.getElementsByTagName('*')[0]==a","last-child":"jQuery.nth(a.parentNode.lastChild,1,'previousSibling')==a","only-child":"!jQuery.nth(a.parentNode.lastChild,2,'previousSibling')",parent:"a.firstChild",empty:"!a.firstChild",contains:"(a.textContent||a.innerText||jQuery(a).text()||'').indexOf(m[3])>=0",visible:'"hidden"!=a.type&&jQuery.css(a,"display")!="none"&&jQuery.css(a,"visibility")!="hidden"',hidden:'"hidden"==a.type||jQuery.css(a,"display")=="none"||jQuery.css(a,"visibility")=="hidden"',enabled:"!a.disabled",disabled:"a.disabled",checked:"a.checked",selected:"a.selected||jQuery.attr(a,'selected')",text:"'text'==a.type",radio:"'radio'==a.type",checkbox:"'checkbox'==a.type",file:"'file'==a.type",password:"'password'==a.type",submit:"'submit'==a.type",image:"'image'==a.type",reset:"'reset'==a.type",button:'"button"==a.type||jQuery.nodeName(a,"button")',input:"/input|select|textarea|button/i.test(a.nodeName)",has:"jQuery.find(m[3],a).length",header:"/h\\d/i.test(a.nodeName)",animated:"jQuery.grep(jQuery.timers,function(fn){return a==fn.elem;}).length"}},parse:[/^(\[) *@?([\w-]+) *([!*$^~=]*) *('?"?)(.*?)\4 *\]/,/^(:)([\w-]+)\("?'?(.*?(\(.*?\))?[^(]*?)"?'?\)/,new RegExp("^([:.#]*)("+chars+"+)")],multiFilter:function(expr,elems,not){var old,cur=[];while(expr&&expr!=old){old=expr;var f=jQuery.filter(expr,elems,not);expr=f.t.replace(/^\s*,\s*/,"");cur=not?elems=f.r:jQuery.merge(cur,f.r);}return cur;},find:function(t,context){if(typeof t!="string")return[t];if(context&&!context.nodeType)context=null;context=context||document;var ret=[context],done=[],last;while(t&&last!=t){var r=[];last=t;t=jQuery.trim(t);var foundToken=false;var re=quickChild;var m=re.exec(t);if(m){var nodeName=m[1].toUpperCase();for(var i=0;ret[i];i++)for(var c=ret[i].firstChild;c;c=c.nextSibling)if(c.nodeType==1&&(nodeName=="*"||c.nodeName.toUpperCase()==nodeName.toUpperCase()))r.push(c);ret=r;t=t.replace(re,"");if(t.indexOf(" ")==0)continue;foundToken=true;}else{re=/^([>+~])\s*(\w*)/i;if((m=re.exec(t))!=null){r=[];var nodeName=m[2],merge={};m=m[1];for(var j=0,rl=ret.length;j<rl;j++){var n=m=="~"||m=="+"?ret[j].nextSibling:ret[j].firstChild;for(;n;n=n.nextSibling)if(n.nodeType==1){var id=jQuery.data(n);if(m=="~"&&merge[id])break;if(!nodeName||n.nodeName.toUpperCase()==nodeName.toUpperCase()){if(m=="~")merge[id]=true;r.push(n);}if(m=="+")break;}}ret=r;t=jQuery.trim(t.replace(re,""));foundToken=true;}}if(t&&!foundToken){if(!t.indexOf(",")){if(context==ret[0])ret.shift();done=jQuery.merge(done,ret);r=ret=[context];t=" "+t.substr(1,t.length);}else{var re2=quickID;var m=re2.exec(t);if(m){m=[0,m[2],m[3],m[1]];}else{re2=quickClass;m=re2.exec(t);}m[2]=m[2].replace(/\\/g,"");var elem=ret[ret.length-1];if(m[1]=="#"&&elem&&elem.getElementById&&!jQuery.isXMLDoc(elem)){var oid=elem.getElementById(m[2]);if((jQuery.browser.msie||jQuery.browser.opera)&&oid&&typeof oid.id=="string"&&oid.id!=m[2])oid=jQuery('[@id="'+m[2]+'"]',elem)[0];ret=r=oid&&(!m[3]||jQuery.nodeName(oid,m[3]))?[oid]:[];}else{for(var i=0;ret[i];i++){var tag=m[1]=="#"&&m[3]?m[3]:m[1]!=""||m[0]==""?"*":m[2];if(tag=="*"&&ret[i].nodeName.toLowerCase()=="object")tag="param";r=jQuery.merge(r,ret[i].getElementsByTagName(tag));}if(m[1]==".")r=jQuery.classFilter(r,m[2]);if(m[1]=="#"){var tmp=[];for(var i=0;r[i];i++)if(r[i].getAttribute("id")==m[2]){tmp=[r[i]];break;}r=tmp;}ret=r;}t=t.replace(re2,"");}}if(t){var val=jQuery.filter(t,r);ret=r=val.r;t=jQuery.trim(val.t);}}if(t)ret=[];if(ret&&context==ret[0])ret.shift();done=jQuery.merge(done,ret);return done;},classFilter:function(r,m,not){m=" "+m+" ";var tmp=[];for(var i=0;r[i];i++){var pass=(" "+r[i].className+" ").indexOf(m)>=0;if(!not&&pass||not&&!pass)tmp.push(r[i]);}return tmp;},filter:function(t,r,not){var last;while(t&&t!=last){last=t;var p=jQuery.parse,m;for(var i=0;p[i];i++){m=p[i].exec(t);if(m){t=t.substring(m[0].length);m[2]=m[2].replace(/\\/g,"");break;}}if(!m)break;if(m[1]==":"&&m[2]=="not")r=jQuery.filter(m[3],r,true).r;else if(m[1]==".")r=jQuery.classFilter(r,m[2],not);else if(m[1]=="["){var tmp=[],type=m[3];for(var i=0,rl=r.length;i<rl;i++){var a=r[i],z=a[jQuery.props[m[2]]||m[2]];if(z==null||/href|src|selected/.test(m[2]))z=jQuery.attr(a,m[2])||'';if((type==""&&!!z||type=="="&&z==m[5]||type=="!="&&z!=m[5]||type=="^="&&z&&!z.indexOf(m[5])||type=="$="&&z.substr(z.length-m[5].length)==m[5]||(type=="*="||type=="~=")&&z.indexOf(m[5])>=0)^not)tmp.push(a);}r=tmp;}else if(m[1]==":"&&m[2]=="nth-child"){var merge={},tmp=[],test=/(\d*)n\+?(\d*)/.exec(m[3]=="even"&&"2n"||m[3]=="odd"&&"2n+1"||!/\D/.test(m[3])&&"n+"+m[3]||m[3]),first=(test[1]||1)-0,last=test[2]-0;for(var i=0,rl=r.length;i<rl;i++){var node=r[i],parentNode=node.parentNode,id=jQuery.data(parentNode);if(!merge[id]){var c=1;for(var n=parentNode.firstChild;n;n=n.nextSibling)if(n.nodeType==1)n.nodeIndex=c++;merge[id]=true;}var add=false;if(first==1){if(last==0||node.nodeIndex==last)add=true;}else if((node.nodeIndex+last)%first==0)add=true;if(add^not)tmp.push(node);}r=tmp;}else{var f=jQuery.expr[m[1]];if(typeof f!="string")f=jQuery.expr[m[1]][m[2]];f=eval("false||function(a,i){return "+f+"}");r=jQuery.grep(r,f,not);}}return{r:r,t:t};},dir:function(elem,dir){var matched=[];var cur=elem[dir];while(cur&&cur!=document){if(cur.nodeType==1)matched.push(cur);cur=cur[dir];}return matched;},nth:function(cur,result,dir,elem){result=result||1;var num=0;for(;cur;cur=cur[dir])if(cur.nodeType==1&&++num==result)break;return cur;},sibling:function(n,elem){var r=[];for(;n;n=n.nextSibling){if(n.nodeType==1&&(!elem||n!=elem))r.push(n);}return r;}});jQuery.event={add:function(element,type,handler,data){if(jQuery.browser.msie&&element.setInterval!=undefined)element=window;if(!handler.guid)handler.guid=this.guid++;if(data!=undefined){var fn=handler;handler=function(){return fn.apply(this,arguments);};handler.data=data;handler.guid=fn.guid;}var parts=type.split(".");type=parts[0];handler.type=parts[1];var events=jQuery.data(element,"events")||jQuery.data(element,"events",{});var handle=jQuery.data(element,"handle",function(){var val;if(typeof jQuery=="undefined"||jQuery.event.triggered)return val;val=jQuery.event.handle.apply(element,arguments);return val;});var handlers=events[type];if(!handlers){handlers=events[type]={};if(element.addEventListener)element.addEventListener(type,handle,false);else
+element.attachEvent("on"+type,handle);}handlers[handler.guid]=handler;this.global[type]=true;},guid:1,global:{},remove:function(element,type,handler){var events=jQuery.data(element,"events"),ret,index;if(typeof type=="string"){var parts=type.split(".");type=parts[0];}if(events){if(type&&type.type){handler=type.handler;type=type.type;}if(!type){for(type in events)this.remove(element,type);}else if(events[type]){if(handler)delete events[type][handler.guid];else
+for(handler in events[type])if(!parts[1]||events[type][handler].type==parts[1])delete events[type][handler];for(ret in events[type])break;if(!ret){if(element.removeEventListener)element.removeEventListener(type,jQuery.data(element,"handle"),false);else
+element.detachEvent("on"+type,jQuery.data(element,"handle"));ret=null;delete events[type];}}for(ret in events)break;if(!ret){jQuery.removeData(element,"events");jQuery.removeData(element,"handle");}}},trigger:function(type,data,element,donative,extra){data=jQuery.makeArray(data||[]);if(!element){if(this.global[type])jQuery("*").add([window,document]).trigger(type,data);}else{var val,ret,fn=jQuery.isFunction(element[type]||null),evt=!data[0]||!data[0].preventDefault;if(evt)data.unshift(this.fix({type:type,target:element}));data[0].type=type;if(jQuery.isFunction(jQuery.data(element,"handle")))val=jQuery.data(element,"handle").apply(element,data);if(!fn&&element["on"+type]&&element["on"+type].apply(element,data)===false)val=false;if(evt)data.shift();if(extra&&extra.apply(element,data)===false)val=false;if(fn&&donative!==false&&val!==false&&!(jQuery.nodeName(element,'a')&&type=="click")){this.triggered=true;element[type]();}this.triggered=false;}return val;},handle:function(event){var val;event=jQuery.event.fix(event||window.event||{});var parts=event.type.split(".");event.type=parts[0];var c=jQuery.data(this,"events")&&jQuery.data(this,"events")[event.type],args=Array.prototype.slice.call(arguments,1);args.unshift(event);for(var j in c){args[0].handler=c[j];args[0].data=c[j].data;if(!parts[1]||c[j].type==parts[1]){var tmp=c[j].apply(this,args);if(val!==false)val=tmp;if(tmp===false){event.preventDefault();event.stopPropagation();}}}if(jQuery.browser.msie)event.target=event.preventDefault=event.stopPropagation=event.handler=event.data=null;return val;},fix:function(event){var originalEvent=event;event=jQuery.extend({},originalEvent);event.preventDefault=function(){if(originalEvent.preventDefault)originalEvent.preventDefault();originalEvent.returnValue=false;};event.stopPropagation=function(){if(originalEvent.stopPropagation)originalEvent.stopPropagation();originalEvent.cancelBubble=true;};if(!event.target&&event.srcElement)event.target=event.srcElement;if(jQuery.browser.safari&&event.target.nodeType==3)event.target=originalEvent.target.parentNode;if(!event.relatedTarget&&event.fromElement)event.relatedTarget=event.fromElement==event.target?event.toElement:event.fromElement;if(event.pageX==null&&event.clientX!=null){var e=document.documentElement,b=document.body;event.pageX=event.clientX+(e&&e.scrollLeft||b.scrollLeft||0);event.pageY=event.clientY+(e&&e.scrollTop||b.scrollTop||0);}if(!event.which&&(event.charCode||event.keyCode))event.which=event.charCode||event.keyCode;if(!event.metaKey&&event.ctrlKey)event.metaKey=event.ctrlKey;if(!event.which&&event.button)event.which=(event.button&1?1:(event.button&2?3:(event.button&4?2:0)));return event;}};jQuery.fn.extend({bind:function(type,data,fn){return type=="unload"?this.one(type,data,fn):this.each(function(){jQuery.event.add(this,type,fn||data,fn&&data);});},one:function(type,data,fn){return this.each(function(){jQuery.event.add(this,type,function(event){jQuery(this).unbind(event);return(fn||data).apply(this,arguments);},fn&&data);});},unbind:function(type,fn){return this.each(function(){jQuery.event.remove(this,type,fn);});},trigger:function(type,data,fn){return this.each(function(){jQuery.event.trigger(type,data,this,true,fn);});},triggerHandler:function(type,data,fn){if(this[0])return jQuery.event.trigger(type,data,this[0],false,fn);},toggle:function(){var a=arguments;return this.click(function(e){this.lastToggle=0==this.lastToggle?1:0;e.preventDefault();return a[this.lastToggle].apply(this,[e])||false;});},hover:function(f,g){function handleHover(e){var p=e.relatedTarget;while(p&&p!=this)try{p=p.parentNode;}catch(e){p=this;};if(p==this)return false;return(e.type=="mouseover"?f:g).apply(this,[e]);}return this.mouseover(handleHover).mouseout(handleHover);},ready:function(f){bindReady();if(jQuery.isReady)f.apply(document,[jQuery]);else
+jQuery.readyList.push(function(){return f.apply(this,[jQuery]);});return this;}});jQuery.extend({isReady:false,readyList:[],ready:function(){if(!jQuery.isReady){jQuery.isReady=true;if(jQuery.readyList){jQuery.each(jQuery.readyList,function(){this.apply(document);});jQuery.readyList=null;}if(jQuery.browser.mozilla||jQuery.browser.opera)document.removeEventListener("DOMContentLoaded",jQuery.ready,false);if(!window.frames.length)jQuery(window).load(function(){jQuery("#__ie_init").remove();});}}});jQuery.each(("blur,focus,load,resize,scroll,unload,click,dblclick,"+"mousedown,mouseup,mousemove,mouseover,mouseout,change,select,"+"submit,keydown,keypress,keyup,error").split(","),function(i,o){jQuery.fn[o]=function(f){return f?this.bind(o,f):this.trigger(o);};});var readyBound=false;function bindReady(){if(readyBound)return;readyBound=true;if(jQuery.browser.mozilla||jQuery.browser.opera)document.addEventListener("DOMContentLoaded",jQuery.ready,false);else if(jQuery.browser.msie){document.write("<scr"+"ipt id=__ie_init defer=true "+"src=//:><\/script>");var script=document.getElementById("__ie_init");if(script)script.onreadystatechange=function(){if(this.readyState!="complete")return;jQuery.ready();};script=null;}else if(jQuery.browser.safari)jQuery.safariTimer=setInterval(function(){if(document.readyState=="loaded"||document.readyState=="complete"){clearInterval(jQuery.safariTimer);jQuery.safariTimer=null;jQuery.ready();}},10);jQuery.event.add(window,"load",jQuery.ready);}jQuery.fn.extend({load:function(url,params,callback){if(jQuery.isFunction(url))return this.bind("load",url);var off=url.indexOf(" ");if(off>=0){var selector=url.slice(off,url.length);url=url.slice(0,off);}callback=callback||function(){};var type="GET";if(params)if(jQuery.isFunction(params)){callback=params;params=null;}else{params=jQuery.param(params);type="POST";}var self=this;jQuery.ajax({url:url,type:type,data:params,complete:function(res,status){if(status=="success"||status=="notmodified")self.html(selector?jQuery("<div/>").append(res.responseText.replace(/<script(.|\s)*?\/script>/g,"")).find(selector):res.responseText);setTimeout(function(){self.each(callback,[res.responseText,status,res]);},13);}});return this;},serialize:function(){return jQuery.param(this.serializeArray());},serializeArray:function(){return this.map(function(){return jQuery.nodeName(this,"form")?jQuery.makeArray(this.elements):this;}).filter(function(){return this.name&&!this.disabled&&(this.checked||/select|textarea/i.test(this.nodeName)||/text|hidden|password/i.test(this.type));}).map(function(i,elem){var val=jQuery(this).val();return val==null?null:val.constructor==Array?jQuery.map(val,function(val,i){return{name:elem.name,value:val};}):{name:elem.name,value:val};}).get();}});jQuery.each("ajaxStart,ajaxStop,ajaxComplete,ajaxError,ajaxSuccess,ajaxSend".split(","),function(i,o){jQuery.fn[o]=function(f){return this.bind(o,f);};});var jsc=(new Date).getTime();jQuery.extend({get:function(url,data,callback,type){if(jQuery.isFunction(data)){callback=data;data=null;}return jQuery.ajax({type:"GET",url:url,data:data,success:callback,dataType:type});},getScript:function(url,callback){return jQuery.get(url,null,callback,"script");},getJSON:function(url,data,callback){return jQuery.get(url,data,callback,"json");},post:function(url,data,callback,type){if(jQuery.isFunction(data)){callback=data;data={};}return jQuery.ajax({type:"POST",url:url,data:data,success:callback,dataType:type});},ajaxSetup:function(settings){jQuery.extend(jQuery.ajaxSettings,settings);},ajaxSettings:{global:true,type:"GET",timeout:0,contentType:"application/x-www-form-urlencoded",processData:true,async:true,data:null},lastModified:{},ajax:function(s){var jsonp,jsre=/=(\?|%3F)/g,status,data;s=jQuery.extend(true,s,jQuery.extend(true,{},jQuery.ajaxSettings,s));if(s.data&&s.processData&&typeof s.data!="string")s.data=jQuery.param(s.data);if(s.dataType=="jsonp"){if(s.type.toLowerCase()=="get"){if(!s.url.match(jsre))s.url+=(s.url.match(/\?/)?"&":"?")+(s.jsonp||"callback")+"=?";}else if(!s.data||!s.data.match(jsre))s.data=(s.data?s.data+"&":"")+(s.jsonp||"callback")+"=?";s.dataType="json";}if(s.dataType=="json"&&(s.data&&s.data.match(jsre)||s.url.match(jsre))){jsonp="jsonp"+jsc++;if(s.data)s.data=s.data.replace(jsre,"="+jsonp);s.url=s.url.replace(jsre,"="+jsonp);s.dataType="script";window[jsonp]=function(tmp){data=tmp;success();complete();window[jsonp]=undefined;try{delete window[jsonp];}catch(e){}};}if(s.dataType=="script"&&s.cache==null)s.cache=false;if(s.cache===false&&s.type.toLowerCase()=="get")s.url+=(s.url.match(/\?/)?"&":"?")+"_="+(new Date()).getTime();if(s.data&&s.type.toLowerCase()=="get"){s.url+=(s.url.match(/\?/)?"&":"?")+s.data;s.data=null;}if(s.global&&!jQuery.active++)jQuery.event.trigger("ajaxStart");if(!s.url.indexOf("http")&&s.dataType=="script"){var head=document.getElementsByTagName("head")[0];var script=document.createElement("script");script.src=s.url;if(!jsonp&&(s.success||s.complete)){var done=false;script.onload=script.onreadystatechange=function(){if(!done&&(!this.readyState||this.readyState=="loaded"||this.readyState=="complete")){done=true;success();complete();head.removeChild(script);}};}head.appendChild(script);return;}var requestDone=false;var xml=window.ActiveXObject?new ActiveXObject("Microsoft.XMLHTTP"):new XMLHttpRequest();xml.open(s.type,s.url,s.async);if(s.data)xml.setRequestHeader("Content-Type",s.contentType);if(s.ifModified)xml.setRequestHeader("If-Modified-Since",jQuery.lastModified[s.url]||"Thu, 01 Jan 1970 00:00:00 GMT");xml.setRequestHeader("X-Requested-With","XMLHttpRequest");if(s.beforeSend)s.beforeSend(xml);if(s.global)jQuery.event.trigger("ajaxSend",[xml,s]);var onreadystatechange=function(isTimeout){if(!requestDone&&xml&&(xml.readyState==4||isTimeout=="timeout")){requestDone=true;if(ival){clearInterval(ival);ival=null;}status=isTimeout=="timeout"&&"timeout"||!jQuery.httpSuccess(xml)&&"error"||s.ifModified&&jQuery.httpNotModified(xml,s.url)&&"notmodified"||"success";if(status=="success"){try{data=jQuery.httpData(xml,s.dataType);}catch(e){status="parsererror";}}if(status=="success"){var modRes;try{modRes=xml.getResponseHeader("Last-Modified");}catch(e){}if(s.ifModified&&modRes)jQuery.lastModified[s.url]=modRes;if(!jsonp)success();}else
+jQuery.handleError(s,xml,status);complete();if(s.async)xml=null;}};if(s.async){var ival=setInterval(onreadystatechange,13);if(s.timeout>0)setTimeout(function(){if(xml){xml.abort();if(!requestDone)onreadystatechange("timeout");}},s.timeout);}try{xml.send(s.data);}catch(e){jQuery.handleError(s,xml,null,e);}if(!s.async)onreadystatechange();return xml;function success(){if(s.success)s.success(data,status);if(s.global)jQuery.event.trigger("ajaxSuccess",[xml,s]);}function complete(){if(s.complete)s.complete(xml,status);if(s.global)jQuery.event.trigger("ajaxComplete",[xml,s]);if(s.global&&!--jQuery.active)jQuery.event.trigger("ajaxStop");}},handleError:function(s,xml,status,e){if(s.error)s.error(xml,status,e);if(s.global)jQuery.event.trigger("ajaxError",[xml,s,e]);},active:0,httpSuccess:function(r){try{return!r.status&&location.protocol=="file:"||(r.status>=200&&r.status<300)||r.status==304||jQuery.browser.safari&&r.status==undefined;}catch(e){}return false;},httpNotModified:function(xml,url){try{var xmlRes=xml.getResponseHeader("Last-Modified");return xml.status==304||xmlRes==jQuery.lastModified[url]||jQuery.browser.safari&&xml.status==undefined;}catch(e){}return false;},httpData:function(r,type){var ct=r.getResponseHeader("content-type");var xml=type=="xml"||!type&&ct&&ct.indexOf("xml")>=0;var data=xml?r.responseXML:r.responseText;if(xml&&data.documentElement.tagName=="parsererror")throw"parsererror";if(type=="script")jQuery.globalEval(data);if(type=="json")data=eval("("+data+")");return data;},param:function(a){var s=[];if(a.constructor==Array||a.jquery)jQuery.each(a,function(){s.push(encodeURIComponent(this.name)+"="+encodeURIComponent(this.value));});else
+for(var j in a)if(a[j]&&a[j].constructor==Array)jQuery.each(a[j],function(){s.push(encodeURIComponent(j)+"="+encodeURIComponent(this));});else
+s.push(encodeURIComponent(j)+"="+encodeURIComponent(a[j]));return s.join("&").replace(/%20/g,"+");}});jQuery.fn.extend({show:function(speed,callback){return speed?this.animate({height:"show",width:"show",opacity:"show"},speed,callback):this.filter(":hidden").each(function(){this.style.display=this.oldblock?this.oldblock:"";if(jQuery.css(this,"display")=="none")this.style.display="block";}).end();},hide:function(speed,callback){return speed?this.animate({height:"hide",width:"hide",opacity:"hide"},speed,callback):this.filter(":visible").each(function(){this.oldblock=this.oldblock||jQuery.css(this,"display");if(this.oldblock=="none")this.oldblock="block";this.style.display="none";}).end();},_toggle:jQuery.fn.toggle,toggle:function(fn,fn2){return jQuery.isFunction(fn)&&jQuery.isFunction(fn2)?this._toggle(fn,fn2):fn?this.animate({height:"toggle",width:"toggle",opacity:"toggle"},fn,fn2):this.each(function(){jQuery(this)[jQuery(this).is(":hidden")?"show":"hide"]();});},slideDown:function(speed,callback){return this.animate({height:"show"},speed,callback);},slideUp:function(speed,callback){return this.animate({height:"hide"},speed,callback);},slideToggle:function(speed,callback){return this.animate({height:"toggle"},speed,callback);},fadeIn:function(speed,callback){return this.animate({opacity:"show"},speed,callback);},fadeOut:function(speed,callback){return this.animate({opacity:"hide"},speed,callback);},fadeTo:function(speed,to,callback){return this.animate({opacity:to},speed,callback);},animate:function(prop,speed,easing,callback){var opt=jQuery.speed(speed,easing,callback);return this[opt.queue===false?"each":"queue"](function(){opt=jQuery.extend({},opt);var hidden=jQuery(this).is(":hidden"),self=this;for(var p in prop){if(prop[p]=="hide"&&hidden||prop[p]=="show"&&!hidden)return jQuery.isFunction(opt.complete)&&opt.complete.apply(this);if(p=="height"||p=="width"){opt.display=jQuery.css(this,"display");opt.overflow=this.style.overflow;}}if(opt.overflow!=null)this.style.overflow="hidden";opt.curAnim=jQuery.extend({},prop);jQuery.each(prop,function(name,val){var e=new jQuery.fx(self,opt,name);if(/toggle|show|hide/.test(val))e[val=="toggle"?hidden?"show":"hide":val](prop);else{var parts=val.toString().match(/^([+-]=)?([\d+-.]+)(.*)$/),start=e.cur(true)||0;if(parts){var end=parseFloat(parts[2]),unit=parts[3]||"px";if(unit!="px"){self.style[name]=(end||1)+unit;start=((end||1)/e.cur(true))*start;self.style[name]=start+unit;}if(parts[1])end=((parts[1]=="-="?-1:1)*end)+start;e.custom(start,end,unit);}else
+e.custom(start,val,"");}});return true;});},queue:function(type,fn){if(jQuery.isFunction(type)){fn=type;type="fx";}if(!type||(typeof type=="string"&&!fn))return queue(this[0],type);return this.each(function(){if(fn.constructor==Array)queue(this,type,fn);else{queue(this,type).push(fn);if(queue(this,type).length==1)fn.apply(this);}});},stop:function(){var timers=jQuery.timers;return this.each(function(){for(var i=0;i<timers.length;i++)if(timers[i].elem==this)timers.splice(i--,1);}).dequeue();}});var queue=function(elem,type,array){if(!elem)return;var q=jQuery.data(elem,type+"queue");if(!q||array)q=jQuery.data(elem,type+"queue",array?jQuery.makeArray(array):[]);return q;};jQuery.fn.dequeue=function(type){type=type||"fx";return this.each(function(){var q=queue(this,type);q.shift();if(q.length)q[0].apply(this);});};jQuery.extend({speed:function(speed,easing,fn){var opt=speed&&speed.constructor==Object?speed:{complete:fn||!fn&&easing||jQuery.isFunction(speed)&&speed,duration:speed,easing:fn&&easing||easing&&easing.constructor!=Function&&easing};opt.duration=(opt.duration&&opt.duration.constructor==Number?opt.duration:{slow:600,fast:200}[opt.duration])||400;opt.old=opt.complete;opt.complete=function(){jQuery(this).dequeue();if(jQuery.isFunction(opt.old))opt.old.apply(this);};return opt;},easing:{linear:function(p,n,firstNum,diff){return firstNum+diff*p;},swing:function(p,n,firstNum,diff){return((-Math.cos(p*Math.PI)/2)+0.5)*diff+firstNum;}},timers:[],fx:function(elem,options,prop){this.options=options;this.elem=elem;this.prop=prop;if(!options.orig)options.orig={};}});jQuery.fx.prototype={update:function(){if(this.options.step)this.options.step.apply(this.elem,[this.now,this]);(jQuery.fx.step[this.prop]||jQuery.fx.step._default)(this);if(this.prop=="height"||this.prop=="width")this.elem.style.display="block";},cur:function(force){if(this.elem[this.prop]!=null&&this.elem.style[this.prop]==null)return this.elem[this.prop];var r=parseFloat(jQuery.curCSS(this.elem,this.prop,force));return r&&r>-10000?r:parseFloat(jQuery.css(this.elem,this.prop))||0;},custom:function(from,to,unit){this.startTime=(new Date()).getTime();this.start=from;this.end=to;this.unit=unit||this.unit||"px";this.now=this.start;this.pos=this.state=0;this.update();var self=this;function t(){return self.step();}t.elem=this.elem;jQuery.timers.push(t);if(jQuery.timers.length==1){var timer=setInterval(function(){var timers=jQuery.timers;for(var i=0;i<timers.length;i++)if(!timers[i]())timers.splice(i--,1);if(!timers.length)clearInterval(timer);},13);}},show:function(){this.options.orig[this.prop]=jQuery.attr(this.elem.style,this.prop);this.options.show=true;this.custom(0,this.cur());if(this.prop=="width"||this.prop=="height")this.elem.style[this.prop]="1px";jQuery(this.elem).show();},hide:function(){this.options.orig[this.prop]=jQuery.attr(this.elem.style,this.prop);this.options.hide=true;this.custom(this.cur(),0);},step:function(){var t=(new Date()).getTime();if(t>this.options.duration+this.startTime){this.now=this.end;this.pos=this.state=1;this.update();this.options.curAnim[this.prop]=true;var done=true;for(var i in this.options.curAnim)if(this.options.curAnim[i]!==true)done=false;if(done){if(this.options.display!=null){this.elem.style.overflow=this.options.overflow;this.elem.style.display=this.options.display;if(jQuery.css(this.elem,"display")=="none")this.elem.style.display="block";}if(this.options.hide)this.elem.style.display="none";if(this.options.hide||this.options.show)for(var p in this.options.curAnim)jQuery.attr(this.elem.style,p,this.options.orig[p]);}if(done&&jQuery.isFunction(this.options.complete))this.options.complete.apply(this.elem);return false;}else{var n=t-this.startTime;this.state=n/this.options.duration;this.pos=jQuery.easing[this.options.easing||(jQuery.easing.swing?"swing":"linear")](this.state,n,0,1,this.options.duration);this.now=this.start+((this.end-this.start)*this.pos);this.update();}return true;}};jQuery.fx.step={scrollLeft:function(fx){fx.elem.scrollLeft=fx.now;},scrollTop:function(fx){fx.elem.scrollTop=fx.now;},opacity:function(fx){jQuery.attr(fx.elem.style,"opacity",fx.now);},_default:function(fx){fx.elem.style[fx.prop]=fx.now+fx.unit;}};jQuery.fn.offset=function(){var left=0,top=0,elem=this[0],results;if(elem)with(jQuery.browser){var absolute=jQuery.css(elem,"position")=="absolute",parent=elem.parentNode,offsetParent=elem.offsetParent,doc=elem.ownerDocument,safari2=safari&&parseInt(version)<522;if(elem.getBoundingClientRect){box=elem.getBoundingClientRect();add(box.left+Math.max(doc.documentElement.scrollLeft,doc.body.scrollLeft),box.top+Math.max(doc.documentElement.scrollTop,doc.body.scrollTop));if(msie){var border=jQuery("html").css("borderWidth");border=(border=="medium"||jQuery.boxModel&&parseInt(version)>=7)&&2||border;add(-border,-border);}}else{add(elem.offsetLeft,elem.offsetTop);while(offsetParent){add(offsetParent.offsetLeft,offsetParent.offsetTop);if(mozilla&&/^t[d|h]$/i.test(parent.tagName)||!safari2)border(offsetParent);if(safari2&&!absolute&&jQuery.css(offsetParent,"position")=="absolute")absolute=true;offsetParent=offsetParent.offsetParent;}while(parent.tagName&&!/^body|html$/i.test(parent.tagName)){if(!/^inline|table-row.*$/i.test(jQuery.css(parent,"display")))add(-parent.scrollLeft,-parent.scrollTop);if(mozilla&&jQuery.css(parent,"overflow")!="visible")border(parent);parent=parent.parentNode;}if(safari2&&absolute)add(-doc.body.offsetLeft,-doc.body.offsetTop);}results={top:top,left:left};}return results;function border(elem){add(jQuery.css(elem,"borderLeftWidth"),jQuery.css(elem,"borderTopWidth"));}function add(l,t){left+=parseInt(l)||0;top+=parseInt(t)||0;}};})();
+</script>
+
+<script type="text/javascript">
+Data = {
+	counties: [{name:"Adair",centroid:[41.33070575,-94.47102444],points:[[41.50432485,-94.70055579],[41.50358248,-94.24149308],[41.15708664,-94.24164223],[41.15754894,-94.47078868],[41.15798746,-94.70051808],[41.50432485,-94.70055579]]},{name:"Adams",centroid:[41.02903348,-94.69971444],points:[[41.15874783,-94.92753314],[41.15798746,-94.70051808],[41.15754894,-94.47078868],[40.89931912,-94.47105893],[40.90065855,-94.92864019],[41.15874783,-94.92753314]]},{name:"Allamakee",centroid:[43.29055067,-91.33435795],points:[[43.08026570,-91.17677353],[43.08159299,-91.60558580],[43.50063223,-91.61071460],[43.50083565,-91.21755872],[43.48030756,-91.21574084],[43.45801912,-91.23303938],[43.41282503,-91.19968237],[43.38944811,-91.19896412],[43.36860525,-91.21458798],[43.35342491,-91.20707854],[43.31374241,-91.10651288],[43.26113749,-91.07164876],[43.25399960,-91.05800130],[43.19781478,-91.12115050],[43.15025611,-91.14709557],[43.13242788,-91.17622756],[43.08026570,-91.17677353]]},{name:"Appanoose",centroid:[40.74145176,-92.86775489],points:[[40.89822225,-93.09759071],[40.89894901,-92.63924798],[40.59092646,-92.63791906],[40.58395450,-93.09722890],[40.89822225,-93.09759071]]},{name:"Audubon",centroid:[41.68383461,-94.89672000],points:[[41.86334437,-95.09288422],[41.86232683,-94.74481495],[41.60223322,-94.74415318],[41.60229820,-94.70058037],[41.50432485,-94.70055579],[41.50510931,-95.04082516],[41.60227356,-95.04075157],[41.60215056,-95.09254622],[41.86334437,-95.09288422]]},{name:"Benton",centroid:[42.08041696,-92.06486353],points:[[42.29730979,-92.06482949],[42.29898671,-91.83107457],[41.86184720,-91.83150077],[41.86285346,-92.29801434],[42.29743492,-92.29865249],[42.29730979,-92.06482949]]},{name:"Black Hawk",centroid:[42.46972204,-92.30940065],points:[[42.64242949,-92.55439082],[42.64196705,-92.08168249],[42.46823736,-92.08144694],[42.46824624,-92.06437359],[42.29730979,-92.06482949],[42.29743492,-92.29865249],[42.29701460,-92.53366951],[42.46957563,-92.53427677],[42.46958225,-92.55442770],[42.55571257,-92.55441188],[42.64242949,-92.55439082]]},{name:"Boone",centroid:[42.03660068,-93.93130220],points:[[42.20988499,-94.16457951],[42.20995628,-93.93157474],[42.20926144,-93.69836176],[41.86324509,-93.69802488],[41.86342353,-93.81591507],[41.86343361,-94.16426814],[42.20988499,-94.16457951]]},{name:"Bremer",centroid:[42.77454767,-92.31797511],points:[[42.90712830,-92.55428834],[42.90681020,-92.08155940],[42.64196705,-92.08168249],[42.64242949,-92.55439082],[42.90712830,-92.55428834]]},{name:"Buchanan",centroid:[42.47015106,-91.83934556],points:[[42.64196705,-92.08168249],[42.64394052,-91.60714041],[42.46912999,-91.60854177],[42.46914144,-91.59742407],[42.29636159,-91.59700863],[42.29898671,-91.83107457],[42.29730979,-92.06482949],[42.46824624,-92.06437359],[42.46823736,-92.08144694],[42.64196705,-92.08168249]]},{name:"Buena Vista",centroid:[42.73512485,-95.15104522],points:[[42.90990101,-95.38816200],[42.90985101,-94.91392844],[42.56034870,-94.91463865],[42.56174427,-95.38805317],[42.90990101,-95.38816200]]},{name:"Butler",centroid:[42.73163239,-92.79063017],points:[[42.90755222,-93.02532504],[42.90712830,-92.55428834],[42.64242949,-92.55439082],[42.55571257,-92.55441188],[42.55679621,-93.02697201],[42.90755222,-93.02532504]]},{name:"Calhoun",centroid:[42.38477226,-94.65603161],points:[[42.56034870,-94.91463865],[42.55888279,-94.44302163],[42.47334357,-94.44294066],[42.47339139,-94.39757560],[42.20919583,-94.39737052],[42.20945112,-94.62869566],[42.20970292,-94.85863599],[42.47400157,-94.85661176],[42.47429499,-94.91469271],[42.56034870,-94.91463865]]},{name:"Carroll",centroid:[42.03629434,-94.86078994],points:[[42.21026185,-95.09076008],[42.20970292,-94.85863599],[42.20945112,-94.62869566],[41.86300341,-94.62872012],[41.86232683,-94.74481495],[41.86334437,-95.09288422],[42.21026185,-95.09076008]]},{name:"Cass",centroid:[41.33161159,-94.92816176],points:[[41.50523571,-95.15473258],[41.50510931,-95.04082516],[41.50432485,-94.70055579],[41.15798746,-94.70051808],[41.15874783,-94.92753314],[41.15925718,-95.15580545],[41.50523571,-95.15473258]]},{name:"Cedar",centroid:[41.77223064,-91.13256296],points:[[41.94744531,-91.36585075],[41.94630835,-90.89856300],[41.77147208,-90.89878387],[41.59701596,-90.89995071],[41.59834764,-91.36656292],[41.85999019,-91.36611357],[41.94744531,-91.36585075]]},{name:"Cerro Gordo",centroid:[43.08142456,-93.26141585],points:[[43.25529690,-93.49747084],[43.25527385,-93.02406120],[43.21280178,-93.02434589],[42.90755222,-93.02532504],[42.90837913,-93.49877051],[43.25529690,-93.49747084]]},{name:"Cherokee",centroid:[42.73522748,-95.62405875],points:[[42.90915877,-95.85944871],[42.90990101,-95.38816200],[42.56174427,-95.38805317],[42.56117371,-95.74160665],[42.56055394,-95.86006433],[42.90915877,-95.85944871]]},{name:"Chickasaw",centroid:[43.05987216,-92.31773860],points:[[43.21274518,-92.55448021],[43.21293411,-92.08099699],[43.08272609,-92.08114125],[42.90681020,-92.08155940],[42.90712830,-92.55428834],[43.21274518,-92.55448021]]},{name:"Clarke",centroid:[41.02956890,-93.78566783],points:[[41.16210483,-93.78916089],[41.16140104,-93.55746584],[40.89839106,-93.55651127],[40.89703297,-94.01482439],[41.15666567,-94.01444210],[41.16210483,-93.78916089]]},{name:"Clay",centroid:[43.08255288,-95.15100556],points:[[43.25525476,-95.38794996],[43.25498853,-94.91384912],[42.90985101,-94.91392844],[42.90990101,-95.38816200],[43.25525476,-95.38794996]]},{name:"Clayton",centroid:[42.86276675,-91.25210646],points:[[43.08159299,-91.60558580],[43.08026570,-91.17677353],[43.04092582,-91.17503402],[42.95895766,-91.14534451],[42.90782445,-91.14597909],[42.86940410,-91.07979695],[42.81067489,-91.07882080],[42.76186660,-91.06048439],[42.75113764,-91.06480746],[42.69573614,-90.97587432],[42.67513660,-90.89707251],[42.64559776,-90.89717228],[42.64593724,-91.13297379],[42.64394052,-91.60714041],[43.08159299,-91.60558580]]},{name:"Clinton",centroid:[41.88077920,-90.51959385],points:[[42.03353918,-90.89835232],[42.03322344,-90.15441988],[41.99627828,-90.14040383],[41.95740132,-90.16400080],[41.91134238,-90.15285878],[41.84364886,-90.18220315],[41.80784033,-90.18141671],[41.76507983,-90.28243180],[41.72892052,-90.31672451],[41.74077915,-90.33997643],[41.72801923,-90.35708284],[41.73718502,-90.38830095],[41.73089509,-90.38963512],[41.72998644,-90.40791996],[41.74140444,-90.41236677],[41.73667289,-90.42747078],[41.74923840,-90.42412287],[41.76069101,-90.43671920],[41.76467457,-90.45059757],[41.75803741,-90.46283486],[41.77397380,-90.47231858],[41.76611294,-90.49255455],[41.76567972,-90.51318568],[41.77656626,-90.53750624],[41.77125409,-90.53996749],[41.76301909,-90.55009819],[41.75914709,-90.57890641],[41.77073857,-90.59191983],[41.75647533,-90.61630381],[41.76538255,-90.62765542],[41.75570195,-90.65009566],[41.76453322,-90.66871866],[41.73457548,-90.71395558],[41.74438540,-90.74922953],[41.76299359,-90.76124179],[41.77134280,-90.78628022],[41.77147208,-90.89878387],[41.94630835,-90.89856300],[42.03353918,-90.89835232]]},{name:"Crawford",centroid:[42.03729001,-95.38179196],points:[[42.21151614,-95.67086888],[42.21100360,-95.32328699],[42.21026185,-95.09076008],[41.86334437,-95.09288422],[41.86341956,-95.55722407],[41.86306387,-95.67282385],[42.21151614,-95.67086888]]},{name:"Dallas",centroid:[41.68323553,-94.03551721],points:[[41.86307749,-94.28057433],[41.86343361,-94.16426814],[41.86342353,-93.81591507],[41.60052841,-93.81416155],[41.60047194,-93.79065961],[41.51190373,-93.79046099],[41.51183024,-93.79046010],[41.50303744,-93.89692755],[41.50358248,-94.24149308],[41.60097273,-94.24130184],[41.60150284,-94.28008897],[41.86307749,-94.28057433]]},{name:"Davis",centroid:[40.74541288,-92.40915152],points:[[40.89894901,-92.63924798],[40.89989929,-92.17905507],[40.60041723,-92.17974039],[40.59092646,-92.63791906],[40.89894901,-92.63924798]]},{name:"Decatur",centroid:[40.73627719,-93.78611273],points:[[40.89703297,-94.01482439],[40.89839106,-93.55651127],[40.58029984,-93.55704839],[40.57416331,-94.01571418],[40.89703297,-94.01482439]]},{name:"Delaware",centroid:[42.47079593,-91.36946664],points:[[42.64394052,-91.60714041],[42.64593724,-91.13297379],[42.29565461,-91.13039151],[42.29627800,-91.36339350],[42.29636159,-91.59700863],[42.46914144,-91.59742407],[42.46912999,-91.60854177],[42.64394052,-91.60714041]]},{name:"Des Moines",centroid:[40.88533947,-91.17573681],points:[[41.07419570,-91.37086706],[41.07275399,-90.94926673],[41.03234989,-90.94227077],[40.92452071,-90.96296726],[40.90430968,-91.00514939],[40.84873121,-91.05628230],[40.82214000,-91.09257042],[40.78022452,-91.09154628],[40.73304056,-91.11434792],[40.69648323,-91.11286836],[40.70620518,-91.15036188],[40.72256874,-91.16237245],[40.72117137,-91.17622689],[40.70816120,-91.18092884],[40.71957669,-91.19636598],[40.71404700,-91.20946037],[40.73193623,-91.21593821],[40.74936295,-91.24504934],[40.75327546,-91.28032495],[40.77324242,-91.29334693],[40.77195539,-91.31078408],[40.81297528,-91.40920285],[40.81260408,-91.37205984],[41.07419570,-91.37086706]]},{name:"Dickinson",centroid:[43.37794442,-95.15089954],points:[[43.50090032,-94.91473827],[43.25498853,-94.91384912],[43.25525476,-95.38794996],[43.50022504,-95.38779760],[43.50090032,-94.91473827]]},{name:"Dubuque",centroid:[42.48491656,-90.80355313],points:[[42.64593724,-91.13297379],[42.64559776,-90.89717228],[42.67513660,-90.89707251],[42.63520161,-90.70773237],[42.59001516,-90.68611835],[42.53836257,-90.64321247],[42.51506920,-90.63614194],[42.49065213,-90.65662264],[42.47646237,-90.65268529],[42.45325549,-90.61425638],[42.43983724,-90.56674750],[42.41500312,-90.55313007],[42.38183702,-90.47413247],[42.38228724,-90.66511927],[42.29469652,-90.66538972],[42.29479074,-90.89809797],[42.29565461,-91.13039151],[42.64593724,-91.13297379]]},{name:"Emmet",centroid:[43.37794442,-94.67869067],points:[[43.50041220,-94.44264307],[43.25513797,-94.44307158],[43.25498853,-94.91384912],[43.50090032,-94.91473827],[43.50041220,-94.44264307]]},{name:"Fayette",centroid:[42.86234657,-91.84363415],points:[[43.08272609,-92.08114125],[43.08159299,-91.60558580],[42.64394052,-91.60714041],[42.64196705,-92.08168249],[42.90681020,-92.08155940],[43.08272609,-92.08114125]]},{name:"Floyd",centroid:[43.05996504,-92.78980669],points:[[43.21280178,-93.02434589],[43.21274518,-92.55448021],[42.90712830,-92.55428834],[42.90755222,-93.02532504],[43.21280178,-93.02434589]]},{name:"Franklin",centroid:[42.73258767,-93.26243565],points:[[42.90837913,-93.49877051],[42.90755222,-93.02532504],[42.55679621,-93.02697201],[42.55762124,-93.49954627],[42.90837913,-93.49877051]]},{name:"Fremont",centroid:[40.74100268,-95.62971198],points:[[40.90158050,-95.81292150],[40.90160697,-95.38475504],[40.72842094,-95.38541816],[40.72821129,-95.37062774],[40.58039839,-95.37397911],[40.58526295,-95.76625822],[40.60377076,-95.74840949],[40.62159868,-95.76824009],[40.64785449,-95.77675603],[40.66114430,-95.79255744],[40.67669129,-95.84215277],[40.70128916,-95.85208388],[40.71701848,-95.88163858],[40.73286225,-95.88879622],[40.75331820,-95.87905055],[40.77836132,-95.83536596],[40.81140481,-95.84557623],[40.83587684,-95.83675252],[40.86212907,-95.84813507],[40.88192478,-95.81421896],[40.90158050,-95.81292150]]},{name:"Greene",centroid:[42.03644420,-94.39649413],points:[[42.20945112,-94.62869566],[42.20919583,-94.39737052],[42.20988499,-94.16457951],[41.86343361,-94.16426814],[41.86307749,-94.28057433],[41.86300341,-94.62872012],[42.20945112,-94.62869566]]},{name:"Grundy",centroid:[42.38302607,-92.78035193],points:[[42.55679621,-93.02697201],[42.55571257,-92.55441188],[42.46958225,-92.55442770],[42.46957563,-92.53427677],[42.29701460,-92.53366951],[42.29662606,-92.76818907],[42.21026996,-92.76761535],[42.20925593,-93.00171383],[42.47066875,-93.00301143],[42.47088607,-93.02703436],[42.55679621,-93.02697201]]},{name:"Guthrie",centroid:[41.68332999,-94.49305840],points:[[41.86232683,-94.74481495],[41.86300341,-94.62872012],[41.86307749,-94.28057433],[41.60150284,-94.28008897],[41.60097273,-94.24130184],[41.50358248,-94.24149308],[41.50432485,-94.70055579],[41.60229820,-94.70058037],[41.60223322,-94.74415318],[41.86232683,-94.74481495]]},{name:"Hamilton",centroid:[42.38365388,-93.71705399],points:[[42.55804631,-93.97142797],[42.55762124,-93.49954627],[42.47097822,-93.49915450],[42.47076404,-93.46262226],[42.20927706,-93.46298310],[42.20926144,-93.69836176],[42.20995628,-93.93157474],[42.47209986,-93.93168057],[42.47198983,-93.97148572],[42.55804631,-93.97142797]]},{name:"Hancock",centroid:[43.08142284,-93.73443558],points:[[43.25527541,-93.97037535],[43.25529690,-93.49747084],[42.90837913,-93.49877051],[42.90754879,-93.97140032],[43.25527541,-93.97037535]]},{name:"Hardin",centroid:[42.38324805,-93.25063005],points:[[42.55762124,-93.49954627],[42.55679621,-93.02697201],[42.47088607,-93.02703436],[42.47066875,-93.00301143],[42.20925593,-93.00171383],[42.20887485,-93.23175404],[42.20927706,-93.46298310],[42.47076404,-93.46262226],[42.47097822,-93.49915450],[42.55762124,-93.49954627]]},{name:"Harrison",centroid:[41.68615712,-95.81869021],points:[[41.86631129,-96.13945676],[41.86306387,-95.67282385],[41.86341956,-95.55722407],[41.60235600,-95.55814373],[41.60228466,-95.49792366],[41.50600295,-95.49812800],[41.50687988,-95.99638689],[41.52508412,-95.99439137],[41.54457600,-96.00781254],[41.54476831,-96.02288610],[41.52223977,-96.03278872],[41.51661233,-96.04826826],[41.52430874,-96.07933613],[41.53934138,-96.09423273],[41.58060361,-96.08201152],[41.59721072,-96.10933335],[41.61467844,-96.11830089],[41.65323217,-96.09488112],[41.68592894,-96.12223240],[41.69679679,-96.11442407],[41.69741420,-96.08611653],[41.70548573,-96.07287173],[41.73890889,-96.10615769],[41.75589673,-96.08116598],[41.79352488,-96.06460569],[41.80815093,-96.07551847],[41.81936545,-96.10660804],[41.84852975,-96.10969084],[41.86631129,-96.13945676]]},{name:"Henry",centroid:[40.98781116,-91.54462968],points:[[41.16242677,-91.48588540],[41.16121888,-91.37046409],[41.07419570,-91.37086706],[40.81260408,-91.37205984],[40.81297528,-91.40920285],[40.81359483,-91.71879528],[40.90106453,-91.71827121],[41.16301824,-91.71609793],[41.16242677,-91.48588540]]},{name:"Howard",centroid:[43.35678018,-92.31717603],points:[[43.50081518,-92.07987185],[43.21293411,-92.08099699],[43.21274518,-92.55448021],[43.50041147,-92.55317813],[43.50081518,-92.07987185]]},{name:"Humboldt",centroid:[42.77646085,-94.20721500],points:[[42.90823153,-94.44314814],[42.90754879,-93.97140032],[42.64469018,-93.97128187],[42.64515542,-94.44312300],[42.90823153,-94.44314814]]},{name:"Ida",centroid:[42.38637393,-95.53195069],points:[[42.56117371,-95.74160665],[42.56174427,-95.38805317],[42.47474962,-95.38752050],[42.47462274,-95.32219820],[42.21100360,-95.32328699],[42.21151614,-95.67086888],[42.47484836,-95.66934010],[42.47482909,-95.74170318],[42.56117371,-95.74160665]]},{name:"Iowa",centroid:[41.68634054,-92.06371196],points:[[41.86285346,-92.29801434],[41.86184720,-91.83150077],[41.51174970,-91.82940959],[41.51103792,-91.94578747],[41.50982763,-92.29734336],[41.86285346,-92.29801434]]},{name:"Jackson",centroid:[42.20775534,-90.52638610],points:[[42.29479074,-90.89809797],[42.29469652,-90.66538972],[42.38228724,-90.66511927],[42.38183702,-90.47413247],[42.32492356,-90.41649919],[42.27991333,-90.43120449],[42.22649973,-90.39263617],[42.20567981,-90.35632853],[42.16647001,-90.23616713],[42.15221539,-90.20893834],[42.12904046,-90.19880125],[42.12140676,-90.16626775],[42.05578973,-90.16652659],[42.03322344,-90.15441988],[42.03353918,-90.89835232],[42.29479074,-90.89809797]]},{name:"Jasper",centroid:[41.68548924,-93.05274153],points:[[41.86307542,-93.34789807],[41.86270698,-93.23177796],[41.86240933,-92.76642116],[41.60148417,-92.76677696],[41.60146451,-92.75727837],[41.50877651,-92.75664704],[41.50852154,-92.87183776],[41.50790306,-93.32858461],[41.60103016,-93.32876281],[41.60082400,-93.34883603],[41.86307542,-93.34789807]]},{name:"Jefferson",centroid:[41.03181615,-91.94812993],points:[[41.16373300,-91.94582909],[41.16301824,-91.71609793],[40.90106453,-91.71827121],[40.89989929,-92.17905507],[41.16262563,-92.18016192],[41.16373300,-91.94582909]]},{name:"Johnson",centroid:[41.64249994,-91.59880717],points:[[41.86184720,-91.83150077],[41.85999019,-91.36611357],[41.59834764,-91.36656292],[41.42315269,-91.36852079],[41.42399922,-91.48412037],[41.44893999,-91.50278485],[41.45948019,-91.49941581],[41.46829773,-91.51621568],[41.47773724,-91.50163349],[41.48876281,-91.50167267],[41.50251871,-91.50819953],[41.49773462,-91.51906337],[41.50791668,-91.52782701],[41.51092881,-91.52198951],[41.51174970,-91.82940959],[41.86184720,-91.83150077]]},{name:"Jones",centroid:[42.12129318,-91.13197436],points:[[42.29565461,-91.13039151],[42.29479074,-90.89809797],[42.03353918,-90.89835232],[41.94630835,-90.89856300],[41.94744531,-91.36585075],[42.29627800,-91.36339350],[42.29565461,-91.13039151]]},{name:"Keokuk",centroid:[41.33647026,-92.17886877],points:[[41.50982763,-92.29734336],[41.51103792,-91.94578747],[41.16373300,-91.94582909],[41.16262563,-92.18016192],[41.16190260,-92.41040011],[41.50958870,-92.41195006],[41.50982763,-92.29734336]]},{name:"Kossuth",centroid:[43.20398049,-94.20676174],points:[[43.49980705,-93.97095208],[43.25527541,-93.97037535],[42.90754879,-93.97140032],[42.90823153,-94.44314814],[43.25513797,-94.44307158],[43.50041220,-94.44264307],[43.49980705,-93.97095208]]},{name:"Lee",centroid:[40.59464141,-91.41583182],points:[[40.81359483,-91.71879528],[40.81297528,-91.40920285],[40.77195539,-91.31078408],[40.77324242,-91.29334693],[40.75327546,-91.28032495],[40.74936295,-91.24504934],[40.73193623,-91.21593821],[40.71404700,-91.20946037],[40.71957669,-91.19636598],[40.70816120,-91.18092884],[40.72117137,-91.17622689],[40.72256874,-91.16237245],[40.70620518,-91.15036188],[40.69648323,-91.11286836],[40.67003987,-91.12307531],[40.63752810,-91.18612887],[40.63777113,-91.25434447],[40.61054344,-91.34726605],[40.55934085,-91.40192283],[40.54190290,-91.40609541],[40.52929724,-91.38240534],[40.48970550,-91.36371468],[40.44577841,-91.38171560],[40.39518047,-91.37494751],[40.38584326,-91.38536238],[40.37837521,-91.41947295],[40.38619585,-91.44322813],[40.37568798,-91.45452406],[40.37722895,-91.46535087],[40.38597695,-91.46534457],[40.38163997,-91.48207358],[40.39522731,-91.49234493],[40.39610520,-91.48078721],[40.40501534,-91.48193315],[40.39985014,-91.49733809],[40.41108363,-91.52478592],[40.43328548,-91.51910571],[40.43846936,-91.53361614],[40.45822547,-91.52635356],[40.46671880,-91.57641161],[40.49277970,-91.59145984],[40.50745960,-91.62004599],[40.54045859,-91.61936895],[40.55624243,-91.68689704],[40.58093375,-91.68612501],[40.59811229,-91.71674645],[40.81359483,-91.71879528]]},{name:"Linn",centroid:[42.07948845,-91.59744714],points:[[42.29636159,-91.59700863],[42.29627800,-91.36339350],[41.94744531,-91.36585075],[41.85999019,-91.36611357],[41.86184720,-91.83150077],[42.29898671,-91.83107457],[42.29636159,-91.59700863]]},{name:"Louisa",centroid:[41.24837661,-91.21636786],points:[[41.42399922,-91.48412037],[41.42315269,-91.36852079],[41.33591851,-91.36933470],[41.33367517,-91.07216125],[41.30601026,-91.07482863],[41.24123716,-91.11363754],[41.20337366,-91.06869262],[41.16646529,-91.04195894],[41.16610034,-91.00782958],[41.15563638,-90.98937730],[41.09733414,-90.94685033],[41.07275399,-90.94926673],[41.07419570,-91.37086706],[41.16121888,-91.37046409],[41.16242677,-91.48588540],[41.42399922,-91.48412037]]},{name:"Lucas",centroid:[41.02981165,-93.32752828],points:[[41.16140104,-93.55746584],[41.16066611,-93.32791418],[41.16072249,-93.09934078],[40.89822225,-93.09759071],[40.89839106,-93.55651127],[41.16140104,-93.55746584]]},{name:"Lyon",centroid:[43.37894540,-96.23201796],points:[[43.50001358,-95.86085960],[43.25752297,-95.86193760],[43.26024866,-96.55512879],[43.25988197,-96.55510743],[43.26842685,-96.58496379],[43.29395458,-96.57922281],[43.29525611,-96.58925735],[43.29952298,-96.57502312],[43.29320287,-96.55151816],[43.30018541,-96.53009588],[43.31167831,-96.52432250],[43.33647509,-96.53501837],[43.34738690,-96.52427621],[43.36893100,-96.53086251],[43.37236704,-96.52189701],[43.38531520,-96.52133789],[43.39613426,-96.52549151],[43.39619352,-96.54494062],[43.41868400,-96.57296399],[43.42846184,-96.57041477],[43.43374302,-96.59411518],[43.45050260,-96.60317633],[43.46673022,-96.58245388],[43.48110301,-96.58098350],[43.50036783,-96.59918023],[43.50001358,-95.86085960]]},{name:"Madison",centroid:[41.33424796,-94.01540156],points:[[41.50358248,-94.24149308],[41.50303744,-93.89692755],[41.51183024,-93.79046010],[41.16210483,-93.78916089],[41.15666567,-94.01444210],[41.15708664,-94.24164223],[41.50358248,-94.24149308]]},{name:"Mahaska",centroid:[41.33525065,-92.64111894],points:[[41.50877651,-92.75664704],[41.50958870,-92.41195006],[41.16190260,-92.41040011],[41.16130584,-92.64014751],[41.16091259,-92.87008565],[41.50852154,-92.87183776],[41.50877651,-92.75664704]]},{name:"Marion",centroid:[41.33459382,-93.09933513],points:[[41.50790306,-93.32858461],[41.50852154,-92.87183776],[41.16091259,-92.87008565],[41.16072249,-93.09934078],[41.16066611,-93.32791418],[41.49202661,-93.32850437],[41.50790306,-93.32858461]]},{name:"Marshall",centroid:[42.03633964,-92.99909956],points:[[42.20925593,-93.00171383],[42.21026996,-92.76761535],[41.86240933,-92.76642116],[41.86270698,-93.23177796],[42.20887485,-93.23175404],[42.20925593,-93.00171383]]},{name:"Mills",centroid:[41.03096953,-95.63339482],points:[[41.16035855,-95.88143987],[41.16004418,-95.38428123],[40.90160697,-95.38475504],[40.90158050,-95.81292150],[40.93048099,-95.83924754],[40.97848763,-95.82976605],[41.00697682,-95.86950326],[41.03457259,-95.85924882],[41.06265623,-95.88250840],[41.08786378,-95.86194819],[41.16035855,-95.88143987]]},{name:"Mitchell",centroid:[43.35657833,-92.78876201],points:[[43.50041147,-92.55317813],[43.21274518,-92.55448021],[43.21280178,-93.02434589],[43.25527385,-93.02406120],[43.49973891,-93.02425900],[43.50041147,-92.55317813]]},{name:"Monona",centroid:[42.03899573,-96.01396048],points:[[42.21492759,-96.35705209],[42.21151614,-95.67086888],[41.86306387,-95.67282385],[41.86631129,-96.13945676],[41.90552878,-96.16174212],[41.92085017,-96.13632603],[41.94260459,-96.14428297],[41.97196009,-96.12957800],[41.97934636,-96.14431887],[41.97750226,-96.18716636],[42.00089588,-96.18360583],[42.00876231,-96.19404853],[42.00741910,-96.21319428],[41.99450367,-96.22564546],[41.99943602,-96.24096770],[42.03285368,-96.22334744],[42.04515821,-96.27148858],[42.07021102,-96.27938395],[42.11146099,-96.26818870],[42.12301550,-96.27786413],[42.13209071,-96.30982453],[42.16288414,-96.34511090],[42.21492759,-96.35705209]]},{name:"Monroe",centroid:[41.02976405,-92.86929438],points:[[41.16091259,-92.87008565],[41.16130584,-92.64014751],[40.89894901,-92.63924798],[40.89822225,-93.09759071],[41.16072249,-93.09934078],[41.16091259,-92.87008565]]},{name:"Montgomery",centroid:[41.03035137,-95.15614409],points:[[41.16004418,-95.38428123],[41.15925718,-95.15580545],[41.15874783,-94.92753314],[40.90065855,-94.92864019],[40.90160697,-95.38475504],[41.16004418,-95.38428123]]},{name:"Muscatine",centroid:[41.46601141,-91.07654193],points:[[41.59701596,-90.89995071],[41.59652409,-90.78374915],[41.45288815,-90.78630285],[41.45430132,-90.85307742],[41.42167737,-90.92973038],[41.43419643,-90.98070415],[41.41954605,-91.03876770],[41.36723632,-91.06609716],[41.33367517,-91.07216125],[41.33591851,-91.36933470],[41.42315269,-91.36852079],[41.59834764,-91.36656292],[41.59701596,-90.89995071]]},{name:"O'Brien",centroid:[43.08334087,-95.62494378],points:[[43.25752297,-95.86193760],[43.25525476,-95.38794996],[42.90990101,-95.38816200],[42.90915877,-95.85944871],[43.25752297,-95.86193760]]},{name:"Osceola",centroid:[43.37773990,-95.62486760],points:[[43.50022504,-95.38779760],[43.25525476,-95.38794996],[43.25752297,-95.86193760],[43.50001358,-95.86085960],[43.50022504,-95.38779760]]},{name:"Page",centroid:[40.73838861,-95.14930684],points:[[40.90160697,-95.38475504],[40.90065855,-94.92864019],[40.72762528,-94.92865850],[40.72751517,-94.91319551],[40.57517025,-94.91540316],[40.58039839,-95.37397911],[40.72821129,-95.37062774],[40.72842094,-95.38541816],[40.90160697,-95.38475504]]},{name:"Palo Alto",centroid:[43.08168475,-94.67850001],points:[[43.25498853,-94.91384912],[43.25513797,-94.44307158],[42.90823153,-94.44314814],[42.90985101,-94.91392844],[43.25498853,-94.91384912]]},{name:"Plymouth",centroid:[42.73485635,-96.24944607],points:[[42.90897585,-96.53844663],[42.90915877,-95.85944871],[42.56055394,-95.86006433],[42.56095288,-96.49911030],[42.57102338,-96.49897798],[42.57400563,-96.48552492],[42.58073870,-96.49604190],[42.58727795,-96.49123702],[42.58904068,-96.50088173],[42.61465685,-96.51137069],[42.60874336,-96.52685401],[42.61418315,-96.53153843],[42.62034797,-96.51746126],[42.63023795,-96.51602867],[42.64544753,-96.53748878],[42.66114925,-96.54295941],[42.65763309,-96.55918512],[42.67620847,-96.56671895],[42.67193627,-96.57882124],[42.68292804,-96.57507094],[42.68316631,-96.58623866],[42.69105787,-96.58998010],[42.68699870,-96.59990481],[42.69897545,-96.59990019],[42.69586058,-96.61247008],[42.70188672,-96.60544805],[42.70528720,-96.63035203],[42.72560003,-96.62466146],[42.72477101,-96.63457873],[42.73637242,-96.63944342],[42.73525090,-96.63080588],[42.74207592,-96.63569041],[42.75457312,-96.61927273],[42.76946615,-96.63619705],[42.79302914,-96.59507768],[42.81460096,-96.59602917],[42.82751618,-96.57781252],[42.83739406,-96.58147806],[42.83772885,-96.56841856],[42.82826378,-96.56328149],[42.83906821,-96.56080799],[42.83994722,-96.54907713],[42.84898736,-96.55608602],[42.85760194,-96.54130068],[42.87042856,-96.54942680],[42.87850371,-96.53780171],[42.88952943,-96.54003134],[42.89188637,-96.52557702],[42.90047017,-96.54025822],[42.90897585,-96.53844663]]},{name:"Pocahontas",centroid:[42.73436690,-94.67883014],points:[[42.90985101,-94.91392844],[42.90823153,-94.44314814],[42.64515542,-94.44312300],[42.55888279,-94.44302163],[42.56034870,-94.91463865],[42.90985101,-94.91392844]]},{name:"Polk",centroid:[41.67270871,-93.57220972],points:[[41.86342353,-93.81591507],[41.86324509,-93.69802488],[41.86307542,-93.34789807],[41.60082400,-93.34883603],[41.60103016,-93.32876281],[41.50790306,-93.32858461],[41.49202661,-93.32850437],[41.48199390,-93.34096494],[41.49797928,-93.35366086],[41.48618509,-93.36444702],[41.49465745,-93.38111424],[41.48642138,-93.40374414],[41.49996814,-93.39737537],[41.49312291,-93.42069836],[41.50615889,-93.41354699],[41.51091522,-93.41944451],[41.50231574,-93.43904170],[41.50759771,-93.44171751],[41.51135447,-93.55820861],[41.51190373,-93.79046099],[41.60047194,-93.79065961],[41.60052841,-93.81416155],[41.86342353,-93.81591507]]},{name:"Pottawattamie",centroid:[41.33306853,-95.58721461],points:[[41.50687988,-95.99638689],[41.50600295,-95.49812800],[41.50523571,-95.15473258],[41.15925718,-95.15580545],[41.16004418,-95.38428123],[41.16035855,-95.88143987],[41.16854642,-95.86847416],[41.16713337,-95.84545944],[41.17808788,-95.84233469],[41.18769077,-95.86113793],[41.18451484,-95.90866879],[41.19112698,-95.92326383],[41.20630507,-95.92754052],[41.23230609,-95.91078790],[41.26104457,-95.92229140],[41.27160283,-95.91457988],[41.28721561,-95.93067011],[41.29852662,-95.92805831],[41.30084398,-95.90623424],[41.27957558,-95.91318119],[41.27367225,-95.90249494],[41.28821174,-95.87371335],[41.30816797,-95.87507751],[41.31908538,-95.88813315],[41.32302901,-95.92691353],[41.34540763,-95.95707576],[41.36838839,-95.92923992],[41.39411502,-95.93771530],[41.45247247,-95.92022603],[41.46660295,-95.93961994],[41.46315882,-95.96213063],[41.47371452,-96.00844010],[41.48885238,-96.01969663],[41.50687988,-95.99638689]]},{name:"Poweshiek",centroid:[41.68581498,-92.53206016],points:[[41.86240933,-92.76642116],[41.86285346,-92.29801434],[41.50982763,-92.29734336],[41.50958870,-92.41195006],[41.50877651,-92.75664704],[41.60146451,-92.75727837],[41.60148417,-92.76677696],[41.86240933,-92.76642116]]},{name:"Ringgold",centroid:[40.73509711,-94.24309223],points:[[40.89931912,-94.47105893],[40.89703297,-94.01482439],[40.57416331,-94.01571418],[40.57087509,-94.47136007],[40.89931912,-94.47105893]]},{name:"Sac",centroid:[42.38572360,-95.12233247],points:[[42.56174427,-95.38805317],[42.56034870,-94.91463865],[42.47429499,-94.91469271],[42.47400157,-94.85661176],[42.20970292,-94.85863599],[42.21026185,-95.09076008],[42.21100360,-95.32328699],[42.47462274,-95.32219820],[42.47474962,-95.38752050],[42.56174427,-95.38805317]]},{name:"Scott",centroid:[41.61306110,-90.60660817],points:[[41.77125409,-90.53996749],[41.77656626,-90.53750624],[41.76567972,-90.51318568],[41.76611294,-90.49255455],[41.77397380,-90.47231858],[41.75803741,-90.46283486],[41.76467457,-90.45059757],[41.76069101,-90.43671920],[41.74923840,-90.42412287],[41.73667289,-90.42747078],[41.74140444,-90.41236677],[41.72998644,-90.40791996],[41.73089509,-90.38963512],[41.73718502,-90.38830095],[41.72801923,-90.35708284],[41.74077915,-90.33997643],[41.72892052,-90.31672451],[41.69892874,-90.31326564],[41.67973133,-90.33465126],[41.64613649,-90.34377767],[41.58734407,-90.34384119],[41.56526280,-90.41324650],[41.51994649,-90.47069528],[41.52643301,-90.54271660],[41.51033403,-90.59817827],[41.48979105,-90.61047158],[41.46179200,-90.65703017],[41.44955594,-90.74343420],[41.45288815,-90.78630285],[41.59652409,-90.78374915],[41.59701596,-90.89995071],[41.77147208,-90.89878387],[41.77134280,-90.78628022],[41.76299359,-90.76124179],[41.74438540,-90.74922953],[41.73457548,-90.71395558],[41.76453322,-90.66871866],[41.75570195,-90.65009566],[41.76538255,-90.62765542],[41.75647533,-90.61630381],[41.77073857,-90.59191983],[41.75914709,-90.57890641],[41.76301909,-90.55009819],[41.77125409,-90.53996749]]},{name:"Shelby",centroid:[41.68426444,-95.29944765],points:[[41.86341956,-95.55722407],[41.86334437,-95.09288422],[41.60215056,-95.09254622],[41.60227356,-95.04075157],[41.50510931,-95.04082516],[41.50523571,-95.15473258],[41.50600295,-95.49812800],[41.60228466,-95.49792366],[41.60235600,-95.55814373],[41.86341956,-95.55722407]]},{name:"Sioux",centroid:[43.08461225,-96.21555782],points:[[43.26024866,-96.55512879],[43.25752297,-95.86193760],[42.90915877,-95.85944871],[42.90897585,-96.53844663],[42.92462526,-96.54084297],[42.93568661,-96.52527783],[42.93265041,-96.51650505],[42.94034216,-96.51964344],[42.95773023,-96.49892822],[42.98012930,-96.52081408],[43.00804630,-96.49217518],[43.02790346,-96.51313136],[43.03980421,-96.51080608],[43.03963102,-96.52121357],[43.05002377,-96.51058816],[43.06424713,-96.46099624],[43.08488332,-96.45403958],[43.09271247,-96.46240015],[43.12016910,-96.43636752],[43.14258546,-96.45076829],[43.15189553,-96.46845276],[43.18161249,-96.46491576],[43.18963895,-96.47400585],[43.22052677,-96.47545980],[43.22377454,-96.49664264],[43.21757179,-96.51919244],[43.22762518,-96.53624947],[43.22294858,-96.55908639],[43.23879333,-96.57166694],[43.24727692,-96.54934795],[43.25988197,-96.55510743],[43.26024866,-96.55512879]]},{name:"Story",centroid:[42.03599202,-93.46505790],points:[[42.20926144,-93.69836176],[42.20927706,-93.46298310],[42.20887485,-93.23175404],[41.86270698,-93.23177796],[41.86307542,-93.34789807],[41.86324509,-93.69802488],[42.20926144,-93.69836176]]},{name:"Tama",centroid:[42.07992212,-92.53310171],points:[[42.29701460,-92.53366951],[42.29743492,-92.29865249],[41.86285346,-92.29801434],[41.86240933,-92.76642116],[42.21026996,-92.76761535],[42.29662606,-92.76818907],[42.29701460,-92.53366951]]},{name:"Taylor",centroid:[40.73576682,-94.69985872],points:[[40.90065855,-94.92864019],[40.89931912,-94.47105893],[40.57087509,-94.47136007],[40.57517025,-94.91540316],[40.72751517,-94.91319551],[40.72762528,-94.92865850],[40.90065855,-94.92864019]]},{name:"Union",centroid:[41.02729095,-94.24275051],points:[[41.15754894,-94.47078868],[41.15708664,-94.24164223],[41.15666567,-94.01444210],[40.89703297,-94.01482439],[40.89931912,-94.47105893],[41.15754894,-94.47078868]]},{name:"Van Buren",centroid:[40.74958841,-91.94824342],points:[[40.89989929,-92.17905507],[40.90106453,-91.71827121],[40.81359483,-91.71879528],[40.59811229,-91.71674645],[40.61376292,-91.72937323],[40.60041723,-92.17974039],[40.89989929,-92.17905507]]},{name:"Wapello",centroid:[41.03078732,-92.40960129],points:[[41.16190260,-92.41040011],[41.16262563,-92.18016192],[40.89989929,-92.17905507],[40.89894901,-92.63924798],[41.16130584,-92.64014751],[41.16190260,-92.41040011]]},{name:"Warren",centroid:[41.33628492,-93.55918758],points:[[41.51183024,-93.79046010],[41.51190373,-93.79046099],[41.51135447,-93.55820861],[41.50759771,-93.44171751],[41.50231574,-93.43904170],[41.51091522,-93.41944451],[41.50615889,-93.41354699],[41.49312291,-93.42069836],[41.49996814,-93.39737537],[41.48642138,-93.40374414],[41.49465745,-93.38111424],[41.48618509,-93.36444702],[41.49797928,-93.35366086],[41.48199390,-93.34096494],[41.49202661,-93.32850437],[41.16066611,-93.32791418],[41.16140104,-93.55746584],[41.16210483,-93.78916089],[41.51183024,-93.79046010]]},{name:"Washington",centroid:[41.33708824,-91.71497473],points:[[41.51103792,-91.94578747],[41.51174970,-91.82940959],[41.51092881,-91.52198951],[41.50791668,-91.52782701],[41.49773462,-91.51906337],[41.50251871,-91.50819953],[41.48876281,-91.50167267],[41.47773724,-91.50163349],[41.46829773,-91.51621568],[41.45948019,-91.49941581],[41.44893999,-91.50278485],[41.42399922,-91.48412037],[41.16242677,-91.48588540],[41.16301824,-91.71609793],[41.16373300,-91.94582909],[41.51103792,-91.94578747]]},{name:"Wayne",centroid:[40.73934545,-93.32713865],points:[[40.89839106,-93.55651127],[40.89822225,-93.09759071],[40.58395450,-93.09722890],[40.58029984,-93.55704839],[40.89839106,-93.55651127]]},{name:"Webster",centroid:[42.42717563,-94.18734887],points:[[42.64515542,-94.44312300],[42.64469018,-93.97128187],[42.55804631,-93.97142797],[42.47198983,-93.97148572],[42.47209986,-93.93168057],[42.20995628,-93.93157474],[42.20988499,-94.16457951],[42.20919583,-94.39737052],[42.47339139,-94.39757560],[42.47334357,-94.44294066],[42.55888279,-94.44302163],[42.64515542,-94.44312300]]},{name:"Winnebago",centroid:[43.37754123,-93.73415232],points:[[43.49961502,-93.49735255],[43.25529690,-93.49747084],[43.25527541,-93.97037535],[43.49980705,-93.97095208],[43.49961502,-93.49735255]]},{name:"Winneshiek",centroid:[43.29120408,-91.84336353],points:[[43.50063223,-91.61071460],[43.08159299,-91.60558580],[43.08272609,-92.08114125],[43.21293411,-92.08099699],[43.50081518,-92.07987185],[43.50063223,-91.61071460]]},{name:"Woodbury",centroid:[42.38634493,-96.08422520],points:[[42.56095288,-96.49911030],[42.56055394,-95.86006433],[42.56117371,-95.74160665],[42.47482909,-95.74170318],[42.47484836,-95.66934010],[42.21151614,-95.67086888],[42.21492759,-96.35705209],[42.22978714,-96.32372900],[42.25663806,-96.33028379],[42.28003707,-96.36189531],[42.31663789,-96.37414196],[42.33737288,-96.40843048],[42.35479665,-96.41799194],[42.37712355,-96.40850065],[42.40475940,-96.41564943],[42.43922955,-96.38319909],[42.47115987,-96.38432467],[42.48717835,-96.40415121],[42.49231726,-96.47522136],[42.50652594,-96.47432098],[42.51778374,-96.49312206],[42.52525160,-96.47953190],[42.55546552,-96.47664020],[42.56095288,-96.49911030]]},{name:"Worth",centroid:[43.37750638,-93.26076602],points:[[43.49973891,-93.02425900],[43.25527385,-93.02406120],[43.25529690,-93.49747084],[43.49961502,-93.49735255],[43.49973891,-93.02425900]]},{name:"Wright",centroid:[42.73300019,-93.73509924],points:[[42.90754879,-93.97140032],[42.90837913,-93.49877051],[42.55762124,-93.49954627],[42.55804631,-93.97142797],[42.64469018,-93.97128187],[42.90754879,-93.97140032]]}],
+	regions: []
+};
+
+</script>
+
+<script type="text/javascript">
+var opt = window.opt || {};
+
+(function() {
+
+var imgBaseUrl = 'http://mg.to/iowa/server/images/';
+//var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
+
+function loadScript( url ) {
+	var script = document.createElement( 'script' );
+	script.type = 'text/javascript';
+	script.charset = 'utf-8';
+	var seq = (new Date).getTime();
+	script.src = url + '?q=' + seq;
+	script.title = 'jsonresult';
+	$('head')[0].appendChild( script );
+}
+
+if( ! Array.prototype.forEach ) {
+	Array.prototype.forEach = function( fun /*, thisp*/ ) {
+		if( typeof fun != 'function' )
+			throw new TypeError();
+		
+		var thisp = arguments[1];
+		for( var i = 0, n = this.length;  i < n;  ++i ) {
+			if( i in this )
+				fun.call( thisp, this[i], i, this );
+		}
+	};
+}
+
+if( ! Array.prototype.map ) {
+	Array.prototype.map = function( fun /*, thisp*/ ) {
+		var len = this.length;
+		if( typeof fun != 'function' )
+			throw new TypeError();
+		
+		var res = new Array( len );
+		var thisp = arguments[1];
+		for( var i = 0;  i < len;  ++i ) {
+			if( i in this )
+				res[i] = fun.call( thisp, this[i], i, this );
+		}
+		
+		return res;
+	};
+}
+
+if( ! Array.prototype.index ) {
+	Array.prototype.index = function( field ) {
+		this.by = {};
+		var by = this.by[field] = {};
+		for( var i = 0, n = this.length;  i < n;  ++i ) {
+			var obj = this[i];
+			by[obj[field]] = obj;
+			obj.index = i;
+		}
+		return this;
+	};
+}
+
+String.prototype.trim = function() {
+	return this.replace( /^\s\s*/, '' ).replace( /\s\s*$/, '' );
+};
+
+String.prototype.words = function( fun ) {
+	this.split(' ').forEach( fun );
+};
+
+var parties = [
+	{ name: 'democrat', shortName: 'Democratic', fullName: 'Democratic Party' },
+	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party' }
+].index('name');
+
+var candidates = {
+	all: [],
+	democrat: [
+		{ name: 'biden', lastName: 'Biden', fullName: 'Joe Biden', color: '#20FF1F' },
+		{ name: 'clinton', lastName: 'Clinton', fullName: 'Hillary Clinton', color: '#FFFA00' },
+		{ name: 'dodd', lastName: 'Dodd', fullName: 'Chris Dodd', color: '#E4Af95' },
+		{ name: 'edwards', lastName: 'Edwards', fullName: 'John Edwards', color: '#FF1300' },
+		{ name: 'gravel', lastName: 'Gravel', fullName: 'Mike Gravel', color: '#8A5C2E' },
+		{ name: 'kucinich', lastName: 'Kucinich', fullName: 'Dennis Kucinich', color: '#EE00B5' },
+		{ name: 'obama', lastName: 'Obama', fullName: 'Barack Obama', color: '#1700E8' },
+		{ name: 'richardson', lastName: 'Richardson', fullName: 'Bill Richardson', color: '#336633' }
+	],
+	republican: [
+		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#20FF1F' },
+		{ name: 'huckabee', lastName: 'Huckabee', fullName: 'Mike Huckabee', color: '#1700E8' },
+		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#E4Af95' },
+		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#8A5C2E' },
+		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#FF1300' },
+		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FFFA00' },
+		{ name: 'tancredo', lastName: 'Tancredo', fullName: 'Tom Tancredo', color: '#EE00B5' },
+		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#336633' }
+	]
+};
+
+//var preloadCandidates = candidates.all.forEach( function( candidate ) {
+//	var img = new Image( 16, 16 );
+//	img.src = imgUrl( candidate.name );
+//	return img;
+//});
+
+var candidateNameList = [];
+parties.forEach( function( party ) {
+	var list = candidates[party.name];
+	list.forEach( function( candidate ) {
+		candidate.party = party;
+		candidates.all.push( candidate );
+		candidateNameList.push( candidate.name );
+	});
+	list.index( 'name' );
+});
+
+candidates.all.index( 'name' );
+
+var reCandidates = new RegExp( candidateNameList.join('|'), 'g' );
+
+function candidateIcon( name ) {
+	var icon = new GIcon;
+	icon.image = imgUrl( name + '-border' );
+	icon.shadow = '';
+	icon.iconSize = new GSize( 18, 18 );
+	icon.shadowSize = new GSize( 0, 0 );
+	icon.iconAnchor = new GPoint( 9, 9 );
+	icon.infoWindowAnchor = new GPoint( 9, 9 );
+	return icon;
+}
+
+function loadCandidateIcons() {
+	parties.forEach( function( party ) {
+		candidates[party.name].forEach( function( candidate ) {
+			candidate.icon = candidateIcon( candidate.name );
+		});
+	});
+}
+
+// GAsync v2 by Michael Geary
+// Commented version and description at:
+// http://mg.to/2007/06/22/write-the-same-code-for-google-mapplets-and-maps-api
+// Free beer and free speech license. Enjoy!
+
+function GAsync( obj ) {
+	
+	function callback() {
+		args[nArgs].apply( null, results );
+	}
+	
+	function queue( iResult, name, next ) {
+		
+		function ready( value ) {
+			results[iResult] = value;
+			if( ! --nCalls )
+				callback();
+		}
+		
+		var a = [];
+		if( next.join )
+			a = a.concat(next), ++iArg;
+		if( mapplet ) {
+			a.push( ready );
+			obj[ name+'Async' ].apply( obj, a );
+		}
+		else {
+			results[iResult] = obj[name].apply( obj, a );
+		}
+	}
+	
+	var mapplet = ! window.GBrowserIsCompatible;
+	var args = arguments, nArgs = args.length - 1;
+	var results = [], nCalls = 0;
+	
+	for( var iArg = 1;  iArg < nArgs;  ++iArg ) {
+		var name = args[iArg];
+		if( typeof name == 'object' )
+			obj = name;
+		else
+			queue( nCalls++, name, args[iArg+1] );
+	}
+	
+	if( ! mapplet )
+		callback();
+}
+
+//var mapplet = location.host == 'gmodules.com';
+var mapplet = ! window.GBrowserIsCompatible;
+
+if( 0 ) {
+	var gFeedURLs = {
+		news:'http://mg.to/iowa/section.xml',
+		events:'http://mg.to/iowa/caucus_events.xml'
+	};
+}
+else {
+	var gFeedURLs = {
+		news: 'http://news.google.com/?ned=us&topic=el&output=rss',
+		events:'http://data.desmoinesregister.com/newsroom_google/xml/caucus_events.xml',
+		video: 'http://www.youtube.com/rss/user/iowacaucuses/videos.rss'
+	};
+}
+
+var map;
+
+var counties = Data.counties, state = Data.state;
+counties.index( 'name' );
+
+//var allEventData = [];
+var eventMarkers = [];
+var icons = {};
+
+function onEventsReady( xml ) {
+	var items = {
+		eventtitle:1, eventid:1, eventdate:1, eventtimestart:1, eventendtime:1,
+		venueid:1, venuename:1, venueaddress:1, venuecity:1, venuelat:1, venuelng:1,
+		party:1, feclist:1, etidlist:1, candnamelist:1, iscurrent:1, eventdetailslink:1
+	};
+	
+	$('marker',xml).each( function() {
+		var event = {};
+		for( var item in items ) event[item] = this.getAttribute(item);
+		event.latlng = new GLatLng( +event.venuelat, +event.venuelng );
+		event.marker = addEventMarker( event );
+		//allEventData.push( event );
+	});
+	
+	initMap();
+}
+
+function addEventMarker( event ) {
+	var color = { b:'white', d:'blue', r:'red' }[event.party] || 'white';
+	var icon = icons[color];
+	var marker = new GMarker( event.latlng, { icon:icons[color] } );
+	GEvent.addListener( marker, 'click', function() {
+		marker.openInfoWindowHtml( formatEvent(event), { maxWidth:500 } );
+	});
+	eventMarkers.push( marker );
+	map.addOverlay( marker );
+	return marker;
+}
+
+function onNewsReady( xml ) {
+	var videos = [];
+	$('rss channel item',xml).each( function( i ) {
+		if( i > 4 ) return false;
+		var $item = $(this);
+		var $thumb = $('thumbnail',this);
+		videos.push({
+			link: $('link',this).text(),
+			//thumb: $thumb.attr('url'),
+			//width: +$thumb.attr('width') / 2,
+			//height: +$thumb.attr('height') / 2,
+			title: $('title:first',this).text()
+		});
+		return true;
+	});
+	
+	var html = [
+		'<h2 class="VideoHeading"><a href="http://news.google.com/?ned=us&topic=el">Campaign News</a></h2>',
+		videos.map( function( video ) {
+			return [
+				'<div class="Video">',
+					//'<a class="VideoLink" href="', video.link, '" target="_blank">',
+					//	'<img class="VideoThumb" src="', video.thumb, '" style="width:', video.width, 'px; height:', video.height, 'px; border:0;" />',
+					//'</a>',
+					'<a href="', video.link, '" target="_blank">',
+						'<div class="VideoTitle">',
+							video.title,
+						'</div>',
+					'</a>',
+				'</div>',
+				'<div class="VideoBorder">',
+				'</div>'
+			].join('');
+		}).join(''),
+	].join('');
+	
+	$('#news').html( html );
+	
+	if( mapplet )
+		_IG_AdjustIFrameHeight();
+}
+
+function onVideoReady( xml ) {
+	var videos = [];
+	$('rss channel item',xml).each( function( i ) {
+		if( i > 2 ) return false;
+		var $item = $(this);
+		var $thumb = $('thumbnail',this);
+		if( ! $thumb.length )
+			$thumb = $( this.getElementsByTagName( 'media:thumbnail' ) );
+		videos.push({
+			link: $('link',this).text(),
+			thumb: $thumb.attr('url'),
+			width: +$thumb.attr('width') / 2,
+			height: +$thumb.attr('height') / 2,
+			title: $('title:first',this).text()
+		});
+		return true;
+	});
+	
+	var html = [
+		'<h2 class="VideoHeading"><a href="http://www.youtube.com/profile_videos?user=iowacaucuses">Latest Videos</a></h2>',
+		videos.map( function( video ) {
+			var thumb = ! video.thumb ? '' : [
+				'<a class="VideoLink" href="', video.link, '" target="_blank">',
+					'<img class="VideoThumb" src="', video.thumb, '" style="width:', video.width, 'px; height:', video.height, 'px; border:0;" />',
+				'</a>'
+			].join('');
+			return [
+				'<div class="Video">',
+					thumb,
+					'<a href="', video.link, '" target="_blank">',
+						'<div class="VideoTitle">',
+							video.title,
+						'</div>',
+					'</a>',
+				'</div>',
+				'<div class="VideoBorder">',
+				'</div>'
+			].join('');
+		}).join(''),
+	].join('');
+	
+	$('#videos').html( html );
+	
+	if( mapplet )
+		_IG_AdjustIFrameHeight();
+}
+
+function initMap() {
+	if( ! mapplet ) {
+		GEvent.addListener( map, 'mousemove', mousemoved.hover );
+		GEvent.addListener( map, 'mouseout', mousemoved.clear );
+	}
+	
+	//setTimeout( function() { $('#clicknote').show( 'slow' ); }, 1000 );
+}
+
+function polyMethod( name, fn ) {
+	GPolygon.prototype[name] = GPolyline.prototype[name] = fn;
+}
+
+polyMethod( 'contains', function( latlng ) {
+	var inside = false;
+	var x = latlng.lng(), y = latlng.lat();
+	var n = this.getVertexCount();
+	var v = this.getVertex(n-1), x1 = v.lng(), y1 = v.lat();
+
+	for( var i = 0;  i < n;  ++i ) {
+		var v = this.getVertex(i), x2 = v.lng(), y2 = v.lat();
+		
+		if( ( y1 < y  &&  y2 >= y ) || ( y2 < y  &&  y1 >= y ) )
+			if ( x1 + ( y - y1 ) / ( y2 - y1 ) * ( x2 - x1 ) < x )
+				inside = ! inside;
+		
+		x1 = x2, y1 = y2;
+	}
+	return inside;
+});
+
+function initControls() {
+/*
+	var $lst = $('#lstRegions');
+	option({ name:'', caption:'Entire State' });
+	'northwest northcentral northeast southwest southcentral southeast'.words( function( name ) {
+		option( regions.by.name[name] );
+	});
+	
+	function option( region ) {
+		var opt = document.createElement('option');
+		opt.innerHTML = region.caption;
+		opt.value = region.name;
+		$lst.append( opt );
+	}
+	
+	$lst.bind( 'change', function() {
+		zoomRegion( regions.by.name[this.value] );
+	});
+*/
+/*
+	$('#chkEvents').bind( 'click', function() {
+		map.closeInfoWindow();
+		var method = this.checked ? 'show' : 'hide';
+		eventMarkers.forEach( function( marker ) {
+			marker[method]();
+		});
+	});
+*/
+}
+
+function zoomRegion( region ) {
+	map.closeInfoWindow();
+	if( ! region ) {
+		map.setCenter( new GLatLng( 41.94, -93.69 ), 7 );
+		//selectRegion();
+	}
+	else {
+		GAsync( region.polygon.base, 'getBounds',
+			function( bounds ) {
+				GAsync( map, 'getBoundsZoomLevel', [ bounds ],
+					function( zoom ) {
+						//selectRegion( region );
+						var center = new GLatLng( region.centroid[1], region.centroid[0] );
+						map.setCenter( center, zoom );
+					});
+			});
+	}
+}
+
+function formatEvent( event ) {
+	var href = event.eventdetailslink;
+	var link = ! href ? '' : [
+		'<div style="margin-top:6px;">',
+			'<a href="', event.eventdetailslink, '" target="_blank">Event details&#8230;</a>',
+		'</div>'
+	].join('');
+	var names = event.candnamelist.replace( /,+$/, '' ).replace( /, /, ',' ).replace( /,/, ', ' ).trim();
+
+	var who = ! names ? '' : [
+		'<tr>',
+			'<td><b>Candidate:&nbsp;</b></td>',
+			'<td>', candidateIcons(names,'width:16; height:16; float:left; margin:2px 4px 2px 2px;'), names, '</td>',
+		'</tr>'
+	].join('');
+	
+	var where = event.venuename == event.venuecity ? '' : [
+		'<tr>',
+			'<td><b>Where:&nbsp;</b></td>',
+			'<td>', event.venuename, '</td>',
+		'</tr>'
+	].join('');
+
+	return [
+		'<div style="margin-top:8px;">',
+			'<div style="font-size: 120%; font-weight: bold; margin-bottom:6px;">', event.eventtitle, '</div>',
+			'<table>',
+				who,
+				where,
+				'<tr>',
+					'<td><b>Address:&nbsp;</b></td>',
+					'<td>', ( event.venueaddress ? event.venueaddress + ', ' : '' ), event.venuecity, '</td>',
+				'</tr>',
+				'<tr>',
+					'<td><b>When:&nbsp;</b></td>',
+					'<td>', event.eventdate, ' at ', event.eventtimestart, '</td>',
+				'</tr>',
+			'</table>',
+			link,
+		'</div>'
+	].join('');
+}
+
+/*
+ function getEvents(regionIdx) {
+	var poly = regions[regionIdx].polygon.base;
+	var html = '<div style="width:350px;height:200px;overflow:auto;font-size:12px;">';
+	for(var i=0; i<allEventData.length; i++) {
+		if (poly.Contains(allEventData[i].latlng))
+			html += formatEvent(allEventData[i]);
+	}
+	html += '</div>';
+	return html;
+}
+*/
+
+//function createNewsMarker(latlng, html, regionIdx) {
+//	var marker = new GMarker( latlng, { icon:icon08 } );
+//	
+//	GEvent.addListener(marker, "click", function() {
+//		var tabs = [];
+//		var eventTab = new GInfoWindowTab('News', html);
+//		tabs.push(eventTab);
+//		/*
+//		var eventsHTML = getEvents(regionIdx);
+//		if (eventsHTML)
+//			tabs.push(new GInfoWindowTab('Events', eventsHTML));
+//		*/
+//		tabs.push(new GInfoWindowTab('Results', ''));
+//		tabs.push(new GInfoWindowTab('Videos', ''));
+//		marker.openInfoWindowTabsHtml(tabs);
+//	});
+//	
+//	return marker;	
+//}
+
+function randomColor() {
+	return '#' + hh() + hh() + hh();
+	function hh() {
+		var xx = Math.floor( Math.random() *128 + 64 ).toString(16);
+		return xx.length == 2 ? xx : '0'+xx;
+	}
+}
+
+function showVotes( json, party ) {
+	$('script[title=jsonresult]').remove();
+	showState( json, party );
+	showCounties( json, party );
+}
+
+function showState( json, party ) {
+	if( opt.projector ) showStateProjector( json, party );
+	else showStateNormal( json, party );
+}
+
+function formatNumber( nStr ) {
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+
+function showStateProjector( json, party ) {
+	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	var rows = [];
+	addRow( 0 );
+	addRow( 1 );
+	
+	var html = [
+		'<table>',
+			rows.join(''),
+		'</table>',
+		'<div class="legendreporting">',
+			precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+		'</div>'
+	].join('');
+	
+	$('#legend').html( html );
+	
+	function addRow( start ) {
+		var cols = [];
+		for( var i = start;  i < tallies.length;  i += 2 ) {
+			var tally = tallies[i];
+			var candidate = candidates.all.by.name[tally.name];
+			cols.push( [
+				'<td class="legendboxtd">',
+					'<div class="legendbox" style="border:1px solid #888888; background-color:', candidate.color, ';">',
+						'&nbsp;',
+					'</div>',
+				'</td>',
+				'<td class="legendnametd">',
+					'<div class="legendname">',
+						candidate.lastName,
+					'</div>',
+					'<div class="legendvotes">',
+						formatNumber(tally.votes),
+					'</div>',
+					'<div class="legendclear">',
+					'</div>',
+				'</td>'
+			].join('') );
+		}
+		
+		rows.push( [
+			'<tr>',
+				cols.join(''),
+			'</tr>'
+		].join('') );
+	}
+}
+
+function showStateNormal( json, party ) {
+}
+
+function showCounties( json, party ) {
+	counties.forEach( function( county ) {
+		var vertices = county.vertices;
+		
+		if( json ) {
+			var data = json.counties[county.name];
+			var tallies = county.tallies = data.candidates;
+			county.total = data.total;
+			
+			var leader = tallies[0];
+			if( leader ) {
+				var votes = leader.votes;
+				var candidate = candidates[party].by.name[leader.name];
+				var icon = candidate.icon;
+				
+				if( ! opt.projector ) {
+					var marker = new GMarker( new GLatLng( county.centroid[0], county.centroid[1] ), { icon:icon } );
+					map.addOverlay( marker );
+				}
+				
+				var color = candidate.color;
+			}
+		}
+		
+		var pts = county.vertices;
+		var border = '#000080';
+		if( json ) {
+			county.polygon = {
+				base:
+					opt.projector ? new GPolygon( pts, border, 1, .75, color, .9 )  :
+					votes ? new GPolygon( pts, border, 1, .75, color, .7 ) :
+					new GPolygon( pts, border, 1, .75 ) //,
+				//select: new GPolygon( pts, color2, 1, .75, color2, .15 )
+			};
+		}
+		else {
+			var color = randomColor();
+			county.polygon = {
+				base: new GPolygon( pts, border, 1, .5, color, .15 )
+			};
+		}
+		map.addOverlay( county.polygon.base );
+	});
+	
+	initMap();
+}
+
+function makeIcons() {
+	'red white blue'.words( function( color ) {
+		icons[color] = makeColorIcon( color );
+	});
+	loadCandidateIcons();
+}
+
+function makeColorIcon( color ) {
+	var icon = new GIcon;
+	icon.image = 'http://www.google.com/intl/en_us/mapfiles/ms/icons/' + color + '-dot.png';
+	//icon.shadow = '';
+	icon.iconSize = new GSize( 32, 32 );
+	//icon.shadowSize = new GSize( 0, 0 );
+	icon.iconAnchor = new GPoint( 16, 32 );
+	icon.infoWindowAnchor = new GPoint( 16, 0 );
+	return icon;
+}
+
+Json = {
+	democratResults: function( json ) { showVotes( json, 'democrat' ); },
+	republicanResults: function( json ) { showVotes( json, 'republican' ); }
+};
+
+function load() {
+	if( mapplet ) {
+		map = new GMap2;
+		zoomRegion();
+	}
+	else {
+		if( ! GBrowserIsCompatible() ) return;
+		map = new GMap2( $('#map')[0] );
+		zoomRegion();
+		map.enableContinuousZoom();
+		map.enableDoubleClickZoom();
+		map.enableGoogleBar();
+		map.enableScrollWheelZoom();
+		map.addControl( new GLargeMapControl() );
+	}
+	
+	makeIcons();
+	
+	counties.forEach( function( county ) {
+		var points = county.points;
+		var pts = county.vertices = [];
+		for( var i = 0, n = points.length;  i < n;  ++i ) {
+			var point = points[i];
+			pts.push( new GLatLng( point[0], point[1] ) );
+		}
+	});
+	
+	if( mapplet ) showVotes();
+	
+	var q = location.search.slice(1);
+	var party = parties.by.name[q];
+	if( party ) {
+		$('#votestitle').html( party.shortName + ' Caucus Results' );
+		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
+		loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
+	}
+	else {
+		download( gFeedURLs.events, onEventsReady );
+		download( gFeedURLs.video, onVideoReady );
+		download( gFeedURLs.news, onNewsReady );
+	}
+	
+	//initControls();
+	if( mapplet )
+		_IG_AdjustIFrameHeight();
+}
+
+var mousemoved = function( latlng ) {
+	//$('#test').html( latlng.lng() + ' : ' + latlng.lat() );
+	
+/*
+	for( var i = 0, n = regions.length;  i < n;  ++i ) {
+		var region = regions[i];
+		if( region.polygon.base.contains( latlng ) ) {
+			//$('#test').css({ color: region.color });
+			break;
+		}
+	}
+	
+	if( i == n ) i = -1;
+	region = regions[i];
+	
+	selectRegion( region );
+*/
+	
+	for( var i = 0, n = counties.length;  i < n;  ++i ) {
+		var county = counties[i];
+		if( county.polygon.base.contains( latlng ) ) {
+			//$('#test').css({ color: region.color });
+			break;
+		}
+	}
+
+	if( i == n ) i = -1;
+	county = counties[i];
+	
+	if( county ) {
+		var lines = [];
+		if( county.total ) {
+			var tallies = county.tallies;
+			tallies.forEach( function( tally ) {
+				var candidate = candidates.all.by.name[tally.name];
+				lines.push( [
+					'<table>',
+						'<tr>',
+							'<td>',
+								'<img class="favicon" src="', imgUrl(tally.name), '" />',
+							'</td>',
+							'<td>',
+								tally.votes,
+							'</td>',
+							'<td>',
+								candidate.lastName,
+							'</td>',
+						'</tr>',
+					'</table>'
+				].join('') );
+			});
+		}
+		else {
+			lines.push( '<div>No votes reported</div>' );
+		}
+		
+		$('#results').html( [
+			'<h2>', county.name, ' County</h2>',
+			lines.join('')
+		].join('') );
+	}
+};
+
+if( ! mapplet ) mousemoved = hoverize( mousemoved );
+
+/*
+function selectRegion( region ) {
+	if( region == regions.selected ) return;
+	if( regions.selected )
+		map.removeOverlay( regions.selected.polygon.select );
+	regions.selected = region;
+	if( region )
+		map.addOverlay( region.polygon.select );
+	showRegionNews( region );
+}
+*/
+
+/*
+function showRegionNews( region ) {
+	if( ! region ) {
+		$('#news')
+			.css({ backgroundColor:'inherit' })
+			.html( [
+				'<h2 class="NewsHeading">',
+					mapplet ? 'Click the map for regional news' : 'Rest the mouse over the map for regional news',
+				'</h2>'
+			].join('') );
+		return;
+	}
+	
+	var news = region.news;
+	
+	var list = [];
+	news && news.forEach( function( item ) {
+		list.push( [
+			'<div class="NewsItem">',
+				candidateIcons( item.title ),
+				'<a href="', item.link, '" target="_blank">', item.title, '</a>',
+			'</div>'
+		].join('') );
+	});
+	
+	$('#news')
+		.css({ backgroundColor:region.solid })
+		.html( [
+			'<h2 class="NewsHeading">',
+				region.caption, ' Iowa News',
+			'</h2>',
+			'<div class="NewsList">',
+				list.join(''),
+			'</div>'
+		].join('') );
+	
+	if( mapplet )
+		_IG_AdjustIFrameHeight();
+}
+*/
+
+function imgUrl( name ) {
+	return imgBaseUrl + name + '.png';
+}
+
+function candidateIcons( text, style ) {
+	var names = text.toLowerCase().match(reCandidates) || [ 'generic' ];
+	var icons = names.map( function( name ) {
+		return [
+			'<img ',
+				style != null ? 'style="' + style + '"' : 'class="favicon"',
+				' src="', imgUrl(name), '" />'
+		].join('');
+	});
+	
+	return icons.join('');
+}
+
+function download( url, ready ) {
+	if( mapplet ) {
+		_IG_FetchXmlContent( url, ready );
+	}
+	else {
+		GDownloadUrl( 'proxy.php?url=' + encodeURIComponent(url), function( data ) {
+			ready( GXml.parse(data) );
+		});
+	}
+}
+
+$(window).bind( 'load', load ).bind( 'onunload', GUnload );
+
+})();
+</script>
+
+<div id="outer">
+
+<!--
+	<div>
+		<select id="lstRegions">
+			<option value="">
+				Zoom to a region
+			</option>
+		</select>
+		<input type="checkbox" checked id="chkEvents" xstyle="margin-left:16px;" />
+		<label for="chkEvents">Show Events</label>
+	</div>
+-->
+
+	<div id="links">
+		<a href="http://www.desmoinesregister.com/apps/pbcs.dll/article?AID=/20071219/NEWS09/71219068" target="_blank">How the caucuses work</a>
+		|
+		<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>
+	</div>
+	
+	<div>
+		Come back Thursday night for <b>live results</b>!
+	</div>
+
+	<div id="videos">
+		Loading&#8230;
+	</div>
+	<div id="news">
+	</div>
+
+</div>
+
+]]></Content>
+</Module>

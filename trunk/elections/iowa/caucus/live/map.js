@@ -789,9 +789,8 @@ function showStateNormal( json, party ) {
 	
 	function addRows() {
 		var cols = [];
-		for( var i = 0;  i < cands.length;  ++i ) {
-			var candidate = candidates[party][i];
-			var tally = tallies.by.name[candidate.name];
+		tallies.forEach( function( tally ) {
+			var candidate = candidates.all.by.name[tally.name];
 			rows.push( [
 				'<tr>',
 					'<td class="legendboxtd">',
@@ -811,7 +810,7 @@ function showStateNormal( json, party ) {
 					'</td>',
 				'</tr>'
 			].join('') );
-		}
+		});
 	}
 }
 

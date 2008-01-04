@@ -930,23 +930,23 @@ function load() {
 	}
 	
 	$('#btnDem').click( function() {
-		loadResults( 'democrat' );
+		loadResults( parties.by.name['democrat'] );
 		return false;
 	});
 
 	$('#btnRep').click( function() {
-		loadResults( 'republican' );
+		loadResults( parties.by.name['republican'] );
 		return false;
 	});
 	
 	function loadResults( party ) {
-		$('#votestitle').html( parties.by.name[party].shortName + ' Caucus Results' );
+		$('#votestitle').html( party.shortName + ' Caucus Results' );
 		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
 		//if( testdata )
 		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );
 		//else
-			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party + '_results.js' );
+			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
 	}
 	
 	

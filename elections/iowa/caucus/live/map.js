@@ -364,6 +364,10 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'.NewsList  a:hover { text-decoration:underline; }',
 				'.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }',
 				'.favicon { width:16; height:16; float:left; padding:2px 4px 2px 2px; }',
+				'#fullstate { margin-top:12px; }',
+				'#fullstate table { width:700px; }',
+				'#fullstate th, #fullstate td { text-align: right; background-color:#E8E8E8; padding:2px; }',
+				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
 			'</style>',
 			'<table>',
 				'<tr valign="top">',
@@ -375,12 +379,15 @@ var mapplet = ! window.GBrowserIsCompatible;
 						'<div id="votesbar">',
 							'<h1 id="votestitle">Caucus Results</h1>',
 							'<div id="results">',
-								'Roll the mouse over the map for county totals',
+								'Roll the mouse over the map for county totals<br /><br />',
+								'Scroll down for statewide details',
 							'</div>',
 						'</div>',
 					'</td>',
 				'</tr>',
-			'</table>'
+			'</table>',
+			'<div id="fullstate">',
+			'</div>'
 		] ).join('') );
 
 if( 0 ) {
@@ -701,7 +708,8 @@ function showVotes( json, party ) {
 
 function showState( json, party ) {
 	if( opt.projector ) showStateProjector( json, party );
-	else showStateNormal( json, party );
+	else if( mapplet ) showStateSidebar( json, party );
+	else showStateTable( json, party );
 }
 
 function formatNumber( nStr ) {
@@ -777,7 +785,7 @@ function showStateProjector( json, party ) {
 	}
 }
 
-function showStateNormal( json, party ) {
+function showStateSidebar( json, party ) {
 	var state = json.state, tallies = state.candidates, precincts = state.precincts;
 	tallies.index('name');
 	var rows = [];
@@ -815,12 +823,57 @@ function showStateNormal( json, party ) {
 						'<div class="legendname">',
 							candidate.lastName,
 						'</div>',
-						//'<div class="legendclear">',
-						//'</div>',
 					'</td>',
 				'</tr>'
 			].join('') );
 		});
+	}
+}
+
+function showStateTable( json, party ) {
+	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	tallies.index('name');
+	var cands = candidates[party];
+	
+	var html = [
+		'<table>',
+			'<thead>',
+				header(),
+			'</thead>',
+			'<tbody>',
+				rows(),
+			'</tbody>',
+		'</table>',
+		'<div class="legendreporting">',
+			precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+		'</div>'
+	].join('');
+	
+	$('#fullstate').html( html );
+	
+	function header() {
+		return [
+			'<th class="countyname">County</th>',
+			cands.map( function( candidate ) {
+				return [ '<th>', candidate.lastName, '</th>' ].join('');
+			}).join(''),
+		].join('');
+	}
+	
+	function rows() {
+		return counties.map( function( county ) {
+			var tallies = json.counties[county.name].candidates;
+			tallies.index('name');
+			return [
+				'<tr>',
+					'<td class="countyname">', county.name, '</td>',
+					cands.map( function( candidate ) {
+						var tally = tallies.by.name[candidate.name] || { votes:0 };
+						return [ '<td>', formatNumber(tally.votes), '</td>' ].join('');
+					}).join(''),
+				'</tr>'
+			].join('');
+		}).join('');
 	}
 }
 

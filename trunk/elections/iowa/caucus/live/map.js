@@ -862,7 +862,8 @@ function load() {
 	if( party ) {
 		$('#votestitle').html( party.shortName + ' Caucus Results' );
 		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
-		loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
+		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
+		loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + q + '_results.js' );
 	}
 	else {
 		download( gFeedURLs.events, onEventsReady );

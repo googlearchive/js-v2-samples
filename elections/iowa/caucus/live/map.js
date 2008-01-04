@@ -306,6 +306,14 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'.VideoTitle { font-size:110%; }',
 				'.VideoThumb { float:left; margin-right:8px; }',
 				'.VideoBorder { clear:left; }',
+				'#legend table { width:100%; }',
+				'#legend .legendboxtd { width:10%; }',
+				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
+				'#legend .legendbox { height:24px; width:24px; float:left; margin-right:4px; }',
+				'#legend .legendname { font-size:12pt; }',
+				'#legend .legendvotes { font-size:10pt; }',
+				'#legend .legendclear { clear:left; }',
+				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<div id="outer">',
 				//'<div>',
@@ -323,12 +331,14 @@ var mapplet = ! window.GBrowserIsCompatible;
 					'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				'</div>',
 				'<div>',
-					'Come back tonight for <b>live results</b>!',
+					'Vote results:',
+					'<button style="margin-left:8px;" id="btnDem">Democrat</button>',
+					'<button style="margin-left:8px;" id="btnRep">Republican</button>',
 				'</div>',
-				'<div id="videos">',
-					'Loading&#8230;',
-				'</div>',
-				'<div id="news">',
+				'<div id="votesbar">',
+					'<h1 id="votestitle"></h1>',
+					'<div id="legend">',
+					'</div>',
 				'</div>',
 			'</div>'
 		] : [
@@ -672,10 +682,13 @@ function randomColor() {
 }
 
 function showVotes( json, party ) {
+	map.clearOverlays();
 	$('script[title=jsonresult]').remove();
 	if( json.status == 'later' ) return;
 	showState( json, party );
 	showCounties( json, party );
+	if( mapplet )
+		_IG_AdjustIFrameHeight();
 }
 
 function showState( json, party ) {
@@ -757,6 +770,49 @@ function showStateProjector( json, party ) {
 }
 
 function showStateNormal( json, party ) {
+	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	tallies.index('name');
+	var rows = [];
+	var cands = candidates[party];
+	addRows();
+	
+	var html = [
+		'<table>',
+			rows.join(''),
+		'</table>',
+		'<div class="legendreporting">',
+			precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+		'</div>'
+	].join('');
+	
+	$('#legend').html( html );
+	
+	function addRows() {
+		var cols = [];
+		for( var i = 0;  i < cands.length;  ++i ) {
+			var candidate = candidates[party][i];
+			var tally = tallies.by.name[candidate.name];
+			rows.push( [
+				'<tr>',
+					'<td class="legendboxtd">',
+						'<div class="legendbox" style="border:1px solid #888888; background-color:', candidate.color, ';">',
+							'&nbsp;',
+						'</div>',
+					'</td>',
+					'<td class="legendnametd">',
+						'<div class="legendname">',
+							candidate.lastName,
+						'</div>',
+						'<div class="legendvotes">',
+							formatNumber(tally.votes),
+						'</div>',
+						'<div class="legendclear">',
+						'</div>',
+					'</td>',
+				'</tr>'
+			].join('') );
+		}
+	}
 }
 
 function showCounties( json, party ) {
@@ -774,7 +830,7 @@ function showCounties( json, party ) {
 				var candidate = candidates[party].by.name[leader.name];
 				var icon = candidate.icon;
 				
-				if( ! opt.projector ) {
+				if( ! opt.projector  &&  ! mapplet ) {
 					var marker = new GMarker( new GLatLng( county.centroid[0], county.centroid[1] ), { icon:icon } );
 					map.addOverlay( marker );
 				}
@@ -865,19 +921,34 @@ function load() {
 	var q = opt.party || location.search.slice(1);
 	var party = parties.by.name[q];
 	if( party ) {
-		$('#votestitle').html( party.shortName + ' Caucus Results' );
-		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
-		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
-		if( testdata )
-			loadScript( 'http://gigapad/iowa/server/test.' + q + '_results.js' );
-		else
-			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + q + '_results.js' );
+		loadResults( party );
 	}
 	else {
-		download( gFeedURLs.events, onEventsReady );
-		download( gFeedURLs.video, onVideoReady );
-		download( gFeedURLs.news, onNewsReady );
+		//download( gFeedURLs.events, onEventsReady );
+		//download( gFeedURLs.video, onVideoReady );
+		//download( gFeedURLs.news, onNewsReady );
 	}
+	
+	$('#btnDem').click( function() {
+		loadResults( 'democrat' );
+		return false;
+	});
+
+	$('#btnRep').click( function() {
+		loadResults( 'republican' );
+		return false;
+	});
+	
+	function loadResults( party ) {
+		$('#votestitle').html( parties.by.name[party].shortName + ' Caucus Results' );
+		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
+		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
+		//if( testdata )
+		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );
+		//else
+			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party + '_results.js' );
+	}
+	
 	
 	//initControls();
 	if( mapplet )

@@ -280,7 +280,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#legend .legendname { font-size:24px; }',
 				'#legend .legendvotes { font-size:18px; }',
 				'#legend .legendclear { clear:left; }',
-				'#legend .legendreporting { font-size:20px; }',
+				'#legend .legendreporting * { font-size:20px; }',
 			'</style>',
 			'<div id="legend" style="width: 700px; height: 140px">',
 			'</div>',
@@ -673,6 +673,7 @@ function randomColor() {
 
 function showVotes( json, party ) {
 	$('script[title=jsonresult]').remove();
+	if( json.status == 'later' ) return;
 	showState( json, party );
 	showCounties( json, party );
 }
@@ -705,7 +706,18 @@ function showStateProjector( json, party ) {
 			rows.join(''),
 		'</table>',
 		'<div class="legendreporting">',
-			precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+			'<table>',
+				'<tr>',
+					'<td style="text-align:left;">',
+						'LIVE: Leading candidates by county',
+					'</td>',
+					'<td style="text-align:right;">',
+						precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+					'</td>',
+				'</tr>',
+		'</table>',
+			'<div style="clear:both;>',
+			'</div>',
 		'</div>'
 	].join('');
 	

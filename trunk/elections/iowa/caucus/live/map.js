@@ -856,7 +856,7 @@ function load() {
 		}
 	});
 	
-	if( mapplet ) showVotes();
+	//if( mapplet ) showVotes();
 	
 	var testdata = false;
 	if( location.search.slice(1) == 'test' )

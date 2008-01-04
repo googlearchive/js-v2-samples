@@ -931,6 +931,7 @@ function load() {
 		//download( gFeedURLs.events, onEventsReady );
 		download( gFeedURLs.video, onVideoReady );
 		download( gFeedURLs.news, onNewsReady );
+		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
 	}
 	
 	$('#btnDem').click( function() {
@@ -942,9 +943,6 @@ function load() {
 		loadResults( parties.by.name['republican'] );
 		return false;
 	});
-	
-	loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
-
 	
 	function loadResults( party ) {
 		$('#votestitle').html( party.shortName + ' Caucus Results' );

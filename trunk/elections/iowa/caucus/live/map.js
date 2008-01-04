@@ -306,7 +306,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'.VideoTitle { font-size:110%; }',
 				'.VideoThumb { float:left; margin-right:8px; }',
 				'.VideoBorder { clear:left; }',
-				'#legend h1 { margin:0; padding:0; }',
+				'#votestitle { margin:12px 0 6px 0; padding:0; }',
 				'#legend table { xwidth:100%; }',
 				'#legend .legendboxtd { width:1%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',

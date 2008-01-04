@@ -1003,9 +1003,10 @@ function load() {
 	});
 	
 	function loadResults( party ) {
-		$('#votestitle').html( [
-			'<a href="', party.url, '" target="_blank">', party.fullName, '</a>'
-		].join('') );
+		if( mapplet )
+			$('#votestitle').html( [
+				'<a href="', party.url, '" target="_blank">', party.fullName, '</a>'
+			].join('') );
 		$('#legend').html( 'Loading&#8230;' );
 		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );

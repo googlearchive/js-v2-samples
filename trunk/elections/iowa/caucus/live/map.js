@@ -137,8 +137,8 @@ String.prototype.words = function( fun ) {
 };
 
 var parties = [
-	{ name: 'democrat', shortName: 'Democratic', fullName: 'Democratic Party' },
-	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party' }
+	{ name: 'democrat', shortName: 'Democratic', fullName: 'Iowa Democratic Party', url:'http://www.iowademocrats.org/' },
+	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party of Iowa', url:'http://www.iowagop.net/' }
 ].index('name');
 
 var candidates = {
@@ -1003,7 +1003,9 @@ function load() {
 	});
 	
 	function loadResults( party ) {
-		$('#votestitle').html( party.shortName + ' Caucus Results' );
+		$('#votestitle').html( [
+			'<a href="', party.url, '" target="_blank">', party.fullName, '</a>'
+		].join('') );
 		$('#legend').html( 'Loading&#8230;' );
 		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );

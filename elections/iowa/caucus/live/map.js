@@ -526,8 +526,8 @@ function onVideoReady( xml ) {
 
 function initMap() {
 	if( ! mapplet ) {
-		GEvent.addListener( map, 'mousemove', mousemoved.hover );
-		GEvent.addListener( map, 'mouseout', mousemoved.clear );
+		GEvent.addListener( map, 'mousemove', mousemoved/*.hover*/ );
+		//GEvent.addListener( map, 'mouseout', mousemoved.clear );
 	}
 	
 	//setTimeout( function() { $('#clicknote').show( 'slow' ); }, 1000 );
@@ -1028,7 +1028,7 @@ var mousemoved = function( latlng ) {
 	}
 };
 
-if( ! mapplet ) mousemoved = hoverize( mousemoved );
+//if( ! mapplet ) mousemoved = hoverize( mousemoved );
 
 /*
 function selectRegion( region ) {

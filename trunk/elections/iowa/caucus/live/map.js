@@ -327,18 +327,23 @@ var mapplet = ! window.GBrowserIsCompatible;
 				//'</div>',
 				'<div id="links">',
 					'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/article?AID=/20071219/NEWS09/71219068" target="_blank">How the caucuses work</a>',
-					'|',
+					'&nbsp;|&nbsp;',
 					'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				'</div>',
-				'<div>',
-					'Vote results:',
-					'<button style="margin-left:8px;" id="btnDem">Democrat</button>',
+				'<div style="margin-top:8px;">',
+					'<b>Vote results:</b>',
+					'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
 					'<button style="margin-left:8px;" id="btnRep">Republican</button>',
 				'</div>',
 				'<div id="votesbar">',
 					'<h1 id="votestitle"></h1>',
 					'<div id="legend">',
+						'Loading&#8230;',
 					'</div>',
+				'</div>',
+				'<div id="videos">',
+				'</div>',
+				'<div id="news">',
 				'</div>',
 			'</div>'
 		] : [
@@ -924,8 +929,8 @@ function load() {
 	}
 	else {
 		//download( gFeedURLs.events, onEventsReady );
-		//download( gFeedURLs.video, onVideoReady );
-		//download( gFeedURLs.news, onNewsReady );
+		download( gFeedURLs.video, onVideoReady );
+		download( gFeedURLs.news, onNewsReady );
 	}
 	
 	$('#btnDem').click( function() {
@@ -937,6 +942,9 @@ function load() {
 		loadResults( parties.by.name['republican'] );
 		return false;
 	});
+	
+	loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
+
 	
 	function loadResults( party ) {
 		$('#votestitle').html( party.shortName + ' Caucus Results' );

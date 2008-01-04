@@ -375,6 +375,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 						'<div id="votesbar">',
 							'<h1 id="votestitle">Caucus Results</h1>',
 							'<div id="results">',
+								'Roll the mouse over the map for county totals',
 							'</div>',
 						'</div>',
 					'</td>',

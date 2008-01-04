@@ -341,9 +341,9 @@ var mapplet = ! window.GBrowserIsCompatible;
 						'Loading&#8230;',
 					'</div>',
 				'</div>',
-				'<div id="videos">',
+				'<div id="videos" style="margin-top:8px;">',
 				'</div>',
-				'<div id="news">',
+				'<div id="news" style="margin-top:6px;">',
 				'</div>',
 			'</div>'
 		] : [

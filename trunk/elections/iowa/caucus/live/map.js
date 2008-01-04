@@ -154,14 +154,14 @@ var candidates = {
 		{ name: 'richardson', lastName: 'Richardson', fullName: 'Bill Richardson', color: '#336633' }
 	],
 	republican: [
-		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#20FF1F' },
+		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#336633' },
 		{ name: 'huckabee', lastName: 'Huckabee', fullName: 'Mike Huckabee', color: '#1700E8' },
-		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#E4Af95' },
-		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#8A5C2E' },
-		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#FF1300' },
-		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FFFA00' },
+		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#8A5C2E' },
+		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#FFFA00' },
+		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#E4Af95' },
+		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FF1300' },
 		{ name: 'tancredo', lastName: 'Tancredo', fullName: 'Tom Tancredo', color: '#EE00B5' },
-		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#336633' }
+		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#20FF1F' }
 	]
 };
 
@@ -697,9 +697,10 @@ function formatNumber( nStr ) {
 
 function showStateProjector( json, party ) {
 	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	tallies.index('name');
 	var rows = [];
-	addRow( 0 );
-	addRow( 1 );
+	addRow( 0, 3 );
+	addRow( 4, 7 );
 	
 	var html = [
 		'<table>',
@@ -723,11 +724,11 @@ function showStateProjector( json, party ) {
 	
 	$('#legend').html( html );
 	
-	function addRow( start ) {
+	function addRow( start, end ) {
 		var cols = [];
-		for( var i = start;  i < tallies.length;  i += 2 ) {
-			var tally = tallies[i];
-			var candidate = candidates.all.by.name[tally.name];
+		for( var i = start;  i <= end;  ++i ) {
+			var candidate = candidates[party][i];
+			var tally = tallies.by.name[candidate.name];
 			cols.push( [
 				'<td class="legendboxtd">',
 					'<div class="legendbox" style="border:1px solid #888888; background-color:', candidate.color, ';">',

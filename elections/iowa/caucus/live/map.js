@@ -950,6 +950,7 @@ function load() {
 	
 	function loadResults( party ) {
 		$('#votestitle').html( party.shortName + ' Caucus Results' );
+		$('#legend').html( 'Loading&#8230;' );
 		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
 		//if( testdata )

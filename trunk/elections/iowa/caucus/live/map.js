@@ -857,13 +857,20 @@ function load() {
 	
 	if( mapplet ) showVotes();
 	
+	var testdata = false;
+	if( location.search.slice(1) == 'test' )
+		testdata = true;
+		
 	var q = opt.party || location.search.slice(1);
 	var party = parties.by.name[q];
 	if( party ) {
 		$('#votestitle').html( party.shortName + ' Caucus Results' );
 		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
-		loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + q + '_results.js' );
+		if( testdata )
+			loadScript( 'http://gigapad/iowa/server/test.' + q + '_results.js' );
+		else
+			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + q + '_results.js' );
 	}
 	else {
 		download( gFeedURLs.events, onEventsReady );

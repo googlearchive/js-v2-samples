@@ -368,6 +368,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#fullstate table { width:700px; }',
 				'#fullstate th, #fullstate td { text-align: right; background-color:#E8E8E8; padding:2px; }',
 				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
+				'.statewide * { font-weight: bold; }',
 			'</style>',
 			'<table>',
 				'<tr valign="top">',
@@ -841,7 +842,8 @@ function showStateTable( json, party ) {
 				header(),
 			'</thead>',
 			'<tbody>',
-				rows(),
+				stateRow(),
+				countyRows(),
 			'</tbody>',
 		'</table>',
 		'<div class="legendreporting">',
@@ -860,20 +862,28 @@ function showStateTable( json, party ) {
 		].join('');
 	}
 	
-	function rows() {
+	function countyRows() {
 		return counties.map( function( county ) {
-			var tallies = json.counties[county.name].candidates;
-			tallies.index('name');
-			return [
-				'<tr>',
-					'<td class="countyname">', county.name, '</td>',
-					cands.map( function( candidate ) {
-						var tally = tallies.by.name[candidate.name] || { votes:0 };
-						return [ '<td>', formatNumber(tally.votes), '</td>' ].join('');
-					}).join(''),
-				'</tr>'
-			].join('');
+			return row( county );
 		}).join('');
+	}
+	
+	function stateRow() {
+		return row( null, 'Entire State', 'statewide' );
+	}
+	
+	function row( county, name, clas ) {
+		var tallies = county ? json.counties[county.name].candidates : json.state.candidates;
+		tallies.index('name');
+		return [
+			'<tr class="', clas, '">',
+				'<td class="countyname">', name || county.name, '</td>',
+				cands.map( function( candidate ) {
+					var tally = tallies.by.name[candidate.name] || { votes:0 };
+					return [ '<td>', formatNumber(tally.votes), '</td>' ].join('');
+				}).join(''),
+			'</tr>'
+		].join('');
 	}
 }
 

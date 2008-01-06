@@ -297,11 +297,11 @@ function addTableRow(columnLat, columnLng, label, entryNum, isFound){
 
   entryTR.onmouseover = function() { 
      highlightMarker(entryNum,false);
-     highlightRow(entryNum);
+     highlightRow(entryNum, false);
      return true;};
   entryInfoTR.onmouseover = function() { 
      highlightMarker(entryNum,false);
-     highlightRow(entryNum);
+     highlightRow(entryNum, false);
      return true;};
 
   entryTR.appendChild(columnLatTD);
@@ -352,12 +352,12 @@ function createMarker(point, entryNum, isFound) {
   var label =entries[entryNum]["gsx$" + identifier].$t;
   var marker = new GMarker(point, {icon:nIcon, draggable:true});
   GEvent.addListener(marker, "mouseover", function() {
-    highlightRow(entryNum,true);
+    highlightRow(entryNum, true);
     highlight(marker.getPoint());
   });
   
   GEvent.addListener(marker, "mouseout", function() {
-    highlightRow(-1,false);
+    highlightRow(-1, false);
     highlight(-1);
   });
   
@@ -417,7 +417,7 @@ function highlightMarker(entryNum){
  * Also scrolls to that row in table, in case table is very long.
  * @param entryNum {Number} Row # of desired location to highlight
  */
-function highlightRow(entryNum,fromMarker) {
+function highlightRow(entryNum, fromMarker) {
   var hColor = "#dddddd";
   for(var i = 0; i < entries.length; ++i) {
     document.getElementById("latTD"+i).style.backgroundColor = "#FFFFFF";
@@ -429,12 +429,10 @@ function highlightRow(entryNum,fromMarker) {
     document.getElementById("lngTD"+entryNum).style.backgroundColor = hColor;
     document.getElementById("labelTD"+entryNum).style.backgroundColor = hColor;
   }
-  /*
-  if(entryNum > -1) {
+  if(entryNum > -1 && fromMarker) {
     var infoDiv = document.getElementById("infoDIV");
     infoDiv.scrollTop = 40*entryNum - 180;
   } 
-  */
 }
 
 function getJSON(query) {

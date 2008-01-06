@@ -2,11 +2,6 @@
 xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
 <title>Batch Geocode Addresses from a Google Spreadsheet</title>
-<style type="text/css">
-   v\:* {
-     behavior:url(#default#VML);
-   }
-</style>
 <script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" 
   type="text/javascript"></script>
 
@@ -294,6 +289,7 @@ function addTableRow(columnLat, columnLng, label, entryNum, isFound){
   columnLngTD.appendChild(document.createTextNode(columnLng));
   labelTD.appendChild(document.createTextNode(label));
   iconTD.setAttribute("width","20");
+  iconTD.setAttribute("height","20");
   var iconIMG = document.createElement("IMG");
   iconIMG.id = "markerImg" + entryNum;
   iconIMG.border = "0";

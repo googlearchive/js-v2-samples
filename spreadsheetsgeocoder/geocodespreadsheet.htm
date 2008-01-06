@@ -506,6 +506,11 @@ function geocodeAll() {
  }
 }
 
+function enableGeocoding() {
+  var geocodeBUTTON = document.getElementById('geocodeBUTTON');
+  geocodeBUTTON.removeAttribute('disabled');
+}
+
 </script>
 <link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css" />
 <style type="text/css">
@@ -609,9 +614,9 @@ the full address.
   <tbody id="columnsTBODY">
   </tbody>
  </table>
-<input type="button" onclick="startGeocoding();" disabled="true" id="geocodeBUTTON" value="Find Addresses"/>
+<input type="checkbox" id="geocodeCHECKBOX" onclick="enableGeocoding()"/> I agree to abide by the Maps API <a>Terms of Use</a>.
 <br/>
-<input type="checkbox" id="geocodeCHECKBOX" onclick="enableGeocode()"/> I agree to abide by the Maps API <a>Terms of Use</a>.
+<input type="button" onclick="startGeocoding();" disabled="true" id="geocodeBUTTON" value="Find Addresses"/>
 </form>
 <br/>
 </div>

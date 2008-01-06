@@ -1,0 +1,2622 @@
+<?xml version="1.0"?>
+<gpx>
+<bounds minlat=" 42.69699000" minlon="-72.55722931" maxlat=" 45.30547600" maxlon="-70.703816697"/>
+<name>cs33_d00.shp</name>
+
+<rte><number>0</number><name>Pittsburg</name><cmt>1</cmt>
+ <rtept lat=" 45.01483046" lon="-71.05974006"></rtept>
+ <rtept lat=" 45.01479066" lon="-71.17521016"></rtept>
+ <rtept lat=" 45.05598733" lon="-71.41518578"></rtept>
+ <rtept lat=" 45.01363635" lon="-71.46454219"></rtept>
+ <rtept lat=" 45.05144973" lon="-71.50510201"></rtept>
+ <rtept lat=" 45.20353910" lon="-71.39779163"></rtept>
+ <rtept lat=" 45.23856623" lon="-71.44229200"></rtept>
+ <rtept lat=" 45.30245093" lon="-71.28439131"></rtept>
+ <rtept lat=" 45.24971122" lon="-71.23113416"></rtept>
+ <rtept lat=" 45.24294462" lon="-71.13942677"></rtept>
+ <rtept lat=" 45.30547600" lon="-71.08557256"></rtept>
+ <rtept lat=" 45.01483046" lon="-71.05974006"></rtept>
+</rte>
+
+<rte><number>1</number><name>Clarksville</name><cmt>2</cmt>
+ <rtept lat=" 45.01479066" lon="-71.17521016"></rtept>
+ <rtept lat=" 44.95974234" lon="-71.18870357"></rtept>
+ <rtept lat=" 44.96471779" lon="-71.22556166"></rtept>
+ <rtept lat=" 44.97347457" lon="-71.28992400"></rtept>
+ <rtept lat=" 45.00093902" lon="-71.48754864"></rtept>
+ <rtept lat=" 45.01363635" lon="-71.46454219"></rtept>
+ <rtept lat=" 45.05598733" lon="-71.41518578"></rtept>
+ <rtept lat=" 45.01479066" lon="-71.17521016"></rtept>
+</rte>
+
+<rte><number>2</number><name>Atkinson and Gilmanton Academy</name><cmt>3</cmt>
+ <rtept lat=" 45.01479066" lon="-71.17521016"></rtept>
+ <rtept lat=" 45.01483046" lon="-71.05974006"></rtept>
+ <rtept lat=" 44.97351437" lon="-71.05587911"></rtept>
+ <rtept lat=" 44.95488631" lon="-71.15280076"></rtept>
+ <rtept lat=" 44.95974234" lon="-71.18870357"></rtept>
+ <rtept lat=" 45.01479066" lon="-71.17521016"></rtept>
+</rte>
+
+<rte><number>3</number><name>Stewartstown</name><cmt>4</cmt>
+ <rtept lat=" 45.00093902" lon="-71.48754864"></rtept>
+ <rtept lat=" 44.97347457" lon="-71.28992400"></rtept>
+ <rtept lat=" 44.91579922" lon="-71.30819383"></rtept>
+ <rtept lat=" 44.94318407" lon="-71.51557034"></rtept>
+ <rtept lat=" 44.99417242" lon="-71.53698465"></rtept>
+ <rtept lat=" 45.00093902" lon="-71.48754864"></rtept>
+</rte>
+
+<rte><number>4</number><name>Second College</name><cmt>5</cmt>
+ <rtept lat=" 44.86357696" lon="-71.04640587"></rtept>
+ <rtept lat=" 44.85764623" lon="-71.17564800"></rtept>
+ <rtept lat=" 44.95488631" lon="-71.15280076"></rtept>
+ <rtept lat=" 44.97351437" lon="-71.05587911"></rtept>
+ <rtept lat=" 44.86357696" lon="-71.04640587"></rtept>
+</rte>
+
+<rte><number>5</number><name>Dixville</name><cmt>6</cmt>
+ <rtept lat=" 44.97347457" lon="-71.28992400"></rtept>
+ <rtept lat=" 44.96471779" lon="-71.22556166"></rtept>
+ <rtept lat=" 44.85585507" lon="-71.21791938"></rtept>
+ <rtept lat=" 44.82488791" lon="-71.21592920"></rtept>
+ <rtept lat=" 44.81847954" lon="-71.32984697"></rtept>
+ <rtept lat=" 44.82202205" lon="-71.35341067"></rtept>
+ <rtept lat=" 44.85637252" lon="-71.34421605"></rtept>
+ <rtept lat=" 44.91579922" lon="-71.30819383"></rtept>
+ <rtept lat=" 44.97347457" lon="-71.28992400"></rtept>
+</rte>
+
+<rte><number>6</number><name>Dixs</name><cmt>7</cmt>
+ <rtept lat=" 44.95974234" lon="-71.18870357"></rtept>
+ <rtept lat=" 44.95488631" lon="-71.15280076"></rtept>
+ <rtept lat=" 44.85764623" lon="-71.17564800"></rtept>
+ <rtept lat=" 44.85585507" lon="-71.21791938"></rtept>
+ <rtept lat=" 44.96471779" lon="-71.22556166"></rtept>
+ <rtept lat=" 44.95974234" lon="-71.18870357"></rtept>
+</rte>
+
+<rte><number>7</number><name>Colebrook</name><cmt>8</cmt>
+ <rtept lat=" 44.94318407" lon="-71.51557034"></rtept>
+ <rtept lat=" 44.91579922" lon="-71.30819383"></rtept>
+ <rtept lat=" 44.85637252" lon="-71.34421605"></rtept>
+ <rtept lat=" 44.88061288" lon="-71.52293400"></rtept>
+ <rtept lat=" 44.94318407" lon="-71.51557034"></rtept>
+</rte>
+
+<rte><number>8</number><name>Columbia</name><cmt>9</cmt>
+ <rtept lat=" 44.85637252" lon="-71.34421605"></rtept>
+ <rtept lat=" 44.82202205" lon="-71.35341067"></rtept>
+ <rtept lat=" 44.79567210" lon="-71.36045590"></rtept>
+ <rtept lat=" 44.78739296" lon="-71.44440159"></rtept>
+ <rtept lat=" 44.76975999" lon="-71.60313816"></rtept>
+ <rtept lat=" 44.88061288" lon="-71.52293400"></rtept>
+ <rtept lat=" 44.85637252" lon="-71.34421605"></rtept>
+</rte>
+
+<rte><number>9</number><name>Wentworth</name><cmt>10</cmt>
+ <rtept lat=" 44.82854984" lon="-71.04334100"></rtept>
+ <rtept lat=" 44.82488791" lon="-71.21592920"></rtept>
+ <rtept lat=" 44.85585507" lon="-71.21791938"></rtept>
+ <rtept lat=" 44.85764623" lon="-71.17564800"></rtept>
+ <rtept lat=" 44.86357696" lon="-71.04640587"></rtept>
+ <rtept lat=" 44.82854984" lon="-71.04334100"></rtept>
+</rte>
+
+<rte><number>10</number><name>Errol</name><cmt>11</cmt>
+ <rtept lat=" 44.70989545" lon="-71.03486284"></rtept>
+ <rtept lat=" 44.70854213" lon="-71.18396695"></rtept>
+ <rtept lat=" 44.70826350" lon="-71.21107317"></rtept>
+ <rtept lat=" 44.82488791" lon="-71.21592920"></rtept>
+ <rtept lat=" 44.82854984" lon="-71.04334100"></rtept>
+ <rtept lat=" 44.70989545" lon="-71.03486284"></rtept>
+</rte>
+
+<rte><number>11</number><name>Millsfield</name><cmt>12</cmt>
+ <rtept lat=" 44.82488791" lon="-71.21592920"></rtept>
+ <rtept lat=" 44.70826350" lon="-71.21107317"></rtept>
+ <rtept lat=" 44.70507922" lon="-71.32518995"></rtept>
+ <rtept lat=" 44.78249713" lon="-71.32825482"></rtept>
+ <rtept lat=" 44.81847954" lon="-71.32984697"></rtept>
+ <rtept lat=" 44.82488791" lon="-71.21592920"></rtept>
+</rte>
+
+<rte><number>12</number><name>Ervings</name><cmt>13</cmt>
+ <rtept lat=" 44.81847954" lon="-71.32984697"></rtept>
+ <rtept lat=" 44.78249713" lon="-71.32825482"></rtept>
+ <rtept lat=" 44.79567210" lon="-71.36045590"></rtept>
+ <rtept lat=" 44.82202205" lon="-71.35341067"></rtept>
+ <rtept lat=" 44.81847954" lon="-71.32984697"></rtept>
+</rte>
+
+<rte><number>13</number><name>Odell</name><cmt>14</cmt>
+ <rtept lat=" 44.79567210" lon="-71.36045590"></rtept>
+ <rtept lat=" 44.78249713" lon="-71.32825482"></rtept>
+ <rtept lat=" 44.70507922" lon="-71.32518995"></rtept>
+ <rtept lat=" 44.66177295" lon="-71.32419486"></rtept>
+ <rtept lat=" 44.65994199" lon="-71.41466834"></rtept>
+ <rtept lat=" 44.78739296" lon="-71.44440159"></rtept>
+ <rtept lat=" 44.79567210" lon="-71.36045590"></rtept>
+</rte>
+
+<rte><number>14</number><name>Stratford</name><cmt>15</cmt>
+ <rtept lat=" 44.78739296" lon="-71.44440159"></rtept>
+ <rtept lat=" 44.65994199" lon="-71.41466834"></rtept>
+ <rtept lat=" 44.64306528" lon="-71.48846412"></rtept>
+ <rtept lat=" 44.64207019" lon="-71.55808053"></rtept>
+ <rtept lat=" 44.73031467" lon="-71.62562716"></rtept>
+ <rtept lat=" 44.76975999" lon="-71.60313816"></rtept>
+ <rtept lat=" 44.78739296" lon="-71.44440159"></rtept>
+</rte>
+
+<rte><number>15</number><name>Cambridge</name><cmt>16</cmt>
+ <rtept lat=" 44.70854213" lon="-71.18396695"></rtept>
+ <rtept lat=" 44.70989545" lon="-71.03486284"></rtept>
+ <rtept lat=" 44.61034676" lon="-71.02901172"></rtept>
+ <rtept lat=" 44.60903324" lon="-71.08708510"></rtept>
+ <rtept lat=" 44.60708287" lon="-71.17915072"></rtept>
+ <rtept lat=" 44.70854213" lon="-71.18396695"></rtept>
+</rte>
+
+<rte><number>16</number><name>Dummer</name><cmt>17</cmt>
+ <rtept lat=" 44.70826350" lon="-71.21107317"></rtept>
+ <rtept lat=" 44.70854213" lon="-71.18396695"></rtept>
+ <rtept lat=" 44.60708287" lon="-71.17915072"></rtept>
+ <rtept lat=" 44.60373937" lon="-71.31631376"></rtept>
+ <rtept lat=" 44.66177295" lon="-71.32419486"></rtept>
+ <rtept lat=" 44.70507922" lon="-71.32518995"></rtept>
+ <rtept lat=" 44.70826350" lon="-71.21107317"></rtept>
+</rte>
+
+<rte><number>17</number><name>Stark</name><cmt>18</cmt>
+ <rtept lat=" 44.66177295" lon="-71.32419486"></rtept>
+ <rtept lat=" 44.60373937" lon="-71.31631376"></rtept>
+ <rtept lat=" 44.57026458" lon="-71.33283223"></rtept>
+ <rtept lat=" 44.51931604" lon="-71.43771459"></rtept>
+ <rtept lat=" 44.51569391" lon="-71.44623255"></rtept>
+ <rtept lat=" 44.64306528" lon="-71.48846412"></rtept>
+ <rtept lat=" 44.65994199" lon="-71.41466834"></rtept>
+ <rtept lat=" 44.66177295" lon="-71.32419486"></rtept>
+</rte>
+
+<rte><number>18</number><name>Northumberland</name><cmt>19</cmt>
+ <rtept lat=" 44.64207019" lon="-71.55808053"></rtept>
+ <rtept lat=" 44.64306528" lon="-71.48846412"></rtept>
+ <rtept lat=" 44.51569391" lon="-71.44623255"></rtept>
+ <rtept lat=" 44.53921781" lon="-71.57400196"></rtept>
+ <rtept lat=" 44.56381641" lon="-71.59390373"></rtept>
+ <rtept lat=" 44.58845481" lon="-71.53626819"></rtept>
+ <rtept lat=" 44.64207019" lon="-71.55808053"></rtept>
+</rte>
+
+<rte><number>19</number><name>Success</name><cmt>20</cmt>
+ <rtept lat=" 44.44042540" lon="-71.01890161"></rtept>
+ <rtept lat=" 44.43819640" lon="-71.16167696"></rtept>
+ <rtept lat=" 44.44985884" lon="-71.16203519"></rtept>
+ <rtept lat=" 44.52843105" lon="-71.12362476"></rtept>
+ <rtept lat=" 44.60903324" lon="-71.08708510"></rtept>
+ <rtept lat=" 44.61034676" lon="-71.02901172"></rtept>
+ <rtept lat=" 44.44042540" lon="-71.01890161"></rtept>
+</rte>
+
+<rte><number>20</number><name>Milan</name><cmt>21</cmt>
+ <rtept lat=" 44.60903324" lon="-71.08708510"></rtept>
+ <rtept lat=" 44.52843105" lon="-71.12362476"></rtept>
+ <rtept lat=" 44.52472932" lon="-71.35611731"></rtept>
+ <rtept lat=" 44.57026458" lon="-71.33283223"></rtept>
+ <rtept lat=" 44.60373937" lon="-71.31631376"></rtept>
+ <rtept lat=" 44.60708287" lon="-71.17915072"></rtept>
+ <rtept lat=" 44.60903324" lon="-71.08708510"></rtept>
+</rte>
+
+<rte><number>21</number><name>Kilkenny</name><cmt>22</cmt>
+ <rtept lat=" 44.57026458" lon="-71.33283223"></rtept>
+ <rtept lat=" 44.52472932" lon="-71.35611731"></rtept>
+ <rtept lat=" 44.44528143" lon="-71.38899504"></rtept>
+ <rtept lat=" 44.40790589" lon="-71.38676605"></rtept>
+ <rtept lat=" 44.46076501" lon="-71.42975388"></rtept>
+ <rtept lat=" 44.51931604" lon="-71.43771459"></rtept>
+ <rtept lat=" 44.57026458" lon="-71.33283223"></rtept>
+</rte>
+
+<rte><number>22</number><name>Lancaster</name><cmt>23</cmt>
+ <rtept lat=" 44.51569391" lon="-71.44623255"></rtept>
+ <rtept lat=" 44.51931604" lon="-71.43771459"></rtept>
+ <rtept lat=" 44.46076501" lon="-71.42975388"></rtept>
+ <rtept lat=" 44.44528143" lon="-71.54319401"></rtept>
+ <rtept lat=" 44.41013489" lon="-71.62877164"></rtept>
+ <rtept lat=" 44.44181852" lon="-71.66093291"></rtept>
+ <rtept lat=" 44.53921781" lon="-71.57400196"></rtept>
+ <rtept lat=" 44.51569391" lon="-71.44623255"></rtept>
+</rte>
+
+<rte><number>23</number><name>Berlin</name><cmt>24</cmt>
+ <rtept lat=" 44.52472932" lon="-71.35611731"></rtept>
+ <rtept lat=" 44.52843105" lon="-71.12362476"></rtept>
+ <rtept lat=" 44.44985884" lon="-71.16203519"></rtept>
+ <rtept lat=" 44.44954041" lon="-71.19316157"></rtept>
+ <rtept lat=" 44.44858512" lon="-71.24868752"></rtept>
+ <rtept lat=" 44.44528143" lon="-71.38899504"></rtept>
+ <rtept lat=" 44.52472932" lon="-71.35611731"></rtept>
+</rte>
+
+<rte><number>24</number><name>Jefferson</name><cmt>25</cmt>
+ <rtept lat=" 44.46076501" lon="-71.42975388"></rtept>
+ <rtept lat=" 44.40790589" lon="-71.38676605"></rtept>
+ <rtept lat=" 44.34839958" lon="-71.38302451"></rtept>
+ <rtept lat=" 44.34927526" lon="-71.43759518"></rtept>
+ <rtept lat=" 44.35544481" lon="-71.52444653"></rtept>
+ <rtept lat=" 44.44528143" lon="-71.54319401"></rtept>
+ <rtept lat=" 44.46076501" lon="-71.42975388"></rtept>
+</rte>
+
+<rte><number>25</number><name>Gorham</name><cmt>26</cmt>
+ <rtept lat=" 44.44954041" lon="-71.19316157"></rtept>
+ <rtept lat=" 44.44985884" lon="-71.16203519"></rtept>
+ <rtept lat=" 44.43819640" lon="-71.16167696"></rtept>
+ <rtept lat=" 44.34099612" lon="-71.15797523"></rtept>
+ <rtept lat=" 44.34071750" lon="-71.19001709"></rtept>
+ <rtept lat=" 44.34016025" lon="-71.23097494"></rtept>
+ <rtept lat=" 44.33992143" lon="-71.24526442"></rtept>
+ <rtept lat=" 44.44858512" lon="-71.24868752"></rtept>
+ <rtept lat=" 44.44954041" lon="-71.19316157"></rtept>
+</rte>
+
+<rte><number>26</number><name>Randolph</name><cmt>27</cmt>
+ <rtept lat=" 44.44528143" lon="-71.38899504"></rtept>
+ <rtept lat=" 44.44858512" lon="-71.24868752"></rtept>
+ <rtept lat=" 44.33992143" lon="-71.24526442"></rtept>
+ <rtept lat=" 44.34839958" lon="-71.38302451"></rtept>
+ <rtept lat=" 44.40790589" lon="-71.38676605"></rtept>
+ <rtept lat=" 44.44528143" lon="-71.38899504"></rtept>
+</rte>
+
+<rte><number>27</number><name>Whitefield</name><cmt>28</cmt>
+ <rtept lat=" 44.41013489" lon="-71.62877164"></rtept>
+ <rtept lat=" 44.44528143" lon="-71.54319401"></rtept>
+ <rtept lat=" 44.35544481" lon="-71.52444653"></rtept>
+ <rtept lat=" 44.34696666" lon="-71.59633175"></rtept>
+ <rtept lat=" 44.30477489" lon="-71.58709732"></rtept>
+ <rtept lat=" 44.33649832" lon="-71.68676542"></rtept>
+ <rtept lat=" 44.38772549" lon="-71.60739714"></rtept>
+ <rtept lat=" 44.41013489" lon="-71.62877164"></rtept>
+</rte>
+
+<rte><number>28</number><name>Dalton</name><cmt>29</cmt>
+ <rtept lat=" 44.44181852" lon="-71.66093291"></rtept>
+ <rtept lat=" 44.41013489" lon="-71.62877164"></rtept>
+ <rtept lat=" 44.38772549" lon="-71.60739714"></rtept>
+ <rtept lat=" 44.33649832" lon="-71.68676542"></rtept>
+ <rtept lat=" 44.33231895" lon="-71.69667650"></rtept>
+ <rtept lat=" 44.40663218" lon="-71.76474058"></rtept>
+ <rtept lat=" 44.44181852" lon="-71.66093291"></rtept>
+</rte>
+
+<rte><number>29</number><name>Shelburne</name><cmt>30</cmt>
+ <rtept lat=" 44.43819640" lon="-71.16167696"></rtept>
+ <rtept lat=" 44.44042540" lon="-71.01890161"></rtept>
+ <rtept lat=" 44.34079711" lon="-71.01273206"></rtept>
+ <rtept lat=" 44.34099612" lon="-71.15797523"></rtept>
+ <rtept lat=" 44.43819640" lon="-71.16167696"></rtept>
+</rte>
+
+<rte><number>30</number><name>Littleton</name><cmt>31</cmt>
+ <rtept lat=" 44.40663218" lon="-71.76474058"></rtept>
+ <rtept lat=" 44.33231895" lon="-71.69667650"></rtept>
+ <rtept lat=" 44.27126030" lon="-71.79423501"></rtept>
+ <rtept lat=" 44.29287363" lon="-71.86233889"></rtept>
+ <rtept lat=" 44.31627812" lon="-71.92944768"></rtept>
+ <rtept lat=" 44.33625950" lon="-71.98461540"></rtept>
+ <rtept lat=" 44.34087671" lon="-71.85262682"></rtept>
+ <rtept lat=" 44.40663218" lon="-71.76474058"></rtept>
+</rte>
+
+<rte><number>31</number><name>Carroll</name><cmt>32</cmt>
+ <rtept lat=" 44.35544481" lon="-71.52444653"></rtept>
+ <rtept lat=" 44.34927526" lon="-71.43759518"></rtept>
+ <rtept lat=" 44.27360871" lon="-71.42362413"></rtept>
+ <rtept lat=" 44.22799384" lon="-71.41168307"></rtept>
+ <rtept lat=" 44.21489847" lon="-71.39524420"></rtept>
+ <rtept lat=" 44.21207242" lon="-71.41578284"></rtept>
+ <rtept lat=" 44.25999589" lon="-71.46967684"></rtept>
+ <rtept lat=" 44.25470202" lon="-71.57575331"></rtept>
+ <rtept lat=" 44.30477489" lon="-71.58709732"></rtept>
+ <rtept lat=" 44.34696666" lon="-71.59633175"></rtept>
+ <rtept lat=" 44.35544481" lon="-71.52444653"></rtept>
+</rte>
+
+<rte><number>32</number><name>Low and Burbanks</name><cmt>33</cmt>
+ <rtept lat=" 44.33992143" lon="-71.24526442"></rtept>
+ <rtept lat=" 44.29625693" lon="-71.36356057"></rtept>
+ <rtept lat=" 44.29311245" lon="-71.37211834"></rtept>
+ <rtept lat=" 44.27360871" lon="-71.42362413"></rtept>
+ <rtept lat=" 44.34927526" lon="-71.43759518"></rtept>
+ <rtept lat=" 44.34839958" lon="-71.38302451"></rtept>
+ <rtept lat=" 44.33992143" lon="-71.24526442"></rtept>
+</rte>
+
+<rte><number>33</number><name>Beans</name><cmt>34</cmt>
+ <rtept lat=" 44.34071750" lon="-71.19001709"></rtept>
+ <rtept lat=" 44.34099612" lon="-71.15797523"></rtept>
+ <rtept lat=" 44.34079711" lon="-71.01273206"></rtept>
+ <rtept lat=" 44.28475370" lon="-71.01026424"></rtept>
+ <rtept lat=" 44.23539730" lon="-71.09747383"></rtept>
+ <rtept lat=" 44.24387546" lon="-71.24319463"></rtept>
+ <rtept lat=" 44.28391783" lon="-71.22082504"></rtept>
+ <rtept lat=" 44.31321324" lon="-71.20359010"></rtept>
+ <rtept lat=" 44.34071750" lon="-71.19001709"></rtept>
+</rte>
+
+<rte><number>34</number><name>Martins</name><cmt>35</cmt>
+ <rtept lat=" 44.34016025" lon="-71.23097494"></rtept>
+ <rtept lat=" 44.34071750" lon="-71.19001709"></rtept>
+ <rtept lat=" 44.31321324" lon="-71.20359010"></rtept>
+ <rtept lat=" 44.31337246" lon="-71.23742312"></rtept>
+ <rtept lat=" 44.34016025" lon="-71.23097494"></rtept>
+</rte>
+
+<rte><number>35</number><name>Thompson and Meserves</name><cmt>36</cmt>
+ <rtept lat=" 44.33992143" lon="-71.24526442"></rtept>
+ <rtept lat=" 44.34016025" lon="-71.23097494"></rtept>
+ <rtept lat=" 44.31337246" lon="-71.23742312"></rtept>
+ <rtept lat=" 44.28710211" lon="-71.23913467"></rtept>
+ <rtept lat=" 44.28423626" lon="-71.24156269"></rtept>
+ <rtept lat=" 44.26799641" lon="-71.35583869"></rtept>
+ <rtept lat=" 44.29625693" lon="-71.36356057"></rtept>
+ <rtept lat=" 44.33992143" lon="-71.24526442"></rtept>
+</rte>
+
+<rte><number>36</number><name>Bethlehem</name><cmt>37</cmt>
+ <rtept lat=" 44.33231895" lon="-71.69667650"></rtept>
+ <rtept lat=" 44.33649832" lon="-71.68676542"></rtept>
+ <rtept lat=" 44.30477489" lon="-71.58709732"></rtept>
+ <rtept lat=" 44.25470202" lon="-71.57575331"></rtept>
+ <rtept lat=" 44.25999589" lon="-71.46967684"></rtept>
+ <rtept lat=" 44.21207242" lon="-71.41578284"></rtept>
+ <rtept lat=" 44.16637794" lon="-71.41283737"></rtept>
+ <rtept lat=" 44.16880596" lon="-71.42262905"></rtept>
+ <rtept lat=" 44.18440895" lon="-71.48476239"></rtept>
+ <rtept lat=" 44.19786255" lon="-71.53738269"></rtept>
+ <rtept lat=" 44.25314968" lon="-71.74690859"></rtept>
+ <rtept lat=" 44.27126030" lon="-71.79423501"></rtept>
+ <rtept lat=" 44.33231895" lon="-71.69667650"></rtept>
+</rte>
+
+<rte><number>37</number><name>Monroe</name><cmt>38</cmt>
+ <rtept lat=" 44.31627812" lon="-71.92944768"></rtept>
+ <rtept lat=" 44.24085039" lon="-72.01498551"></rtept>
+ <rtept lat=" 44.21780413" lon="-72.05295810"></rtept>
+ <rtept lat=" 44.27723083" lon="-72.06541661"></rtept>
+ <rtept lat=" 44.33625950" lon="-71.98461540"></rtept>
+ <rtept lat=" 44.31627812" lon="-71.92944768"></rtept>
+</rte>
+
+<rte><number>38</number><name>Lyman</name><cmt>39</cmt>
+ <rtept lat=" 44.31627812" lon="-71.92944768"></rtept>
+ <rtept lat=" 44.29287363" lon="-71.86233889"></rtept>
+ <rtept lat=" 44.21179379" lon="-71.93601526"></rtept>
+ <rtept lat=" 44.24085039" lon="-72.01498551"></rtept>
+ <rtept lat=" 44.31627812" lon="-71.92944768"></rtept>
+</rte>
+
+<rte><number>39</number><name>Greens</name><cmt>40</cmt>
+ <rtept lat=" 44.31321324" lon="-71.20359010"></rtept>
+ <rtept lat=" 44.28391783" lon="-71.22082504"></rtept>
+ <rtept lat=" 44.28710211" lon="-71.23913467"></rtept>
+ <rtept lat=" 44.31337246" lon="-71.23742312"></rtept>
+ <rtept lat=" 44.31321324" lon="-71.20359010"></rtept>
+</rte>
+
+<rte><number>40</number><name>Chandlers</name><cmt>41</cmt>
+ <rtept lat=" 44.29625693" lon="-71.36356057"></rtept>
+ <rtept lat=" 44.26799641" lon="-71.35583869"></rtept>
+ <rtept lat=" 44.23097910" lon="-71.34592760"></rtept>
+ <rtept lat=" 44.22345623" lon="-71.35293303"></rtept>
+ <rtept lat=" 44.27671339" lon="-71.36750113"></rtept>
+ <rtept lat=" 44.29311245" lon="-71.37211834"></rtept>
+ <rtept lat=" 44.29625693" lon="-71.36356057"></rtept>
+</rte>
+
+<rte><number>41</number><name>Crawfords</name><cmt>42</cmt>
+ <rtept lat=" 44.29311245" lon="-71.37211834"></rtept>
+ <rtept lat=" 44.27671339" lon="-71.36750113"></rtept>
+ <rtept lat=" 44.22799384" lon="-71.41168307"></rtept>
+ <rtept lat=" 44.27360871" lon="-71.42362413"></rtept>
+ <rtept lat=" 44.29311245" lon="-71.37211834"></rtept>
+</rte>
+
+<rte><number>42</number><name>Lisbon</name><cmt>43</cmt>
+ <rtept lat=" 44.29287363" lon="-71.86233889"></rtept>
+ <rtept lat=" 44.27126030" lon="-71.79423501"></rtept>
+ <rtept lat=" 44.19053869" lon="-71.84800961"></rtept>
+ <rtept lat=" 44.20092742" lon="-71.93346784"></rtept>
+ <rtept lat=" 44.21179379" lon="-71.93601526"></rtept>
+ <rtept lat=" 44.29287363" lon="-71.86233889"></rtept>
+</rte>
+
+<rte><number>43</number><name>Pinkhams</name><cmt>44</cmt>
+ <rtept lat=" 44.28710211" lon="-71.23913467"></rtept>
+ <rtept lat=" 44.28391783" lon="-71.22082504"></rtept>
+ <rtept lat=" 44.24387546" lon="-71.24319463"></rtept>
+ <rtept lat=" 44.22795403" lon="-71.26054898"></rtept>
+ <rtept lat=" 44.28423626" lon="-71.24156269"></rtept>
+ <rtept lat=" 44.28710211" lon="-71.23913467"></rtept>
+</rte>
+
+<rte><number>44</number><name>Chatham</name><cmt>45</cmt>
+ <rtept lat=" 44.06925727" lon="-71.00003473"></rtept>
+ <rtept lat=" 44.07522780" lon="-71.08406003"></rtept>
+ <rtept lat=" 44.12406676" lon="-71.09771265"></rtept>
+ <rtept lat=" 44.23539730" lon="-71.09747383"></rtept>
+ <rtept lat=" 44.28475370" lon="-71.01026424"></rtept>
+ <rtept lat=" 44.06925727" lon="-71.00003473"></rtept>
+</rte>
+
+<rte><number>45</number><name>Sargents</name><cmt>46</cmt>
+ <rtept lat=" 44.26799641" lon="-71.35583869"></rtept>
+ <rtept lat=" 44.28423626" lon="-71.24156269"></rtept>
+ <rtept lat=" 44.22795403" lon="-71.26054898"></rtept>
+ <rtept lat=" 44.13720193" lon="-71.30274075"></rtept>
+ <rtept lat=" 44.11256354" lon="-71.30771619"></rtept>
+ <rtept lat=" 44.17382120" lon="-71.33147891"></rtept>
+ <rtept lat=" 44.24152705" lon="-71.28992400"></rtept>
+ <rtept lat=" 44.23097910" lon="-71.34592760"></rtept>
+ <rtept lat=" 44.26799641" lon="-71.35583869"></rtept>
+</rte>
+
+<rte><number>46</number><name>Beans</name><cmt>47</cmt>
+ <rtept lat=" 44.27671339" lon="-71.36750113"></rtept>
+ <rtept lat=" 44.22345623" lon="-71.35293303"></rtept>
+ <rtept lat=" 44.17382120" lon="-71.37379009"></rtept>
+ <rtept lat=" 44.21489847" lon="-71.39524420"></rtept>
+ <rtept lat=" 44.22799384" lon="-71.41168307"></rtept>
+ <rtept lat=" 44.27671339" lon="-71.36750113"></rtept>
+</rte>
+
+<rte><number>47</number><name>Sugar Hill</name><cmt>48</cmt>
+ <rtept lat=" 44.27126030" lon="-71.79423501"></rtept>
+ <rtept lat=" 44.25314968" lon="-71.74690859"></rtept>
+ <rtept lat=" 44.17593079" lon="-71.78675194"></rtept>
+ <rtept lat=" 44.18337406" lon="-71.81767930"></rtept>
+ <rtept lat=" 44.19053869" lon="-71.84800961"></rtept>
+ <rtept lat=" 44.27126030" lon="-71.79423501"></rtept>
+</rte>
+
+<rte><number>48</number><name>Franconia</name><cmt>49</cmt>
+ <rtept lat=" 44.25314968" lon="-71.74690859"></rtept>
+ <rtept lat=" 44.19786255" lon="-71.53738269"></rtept>
+ <rtept lat=" 44.11212570" lon="-71.58140542"></rtept>
+ <rtept lat=" 44.15853664" lon="-71.72700681"></rtept>
+ <rtept lat=" 44.17593079" lon="-71.78675194"></rtept>
+ <rtept lat=" 44.25314968" lon="-71.74690859"></rtept>
+</rte>
+
+<rte><number>49</number><name>Cutts</name><cmt>50</cmt>
+ <rtept lat=" 44.22345623" lon="-71.35293303"></rtept>
+ <rtept lat=" 44.23097910" lon="-71.34592760"></rtept>
+ <rtept lat=" 44.24152705" lon="-71.28992400"></rtept>
+ <rtept lat=" 44.17382120" lon="-71.33147891"></rtept>
+ <rtept lat=" 44.16315385" lon="-71.35659495"></rtept>
+ <rtept lat=" 44.17382120" lon="-71.37379009"></rtept>
+ <rtept lat=" 44.22345623" lon="-71.35293303"></rtept>
+</rte>
+
+<rte><number>50</number><name>Jackson</name><cmt>51</cmt>
+ <rtept lat=" 44.24387546" lon="-71.24319463"></rtept>
+ <rtept lat=" 44.23539730" lon="-71.09747383"></rtept>
+ <rtept lat=" 44.12406676" lon="-71.09771265"></rtept>
+ <rtept lat=" 44.13720193" lon="-71.30274075"></rtept>
+ <rtept lat=" 44.22795403" lon="-71.26054898"></rtept>
+ <rtept lat=" 44.24387546" lon="-71.24319463"></rtept>
+</rte>
+
+<rte><number>51</number><name>Bath</name><cmt>52</cmt>
+ <rtept lat=" 44.24085039" lon="-72.01498551"></rtept>
+ <rtept lat=" 44.21179379" lon="-71.93601526"></rtept>
+ <rtept lat=" 44.20092742" lon="-71.93346784"></rtept>
+ <rtept lat=" 44.11288196" lon="-71.91265058"></rtept>
+ <rtept lat=" 44.11280236" lon="-71.91269038"></rtept>
+ <rtept lat=" 44.15575039" lon="-72.04010155"></rtept>
+ <rtept lat=" 44.21780413" lon="-72.05295810"></rtept>
+ <rtept lat=" 44.24085039" lon="-72.01498551"></rtept>
+</rte>
+
+<rte><number>52</number><name>Hart's Location</name><cmt>53</cmt>
+ <rtept lat=" 44.21207242" lon="-71.41578284"></rtept>
+ <rtept lat=" 44.21489847" lon="-71.39524420"></rtept>
+ <rtept lat=" 44.17382120" lon="-71.37379009"></rtept>
+ <rtept lat=" 44.16315385" lon="-71.35659495"></rtept>
+ <rtept lat=" 44.09150746" lon="-71.32363761"></rtept>
+ <rtept lat=" 44.06901845" lon="-71.34688289"></rtept>
+ <rtept lat=" 44.16637794" lon="-71.41283737"></rtept>
+ <rtept lat=" 44.21207242" lon="-71.41578284"></rtept>
+</rte>
+
+<rte><number>53</number><name>Landaff</name><cmt>54</cmt>
+ <rtept lat=" 44.20092742" lon="-71.93346784"></rtept>
+ <rtept lat=" 44.19053869" lon="-71.84800961"></rtept>
+ <rtept lat=" 44.18337406" lon="-71.81767930"></rtept>
+ <rtept lat=" 44.09274137" lon="-71.85760227"></rtept>
+ <rtept lat=" 44.11288196" lon="-71.91265058"></rtept>
+ <rtept lat=" 44.20092742" lon="-71.93346784"></rtept>
+</rte>
+
+<rte><number>54</number><name>Lincoln</name><cmt>55</cmt>
+ <rtept lat=" 44.18440895" lon="-71.48476239"></rtept>
+ <rtept lat=" 44.16880596" lon="-71.42262905"></rtept>
+ <rtept lat=" 44.11407607" lon="-71.40201081"></rtept>
+ <rtept lat=" 44.07574525" lon="-71.48555846"></rtept>
+ <rtept lat=" 44.01456719" lon="-71.49901206"></rtept>
+ <rtept lat=" 44.02885667" lon="-71.62809498"></rtept>
+ <rtept lat=" 44.02356279" lon="-71.64130976"></rtept>
+ <rtept lat=" 44.07144647" lon="-71.77230325"></rtept>
+ <rtept lat=" 44.15853664" lon="-71.72700681"></rtept>
+ <rtept lat=" 44.11212570" lon="-71.58140542"></rtept>
+ <rtept lat=" 44.19786255" lon="-71.53738269"></rtept>
+ <rtept lat=" 44.18440895" lon="-71.48476239"></rtept>
+</rte>
+
+<rte><number>55</number><name>Easton</name><cmt>56</cmt>
+ <rtept lat=" 44.18337406" lon="-71.81767930"></rtept>
+ <rtept lat=" 44.17593079" lon="-71.78675194"></rtept>
+ <rtept lat=" 44.15853664" lon="-71.72700681"></rtept>
+ <rtept lat=" 44.07144647" lon="-71.77230325"></rtept>
+ <rtept lat=" 44.06893884" lon="-71.79443403"></rtept>
+ <rtept lat=" 44.09274137" lon="-71.85760227"></rtept>
+ <rtept lat=" 44.18337406" lon="-71.81767930"></rtept>
+</rte>
+
+<rte><number>56</number><name>Hadleys</name><cmt>57</cmt>
+ <rtept lat=" 44.17382120" lon="-71.33147891"></rtept>
+ <rtept lat=" 44.11256354" lon="-71.30771619"></rtept>
+ <rtept lat=" 44.09150746" lon="-71.32363761"></rtept>
+ <rtept lat=" 44.16315385" lon="-71.35659495"></rtept>
+ <rtept lat=" 44.17382120" lon="-71.33147891"></rtept>
+</rte>
+
+<rte><number>57</number><name>Livermore</name><cmt>58</cmt>
+ <rtept lat=" 44.16880596" lon="-71.42262905"></rtept>
+ <rtept lat=" 44.16637794" lon="-71.41283737"></rtept>
+ <rtept lat=" 44.06901845" lon="-71.34688289"></rtept>
+ <rtept lat=" 44.02252790" lon="-71.38262648"></rtept>
+ <rtept lat=" 44.00167084" lon="-71.37864612"></rtept>
+ <rtept lat=" 43.97364914" lon="-71.60377501"></rtept>
+ <rtept lat=" 44.02885667" lon="-71.62809498"></rtept>
+ <rtept lat=" 44.01456719" lon="-71.49901206"></rtept>
+ <rtept lat=" 44.07574525" lon="-71.48555846"></rtept>
+ <rtept lat=" 44.11407607" lon="-71.40201081"></rtept>
+ <rtept lat=" 44.16880596" lon="-71.42262905"></rtept>
+</rte>
+
+<rte><number>58</number><name>Haverhill</name><cmt>59</cmt>
+ <rtept lat=" 44.15575039" lon="-72.04010155"></rtept>
+ <rtept lat=" 44.11280236" lon="-71.91269038"></rtept>
+ <rtept lat=" 43.99824773" lon="-71.96324089"></rtept>
+ <rtept lat=" 44.02993136" lon="-72.07962648"></rtept>
+ <rtept lat=" 44.07622289" lon="-72.03190202"></rtept>
+ <rtept lat=" 44.15575039" lon="-72.04010155"></rtept>
+</rte>
+
+<rte><number>59</number><name>Bartlett</name><cmt>60</cmt>
+ <rtept lat=" 44.13720193" lon="-71.30274075"></rtept>
+ <rtept lat=" 44.12406676" lon="-71.09771265"></rtept>
+ <rtept lat=" 44.07522780" lon="-71.08406003"></rtept>
+ <rtept lat=" 44.07670054" lon="-71.16350792"></rtept>
+ <rtept lat=" 44.05580367" lon="-71.16366713"></rtept>
+ <rtept lat=" 44.05405231" lon="-71.17680231"></rtept>
+ <rtept lat=" 44.02224928" lon="-71.18149913"></rtept>
+ <rtept lat=" 44.02252790" lon="-71.38262648"></rtept>
+ <rtept lat=" 44.06901845" lon="-71.34688289"></rtept>
+ <rtept lat=" 44.09150746" lon="-71.32363761"></rtept>
+ <rtept lat=" 44.11256354" lon="-71.30771619"></rtept>
+ <rtept lat=" 44.13720193" lon="-71.30274075"></rtept>
+</rte>
+
+<rte><number>60</number><name>Benton</name><cmt>61</cmt>
+ <rtept lat=" 44.11288196" lon="-71.91265058"></rtept>
+ <rtept lat=" 44.09274137" lon="-71.85760227"></rtept>
+ <rtept lat=" 44.06893884" lon="-71.79443403"></rtept>
+ <rtept lat=" 43.98379904" lon="-71.82384885"></rtept>
+ <rtept lat=" 43.99824773" lon="-71.96324089"></rtept>
+ <rtept lat=" 44.11280236" lon="-71.91269038"></rtept>
+ <rtept lat=" 44.11288196" lon="-71.91265058"></rtept>
+</rte>
+
+<rte><number>61</number><name>Woodstock</name><cmt>62</cmt>
+ <rtept lat=" 44.06893884" lon="-71.79443403"></rtept>
+ <rtept lat=" 44.07144647" lon="-71.77230325"></rtept>
+ <rtept lat=" 44.02356279" lon="-71.64130976"></rtept>
+ <rtept lat=" 43.91975513" lon="-71.69588043"></rtept>
+ <rtept lat=" 43.93090012" lon="-71.73214147"></rtept>
+ <rtept lat=" 43.95096111" lon="-71.80100161"></rtept>
+ <rtept lat=" 43.98379904" lon="-71.82384885"></rtept>
+ <rtept lat=" 44.06893884" lon="-71.79443403"></rtept>
+</rte>
+
+<rte><number>62</number><name>Conway</name><cmt>63</cmt>
+ <rtept lat=" 44.07670054" lon="-71.16350792"></rtept>
+ <rtept lat=" 44.07522780" lon="-71.08406003"></rtept>
+ <rtept lat=" 44.06925727" lon="-71.00003473"></rtept>
+ <rtept lat=" 43.92536743" lon="-70.99326813"></rtept>
+ <rtept lat=" 43.92556645" lon="-71.05066485"></rtept>
+ <rtept lat=" 43.96409629" lon="-71.05337149"></rtept>
+ <rtept lat=" 43.92453155" lon="-71.10193182"></rtept>
+ <rtept lat=" 43.96345943" lon="-71.14038206"></rtept>
+ <rtept lat=" 44.02499572" lon="-71.15666171"></rtept>
+ <rtept lat=" 44.05580367" lon="-71.16366713"></rtept>
+ <rtept lat=" 44.07670054" lon="-71.16350792"></rtept>
+</rte>
+
+<rte><number>63</number><name>Hale's</name><cmt>64</cmt>
+ <rtept lat=" 44.05405231" lon="-71.17680231"></rtept>
+ <rtept lat=" 44.05580367" lon="-71.16366713"></rtept>
+ <rtept lat=" 44.02499572" lon="-71.15666171"></rtept>
+ <rtept lat=" 44.02224928" lon="-71.18149913"></rtept>
+ <rtept lat=" 44.05405231" lon="-71.17680231"></rtept>
+</rte>
+
+<rte><number>64</number><name>Piermont</name><cmt>65</cmt>
+ <rtept lat=" 44.02993136" lon="-72.07962648"></rtept>
+ <rtept lat=" 43.99824773" lon="-71.96324089"></rtept>
+ <rtept lat=" 43.91669025" lon="-71.95922074"></rtept>
+ <rtept lat=" 43.91462047" lon="-71.96797752"></rtept>
+ <rtept lat=" 43.95740929" lon="-72.09889140"></rtept>
+ <rtept lat=" 44.02993136" lon="-72.07962648"></rtept>
+</rte>
+
+<rte><number>65</number><name>Thornton</name><cmt>66</cmt>
+ <rtept lat=" 44.02356279" lon="-71.64130976"></rtept>
+ <rtept lat=" 44.02885667" lon="-71.62809498"></rtept>
+ <rtept lat=" 43.97364914" lon="-71.60377501"></rtept>
+ <rtept lat=" 43.89312655" lon="-71.56460832"></rtept>
+ <rtept lat=" 43.87513535" lon="-71.56054835"></rtept>
+ <rtept lat=" 43.88202136" lon="-71.72573310"></rtept>
+ <rtept lat=" 43.93090012" lon="-71.73214147"></rtept>
+ <rtept lat=" 43.91975513" lon="-71.69588043"></rtept>
+ <rtept lat=" 44.02356279" lon="-71.64130976"></rtept>
+</rte>
+
+<rte><number>66</number><name>Albany</name><cmt>67</cmt>
+ <rtept lat=" 44.02252790" lon="-71.38262648"></rtept>
+ <rtept lat=" 44.02224928" lon="-71.18149913"></rtept>
+ <rtept lat=" 44.02499572" lon="-71.15666171"></rtept>
+ <rtept lat=" 43.96345943" lon="-71.14038206"></rtept>
+ <rtept lat=" 43.92465097" lon="-71.21258570"></rtept>
+ <rtept lat=" 43.90781406" lon="-71.35989865"></rtept>
+ <rtept lat=" 43.91553595" lon="-71.36188883"></rtept>
+ <rtept lat=" 44.00167084" lon="-71.37864612"></rtept>
+ <rtept lat=" 44.02252790" lon="-71.38262648"></rtept>
+</rte>
+
+<rte><number>67</number><name>Waterville Valley</name><cmt>68</cmt>
+ <rtept lat=" 43.97364914" lon="-71.60377501"></rtept>
+ <rtept lat=" 44.00167084" lon="-71.37864612"></rtept>
+ <rtept lat=" 43.91553595" lon="-71.36188883"></rtept>
+ <rtept lat=" 43.89312655" lon="-71.56460832"></rtept>
+ <rtept lat=" 43.97364914" lon="-71.60377501"></rtept>
+</rte>
+
+<rte><number>68</number><name>Warren</name><cmt>69</cmt>
+ <rtept lat=" 43.98379904" lon="-71.82384885"></rtept>
+ <rtept lat=" 43.95096111" lon="-71.80100161"></rtept>
+ <rtept lat=" 43.88584250" lon="-71.82591864"></rtept>
+ <rtept lat=" 43.91669025" lon="-71.95922074"></rtept>
+ <rtept lat=" 43.99824773" lon="-71.96324089"></rtept>
+ <rtept lat=" 43.98379904" lon="-71.82384885"></rtept>
+</rte>
+
+<rte><number>69</number><name>Eaton</name><cmt>70</cmt>
+ <rtept lat=" 43.92453155" lon="-71.10193182"></rtept>
+ <rtept lat=" 43.96409629" lon="-71.05337149"></rtept>
+ <rtept lat=" 43.92556645" lon="-71.05066485"></rtept>
+ <rtept lat=" 43.92536743" lon="-70.99326813"></rtept>
+ <rtept lat=" 43.87752356" lon="-70.99175559"></rtept>
+ <rtept lat=" 43.85507436" lon="-71.08119417"></rtept>
+ <rtept lat=" 43.92453155" lon="-71.10193182"></rtept>
+</rte>
+
+<rte><number>70</number><name>Madison</name><cmt>71</cmt>
+ <rtept lat=" 43.92453155" lon="-71.10193182"></rtept>
+ <rtept lat=" 43.85507436" lon="-71.08119417"></rtept>
+ <rtept lat=" 43.83286397" lon="-71.18360871"></rtept>
+ <rtept lat=" 43.83107281" lon="-71.18953944"></rtept>
+ <rtept lat=" 43.92465097" lon="-71.21258570"></rtept>
+ <rtept lat=" 43.96345943" lon="-71.14038206"></rtept>
+ <rtept lat=" 43.92453155" lon="-71.10193182"></rtept>
+</rte>
+
+<rte><number>71</number><name>Orford</name><cmt>72</cmt>
+ <rtept lat=" 43.91462047" lon="-71.96797752"></rtept>
+ <rtept lat=" 43.83795883" lon="-72.02688677"></rtept>
+ <rtept lat=" 43.87199087" lon="-72.16691567"></rtept>
+ <rtept lat=" 43.87258792" lon="-72.16930388"></rtept>
+ <rtept lat=" 43.95740929" lon="-72.09889140"></rtept>
+ <rtept lat=" 43.91462047" lon="-71.96797752"></rtept>
+</rte>
+
+<rte><number>72</number><name>Ellsworth</name><cmt>73</cmt>
+ <rtept lat=" 43.95096111" lon="-71.80100161"></rtept>
+ <rtept lat=" 43.93090012" lon="-71.73214147"></rtept>
+ <rtept lat=" 43.88202136" lon="-71.72573310"></rtept>
+ <rtept lat=" 43.85555200" lon="-71.72266822"></rtept>
+ <rtept lat=" 43.88584250" lon="-71.82591864"></rtept>
+ <rtept lat=" 43.95096111" lon="-71.80100161"></rtept>
+</rte>
+
+<rte><number>73</number><name>Tamworth</name><cmt>74</cmt>
+ <rtept lat=" 43.92465097" lon="-71.21258570"></rtept>
+ <rtept lat=" 43.83107281" lon="-71.18953944"></rtept>
+ <rtept lat=" 43.77510902" lon="-71.28005272"></rtept>
+ <rtept lat=" 43.78295032" lon="-71.32988677"></rtept>
+ <rtept lat=" 43.90781406" lon="-71.35989865"></rtept>
+ <rtept lat=" 43.92465097" lon="-71.21258570"></rtept>
+</rte>
+
+<rte><number>74</number><name>Wentworth</name><cmt>75</cmt>
+ <rtept lat=" 43.91462047" lon="-71.96797752"></rtept>
+ <rtept lat=" 43.91669025" lon="-71.95922074"></rtept>
+ <rtept lat=" 43.88584250" lon="-71.82591864"></rtept>
+ <rtept lat=" 43.80408601" lon="-71.90711789"></rtept>
+ <rtept lat=" 43.83795883" lon="-72.02688677"></rtept>
+ <rtept lat=" 43.91462047" lon="-71.96797752"></rtept>
+</rte>
+
+<rte><number>75</number><name>Sandwich</name><cmt>76</cmt>
+ <rtept lat=" 43.91553595" lon="-71.36188883"></rtept>
+ <rtept lat=" 43.90781406" lon="-71.35989865"></rtept>
+ <rtept lat=" 43.78295032" lon="-71.32988677"></rtept>
+ <rtept lat=" 43.76503872" lon="-71.53236744"></rtept>
+ <rtept lat=" 43.79624471" lon="-71.54363185"></rtept>
+ <rtept lat=" 43.87513535" lon="-71.56054835"></rtept>
+ <rtept lat=" 43.89312655" lon="-71.56460832"></rtept>
+ <rtept lat=" 43.91553595" lon="-71.36188883"></rtept>
+</rte>
+
+<rte><number>76</number><name>Rumney</name><cmt>77</cmt>
+ <rtept lat=" 43.88584250" lon="-71.82591864"></rtept>
+ <rtept lat=" 43.85555200" lon="-71.72266822"></rtept>
+ <rtept lat=" 43.80249386" lon="-71.74941621"></rtept>
+ <rtept lat=" 43.77092965" lon="-71.77644282"></rtept>
+ <rtept lat=" 43.80408601" lon="-71.90711789"></rtept>
+ <rtept lat=" 43.88584250" lon="-71.82591864"></rtept>
+</rte>
+
+<rte><number>77</number><name>Campton</name><cmt>78</cmt>
+ <rtept lat=" 43.88202136" lon="-71.72573310"></rtept>
+ <rtept lat=" 43.87513535" lon="-71.56054835"></rtept>
+ <rtept lat=" 43.79624471" lon="-71.54363185"></rtept>
+ <rtept lat=" 43.78279110" lon="-71.66925186"></rtept>
+ <rtept lat=" 43.80249386" lon="-71.74941621"></rtept>
+ <rtept lat=" 43.85555200" lon="-71.72266822"></rtept>
+ <rtept lat=" 43.88202136" lon="-71.72573310"></rtept>
+</rte>
+
+<rte><number>78</number><name>Freedom</name><cmt>79</cmt>
+ <rtept lat=" 43.85507436" lon="-71.08119417"></rtept>
+ <rtept lat=" 43.87752356" lon="-70.99175559"></rtept>
+ <rtept lat=" 43.79214494" lon="-70.98904895"></rtept>
+ <rtept lat=" 43.79449335" lon="-71.06376022"></rtept>
+ <rtept lat=" 43.79751842" lon="-71.08179123"></rtept>
+ <rtept lat=" 43.83286397" lon="-71.18360871"></rtept>
+ <rtept lat=" 43.85507436" lon="-71.08119417"></rtept>
+</rte>
+
+<rte><number>79</number><name>Lyme</name><cmt>80</cmt>
+ <rtept lat=" 43.87199087" lon="-72.16691567"></rtept>
+ <rtept lat=" 43.83795883" lon="-72.02688677"></rtept>
+ <rtept lat=" 43.73737525" lon="-72.05821217"></rtept>
+ <rtept lat=" 43.74155462" lon="-72.07568593"></rtept>
+ <rtept lat=" 43.77096945" lon="-72.20516689"></rtept>
+ <rtept lat=" 43.87258792" lon="-72.16930388"></rtept>
+ <rtept lat=" 43.87199087" lon="-72.16691567"></rtept>
+</rte>
+
+<rte><number>80</number><name>Dorchester</name><cmt>81</cmt>
+ <rtept lat=" 43.80408601" lon="-71.90711789"></rtept>
+ <rtept lat=" 43.70585084" lon="-71.93215432"></rtept>
+ <rtept lat=" 43.73737525" lon="-72.05821217"></rtept>
+ <rtept lat=" 43.83795883" lon="-72.02688677"></rtept>
+ <rtept lat=" 43.80408601" lon="-71.90711789"></rtept>
+</rte>
+
+<rte><number>81</number><name>Ossipee</name><cmt>82</cmt>
+ <rtept lat=" 43.83107281" lon="-71.18953944"></rtept>
+ <rtept lat=" 43.83286397" lon="-71.18360871"></rtept>
+ <rtept lat=" 43.79751842" lon="-71.08179123"></rtept>
+ <rtept lat=" 43.74943573" lon="-71.13086901"></rtept>
+ <rtept lat=" 43.67914265" lon="-71.01309030"></rtept>
+ <rtept lat=" 43.63639364" lon="-71.05922261"></rtept>
+ <rtept lat=" 43.67878442" lon="-71.18547948"></rtept>
+ <rtept lat=" 43.77057141" lon="-71.24546343"></rtept>
+ <rtept lat=" 43.77510902" lon="-71.28005272"></rtept>
+ <rtept lat=" 43.83107281" lon="-71.18953944"></rtept>
+</rte>
+
+<rte><number>82</number><name>Groton</name><cmt>83</cmt>
+ <rtept lat=" 43.80408601" lon="-71.90711789"></rtept>
+ <rtept lat=" 43.77092965" lon="-71.77644282"></rtept>
+ <rtept lat=" 43.72981258" lon="-71.77831359"></rtept>
+ <rtept lat=" 43.68793924" lon="-71.84486513"></rtept>
+ <rtept lat=" 43.69522329" lon="-71.88351438"></rtept>
+ <rtept lat=" 43.70585084" lon="-71.93215432"></rtept>
+ <rtept lat=" 43.80408601" lon="-71.90711789"></rtept>
+</rte>
+
+<rte><number>83</number><name>Plymouth</name><cmt>84</cmt>
+ <rtept lat=" 43.80249386" lon="-71.74941621"></rtept>
+ <rtept lat=" 43.78279110" lon="-71.66925186"></rtept>
+ <rtept lat=" 43.74700771" lon="-71.67637669"></rtept>
+ <rtept lat=" 43.71747348" lon="-71.65850490"></rtept>
+ <rtept lat=" 43.68527240" lon="-71.73397243"></rtept>
+ <rtept lat=" 43.72981258" lon="-71.77831359"></rtept>
+ <rtept lat=" 43.77092965" lon="-71.77644282"></rtept>
+ <rtept lat=" 43.80249386" lon="-71.74941621"></rtept>
+</rte>
+
+<rte><number>84</number><name>Effingham</name><cmt>85</cmt>
+ <rtept lat=" 43.79449335" lon="-71.06376022"></rtept>
+ <rtept lat=" 43.79214494" lon="-70.98904895"></rtept>
+ <rtept lat=" 43.68415790" lon="-70.98057079"></rtept>
+ <rtept lat=" 43.67914265" lon="-71.01309030"></rtept>
+ <rtept lat=" 43.74943573" lon="-71.13086901"></rtept>
+ <rtept lat=" 43.79751842" lon="-71.08179123"></rtept>
+ <rtept lat=" 43.79449335" lon="-71.06376022"></rtept>
+</rte>
+
+<rte><number>85</number><name>Holderness</name><cmt>86</cmt>
+ <rtept lat=" 43.79624471" lon="-71.54363185"></rtept>
+ <rtept lat=" 43.76503872" lon="-71.53236744"></rtept>
+ <rtept lat=" 43.69717366" lon="-71.52217773"></rtept>
+ <rtept lat=" 43.69195940" lon="-71.58160443"></rtept>
+ <rtept lat=" 43.74700771" lon="-71.67637669"></rtept>
+ <rtept lat=" 43.78279110" lon="-71.66925186"></rtept>
+ <rtept lat=" 43.79624471" lon="-71.54363185"></rtept>
+</rte>
+
+<rte><number>86</number><name>Moultonborough</name><cmt>87</cmt>
+ <rtept lat=" 43.78295032" lon="-71.32988677"></rtept>
+ <rtept lat=" 43.77510902" lon="-71.28005272"></rtept>
+ <rtept lat=" 43.77057141" lon="-71.24546343"></rtept>
+ <rtept lat=" 43.62715921" lon="-71.34111137"></rtept>
+ <rtept lat=" 43.62930861" lon="-71.34417624"></rtept>
+ <rtept lat=" 43.62938821" lon="-71.34425585"></rtept>
+ <rtept lat=" 43.62946782" lon="-71.34445487"></rtept>
+ <rtept lat=" 43.69601936" lon="-71.43962516"></rtept>
+ <rtept lat=" 43.76503872" lon="-71.53236744"></rtept>
+ <rtept lat=" 43.78295032" lon="-71.32988677"></rtept>
+</rte>
+
+<rte><number>87</number><name>Hanover</name><cmt>88</cmt>
+ <rtept lat=" 43.74155462" lon="-72.07568593"></rtept>
+ <rtept lat=" 43.65860402" lon="-72.16034809"></rtept>
+ <rtept lat=" 43.69267586" lon="-72.30551164"></rtept>
+ <rtept lat=" 43.77096945" lon="-72.20516689"></rtept>
+ <rtept lat=" 43.74155462" lon="-72.07568593"></rtept>
+</rte>
+
+<rte><number>88</number><name>Tuftonboro</name><cmt>89</cmt>
+ <rtept lat=" 43.67878442" lon="-71.18547948"></rtept>
+ <rtept lat=" 43.58835075" lon="-71.28486895"></rtept>
+ <rtept lat=" 43.62715921" lon="-71.34111137"></rtept>
+ <rtept lat=" 43.77057141" lon="-71.24546343"></rtept>
+ <rtept lat=" 43.67878442" lon="-71.18547948"></rtept>
+</rte>
+
+<rte><number>89</number><name>Center Harbor</name><cmt>90</cmt>
+ <rtept lat=" 43.76503872" lon="-71.53236744"></rtept>
+ <rtept lat=" 43.69601936" lon="-71.43962516"></rtept>
+ <rtept lat=" 43.66752002" lon="-71.52464555"></rtept>
+ <rtept lat=" 43.69195940" lon="-71.58160443"></rtept>
+ <rtept lat=" 43.69717366" lon="-71.52217773"></rtept>
+ <rtept lat=" 43.76503872" lon="-71.53236744"></rtept>
+</rte>
+
+<rte><number>90</number><name>Ashland</name><cmt>91</cmt>
+ <rtept lat=" 43.69195940" lon="-71.58160443"></rtept>
+ <rtept lat=" 43.68614808" lon="-71.64827538"></rtept>
+ <rtept lat=" 43.71747348" lon="-71.65850490"></rtept>
+ <rtept lat=" 43.74700771" lon="-71.67637669"></rtept>
+ <rtept lat=" 43.69195940" lon="-71.58160443"></rtept>
+</rte>
+
+<rte><number>91</number><name>Canaan</name><cmt>92</cmt>
+ <rtept lat=" 43.73737525" lon="-72.05821217"></rtept>
+ <rtept lat=" 43.70585084" lon="-71.93215432"></rtept>
+ <rtept lat=" 43.62763686" lon="-72.00610932"></rtept>
+ <rtept lat=" 43.61139701" lon="-72.02015997"></rtept>
+ <rtept lat=" 43.65860402" lon="-72.16034809"></rtept>
+ <rtept lat=" 43.74155462" lon="-72.07568593"></rtept>
+ <rtept lat=" 43.73737525" lon="-72.05821217"></rtept>
+</rte>
+
+<rte><number>92</number><name>Hebron</name><cmt>93</cmt>
+ <rtept lat=" 43.68793924" lon="-71.84486513"></rtept>
+ <rtept lat=" 43.72981258" lon="-71.77831359"></rtept>
+ <rtept lat=" 43.68527240" lon="-71.73397243"></rtept>
+ <rtept lat=" 43.67424682" lon="-71.76028258"></rtept>
+ <rtept lat=" 43.66202713" lon="-71.79224483"></rtept>
+ <rtept lat=" 43.68793924" lon="-71.84486513"></rtept>
+</rte>
+
+<rte><number>93</number><name>Bridgewater</name><cmt>94</cmt>
+ <rtept lat=" 43.71747348" lon="-71.65850490"></rtept>
+ <rtept lat=" 43.68614808" lon="-71.64827538"></rtept>
+ <rtept lat=" 43.63372680" lon="-71.65408670"></rtept>
+ <rtept lat=" 43.63324916" lon="-71.73671888"></rtept>
+ <rtept lat=" 43.67424682" lon="-71.76028258"></rtept>
+ <rtept lat=" 43.68527240" lon="-71.73397243"></rtept>
+ <rtept lat=" 43.71747348" lon="-71.65850490"></rtept>
+</rte>
+
+<rte><number>94</number><name>Orange</name><cmt>95</cmt>
+ <rtept lat=" 43.69522329" lon="-71.88351438"></rtept>
+ <rtept lat=" 43.60658078" lon="-71.90015226"></rtept>
+ <rtept lat=" 43.62763686" lon="-72.00610932"></rtept>
+ <rtept lat=" 43.70585084" lon="-71.93215432"></rtept>
+ <rtept lat=" 43.69522329" lon="-71.88351438"></rtept>
+</rte>
+
+<rte><number>95</number><name>Meredith</name><cmt>96</cmt>
+ <rtept lat=" 43.66752002" lon="-71.52464555"></rtept>
+ <rtept lat=" 43.69601936" lon="-71.43962516"></rtept>
+ <rtept lat=" 43.62946782" lon="-71.34445487"></rtept>
+ <rtept lat=" 43.61820342" lon="-71.45184485"></rtept>
+ <rtept lat=" 43.59814243" lon="-71.53467605"></rtept>
+ <rtept lat=" 43.55284598" lon="-71.51007745"></rtept>
+ <rtept lat=" 43.58265884" lon="-71.64258348"></rtept>
+ <rtept lat=" 43.66752002" lon="-71.52464555"></rtept>
+</rte>
+
+<rte><number>96</number><name>Alexandria</name><cmt>97</cmt>
+ <rtept lat=" 43.69522329" lon="-71.88351438"></rtept>
+ <rtept lat=" 43.68793924" lon="-71.84486513"></rtept>
+ <rtept lat=" 43.66202713" lon="-71.79224483"></rtept>
+ <rtept lat=" 43.56781212" lon="-71.76060101"></rtept>
+ <rtept lat=" 43.54456684" lon="-71.81803754"></rtept>
+ <rtept lat=" 43.59945594" lon="-71.86405044"></rtept>
+ <rtept lat=" 43.60658078" lon="-71.90015226"></rtept>
+ <rtept lat=" 43.69522329" lon="-71.88351438"></rtept>
+</rte>
+
+<rte><number>97</number><name>Wakefield</name><cmt>98</cmt>
+ <rtept lat=" 43.67914265" lon="-71.01309030"></rtept>
+ <rtept lat=" 43.68415790" lon="-70.98057079"></rtept>
+ <rtept lat=" 43.54102433" lon="-70.96218155"></rtept>
+ <rtept lat=" 43.48299075" lon="-71.02443431"></rtept>
+ <rtept lat=" 43.52968032" lon="-71.03729086"></rtept>
+ <rtept lat=" 43.63253269" lon="-71.06344179"></rtept>
+ <rtept lat=" 43.63639364" lon="-71.05922261"></rtept>
+ <rtept lat=" 43.67914265" lon="-71.01309030"></rtept>
+</rte>
+
+<rte><number>98</number><name>Lebanon</name><cmt>99</cmt>
+ <rtept lat=" 43.69267586" lon="-72.30551164"></rtept>
+ <rtept lat=" 43.65860402" lon="-72.16034809"></rtept>
+ <rtept lat=" 43.58508686" lon="-72.20819196"></rtept>
+ <rtept lat=" 43.60021221" lon="-72.32963259"></rtept>
+ <rtept lat=" 43.69267586" lon="-72.30551164"></rtept>
+</rte>
+
+<rte><number>99</number><name>New Hampton</name><cmt>100</cmt>
+ <rtept lat=" 43.69195940" lon="-71.58160443"></rtept>
+ <rtept lat=" 43.66752002" lon="-71.52464555"></rtept>
+ <rtept lat=" 43.58265884" lon="-71.64258348"></rtept>
+ <rtept lat=" 43.53819828" lon="-71.70610995"></rtept>
+ <rtept lat=" 43.56351333" lon="-71.72776308"></rtept>
+ <rtept lat=" 43.63372680" lon="-71.65408670"></rtept>
+ <rtept lat=" 43.68614808" lon="-71.64827538"></rtept>
+ <rtept lat=" 43.69195940" lon="-71.58160443"></rtept>
+</rte>
+
+<rte><number>100</number><name>Wolfeboro</name><cmt>101</cmt>
+ <rtept lat=" 43.67878442" lon="-71.18547948"></rtept>
+ <rtept lat=" 43.63639364" lon="-71.05922261"></rtept>
+ <rtept lat=" 43.63253269" lon="-71.06344179"></rtept>
+ <rtept lat=" 43.57302638" lon="-71.12772453"></rtept>
+ <rtept lat=" 43.53935258" lon="-71.16362733"></rtept>
+ <rtept lat=" 43.58835075" lon="-71.28486895"></rtept>
+ <rtept lat=" 43.67878442" lon="-71.18547948"></rtept>
+</rte>
+
+<rte><number>101</number><name>Bristol</name><cmt>102</cmt>
+ <rtept lat=" 43.66202713" lon="-71.79224483"></rtept>
+ <rtept lat=" 43.67424682" lon="-71.76028258"></rtept>
+ <rtept lat=" 43.63324916" lon="-71.73671888"></rtept>
+ <rtept lat=" 43.63372680" lon="-71.65408670"></rtept>
+ <rtept lat=" 43.56351333" lon="-71.72776308"></rtept>
+ <rtept lat=" 43.56864799" lon="-71.73974395"></rtept>
+ <rtept lat=" 43.56781212" lon="-71.76060101"></rtept>
+ <rtept lat=" 43.66202713" lon="-71.79224483"></rtept>
+</rte>
+
+<rte><number>102</number><name>Enfield</name><cmt>103</cmt>
+ <rtept lat=" 43.65860402" lon="-72.16034809"></rtept>
+ <rtept lat=" 43.61139701" lon="-72.02015997"></rtept>
+ <rtept lat=" 43.55328382" lon="-72.06951638"></rtept>
+ <rtept lat=" 43.52892405" lon="-72.09089089"></rtept>
+ <rtept lat=" 43.57402147" lon="-72.17117465"></rtept>
+ <rtept lat=" 43.58508686" lon="-72.20819196"></rtept>
+ <rtept lat=" 43.65860402" lon="-72.16034809"></rtept>
+</rte>
+
+<rte><number>103</number><name>Gilford</name><cmt>104</cmt>
+ <rtept lat=" 43.62938821" lon="-71.34425585"></rtept>
+ <rtept lat=" 43.62930861" lon="-71.34417624"></rtept>
+ <rtept lat=" 43.50942031" lon="-71.31703022"></rtept>
+ <rtept lat=" 43.48119959" lon="-71.39500538"></rtept>
+ <rtept lat=" 43.50444486" lon="-71.44889939"></rtept>
+ <rtept lat=" 43.61820342" lon="-71.45184485"></rtept>
+ <rtept lat=" 43.62946782" lon="-71.34445487"></rtept>
+ <rtept lat=" 43.62938821" lon="-71.34425585"></rtept>
+</rte>
+
+<rte><number>104</number><name>Brookfield</name><cmt>105</cmt>
+ <rtept lat=" 43.63253269" lon="-71.06344179"></rtept>
+ <rtept lat=" 43.52968032" lon="-71.03729086"></rtept>
+ <rtept lat=" 43.50695249" lon="-71.11180311"></rtept>
+ <rtept lat=" 43.57302638" lon="-71.12772453"></rtept>
+ <rtept lat=" 43.63253269" lon="-71.06344179"></rtept>
+</rte>
+
+<rte><number>105</number><name>Laconia</name><cmt>106</cmt>
+ <rtept lat=" 43.55284598" lon="-71.51007745"></rtept>
+ <rtept lat=" 43.59814243" lon="-71.53467605"></rtept>
+ <rtept lat=" 43.61820342" lon="-71.45184485"></rtept>
+ <rtept lat=" 43.50444486" lon="-71.44889939"></rtept>
+ <rtept lat=" 43.53071521" lon="-71.50084303"></rtept>
+ <rtept lat=" 43.55284598" lon="-71.51007745"></rtept>
+</rte>
+
+<rte><number>106</number><name>Alton</name><cmt>107</cmt>
+ <rtept lat=" 43.62930861" lon="-71.34417624"></rtept>
+ <rtept lat=" 43.62715921" lon="-71.34111137"></rtept>
+ <rtept lat=" 43.58835075" lon="-71.28486895"></rtept>
+ <rtept lat=" 43.53935258" lon="-71.16362733"></rtept>
+ <rtept lat=" 43.51260459" lon="-71.19220628"></rtept>
+ <rtept lat=" 43.35585820" lon="-71.16012462"></rtept>
+ <rtept lat=" 43.41819057" lon="-71.28132644"></rtept>
+ <rtept lat=" 43.50942031" lon="-71.31703022"></rtept>
+ <rtept lat=" 43.62930861" lon="-71.34417624"></rtept>
+</rte>
+
+<rte><number>107</number><name>Grafton</name><cmt>108</cmt>
+ <rtept lat=" 43.62763686" lon="-72.00610932"></rtept>
+ <rtept lat=" 43.60658078" lon="-71.90015226"></rtept>
+ <rtept lat=" 43.59945594" lon="-71.86405044"></rtept>
+ <rtept lat=" 43.53302381" lon="-71.93096021"></rtept>
+ <rtept lat=" 43.52844641" lon="-71.93521919"></rtept>
+ <rtept lat=" 43.55328382" lon="-72.06951638"></rtept>
+ <rtept lat=" 43.61139701" lon="-72.02015997"></rtept>
+ <rtept lat=" 43.62763686" lon="-72.00610932"></rtept>
+</rte>
+
+<rte><number>108</number><name>Danbury</name><cmt>109</cmt>
+ <rtept lat=" 43.59945594" lon="-71.86405044"></rtept>
+ <rtept lat=" 43.54456684" lon="-71.81803754"></rtept>
+ <rtept lat=" 43.47514945" lon="-71.81704245"></rtept>
+ <rtept lat=" 43.45982508" lon="-71.86297575"></rtept>
+ <rtept lat=" 43.53302381" lon="-71.93096021"></rtept>
+ <rtept lat=" 43.59945594" lon="-71.86405044"></rtept>
+</rte>
+
+<rte><number>109</number><name>Plainfield</name><cmt>110</cmt>
+ <rtept lat=" 43.60021221" lon="-72.32963259"></rtept>
+ <rtept lat=" 43.58508686" lon="-72.20819196"></rtept>
+ <rtept lat=" 43.57402147" lon="-72.17117465"></rtept>
+ <rtept lat=" 43.48896128" lon="-72.21483915"></rtept>
+ <rtept lat=" 43.49258340" lon="-72.22729766"></rtept>
+ <rtept lat=" 43.51913237" lon="-72.39638315"></rtept>
+ <rtept lat=" 43.60021221" lon="-72.32963259"></rtept>
+</rte>
+
+<rte><number>110</number><name>Sanbornton</name><cmt>111</cmt>
+ <rtept lat=" 43.55284598" lon="-71.51007745"></rtept>
+ <rtept lat=" 43.53071521" lon="-71.50084303"></rtept>
+ <rtept lat=" 43.50245469" lon="-71.51011725"></rtept>
+ <rtept lat=" 43.47033322" lon="-71.62534854"></rtept>
+ <rtept lat=" 43.51833630" lon="-71.69066617"></rtept>
+ <rtept lat=" 43.53819828" lon="-71.70610995"></rtept>
+ <rtept lat=" 43.58265884" lon="-71.64258348"></rtept>
+ <rtept lat=" 43.55284598" lon="-71.51007745"></rtept>
+</rte>
+
+<rte><number>111</number><name>Grantham</name><cmt>112</cmt>
+ <rtept lat=" 43.57402147" lon="-72.17117465"></rtept>
+ <rtept lat=" 43.52892405" lon="-72.09089089"></rtept>
+ <rtept lat=" 43.46981577" lon="-72.11134991"></rtept>
+ <rtept lat=" 43.48896128" lon="-72.21483915"></rtept>
+ <rtept lat=" 43.57402147" lon="-72.17117465"></rtept>
+</rte>
+
+<rte><number>112</number><name>New Durham</name><cmt>113</cmt>
+ <rtept lat=" 43.57302638" lon="-71.12772453"></rtept>
+ <rtept lat=" 43.50695249" lon="-71.11180311"></rtept>
+ <rtept lat=" 43.42244955" lon="-71.08879665"></rtept>
+ <rtept lat=" 43.35585820" lon="-71.16012462"></rtept>
+ <rtept lat=" 43.51260459" lon="-71.19220628"></rtept>
+ <rtept lat=" 43.53935258" lon="-71.16362733"></rtept>
+ <rtept lat=" 43.57302638" lon="-71.12772453"></rtept>
+</rte>
+
+<rte><number>113</number><name>Hill</name><cmt>114</cmt>
+ <rtept lat=" 43.56864799" lon="-71.73974395"></rtept>
+ <rtept lat=" 43.56351333" lon="-71.72776308"></rtept>
+ <rtept lat=" 43.53819828" lon="-71.70610995"></rtept>
+ <rtept lat=" 43.51833630" lon="-71.69066617"></rtept>
+ <rtept lat=" 43.50329056" lon="-71.73325597"></rtept>
+ <rtept lat=" 43.47514945" lon="-71.81704245"></rtept>
+ <rtept lat=" 43.54456684" lon="-71.81803754"></rtept>
+ <rtept lat=" 43.56781212" lon="-71.76060101"></rtept>
+ <rtept lat=" 43.56864799" lon="-71.73974395"></rtept>
+</rte>
+
+<rte><number>114</number><name>Springfield</name><cmt>115</cmt>
+ <rtept lat=" 43.55328382" lon="-72.06951638"></rtept>
+ <rtept lat=" 43.52844641" lon="-71.93521919"></rtept>
+ <rtept lat=" 43.46623345" lon="-71.99174024"></rtept>
+ <rtept lat=" 43.44107761" lon="-72.05379398"></rtept>
+ <rtept lat=" 43.44676952" lon="-72.11529046"></rtept>
+ <rtept lat=" 43.46981577" lon="-72.11134991"></rtept>
+ <rtept lat=" 43.52892405" lon="-72.09089089"></rtept>
+ <rtept lat=" 43.55328382" lon="-72.06951638"></rtept>
+</rte>
+
+<rte><number>115</number><name>Milton</name><cmt>116</cmt>
+ <rtept lat=" 43.37930249" lon="-70.98558604"></rtept>
+ <rtept lat=" 43.37357078" lon="-70.99159638"></rtept>
+ <rtept lat=" 43.42499697" lon="-71.08609001"></rtept>
+ <rtept lat=" 43.48299075" lon="-71.02443431"></rtept>
+ <rtept lat=" 43.54102433" lon="-70.96218155"></rtept>
+ <rtept lat=" 43.37930249" lon="-70.98558604"></rtept>
+</rte>
+
+<rte><number>116</number><name>Wilmot</name><cmt>117</cmt>
+ <rtept lat=" 43.53302381" lon="-71.93096021"></rtept>
+ <rtept lat=" 43.45982508" lon="-71.86297575"></rtept>
+ <rtept lat=" 43.44943635" lon="-71.89434095"></rtept>
+ <rtept lat=" 43.38905436" lon="-71.85696541"></rtept>
+ <rtept lat=" 43.36445577" lon="-71.88454927"></rtept>
+ <rtept lat=" 43.40258757" lon="-71.90771494"></rtept>
+ <rtept lat=" 43.46623345" lon="-71.99174024"></rtept>
+ <rtept lat=" 43.52844641" lon="-71.93521919"></rtept>
+ <rtept lat=" 43.53302381" lon="-71.93096021"></rtept>
+</rte>
+
+<rte><number>117</number><name>Belmont</name><cmt>118</cmt>
+ <rtept lat=" 43.53071521" lon="-71.50084303"></rtept>
+ <rtept lat=" 43.50444486" lon="-71.44889939"></rtept>
+ <rtept lat=" 43.48119959" lon="-71.39500538"></rtept>
+ <rtept lat=" 43.40939398" lon="-71.46736824"></rtept>
+ <rtept lat=" 43.45258083" lon="-71.54697534"></rtept>
+ <rtept lat=" 43.50245469" lon="-71.51011725"></rtept>
+ <rtept lat=" 43.53071521" lon="-71.50084303"></rtept>
+</rte>
+
+<rte><number>118</number><name>Middleton</name><cmt>119</cmt>
+ <rtept lat=" 43.50695249" lon="-71.11180311"></rtept>
+ <rtept lat=" 43.52968032" lon="-71.03729086"></rtept>
+ <rtept lat=" 43.48299075" lon="-71.02443431"></rtept>
+ <rtept lat=" 43.42499697" lon="-71.08609001"></rtept>
+ <rtept lat=" 43.42244955" lon="-71.08879665"></rtept>
+ <rtept lat=" 43.50695249" lon="-71.11180311"></rtept>
+</rte>
+
+<rte><number>119</number><name>Cornish</name><cmt>120</cmt>
+ <rtept lat=" 43.49258340" lon="-72.22729766"></rtept>
+ <rtept lat=" 43.42380287" lon="-72.26948943"></rtept>
+ <rtept lat=" 43.42885792" lon="-72.39646276"></rtept>
+ <rtept lat=" 43.51913237" lon="-72.39638315"></rtept>
+ <rtept lat=" 43.49258340" lon="-72.22729766"></rtept>
+</rte>
+
+<rte><number>120</number><name>Franklin</name><cmt>121</cmt>
+ <rtept lat=" 43.50329056" lon="-71.73325597"></rtept>
+ <rtept lat=" 43.51833630" lon="-71.69066617"></rtept>
+ <rtept lat=" 43.47033322" lon="-71.62534854"></rtept>
+ <rtept lat=" 43.44374445" lon="-71.61949742"></rtept>
+ <rtept lat=" 43.38451676" lon="-71.64871322"></rtept>
+ <rtept lat=" 43.37643664" lon="-71.66941107"></rtept>
+ <rtept lat=" 43.44358523" lon="-71.69504456"></rtept>
+ <rtept lat=" 43.50329056" lon="-71.73325597"></rtept>
+</rte>
+
+<rte><number>121</number><name>Gilmanton</name><cmt>122</cmt>
+ <rtept lat=" 43.50942031" lon="-71.31703022"></rtept>
+ <rtept lat=" 43.41819057" lon="-71.28132644"></rtept>
+ <rtept lat=" 43.34658397" lon="-71.34700230"></rtept>
+ <rtept lat=" 43.40191091" lon="-71.45295935"></rtept>
+ <rtept lat=" 43.40939398" lon="-71.46736824"></rtept>
+ <rtept lat=" 43.48119959" lon="-71.39500538"></rtept>
+ <rtept lat=" 43.50942031" lon="-71.31703022"></rtept>
+</rte>
+
+<rte><number>122</number><name>Andover</name><cmt>123</cmt>
+ <rtept lat=" 43.47514945" lon="-71.81704245"></rtept>
+ <rtept lat=" 43.50329056" lon="-71.73325597"></rtept>
+ <rtept lat=" 43.44358523" lon="-71.69504456"></rtept>
+ <rtept lat=" 43.42428051" lon="-71.75506832"></rtept>
+ <rtept lat=" 43.39566175" lon="-71.83849656"></rtept>
+ <rtept lat=" 43.38905436" lon="-71.85696541"></rtept>
+ <rtept lat=" 43.44943635" lon="-71.89434095"></rtept>
+ <rtept lat=" 43.45982508" lon="-71.86297575"></rtept>
+ <rtept lat=" 43.47514945" lon="-71.81704245"></rtept>
+</rte>
+
+<rte><number>123</number><name>Tilton</name><cmt>124</cmt>
+ <rtept lat=" 43.45258083" lon="-71.54697534"></rtept>
+ <rtept lat=" 43.45274005" lon="-71.54932375"></rtept>
+ <rtept lat=" 43.44374445" lon="-71.61949742"></rtept>
+ <rtept lat=" 43.47033322" lon="-71.62534854"></rtept>
+ <rtept lat=" 43.50245469" lon="-71.51011725"></rtept>
+ <rtept lat=" 43.45258083" lon="-71.54697534"></rtept>
+</rte>
+
+<rte><number>124</number><name>Croydon</name><cmt>125</cmt>
+ <rtept lat=" 43.49258340" lon="-72.22729766"></rtept>
+ <rtept lat=" 43.48896128" lon="-72.21483915"></rtept>
+ <rtept lat=" 43.46981577" lon="-72.11134991"></rtept>
+ <rtept lat=" 43.44676952" lon="-72.11529046"></rtept>
+ <rtept lat=" 43.39446765" lon="-72.12631605"></rtept>
+ <rtept lat=" 43.42380287" lon="-72.26948943"></rtept>
+ <rtept lat=" 43.49258340" lon="-72.22729766"></rtept>
+</rte>
+
+<rte><number>125</number><name>New London</name><cmt>126</cmt>
+ <rtept lat=" 43.46623345" lon="-71.99174024"></rtept>
+ <rtept lat=" 43.40258757" lon="-71.90771494"></rtept>
+ <rtept lat=" 43.38340226" lon="-72.01430885"></rtept>
+ <rtept lat=" 43.38025778" lon="-72.04981362"></rtept>
+ <rtept lat=" 43.44107761" lon="-72.05379398"></rtept>
+ <rtept lat=" 43.46623345" lon="-71.99174024"></rtept>
+</rte>
+
+<rte><number>126</number><name>Northfield</name><cmt>127</cmt>
+ <rtept lat=" 43.45274005" lon="-71.54932375"></rtept>
+ <rtept lat=" 43.45258083" lon="-71.54697534"></rtept>
+ <rtept lat=" 43.40939398" lon="-71.46736824"></rtept>
+ <rtept lat=" 43.36369950" lon="-71.64624540"></rtept>
+ <rtept lat=" 43.38451676" lon="-71.64871322"></rtept>
+ <rtept lat=" 43.44374445" lon="-71.61949742"></rtept>
+ <rtept lat=" 43.45274005" lon="-71.54932375"></rtept>
+</rte>
+
+<rte><number>127</number><name>Sunapee</name><cmt>128</cmt>
+ <rtept lat=" 43.44107761" lon="-72.05379398"></rtept>
+ <rtept lat=" 43.38025778" lon="-72.04981362"></rtept>
+ <rtept lat=" 43.33858346" lon="-72.07867120"></rtept>
+ <rtept lat=" 43.32982668" lon="-72.12747035"></rtept>
+ <rtept lat=" 43.39446765" lon="-72.12631605"></rtept>
+ <rtept lat=" 43.44676952" lon="-72.11529046"></rtept>
+ <rtept lat=" 43.44107761" lon="-72.05379398"></rtept>
+</rte>
+
+<rte><number>128</number><name>Salisbury</name><cmt>129</cmt>
+ <rtept lat=" 43.42428051" lon="-71.75506832"></rtept>
+ <rtept lat=" 43.44358523" lon="-71.69504456"></rtept>
+ <rtept lat=" 43.37643664" lon="-71.66941107"></rtept>
+ <rtept lat=" 43.36015699" lon="-71.71625985"></rtept>
+ <rtept lat=" 43.33512055" lon="-71.78603548"></rtept>
+ <rtept lat=" 43.31756718" lon="-71.83515306"></rtept>
+ <rtept lat=" 43.39566175" lon="-71.83849656"></rtept>
+ <rtept lat=" 43.42428051" lon="-71.75506832"></rtept>
+</rte>
+
+<rte><number>129</number><name>Claremont</name><cmt>130</cmt>
+ <rtept lat=" 43.42885792" lon="-72.39646276"></rtept>
+ <rtept lat=" 43.42380287" lon="-72.26948943"></rtept>
+ <rtept lat=" 43.33161784" lon="-72.26749925"></rtept>
+ <rtept lat=" 43.32202518" lon="-72.35478844"></rtept>
+ <rtept lat=" 43.33738935" lon="-72.40689129"></rtept>
+ <rtept lat=" 43.42885792" lon="-72.39646276"></rtept>
+</rte>
+
+<rte><number>130</number><name>Farmington</name><cmt>131</cmt>
+ <rtept lat=" 43.42244955" lon="-71.08879665"></rtept>
+ <rtept lat=" 43.42499697" lon="-71.08609001"></rtept>
+ <rtept lat=" 43.37357078" lon="-70.99159638"></rtept>
+ <rtept lat=" 43.29949637" lon="-71.07271602"></rtept>
+ <rtept lat=" 43.35585820" lon="-71.16012462"></rtept>
+ <rtept lat=" 43.42244955" lon="-71.08879665"></rtept>
+</rte>
+
+<rte><number>131</number><name>Newport</name><cmt>132</cmt>
+ <rtept lat=" 43.42380287" lon="-72.26948943"></rtept>
+ <rtept lat=" 43.39446765" lon="-72.12631605"></rtept>
+ <rtept lat=" 43.32982668" lon="-72.12747035"></rtept>
+ <rtept lat=" 43.30829296" lon="-72.16552255"></rtept>
+ <rtept lat=" 43.33161784" lon="-72.26749925"></rtept>
+ <rtept lat=" 43.42380287" lon="-72.26948943"></rtept>
+</rte>
+
+<rte><number>132</number><name>Barnstead</name><cmt>133</cmt>
+ <rtept lat=" 43.34658397" lon="-71.34700230"></rtept>
+ <rtept lat=" 43.41819057" lon="-71.28132644"></rtept>
+ <rtept lat=" 43.35585820" lon="-71.16012462"></rtept>
+ <rtept lat=" 43.28472925" lon="-71.23583097"></rtept>
+ <rtept lat=" 43.34658397" lon="-71.34700230"></rtept>
+</rte>
+
+<rte><number>133</number><name>Canterbury</name><cmt>134</cmt>
+ <rtept lat=" 43.40939398" lon="-71.46736824"></rtept>
+ <rtept lat=" 43.40191091" lon="-71.45295935"></rtept>
+ <rtept lat=" 43.30307869" lon="-71.52492418"></rtept>
+ <rtept lat=" 43.28723688" lon="-71.58864966"></rtept>
+ <rtept lat=" 43.36369950" lon="-71.64624540"></rtept>
+ <rtept lat=" 43.40939398" lon="-71.46736824"></rtept>
+</rte>
+
+<rte><number>134</number><name>Sutton</name><cmt>135</cmt>
+ <rtept lat=" 43.40258757" lon="-71.90771494"></rtept>
+ <rtept lat=" 43.36445577" lon="-71.88454927"></rtept>
+ <rtept lat=" 43.29523739" lon="-71.84832804"></rtept>
+ <rtept lat=" 43.28313711" lon="-71.92375577"></rtept>
+ <rtept lat=" 43.27828108" lon="-71.95261335"></rtept>
+ <rtept lat=" 43.38340226" lon="-72.01430885"></rtept>
+ <rtept lat=" 43.40258757" lon="-71.90771494"></rtept>
+</rte>
+
+<rte><number>135</number><name>Loudon</name><cmt>136</cmt>
+ <rtept lat=" 43.40191091" lon="-71.45295935"></rtept>
+ <rtept lat=" 43.34658397" lon="-71.34700230"></rtept>
+ <rtept lat=" 43.31318879" lon="-71.37880533"></rtept>
+ <rtept lat=" 43.24524413" lon="-71.44965566"></rtept>
+ <rtept lat=" 43.24914488" lon="-71.45650187"></rtept>
+ <rtept lat=" 43.30307869" lon="-71.52492418"></rtept>
+ <rtept lat=" 43.40191091" lon="-71.45295935"></rtept>
+</rte>
+
+<rte><number>136</number><name>Warner</name><cmt>137</cmt>
+ <rtept lat=" 43.38905436" lon="-71.85696541"></rtept>
+ <rtept lat=" 43.39566175" lon="-71.83849656"></rtept>
+ <rtept lat=" 43.31756718" lon="-71.83515306"></rtept>
+ <rtept lat=" 43.33512055" lon="-71.78603548"></rtept>
+ <rtept lat=" 43.24416943" lon="-71.72577290"></rtept>
+ <rtept lat=" 43.23190994" lon="-71.78766742"></rtept>
+ <rtept lat=" 43.21340129" lon="-71.88204165"></rtept>
+ <rtept lat=" 43.28313711" lon="-71.92375577"></rtept>
+ <rtept lat=" 43.29523739" lon="-71.84832804"></rtept>
+ <rtept lat=" 43.36445577" lon="-71.88454927"></rtept>
+ <rtept lat=" 43.38905436" lon="-71.85696541"></rtept>
+</rte>
+
+<rte><number>137</number><name>Boscawen</name><cmt>138</cmt>
+ <rtept lat=" 43.37643664" lon="-71.66941107"></rtept>
+ <rtept lat=" 43.38451676" lon="-71.64871322"></rtept>
+ <rtept lat=" 43.36369950" lon="-71.64624540"></rtept>
+ <rtept lat=" 43.28723688" lon="-71.58864966"></rtept>
+ <rtept lat=" 43.26653903" lon="-71.65026556"></rtept>
+ <rtept lat=" 43.33189646" lon="-71.70073647"></rtept>
+ <rtept lat=" 43.36015699" lon="-71.71625985"></rtept>
+ <rtept lat=" 43.37643664" lon="-71.66941107"></rtept>
+</rte>
+
+<rte><number>138</number><name>Newbury</name><cmt>139</cmt>
+ <rtept lat=" 43.38025778" lon="-72.04981362"></rtept>
+ <rtept lat=" 43.38340226" lon="-72.01430885"></rtept>
+ <rtept lat=" 43.27828108" lon="-71.95261335"></rtept>
+ <rtept lat=" 43.25503580" lon="-72.06541661"></rtept>
+ <rtept lat=" 43.33858346" lon="-72.07867120"></rtept>
+ <rtept lat=" 43.38025778" lon="-72.04981362"></rtept>
+</rte>
+
+<rte><number>139</number><name>Rochester</name><cmt>140</cmt>
+ <rtept lat=" 43.37357078" lon="-70.99159638"></rtept>
+ <rtept lat=" 43.37930249" lon="-70.98558604"></rtept>
+ <rtept lat=" 43.28699806" lon="-70.89889390"></rtept>
+ <rtept lat=" 43.25499600" lon="-70.92711462"></rtept>
+ <rtept lat=" 43.22578019" lon="-70.95278791"></rtept>
+ <rtept lat=" 43.28859020" lon="-71.05472481"></rtept>
+ <rtept lat=" 43.29949637" lon="-71.07271602"></rtept>
+ <rtept lat=" 43.37357078" lon="-70.99159638"></rtept>
+</rte>
+
+<rte><number>140</number><name>Webster</name><cmt>141</cmt>
+ <rtept lat=" 43.33189646" lon="-71.70073647"></rtept>
+ <rtept lat=" 43.26653903" lon="-71.65026556"></rtept>
+ <rtept lat=" 43.26001125" lon="-71.66869461"></rtept>
+ <rtept lat=" 43.24416943" lon="-71.72577290"></rtept>
+ <rtept lat=" 43.33512055" lon="-71.78603548"></rtept>
+ <rtept lat=" 43.36015699" lon="-71.71625985"></rtept>
+ <rtept lat=" 43.33189646" lon="-71.70073647"></rtept>
+</rte>
+
+<rte><number>141</number><name>Strafford</name><cmt>142</cmt>
+ <rtept lat=" 43.35585820" lon="-71.16012462"></rtept>
+ <rtept lat=" 43.29949637" lon="-71.07271602"></rtept>
+ <rtept lat=" 43.28859020" lon="-71.05472481"></rtept>
+ <rtept lat=" 43.20372903" lon="-71.13353585"></rtept>
+ <rtept lat=" 43.27418131" lon="-71.24721479"></rtept>
+ <rtept lat=" 43.28472925" lon="-71.23583097"></rtept>
+ <rtept lat=" 43.35585820" lon="-71.16012462"></rtept>
+</rte>
+
+<rte><number>142</number><name>Pittsfield</name><cmt>143</cmt>
+ <rtept lat=" 43.28472925" lon="-71.23583097"></rtept>
+ <rtept lat=" 43.27418131" lon="-71.24721479"></rtept>
+ <rtept lat=" 43.25097584" lon="-71.26190230"></rtept>
+ <rtept lat=" 43.26840980" lon="-71.36001806"></rtept>
+ <rtept lat=" 43.28847079" lon="-71.33426516"></rtept>
+ <rtept lat=" 43.31318879" lon="-71.37880533"></rtept>
+ <rtept lat=" 43.34658397" lon="-71.34700230"></rtept>
+ <rtept lat=" 43.28472925" lon="-71.23583097"></rtept>
+</rte>
+
+<rte><number>143</number><name>Goshen</name><cmt>144</cmt>
+ <rtept lat=" 43.32982668" lon="-72.12747035"></rtept>
+ <rtept lat=" 43.33858346" lon="-72.07867120"></rtept>
+ <rtept lat=" 43.25503580" lon="-72.06541661"></rtept>
+ <rtept lat=" 43.24938370" lon="-72.12341039"></rtept>
+ <rtept lat=" 43.28090811" lon="-72.15963162"></rtept>
+ <rtept lat=" 43.30829296" lon="-72.16552255"></rtept>
+ <rtept lat=" 43.32982668" lon="-72.12747035"></rtept>
+</rte>
+
+<rte><number>144</number><name>Charlestown</name><cmt>145</cmt>
+ <rtept lat=" 43.32202518" lon="-72.35478844"></rtept>
+ <rtept lat=" 43.25985203" lon="-72.33862820"></rtept>
+ <rtept lat=" 43.20440569" lon="-72.34205130"></rtept>
+ <rtept lat=" 43.15974610" lon="-72.43204713"></rtept>
+ <rtept lat=" 43.16141785" lon="-72.45210812"></rtept>
+ <rtept lat=" 43.33738935" lon="-72.40689129"></rtept>
+ <rtept lat=" 43.32202518" lon="-72.35478844"></rtept>
+</rte>
+
+<rte><number>145</number><name>Unity</name><cmt>146</cmt>
+ <rtept lat=" 43.32202518" lon="-72.35478844"></rtept>
+ <rtept lat=" 43.33161784" lon="-72.26749925"></rtept>
+ <rtept lat=" 43.30829296" lon="-72.16552255"></rtept>
+ <rtept lat=" 43.28090811" lon="-72.15963162"></rtept>
+ <rtept lat=" 43.27087762" lon="-72.23951735"></rtept>
+ <rtept lat=" 43.25985203" lon="-72.33862820"></rtept>
+ <rtept lat=" 43.32202518" lon="-72.35478844"></rtept>
+</rte>
+
+<rte><number>146</number><name>Chichester</name><cmt>147</cmt>
+ <rtept lat=" 43.31318879" lon="-71.37880533"></rtept>
+ <rtept lat=" 43.28847079" lon="-71.33426516"></rtept>
+ <rtept lat=" 43.26840980" lon="-71.36001806"></rtept>
+ <rtept lat=" 43.26474787" lon="-71.36200824"></rtept>
+ <rtept lat=" 43.20086317" lon="-71.40288648"></rtept>
+ <rtept lat=" 43.24524413" lon="-71.44965566"></rtept>
+ <rtept lat=" 43.31318879" lon="-71.37880533"></rtept>
+</rte>
+
+<rte><number>147</number><name>Concord</name><cmt>148</cmt>
+ <rtept lat=" 43.28723688" lon="-71.58864966"></rtept>
+ <rtept lat=" 43.30307869" lon="-71.52492418"></rtept>
+ <rtept lat=" 43.24914488" lon="-71.45650187"></rtept>
+ <rtept lat=" 43.15819376" lon="-71.49515112"></rtept>
+ <rtept lat=" 43.16519919" lon="-71.60305855"></rtept>
+ <rtept lat=" 43.26001125" lon="-71.66869461"></rtept>
+ <rtept lat=" 43.26653903" lon="-71.65026556"></rtept>
+ <rtept lat=" 43.28723688" lon="-71.58864966"></rtept>
+</rte>
+
+<rte><number>148</number><name>Barrington</name><cmt>149</cmt>
+ <rtept lat=" 43.28859020" lon="-71.05472481"></rtept>
+ <rtept lat=" 43.22578019" lon="-70.95278791"></rtept>
+ <rtept lat=" 43.21578950" lon="-70.96162430"></rtept>
+ <rtept lat=" 43.17244343" lon="-70.99812416"></rtept>
+ <rtept lat=" 43.13809297" lon="-71.02670311"></rtept>
+ <rtept lat=" 43.19966906" lon="-71.12712747"></rtept>
+ <rtept lat=" 43.20018651" lon="-71.12800315"></rtept>
+ <rtept lat=" 43.20372903" lon="-71.13353585"></rtept>
+ <rtept lat=" 43.28859020" lon="-71.05472481"></rtept>
+</rte>
+
+<rte><number>149</number><name>Somersworth</name><cmt>150</cmt>
+ <rtept lat=" 43.24440826" lon="-70.83934779"></rtept>
+ <rtept lat=" 43.22347159" lon="-70.88599755"></rtept>
+ <rtept lat=" 43.25499600" lon="-70.92711462"></rtept>
+ <rtept lat=" 43.28699806" lon="-70.89889390"></rtept>
+ <rtept lat=" 43.24440826" lon="-70.83934779"></rtept>
+</rte>
+
+<rte><number>150</number><name>Bradford</name><cmt>151</cmt>
+ <rtept lat=" 43.28313711" lon="-71.92375577"></rtept>
+ <rtept lat=" 43.21340129" lon="-71.88204165"></rtept>
+ <rtept lat=" 43.20727154" lon="-71.91324763"></rtept>
+ <rtept lat=" 43.18788721" lon="-72.00897518"></rtept>
+ <rtept lat=" 43.25503580" lon="-72.06541661"></rtept>
+ <rtept lat=" 43.27828108" lon="-71.95261335"></rtept>
+ <rtept lat=" 43.28313711" lon="-71.92375577"></rtept>
+</rte>
+
+<rte><number>151</number><name>Lempster</name><cmt>152</cmt>
+ <rtept lat=" 43.27087762" lon="-72.23951735"></rtept>
+ <rtept lat=" 43.28090811" lon="-72.15963162"></rtept>
+ <rtept lat=" 43.24938370" lon="-72.12341039"></rtept>
+ <rtept lat=" 43.18195648" lon="-72.15656675"></rtept>
+ <rtept lat=" 43.17714025" lon="-72.19851969"></rtept>
+ <rtept lat=" 43.17479184" lon="-72.21977479"></rtept>
+ <rtept lat=" 43.27087762" lon="-72.23951735"></rtept>
+</rte>
+
+<rte><number>152</number><name>Northwood</name><cmt>153</cmt>
+ <rtept lat=" 43.27418131" lon="-71.24721479"></rtept>
+ <rtept lat=" 43.20372903" lon="-71.13353585"></rtept>
+ <rtept lat=" 43.20018651" lon="-71.12800315"></rtept>
+ <rtept lat=" 43.16703015" lon="-71.15666171"></rtept>
+ <rtept lat=" 43.22215807" lon="-71.27877901"></rtept>
+ <rtept lat=" 43.25097584" lon="-71.26190230"></rtept>
+ <rtept lat=" 43.27418131" lon="-71.24721479"></rtept>
+</rte>
+
+<rte><number>153</number><name>Acworth</name><cmt>154</cmt>
+ <rtept lat=" 43.25985203" lon="-72.33862820"></rtept>
+ <rtept lat=" 43.27087762" lon="-72.23951735"></rtept>
+ <rtept lat=" 43.17479184" lon="-72.21977479"></rtept>
+ <rtept lat=" 43.16953777" lon="-72.26228498"></rtept>
+ <rtept lat=" 43.16289058" lon="-72.33214022"></rtept>
+ <rtept lat=" 43.20440569" lon="-72.34205130"></rtept>
+ <rtept lat=" 43.25985203" lon="-72.33862820"></rtept>
+</rte>
+
+<rte><number>154</number><name>Epsom</name><cmt>155</cmt>
+ <rtept lat=" 43.26474787" lon="-71.36200824"></rtept>
+ <rtept lat=" 43.26840980" lon="-71.36001806"></rtept>
+ <rtept lat=" 43.25097584" lon="-71.26190230"></rtept>
+ <rtept lat=" 43.22215807" lon="-71.27877901"></rtept>
+ <rtept lat=" 43.16257215" lon="-71.31774669"></rtept>
+ <rtept lat=" 43.17558791" lon="-71.39381127"></rtept>
+ <rtept lat=" 43.20086317" lon="-71.40288648"></rtept>
+ <rtept lat=" 43.26474787" lon="-71.36200824"></rtept>
+</rte>
+
+<rte><number>155</number><name>Hopkinton</name><cmt>156</cmt>
+ <rtept lat=" 43.26001125" lon="-71.66869461"></rtept>
+ <rtept lat=" 43.16519919" lon="-71.60305855"></rtept>
+ <rtept lat=" 43.16026355" lon="-71.62845322"></rtept>
+ <rtept lat=" 43.15258146" lon="-71.66781893"></rtept>
+ <rtept lat=" 43.14704877" lon="-71.69619886"></rtept>
+ <rtept lat=" 43.13948609" lon="-71.73245990"></rtept>
+ <rtept lat=" 43.23190994" lon="-71.78766742"></rtept>
+ <rtept lat=" 43.24416943" lon="-71.72577290"></rtept>
+ <rtept lat=" 43.26001125" lon="-71.66869461"></rtept>
+</rte>
+
+<rte><number>156</number><name>Washington</name><cmt>157</cmt>
+ <rtept lat=" 43.24938370" lon="-72.12341039"></rtept>
+ <rtept lat=" 43.25503580" lon="-72.06541661"></rtept>
+ <rtept lat=" 43.18788721" lon="-72.00897518"></rtept>
+ <rtept lat=" 43.16014414" lon="-72.02338406"></rtept>
+ <rtept lat=" 43.12881874" lon="-72.03815118"></rtept>
+ <rtept lat=" 43.12989344" lon="-72.12337059"></rtept>
+ <rtept lat=" 43.13196322" lon="-72.17845870"></rtept>
+ <rtept lat=" 43.18195648" lon="-72.15656675"></rtept>
+ <rtept lat=" 43.24938370" lon="-72.12341039"></rtept>
+</rte>
+
+<rte><number>157</number><name>Dover</name><cmt>158</cmt>
+ <rtept lat=" 43.25499600" lon="-70.92711462"></rtept>
+ <rtept lat=" 43.22347159" lon="-70.88599755"></rtept>
+ <rtept lat=" 43.19696242" lon="-70.82004307"></rtept>
+ <rtept lat=" 43.12256958" lon="-70.82000326"></rtept>
+ <rtept lat=" 43.12623151" lon="-70.84710948"></rtept>
+ <rtept lat=" 43.12989344" lon="-70.85248296"></rtept>
+ <rtept lat=" 43.21578950" lon="-70.96162430"></rtept>
+ <rtept lat=" 43.22578019" lon="-70.95278791"></rtept>
+ <rtept lat=" 43.25499600" lon="-70.92711462"></rtept>
+</rte>
+
+<rte><number>158</number><name>Pembroke</name><cmt>159</cmt>
+ <rtept lat=" 43.24524413" lon="-71.44965566"></rtept>
+ <rtept lat=" 43.20086317" lon="-71.40288648"></rtept>
+ <rtept lat=" 43.17558791" lon="-71.39381127"></rtept>
+ <rtept lat=" 43.12742562" lon="-71.46490042"></rtept>
+ <rtept lat=" 43.15819376" lon="-71.49515112"></rtept>
+ <rtept lat=" 43.24914488" lon="-71.45650187"></rtept>
+ <rtept lat=" 43.24524413" lon="-71.44965566"></rtept>
+</rte>
+
+<rte><number>159</number><name>Rollinsford</name><cmt>160</cmt>
+ <rtept lat=" 43.19696242" lon="-70.82004307"></rtept>
+ <rtept lat=" 43.22347159" lon="-70.88599755"></rtept>
+ <rtept lat=" 43.24440826" lon="-70.83934779"></rtept>
+ <rtept lat=" 43.19696242" lon="-70.82004307"></rtept>
+</rte>
+
+<rte><number>160</number><name>Henniker</name><cmt>161</cmt>
+ <rtept lat=" 43.23190994" lon="-71.78766742"></rtept>
+ <rtept lat=" 43.13948609" lon="-71.73245990"></rtept>
+ <rtept lat=" 43.12448015" lon="-71.80963899"></rtept>
+ <rtept lat=" 43.11536514" lon="-71.85601012"></rtept>
+ <rtept lat=" 43.20727154" lon="-71.91324763"></rtept>
+ <rtept lat=" 43.21340129" lon="-71.88204165"></rtept>
+ <rtept lat=" 43.23190994" lon="-71.78766742"></rtept>
+</rte>
+
+<rte><number>161</number><name>Deerfield</name><cmt>162</cmt>
+ <rtept lat=" 43.22215807" lon="-71.27877901"></rtept>
+ <rtept lat=" 43.16703015" lon="-71.15666171"></rtept>
+ <rtept lat=" 43.07707412" lon="-71.21306334"></rtept>
+ <rtept lat=" 43.07997978" lon="-71.23053710"></rtept>
+ <rtept lat=" 43.10195134" lon="-71.35619692"></rtept>
+ <rtept lat=" 43.16257215" lon="-71.31774669"></rtept>
+ <rtept lat=" 43.22215807" lon="-71.27877901"></rtept>
+</rte>
+
+<rte><number>162</number><name>Madbury</name><cmt>163</cmt>
+ <rtept lat=" 43.21578950" lon="-70.96162430"></rtept>
+ <rtept lat=" 43.12989344" lon="-70.85248296"></rtept>
+ <rtept lat=" 43.16289058" lon="-70.96070882"></rtept>
+ <rtept lat=" 43.17244343" lon="-70.99812416"></rtept>
+ <rtept lat=" 43.21578950" lon="-70.96162430"></rtept>
+</rte>
+
+<rte><number>163</number><name>Hillsborough</name><cmt>164</cmt>
+ <rtept lat=" 43.20727154" lon="-71.91324763"></rtept>
+ <rtept lat=" 43.11536514" lon="-71.85601012"></rtept>
+ <rtept lat=" 43.10469779" lon="-71.90954590"></rtept>
+ <rtept lat=" 43.09223927" lon="-71.98262522"></rtept>
+ <rtept lat=" 43.16014414" lon="-72.02338406"></rtept>
+ <rtept lat=" 43.18788721" lon="-72.00897518"></rtept>
+ <rtept lat=" 43.20727154" lon="-71.91324763"></rtept>
+</rte>
+
+<rte><number>164</number><name>Langdon</name><cmt>165</cmt>
+ <rtept lat=" 43.20440569" lon="-72.34205130"></rtept>
+ <rtept lat=" 43.16289058" lon="-72.33214022"></rtept>
+ <rtept lat=" 43.13212243" lon="-72.37206318"></rtept>
+ <rtept lat=" 43.15974610" lon="-72.43204713"></rtept>
+ <rtept lat=" 43.20440569" lon="-72.34205130"></rtept>
+</rte>
+
+<rte><number>165</number><name>Nottingham</name><cmt>166</cmt>
+ <rtept lat=" 43.19966906" lon="-71.12712747"></rtept>
+ <rtept lat=" 43.13809297" lon="-71.02670311"></rtept>
+ <rtept lat=" 43.08173114" lon="-71.07299464"></rtept>
+ <rtept lat=" 43.06258563" lon="-71.13082920"></rtept>
+ <rtept lat=" 43.07707412" lon="-71.21306334"></rtept>
+ <rtept lat=" 43.16703015" lon="-71.15666171"></rtept>
+ <rtept lat=" 43.20018651" lon="-71.12800315"></rtept>
+ <rtept lat=" 43.19966906" lon="-71.12712747"></rtept>
+</rte>
+
+<rte><number>166</number><name>Marlow</name><cmt>167</cmt>
+ <rtept lat=" 43.17714025" lon="-72.19851969"></rtept>
+ <rtept lat=" 43.18195648" lon="-72.15656675"></rtept>
+ <rtept lat=" 43.13196322" lon="-72.17845870"></rtept>
+ <rtept lat=" 43.07619844" lon="-72.19402189"></rtept>
+ <rtept lat=" 43.07098418" lon="-72.24317928"></rtept>
+ <rtept lat=" 43.16953777" lon="-72.26228498"></rtept>
+ <rtept lat=" 43.17479184" lon="-72.21977479"></rtept>
+ <rtept lat=" 43.17714025" lon="-72.19851969"></rtept>
+</rte>
+
+<rte><number>167</number><name>Bow</name><cmt>168</cmt>
+ <rtept lat=" 43.16519919" lon="-71.60305855"></rtept>
+ <rtept lat=" 43.15819376" lon="-71.49515112"></rtept>
+ <rtept lat=" 43.12742562" lon="-71.46490042"></rtept>
+ <rtept lat=" 43.12245017" lon="-71.46617413"></rtept>
+ <rtept lat=" 43.07667609" lon="-71.51298311"></rtept>
+ <rtept lat=" 43.16026355" lon="-71.62845322"></rtept>
+ <rtept lat=" 43.16519919" lon="-71.60305855"></rtept>
+</rte>
+
+<rte><number>168</number><name>Allenstown</name><cmt>169</cmt>
+ <rtept lat=" 43.17558791" lon="-71.39381127"></rtept>
+ <rtept lat=" 43.16257215" lon="-71.31774669"></rtept>
+ <rtept lat=" 43.10195134" lon="-71.35619692"></rtept>
+ <rtept lat=" 43.12245017" lon="-71.46617413"></rtept>
+ <rtept lat=" 43.12742562" lon="-71.46490042"></rtept>
+ <rtept lat=" 43.17558791" lon="-71.39381127"></rtept>
+</rte>
+
+<rte><number>169</number><name>Lee</name><cmt>170</cmt>
+ <rtept lat=" 43.16289058" lon="-70.96070882"></rtept>
+ <rtept lat=" 43.08244760" lon="-70.98104844"></rtept>
+ <rtept lat=" 43.08204957" lon="-71.01225442"></rtept>
+ <rtept lat=" 43.08173114" lon="-71.07299464"></rtept>
+ <rtept lat=" 43.13809297" lon="-71.02670311"></rtept>
+ <rtept lat=" 43.17244343" lon="-70.99812416"></rtept>
+ <rtept lat=" 43.16289058" lon="-70.96070882"></rtept>
+</rte>
+
+<rte><number>170</number><name>Alstead</name><cmt>171</cmt>
+ <rtept lat=" 43.16289058" lon="-72.33214022"></rtept>
+ <rtept lat=" 43.16953777" lon="-72.26228498"></rtept>
+ <rtept lat=" 43.07098418" lon="-72.24317928"></rtept>
+ <rtept lat=" 43.06529227" lon="-72.30845710"></rtept>
+ <rtept lat=" 43.06163034" lon="-72.35968428"></rtept>
+ <rtept lat=" 43.13212243" lon="-72.37206318"></rtept>
+ <rtept lat=" 43.16289058" lon="-72.33214022"></rtept>
+</rte>
+
+<rte><number>171</number><name>Durham</name><cmt>172</cmt>
+ <rtept lat=" 43.16289058" lon="-70.96070882"></rtept>
+ <rtept lat=" 43.12989344" lon="-70.85248296"></rtept>
+ <rtept lat=" 43.12623151" lon="-70.84710948"></rtept>
+ <rtept lat=" 43.08045742" lon="-70.87548942"></rtept>
+ <rtept lat=" 43.08244760" lon="-70.98104844"></rtept>
+ <rtept lat=" 43.16289058" lon="-70.96070882"></rtept>
+</rte>
+
+<rte><number>172</number><name>Walpole</name><cmt>173</cmt>
+ <rtept lat=" 43.16141785" lon="-72.45210812"></rtept>
+ <rtept lat=" 43.15974610" lon="-72.43204713"></rtept>
+ <rtept lat=" 43.13212243" lon="-72.37206318"></rtept>
+ <rtept lat=" 43.06163034" lon="-72.35968428"></rtept>
+ <rtept lat=" 43.01541842" lon="-72.36032113"></rtept>
+ <rtept lat=" 43.02059288" lon="-72.45967080"></rtept>
+ <rtept lat=" 43.16141785" lon="-72.45210812"></rtept>
+</rte>
+
+<rte><number>173</number><name>Dunbarton</name><cmt>174</cmt>
+ <rtept lat=" 43.16026355" lon="-71.62845322"></rtept>
+ <rtept lat=" 43.07667609" lon="-71.51298311"></rtept>
+ <rtept lat=" 43.06891439" lon="-71.51851580"></rtept>
+ <rtept lat=" 43.05418708" lon="-71.64126996"></rtept>
+ <rtept lat=" 43.15258146" lon="-71.66781893"></rtept>
+ <rtept lat=" 43.16026355" lon="-71.62845322"></rtept>
+</rte>
+
+<rte><number>174</number><name>Windsor</name><cmt>175</cmt>
+ <rtept lat=" 43.16014414" lon="-72.02338406"></rtept>
+ <rtept lat=" 43.09223927" lon="-71.98262522"></rtept>
+ <rtept lat=" 43.08228839" lon="-72.04213153"></rtept>
+ <rtept lat=" 43.12881874" lon="-72.03815118"></rtept>
+ <rtept lat=" 43.16014414" lon="-72.02338406"></rtept>
+</rte>
+
+<rte><number>175</number><name>Weare</name><cmt>176</cmt>
+ <rtept lat=" 43.14704877" lon="-71.69619886"></rtept>
+ <rtept lat=" 43.15258146" lon="-71.66781893"></rtept>
+ <rtept lat=" 43.05418708" lon="-71.64126996"></rtept>
+ <rtept lat=" 43.03297179" lon="-71.63852351"></rtept>
+ <rtept lat=" 43.03241454" lon="-71.64246407"></rtept>
+ <rtept lat=" 43.01406510" lon="-71.76243197"></rtept>
+ <rtept lat=" 43.03842487" lon="-71.78583646"></rtept>
+ <rtept lat=" 43.12448015" lon="-71.80963899"></rtept>
+ <rtept lat=" 43.13948609" lon="-71.73245990"></rtept>
+ <rtept lat=" 43.14704877" lon="-71.69619886"></rtept>
+</rte>
+
+<rte><number>176</number><name>Stoddard</name><cmt>177</cmt>
+ <rtept lat=" 43.12989344" lon="-72.12337059"></rtept>
+ <rtept lat=" 43.12881874" lon="-72.03815118"></rtept>
+ <rtept lat=" 43.08228839" lon="-72.04213153"></rtept>
+ <rtept lat=" 43.01892113" lon="-72.05809276"></rtept>
+ <rtept lat=" 43.02337913" lon="-72.17607049"></rtept>
+ <rtept lat=" 43.05335120" lon="-72.19955458"></rtept>
+ <rtept lat=" 43.07619844" lon="-72.19402189"></rtept>
+ <rtept lat=" 43.13196322" lon="-72.17845870"></rtept>
+ <rtept lat=" 43.12989344" lon="-72.12337059"></rtept>
+</rte>
+
+<rte><number>177</number><name>Newington</name><cmt>178</cmt>
+ <rtept lat=" 43.12623151" lon="-70.84710948"></rtept>
+ <rtept lat=" 43.12256958" lon="-70.82000326"></rtept>
+ <rtept lat=" 43.09964274" lon="-70.78270733"></rtept>
+ <rtept lat=" 43.09048792" lon="-70.80241009"></rtept>
+ <rtept lat=" 43.05940134" lon="-70.81729662"></rtept>
+ <rtept lat=" 43.07719353" lon="-70.88018623"></rtept>
+ <rtept lat=" 43.08045742" lon="-70.87548942"></rtept>
+ <rtept lat=" 43.12623151" lon="-70.84710948"></rtept>
+</rte>
+
+<rte><number>178</number><name>Deering</name><cmt>179</cmt>
+ <rtept lat=" 43.12448015" lon="-71.80963899"></rtept>
+ <rtept lat=" 43.03842487" lon="-71.78583646"></rtept>
+ <rtept lat=" 43.03205630" lon="-71.88176302"></rtept>
+ <rtept lat=" 43.05140083" lon="-71.91141667"></rtept>
+ <rtept lat=" 43.10469779" lon="-71.90954590"></rtept>
+ <rtept lat=" 43.11536514" lon="-71.85601012"></rtept>
+ <rtept lat=" 43.12448015" lon="-71.80963899"></rtept>
+</rte>
+
+<rte><number>179</number><name>Hooksett</name><cmt>180</cmt>
+ <rtept lat=" 43.12245017" lon="-71.46617413"></rtept>
+ <rtept lat=" 43.10195134" lon="-71.35619692"></rtept>
+ <rtept lat=" 43.04061407" lon="-71.39225894"></rtept>
+ <rtept lat=" 43.00897024" lon="-71.39221913"></rtept>
+ <rtept lat=" 43.05128142" lon="-71.49001646"></rtept>
+ <rtept lat=" 43.04829615" lon="-71.51270449"></rtept>
+ <rtept lat=" 43.06891439" lon="-71.51851580"></rtept>
+ <rtept lat=" 43.07667609" lon="-71.51298311"></rtept>
+ <rtept lat=" 43.12245017" lon="-71.46617413"></rtept>
+</rte>
+
+<rte><number>180</number><name>Antrim</name><cmt>181</cmt>
+ <rtept lat=" 43.09223927" lon="-71.98262522"></rtept>
+ <rtept lat=" 43.10469779" lon="-71.90954590"></rtept>
+ <rtept lat=" 43.05140083" lon="-71.91141667"></rtept>
+ <rtept lat=" 43.02019485" lon="-71.93100002"></rtept>
+ <rtept lat=" 43.01900074" lon="-71.94170717"></rtept>
+ <rtept lat=" 43.00510930" lon="-72.05892863"></rtept>
+ <rtept lat=" 43.01892113" lon="-72.05809276"></rtept>
+ <rtept lat=" 43.08228839" lon="-72.04213153"></rtept>
+ <rtept lat=" 43.09223927" lon="-71.98262522"></rtept>
+</rte>
+
+<rte><number>181</number><name>Candia</name><cmt>182</cmt>
+ <rtept lat=" 43.10195134" lon="-71.35619692"></rtept>
+ <rtept lat=" 43.07997978" lon="-71.23053710"></rtept>
+ <rtept lat=" 43.01601547" lon="-71.26126544"></rtept>
+ <rtept lat=" 43.02138895" lon="-71.28813284"></rtept>
+ <rtept lat=" 43.04061407" lon="-71.39225894"></rtept>
+ <rtept lat=" 43.10195134" lon="-71.35619692"></rtept>
+</rte>
+
+<rte><number>182</number><name>Portsmouth</name><cmt>183</cmt>
+ <rtept lat=" 43.09048792" lon="-70.80241009"></rtept>
+ <rtept lat=" 43.09964274" lon="-70.78270733"></rtept>
+ <rtept lat=" 43.07349180" lon="-70.73788853"></rtept>
+ <rtept lat=" 43.05948095" lon="-70.73498288"></rtept>
+ <rtept lat=" 43.05609765" lon="-70.74019714"></rtept>
+ <rtept lat=" 43.01987642" lon="-70.80981355"></rtept>
+ <rtept lat=" 43.05940134" lon="-70.81729662"></rtept>
+ <rtept lat=" 43.09048792" lon="-70.80241009"></rtept>
+</rte>
+
+<rte><number>183</number><name>Newmarket</name><cmt>184</cmt>
+ <rtept lat=" 43.08244760" lon="-70.98104844"></rtept>
+ <rtept lat=" 43.08045742" lon="-70.87548942"></rtept>
+ <rtept lat=" 43.07719353" lon="-70.88018623"></rtept>
+ <rtept lat=" 43.05983918" lon="-70.90769049"></rtept>
+ <rtept lat=" 43.05295317" lon="-70.91266593"></rtept>
+ <rtept lat=" 43.05144063" lon="-70.97511771"></rtept>
+ <rtept lat=" 43.05259494" lon="-71.01328931"></rtept>
+ <rtept lat=" 43.08204957" lon="-71.01225442"></rtept>
+ <rtept lat=" 43.08244760" lon="-70.98104844"></rtept>
+</rte>
+
+<rte><number>184</number><name>Epping</name><cmt>185</cmt>
+ <rtept lat=" 43.08173114" lon="-71.07299464"></rtept>
+ <rtept lat=" 43.08204957" lon="-71.01225442"></rtept>
+ <rtept lat=" 43.05259494" lon="-71.01328931"></rtept>
+ <rtept lat=" 43.03384746" lon="-71.01388637"></rtept>
+ <rtept lat=" 43.02035406" lon="-71.01098071"></rtept>
+ <rtept lat=" 43.02091131" lon="-71.08043791"></rtept>
+ <rtept lat=" 43.02115013" lon="-71.13652111"></rtept>
+ <rtept lat=" 43.02115013" lon="-71.15073098"></rtept>
+ <rtept lat=" 43.06258563" lon="-71.13082920"></rtept>
+ <rtept lat=" 43.08173114" lon="-71.07299464"></rtept>
+</rte>
+
+<rte><number>185</number><name>Raymond</name><cmt>186</cmt>
+ <rtept lat=" 43.07707412" lon="-71.21306334"></rtept>
+ <rtept lat=" 43.06258563" lon="-71.13082920"></rtept>
+ <rtept lat=" 43.02115013" lon="-71.15073098"></rtept>
+ <rtept lat=" 42.98457067" lon="-71.16780670"></rtept>
+ <rtept lat=" 43.01601547" lon="-71.26126544"></rtept>
+ <rtept lat=" 43.07997978" lon="-71.23053710"></rtept>
+ <rtept lat=" 43.07707412" lon="-71.21306334"></rtept>
+</rte>
+
+<rte><number>186</number><name>Greenland</name><cmt>187</cmt>
+ <rtept lat=" 43.05983918" lon="-70.90769049"></rtept>
+ <rtept lat=" 43.07719353" lon="-70.88018623"></rtept>
+ <rtept lat=" 43.05940134" lon="-70.81729662"></rtept>
+ <rtept lat=" 43.01987642" lon="-70.80981355"></rtept>
+ <rtept lat=" 43.00172600" lon="-70.81455018"></rtept>
+ <rtept lat=" 43.00526851" lon="-70.86828497"></rtept>
+ <rtept lat=" 43.05983918" lon="-70.90769049"></rtept>
+</rte>
+
+<rte><number>187</number><name>Gilsum</name><cmt>188</cmt>
+ <rtept lat=" 43.07619844" lon="-72.19402189"></rtept>
+ <rtept lat=" 43.05335120" lon="-72.19955458"></rtept>
+ <rtept lat=" 43.04674381" lon="-72.25929972"></rtept>
+ <rtept lat=" 42.99993484" lon="-72.24954785"></rtept>
+ <rtept lat=" 42.99062081" lon="-72.29528213"></rtept>
+ <rtept lat=" 43.06529227" lon="-72.30845710"></rtept>
+ <rtept lat=" 43.07098418" lon="-72.24317928"></rtept>
+ <rtept lat=" 43.07619844" lon="-72.19402189"></rtept>
+</rte>
+
+<rte><number>188</number><name>New Castle</name><cmt>189</cmt>
+ <rtept lat=" 43.05948095" lon="-70.73498288"></rtept>
+ <rtept lat=" 43.07349180" lon="-70.73788853"></rtept>
+ <rtept lat=" 43.05271435" lon="-70.71380739"></rtept>
+ <rtept lat=" 43.05948095" lon="-70.73498288"></rtept>
+</rte>
+
+<rte><number>189</number><name>Goffstown</name><cmt>190</cmt>
+ <rtept lat=" 43.06891439" lon="-71.51851580"></rtept>
+ <rtept lat=" 43.04829615" lon="-71.51270449"></rtept>
+ <rtept lat=" 42.98289892" lon="-71.49670346"></rtept>
+ <rtept lat=" 42.97179373" lon="-71.61710920"></rtept>
+ <rtept lat=" 43.03297179" lon="-71.63852351"></rtept>
+ <rtept lat=" 43.05418708" lon="-71.64126996"></rtept>
+ <rtept lat=" 43.06891439" lon="-71.51851580"></rtept>
+</rte>
+
+<rte><number>190</number><name>Surry</name><cmt>191</cmt>
+ <rtept lat=" 43.06163034" lon="-72.35968428"></rtept>
+ <rtept lat=" 43.06529227" lon="-72.30845710"></rtept>
+ <rtept lat=" 42.99062081" lon="-72.29528213"></rtept>
+ <rtept lat=" 42.97676917" lon="-72.36314718"></rtept>
+ <rtept lat=" 43.01541842" lon="-72.36032113"></rtept>
+ <rtept lat=" 43.06163034" lon="-72.35968428"></rtept>
+</rte>
+
+<rte><number>191</number><name>Stratham</name><cmt>192</cmt>
+ <rtept lat=" 43.05295317" lon="-70.91266593"></rtept>
+ <rtept lat=" 43.05983918" lon="-70.90769049"></rtept>
+ <rtept lat=" 43.00526851" lon="-70.86828497"></rtept>
+ <rtept lat=" 42.97107726" lon="-70.88770911"></rtept>
+ <rtept lat=" 43.02099092" lon="-70.93340358"></rtept>
+ <rtept lat=" 43.05295317" lon="-70.91266593"></rtept>
+</rte>
+
+<rte><number>192</number><name>Rye</name><cmt>193</cmt>
+ <rtept lat=" 43.05609765" lon="-70.74019714"></rtept>
+ <rtept lat=" 43.05948095" lon="-70.73498288"></rtept>
+ <rtept lat=" 43.05271435" lon="-70.71380739"></rtept>
+ <rtept lat=" 42.96964433" lon="-70.77036823"></rtept>
+ <rtept lat=" 43.00172600" lon="-70.81455018"></rtept>
+ <rtept lat=" 43.01987642" lon="-70.80981355"></rtept>
+ <rtept lat=" 43.05609765" lon="-70.74019714"></rtept>
+</rte>
+
+<rte><number>193</number><name>Sullivan</name><cmt>194</cmt>
+ <rtept lat=" 43.05335120" lon="-72.19955458"></rtept>
+ <rtept lat=" 43.02337913" lon="-72.17607049"></rtept>
+ <rtept lat=" 42.98496870" lon="-72.17829949"></rtept>
+ <rtept lat=" 42.97171412" lon="-72.21694874"></rtept>
+ <rtept lat=" 42.99993484" lon="-72.24954785"></rtept>
+ <rtept lat=" 43.04674381" lon="-72.25929972"></rtept>
+ <rtept lat=" 43.05335120" lon="-72.19955458"></rtept>
+</rte>
+
+<rte><number>194</number><name>Newfields</name><cmt>195</cmt>
+ <rtept lat=" 43.05144063" lon="-70.97511771"></rtept>
+ <rtept lat=" 43.05295317" lon="-70.91266593"></rtept>
+ <rtept lat=" 43.02099092" lon="-70.93340358"></rtept>
+ <rtept lat=" 43.03384746" lon="-71.01388637"></rtept>
+ <rtept lat=" 43.05259494" lon="-71.01328931"></rtept>
+ <rtept lat=" 43.05144063" lon="-70.97511771"></rtept>
+</rte>
+
+<rte><number>195</number><name>Bennington</name><cmt>196</cmt>
+ <rtept lat=" 43.02019485" lon="-71.93100002"></rtept>
+ <rtept lat=" 43.05140083" lon="-71.91141667"></rtept>
+ <rtept lat=" 43.03205630" lon="-71.88176302"></rtept>
+ <rtept lat=" 42.98799377" lon="-71.87412074"></rtept>
+ <rtept lat=" 42.98305813" lon="-71.93322902"></rtept>
+ <rtept lat=" 43.01900074" lon="-71.94170717"></rtept>
+ <rtept lat=" 43.02019485" lon="-71.93100002"></rtept>
+</rte>
+
+<rte><number>196</number><name>Manchester</name><cmt>197</cmt>
+ <rtept lat=" 43.05128142" lon="-71.49001646"></rtept>
+ <rtept lat=" 43.00897024" lon="-71.39221913"></rtept>
+ <rtept lat=" 42.94719513" lon="-71.37741221"></rtept>
+ <rtept lat=" 42.93067666" lon="-71.45132741"></rtept>
+ <rtept lat=" 42.88959939" lon="-71.44181436"></rtept>
+ <rtept lat=" 42.90341122" lon="-71.45383503"></rtept>
+ <rtept lat=" 42.91105350" lon="-71.45268073"></rtept>
+ <rtept lat=" 42.98289892" lon="-71.49670346"></rtept>
+ <rtept lat=" 43.04829615" lon="-71.51270449"></rtept>
+ <rtept lat=" 43.05128142" lon="-71.49001646"></rtept>
+</rte>
+
+<rte><number>197</number><name>Auburn</name><cmt>198</cmt>
+ <rtept lat=" 43.04061407" lon="-71.39225894"></rtept>
+ <rtept lat=" 43.02138895" lon="-71.28813284"></rtept>
+ <rtept lat=" 42.93648797" lon="-71.31121890"></rtept>
+ <rtept lat=" 42.94182165" lon="-71.34664406"></rtept>
+ <rtept lat=" 42.94719513" lon="-71.37741221"></rtept>
+ <rtept lat=" 43.00897024" lon="-71.39221913"></rtept>
+ <rtept lat=" 43.04061407" lon="-71.39225894"></rtept>
+</rte>
+
+<rte><number>198</number><name>Francestown</name><cmt>199</cmt>
+ <rtept lat=" 43.03842487" lon="-71.78583646"></rtept>
+ <rtept lat=" 43.01406510" lon="-71.76243197"></rtept>
+ <rtept lat=" 42.95830032" lon="-71.74742603"></rtept>
+ <rtept lat=" 42.94970275" lon="-71.81139034"></rtept>
+ <rtept lat=" 42.98799377" lon="-71.87412074"></rtept>
+ <rtept lat=" 43.03205630" lon="-71.88176302"></rtept>
+ <rtept lat=" 43.03842487" lon="-71.78583646"></rtept>
+</rte>
+
+<rte><number>199</number><name>Exeter</name><cmt>200</cmt>
+ <rtept lat=" 43.02099092" lon="-70.93340358"></rtept>
+ <rtept lat=" 42.97107726" lon="-70.88770911"></rtept>
+ <rtept lat=" 42.96729592" lon="-70.90160055"></rtept>
+ <rtept lat=" 42.96068853" lon="-70.92528366"></rtept>
+ <rtept lat=" 42.95698680" lon="-70.98228235"></rtept>
+ <rtept lat=" 42.95845954" lon="-70.99704946"></rtept>
+ <rtept lat=" 42.95869836" lon="-71.00548782"></rtept>
+ <rtept lat=" 43.02035406" lon="-71.01098071"></rtept>
+ <rtept lat=" 43.03384746" lon="-71.01388637"></rtept>
+ <rtept lat=" 43.02099092" lon="-70.93340358"></rtept>
+</rte>
+
+<rte><number>200</number><name>New Boston</name><cmt>201</cmt>
+ <rtept lat=" 43.03241454" lon="-71.64246407"></rtept>
+ <rtept lat=" 43.03297179" lon="-71.63852351"></rtept>
+ <rtept lat=" 42.97179373" lon="-71.61710920"></rtept>
+ <rtept lat=" 42.93991108" lon="-71.60871065"></rtept>
+ <rtept lat=" 42.93537348" lon="-71.63999625"></rtept>
+ <rtept lat=" 42.92259653" lon="-71.73771397"></rtept>
+ <rtept lat=" 42.95830032" lon="-71.74742603"></rtept>
+ <rtept lat=" 43.01406510" lon="-71.76243197"></rtept>
+ <rtept lat=" 43.03241454" lon="-71.64246407"></rtept>
+</rte>
+
+<rte><number>201</number><name>Nelson</name><cmt>202</cmt>
+ <rtept lat=" 43.02337913" lon="-72.17607049"></rtept>
+ <rtept lat=" 43.01892113" lon="-72.05809276"></rtept>
+ <rtept lat=" 43.00510930" lon="-72.05892863"></rtept>
+ <rtept lat=" 42.96598241" lon="-72.06123724"></rtept>
+ <rtept lat=" 42.96884826" lon="-72.13730183"></rtept>
+ <rtept lat=" 42.96255930" lon="-72.16723410"></rtept>
+ <rtept lat=" 42.98496870" lon="-72.17829949"></rtept>
+ <rtept lat=" 43.02337913" lon="-72.17607049"></rtept>
+</rte>
+
+<rte><number>202</number><name>Chester</name><cmt>203</cmt>
+ <rtept lat=" 43.01601547" lon="-71.26126544"></rtept>
+ <rtept lat=" 42.98457067" lon="-71.16780670"></rtept>
+ <rtept lat=" 42.96048952" lon="-71.17930993"></rtept>
+ <rtept lat=" 42.96518634" lon="-71.22373069"></rtept>
+ <rtept lat=" 42.91988989" lon="-71.21971054"></rtept>
+ <rtept lat=" 42.93648797" lon="-71.31121890"></rtept>
+ <rtept lat=" 43.02138895" lon="-71.28813284"></rtept>
+ <rtept lat=" 43.01601547" lon="-71.26126544"></rtept>
+</rte>
+
+<rte><number>203</number><name>Fremont</name><cmt>204</cmt>
+ <rtept lat=" 43.02115013" lon="-71.13652111"></rtept>
+ <rtept lat=" 43.02091131" lon="-71.08043791"></rtept>
+ <rtept lat=" 42.95929541" lon="-71.08800058"></rtept>
+ <rtept lat=" 42.95917600" lon="-71.09221976"></rtept>
+ <rtept lat=" 42.95989246" lon="-71.14949707"></rtept>
+ <rtept lat=" 42.96048952" lon="-71.17930993"></rtept>
+ <rtept lat=" 42.98457067" lon="-71.16780670"></rtept>
+ <rtept lat=" 43.02115013" lon="-71.15073098"></rtept>
+ <rtept lat=" 43.02115013" lon="-71.13652111"></rtept>
+</rte>
+
+<rte><number>204</number><name>Brentwood</name><cmt>205</cmt>
+ <rtept lat=" 43.02035406" lon="-71.01098071"></rtept>
+ <rtept lat=" 42.95869836" lon="-71.00548782"></rtept>
+ <rtept lat=" 42.95929541" lon="-71.08800058"></rtept>
+ <rtept lat=" 43.02091131" lon="-71.08043791"></rtept>
+ <rtept lat=" 43.02035406" lon="-71.01098071"></rtept>
+</rte>
+
+<rte><number>205</number><name>Westmoreland</name><cmt>206</cmt>
+ <rtept lat=" 43.02059288" lon="-72.45967080"></rtept>
+ <rtept lat=" 43.01541842" lon="-72.36032113"></rtept>
+ <rtept lat=" 42.97676917" lon="-72.36314718"></rtept>
+ <rtept lat=" 42.92641768" lon="-72.36788381"></rtept>
+ <rtept lat=" 42.93409976" lon="-72.52650096"></rtept>
+ <rtept lat=" 43.02059288" lon="-72.45967080"></rtept>
+</rte>
+
+<rte><number>206</number><name>Hancock</name><cmt>207</cmt>
+ <rtept lat=" 43.01900074" lon="-71.94170717"></rtept>
+ <rtept lat=" 42.98305813" lon="-71.93322902"></rtept>
+ <rtept lat=" 42.93987128" lon="-71.94540890"></rtept>
+ <rtept lat=" 42.93111449" lon="-72.00344248"></rtept>
+ <rtept lat=" 42.96598241" lon="-72.06123724"></rtept>
+ <rtept lat=" 43.00510930" lon="-72.05892863"></rtept>
+ <rtept lat=" 43.01900074" lon="-71.94170717"></rtept>
+</rte>
+
+<rte><number>207</number><name>North Hampton</name><cmt>208</cmt>
+ <rtept lat=" 43.00172600" lon="-70.81455018"></rtept>
+ <rtept lat=" 42.96964433" lon="-70.77036823"></rtept>
+ <rtept lat=" 42.95232979" lon="-70.78366262"></rtept>
+ <rtept lat=" 42.97107726" lon="-70.88770911"></rtept>
+ <rtept lat=" 43.00526851" lon="-70.86828497"></rtept>
+ <rtept lat=" 43.00172600" lon="-70.81455018"></rtept>
+</rte>
+
+<rte><number>208</number><name>Keene</name><cmt>209</cmt>
+ <rtept lat=" 42.99993484" lon="-72.24954785"></rtept>
+ <rtept lat=" 42.97171412" lon="-72.21694874"></rtept>
+ <rtept lat=" 42.92398966" lon="-72.22192418"></rtept>
+ <rtept lat=" 42.90707315" lon="-72.23406426"></rtept>
+ <rtept lat=" 42.91069527" lon="-72.34674812"></rtept>
+ <rtept lat=" 42.92641768" lon="-72.36788381"></rtept>
+ <rtept lat=" 42.97676917" lon="-72.36314718"></rtept>
+ <rtept lat=" 42.99062081" lon="-72.29528213"></rtept>
+ <rtept lat=" 42.99993484" lon="-72.24954785"></rtept>
+</rte>
+
+<rte><number>209</number><name>Greenfield</name><cmt>210</cmt>
+ <rtept lat=" 42.98305813" lon="-71.93322902"></rtept>
+ <rtept lat=" 42.98799377" lon="-71.87412074"></rtept>
+ <rtept lat=" 42.94970275" lon="-71.81139034"></rtept>
+ <rtept lat=" 42.88239495" lon="-71.85274623"></rtept>
+ <rtept lat=" 42.87853400" lon="-71.88140479"></rtept>
+ <rtept lat=" 42.94508554" lon="-71.89346527"></rtept>
+ <rtept lat=" 42.93987128" lon="-71.94540890"></rtept>
+ <rtept lat=" 42.98305813" lon="-71.93322902"></rtept>
+</rte>
+
+<rte><number>210</number><name>Roxbury</name><cmt>211</cmt>
+ <rtept lat=" 42.97171412" lon="-72.21694874"></rtept>
+ <rtept lat=" 42.98496870" lon="-72.17829949"></rtept>
+ <rtept lat=" 42.96255930" lon="-72.16723410"></rtept>
+ <rtept lat=" 42.93362212" lon="-72.15851712"></rtept>
+ <rtept lat=" 42.92398966" lon="-72.22192418"></rtept>
+ <rtept lat=" 42.97171412" lon="-72.21694874"></rtept>
+</rte>
+
+<rte><number>211</number><name>Bedford</name><cmt>212</cmt>
+ <rtept lat=" 42.98289892" lon="-71.49670346"></rtept>
+ <rtept lat=" 42.91105350" lon="-71.45268073"></rtept>
+ <rtept lat=" 42.89628639" lon="-71.57002160"></rtept>
+ <rtept lat=" 42.94333419" lon="-71.58232090"></rtept>
+ <rtept lat=" 42.93991108" lon="-71.60871065"></rtept>
+ <rtept lat=" 42.97179373" lon="-71.61710920"></rtept>
+ <rtept lat=" 42.98289892" lon="-71.49670346"></rtept>
+</rte>
+
+<rte><number>212</number><name>Hampton</name><cmt>213</cmt>
+ <rtept lat=" 42.96729592" lon="-70.90160055"></rtept>
+ <rtept lat=" 42.97107726" lon="-70.88770911"></rtept>
+ <rtept lat=" 42.95232979" lon="-70.78366262"></rtept>
+ <rtept lat=" 42.88975860" lon="-70.81399293"></rtept>
+ <rtept lat=" 42.89783873" lon="-70.82382440"></rtept>
+ <rtept lat=" 42.96729592" lon="-70.90160055"></rtept>
+</rte>
+
+<rte><number>213</number><name>Harrisville</name><cmt>214</cmt>
+ <rtept lat=" 42.96884826" lon="-72.13730183"></rtept>
+ <rtept lat=" 42.96598241" lon="-72.06123724"></rtept>
+ <rtept lat=" 42.93111449" lon="-72.00344248"></rtept>
+ <rtept lat=" 42.91949186" lon="-72.00101447"></rtept>
+ <rtept lat=" 42.92239752" lon="-72.15620852"></rtept>
+ <rtept lat=" 42.93362212" lon="-72.15851712"></rtept>
+ <rtept lat=" 42.96255930" lon="-72.16723410"></rtept>
+ <rtept lat=" 42.96884826" lon="-72.13730183"></rtept>
+</rte>
+
+<rte><number>214</number><name>Hampton Falls</name><cmt>215</cmt>
+ <rtept lat=" 42.96068853" lon="-70.92528366"></rtept>
+ <rtept lat=" 42.96729592" lon="-70.90160055"></rtept>
+ <rtept lat=" 42.89783873" lon="-70.82382440"></rtept>
+ <rtept lat=" 42.90659551" lon="-70.91799961"></rtept>
+ <rtept lat=" 42.96068853" lon="-70.92528366"></rtept>
+</rte>
+
+<rte><number>215</number><name>Sandown</name><cmt>216</cmt>
+ <rtept lat=" 42.96048952" lon="-71.17930993"></rtept>
+ <rtept lat=" 42.95989246" lon="-71.14949707"></rtept>
+ <rtept lat=" 42.89767951" lon="-71.14639239"></rtept>
+ <rtept lat=" 42.91228741" lon="-71.21943191"></rtept>
+ <rtept lat=" 42.91988989" lon="-71.21971054"></rtept>
+ <rtept lat=" 42.96518634" lon="-71.22373069"></rtept>
+ <rtept lat=" 42.96048952" lon="-71.17930993"></rtept>
+</rte>
+
+<rte><number>216</number><name>Kensington</name><cmt>217</cmt>
+ <rtept lat=" 42.95698680" lon="-70.98228235"></rtept>
+ <rtept lat=" 42.96068853" lon="-70.92528366"></rtept>
+ <rtept lat=" 42.90659551" lon="-70.91799961"></rtept>
+ <rtept lat=" 42.89839597" lon="-70.91688511"></rtept>
+ <rtept lat=" 42.89831637" lon="-70.97706808"></rtept>
+ <rtept lat=" 42.95698680" lon="-70.98228235"></rtept>
+</rte>
+
+<rte><number>217</number><name>Danville</name><cmt>218</cmt>
+ <rtept lat=" 42.95989246" lon="-71.14949707"></rtept>
+ <rtept lat=" 42.95917600" lon="-71.09221976"></rtept>
+ <rtept lat=" 42.89588835" lon="-71.10368318"></rtept>
+ <rtept lat=" 42.89767951" lon="-71.14639239"></rtept>
+ <rtept lat=" 42.95989246" lon="-71.14949707"></rtept>
+</rte>
+
+<rte><number>218</number><name>Kingston</name><cmt>219</cmt>
+ <rtept lat=" 42.95917600" lon="-71.09221976"></rtept>
+ <rtept lat=" 42.95929541" lon="-71.08800058"></rtept>
+ <rtept lat=" 42.95869836" lon="-71.00548782"></rtept>
+ <rtept lat=" 42.95845954" lon="-70.99704946"></rtept>
+ <rtept lat=" 42.94110519" lon="-71.03434539"></rtept>
+ <rtept lat=" 42.89413699" lon="-71.02347902"></rtept>
+ <rtept lat=" 42.85759733" lon="-71.07900498"></rtept>
+ <rtept lat=" 42.87718068" lon="-71.12561494"></rtept>
+ <rtept lat=" 42.89588835" lon="-71.10368318"></rtept>
+ <rtept lat=" 42.95917600" lon="-71.09221976"></rtept>
+</rte>
+
+<rte><number>219</number><name>East Kingston</name><cmt>220</cmt>
+ <rtept lat=" 42.95845954" lon="-70.99704946"></rtept>
+ <rtept lat=" 42.95698680" lon="-70.98228235"></rtept>
+ <rtept lat=" 42.89831637" lon="-70.97706808"></rtept>
+ <rtept lat=" 42.89437582" lon="-71.01141855"></rtept>
+ <rtept lat=" 42.89537090" lon="-71.01898122"></rtept>
+ <rtept lat=" 42.89413699" lon="-71.02347902"></rtept>
+ <rtept lat=" 42.94110519" lon="-71.03434539"></rtept>
+ <rtept lat=" 42.95845954" lon="-70.99704946"></rtept>
+</rte>
+
+<rte><number>220</number><name>Lyndeborough</name><cmt>221</cmt>
+ <rtept lat=" 42.94970275" lon="-71.81139034"></rtept>
+ <rtept lat=" 42.95830032" lon="-71.74742603"></rtept>
+ <rtept lat=" 42.92259653" lon="-71.73771397"></rtept>
+ <rtept lat=" 42.86340865" lon="-71.69472613"></rtept>
+ <rtept lat=" 42.85087053" lon="-71.72991247"></rtept>
+ <rtept lat=" 42.86547844" lon="-71.82818744"></rtept>
+ <rtept lat=" 42.88239495" lon="-71.85274623"></rtept>
+ <rtept lat=" 42.94970275" lon="-71.81139034"></rtept>
+</rte>
+
+<rte><number>221</number><name>Londonderry</name><cmt>222</cmt>
+ <rtept lat=" 42.94719513" lon="-71.37741221"></rtept>
+ <rtept lat=" 42.94182165" lon="-71.34664406"></rtept>
+ <rtept lat=" 42.84115847" lon="-71.33104107"></rtept>
+ <rtept lat=" 42.79900650" lon="-71.36081413"></rtept>
+ <rtept lat=" 42.82487881" lon="-71.42700744"></rtept>
+ <rtept lat=" 42.88959939" lon="-71.44181436"></rtept>
+ <rtept lat=" 42.93067666" lon="-71.45132741"></rtept>
+ <rtept lat=" 42.94719513" lon="-71.37741221"></rtept>
+</rte>
+
+<rte><number>222</number><name>Peterborough</name><cmt>223</cmt>
+ <rtept lat=" 42.93987128" lon="-71.94540890"></rtept>
+ <rtept lat=" 42.94508554" lon="-71.89346527"></rtept>
+ <rtept lat=" 42.87853400" lon="-71.88140479"></rtept>
+ <rtept lat=" 42.84740762" lon="-71.89040039"></rtept>
+ <rtept lat=" 42.83391422" lon="-71.98377953"></rtept>
+ <rtept lat=" 42.86531922" lon="-71.99038692"></rtept>
+ <rtept lat=" 42.91949186" lon="-72.00101447"></rtept>
+ <rtept lat=" 42.93111449" lon="-72.00344248"></rtept>
+ <rtept lat=" 42.93987128" lon="-71.94540890"></rtept>
+</rte>
+
+<rte><number>223</number><name>Amherst</name><cmt>224</cmt>
+ <rtept lat=" 42.94333419" lon="-71.58232090"></rtept>
+ <rtept lat=" 42.89628639" lon="-71.57002160"></rtept>
+ <rtept lat=" 42.80318588" lon="-71.55839896"></rtept>
+ <rtept lat=" 42.79817063" lon="-71.60719812"></rtept>
+ <rtept lat=" 42.86659294" lon="-71.66642580"></rtept>
+ <rtept lat=" 42.93537348" lon="-71.63999625"></rtept>
+ <rtept lat=" 42.93991108" lon="-71.60871065"></rtept>
+ <rtept lat=" 42.94333419" lon="-71.58232090"></rtept>
+</rte>
+
+<rte><number>224</number><name>Derry</name><cmt>225</cmt>
+ <rtept lat=" 42.94182165" lon="-71.34664406"></rtept>
+ <rtept lat=" 42.93648797" lon="-71.31121890"></rtept>
+ <rtept lat=" 42.91988989" lon="-71.21971054"></rtept>
+ <rtept lat=" 42.91228741" lon="-71.21943191"></rtept>
+ <rtept lat=" 42.85998555" lon="-71.20784908"></rtept>
+ <rtept lat=" 42.85238307" lon="-71.20653556"></rtept>
+ <rtept lat=" 42.84800468" lon="-71.24247817"></rtept>
+ <rtept lat=" 42.84115847" lon="-71.33104107"></rtept>
+ <rtept lat=" 42.94182165" lon="-71.34664406"></rtept>
+</rte>
+
+<rte><number>225</number><name>Mont Vernon</name><cmt>226</cmt>
+ <rtept lat=" 42.93537348" lon="-71.63999625"></rtept>
+ <rtept lat=" 42.86659294" lon="-71.66642580"></rtept>
+ <rtept lat=" 42.86340865" lon="-71.69472613"></rtept>
+ <rtept lat=" 42.92259653" lon="-71.73771397"></rtept>
+ <rtept lat=" 42.93537348" lon="-71.63999625"></rtept>
+</rte>
+
+<rte><number>226</number><name>Chesterfield</name><cmt>227</cmt>
+ <rtept lat=" 42.92641768" lon="-72.36788381"></rtept>
+ <rtept lat=" 42.91069527" lon="-72.34674812"></rtept>
+ <rtept lat=" 42.84812409" lon="-72.38897969"></rtept>
+ <rtept lat=" 42.85305973" lon="-72.47694554"></rtept>
+ <rtept lat=" 42.85815458" lon="-72.55504011"></rtept>
+ <rtept lat=" 42.93409976" lon="-72.52650096"></rtept>
+ <rtept lat=" 42.92641768" lon="-72.36788381"></rtept>
+</rte>
+
+<rte><number>227</number><name>Marlborough</name><cmt>228</cmt>
+ <rtept lat=" 42.92398966" lon="-72.22192418"></rtept>
+ <rtept lat=" 42.93362212" lon="-72.15851712"></rtept>
+ <rtept lat=" 42.92239752" lon="-72.15620852"></rtept>
+ <rtept lat=" 42.86890154" lon="-72.13762026"></rtept>
+ <rtept lat=" 42.84649214" lon="-72.13980945"></rtept>
+ <rtept lat=" 42.86754822" lon="-72.22363573"></rtept>
+ <rtept lat=" 42.90707315" lon="-72.23406426"></rtept>
+ <rtept lat=" 42.92398966" lon="-72.22192418"></rtept>
+</rte>
+
+<rte><number>228</number><name>Dublin</name><cmt>229</cmt>
+ <rtept lat=" 42.92239752" lon="-72.15620852"></rtept>
+ <rtept lat=" 42.91949186" lon="-72.00101447"></rtept>
+ <rtept lat=" 42.86531922" lon="-71.99038692"></rtept>
+ <rtept lat=" 42.86890154" lon="-72.13762026"></rtept>
+ <rtept lat=" 42.92239752" lon="-72.15620852"></rtept>
+</rte>
+
+<rte><number>229</number><name>Hampstead</name><cmt>230</cmt>
+ <rtept lat=" 42.91228741" lon="-71.21943191"></rtept>
+ <rtept lat=" 42.89767951" lon="-71.14639239"></rtept>
+ <rtept lat=" 42.89588835" lon="-71.10368318"></rtept>
+ <rtept lat=" 42.87718068" lon="-71.12561494"></rtept>
+ <rtept lat=" 42.86078162" lon="-71.13648131"></rtept>
+ <rtept lat=" 42.86563765" lon="-71.20175913"></rtept>
+ <rtept lat=" 42.85998555" lon="-71.20784908"></rtept>
+ <rtept lat=" 42.91228741" lon="-71.21943191"></rtept>
+</rte>
+
+<rte><number>230</number><name>Swanzey</name><cmt>231</cmt>
+ <rtept lat=" 42.91069527" lon="-72.34674812"></rtept>
+ <rtept lat=" 42.90707315" lon="-72.23406426"></rtept>
+ <rtept lat=" 42.86754822" lon="-72.22363573"></rtept>
+ <rtept lat=" 42.81524635" lon="-72.23828344"></rtept>
+ <rtept lat=" 42.80859916" lon="-72.32091562"></rtept>
+ <rtept lat=" 42.84812409" lon="-72.38897969"></rtept>
+ <rtept lat=" 42.91069527" lon="-72.34674812"></rtept>
+</rte>
+
+<rte><number>231</number><name>Merrimack</name><cmt>232</cmt>
+ <rtept lat=" 42.91105350" lon="-71.45268073"></rtept>
+ <rtept lat=" 42.90341122" lon="-71.45383503"></rtept>
+ <rtept lat=" 42.80047924" lon="-71.46832352"></rtept>
+ <rtept lat=" 42.80489743" lon="-71.49889265"></rtept>
+ <rtept lat=" 42.79259813" lon="-71.55620977"></rtept>
+ <rtept lat=" 42.80318588" lon="-71.55839896"></rtept>
+ <rtept lat=" 42.89628639" lon="-71.57002160"></rtept>
+ <rtept lat=" 42.91105350" lon="-71.45268073"></rtept>
+</rte>
+
+<rte><number>232</number><name>Seabrook</name><cmt>233</cmt>
+ <rtept lat=" 42.90659551" lon="-70.91799961"></rtept>
+ <rtept lat=" 42.89783873" lon="-70.82382440"></rtept>
+ <rtept lat=" 42.88975860" lon="-70.81399293"></rtept>
+ <rtept lat=" 42.86094083" lon="-70.84862202"></rtept>
+ <rtept lat=" 42.88657432" lon="-70.91489493"></rtept>
+ <rtept lat=" 42.89839597" lon="-70.91688511"></rtept>
+ <rtept lat=" 42.90659551" lon="-70.91799961"></rtept>
+</rte>
+
+<rte><number>233</number><name>Litchfield</name><cmt>234</cmt>
+ <rtept lat=" 42.90341122" lon="-71.45383503"></rtept>
+ <rtept lat=" 42.88959939" lon="-71.44181436"></rtept>
+ <rtept lat=" 42.82487881" lon="-71.42700744"></rtept>
+ <rtept lat=" 42.79729495" lon="-71.46382572"></rtept>
+ <rtept lat=" 42.80047924" lon="-71.46832352"></rtept>
+ <rtept lat=" 42.90341122" lon="-71.45383503"></rtept>
+</rte>
+
+<rte><number>234</number><name>South Hampton</name><cmt>235</cmt>
+ <rtept lat=" 42.89831637" lon="-70.97706808"></rtept>
+ <rtept lat=" 42.89839597" lon="-70.91688511"></rtept>
+ <rtept lat=" 42.88657432" lon="-70.91489493"></rtept>
+ <rtept lat=" 42.86424453" lon="-70.99748730"></rtept>
+ <rtept lat=" 42.89437582" lon="-71.01141855"></rtept>
+ <rtept lat=" 42.89831637" lon="-70.97706808"></rtept>
+</rte>
+
+<rte><number>235</number><name>Newton</name><cmt>236</cmt>
+ <rtept lat=" 42.89537090" lon="-71.01898122"></rtept>
+ <rtept lat=" 42.89437582" lon="-71.01141855"></rtept>
+ <rtept lat=" 42.86424453" lon="-70.99748730"></rtept>
+ <rtept lat=" 42.83307835" lon="-71.05361031"></rtept>
+ <rtept lat=" 42.85759733" lon="-71.07900498"></rtept>
+ <rtept lat=" 42.89413699" lon="-71.02347902"></rtept>
+ <rtept lat=" 42.89537090" lon="-71.01898122"></rtept>
+</rte>
+
+<rte><number>236</number><name>Temple</name><cmt>237</cmt>
+ <rtept lat=" 42.87853400" lon="-71.88140479"></rtept>
+ <rtept lat=" 42.88239495" lon="-71.85274623"></rtept>
+ <rtept lat=" 42.86547844" lon="-71.82818744"></rtept>
+ <rtept lat=" 42.78758289" lon="-71.81095250"></rtept>
+ <rtept lat=" 42.78646839" lon="-71.82181887"></rtept>
+ <rtept lat=" 42.78814013" lon="-71.90656064"></rtept>
+ <rtept lat=" 42.84740762" lon="-71.89040039"></rtept>
+ <rtept lat=" 42.87853400" lon="-71.88140479"></rtept>
+</rte>
+
+<rte><number>237</number><name>Plaistow</name><cmt>238</cmt>
+ <rtept lat=" 42.87718068" lon="-71.12561494"></rtept>
+ <rtept lat=" 42.85759733" lon="-71.07900498"></rtept>
+ <rtept lat=" 42.83307835" lon="-71.05361031"></rtept>
+ <rtept lat=" 42.81771417" lon="-71.11586307"></rtept>
+ <rtept lat=" 42.86078162" lon="-71.13648131"></rtept>
+ <rtept lat=" 42.87718068" lon="-71.12561494"></rtept>
+</rte>
+
+<rte><number>238</number><name>Wilton</name><cmt>239</cmt>
+ <rtept lat=" 42.86547844" lon="-71.82818744"></rtept>
+ <rtept lat=" 42.85087053" lon="-71.72991247"></rtept>
+ <rtept lat=" 42.79733476" lon="-71.71932473"></rtept>
+ <rtept lat=" 42.79653868" lon="-71.72597192"></rtept>
+ <rtept lat=" 42.78973228" lon="-71.79017505"></rtept>
+ <rtept lat=" 42.78758289" lon="-71.81095250"></rtept>
+ <rtept lat=" 42.86547844" lon="-71.82818744"></rtept>
+</rte>
+
+<rte><number>239</number><name>Jaffrey</name><cmt>240</cmt>
+ <rtept lat=" 42.86890154" lon="-72.13762026"></rtept>
+ <rtept lat=" 42.86531922" lon="-71.99038692"></rtept>
+ <rtept lat=" 42.83391422" lon="-71.98377953"></rtept>
+ <rtept lat=" 42.78937405" lon="-71.97438589"></rtept>
+ <rtept lat=" 42.78945365" lon="-71.97446550"></rtept>
+ <rtept lat=" 42.79327479" lon="-72.09128892"></rtept>
+ <rtept lat=" 42.81074855" lon="-72.13264481"></rtept>
+ <rtept lat=" 42.84649214" lon="-72.13980945"></rtept>
+ <rtept lat=" 42.86890154" lon="-72.13762026"></rtept>
+</rte>
+
+<rte><number>240</number><name>Troy</name><cmt>241</cmt>
+ <rtept lat=" 42.86754822" lon="-72.22363573"></rtept>
+ <rtept lat=" 42.84649214" lon="-72.13980945"></rtept>
+ <rtept lat=" 42.81074855" lon="-72.13264481"></rtept>
+ <rtept lat=" 42.79092638" lon="-72.21846127"></rtept>
+ <rtept lat=" 42.81524635" lon="-72.23828344"></rtept>
+ <rtept lat=" 42.86754822" lon="-72.22363573"></rtept>
+</rte>
+
+<rte><number>241</number><name>Milford</name><cmt>242</cmt>
+ <rtept lat=" 42.86340865" lon="-71.69472613"></rtept>
+ <rtept lat=" 42.86659294" lon="-71.66642580"></rtept>
+ <rtept lat=" 42.79817063" lon="-71.60719812"></rtept>
+ <rtept lat=" 42.77803003" lon="-71.64254367"></rtept>
+ <rtept lat=" 42.76907423" lon="-71.71403085"></rtept>
+ <rtept lat=" 42.79733476" lon="-71.71932473"></rtept>
+ <rtept lat=" 42.85087053" lon="-71.72991247"></rtept>
+ <rtept lat=" 42.86340865" lon="-71.69472613"></rtept>
+</rte>
+
+<rte><number>242</number><name>Atkinson</name><cmt>243</cmt>
+ <rtept lat=" 42.86563765" lon="-71.20175913"></rtept>
+ <rtept lat=" 42.86078162" lon="-71.13648131"></rtept>
+ <rtept lat=" 42.81771417" lon="-71.11586307"></rtept>
+ <rtept lat=" 42.80812152" lon="-71.16649319"></rtept>
+ <rtept lat=" 42.85238307" lon="-71.20653556"></rtept>
+ <rtept lat=" 42.85998555" lon="-71.20784908"></rtept>
+ <rtept lat=" 42.86563765" lon="-71.20175913"></rtept>
+</rte>
+
+<rte><number>243</number><name>Hinsdale</name><cmt>244</cmt>
+ <rtept lat=" 42.85815458" lon="-72.55504011"></rtept>
+ <rtept lat=" 42.85305973" lon="-72.47694554"></rtept>
+ <rtept lat=" 42.72664365" lon="-72.45123245"></rtept>
+ <rtept lat=" 42.85815458" lon="-72.55504011"></rtept>
+</rte>
+
+<rte><number>244</number><name>Winchester</name><cmt>245</cmt>
+ <rtept lat=" 42.85305973" lon="-72.47694554"></rtept>
+ <rtept lat=" 42.84812409" lon="-72.38897969"></rtept>
+ <rtept lat=" 42.80859916" lon="-72.32091562"></rtept>
+ <rtept lat=" 42.72286231" lon="-72.32616968"></rtept>
+ <rtept lat=" 42.72664365" lon="-72.45123245"></rtept>
+ <rtept lat=" 42.85305973" lon="-72.47694554"></rtept>
+</rte>
+
+<rte><number>245</number><name>Salem</name><cmt>246</cmt>
+ <rtept lat=" 42.84800468" lon="-71.24247817"></rtept>
+ <rtept lat=" 42.85238307" lon="-71.20653556"></rtept>
+ <rtept lat=" 42.80812152" lon="-71.16649319"></rtept>
+ <rtept lat=" 42.73758962" lon="-71.18181755"></rtept>
+ <rtept lat=" 42.74260487" lon="-71.24550324"></rtept>
+ <rtept lat=" 42.76011843" lon="-71.28447092"></rtept>
+ <rtept lat=" 42.84800468" lon="-71.24247817"></rtept>
+</rte>
+
+<rte><number>246</number><name>Windham</name><cmt>247</cmt>
+ <rtept lat=" 42.84115847" lon="-71.33104107"></rtept>
+ <rtept lat=" 42.84800468" lon="-71.24247817"></rtept>
+ <rtept lat=" 42.76011843" lon="-71.28447092"></rtept>
+ <rtept lat=" 42.78316469" lon="-71.35420674"></rtept>
+ <rtept lat=" 42.78304528" lon="-71.36364018"></rtept>
+ <rtept lat=" 42.79900650" lon="-71.36081413"></rtept>
+ <rtept lat=" 42.84115847" lon="-71.33104107"></rtept>
+</rte>
+
+<rte><number>247</number><name>Sharon</name><cmt>248</cmt>
+ <rtept lat=" 42.84740762" lon="-71.89040039"></rtept>
+ <rtept lat=" 42.78814013" lon="-71.90656064"></rtept>
+ <rtept lat=" 42.78798092" lon="-71.91404370"></rtept>
+ <rtept lat=" 42.78857797" lon="-71.94481185"></rtept>
+ <rtept lat=" 42.78937405" lon="-71.97438589"></rtept>
+ <rtept lat=" 42.83391422" lon="-71.98377953"></rtept>
+ <rtept lat=" 42.84740762" lon="-71.89040039"></rtept>
+</rte>
+
+<rte><number>248</number><name>Hudson</name><cmt>249</cmt>
+ <rtept lat=" 42.82487881" lon="-71.42700744"></rtept>
+ <rtept lat=" 42.79900650" lon="-71.36081413"></rtept>
+ <rtept lat=" 42.78304528" lon="-71.36364018"></rtept>
+ <rtept lat=" 42.69898018" lon="-71.38656703"></rtept>
+ <rtept lat=" 42.70005487" lon="-71.43234111"></rtept>
+ <rtept lat=" 42.79729495" lon="-71.46382572"></rtept>
+ <rtept lat=" 42.82487881" lon="-71.42700744"></rtept>
+</rte>
+
+<rte><number>249</number><name>Richmond</name><cmt>250</cmt>
+ <rtept lat=" 42.81524635" lon="-72.23828344"></rtept>
+ <rtept lat=" 42.79092638" lon="-72.21846127"></rtept>
+ <rtept lat=" 42.71959842" lon="-72.20365435"></rtept>
+ <rtept lat=" 42.72286231" lon="-72.32616968"></rtept>
+ <rtept lat=" 42.80859916" lon="-72.32091562"></rtept>
+ <rtept lat=" 42.81524635" lon="-72.23828344"></rtept>
+</rte>
+
+<rte><number>250</number><name>Fitzwilliam</name><cmt>251</cmt>
+ <rtept lat=" 42.81074855" lon="-72.13264481"></rtept>
+ <rtept lat=" 42.79327479" lon="-72.09128892"></rtept>
+ <rtept lat=" 42.71625492" lon="-72.07843237"></rtept>
+ <rtept lat=" 42.71959842" lon="-72.20365435"></rtept>
+ <rtept lat=" 42.79092638" lon="-72.21846127"></rtept>
+ <rtept lat=" 42.81074855" lon="-72.13264481"></rtept>
+</rte>
+
+<rte><number>251</number><name>Nashua</name><cmt>252</cmt>
+ <rtept lat=" 42.80489743" lon="-71.49889265"></rtept>
+ <rtept lat=" 42.80047924" lon="-71.46832352"></rtept>
+ <rtept lat=" 42.79729495" lon="-71.46382572"></rtept>
+ <rtept lat=" 42.70005487" lon="-71.43234111"></rtept>
+ <rtept lat=" 42.70268191" lon="-71.54303479"></rtept>
+ <rtept lat=" 42.77170127" lon="-71.52492418"></rtept>
+ <rtept lat=" 42.79259813" lon="-71.55620977"></rtept>
+ <rtept lat=" 42.80489743" lon="-71.49889265"></rtept>
+</rte>
+
+<rte><number>252</number><name>Hollis</name><cmt>253</cmt>
+ <rtept lat=" 42.79817063" lon="-71.60719812"></rtept>
+ <rtept lat=" 42.80318588" lon="-71.55839896"></rtept>
+ <rtept lat=" 42.79259813" lon="-71.55620977"></rtept>
+ <rtept lat=" 42.77170127" lon="-71.52492418"></rtept>
+ <rtept lat=" 42.70268191" lon="-71.54303479"></rtept>
+ <rtept lat=" 42.70475169" lon="-71.63044339"></rtept>
+ <rtept lat=" 42.77803003" lon="-71.64254367"></rtept>
+ <rtept lat=" 42.79817063" lon="-71.60719812"></rtept>
+</rte>
+
+<rte><number>253</number><name>Mason</name><cmt>254</cmt>
+ <rtept lat=" 42.79653868" lon="-71.72597192"></rtept>
+ <rtept lat=" 42.79733476" lon="-71.71932473"></rtept>
+ <rtept lat=" 42.76907423" lon="-71.71403085"></rtept>
+ <rtept lat=" 42.70630403" lon="-71.70121411"></rtept>
+ <rtept lat=" 42.70889126" lon="-71.80541981"></rtept>
+ <rtept lat=" 42.72536993" lon="-71.80872350"></rtept>
+ <rtept lat=" 42.72899206" lon="-71.77751752"></rtept>
+ <rtept lat=" 42.78973228" lon="-71.79017505"></rtept>
+ <rtept lat=" 42.79653868" lon="-71.72597192"></rtept>
+</rte>
+
+<rte><number>254</number><name>Brookline</name><cmt>255</cmt>
+ <rtept lat=" 42.77803003" lon="-71.64254367"></rtept>
+ <rtept lat=" 42.70475169" lon="-71.63044339"></rtept>
+ <rtept lat=" 42.70630403" lon="-71.70121411"></rtept>
+ <rtept lat=" 42.76907423" lon="-71.71403085"></rtept>
+ <rtept lat=" 42.77803003" lon="-71.64254367"></rtept>
+</rte>
+
+<rte><number>255</number><name>Rindge</name><cmt>256</cmt>
+ <rtept lat=" 42.78945365" lon="-71.97446550"></rtept>
+ <rtept lat=" 42.78937405" lon="-71.97438589"></rtept>
+ <rtept lat=" 42.78857797" lon="-71.94481185"></rtept>
+ <rtept lat=" 42.71223476" lon="-71.92881082"></rtept>
+ <rtept lat=" 42.71625492" lon="-72.07843237"></rtept>
+ <rtept lat=" 42.79327479" lon="-72.09128892"></rtept>
+ <rtept lat=" 42.78945365" lon="-71.97446550"></rtept>
+</rte>
+
+<rte><number>256</number><name>Greenville</name><cmt>257</cmt>
+ <rtept lat=" 42.78758289" lon="-71.81095250"></rtept>
+ <rtept lat=" 42.78973228" lon="-71.79017505"></rtept>
+ <rtept lat=" 42.72899206" lon="-71.77751752"></rtept>
+ <rtept lat=" 42.72536993" lon="-71.80872350"></rtept>
+ <rtept lat=" 42.78646839" lon="-71.82181887"></rtept>
+ <rtept lat=" 42.78758289" lon="-71.81095250"></rtept>
+</rte>
+
+<rte><number>257</number><name>New Ipswich</name><cmt>258</cmt>
+ <rtept lat=" 42.78798092" lon="-71.91404370"></rtept>
+ <rtept lat=" 42.78814013" lon="-71.90656064"></rtept>
+ <rtept lat=" 42.78646839" lon="-71.82181887"></rtept>
+ <rtept lat=" 42.72536993" lon="-71.80872350"></rtept>
+ <rtept lat=" 42.70889126" lon="-71.80541981"></rtept>
+ <rtept lat=" 42.71223476" lon="-71.92881082"></rtept>
+ <rtept lat=" 42.78857797" lon="-71.94481185"></rtept>
+ <rtept lat=" 42.78798092" lon="-71.91404370"></rtept>
+</rte>
+
+<rte><number>258</number><name>Pelham</name><cmt>259</cmt>
+ <rtept lat=" 42.78316469" lon="-71.35420674"></rtept>
+ <rtept lat=" 42.76011843" lon="-71.28447092"></rtept>
+ <rtept lat=" 42.74260487" lon="-71.24550324"></rtept>
+ <rtept lat=" 42.69699000" lon="-71.29422279"></rtept>
+ <rtept lat=" 42.69898018" lon="-71.38656703"></rtept>
+ <rtept lat=" 42.78304528" lon="-71.36364018"></rtept>
+ <rtept lat=" 42.78316469" lon="-71.35420674"></rtept>
+</rte>
+</gpx>

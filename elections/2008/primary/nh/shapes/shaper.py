@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+#targetKML = 	'G:/domains/mg.to/web/public/nh/test.kml'
+targetKML = 	'../nh.kml'
+
 #import sys
 #print sys.version
 
@@ -69,7 +72,7 @@ def makeCounties():
 		kmlPolyStyleColor.text = '80' + randomColor()
 	
 	kmlTree = ET.ElementTree( kml )
-	kmlfile = open( 'G:/domains/mg.to/web/public/nh/test.kml', 'w' )
+	kmlfile = open( targetKML, 'w' )
 	kmlfile.write( '<?xml version="1.0" encoding="utf-8" ?>\n' )
 	kmlTree.write( kmlfile )
 	kmlfile.close()

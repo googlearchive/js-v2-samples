@@ -39,8 +39,9 @@ baseIcon.infoShadowAnchor = new GPoint(18, 25);
 * @param {GLatLng} markerPoint The point to highlight
 */
 function highlight(markerPoint) {
-  map.removeOverlay(highlightCircle);
-
+   if (highlightCircle) {
+     map.removeOverlay(highlightCircle);
+   }
   if (markerPoint != -1) { // indicating we're going to highlight a new marker
     var polyPoints = Array();
     var mapNormalProj = G_NORMAL_MAP.getProjection();

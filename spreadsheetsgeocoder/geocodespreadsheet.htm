@@ -236,7 +236,7 @@ function addressResolved(response, address, label) {
       place = response.Placemark[0];
       point = new GLatLng(place.Point.coordinates[1],
                           place.Point.coordinates[0]);
-      var marker = createMarker(point, entryNum, true);
+      var marker = createMarker(point, numGeocodeReplies, true);
       bounds.extend(new GLatLng(point.lat(), point.lng()));
       map.addOverlay(marker);
       addTableRow(point.lat(), point.lng(), label, entryNum, true);

@@ -259,8 +259,8 @@ function addTableRow(columnLat, columnLng, label, entryNum, isFound){
 
   var entryTR = document.createElement("TR");
   var entryInfoTR = document.createElement("TR");
-  entryTR.setAttribute("height","70");
-  entryInfoTR.setAttribute("height","70");
+  entryTR.setAttribute("height","30");
+  entryInfoTR.setAttribute("height","30");
   entryTR.setAttribute("valign","middle");
   entryInfoTR.setAttribute("valign","middle");
 
@@ -280,15 +280,14 @@ function addTableRow(columnLat, columnLng, label, entryNum, isFound){
   columnLatTD.appendChild(document.createTextNode(columnLat));
   columnLngTD.appendChild(document.createTextNode(columnLng));
   labelTD.appendChild(document.createTextNode(label));
-  iconTD.setAttribute("width","20");
+  if(isFound) {
+    iconTD.style.backgroundColor = "#9ce71a";
+  } else { 
+    iconTD.style.backgroundColor = "#ff0000";
+  }
   var iconSPAN = document.createElement("span");
   var number = entryNum + 1;
   iconSPAN.innerHTML = number;
-  if(isFound) {
-    iconSPAN.style.backgroundColor = "#00ff00";
-  } else { 
-    iconSPAN.style.backgroundColor = "#ff0000";
-  }
   var iconA = document.createElement("A");
   iconA.href = "#bottom";
 

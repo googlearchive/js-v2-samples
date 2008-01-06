@@ -5,6 +5,7 @@
 
 import elementtree.ElementTree as ET
 import simplejson as sj
+import random
 
 #def str( text ):
 #	strings = {
@@ -12,6 +13,12 @@ import simplejson as sj
 #		'counties': 'towns'
 #	}
 #	return strings[text] or text
+
+def randomColor():
+	return hh() + hh() + hh()
+
+def hh():
+	return '%02X' %( random.random() *128 + 64 )
 
 def fixCountyName( name ):
 	name = name.strip()
@@ -26,6 +33,11 @@ def makeCounties():
 	
 	nPoints = 0
 	counties = {}
+	kml = ET.Element( 'kml', { 'xmlns':'http://earth.google.com/kml/2.0' } )
+	kmlDocument = ET.SubElement( kml, 'Document' )
+	kmlFolder = ET.SubElement( kmlDocument, 'Folder' )
+	kmlFolderName = ET.SubElement( kmlFolder, 'name' )
+	kmlFolderName.text = 'New Hampshire Towns'
 	
 	for xmlCounty in xmlRoot.getiterator('rte'):
 		points = []
@@ -34,9 +46,33 @@ def makeCounties():
 		name = xmlCounty.findtext('name').strip()
 		county = {
 			'name': name,
-			'points': points
+			'points': points,
+			'centroid': polyCentroid( points )
 		}
 		counties[name] = county
+		kmlPlacemark = ET.SubElement( kmlFolder, 'Placemark' )
+		kmlPlaceName = ET.SubElement( kmlPlacemark, 'name' )
+		kmlPlaceName.text = name
+		kmlPolygon = ET.SubElement( kmlPlacemark, 'Polygon' )
+		kmlOuterBoundaryIs = ET.SubElement( kmlPolygon, 'outerBoundaryIs' )
+		kmlLinearRing = ET.SubElement( kmlOuterBoundaryIs, 'LinearRing' )
+		kmlCoordinates = ET.SubElement( kmlLinearRing, 'coordinates' )
+		kmlCoordinates.text = ' '.join([ point[1] + ',' + point[0] + ',0' for point in points ])
+		kmlStyle = ET.SubElement( kmlPlacemark, 'Style' )
+		kmlLineStyle = ET.SubElement( kmlStyle, 'LineStyle' )
+		kmlLineStyleColor = ET.SubElement( kmlLineStyle, 'color' )
+		kmlLineStyleColor.text = '40000000'
+		kmlLineStyleWidth = ET.SubElement( kmlLineStyle, 'width' )
+		kmlLineStyleWidth.text = '1'
+		kmlPolyStyle = ET.SubElement( kmlStyle, 'PolyStyle' )
+		kmlPolyStyleColor = ET.SubElement( kmlPolyStyle, 'color' )
+		kmlPolyStyleColor.text = '80' + randomColor()
+	
+	kmlTree = ET.ElementTree( kml )
+	kmlfile = open( 'G:/domains/mg.to/web/public/nh/test.kml', 'w' )
+	kmlfile.write( '<?xml version="1.0" encoding="utf-8" ?>\n' )
+	kmlTree.write( kmlfile )
+	kmlfile.close()
 	
 	ctyNames = []
 	for name in counties:
@@ -59,11 +95,11 @@ def makeCounties():
 		#lats = lons = 0
 		minLat = minLon = 360
 		maxLat = maxLon = -360
+		centroid = county['centroid']
 		points = county['points']
 		for point in points:
 			nPoints += 1
 			pts.append( '[%s,%s]' %( point[0], point[1] ) )
-		centroid = polyCentroid( points )
 		ctys.append( '{name:"%s",centroid:[%.8f,%.8f],points:[%s]}' %(
 			fixCountyName( county['name'] ),
 			centroid[0], centroid[1],
@@ -72,9 +108,6 @@ def makeCounties():
 	
 	print '%d points in %d places' %( nPoints, len(ctys) )
 	return '[%s]' % ','.join(ctys)
-
-def makeRegions():
-	xmlRoot = ET.parse( 'regions/degrees-simple/regions.gpx.xml' )
 
 # Port of ANSI C code from the article
 # "Centroid of a Polygon"

@@ -18,7 +18,7 @@ def randomColor():
 	return hh() + hh() + hh()
 
 def hh():
-	return '%02X' %( random.random() *128 + 64 )
+	return '%02X' %( random.random() *256 )
 
 def fixCountyName( name ):
 	name = name.strip()

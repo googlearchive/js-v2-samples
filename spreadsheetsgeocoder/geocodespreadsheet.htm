@@ -423,14 +423,11 @@ function highlightRow(entryNum,fromMarker) {
     document.getElementById("latTD"+i).style.backgroundColor = "#FFFFFF";
     document.getElementById("lngTD"+i).style.backgroundColor = "#FFFFFF";
     document.getElementById("labelTD"+i).style.backgroundColor = "#FFFFFF";
-    document.getElementById("iconTD"+i).style.backgroundColor = "#FFFFFF";
   }
   if(entryNum > -1) { // so we can use this function to un-highlight all
     document.getElementById("latTD"+entryNum).style.backgroundColor = hColor;
     document.getElementById("lngTD"+entryNum).style.backgroundColor = hColor;
     document.getElementById("labelTD"+entryNum).style.backgroundColor = hColor;
-    document.getElementById("iconTD"+entryNum).style.backgroundColor = 
-hColor;
   }
   if(entryNum > -1) {
     var infoDiv = document.getElementById("infoDIV");

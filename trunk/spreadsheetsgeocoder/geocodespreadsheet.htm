@@ -239,11 +239,11 @@ function addressResolved(response, address, label) {
       var marker = createMarker(point, numGeocodeReplies, true);
       bounds.extend(new GLatLng(point.lat(), point.lng()));
       map.addOverlay(marker);
-      addTableRow(point.lat(), point.lng(), label, entryNum, true);
+      addTableRow(point.lat(), point.lng(), label, numGeocodeReplies, true);
     } else {
       // Bad geocode.
-      addTableRow("Not Found", "", label, entryNum, false);
-      unfoundMarkers.push(entryNum);
+      addTableRow("Not Found", "", label, numGeocodeReplies, false);
+      unfoundMarkers.push(numGeocodeReplies);
     }
     numGeocodeReplies++;
   }

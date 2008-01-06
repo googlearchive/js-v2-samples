@@ -225,39 +225,40 @@ function addDataSeries(){
  * Sends off next geocode request, if there is any.
  * @param entryNum {Number} Row # of feed to search for
  */
-function findAddress(entryNum) {
-  if(geocoder){
-    var address = entries[entryNum]["gsx$" + neededColumns["Address"]].$t;
-    var label = entries[entryNum]["gsx$" + neededColumns["Identifier"]].$t;
-    geocoder.getLatLng(
-      address,
-      function(point) {
-        numGeocodeReplies++;
-
-        if (!point) { // address not found
-          addTableRow("Not Found", "", label, entryNum, false);
-          unfoundMarkers.push(entryNum);
-        } else {
-          var marker = createMarker(point, entryNum, true);
-          bounds.extend(new GLatLng(point.lat(), point.lng()));
-          map.addOverlay(marker);
-          addTableRow(point.lat(), point.lng(), label, entryNum, true);
-        }
-       
-        if(numGeocodeReplies < entries.length && numGeocodeReplies < 100){
-          findAddress(entryNum + 1);
-        } else {
-          // zoom and center map accordingly
-          map.setZoom(map.getBoundsZoomLevel(bounds));
-          var clat = (bounds.getNorthEast().lat() + 
-                      bounds.getSouthWest().lat()) /2;
-          var clng = (bounds.getNorthEast().lng() + 
-                      bounds.getSouthWest().lng()) /2;
-          map.setCenter(new GLatLng(clat,clng));
-          showUnfoundMarkers();
-        }
-    });
+function addressResolved(response, address, label) {
+  var delay = 0;
+  if (response.Status.code == 620) {
+    // Too fast. Try again, with a small pause.
+    delay = 500;
+  } else {
+    if (response.Status.code == 200) {
+      // Success. Do something with the address.
+      place = response.Placemark[0];
+      point = new GLatLng(place.Point.coordinates[1],
+                          place.Point.coordinates[0]);
+      var marker = createMarker(point, entryNum, true);
+      bounds.extend(new GLatLng(point.lat(), point.lng()));
+      map.addOverlay(marker);
+      addTableRow(point.lat(), point.lng(), label, entryNum, true);
+    } else {
+      // Bad geocode.
+      addTableRow("Not Found", "", label, entryNum, false);
+      unfoundMarkers.push(entryNum);
+    }
+    numGeocodeReplies++;
   }
+   
+  window.setTimeout(geocodeAll, delay);
+        // zoom and center map accordingly
+        map.setZoom(map.getBoundsZoomLevel(bounds));
+        var clat = (bounds.getNorthEast().lat() + 
+                   bounds.getSouthWest().lat()) /2;
+        var clng = (bounds.getNorthEast().lng() + 
+                    bounds.getSouthWest().lng()) /2;
+        map.setCenter(new GLatLng(clat,clng));
+        showUnfoundMarkers();
+      }
+  });
 }
 
 /**
@@ -501,7 +502,26 @@ function startGeocoding() {
   // We use bounds so we can rezoom and recenter map to fit new points
   bounds = new GLatLngBounds();
   // Geocode the first address
-  findAddress(0);
+  window.setTimeout(geocodeAll, 50);
+}
+
+function geocodeAll() {
+ if (numGeocodeReplies < entries.length) {
+   var address = entries[numGeocodeReplies]["gsx$" + neededColumns["Address"]].$t;
+   var label = entries[numGeocodeReplies]["gsx$" + neededColumns["Identifier"]].$t;
+   geocoder.getLocations(address, function(response) {
+     addressResolved(response, address, label);}
+   );
+ } else {
+   // zoom and center map accordingly
+   map.setZoom(map.getBoundsZoomLevel(bounds));
+   var clat = (bounds.getNorthEast().lat() + 
+              bounds.getSouthWest().lat()) /2;
+   var clng = (bounds.getNorthEast().lng() + 
+               bounds.getSouthWest().lng()) /2;
+   map.setCenter(new GLatLng(clat,clng));
+   showUnfoundMarkers();
+ }
 }
 
 </script>

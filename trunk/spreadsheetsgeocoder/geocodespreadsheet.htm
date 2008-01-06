@@ -281,18 +281,18 @@ function addTableRow(columnLat, columnLng, label, entryNum, isFound){
   columnLngTD.appendChild(document.createTextNode(columnLng));
   labelTD.appendChild(document.createTextNode(label));
   iconTD.setAttribute("width","20");
-  var iconIMG = document.createElement("IMG");
-  iconIMG.border = "0";
+  var iconSPAN = document.createElement("span");
   var number = entryNum + 1;
+  iconSPAN.innerHTML = span;
   if(isFound) {
-    iconIMG.src = "../markers/green/marker" + number + ".png";
+    iconSPAN.style.backgroundColor = "#00ff00";
   } else { 
-    iconIMG.src = "../markers/red/marker" + number + ".png";
+    iconSPAN.style.backgroundColor = "#ff0000";
   }
   var iconA = document.createElement("A");
   iconA.href = "#bottom";
 
-  iconA.appendChild(iconIMG);
+  iconA.appendChild(iconSPAN);
   iconTD.appendChild(iconA);
 
   entryTR.onmouseover = function() { 

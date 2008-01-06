@@ -1006,7 +1006,7 @@ function load() {
 	}
 	//showCounties();
 	//var kmlBaseUrl = 'http://mg.to/nh/';
-	var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/primary/nh/';
+	var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/';
 	var kml = new GGeoXml( kmlBaseUrl + 'nh.kml?t=' + new Date().getTime() );
 	map.addOverlay( kml );
 	

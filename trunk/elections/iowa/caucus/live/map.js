@@ -394,7 +394,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 							'<h1 id="votestitle">Caucus Results</h1>',
 							'<p><a href="#fullstate">County Results</a></p>',
 							precinct,
-							'<p>Roll the mouse over the map for county results.</p>',
+							'<p>Roll the mouse over the map for county results at a glance.</p>',
 							'<div id="results">',
 							'</div>',
 						'</div>',

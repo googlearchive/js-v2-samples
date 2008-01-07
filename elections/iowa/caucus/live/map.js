@@ -389,7 +389,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 					'</td>',
 					'<td valign="top">',
 						'<div id="votesbar">',
-							'<h1 id="votestitle">Iowa ', partyname, 'Caucus Results</h1>',
+							'<h1 id="votestitle">Caucus Results</h1>',
 							'<p><a href="#fullstate">Statewide results by county</a></p>',
 							precinct,
 							'<p>Roll the mouse over the map for county results.</p>',
@@ -1079,7 +1079,7 @@ var mousemoved = function( latlng ) {
 				var candidate = candidates.all.by.name[tally.name];
 				lines.push( [
 					'<tr>',
-						'<td style="width:3em; text-align:right;">',
+						'<td style="width:2.5em; text-align:right;">',
 							tally.votes,
 						'</td>',
 						'<td>',

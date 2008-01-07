@@ -822,7 +822,7 @@ function showStateSidebar( json, party ) {
 					'</td>',
 					'<td class="legendnametd">',
 						'<div class="legendname">',
-							candidate.lastName,
+							candidate.fullName,
 						'</div>',
 					'</td>',
 				'</tr>'

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<gpx version="1.0" creator="http://www.obviously.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/0" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<gpx>
 <bounds minlat=" 42.69699000" minlon="-72.55724700" maxlat=" 45.30547600" maxlon="-70.703799007"/>
 <name>cs33_d00.shp</name>
 

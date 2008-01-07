@@ -32,7 +32,7 @@ def fixCountyName( name ):
 	return name
 
 def makeCounties():
-	xmlRoot = ET.parse( 'cs33_d00_shp-94/cs33_d00.gpx' )
+	xmlRoot = ET.parse( 'cs33_d00_shp/cs33_d00.gpx' )
 	
 	nPoints = 0
 	counties = {}

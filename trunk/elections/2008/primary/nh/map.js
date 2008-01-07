@@ -66,14 +66,12 @@
 	}
 })( jQuery );
 
-var opt = window.opt || {};
-
 (function( $ ) {
 
-var imgBaseUrl = 'http://mg.to/iowa/server/images/';
-//var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
+var opt = window.GoogleElectionMapOptions || {};
 
-
+//var imgBaseUrl = 'http://mg.to/iowa/server/images/';
+var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
 
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
@@ -373,7 +371,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 			'<table>',
 				'<tr valign="top">',
 					'<td>',
-						'<div id="map" style="width: 700px; height: 450px">',
+						'<div id="map" style="width: 450px; height: 450px">',
 						'</div>',
 					'</td>',
 					'<td valign="top">',

@@ -73,8 +73,6 @@ var opt = window.opt || {};
 var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 //var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
 
-
-
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
 	script.type = 'text/javascript';
@@ -137,9 +135,11 @@ String.prototype.words = function( fun ) {
 };
 
 var parties = [
-	{ name: 'democrat', shortName: 'Democratic', fullName: 'Iowa Democratic Party', url:'http://www.iowademocrats.org/' },
-	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party of Iowa', url:'http://www.iowagop.net/' }
+	{ name: 'democrat', shortestName: 'Democratic', shortName: 'Democratic', fullName: 'Iowa Democratic Party', url:'http://www.iowademocrats.org/' },
+	{ name: 'republican', shortestName: 'GOP', shortName: 'Republican', fullName: 'Republican Party of Iowa', url:'http://www.iowagop.net/' }
 ].index('name');
+
+opt.party = parties.by.name[ opt.party || location.search.slice(1) ];
 
 var candidates = {
 	all: [],
@@ -255,6 +255,17 @@ function GAsync( obj ) {
 
 //var mapplet = location.host == 'gmodules.com';
 var mapplet = ! window.GBrowserIsCompatible;
+	
+	var partyname = opt.party && ( opt.party.shortestName + ' ' );
+	var precinct = ( opt.party.name == 'republican' ? [
+		'<p>',
+			'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/IowaRepublican2008PrelimCaucusResults.pdf" target="_blank">',
+				'Complete precinct results ',
+				'<img style="width:17px; height:17px; border:0;" src="http://www.adobe.com/images/pdficon_small.gif" />',
+			'</a>',
+		'</p>'
+	] : [
+	] ).join('');
 
 	document.write( (
 		opt.projector ? [
@@ -378,10 +389,11 @@ var mapplet = ! window.GBrowserIsCompatible;
 					'</td>',
 					'<td valign="top">',
 						'<div id="votesbar">',
-							'<h1 id="votestitle">Caucus Results</h1>',
+							'<h1 id="votestitle">Iowa ', partyname, 'Caucus Results</h1>',
+							'<p><a href="#fullstate">Statewide results by county</a></p>',
+							precinct,
+							'<p>Roll the mouse over the map for county results.</p>',
 							'<div id="results">',
-								'Roll the mouse over the map for county totals<br /><br />',
-								'Scroll down for statewide details',
 							'</div>',
 						'</div>',
 					'</td>',
@@ -989,11 +1001,9 @@ function load() {
 	var testdata = false;
 	if( location.search.slice(1) == 'test' )
 		testdata = true;
-		
-	var q = opt.party || location.search.slice(1);
-	var party = parties.by.name[q];
-	if( party ) {
-		loadResults( party );
+	
+	if( opt.party ) {
+		loadResults( opt.party );
 	}
 	else {
 		//download( gFeedURLs.events, onEventsReady );
@@ -1068,19 +1078,17 @@ var mousemoved = function( latlng ) {
 			tallies.forEach( function( tally ) {
 				var candidate = candidates.all.by.name[tally.name];
 				lines.push( [
-					'<table>',
-						'<tr>',
-							'<td>',
-								'<img class="favicon" src="', imgUrl(tally.name), '" />',
-							'</td>',
-							'<td>',
-								tally.votes,
-							'</td>',
-							'<td>',
-								candidate.lastName,
-							'</td>',
-						'</tr>',
-					'</table>'
+					'<tr>',
+						'<td style="width:3em; text-align:right;">',
+							tally.votes,
+						'</td>',
+						'<td>',
+							'<img class="favicon" src="', imgUrl(tally.name), '" />',
+						'</td>',
+						'<td>',
+							candidate.lastName,
+						'</td>',
+					'</tr>'
 				].join('') );
 			});
 		}
@@ -1090,7 +1098,9 @@ var mousemoved = function( latlng ) {
 		
 		$('#results').html( [
 			'<h2>', county.name, ' County</h2>',
-			lines.join('')
+			'<table>',
+				lines.join(''),
+			'</table>'
 		].join('') );
 	}
 };

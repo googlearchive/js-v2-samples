@@ -257,10 +257,10 @@ function GAsync( obj ) {
 var mapplet = ! window.GBrowserIsCompatible;
 	
 	var partyname = opt.party && ( opt.party.shortestName + ' ' );
-	var precinct = ( opt.party.name == 'republican' ? [
+	var precinct = ( opt.party && opt.party.name == 'republican' ? [
 		'<p>',
 			'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/IowaRepublican2008PrelimCaucusResults.pdf" target="_blank">',
-				'Complete precinct results ',
+				'Precinct Results ',
 				'<img style="width:17px; height:17px; border:0;" src="http://www.adobe.com/images/pdficon_small.gif" />',
 			'</a>',
 		'</p>'
@@ -367,6 +367,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#links { margin-bottom:4px; }',
 				'#news { margin-top:4px; padding:4px; }',
 				'#clicknote { display:none; }',
+				'h1 { font-size:12pt; }',
 				'h2 { font-size:11pt; margin:0; padding:0; }',
 				'#loading { font-weight:normal; }',
 				'.NewsHeading { padding-left:4px; }',
@@ -379,7 +380,8 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#fullstate table { width:700px; }',
 				'#fullstate th, #fullstate td { text-align: right; background-color:#E8E8E8; padding:2px; }',
 				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
-				'.statewide * { font-weight: bold; }',
+				'#results a { font-weight:bold; }',
+				'.statewide * { font-weight:bold; }',
 			'</style>',
 			'<table>',
 				'<tr valign="top">',
@@ -390,7 +392,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 					'<td valign="top">',
 						'<div id="votesbar">',
 							'<h1 id="votestitle">Caucus Results</h1>',
-							'<p><a href="#fullstate">Statewide results by county</a></p>',
+							'<p><a href="#fullstate">County Results</a></p>',
 							precinct,
 							'<p>Roll the mouse over the map for county results.</p>',
 							'<div id="results">',

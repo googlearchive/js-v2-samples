@@ -5,8 +5,6 @@
 		author="Michael Geary"
 		author_email="mapplet.feedback@mg.to"
 		description="New Hampshire Primary"
-		thumbnail="http://www.google.com/mapfiles/mapplets/iowacaucus/iowacaucus-thumb.png"
-		screenshot="http://www.google.com/mapfiles/mapplets/iowacaucus/iowacaucus.png"
 >
 	<Require feature="sharedmap"/>
 	<Require feature="dynamic-height"/>

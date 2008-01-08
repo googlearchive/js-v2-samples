@@ -87,9 +87,9 @@ def writeKML( earth, counties, party ):
 			kmlIconHref = ET.SubElement( kmlIcon, 'href' )
 			leader = getLeader(county,party) or { 'name': 'generic' }
 			kmlIconHref.text = iconBaseUrl + leader['name'] + '-border.png'
-		kmlBalloonStyle = ET.SubElement( kmlStyle, 'BalloonStyle' )
-		kmlBalloonText = ET.SubElement( kmlBalloonStyle, 'text' )
-		kmlBalloonText.text = htmlBalloon( county, party )
+			kmlBalloonStyle = ET.SubElement( kmlStyle, 'BalloonStyle' )
+			kmlBalloonText = ET.SubElement( kmlBalloonStyle, 'text' )
+			kmlBalloonText.text = htmlBalloon( county, party )
 		kmlLineStyle = ET.SubElement( kmlStyle, 'LineStyle' )
 		kmlLineStyleColor = ET.SubElement( kmlLineStyle, 'color' )
 		kmlLineStyleColor.text = '40000000'
@@ -100,7 +100,7 @@ def writeKML( earth, counties, party ):
 		kmlPolyStyleColor.text = getColor( county, party )
 	
 	kmlTree = ET.ElementTree( kml )
-	kmlfile = open( private.targetKML + ['','earth-'][earth] + 'nh-' + party + '.kml', 'w' )
+	kmlfile = open( private.targetKML + ['maps','earth'][earth] + '-nh-' + party + '.kml', 'w' )
 	kmlfile.write( '<?xml version="1.0" encoding="utf-8" ?>\n' )
 	kmlTree.write( kmlfile )
 	kmlfile.close()
@@ -162,7 +162,7 @@ def bgr( rgb ):
 def htmlBalloon( county, party ):
 	return '''
 <div style="font-weight:bold;">
-	$[name], NH
+	%s, NH
 </div>
 <div>
 	2008 %s Primary
@@ -171,7 +171,8 @@ def htmlBalloon( county, party ):
 	%s
 </table>
 ''' %(
-	partyName(party),
+	county['name'],
+	partyName( party ),
 	htmlBalloonTally( county, party )
 )
 
@@ -246,12 +247,16 @@ def write( name, text ):
 	f.close()
 
 def main():
-	print 'Starting...'
+	print 'Retrieving data...'
+	reader.fetchData()
+	print 'Creating Maps KML...'
+	makeKML( False )
+	print 'Creating Earth KML...'
 	makeKML( True )
 	if False:
 		write( '../data.js', '''
 Data = {
-//	counties: %s
+	counties: %s
 };
 ''' %( makeKML() ) )
 	print 'Done!'

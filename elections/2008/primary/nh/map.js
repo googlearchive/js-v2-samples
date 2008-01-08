@@ -373,7 +373,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 			'<table>',
 				'<tr valign="top">',
 					'<td>',
-						'<div id="map" style="width: 450px; height: 450px">',
+						'<div id="map" style="width: 450px; height: 710px">',
 						'</div>',
 					'</td>',
 					'<td valign="top">',
@@ -600,7 +600,7 @@ function zoomRegion( region ) {
 		// Iowa:
 		//map.setCenter( new GLatLng( 41.94, -93.69 ), 7 );
 		// NH:
-		map.setCenter( new GLatLng( 44.001, -71.628 ), 7 );
+		map.setCenter( new GLatLng( 43.975, -71.628 ), 8 );
 		//selectRegion();
 	}
 	else {

@@ -39,18 +39,20 @@ candidates['byname'] = {}
 indexCandidates( 'democrat' )
 indexCandidates( 'republican' )
 
-def readVotes( state, counties ):
-	#print 'Retrieving vote data'
+def fetchData():
 	#urllib.urlretrieve( 'http://www.boston.com/news/special/politics/2008/nh_primary/text_output_for_mapping.csv' )
+	pass
+	
+def readVotes( data ):
 	print 'Processing vote data'
 	reader = csv.reader( open( 'text_output_for_mapping.csv', 'rb' ) )
 	for row in reader:
 		if len(row) == 0: continue
 		countyName = fixCountyName( row[0] )
 		if countyName == 'Total':
-			setData( state, row )
+			setData( data['state'], row )
 		else:
-			setData( counties[countyName], row )
+			setData( data['counties'][countyName], row )
 
 def setData( county, row ):
 	setPrecincts( county, row )

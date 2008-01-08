@@ -21,11 +21,12 @@ def randomColor():
 def hh():
 	return '%02X' %( random.random() *256 )
 
-def makeKML( earth=False ):
-	xmlRoot = ET.parse( 'cs33_d00_shp' + ['','-94'][earth] + '/cs33_d00.gpx' )
-	
+def getData( earth=False ):
+	filename = 'cs33_d00_shp' + ['-94',''][earth] + '/cs33_d00.gpx'
+	print earth
+	print 'Reading %s...' % filename
+	xmlRoot = ET.parse( filename )
 	counties = {}
-	
 	for xmlCounty in xmlRoot.getiterator('rte'):
 		points = []
 		for xmlPoint in xmlCounty.getiterator('rtept'):
@@ -41,15 +42,16 @@ def makeKML( earth=False ):
 			'centroid': polyCentroid( points )
 		}
 		counties[name] = county
-	state = {}
-	reader.readVotes( state, counties )
-	
-	writeKML( earth, counties, 'democrat' )
-	writeKML( earth, counties, 'republican' )
+	return { 'state':{}, 'counties':counties }
+
+def makeKML( earth=False ):
+	data = getData( earth )
+	reader.readVotes( data )
+	writeKML( earth, data['counties'], 'democrat' )
+	writeKML( earth, data['counties'], 'republican' )
 
 def writeKML( earth, counties, party ):
 	print 'Writing ' + party
-	nPoints = 0
 	kml = ET.Element( 'kml', { 'xmlns':'http://earth.google.com/kml/2.0' } )
 	kmlDocument = ET.SubElement( kml, 'Document' )
 	kmlDocumentLookAt = ET.SubElement( kmlDocument, 'LookAt' )
@@ -104,6 +106,11 @@ def writeKML( earth, counties, party ):
 	kmlfile.write( '<?xml version="1.0" encoding="utf-8" ?>\n' )
 	kmlTree.write( kmlfile )
 	kmlfile.close()
+
+def makeData():
+	data = getData()
+	state = data['state']
+	counties = data['counties']
 	
 	ctyNames = []
 	for name in counties:
@@ -112,6 +119,7 @@ def writeKML( earth, counties, party ):
 	#for name in ctyNames:
 	#	print name
 	
+	nPoints = 0
 	ctys = []
 	for name in ctyNames:
 		county = counties[name]
@@ -138,7 +146,11 @@ def writeKML( earth, counties, party ):
 		) )
 	
 	print '%d points in %d places' %( nPoints, len(ctys) )
-	return '[%s]' % ','.join(ctys)
+	write( '../data.js', '''
+Data = {
+	counties: [%s]
+};
+''' %( ','.join(ctys) ) )
 
 def coord( point ):
 	return str(point[1]) + ',' + str(point[0]) + ',0'
@@ -253,12 +265,8 @@ def main():
 	makeKML( False )
 	print 'Creating Earth KML...'
 	makeKML( True )
-	if False:
-		write( '../data.js', '''
-Data = {
-	counties: %s
-};
-''' %( makeKML() ) )
+	print 'Creating data.js...'
+	makeData()
 	print 'Done!'
 
 if __name__ == "__main__":

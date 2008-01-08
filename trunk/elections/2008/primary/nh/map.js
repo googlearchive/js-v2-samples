@@ -292,7 +292,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#links { margin-bottom:4px; }',
 				'#news { margin-top:4px; padding:4px; }',
 				'#clicknote { display:none; }',
-				'h2 { font-size:14pt; margin:0; padding:0; }',
+				'h2 { xfont-size:14pt; margin:0; padding:0; }',
 				'#loading { font-weight:normal; }',
 				'.NewsHeading { padding-left:4px; }',
 				'.NewsList { background-color:white; padding:2px; margin:4px; }',
@@ -301,8 +301,8 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }',
 				'.favicon { width:16; height:16; float:left; margin:2px 4px 2px 2px; }',
 				'.Video { margin-top:4px; }',
-				'.VideoHeading { font-size:125%; }',
-				'.VideoTitle { font-size:110%; }',
+				'.VideoHeading { xfont-size:125%; }',
+				'.VideoTitle { xfont-size:110%; }',
 				'.VideoThumb { float:left; margin-right:8px; }',
 				'.VideoBorder { clear:left; }',
 				'#votestitle { margin:12px 0 6px 0; padding:0; }',
@@ -310,9 +310,9 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#legend .legendboxtd { width:1%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
 				'#legend .legendbox { height:24px; width:24px; float:left; margin-right:4px; }',
-				'#legend .legendname { font-size:12pt; }',
+				'#legend .legendname { xfont-size:12pt; }',
 				'#legend .legendvotestd { text-align:right; width:1%; }',
-				'#legend .legendvotes { font-size:10pt; margin-right:4px; }',
+				'#legend .legendvotes { xfont-size:10pt; margin-right:4px; }',
 				'#legend .legendclear { clear:left; }',
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
@@ -335,7 +335,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 					//'<b>Vote results:</b>',
 					//'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
 					//'<button style="margin-left:8px;" id="btnRep">Republican</button>',
-					'<b>Live vote results coming Tuesday!</b>',
+					'<b>Live vote results coming today!</b>',
 				'</div>',
 				'<div id="votesbar">',
 					//'<h1 id="votestitle"></h1>',
@@ -989,6 +989,10 @@ function load() {
 	
 	//if( mapplet ) showVotes();
 	
+	//GEvent.addListener( map, 'click', function( overlay, latlng ) {
+	//	//marker.openInfoWindowHtml( formatEvent(event), { maxWidth:500 } );
+	//});
+	
 	var testdata = false;
 	if( location.search.slice(1) == 'test' )
 		testdata = true;
@@ -1031,8 +1035,12 @@ function load() {
 			//loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
 		//var kmlBaseUrl = 'http://mg.to/nh/';
 		var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/';
-		var kml = new GGeoXml( kmlBaseUrl + 'nh-' + party.name + '.kml?t=' + new Date().getTime() );
+		var kml = new GGeoXml( kmlBaseUrl + 'maps-nh-' + party.name + '.kml?t=' + new Date().getTime() );
 		map.addOverlay( kml );
+		GEvent.addListener( kml, 'click', function( overlay, latlng ) {
+			console.log( 'kml', overlay, latlng );
+			//marker.openInfoWindowHtml( formatEvent(event), { maxWidth:500 } );
+		});
 	}
 	
 	

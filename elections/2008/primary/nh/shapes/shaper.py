@@ -52,6 +52,8 @@ def writeKML( earth, counties, party ):
 	nPoints = 0
 	kml = ET.Element( 'kml', { 'xmlns':'http://earth.google.com/kml/2.0' } )
 	kmlDocument = ET.SubElement( kml, 'Document' )
+	kmlDocumentName = ET.SubElement( kmlDocument, 'name' )
+	kmlDocumentName.text = 'New Hampshire ' + partyName(party) + ' Primary'
 	kmlFolder = ET.SubElement( kmlDocument, 'Folder' )
 	kmlFolderName = ET.SubElement( kmlFolder, 'name' )
 	kmlFolderName.text = 'New Hampshire Towns'
@@ -76,6 +78,9 @@ def writeKML( earth, counties, party ):
 			kmlIconHref = ET.SubElement( kmlIcon, 'href' )
 			leader = getLeader(county,party) or { 'name': 'generic' }
 			kmlIconHref.text = iconBaseUrl + leader['name'] + '-border.png'
+		kmlBalloonStyle = ET.SubElement( kmlStyle, 'BalloonStyle' )
+		kmlBalloonText = ET.SubElement( kmlBalloonStyle, 'text' )
+		kmlBalloonText.text = htmlBalloon( county, party )
 		kmlLineStyle = ET.SubElement( kmlStyle, 'LineStyle' )
 		kmlLineStyleColor = ET.SubElement( kmlLineStyle, 'color' )
 		kmlLineStyleColor.text = '40000000'
@@ -86,7 +91,7 @@ def writeKML( earth, counties, party ):
 		kmlPolyStyleColor.text = getColor( county, party )
 	
 	kmlTree = ET.ElementTree( kml )
-	kmlfile = open( private.targetKML + party + '.kml', 'w' )
+	kmlfile = open( private.targetKML + party + ['','-earth'][earth] + '.kml', 'w' )
 	kmlfile.write( '<?xml version="1.0" encoding="utf-8" ?>\n' )
 	kmlTree.write( kmlfile )
 	kmlfile.close()
@@ -144,6 +149,64 @@ def getLeader( county, party ):
 
 def bgr( rgb ):
 	return rgb[5:7] + rgb[3:5] + rgb[1:3]
+
+def htmlBalloon( county, party ):
+	return '''
+<div style="font-weight:bold;">
+	$[name], NH
+</div>
+<div>
+	2008 %s Primary
+</div>
+<table>
+	%s
+</table>
+''' %(
+	partyName(party),
+	htmlBalloonTally( county, party )
+)
+
+def htmlBalloonTally( county, party ):
+	tally = county.get(party)
+	if tally == None  or  len(tally) == 0:
+		return '<tr><td>No votes reported</td></tr>'
+	return ''.join([ htmlBalloonTallyRow(party,who) for who in tally ])
+
+def htmlBalloonTallyRow( party, who ):
+	candidate = reader.candidates['byname'][party][ who['name'] ]
+	return '''
+		<tr>
+			<td style="text-align:right; width:1%%;">
+				<div style="margin-right:4px;">
+					%s
+				</div>
+			</td>
+			<td style="width:1%%">
+				<div style="height:18px; width:18px; border:1px solid #888888; background-color:%s; margin-right:4px;">
+					&nbsp;
+				</div>
+			</td>
+			<td style="width:1%%;">
+				<img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="%s" />
+			</td>
+			<td>
+				<div>
+					%s
+				</div>
+			</td>
+		</tr>
+''' %(
+	formatNumber( who['votes'] ),
+	candidate['color'],
+	iconBaseUrl + who['name'] + '-border.png',
+	candidate['fullName']
+)
+
+def partyName( party ):
+	return { 'democrat':'Democratic', 'republican':'Republican' }[ party ]
+
+def formatNumber( number ):
+	return str(number)
 
 # Port of ANSI C code from the article
 # "Centroid of a Polygon"

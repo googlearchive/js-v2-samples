@@ -381,7 +381,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 							'<h1 id="votestitle">Primary Results</h1>',
 							'<div id="results">',
 								'Roll the mouse over the map for county totals<br /><br />',
-								'Scroll down for statewide details',
+								//'Scroll down for statewide details',
 							'</div>',
 						'</div>',
 					'</td>',

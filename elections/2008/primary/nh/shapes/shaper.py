@@ -70,8 +70,8 @@ def writeKML( earth, counties, party ):
 	kmlFolderName.text = 'New Hampshire Towns'
 	for name, county in counties.iteritems():
 		kmlPlacemark = ET.SubElement( kmlFolder, 'Placemark' )
-		kmlPlaceName = ET.SubElement( kmlPlacemark, 'name' )
-		kmlPlaceName.text = name
+		#kmlPlaceName = ET.SubElement( kmlPlacemark, 'name' )
+		#kmlPlaceName.text = name
 		kmlMultiGeometry = ET.SubElement( kmlPlacemark, 'MultiGeometry' )
 		if earth:
 			kmlPoint = ET.SubElement( kmlMultiGeometry, 'Point' )

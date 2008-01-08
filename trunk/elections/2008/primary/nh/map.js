@@ -331,15 +331,16 @@ var mapplet = ! window.GBrowserIsCompatible;
 				//	'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				//'</div>',
 				'<div style="margin-top:8px;">',
-					'<b>Vote results:</b>',
-					'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
-					'<button style="margin-left:8px;" id="btnRep">Republican</button>',
+					//'<b>Vote results:</b>',
+					//'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
+					//'<button style="margin-left:8px;" id="btnRep">Republican</button>',
+					'<b>Live vote results coming Tuesday!</b>',
 				'</div>',
 				'<div id="votesbar">',
-					'<h1 id="votestitle"></h1>',
-					'<div id="legend">',
-						'Loading&#8230;',
-					'</div>',
+					//'<h1 id="votestitle"></h1>',
+					//'<div id="legend">',
+					//	'Loading&#8230;',
+					//'</div>',
 				'</div>',
 				'<div id="videos" style="margin-top:8px;">',
 				'</div>',
@@ -998,8 +999,8 @@ function load() {
 	}
 	else {
 		//download( gFeedURLs.events, onEventsReady );
-		//download( gFeedURLs.video, onVideoReady );
-		//download( gFeedURLs.news, onNewsReady );
+		download( gFeedURLs.video, onVideoReady );
+		download( gFeedURLs.news, onNewsReady );
 		//loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
 	}
 	//showCounties();

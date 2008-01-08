@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
-#targetKML = 	'G:/domains/mg.to/web/public/nh/test.kml'
-targetKML = 	'../nh.kml'
-
 #import sys
 #print sys.version
 
+import private
+import reader
 import elementtree.ElementTree as ET
 import simplejson as sj
 import random
@@ -23,36 +22,41 @@ def randomColor():
 def hh():
 	return '%02X' %( random.random() *256 )
 
-def fixCountyName( name ):
-	name = name.strip()
-	fixNames = {
-	}
-	if( name in fixNames ):
-		name = fixNames[name]
-	return name
-
 def makeCounties():
-	xmlRoot = ET.parse( 'cs33_d00_shp/cs33_d00.gpx' )
+	xmlRoot = ET.parse( 'cs33_d00_shp-94/cs33_d00.gpx' )
 	
-	nPoints = 0
 	counties = {}
-	kml = ET.Element( 'kml', { 'xmlns':'http://earth.google.com/kml/2.0' } )
-	kmlDocument = ET.SubElement( kml, 'Document' )
-	kmlFolder = ET.SubElement( kmlDocument, 'Folder' )
-	kmlFolderName = ET.SubElement( kmlFolder, 'name' )
-	kmlFolderName.text = 'New Hampshire Towns'
 	
 	for xmlCounty in xmlRoot.getiterator('rte'):
 		points = []
 		for xmlPoint in xmlCounty.getiterator('rtept'):
 			points.append( [ xmlPoint.attrib['lat'].strip(), xmlPoint.attrib['lon'].strip() ] )
 		name = xmlCounty.findtext('name').strip()
+		number = xmlCounty.findtext('number').strip()
+		# Correct error in census data for Wentworth's Location
+		if( name == "Wentworth" and number == '9' ):
+			name = "Wentworth's Location"
 		county = {
 			'name': name,
 			'points': points,
 			'centroid': polyCentroid( points )
 		}
 		counties[name] = county
+	state = {}
+	reader.readVotes( state, counties )
+	
+	writeKML( counties, 'democrat' )
+	writeKML( counties, 'republican' )
+
+def writeKML( counties, party ):
+	print 'Writing ' + party
+	nPoints = 0
+	kml = ET.Element( 'kml', { 'xmlns':'http://earth.google.com/kml/2.0' } )
+	kmlDocument = ET.SubElement( kml, 'Document' )
+	kmlFolder = ET.SubElement( kmlDocument, 'Folder' )
+	kmlFolderName = ET.SubElement( kmlFolder, 'name' )
+	kmlFolderName.text = 'New Hampshire Towns'
+	for name, county in counties.iteritems():
 		kmlPlacemark = ET.SubElement( kmlFolder, 'Placemark' )
 		kmlPlaceName = ET.SubElement( kmlPlacemark, 'name' )
 		kmlPlaceName.text = name
@@ -60,7 +64,7 @@ def makeCounties():
 		kmlOuterBoundaryIs = ET.SubElement( kmlPolygon, 'outerBoundaryIs' )
 		kmlLinearRing = ET.SubElement( kmlOuterBoundaryIs, 'LinearRing' )
 		kmlCoordinates = ET.SubElement( kmlLinearRing, 'coordinates' )
-		kmlCoordinates.text = ' '.join([ point[1] + ',' + point[0] + ',0' for point in points ])
+		kmlCoordinates.text = ' '.join([ point[1] + ',' + point[0] + ',0' for point in county['points'] ])
 		kmlStyle = ET.SubElement( kmlPlacemark, 'Style' )
 		kmlLineStyle = ET.SubElement( kmlStyle, 'LineStyle' )
 		kmlLineStyleColor = ET.SubElement( kmlLineStyle, 'color' )
@@ -69,10 +73,10 @@ def makeCounties():
 		kmlLineStyleWidth.text = '1'
 		kmlPolyStyle = ET.SubElement( kmlStyle, 'PolyStyle' )
 		kmlPolyStyleColor = ET.SubElement( kmlPolyStyle, 'color' )
-		kmlPolyStyleColor.text = '80' + randomColor()
+		kmlPolyStyleColor.text = getColor( county, party )
 	
 	kmlTree = ET.ElementTree( kml )
-	kmlfile = open( targetKML, 'w' )
+	kmlfile = open( private.targetKML + party + '.kml', 'w' )
 	kmlfile.write( '<?xml version="1.0" encoding="utf-8" ?>\n' )
 	kmlTree.write( kmlfile )
 	kmlfile.close()
@@ -81,8 +85,8 @@ def makeCounties():
 	for name in counties:
 		ctyNames.append( name )
 	ctyNames.sort()
-	for name in ctyNames:
-		print name
+	#for name in ctyNames:
+	#	print name
 	
 	ctys = []
 	for name in ctyNames:
@@ -104,13 +108,23 @@ def makeCounties():
 			nPoints += 1
 			pts.append( '[%s,%s]' %( point[0], point[1] ) )
 		ctys.append( '{name:"%s",centroid:[%.8f,%.8f],points:[%s]}' %(
-			fixCountyName( county['name'] ),
+			reader.fixCountyName( name ),
 			centroid[0], centroid[1],
 			','.join(pts)
 		) )
 	
 	print '%d points in %d places' %( nPoints, len(ctys) )
 	return '[%s]' % ','.join(ctys)
+
+def getColor( county, party ):
+	tally = county.get(party)
+	if tally == None  or  len(tally) == 0:
+		return '00000000';
+	else:
+		return 'C0' + bgr( reader.candidates['byname'][party][ tally[0]['name'] ]['color'] )
+
+def bgr( rgb ):
+	return rgb[5:7] + rgb[3:5] + rgb[1:3]
 
 # Port of ANSI C code from the article
 # "Centroid of a Polygon"
@@ -144,7 +158,7 @@ def main():
 	print 'Starting...'
 	write( '../data.js', '''
 Data = {
-	counties: %s
+//	counties: %s
 };
 ''' %( makeCounties() ) )
 	print 'Done!'

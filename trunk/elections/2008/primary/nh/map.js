@@ -378,7 +378,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 					'</td>',
 					'<td valign="top">',
 						'<div id="votesbar">',
-							'<h1 id="votestitle">Caucus Results</h1>',
+							'<h1 id="votestitle">Primary Results</h1>',
 							'<div id="results">',
 								'Roll the mouse over the map for county totals<br /><br />',
 								'Scroll down for statewide details',
@@ -604,16 +604,20 @@ function zoomRegion( region ) {
 		//selectRegion();
 	}
 	else {
-		GAsync( region.polygon.base, 'getBounds',
-			function( bounds ) {
-				GAsync( map, 'getBoundsZoomLevel', [ bounds ],
-					function( zoom ) {
-						//selectRegion( region );
-						var center = new GLatLng( region.centroid[1], region.centroid[0] );
-						map.setCenter( center, zoom );
-					});
-			});
+		//GAsync( region.polygon.base, 'getBounds',
+		//	function( bounds ) {
+		//		GAsync( map, 'getBoundsZoomLevel', [ bounds ],
+		//			function( zoom ) {
+		//				//selectRegion( region );
+		//				var center = pointLatLng( region.centroid );
+		//				map.setCenter( center, zoom );
+		//			});
+		//	});
 	}
+}
+
+function pointLatLng( point ) {
+	return new GLatLng( point[0], point[1] );
 }
 
 function formatEvent( event ) {
@@ -695,7 +699,7 @@ function formatEvent( event ) {
 function randomColor() {
 	return '#' + hh() + hh() + hh();
 	function hh() {
-		var xx = Math.floor( Math.random() *128 + 64 ).toString(16);
+		var xx = Math.floor( Math.random() *128 + 96 ).toString(16);
 		return xx.length == 2 ? xx : '0'+xx;
 	}
 }
@@ -919,22 +923,40 @@ function showCounties( json, party ) {
 		if( json ) {
 			county.polygon = {
 				base:
-					opt.projector ? new GPolygon( pts, border, 1, .75, color, .9 )  :
-					votes ? new GPolygon( pts, border, 1, .75, color, .7 ) :
-					new GPolygon( pts, border, 1, .75 ) //,
+					opt.projector ? new GPolygon( pts, border, 1, .5, color, .9 )  :
+					votes ? new GPolygon( pts, border, 1, .5, color, .7 ) :
+					new GPolygon( pts, border, 1, .5 ) //,
 				//select: new GPolygon( pts, color2, 1, .75, color2, .15 )
 			};
 		}
 		else {
 			var color = randomColor();
 			county.polygon = {
-				base: new GPolygon( pts, border, 1, .5, color, .15 )
+				base: new GPolygon( pts, border, 1, .5, color, .7 )
 			};
 		}
 		map.addOverlay( county.polygon.base );
+		GEvent.addListener( county.polygon.base, 'click', function() {
+			map.openInfoWindowHtml(
+				pointLatLng( county.centroid ),
+				voteBalloon( json, county ),
+				{ maxWidth:500 } );
+		});
 	});
 	
 	initMap();
+}
+
+function voteBalloon( json, county ) {
+	var votes = ! json ? '<tr><td>Votes not reported</td></tr>' : [
+	].join('');
+	
+	return [
+		'<h4>', county.name, ', NH</h4>',
+		'<table>',
+			votes,
+		'</table>'
+	].join('');
 }
 
 function makeIcons() {
@@ -1008,7 +1030,7 @@ function load() {
 		download( gFeedURLs.news, onNewsReady );
 		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
 	}
-	//showCounties();
+	showCounties();
 	
 	$('#btnDem').click( function() {
 		loadResults( parties.by.name['democrat'] );
@@ -1034,13 +1056,13 @@ function load() {
 		//else
 			//loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
 		//var kmlBaseUrl = 'http://mg.to/nh/';
-		var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/';
-		var kml = new GGeoXml( kmlBaseUrl + 'maps-nh-' + party.name + '.kml?t=' + new Date().getTime() );
-		map.addOverlay( kml );
-		GEvent.addListener( kml, 'click', function( overlay, latlng ) {
-			console.log( 'kml', overlay, latlng );
-			//marker.openInfoWindowHtml( formatEvent(event), { maxWidth:500 } );
-		});
+		//var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/';
+		//var kml = new GGeoXml( kmlBaseUrl + 'maps-nh-' + party.name + '.kml?t=' + new Date().getTime() );
+		//map.addOverlay( kml );
+		//GEvent.addListener( kml, 'click', function( overlay, latlng ) {
+		//	console.log( 'kml', overlay, latlng );
+		//	//marker.openInfoWindowHtml( formatEvent(event), { maxWidth:500 } );
+		//});
 	}
 	
 	

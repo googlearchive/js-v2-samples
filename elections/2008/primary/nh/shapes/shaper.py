@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-#import sys
-#print sys.version
+iconBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/'
 
 import private
 import reader
@@ -22,8 +21,8 @@ def randomColor():
 def hh():
 	return '%02X' %( random.random() *256 )
 
-def makeCounties():
-	xmlRoot = ET.parse( 'cs33_d00_shp-94/cs33_d00.gpx' )
+def makeKML( earth=False ):
+	xmlRoot = ET.parse( 'cs33_d00_shp' + ['','-94'][earth] + '/cs33_d00.gpx' )
 	
 	counties = {}
 	
@@ -45,10 +44,10 @@ def makeCounties():
 	state = {}
 	reader.readVotes( state, counties )
 	
-	writeKML( counties, 'democrat' )
-	writeKML( counties, 'republican' )
+	writeKML( earth, counties, 'democrat' )
+	writeKML( earth, counties, 'republican' )
 
-def writeKML( counties, party ):
+def writeKML( earth, counties, party ):
 	print 'Writing ' + party
 	nPoints = 0
 	kml = ET.Element( 'kml', { 'xmlns':'http://earth.google.com/kml/2.0' } )
@@ -60,12 +59,23 @@ def writeKML( counties, party ):
 		kmlPlacemark = ET.SubElement( kmlFolder, 'Placemark' )
 		kmlPlaceName = ET.SubElement( kmlPlacemark, 'name' )
 		kmlPlaceName.text = name
-		kmlPolygon = ET.SubElement( kmlPlacemark, 'Polygon' )
+		kmlMultiGeometry = ET.SubElement( kmlPlacemark, 'MultiGeometry' )
+		if earth:
+			kmlPoint = ET.SubElement( kmlMultiGeometry, 'Point' )
+			kmlPointCoordinates = ET.SubElement( kmlPoint, 'coordinates' )
+			kmlPointCoordinates.text = coord( county['centroid'] )
+		kmlPolygon = ET.SubElement( kmlMultiGeometry, 'Polygon' )
 		kmlOuterBoundaryIs = ET.SubElement( kmlPolygon, 'outerBoundaryIs' )
 		kmlLinearRing = ET.SubElement( kmlOuterBoundaryIs, 'LinearRing' )
 		kmlCoordinates = ET.SubElement( kmlLinearRing, 'coordinates' )
-		kmlCoordinates.text = ' '.join([ point[1] + ',' + point[0] + ',0' for point in county['points'] ])
+		kmlCoordinates.text = ' '.join([ coord(point) for point in county['points'] ])
 		kmlStyle = ET.SubElement( kmlPlacemark, 'Style' )
+		if earth:
+			kmlIconStyle = ET.SubElement( kmlStyle, 'IconStyle' )
+			kmlIcon = ET.SubElement( kmlIconStyle, 'Icon' )
+			kmlIconHref = ET.SubElement( kmlIcon, 'href' )
+			leader = getLeader(county,party) or { 'name': 'generic' }
+			kmlIconHref.text = iconBaseUrl + leader['name'] + '-border.png'
 		kmlLineStyle = ET.SubElement( kmlStyle, 'LineStyle' )
 		kmlLineStyleColor = ET.SubElement( kmlLineStyle, 'color' )
 		kmlLineStyleColor.text = '40000000'
@@ -116,12 +126,21 @@ def writeKML( counties, party ):
 	print '%d points in %d places' %( nPoints, len(ctys) )
 	return '[%s]' % ','.join(ctys)
 
+def coord( point ):
+	return str(point[1]) + ',' + str(point[0]) + ',0'
+
 def getColor( county, party ):
-	tally = county.get(party)
-	if tally == None  or  len(tally) == 0:
+	leader = getLeader( county, party )
+	if not leader:
 		return '00000000';
 	else:
-		return 'C0' + bgr( reader.candidates['byname'][party][ tally[0]['name'] ]['color'] )
+		return 'C0' + bgr( leader['color'] )
+
+def getLeader( county, party ):
+	tally = county.get(party)
+	if tally == None  or  len(tally) == 0:
+		return None
+	return reader.candidates['byname'][party][ tally[0]['name'] ]
 
 def bgr( rgb ):
 	return rgb[5:7] + rgb[3:5] + rgb[1:3]
@@ -156,11 +175,13 @@ def write( name, text ):
 
 def main():
 	print 'Starting...'
-	write( '../data.js', '''
+	makeKML( True )
+	if False:
+		write( '../data.js', '''
 Data = {
 //	counties: %s
 };
-''' %( makeCounties() ) )
+''' %( makeKML() ) )
 	print 'Done!'
 
 if __name__ == "__main__":

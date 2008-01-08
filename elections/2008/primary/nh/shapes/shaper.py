@@ -52,6 +52,15 @@ def writeKML( earth, counties, party ):
 	nPoints = 0
 	kml = ET.Element( 'kml', { 'xmlns':'http://earth.google.com/kml/2.0' } )
 	kmlDocument = ET.SubElement( kml, 'Document' )
+	kmlDocumentLookAt = ET.SubElement( kmlDocument, 'LookAt' )
+	kmlDocumentLookAtLatitude = ET.SubElement( kmlDocumentLookAt, 'latitude' )
+	kmlDocumentLookAtLatitude.text = '43.5'
+	kmlDocumentLookAtLongitude = ET.SubElement( kmlDocumentLookAt, 'longitude' )
+	kmlDocumentLookAtLongitude.text = '-71.7'
+	kmlDocumentLookAtRange = ET.SubElement( kmlDocumentLookAt, 'range' )
+	kmlDocumentLookAtRange.text = '200000'
+	kmlDocumentLookAtTilt = ET.SubElement( kmlDocumentLookAt, 'tilt' )
+	kmlDocumentLookAtTilt.text = '55'
 	kmlDocumentName = ET.SubElement( kmlDocument, 'name' )
 	kmlDocumentName.text = 'New Hampshire ' + partyName(party) + ' Primary'
 	kmlFolder = ET.SubElement( kmlDocument, 'Folder' )
@@ -91,7 +100,7 @@ def writeKML( earth, counties, party ):
 		kmlPolyStyleColor.text = getColor( county, party )
 	
 	kmlTree = ET.ElementTree( kml )
-	kmlfile = open( private.targetKML + party + ['','-earth'][earth] + '.kml', 'w' )
+	kmlfile = open( private.targetKML + ['','earth-'][earth] + 'nh-' + party + '.kml', 'w' )
 	kmlfile.write( '<?xml version="1.0" encoding="utf-8" ?>\n' )
 	kmlTree.write( kmlfile )
 	kmlfile.close()

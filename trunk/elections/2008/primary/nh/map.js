@@ -155,6 +155,7 @@ var candidates = {
 		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#336633' },
 		{ name: 'huckabee', lastName: 'Huckabee', fullName: 'Mike Huckabee', color: '#1700E8' },
 		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#8A5C2E' },
+		{ name: 'keyes', lastName: 'Keyes', fullName: 'Alan Keyes', color: '#EE00B5' },
 		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#FFFA00' },
 		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#E4Af95' },
 		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FF1300' },
@@ -406,7 +407,7 @@ else {
 
 var map;
 
-var counties = Data.counties, state = Data.state;
+var counties = Data.counties || [], state = Data.state || {};
 counties.index( 'name' );
 
 //var allEventData = [];
@@ -995,19 +996,15 @@ function load() {
 	var q = opt.party || location.search.slice(1);
 	var party = parties.by.name[q];
 	if( party ) {
-		//loadResults( party );
+		loadResults( party );
 	}
 	else {
 		//download( gFeedURLs.events, onEventsReady );
 		download( gFeedURLs.video, onVideoReady );
 		download( gFeedURLs.news, onNewsReady );
-		//loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
+		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
 	}
 	//showCounties();
-	//var kmlBaseUrl = 'http://mg.to/nh/';
-	var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/';
-	var kml = new GGeoXml( kmlBaseUrl + 'nh.kml?t=' + new Date().getTime() );
-	map.addOverlay( kml );
 	
 	$('#btnDem').click( function() {
 		loadResults( parties.by.name['democrat'] );
@@ -1020,6 +1017,7 @@ function load() {
 	});
 	
 	function loadResults( party ) {
+		map.clearOverlays();
 		if( mapplet )
 			$('#votestitle').html( [
 				'<a href="', party.url, '" target="_blank">', party.fullName, '</a>'
@@ -1030,7 +1028,11 @@ function load() {
 		//if( testdata )
 		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );
 		//else
-			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
+			//loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
+		//var kmlBaseUrl = 'http://mg.to/nh/';
+		var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/';
+		var kml = new GGeoXml( kmlBaseUrl + 'nh-' + party.name + '.kml?t=' + new Date().getTime() );
+		map.addOverlay( kml );
 	}
 	
 	

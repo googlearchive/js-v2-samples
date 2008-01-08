@@ -1,4 +1,3 @@
 
 Data = {
-//	counties: None
 };

@@ -936,6 +936,7 @@ function showCounties( json, party ) {
 		if( json ) {
 			var data = json.counties[county.name];
 			var tallies = county.tallies = data[party];
+			county.precincts = data.precincts;
 			county.total = data.total;
 			
 			var leader = tallies && tallies[0];
@@ -1173,6 +1174,9 @@ function countyTable( county, party, balloon ) {
 				'</tr>'
 			].join('') );
 		});
+	}
+	else if( ! county.precincts ) {
+		lines.push( '<tr><td>' + county.name + ' residents vote in a nearby town.</td></tr>' );
 	}
 	else {
 		lines.push( '<tr><td>No votes reported</td></tr>' );

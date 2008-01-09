@@ -1227,13 +1227,12 @@ function download( url, ready ) {
 		_IG_FetchXmlContent( url, ready );
 	}
 	else {
-		GDownloadUrl( 'proxy.php?url=' + encodeURIComponent(url), function( data ) {
-			ready( GXml.parse(data) );
-		});
+		//GDownloadUrl( 'proxy.php?url=' + encodeURIComponent(url), function( data ) {
+		//	ready( GXml.parse(data) );
+		//});
 	}
 }
 
 $(window).bind( 'load', load ).bind( 'onunload', GUnload );
 
 })( jQuery );
-

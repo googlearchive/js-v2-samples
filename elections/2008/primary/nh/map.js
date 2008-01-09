@@ -326,14 +326,16 @@ var partyButtons = opt.party ? '' : [
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<div id="outer">',
-				'<div>Click the map for local vote totals.</div>',
 				'<div>',
-					'<span style="color:red;">New!</span> See results in <a href="http://earth.google.com/" target="_blank">Google Earth</a>:',
+					'<span style="color:red;">New!</span> ',
+					'Click the map for town info and results',
 				'</div>',
 				'<div style="padding-bottom:6px;">',
+					'View in <a href="http://earth.google.com/" target="_blank">Google Earth</a>: ',
 					'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/earth-nh-democrat.kml">Democratic</a>',
-					' | ',
+					' ',
 					'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/earth-nh-republican.kml">Republican</a>',
+				'</div>',
 				//'<div>',
 				//	'<select id="lstRegions">',
 				//		'<option value="">',
@@ -984,7 +986,11 @@ function showCounties( json, party ) {
 }
 
 function voteBalloon( json, county ) {
-	return countyTable( county, null, true );
+	return [
+		'<div style="font-size:10pt;">',
+			countyTable( county, null, true ),
+		'</div>'
+	].join('');
 }
 
 function makeIcons() {
@@ -1182,11 +1188,18 @@ function countyTable( county, party, balloon ) {
 		lines.push( '<tr><td>No votes reported</td></tr>' );
 	}
 	
+	var wikilink = ! balloon ? '' : [
+		'<a href="http://en.wikipedia.org/wiki/',
+				( county.name + ', New Hampshire' ).replace( / /g, '_' ),
+				'" target="_blank">',
+			'Town information',
+		'</a>'
+	].join('');
+	
 	return [
 		'<div style="', fontsize, 'font-weight:bold;">', county.name, ', NH</div>',
-		'<table>',
-			lines.join(''),
-		'</table>'
+		'<div>',	wikilink, '</div>',
+		'<table style="margin-top:8px;">', lines.join(''), '</table>'
 	].join('');
 }
 

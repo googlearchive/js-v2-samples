@@ -368,6 +368,15 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'#fullstate th, #fullstate td { text-align: right; background-color:#E8E8E8; padding:2px; }',
 				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
 				'.statewide * { font-weight: bold; }',
+				'#legend table { xwidth:100%; }',
+				'#legend .legendboxtd { width:1%; }',
+				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
+				'#legend .legendbox { height:24px; width:24px; float:left; margin-right:4px; }',
+				'#legend .legendname { xfont-size:12pt; }',
+				'#legend .legendvotestd { text-align:right; width:1%; }',
+				'#legend .legendvotes { xfont-size:10pt; margin-right:4px; }',
+				'#legend .legendclear { clear:left; }',
+				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<table>',
 				'<tr valign="top">',
@@ -376,10 +385,19 @@ var mapplet = ! window.GBrowserIsCompatible;
 						'</div>',
 					'</td>',
 					'<td valign="top">',
+						'<div style="margin-top:8px;">',
+							'<b>Vote results:</b>',
+							'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
+							'<button style="margin-left:8px;" id="btnRep">Republican</button>',
+						'</div>',
 						'<div id="votesbar">',
 							'<h1 id="votestitle">Primary Results</h1>',
+							'<div>Statewide Results</div>',
+							'<div id="legend">',
+								'Loading&#8230;',
+							'</div>',
 							'<div id="results">',
-								'Roll the mouse over the map for county totals<br /><br />',
+								'Roll the mouse over the map for town-by-town results<br /><br />',
 								//'Scroll down for statewide details',
 							'</div>',
 						'</div>',
@@ -1037,10 +1055,9 @@ function load() {
 	
 	function loadResults( party ) {
 		map.clearOverlays();
-		if( mapplet )
-			$('#votestitle').html( [
-				party.fullName
-			].join('') );
+		$('#votestitle').html( [
+			party.fullName
+		].join('') );
 		$('#legend').html( 'Loading&#8230;' );
 		//loadScript( 'http://gigapad/elections/2008/primary/nh/results_' + party.name + '.js' );
 		loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/results_' + party.name + '.js' );
@@ -1109,13 +1126,13 @@ function countyTable( county, party ) {
 			lines.push( [
 				'<table>',
 					'<tr>',
-						'<td>',
-							'<img class="favicon" src="', imgUrl(tally.name), '" />',
-						'</td>',
-						'<td>',
+						'<td style="text-align:right; padding-right:4px;">',
 							tally.votes,
 						'</td>',
-						'<td>',
+						'<td style="padding-right:4px;">',
+							'<img class="favicon" src="', imgUrl(tally.name), '" />',
+						'</td>',
+						'<td style="padding-right:4px;">',
 							candidate.lastName,
 						'</td>',
 					'</tr>',

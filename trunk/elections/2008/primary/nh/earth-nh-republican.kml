@@ -4247,7 +4247,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4496172311,43.1801875514,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.44964900,43.24523900,0 -71.46232100,43.23194300,0 -71.41805300,43.20878400,0 -71.40287800,43.20084600,0 -71.41642900,43.17889100,0 -71.39381200,43.17558900,0 -71.39525000,43.17296100,0 -71.39959400,43.16980800,0 -71.40406300,43.16434500,0 -71.40722000,43.15714400,0 -71.40694000,43.15472100,0 -71.41231300,43.14914400,0 -71.41353100,43.14855000,0 -71.41746500,43.14855000,0 -71.41899500,43.14983100,0 -71.41877600,43.15104200,0 -71.41915000,43.15163700,0 -71.42105500,43.15287200,0 -71.42211600,43.15300900,0 -71.42314700,43.15124900,0 -71.42427200,43.14610500,0 -71.42798800,43.13892700,0 -71.42851900,43.13849200,0 -71.42942400,43.13943000,0 -71.43008000,43.13702900,0 -71.43126600,43.13673200,0 -71.43682300,43.13282300,0 -71.44047500,43.13108500,0 -71.44815200,43.12863900,0 -71.45311500,43.12873000,0 -71.45333000,43.13034400,0 -71.45433400,43.13058100,0 -71.46032600,43.12930000,0 -71.46244800,43.12772200,0 -71.46490100,43.12743600,0 -71.46200500,43.13303800,0 -71.46192000,43.13457000,0 -71.46537400,43.14121700,0 -71.46752200,43.14349800,0 -71.47863200,43.15181300,0 -71.48177400,43.15379300,0 -71.48382600,43.15425400,0 -71.49120000,43.15549500,0 -71.49316900,43.15641000,0 -71.49515400,43.15817700,0 -71.49375200,43.15918900,0 -71.49303500,43.16035600,0 -71.49285200,43.16533900,0 -71.49544500,43.16620700,0 -71.49675900,43.16865200,0 -71.49079400,43.16890700,0 -71.48870000,43.16682700,0 -71.48801300,43.16698800,0 -71.48770300,43.17032600,0 -71.48895500,43.17277100,0 -71.49026600,43.17277100,0 -71.49067200,43.17217600,0 -71.49132800,43.17217600,0 -71.49195500,43.17496400,0 -71.49951400,43.17475700,0 -71.49960000,43.17482700,0 -71.50207400,43.17587900,0 -71.50297800,43.17697700,0 -71.49994900,43.17958200,0 -71.49367900,43.18090700,0 -71.49074500,43.18390400,0 -71.49099700,43.18545800,0 -71.49256000,43.18719500,0 -71.49723000,43.20022300,0 -71.49054300,43.20130100,0 -71.48207300,43.19968200,0 -71.47567000,43.20327300,0 -71.47404700,43.20695500,0 -71.47464200,43.20866900,0 -71.47880200,43.21303400,0 -71.48013200,43.21336100,0 -71.47930300,43.21452000,0 -71.47683900,43.22099000,0 -71.47196500,43.22497000,0 -71.46215500,43.23628900,0 -71.46228700,43.23781600,0 -71.46331400,43.24136400,0 -71.46328500,43.24456400,0 -71.46250300,43.24477000,0 -71.45978200,43.24397100,0 -71.45837500,43.24529700,0 -71.45650100,43.24913300,0 -71.44964900,43.24523900,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/generic-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4496172311,43.1801875514,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.44964900,43.24523900,0 -71.46232100,43.23194300,0 -71.41805300,43.20878400,0 -71.40287800,43.20084600,0 -71.41642900,43.17889100,0 -71.39381200,43.17558900,0 -71.39525000,43.17296100,0 -71.39959400,43.16980800,0 -71.40406300,43.16434500,0 -71.40722000,43.15714400,0 -71.40694000,43.15472100,0 -71.41231300,43.14914400,0 -71.41353100,43.14855000,0 -71.41746500,43.14855000,0 -71.41899500,43.14983100,0 -71.41877600,43.15104200,0 -71.41915000,43.15163700,0 -71.42105500,43.15287200,0 -71.42211600,43.15300900,0 -71.42314700,43.15124900,0 -71.42427200,43.14610500,0 -71.42798800,43.13892700,0 -71.42851900,43.13849200,0 -71.42942400,43.13943000,0 -71.43008000,43.13702900,0 -71.43126600,43.13673200,0 -71.43682300,43.13282300,0 -71.44047500,43.13108500,0 -71.44815200,43.12863900,0 -71.45311500,43.12873000,0 -71.45333000,43.13034400,0 -71.45433400,43.13058100,0 -71.46032600,43.12930000,0 -71.46244800,43.12772200,0 -71.46490100,43.12743600,0 -71.46200500,43.13303800,0 -71.46192000,43.13457000,0 -71.46537400,43.14121700,0 -71.46752200,43.14349800,0 -71.47863200,43.15181300,0 -71.48177400,43.15379300,0 -71.48382600,43.15425400,0 -71.49120000,43.15549500,0 -71.49316900,43.15641000,0 -71.49515400,43.15817700,0 -71.49375200,43.15918900,0 -71.49303500,43.16035600,0 -71.49285200,43.16533900,0 -71.49544500,43.16620700,0 -71.49675900,43.16865200,0 -71.49079400,43.16890700,0 -71.48870000,43.16682700,0 -71.48801300,43.16698800,0 -71.48770300,43.17032600,0 -71.48895500,43.17277100,0 -71.49026600,43.17277100,0 -71.49067200,43.17217600,0 -71.49132800,43.17217600,0 -71.49195500,43.17496400,0 -71.49951400,43.17475700,0 -71.49960000,43.17482700,0 -71.50207400,43.17587900,0 -71.50297800,43.17697700,0 -71.49994900,43.17958200,0 -71.49367900,43.18090700,0 -71.49074500,43.18390400,0 -71.49099700,43.18545800,0 -71.49256000,43.18719500,0 -71.49723000,43.20022300,0 -71.49054300,43.20130100,0 -71.48207300,43.19968200,0 -71.47567000,43.20327300,0 -71.47404700,43.20695500,0 -71.47464200,43.20866900,0 -71.47880200,43.21303400,0 -71.48013200,43.21336100,0 -71.47930300,43.21452000,0 -71.47683900,43.22099000,0 -71.47196500,43.22497000,0 -71.46215500,43.23628900,0 -71.46228700,43.23781600,0 -71.46331400,43.24136400,0 -71.46328500,43.24456400,0 -71.46250300,43.24477000,0 -71.45978200,43.24397100,0 -71.45837500,43.24529700,0 -71.45650100,43.24913300,0 -71.44964900,43.24523900,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/mccain-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Pembroke, NH
 &lt;/div&gt;
@@ -4255,9 +4255,177 @@
 	2008 Republican Primary
 &lt;/div&gt;
 &lt;table&gt;
-	&lt;tr&gt;&lt;td&gt;No votes reported&lt;/td&gt;&lt;/tr&gt;
+	
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					473
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/mccain-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John McCain
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					383
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/romney-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mitt Romney
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					161
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/huckabee-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Huckabee
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					151
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/giuliani-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Rudy Giuliani
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					136
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/paul-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Ron Paul
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					16
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/thompson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Fred Thompson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					14
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/hunter-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Duncan Hunter
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8080FF; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/keyes-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Alan Keyes
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>00000000</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.3097625518,43.0592969809,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.35618200,43.10197100,0 -71.33440500,43.09832300,0 -71.31435700,43.09446700,0 -71.27493200,43.08774700,0 -71.25873800,43.08443800,0 -71.25872300,43.08443500,0 -71.24950700,43.08264900,0 -71.23053100,43.07998100,0 -71.26128300,43.01602000,0 -71.28461100,43.02069200,0 -71.28811500,43.02139600,0 -71.32718800,43.02843600,0 -71.39224600,43.04061100,0 -71.37301400,43.07112300,0 -71.37096700,43.07462700,0 -71.35618200,43.10197100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/mccain-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.3097625518,43.0592969809,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.35618200,43.10197100,0 -71.33440500,43.09832300,0 -71.31435700,43.09446700,0 -71.27493200,43.08774700,0 -71.25873800,43.08443800,0 -71.25872300,43.08443500,0 -71.24950700,43.08264900,0 -71.23053100,43.07998100,0 -71.26128300,43.01602000,0 -71.28461100,43.02069200,0 -71.28811500,43.02139600,0 -71.32718800,43.02843600,0 -71.39224600,43.04061100,0 -71.37301400,43.07112300,0 -71.37096700,43.07462700,0 -71.35618200,43.10197100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/mccain-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Candia, NH
 &lt;/div&gt;
@@ -9718,7 +9886,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					475
+					726
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -9739,7 +9907,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					266
+					391
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -9760,7 +9928,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					135
+					212
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -9781,7 +9949,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					94
+					137
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -9802,7 +9970,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					77
+					122
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -9823,7 +9991,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					22
+					34
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -9844,7 +10012,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					2
+					6
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;

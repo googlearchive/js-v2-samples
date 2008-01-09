@@ -11,30 +11,23 @@
     <!-- BEGIN GOOGLE MAP -->
 		
 		<script type="text/javascript">
-			(function() {
-				var opt = GoogleElectionMapOptions = {
-					baseUrl: 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/',
-					party: 'republican'
-				};
-				
-				document.write(
-					'<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=',
-					{
-						'gmaps-samples.googlecode.com': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxSPW5CJgpdgO_s4yyMovOaVh_KvvhTTJKW9lb6zh0HdXDgS6Bik41j0ng',
-						'www.boston.com': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxTFZpBdPhnOhVBLDts8WXhsjuPLnxSk8kueMyID_uCeit46YrsGeON6EQ'
-					}[location.host],
-					'" type="text/javascript"><\/script>'
-				);
-				
-				var time = (new Date).getTime();
-				document.write(
-					'<script type="text/javascript" src="', opt.baseUrl, 'jquery-1.2.1.min.js"><\/script>',
-					'<script type="text/javascript">jQuery.noConflict();<\/script>',
-					'<script type="text/javascript" src="', opt.baseUrl, 'data.js?t=', time, '"><\/script>',
-					'<script type="text/javascript" src="', opt.baseUrl, 'map.js?t=', time, '"><\/script>'
-				);
-			})();
+			GoogleElectionMapOptions = {
+				baseUrl: 'http://gigapad/elections/2008/primary/nh/'
+			};
+			document.write(
+				'<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=',
+				{
+					'gmaps-samples.googlecode.com': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxSPW5CJgpdgO_s4yyMovOaVh_KvvhTTJKW9lb6zh0HdXDgS6Bik41j0ng',
+					'www.boston.com': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxTFZpBdPhnOhVBLDts8WXhsjuPLnxSk8kueMyID_uCeit46YrsGeON6EQ'
+				}[location.host],
+				'" type="text/javascript"><\/script>'
+			);
 		</script>
+		
+		<script type="text/javascript" src="http://gigapad/elections/2008/primary/nh/jquery-1.2.1.js"></script>
+		<script type="text/javascript">jQuery.noConflict();</script>
+		<script type="text/javascript" src="http://gigapad/elections/2008/primary/nh/data.js"></script>
+		<script type="text/javascript" src="http://gigapad/elections/2008/primary/nh/map.js"></script>
 		
 	<!-- END GOOGLE MAP -->
 	

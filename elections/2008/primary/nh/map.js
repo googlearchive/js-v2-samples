@@ -426,7 +426,7 @@ else {
 	var gFeedURLs = {
 		news: 'http://news.google.com/?ned=us&topic=el&output=rss',
 		events:'http://data.desmoinesregister.com/newsroom_google/xml/caucus_events.xml',
-		video: 'http://www.youtube.com/rss/user/iowacaucuses/videos.rss'
+		video: 'http://www.youtube.com/rss/user/wmurtv/videos.rss'
 	};
 }
 

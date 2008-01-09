@@ -1148,10 +1148,14 @@ function countyTable( county, party, balloon ) {
 			lines.push( [
 				'<tr>',
 					'<td style="', fontsize, 'text-align:right; width:5em; padding-right:', pad, ';">',
-						formatNumber(tally.votes),
+						'<div>',
+							formatNumber(tally.votes),
+						'</div>',
 					'</td>',
 					'<td style="', fontsize, 'text-align:right; width:2em; padding-right:', pad, ';">',
-						Math.round( tally.votes / county.total * 100 ), '%',
+						'<div>',
+							Math.round( tally.votes / county.total * 100 ), '%',
+						'</div>',
 					'</td>',
 					'<td style="width:1%;">',
 						'<div style="width:24px; height:24px; margin:0 4px 2px 0; border:1px solid #888888; background-color:', candidate.color, ';">',
@@ -1162,7 +1166,9 @@ function countyTable( county, party, balloon ) {
 					//	'<img class="favicon" src="', imgUrl(tally.name), '" />',
 					//'</td>',
 					'<td style="', fontsize, 'xpadding-right:8px; white-space:pre;">',
-						candidate.fullName,
+						'<div>',
+							candidate.fullName,
+						'</div>',
 					'</td>',
 				'</tr>'
 			].join('') );

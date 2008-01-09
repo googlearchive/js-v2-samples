@@ -158,6 +158,9 @@ def makeJson( party ):
 	reader.readVotes( data, party )
 	state = data['state']
 	counties = data['counties']
+	for county in counties.itervalues():
+		del county['centroid']
+		del county['points']
 	
 	result = {
 		'status': 'ok',

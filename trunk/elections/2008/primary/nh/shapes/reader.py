@@ -40,24 +40,26 @@ indexCandidates( 'democrat' )
 indexCandidates( 'republican' )
 
 def fetchData():
-	#urllib.urlretrieve( 'http://www.boston.com/news/special/politics/2008/nh_primary/text_output_for_mapping.csv' )
-	pass
+	urllib.urlretrieve( 'http://www.boston.com/news/special/politics/2008/nh_primary/text_output_for_mapping.csv', 'text_output_for_mapping.csv' )
 	
-def readVotes( data ):
+def readVotes( data, party ):
 	print 'Processing vote data'
 	reader = csv.reader( open( 'text_output_for_mapping.csv', 'rb' ) )
 	for row in reader:
 		if len(row) == 0: continue
 		countyName = fixCountyName( row[0] )
 		if countyName == 'Total':
-			setData( data['state'], row )
+			if( ( party == 'democrat' and row[3] ) or ( party == 'republican' and row[11] ) ):
+				setData( data['state'], row, party )
 		else:
-			setData( data['counties'][countyName], row )
+			setData( data['counties'][countyName], row, party )
 
-def setData( county, row ):
+def setData( county, row, party ):
 	setPrecincts( county, row )
-	setVotes( county, row, 3, 'democrat' )
-	setVotes( county, row, 11, 'republican' )
+	if party != 'democrat':
+		setVotes( county, row, 11, 'republican' )
+	if party != 'republican':
+		setVotes( county, row, 3, 'democrat' )
 
 def setPrecincts( county, row ):
 	county['precincts'] = {
@@ -67,9 +69,13 @@ def setPrecincts( county, row ):
 
 def setVotes( county, row, col, party ):
 	tally = []
+	total = 0
 	for candidate in candidates[party]:
-		tally.append({ 'name':candidate['name'], 'votes':int(row[col]) })
+		votes = int(row[col] or 0)
+		total += votes
+		tally.append({ 'name':candidate['name'], 'votes':votes })
 		col += 1
+	county['total'] = votes
 	tally.sort( lambda a, b: b['votes'] - a['votes'] )
 	county[party] = tally
 

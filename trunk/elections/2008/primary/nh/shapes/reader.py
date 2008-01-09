@@ -72,8 +72,9 @@ def setVotes( county, row, col, party ):
 	total = 0
 	for candidate in candidates[party]:
 		votes = int(row[col] or 0)
-		total += votes
-		tally.append({ 'name':candidate['name'], 'votes':votes })
+		if votes:
+			total += votes
+			tally.append({ 'name':candidate['name'], 'votes':votes })
 		col += 1
 	county['total'] = votes
 	tally.sort( lambda a, b: b['votes'] - a['votes'] )

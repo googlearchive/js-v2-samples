@@ -1042,7 +1042,9 @@ function load() {
 				party.fullName
 			].join('') );
 		$('#legend').html( 'Loading&#8230;' );
-		loadScript( 'http://gigapad/elections/2008/primary/nh/results_' + party.name + '.js' );
+		//loadScript( 'http://gigapad/elections/2008/primary/nh/results_' + party.name + '.js' );
+		loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/results_' + party.name + '.js' );
+		
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
 		//if( testdata )
 		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );

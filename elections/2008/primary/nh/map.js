@@ -792,7 +792,7 @@ function showStateProjector( json, party ) {
 				'</td>',
 				'<td class="legendnametd">',
 					'<div class="legendname">',
-						candidate.lastName,
+						candidate.fullName,
 					'</div>',
 					'<div class="legendvotes">',
 						formatNumber(tally.votes),
@@ -847,7 +847,7 @@ function showStateSidebar( json, party ) {
 					'</td>',
 					'<td class="legendnametd">',
 						'<div class="legendname">',
-							candidate.lastName,
+							candidate.fullName,
 						'</div>',
 					'</td>',
 				'</tr>'
@@ -1124,29 +1124,29 @@ function countyTable( county, party ) {
 		tallies.forEach( function( tally ) {
 			var candidate = candidates.all.by.name[tally.name];
 			lines.push( [
-				'<table>',
-					'<tr>',
-						'<td style="text-align:right; padding-right:4px;">',
-							tally.votes,
-						'</td>',
-						'<td style="padding-right:4px;">',
-							'<img class="favicon" src="', imgUrl(tally.name), '" />',
-						'</td>',
-						'<td style="padding-right:4px;">',
-							candidate.lastName,
-						'</td>',
-					'</tr>',
-				'</table>'
+				'<tr>',
+					'<td style="text-align:right; padding-right:8px;">',
+						formatNumber(tally.votes),
+					'</td>',
+					'<td style="padding-right:8px;">',
+						'<img class="favicon" src="', imgUrl(tally.name), '" />',
+					'</td>',
+					'<td style="padding-right:8px;">',
+						candidate.fullName,
+					'</td>',
+				'</tr>'
 			].join('') );
 		});
 	}
 	else {
-		lines.push( '<div>No votes reported</div>' );
+		lines.push( '<tr><td>No votes reported</td></tr>' );
 	}
 	
 	return [
 		'<h2>', county.name, '</h2>',
-		lines.join('')
+		'<table>',
+			lines.join(''),
+		'</table>'
 	].join('');
 }
 

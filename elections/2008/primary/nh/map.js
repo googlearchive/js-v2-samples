@@ -1134,7 +1134,6 @@ function countyTable( county, party, balloon ) {
 	if( county.total ) {
 		var tallies = county.tallies;
 		tallies.forEach( function( tally ) {
-			if( ! tally.votes ) return;
 			var candidate = candidates.all.by.name[tally.name];
 			lines.push( [
 				'<tr>',

@@ -327,7 +327,7 @@ var partyButtons = opt.party ? '' : [
 			'<div id="outer">',
 				'<div>Click the map for local vote totals.</div>',
 				'<div>',
-					'<span style="color:red;">New!</span> See results in <a href="http://earth.google.com/">Google Earth</a>:',
+					'<span style="color:red;">New!</span> See results in <a href="http://earth.google.com/" target="_blank">Google Earth</a>:',
 				'</div>',
 				'<div style="padding-bottom:6px;">',
 					'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/nh/earth-nh-democrat.kml">Democratic</a>',

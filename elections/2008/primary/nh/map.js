@@ -1136,8 +1136,9 @@ var mousemoved = function( latlng ) {
 }
 
 function countyTable( county, party, balloon ) {
-	fontsize = balloon ? 'font-size:10pt;' : '';
-	pad = balloon ? '8px' : '4px';
+	//var fontsize = balloon ? 'font-size:10pt;' : '';
+	var fontsize = 'font-size:10pt;';
+	var pad = balloon ? '8px' : '4px';
 	party = party || opt.party;
 	var lines = [];
 	if( county.total ) {

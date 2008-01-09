@@ -7505,7 +7505,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-70.9643673491,42.9902577781,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-70.93340300,43.02099000,0 -70.93290000,43.01926200,0 -70.93318200,43.01830800,0 -70.93498500,43.01634800,0 -70.93867400,43.01397700,0 -70.93967400,43.01087600,0 -70.94094700,43.00149900,0 -70.93758400,42.99782000,0 -70.93772900,42.99621500,0 -70.92810200,42.99128700,0 -70.92810000,42.99128800,0 -70.92764900,42.99105500,0 -70.92410000,42.98928800,0 -70.88769900,42.97108800,0 -70.90159900,42.96728800,0 -70.91029900,42.96488800,0 -70.92530000,42.96068800,0 -70.93412000,42.95833800,0 -70.97284200,42.95712600,0 -70.98230100,42.95698800,0 -70.98410100,42.95698800,0 -70.99706200,42.95845400,0 -70.99757900,42.95850100,0 -71.00490200,42.95868700,0 -71.00540200,42.95848700,0 -71.00550200,42.95868700,0 -71.00750200,42.96798700,0 -71.00551000,42.96930300,0 -71.00419800,42.96938800,0 -71.00273500,42.96865700,0 -70.99960200,42.97008700,0 -71.00350200,42.98968700,0 -71.01097900,43.02034200,0 -71.01388400,43.03386000,0 -70.97200300,43.02692900,0 -70.96007067,43.02482167,0 -70.94834000,43.02103000,0 -70.94608600,43.02254400,0 -70.94308400,43.02255900,0 -70.93340300,43.02099000,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-70.9643673491,42.9902577781,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-70.93340300,43.02099000,0 -70.93290000,43.01926200,0 -70.93318200,43.01830800,0 -70.93498500,43.01634800,0 -70.93867400,43.01397700,0 -70.93967400,43.01087600,0 -70.94094700,43.00149900,0 -70.93758400,42.99782000,0 -70.93772900,42.99621500,0 -70.92810200,42.99128700,0 -70.92810000,42.99128800,0 -70.92764900,42.99105500,0 -70.92410000,42.98928800,0 -70.88769900,42.97108800,0 -70.90159900,42.96728800,0 -70.91029900,42.96488800,0 -70.92530000,42.96068800,0 -70.93412000,42.95833800,0 -70.97284200,42.95712600,0 -70.98230100,42.95698800,0 -70.98410100,42.95698800,0 -70.99706200,42.95845400,0 -70.99757900,42.95850100,0 -71.00490200,42.95868700,0 -71.00540200,42.95848700,0 -71.00550200,42.95868700,0 -71.00750200,42.96798700,0 -71.00551000,42.96930300,0 -71.00419800,42.96938800,0 -71.00273500,42.96865700,0 -70.99960200,42.97008700,0 -71.00350200,42.98968700,0 -71.01097900,43.02034200,0 -71.01388400,43.03386000,0 -70.97200300,43.02692900,0 -70.96007067,43.02482167,0 -70.94834000,43.02103000,0 -70.94608600,43.02254400,0 -70.94308400,43.02255900,0 -70.93340300,43.02099000,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Exeter, NH
 &lt;/div&gt;
@@ -7517,133 +7517,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Joe Biden
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Chris Dodd
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Mike Gravel
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
+					1698
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -7664,7 +7538,49 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
+					1407
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					584
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					166
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -7682,8 +7598,92 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					52
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					10
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Joe Biden
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					5
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Gravel
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Chris Dodd
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.1152021019,43.2892192558,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.12748000,43.32980700,0 -72.09156600,43.34079400,0 -72.07866600,43.33859000,0 -72.09002800,43.32256700,0 -72.06542900,43.25504400,0 -72.06343000,43.24902700,0 -72.07037000,43.24906800,0 -72.11114700,43.24932000,0 -72.12342100,43.24939700,0 -72.14973200,43.24965800,0 -72.15388800,43.28163300,0 -72.15965100,43.28090700,0 -72.16551300,43.30827600,0 -72.16259600,43.30761700,0 -72.15888200,43.31446600,0 -72.15118500,43.31247600,0 -72.14337900,43.32897400,0 -72.12755300,43.32690900,0 -72.12748000,43.32980700,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.1152021019,43.2892192558,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.12748000,43.32980700,0 -72.09156600,43.34079400,0 -72.07866600,43.33859000,0 -72.09002800,43.32256700,0 -72.06542900,43.25504400,0 -72.06343000,43.24902700,0 -72.07037000,43.24906800,0 -72.11114700,43.24932000,0 -72.12342100,43.24939700,0 -72.14973200,43.24965800,0 -72.15388800,43.28163300,0 -72.15965100,43.28090700,0 -72.16551300,43.30827600,0 -72.16259600,43.30761700,0 -72.15888200,43.31446600,0 -72.15118500,43.31247600,0 -72.14337900,43.32897400,0 -72.12755300,43.32690900,0 -72.12748000,43.32980700,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Goshen, NH
 &lt;/div&gt;
@@ -26463,7 +26463,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.8095416065,44.3323001303,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.98461700,44.33624300,0 -71.98112000,44.33750000,0 -71.96313300,44.33655600,0 -71.95811900,44.33754400,0 -71.94516300,44.33774400,0 -71.93904900,44.33584400,0 -71.93539500,44.33577000,0 -71.92911000,44.33757700,0 -71.92508800,44.34202400,0 -71.91743400,44.34653500,0 -71.90690900,44.34828400,0 -71.90233200,44.34749900,0 -71.88189500,44.34020900,0 -71.87586300,44.33737000,0 -71.87247200,44.33662800,0 -71.86991000,44.33696200,0 -71.86194100,44.34010900,0 -71.85262800,44.34087300,0 -71.84577897,44.34361871,0 -71.84431900,44.34420400,0 -71.83326100,44.35013600,0 -71.82624600,44.35200600,0 -71.81883800,44.35293900,0 -71.81435100,44.35454100,0 -71.81290200,44.35554700,0 -71.81220600,44.35735600,0 -71.81247300,44.35847700,0 -71.81499100,44.36368600,0 -71.81615700,44.36755900,0 -71.81549000,44.36883600,0 -71.81283200,44.37044800,0 -71.81223500,44.37149200,0 -71.81242400,44.37253200,0 -71.81525100,44.37459400,0 -71.81577300,44.37546400,0 -71.81442584,44.38175527,0 -71.81438800,44.38193200,0 -71.81429425,44.38199676,0 -71.81313000,44.38280100,0 -71.80882800,44.38386200,0 -71.80346100,44.38333500,0 -71.80031600,44.38427600,0 -71.79997112,44.38566131,0 -71.79989900,44.38595100,0 -71.80007053,44.38616281,0 -71.80348900,44.39038400,0 -71.80348891,44.39052302,0 -71.80348800,44.39189000,0 -71.80235300,44.39338000,0 -71.79419069,44.39908461,0 -71.79392400,44.39927100,0 -71.79360100,44.39936972,0 -71.79068800,44.40026000,0 -71.77861300,44.39979900,0 -71.77539900,44.40112600,0 -71.77280100,44.40309700,0 -71.76788800,44.40544500,0 -71.76497700,44.40658700,0 -71.76479311,44.40661387,0 -71.76473406,44.40662250,0 -71.73711200,44.37505900,0 -71.69666500,44.33232600,0 -71.72573100,44.31569400,0 -71.72872800,44.31394100,0 -71.74676000,44.30290400,0 -71.76026200,44.29367800,0 -71.76044000,44.29356200,0 -71.79423000,44.27124800,0 -71.81228000,44.27697700,0 -71.86234600,44.29287800,0 -71.92944200,44.31628700,0 -71.98461700,44.33624300,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.8095416065,44.3323001303,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.98461700,44.33624300,0 -71.98112000,44.33750000,0 -71.96313300,44.33655600,0 -71.95811900,44.33754400,0 -71.94516300,44.33774400,0 -71.93904900,44.33584400,0 -71.93539500,44.33577000,0 -71.92911000,44.33757700,0 -71.92508800,44.34202400,0 -71.91743400,44.34653500,0 -71.90690900,44.34828400,0 -71.90233200,44.34749900,0 -71.88189500,44.34020900,0 -71.87586300,44.33737000,0 -71.87247200,44.33662800,0 -71.86991000,44.33696200,0 -71.86194100,44.34010900,0 -71.85262800,44.34087300,0 -71.84577897,44.34361871,0 -71.84431900,44.34420400,0 -71.83326100,44.35013600,0 -71.82624600,44.35200600,0 -71.81883800,44.35293900,0 -71.81435100,44.35454100,0 -71.81290200,44.35554700,0 -71.81220600,44.35735600,0 -71.81247300,44.35847700,0 -71.81499100,44.36368600,0 -71.81615700,44.36755900,0 -71.81549000,44.36883600,0 -71.81283200,44.37044800,0 -71.81223500,44.37149200,0 -71.81242400,44.37253200,0 -71.81525100,44.37459400,0 -71.81577300,44.37546400,0 -71.81442584,44.38175527,0 -71.81438800,44.38193200,0 -71.81429425,44.38199676,0 -71.81313000,44.38280100,0 -71.80882800,44.38386200,0 -71.80346100,44.38333500,0 -71.80031600,44.38427600,0 -71.79997112,44.38566131,0 -71.79989900,44.38595100,0 -71.80007053,44.38616281,0 -71.80348900,44.39038400,0 -71.80348891,44.39052302,0 -71.80348800,44.39189000,0 -71.80235300,44.39338000,0 -71.79419069,44.39908461,0 -71.79392400,44.39927100,0 -71.79360100,44.39936972,0 -71.79068800,44.40026000,0 -71.77861300,44.39979900,0 -71.77539900,44.40112600,0 -71.77280100,44.40309700,0 -71.76788800,44.40544500,0 -71.76497700,44.40658700,0 -71.76479311,44.40661387,0 -71.76473406,44.40662250,0 -71.73711200,44.37505900,0 -71.69666500,44.33232600,0 -71.72573100,44.31569400,0 -71.72872800,44.31394100,0 -71.74676000,44.30290400,0 -71.76026200,44.29367800,0 -71.76044000,44.29356200,0 -71.79423000,44.27124800,0 -71.81228000,44.27697700,0 -71.86234600,44.29287800,0 -71.92944200,44.31628700,0 -71.98461700,44.33624300,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Littleton, NH
 &lt;/div&gt;
@@ -26475,20 +26475,20 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
+					457
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
 			&lt;/td&gt;
 			&lt;td&gt;
 				&lt;div&gt;
-					Joe Biden
+					Barack Obama
 				&lt;/div&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;
@@ -26496,7 +26496,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
+					332
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -26517,28 +26517,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Chris Dodd
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
+					197
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -26552,6 +26531,90 @@
 			&lt;td&gt;
 				&lt;div&gt;
 					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					49
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					11
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Joe Biden
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Chris Dodd
 				&lt;/div&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;
@@ -26577,71 +26640,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.6968414806,43.1978704943,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.66871000,43.26001400,0 -71.65252700,43.23593400,0 -71.64968200,43.23192700,0 -71.64447900,43.22459900,0 -71.63852700,43.21610700,0 -71.62133900,43.19139100,0 -71.61085800,43.17638200,0 -71.60304200,43.16518800,0 -71.62843800,43.16028300,0 -71.66782600,43.15258800,0 -71.69619800,43.14704100,0 -71.70062800,43.14617500,0 -71.70474900,43.14500900,0 -71.73246500,43.13949100,0 -71.74828800,43.16691400,0 -71.75607100,43.17940500,0 -71.76339600,43.19139300,0 -71.78767200,43.23192200,0 -71.74607800,43.24005600,0 -71.72576800,43.24415200,0 -71.72327800,43.24052600,0 -71.69878600,43.24951300,0 -71.66871000,43.26001400,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.6968414806,43.1978704943,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.66871000,43.26001400,0 -71.65252700,43.23593400,0 -71.64968200,43.23192700,0 -71.64447900,43.22459900,0 -71.63852700,43.21610700,0 -71.62133900,43.19139100,0 -71.61085800,43.17638200,0 -71.60304200,43.16518800,0 -71.62843800,43.16028300,0 -71.66782600,43.15258800,0 -71.69619800,43.14704100,0 -71.70062800,43.14617500,0 -71.70474900,43.14500900,0 -71.73246500,43.13949100,0 -71.74828800,43.16691400,0 -71.75607100,43.17940500,0 -71.76339600,43.19139300,0 -71.78767200,43.23192200,0 -71.74607800,43.24005600,0 -71.72576800,43.24415200,0 -71.72327800,43.24052600,0 -71.69878600,43.24951300,0 -71.66871000,43.26001400,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Hopkinton, NH
 &lt;/div&gt;
@@ -29677,7 +29677,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.6688886259,43.4500329304,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.73326600,43.50328900,0 -71.69066400,43.51833700,0 -71.69077300,43.51672700,0 -71.69026800,43.51573900,0 -71.68825300,43.51356900,0 -71.68400200,43.51054500,0 -71.68002700,43.50637100,0 -71.67767100,43.50181300,0 -71.66865300,43.49755100,0 -71.66174200,43.49592800,0 -71.65376400,43.49155700,0 -71.65340400,43.48890600,0 -71.64246300,43.49171100,0 -71.63868200,43.49272100,0 -71.63187000,43.47791100,0 -71.62905300,43.47876600,0 -71.62535800,43.47033900,0 -71.62888300,43.46855500,0 -71.62497600,43.46046200,0 -71.62788800,43.45925100,0 -71.62137800,43.44749700,0 -71.61948600,43.44376000,0 -71.62815300,43.44327500,0 -71.62670100,43.43640200,0 -71.62484000,43.43653600,0 -71.62308200,43.43231200,0 -71.62282100,43.43018500,0 -71.62959700,43.42931100,0 -71.62625300,43.41241200,0 -71.62494500,43.40657100,0 -71.63633000,43.40586400,0 -71.64146100,43.40554700,0 -71.64114200,43.40318300,0 -71.64169300,43.40284900,0 -71.64177300,43.40084700,0 -71.64078500,43.39635000,0 -71.64322200,43.39223300,0 -71.64422000,43.38802300,0 -71.64697100,43.38671200,0 -71.64869600,43.38450900,0 -71.66941300,43.37645600,0 -71.67045700,43.38394700,0 -71.68094000,43.38727800,0 -71.68228000,43.39137500,0 -71.68405800,43.39218700,0 -71.68721100,43.39111000,0 -71.68738700,43.39662000,0 -71.68944733,43.39961833,0 -71.69235600,43.40646700,0 -71.69938000,43.40454800,0 -71.69688800,43.42589000,0 -71.68976900,43.42827300,0 -71.69504700,43.44359800,0 -71.69553100,43.44487600,0 -71.70410200,43.46750600,0 -71.70667200,43.47428800,0 -71.70817700,43.47385400,0 -71.71919000,43.49263700,0 -71.73326600,43.50328900,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.6688886259,43.4500329304,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.73326600,43.50328900,0 -71.69066400,43.51833700,0 -71.69077300,43.51672700,0 -71.69026800,43.51573900,0 -71.68825300,43.51356900,0 -71.68400200,43.51054500,0 -71.68002700,43.50637100,0 -71.67767100,43.50181300,0 -71.66865300,43.49755100,0 -71.66174200,43.49592800,0 -71.65376400,43.49155700,0 -71.65340400,43.48890600,0 -71.64246300,43.49171100,0 -71.63868200,43.49272100,0 -71.63187000,43.47791100,0 -71.62905300,43.47876600,0 -71.62535800,43.47033900,0 -71.62888300,43.46855500,0 -71.62497600,43.46046200,0 -71.62788800,43.45925100,0 -71.62137800,43.44749700,0 -71.61948600,43.44376000,0 -71.62815300,43.44327500,0 -71.62670100,43.43640200,0 -71.62484000,43.43653600,0 -71.62308200,43.43231200,0 -71.62282100,43.43018500,0 -71.62959700,43.42931100,0 -71.62625300,43.41241200,0 -71.62494500,43.40657100,0 -71.63633000,43.40586400,0 -71.64146100,43.40554700,0 -71.64114200,43.40318300,0 -71.64169300,43.40284900,0 -71.64177300,43.40084700,0 -71.64078500,43.39635000,0 -71.64322200,43.39223300,0 -71.64422000,43.38802300,0 -71.64697100,43.38671200,0 -71.64869600,43.38450900,0 -71.66941300,43.37645600,0 -71.67045700,43.38394700,0 -71.68094000,43.38727800,0 -71.68228000,43.39137500,0 -71.68405800,43.39218700,0 -71.68721100,43.39111000,0 -71.68738700,43.39662000,0 -71.68944733,43.39961833,0 -71.69235600,43.40646700,0 -71.69938000,43.40454800,0 -71.69688800,43.42589000,0 -71.68976900,43.42827300,0 -71.69504700,43.44359800,0 -71.69553100,43.44487600,0 -71.70410200,43.46750600,0 -71.70667200,43.47428800,0 -71.70817700,43.47385400,0 -71.71919000,43.49263700,0 -71.73326600,43.50328900,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Franklin, NH
 &lt;/div&gt;
@@ -29686,6 +29686,132 @@
 &lt;/div&gt;
 &lt;table&gt;
 	
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					493
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					269
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Barack Obama
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					211
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					49
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					12
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					2
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Gravel
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
@@ -29714,27 +29840,6 @@
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
 				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
@@ -29749,113 +29854,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Mike Gravel
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-70.9408092794,43.1747114025,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-70.96160600,43.21578200,0 -70.94600500,43.20278300,0 -70.94600100,43.20279500,0 -70.94178500,43.19916800,0 -70.94170800,43.19911200,0 -70.93219700,43.19129400,0 -70.93187300,43.19102400,0 -70.91470300,43.17668400,0 -70.89510200,43.16088500,0 -70.88320200,43.15118500,0 -70.85250100,43.12988600,0 -70.89980500,43.14720600,0 -70.90398600,43.14858700,0 -70.93160500,43.15537600,0 -70.93189500,43.15537600,0 -70.96072000,43.16288400,0 -70.99810600,43.17245000,0 -70.99496300,43.17644800,0 -70.99465700,43.17672200,0 -70.96673400,43.21002600,0 -70.96660600,43.20998300,0 -70.96160600,43.21578200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-70.9408092794,43.1747114025,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-70.96160600,43.21578200,0 -70.94600500,43.20278300,0 -70.94600100,43.20279500,0 -70.94178500,43.19916800,0 -70.94170800,43.19911200,0 -70.93219700,43.19129400,0 -70.93187300,43.19102400,0 -70.91470300,43.17668400,0 -70.89510200,43.16088500,0 -70.88320200,43.15118500,0 -70.85250100,43.12988600,0 -70.89980500,43.14720600,0 -70.90398600,43.14858700,0 -70.93160500,43.15537600,0 -70.93189500,43.15537600,0 -70.96072000,43.16288400,0 -70.99810600,43.17245000,0 -70.99496300,43.17644800,0 -70.99465700,43.17672200,0 -70.96673400,43.21002600,0 -70.96660600,43.20998300,0 -70.96160600,43.21578200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Madbury, NH
 &lt;/div&gt;
@@ -30399,7 +30399,7 @@
 &lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;No votes reported&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>00000000</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.1812298428,43.2273841338,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.23950100,43.27086200,0 -72.15965100,43.28090700,0 -72.15388800,43.28163300,0 -72.14973200,43.24965800,0 -72.12342100,43.24939700,0 -72.12387000,43.24233700,0 -72.12483500,43.22523000,0 -72.12771100,43.18552600,0 -72.15654800,43.18196200,0 -72.19852400,43.17714800,0 -72.20189700,43.17676300,0 -72.21451400,43.17534000,0 -72.21978400,43.17479000,0 -72.22785500,43.21635700,0 -72.23950100,43.27086200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>00000000</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.1812298428,43.2273841338,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.23950100,43.27086200,0 -72.15965100,43.28090700,0 -72.15388800,43.28163300,0 -72.14973200,43.24965800,0 -72.12342100,43.24939700,0 -72.12387000,43.24233700,0 -72.12483500,43.22523000,0 -72.12771100,43.18552600,0 -72.15654800,43.18196200,0 -72.19852400,43.17714800,0 -72.20189700,43.17676300,0 -72.21451400,43.17534000,0 -72.21978400,43.17479000,0 -72.22785500,43.21635700,0 -72.23950100,43.27086200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Lempster, NH
 &lt;/div&gt;
@@ -30408,6 +30408,111 @@
 &lt;/div&gt;
 &lt;table&gt;
 	
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					85
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Barack Obama
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					75
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					38
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					11
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					3
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
@@ -30425,27 +30530,6 @@
 			&lt;td&gt;
 				&lt;div&gt;
 					Joe Biden
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
 				&lt;/div&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;
@@ -30478,27 +30562,6 @@
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
 				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
@@ -30513,71 +30576,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.9906293165,43.4184409302,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.99175300,43.46624500,0 -71.98466100,43.46317200,0 -71.97101200,43.45589900,0 -71.95695900,43.44685700,0 -71.95149900,43.44546700,0 -71.92060200,43.43331500,0 -71.93370800,43.41722100,0 -71.93524900,43.41560100,0 -71.90770400,43.40258100,0 -71.95375300,43.39436800,0 -71.97776500,43.39002200,0 -72.01132800,43.38395900,0 -72.01130900,43.38394500,0 -72.01431000,43.38341100,0 -72.03561600,43.38151800,0 -72.04982900,43.38026500,0 -72.04824900,43.39154200,0 -72.04672000,43.40873700,0 -72.04689700,43.41129100,0 -72.04776200,43.41310100,0 -72.05798300,43.42294000,0 -72.05380200,43.44107800,0 -72.01134600,43.43699200,0 -72.00914200,43.44087100,0 -71.99991200,43.45701600,0 -71.99175300,43.46624500,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.9906293165,43.4184409302,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.99175300,43.46624500,0 -71.98466100,43.46317200,0 -71.97101200,43.45589900,0 -71.95695900,43.44685700,0 -71.95149900,43.44546700,0 -71.92060200,43.43331500,0 -71.93370800,43.41722100,0 -71.93524900,43.41560100,0 -71.90770400,43.40258100,0 -71.95375300,43.39436800,0 -71.97776500,43.39002200,0 -72.01132800,43.38395900,0 -72.01130900,43.38394500,0 -72.01431000,43.38341100,0 -72.03561600,43.38151800,0 -72.04982900,43.38026500,0 -72.04824900,43.39154200,0 -72.04672000,43.40873700,0 -72.04689700,43.41129100,0 -72.04776200,43.41310100,0 -72.05798300,43.42294000,0 -72.05380200,43.44107800,0 -72.01134600,43.43699200,0 -72.00914200,43.44087100,0 -71.99991200,43.45701600,0 -71.99175300,43.46624500,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	New London, NH
 &lt;/div&gt;
@@ -31289,7 +31289,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.986665539,44.1799727255,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.01500200,44.24083400,0 -71.99953600,44.23469300,0 -71.93600600,44.21179100,0 -71.93346200,44.20093300,0 -71.92392100,44.15858000,0 -71.91265200,44.11288500,0 -71.91267700,44.11281900,0 -71.91285500,44.11288500,0 -71.93411700,44.12035400,0 -71.93491000,44.12062900,0 -71.93509000,44.12061200,0 -71.94355700,44.12345900,0 -71.94359800,44.12348700,0 -72.01067500,44.14583600,0 -72.04008200,44.15574900,0 -72.04016700,44.15702300,0 -72.04238700,44.16081700,0 -72.04759300,44.16180100,0 -72.05302100,44.16790300,0 -72.05749600,44.17944400,0 -72.06133800,44.18495100,0 -72.06616600,44.18977300,0 -72.06457700,44.19694900,0 -72.06356100,44.19845700,0 -72.06006700,44.20044600,0 -72.05898700,44.20211400,0 -72.05806600,44.20606700,0 -72.05860500,44.20821500,0 -72.05401932,44.21560826,0 -72.05323300,44.21687600,0 -72.05296661,44.21779273,0 -72.05296624,44.21779402,0 -72.05085600,44.21764500,0 -72.04375900,44.21256300,0 -72.04134200,44.21258400,0 -72.03959500,44.21407400,0 -72.04033500,44.21659900,0 -72.02650500,44.22573500,0 -72.03342000,44.23246900,0 -72.03137300,44.23362800,0 -72.02973900,44.23238800,0 -72.02149200,44.23732800,0 -72.01924700,44.23673700,0 -72.01500200,44.24083400,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.986665539,44.1799727255,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.01500200,44.24083400,0 -71.99953600,44.23469300,0 -71.93600600,44.21179100,0 -71.93346200,44.20093300,0 -71.92392100,44.15858000,0 -71.91265200,44.11288500,0 -71.91267700,44.11281900,0 -71.91285500,44.11288500,0 -71.93411700,44.12035400,0 -71.93491000,44.12062900,0 -71.93509000,44.12061200,0 -71.94355700,44.12345900,0 -71.94359800,44.12348700,0 -72.01067500,44.14583600,0 -72.04008200,44.15574900,0 -72.04016700,44.15702300,0 -72.04238700,44.16081700,0 -72.04759300,44.16180100,0 -72.05302100,44.16790300,0 -72.05749600,44.17944400,0 -72.06133800,44.18495100,0 -72.06616600,44.18977300,0 -72.06457700,44.19694900,0 -72.06356100,44.19845700,0 -72.06006700,44.20044600,0 -72.05898700,44.20211400,0 -72.05806600,44.20606700,0 -72.05860500,44.20821500,0 -72.05401932,44.21560826,0 -72.05323300,44.21687600,0 -72.05296661,44.21779273,0 -72.05296624,44.21779402,0 -72.05085600,44.21764500,0 -72.04375900,44.21256300,0 -72.04134200,44.21258400,0 -72.03959500,44.21407400,0 -72.04033500,44.21659900,0 -72.02650500,44.22573500,0 -72.03342000,44.23246900,0 -72.03137300,44.23362800,0 -72.02973900,44.23238800,0 -72.02149200,44.23732800,0 -72.01924700,44.23673700,0 -72.01500200,44.24083400,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Bath, NH
 &lt;/div&gt;
@@ -31301,6 +31301,132 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
+					60
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Barack Obama
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					57
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					30
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					5
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Gravel
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
 					0
 				&lt;/div&gt;
 			&lt;/td&gt;
@@ -31326,27 +31452,6 @@
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
 				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
@@ -31361,113 +31466,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Mike Gravel
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.0480279838,43.6788956526,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.05820000,43.73736500,0 -72.03131700,43.73087600,0 -71.99952800,43.72320300,0 -71.96577900,43.71355600,0 -71.93215400,43.70586600,0 -71.94817700,43.69608200,0 -71.98543500,43.65223000,0 -71.99816700,43.63722800,0 -72.00609600,43.62765200,0 -72.00906600,43.62407500,0 -72.00895900,43.62402300,0 -72.02017600,43.61139900,0 -72.11355000,43.64280700,0 -72.11435300,43.64313500,0 -72.12726100,43.64724400,0 -72.16033200,43.65859100,0 -72.12194200,43.69745900,0 -72.07567300,43.74157300,0 -72.05820000,43.73736500,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.0480279838,43.6788956526,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.05820000,43.73736500,0 -72.03131700,43.73087600,0 -71.99952800,43.72320300,0 -71.96577900,43.71355600,0 -71.93215400,43.70586600,0 -71.94817700,43.69608200,0 -71.98543500,43.65223000,0 -71.99816700,43.63722800,0 -72.00609600,43.62765200,0 -72.00906600,43.62407500,0 -72.00895900,43.62402300,0 -72.02017600,43.61139900,0 -72.11355000,43.64280700,0 -72.11435300,43.64313500,0 -72.12726100,43.64724400,0 -72.16033200,43.65859100,0 -72.12194200,43.69745900,0 -72.07567300,43.74157300,0 -72.05820000,43.73736500,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Canaan, NH
 &lt;/div&gt;
@@ -31479,20 +31479,20 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
+					306
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
 			&lt;/td&gt;
 			&lt;td&gt;
 				&lt;div&gt;
-					Joe Biden
+					Barack Obama
 				&lt;/div&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;
@@ -31500,7 +31500,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
+					262
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -31514,6 +31514,90 @@
 			&lt;td&gt;
 				&lt;div&gt;
 					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					142
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					29
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					13
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Joe Biden
 				&lt;/div&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;
@@ -31546,27 +31630,6 @@
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
 				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
@@ -31581,71 +31644,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.1899868111,43.444520125,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.22730900,43.49257000,0 -72.21485500,43.48894200,0 -72.18159900,43.47931300,0 -72.16297600,43.47429500,0 -72.14836800,43.47036000,0 -72.14339000,43.46893400,0 -72.13615700,43.47689500,0 -72.13121600,43.48537400,0 -72.12453100,43.47923100,0 -72.12400400,43.47930600,0 -72.11136800,43.46981800,0 -72.11530200,43.44676600,0 -72.12284300,43.40997800,0 -72.12453100,43.40439900,0 -72.12462700,43.40440600,0 -72.12630600,43.39448300,0 -72.15806200,43.40081700,0 -72.18530500,43.40624700,0 -72.18625000,43.40643600,0 -72.26950300,43.42378600,0 -72.27186100,43.45632200,0 -72.26921600,43.47698700,0 -72.26159900,43.47564700,0 -72.26027500,43.47744000,0 -72.25275600,43.47448600,0 -72.25048800,43.47609600,0 -72.24420900,43.47309200,0 -72.23014900,43.49333000,0 -72.22730900,43.49257000,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.1899868111,43.444520125,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.22730900,43.49257000,0 -72.21485500,43.48894200,0 -72.18159900,43.47931300,0 -72.16297600,43.47429500,0 -72.14836800,43.47036000,0 -72.14339000,43.46893400,0 -72.13615700,43.47689500,0 -72.13121600,43.48537400,0 -72.12453100,43.47923100,0 -72.12400400,43.47930600,0 -72.11136800,43.46981800,0 -72.11530200,43.44676600,0 -72.12284300,43.40997800,0 -72.12453100,43.40439900,0 -72.12462700,43.40440600,0 -72.12630600,43.39448300,0 -72.15806200,43.40081700,0 -72.18530500,43.40624700,0 -72.18625000,43.40643600,0 -72.26950300,43.42378600,0 -72.27186100,43.45632200,0 -72.26921600,43.47698700,0 -72.26159900,43.47564700,0 -72.26027500,43.47744000,0 -72.25275600,43.47448600,0 -72.25048800,43.47609600,0 -72.24420900,43.47309200,0 -72.23014900,43.49333000,0 -72.22730900,43.49257000,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Croydon, NH
 &lt;/div&gt;
@@ -34157,7 +34157,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.0447041548,42.9889569413,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.01097900,43.02034200,0 -71.00350200,42.98968700,0 -70.99960200,42.97008700,0 -71.00273500,42.96865700,0 -71.00419800,42.96938800,0 -71.00551000,42.96930300,0 -71.00750200,42.96798700,0 -71.00550200,42.95868700,0 -71.02430200,42.95918700,0 -71.08800300,42.95928700,0 -71.08044300,43.02089300,0 -71.01097900,43.02034200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.0447041548,42.9889569413,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.01097900,43.02034200,0 -71.00350200,42.98968700,0 -70.99960200,42.97008700,0 -71.00273500,42.96865700,0 -71.00419800,42.96938800,0 -71.00551000,42.96930300,0 -71.00750200,42.96798700,0 -71.00550200,42.95868700,0 -71.02430200,42.95918700,0 -71.08800300,42.95928700,0 -71.08044300,43.02089300,0 -71.01097900,43.02034200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Brentwood, NH
 &lt;/div&gt;
@@ -34166,6 +34166,132 @@
 &lt;/div&gt;
 &lt;table&gt;
 	
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					332
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					303
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Barack Obama
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					147
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					31
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					17
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					5
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Gravel
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
@@ -34194,27 +34320,6 @@
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
 				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
@@ -34229,113 +34334,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Mike Gravel
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.2824749234,43.5511169978,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.32962000,43.60020100,0 -72.30414000,43.59678300,0 -72.28548900,43.59427300,0 -72.22484900,43.58726600,0 -72.21130500,43.58558900,0 -72.20818100,43.58507900,0 -72.20004900,43.58279300,0 -72.19183600,43.58044800,0 -72.18813600,43.57926000,0 -72.18807000,43.57925100,0 -72.18663000,43.57879500,0 -72.17116400,43.57402100,0 -72.18338800,43.55881800,0 -72.18998400,43.55065900,0 -72.19065500,43.51509000,0 -72.20413000,43.50007200,0 -72.21485500,43.48894200,0 -72.22730900,43.49257000,0 -72.22560400,43.49532400,0 -72.22585000,43.50255500,0 -72.22957000,43.50356600,0 -72.23205600,43.50600500,0 -72.22691500,43.51179900,0 -72.23539700,43.51478100,0 -72.24054200,43.51953100,0 -72.25512500,43.52005300,0 -72.26143900,43.52515800,0 -72.26846000,43.51720500,0 -72.27586700,43.51182300,0 -72.28578400,43.51238100,0 -72.39636603,43.51915210,0 -72.39582500,43.52056000,0 -72.39594900,43.52388000,0 -72.39421800,43.52740000,0 -72.39070000,43.52726100,0 -72.39058250,43.52733466,0 -72.38985135,43.52779306,0 -72.38909700,43.52826600,0 -72.38785016,43.52975782,0 -72.38403868,43.53431815,0 -72.38331000,43.53519000,0 -72.38310646,43.53558569,0 -72.38038300,43.54088000,0 -72.38118700,43.55491500,0 -72.38278300,43.56245900,0 -72.38262500,43.56412700,0 -72.38028384,43.57143496,0 -72.37944000,43.57406900,0 -72.37387070,43.57878800,0 -72.37312600,43.57941900,0 -72.37188521,43.57998928,0 -72.36391600,43.58365200,0 -72.34992600,43.58772600,0 -72.33238200,43.59936400,0 -72.32962000,43.60020100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-72.2824749234,43.5511169978,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.32962000,43.60020100,0 -72.30414000,43.59678300,0 -72.28548900,43.59427300,0 -72.22484900,43.58726600,0 -72.21130500,43.58558900,0 -72.20818100,43.58507900,0 -72.20004900,43.58279300,0 -72.19183600,43.58044800,0 -72.18813600,43.57926000,0 -72.18807000,43.57925100,0 -72.18663000,43.57879500,0 -72.17116400,43.57402100,0 -72.18338800,43.55881800,0 -72.18998400,43.55065900,0 -72.19065500,43.51509000,0 -72.20413000,43.50007200,0 -72.21485500,43.48894200,0 -72.22730900,43.49257000,0 -72.22560400,43.49532400,0 -72.22585000,43.50255500,0 -72.22957000,43.50356600,0 -72.23205600,43.50600500,0 -72.22691500,43.51179900,0 -72.23539700,43.51478100,0 -72.24054200,43.51953100,0 -72.25512500,43.52005300,0 -72.26143900,43.52515800,0 -72.26846000,43.51720500,0 -72.27586700,43.51182300,0 -72.28578400,43.51238100,0 -72.39636603,43.51915210,0 -72.39582500,43.52056000,0 -72.39594900,43.52388000,0 -72.39421800,43.52740000,0 -72.39070000,43.52726100,0 -72.39058250,43.52733466,0 -72.38985135,43.52779306,0 -72.38909700,43.52826600,0 -72.38785016,43.52975782,0 -72.38403868,43.53431815,0 -72.38331000,43.53519000,0 -72.38310646,43.53558569,0 -72.38038300,43.54088000,0 -72.38118700,43.55491500,0 -72.38278300,43.56245900,0 -72.38262500,43.56412700,0 -72.38028384,43.57143496,0 -72.37944000,43.57406900,0 -72.37387070,43.57878800,0 -72.37312600,43.57941900,0 -72.37188521,43.57998928,0 -72.36391600,43.58365200,0 -72.34992600,43.58772600,0 -72.33238200,43.59936400,0 -72.32962000,43.60020100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Plainfield, NH
 &lt;/div&gt;
@@ -35947,7 +35947,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.9719410487,43.5761984829,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.00609600,43.62765200,0 -71.97239200,43.62136500,0 -71.90016300,43.60658200,0 -71.86405300,43.59944200,0 -71.88476300,43.58117300,0 -71.89192400,43.57485200,0 -71.90549500,43.56035300,0 -71.93095900,43.53301300,0 -71.93522000,43.52844900,0 -71.99748800,43.53652400,0 -71.99952800,43.53615800,0 -72.06726100,43.54399400,0 -72.06950400,43.55328800,0 -72.06390500,43.55989700,0 -72.02017600,43.61139900,0 -72.00895900,43.62402300,0 -72.00906600,43.62407500,0 -72.00609600,43.62765200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.9719410487,43.5761984829,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-72.00609600,43.62765200,0 -71.97239200,43.62136500,0 -71.90016300,43.60658200,0 -71.86405300,43.59944200,0 -71.88476300,43.58117300,0 -71.89192400,43.57485200,0 -71.90549500,43.56035300,0 -71.93095900,43.53301300,0 -71.93522000,43.52844900,0 -71.99748800,43.53652400,0 -71.99952800,43.53615800,0 -72.06726100,43.54399400,0 -72.06950400,43.55328800,0 -72.06390500,43.55989700,0 -72.02017600,43.61139900,0 -72.00895900,43.62402300,0 -72.00906600,43.62407500,0 -72.00609600,43.62765200,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Grafton, NH
 &lt;/div&gt;
@@ -35959,6 +35959,111 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
+					99
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					93
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Barack Obama
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					62
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					9
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					3
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
 					0
 				&lt;/div&gt;
 			&lt;/td&gt;
@@ -35973,27 +36078,6 @@
 			&lt;td&gt;
 				&lt;div&gt;
 					Joe Biden
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
 				&lt;/div&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;
@@ -36026,27 +36110,6 @@
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
 				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
@@ -36061,71 +36124,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.364426764,44.322815092,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.24526600,44.33992100,0 -71.36354300,44.29627300,0 -71.37213100,44.29309300,0 -71.42361400,44.27360500,0 -71.43758700,44.34926100,0 -71.40415100,44.35326300,0 -71.39946200,44.33336800,0 -71.38456600,44.33535000,0 -71.38029900,44.33591900,0 -71.38301000,44.34838500,0 -71.27017300,44.35062300,0 -71.26982300,44.33957200,0 -71.24526600,44.33992100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/generic-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.364426764,44.322815092,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.24526600,44.33992100,0 -71.36354300,44.29627300,0 -71.37213100,44.29309300,0 -71.42361400,44.27360500,0 -71.43758700,44.34926100,0 -71.40415100,44.35326300,0 -71.39946200,44.33336800,0 -71.38456600,44.33535000,0 -71.38029900,44.33591900,0 -71.38301000,44.34838500,0 -71.27017300,44.35062300,0 -71.26982300,44.33957200,0 -71.24526600,44.33992100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/generic-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Low and Burbanks, NH
 &lt;/div&gt;
@@ -36135,7 +36135,7 @@
 &lt;table&gt;
 	&lt;tr&gt;&lt;td&gt;No votes reported&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>00000000</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4398610431,43.3208653665,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.45295100,43.40190700,0 -71.34698300,43.34657300,0 -71.37335600,43.31892500,0 -71.37881000,43.31320800,0 -71.43208400,43.26127800,0 -71.44626500,43.24879100,0 -71.44964900,43.24523900,0 -71.45650100,43.24913300,0 -71.47163500,43.25769700,0 -71.49722900,43.27089300,0 -71.50535400,43.27528200,0 -71.51397000,43.28764300,0 -71.52493500,43.30306500,0 -71.46408200,43.36299100,0 -71.45328200,43.37282500,0 -71.45441100,43.37420400,0 -71.45475100,43.37710600,0 -71.45428200,43.38062600,0 -71.45315400,43.38238700,0 -71.45503800,43.39244400,0 -71.45425600,43.39530200,0 -71.45453600,43.39655800,0 -71.45295100,43.40190700,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>00000000</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4398610431,43.3208653665,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.45295100,43.40190700,0 -71.34698300,43.34657300,0 -71.37335600,43.31892500,0 -71.37881000,43.31320800,0 -71.43208400,43.26127800,0 -71.44626500,43.24879100,0 -71.44964900,43.24523900,0 -71.45650100,43.24913300,0 -71.47163500,43.25769700,0 -71.49722900,43.27089300,0 -71.50535400,43.27528200,0 -71.51397000,43.28764300,0 -71.52493500,43.30306500,0 -71.46408200,43.36299100,0 -71.45328200,43.37282500,0 -71.45441100,43.37420400,0 -71.45475100,43.37710600,0 -71.45428200,43.38062600,0 -71.45315400,43.38238700,0 -71.45503800,43.39244400,0 -71.45425600,43.39530200,0 -71.45453600,43.39655800,0 -71.45295100,43.40190700,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Loudon, NH
 &lt;/div&gt;
@@ -36147,6 +36147,132 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
+					409
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					327
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Barack Obama
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					189
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					41
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Bill Richardson
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					12
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Gravel
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
 					0
 				&lt;/div&gt;
 			&lt;/td&gt;
@@ -36172,27 +36298,6 @@
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
 				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
 					&amp;nbsp;
 				&lt;/div&gt;
@@ -36207,113 +36312,8 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Mike Gravel
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#1700E8; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Barack Obama
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/richardson-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Bill Richardson
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4547462915,42.8426137037,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.45382400,42.90340800,0 -71.44181000,42.88958600,0 -71.43138100,42.84463000,0 -71.42700900,42.82488700,0 -71.42580900,42.81848700,0 -71.42410900,42.81188700,0 -71.42230900,42.79898700,0 -71.42400900,42.79888700,0 -71.46381000,42.79728700,0 -71.46831000,42.80048700,0 -71.47331000,42.80638700,0 -71.47436600,42.81471700,0 -71.47471000,42.81758700,0 -71.48011100,42.82128700,0 -71.47911100,42.82518700,0 -71.48191000,42.83231900,0 -71.48221100,42.83308700,0 -71.48168000,42.83345100,0 -71.48446400,42.83786600,0 -71.48446400,42.83982900,0 -71.48206400,42.84479400,0 -71.48182400,42.85001000,0 -71.48610000,42.86158000,0 -71.48602600,42.86347900,0 -71.48507300,42.86522300,0 -71.47911100,42.87178600,0 -71.47563300,42.87648700,0 -71.47581100,42.87678600,0 -71.47159500,42.88102400,0 -71.46841300,42.88378400,0 -71.46326700,42.88973300,0 -71.45900700,42.89640600,0 -71.45578400,42.89959900,0 -71.45382400,42.90340800,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4547462915,42.8426137037,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.45382400,42.90340800,0 -71.44181000,42.88958600,0 -71.43138100,42.84463000,0 -71.42700900,42.82488700,0 -71.42580900,42.81848700,0 -71.42410900,42.81188700,0 -71.42230900,42.79898700,0 -71.42400900,42.79888700,0 -71.46381000,42.79728700,0 -71.46831000,42.80048700,0 -71.47331000,42.80638700,0 -71.47436600,42.81471700,0 -71.47471000,42.81758700,0 -71.48011100,42.82128700,0 -71.47911100,42.82518700,0 -71.48191000,42.83231900,0 -71.48221100,42.83308700,0 -71.48168000,42.83345100,0 -71.48446400,42.83786600,0 -71.48446400,42.83982900,0 -71.48206400,42.84479400,0 -71.48182400,42.85001000,0 -71.48610000,42.86158000,0 -71.48602600,42.86347900,0 -71.48507300,42.86522300,0 -71.47911100,42.87178600,0 -71.47563300,42.87648700,0 -71.47581100,42.87678600,0 -71.47159500,42.88102400,0 -71.46841300,42.88378400,0 -71.46326700,42.88973300,0 -71.45900700,42.89640600,0 -71.45578400,42.89959900,0 -71.45382400,42.90340800,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Litchfield, NH
 &lt;/div&gt;
@@ -37381,7 +37381,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.042378419,43.2139268752,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.05470800,43.28858100,0 -71.02050800,43.26818100,0 -71.00790800,43.26058100,0 -71.00788800,43.26060300,0 -70.98450700,43.24538100,0 -70.95280500,43.22578200,0 -70.96160600,43.21578200,0 -70.96660600,43.20998300,0 -70.96673400,43.21002600,0 -70.99465700,43.17672200,0 -70.99496300,43.17644800,0 -70.99810600,43.17245000,0 -71.00629400,43.16262700,0 -71.02134700,43.14440200,0 -71.02668800,43.13808600,0 -71.02850400,43.13918900,0 -71.02990100,43.14003600,0 -71.08578700,43.17438000,0 -71.12362800,43.19759000,0 -71.12392100,43.19777400,0 -71.12700100,43.19957700,0 -71.12714600,43.19967000,0 -71.12799100,43.20018900,0 -71.13352500,43.20372400,0 -71.10455600,43.23523300,0 -71.06657400,43.27604000,0 -71.06245400,43.28043400,0 -71.06150400,43.28165500,0 -71.06140800,43.28158100,0 -71.05470800,43.28858100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.042378419,43.2139268752,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.05470800,43.28858100,0 -71.02050800,43.26818100,0 -71.00790800,43.26058100,0 -71.00788800,43.26060300,0 -70.98450700,43.24538100,0 -70.95280500,43.22578200,0 -70.96160600,43.21578200,0 -70.96660600,43.20998300,0 -70.96673400,43.21002600,0 -70.99465700,43.17672200,0 -70.99496300,43.17644800,0 -70.99810600,43.17245000,0 -71.00629400,43.16262700,0 -71.02134700,43.14440200,0 -71.02668800,43.13808600,0 -71.02850400,43.13918900,0 -71.02990100,43.14003600,0 -71.08578700,43.17438000,0 -71.12362800,43.19759000,0 -71.12392100,43.19777400,0 -71.12700100,43.19957700,0 -71.12714600,43.19967000,0 -71.12799100,43.20018900,0 -71.13352500,43.20372400,0 -71.10455600,43.23523300,0 -71.06657400,43.27604000,0 -71.06245400,43.28043400,0 -71.06150400,43.28165500,0 -71.06140800,43.28158100,0 -71.05470800,43.28858100,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Barrington, NH
 &lt;/div&gt;
@@ -37393,28 +37393,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Joe Biden
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
+					713
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -37435,91 +37414,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Chris Dodd
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Mike Gravel
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
+					659
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -37540,7 +37435,28 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
+					408
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					93
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -37558,8 +37474,92 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					41
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					2
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Gravel
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Joe Biden
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Chris Dodd
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4014831454,44.26245075,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.37213100,44.29309300,0 -71.36748300,44.27671500,0 -71.38429700,44.25006500,0 -71.38474300,44.25006500,0 -71.39004700,44.24282900,0 -71.41167300,44.22799700,0 -71.44075100,44.27037100,0 -71.42361400,44.27360500,0 -71.37213100,44.29309300,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/generic-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.4014831454,44.26245075,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.37213100,44.29309300,0 -71.36748300,44.27671500,0 -71.38429700,44.25006500,0 -71.38474300,44.25006500,0 -71.39004700,44.24282900,0 -71.41167300,44.22799700,0 -71.44075100,44.27037100,0 -71.42361400,44.27360500,0 -71.37213100,44.29309300,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/generic-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Crawfords, NH
 &lt;/div&gt;
@@ -37935,7 +37935,7 @@
 		&lt;/tr&gt;
 
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.5837636797,42.7495264169,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.60721400,42.79818700,0 -71.55841300,42.80318700,0 -71.55621200,42.79258700,0 -71.56111300,42.78878700,0 -71.55801300,42.78588700,0 -71.55431200,42.78668700,0 -71.54991200,42.78438700,0 -71.54821200,42.78488700,0 -71.54731200,42.78228700,0 -71.55233800,42.77677500,0 -71.53866000,42.77868700,0 -71.53169100,42.78026600,0 -71.52938600,42.77579400,0 -71.52926200,42.77545800,0 -71.52591200,42.77318800,0 -71.52491100,42.77168800,0 -71.52671100,42.74698800,0 -71.52781100,42.73948800,0 -71.53005900,42.73872300,0 -71.53303000,42.73551800,0 -71.53430300,42.72713000,0 -71.53653400,42.72614200,0 -71.53721100,42.72278800,0 -71.53921100,42.71218800,0 -71.54138100,42.70489200,0 -71.54291100,42.70278900,0 -71.54301632,42.70268368,0 -71.54478035,42.70272548,0 -71.56723651,42.70325765,0 -71.63042463,42.70475507,0 -71.63711500,42.74698700,0 -71.64255000,42.77803800,0 -71.62462600,42.78126100,0 -71.62274300,42.78592200,0 -71.61740100,42.78690400,0 -71.61297100,42.78968200,0 -71.60591400,42.79138700,0 -71.60721400,42.79818700,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C000FAFF</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.5837636797,42.7495264169,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.60721400,42.79818700,0 -71.55841300,42.80318700,0 -71.55621200,42.79258700,0 -71.56111300,42.78878700,0 -71.55801300,42.78588700,0 -71.55431200,42.78668700,0 -71.54991200,42.78438700,0 -71.54821200,42.78488700,0 -71.54731200,42.78228700,0 -71.55233800,42.77677500,0 -71.53866000,42.77868700,0 -71.53169100,42.78026600,0 -71.52938600,42.77579400,0 -71.52926200,42.77545800,0 -71.52591200,42.77318800,0 -71.52491100,42.77168800,0 -71.52671100,42.74698800,0 -71.52781100,42.73948800,0 -71.53005900,42.73872300,0 -71.53303000,42.73551800,0 -71.53430300,42.72713000,0 -71.53653400,42.72614200,0 -71.53721100,42.72278800,0 -71.53921100,42.71218800,0 -71.54138100,42.70489200,0 -71.54291100,42.70278900,0 -71.54301632,42.70268368,0 -71.54478035,42.70272548,0 -71.56723651,42.70325765,0 -71.63042463,42.70475507,0 -71.63711500,42.74698700,0 -71.64255000,42.77803800,0 -71.62462600,42.78126100,0 -71.62274300,42.78592200,0 -71.61740100,42.78690400,0 -71.61297100,42.78968200,0 -71.60591400,42.79138700,0 -71.60721400,42.79818700,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/obama-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Hollis, NH
 &lt;/div&gt;
@@ -37947,133 +37947,7 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Joe Biden
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Hillary Clinton
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Chris Dodd
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					John Edwards
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Mike Gravel
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%"&gt;
-				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
-					&amp;nbsp;
-				&lt;/div&gt;
-			&lt;/td&gt;
-			&lt;td style="width:1%;"&gt;
-				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
-			&lt;/td&gt;
-			&lt;td&gt;
-				&lt;div&gt;
-					Dennis Kucinich
-				&lt;/div&gt;
-			&lt;/td&gt;
-		&lt;/tr&gt;
-
-		&lt;tr&gt;
-			&lt;td style="text-align:right; width:1%;"&gt;
-				&lt;div style="margin-right:4px;"&gt;
-					0
+					792
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -38094,7 +37968,49 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
-					0
+					683
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FFFA00; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/clinton-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Hillary Clinton
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					327
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#FF1300; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/edwards-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					John Edwards
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					75
 				&lt;/div&gt;
 			&lt;/td&gt;
 			&lt;td style="width:1%"&gt;
@@ -38112,8 +38028,92 @@
 			&lt;/td&gt;
 		&lt;/tr&gt;
 
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					28
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#EE00B5; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/kucinich-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Dennis Kucinich
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					7
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#20FF1F; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Joe Biden
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					3
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8A5C2E; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/gravel-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Mike Gravel
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					1
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/dodd-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Chris Dodd
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
 &lt;/table&gt;
-</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C01FFF20</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.7221883559,43.7438143907,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.74942100,43.80247600,0 -71.73694300,43.79804800,0 -71.73638200,43.79430500,0 -71.73185800,43.79460600,0 -71.73121100,43.79000900,0 -71.72809500,43.78911200,0 -71.72322800,43.78952700,0 -71.72292500,43.78265700,0 -71.67705600,43.78240300,0 -71.66924800,43.78277300,0 -71.67817300,43.77485200,0 -71.67924800,43.77240700,0 -71.67932300,43.76862900,0 -71.68083600,43.76640400,0 -71.68561200,43.76366400,0 -71.68552400,43.75982700,0 -71.68462300,43.75316600,0 -71.68343300,43.75141100,0 -71.67826800,43.75451100,0 -71.67759100,43.75482300,0 -71.67403900,43.75576900,0 -71.67182100,43.75466900,0 -71.67117800,43.75319400,0 -71.67193200,43.75145300,0 -71.67286800,43.75074800,0 -71.67661500,43.75052200,0 -71.67761700,43.74902100,0 -71.67639600,43.74700100,0 -71.67674400,43.74315900,0 -71.67317500,43.73761500,0 -71.66937900,43.73618500,0 -71.66864000,43.73528100,0 -71.66795300,43.73258000,0 -71.66675400,43.73150500,0 -71.66350200,43.73047600,0 -71.66224600,43.72935900,0 -71.66014000,43.72480800,0 -71.66086500,43.72025800,0 -71.65850400,43.71746000,0 -71.73395500,43.68527000,0 -71.75619100,43.72331400,0 -71.77833200,43.72982200,0 -71.76665400,43.75035900,0 -71.78448100,43.75510800,0 -71.77642700,43.77094900,0 -71.76701700,43.76851300,0 -71.76510600,43.77212800,0 -71.76294000,43.77624100,0 -71.76524500,43.77644400,0 -71.75673900,43.79283500,0 -71.74942100,43.80247600,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
+</text></BalloonStyle><LineStyle><color>40000000</color><width>1</width></LineStyle><PolyStyle><color>C0E80017</color></PolyStyle></Style></Placemark><Placemark><MultiGeometry><Point><coordinates>-71.7221883559,43.7438143907,0</coordinates></Point><Polygon><outerBoundaryIs><LinearRing><coordinates>-71.74942100,43.80247600,0 -71.73694300,43.79804800,0 -71.73638200,43.79430500,0 -71.73185800,43.79460600,0 -71.73121100,43.79000900,0 -71.72809500,43.78911200,0 -71.72322800,43.78952700,0 -71.72292500,43.78265700,0 -71.67705600,43.78240300,0 -71.66924800,43.78277300,0 -71.67817300,43.77485200,0 -71.67924800,43.77240700,0 -71.67932300,43.76862900,0 -71.68083600,43.76640400,0 -71.68561200,43.76366400,0 -71.68552400,43.75982700,0 -71.68462300,43.75316600,0 -71.68343300,43.75141100,0 -71.67826800,43.75451100,0 -71.67759100,43.75482300,0 -71.67403900,43.75576900,0 -71.67182100,43.75466900,0 -71.67117800,43.75319400,0 -71.67193200,43.75145300,0 -71.67286800,43.75074800,0 -71.67661500,43.75052200,0 -71.67761700,43.74902100,0 -71.67639600,43.74700100,0 -71.67674400,43.74315900,0 -71.67317500,43.73761500,0 -71.66937900,43.73618500,0 -71.66864000,43.73528100,0 -71.66795300,43.73258000,0 -71.66675400,43.73150500,0 -71.66350200,43.73047600,0 -71.66224600,43.72935900,0 -71.66014000,43.72480800,0 -71.66086500,43.72025800,0 -71.65850400,43.71746000,0 -71.73395500,43.68527000,0 -71.75619100,43.72331400,0 -71.77833200,43.72982200,0 -71.76665400,43.75035900,0 -71.78448100,43.75510800,0 -71.77642700,43.77094900,0 -71.76701700,43.76851300,0 -71.76510600,43.77212800,0 -71.76294000,43.77624100,0 -71.76524500,43.77644400,0 -71.75673900,43.79283500,0 -71.74942100,43.80247600,0</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry><Style><IconStyle><Icon><href>http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/biden-border.png</href></Icon></IconStyle><BalloonStyle><text>
 &lt;div style="font-weight:bold;"&gt;
 	Plymouth, NH
 &lt;/div&gt;

@@ -317,10 +317,11 @@ var partyButtons = opt.party ? '' : [
 				'#legend table { xwidth:100%; }',
 				'#legend .legendboxtd { width:1%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
-				'#legend .legendbox { height:24px; width:24px; float:left; margin-right:4px; }',
-				'#legend .legendname { xfont-size:12pt; }',
-				'#legend .legendvotestd { text-align:right; width:1%; }',
-				'#legend .legendvotes { xfont-size:10pt; margin-right:4px; }',
+				'#legend .legendbox { height:24px; width:24px; xfloat:left; margin-right:4px; }',
+				'#legend .legendname { xfont-size:12pt; white-space:pre; }',
+				'#legend .legendvotestd { text-align:right; width:5em; }',
+				'#legend .legendpercenttd { text-align:right; width:2em; }',
+				'#legend .legendvotes, #legend .legendpercent { xfont-size:10pt; margin-right:6px; }',
 				'#legend .legendclear { clear:left; }',
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
@@ -381,13 +382,15 @@ var partyButtons = opt.party ? '' : [
 				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
 				'.statewide * { font-weight: bold; }',
 				'#legend table { xwidth:100%; }',
-				'#legend .legendboxtd { width:1%; }',
+				'#legend .legendboxtd { width:7%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
 				'#legend .legendbox { height:24px; width:24px; float:left; margin-right:4px; }',
-				'#legend .legendname { xfont-size:12pt; }',
-				'#legend .legendvotestd { text-align:right; width:1%; }',
-				'#legend .legendvotes { xfont-size:10pt; margin-right:4px; }',
+				'#legend .legendname { xfont-size:12pt; white-space:pre; }',
+				'#legend .legendvotestd { text-align:right; width:5em; }',
+				'#legend .legendpercenttd { text-align:right; width:2em; }',
+				'#legend .legendvotes, #legend .legendpercent { xfont-size:10pt; margin-right:4px; }',
 				'#legend .legendclear { clear:left; }',
+				'#legend .legendreporting { margin-bottom:8px; }',
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<table>',
@@ -400,7 +403,7 @@ var partyButtons = opt.party ? '' : [
 						partyButtons,
 						'<div id="votesbar">',
 							'<h1 id="votestitle">Primary Results</h1>',
-							'<div>Statewide Results</div>',
+							'<div style="font-weight:bold;">Statewide Results</div>',
 							'<div id="legend">',
 								'Loading&#8230;',
 							'</div>',
@@ -848,6 +851,11 @@ function showStateSidebar( json, party ) {
 							formatNumber(tally.votes),
 						'</div>',
 					'</td>',
+					'<td class="legendpercenttd">',
+						'<div class="legendpercent">',
+							Math.round( tally.votes / state.total * 100 ), '%',
+						'</div>',
+					'</td>',
 					'<td class="legendboxtd">',
 						'<div class="legendbox" style="border:1px solid #888888; background-color:', candidate.color, ';">',
 							'&nbsp;',
@@ -967,7 +975,7 @@ function showCounties( json, party ) {
 			map.openInfoWindowHtml(
 				pointLatLng( county.centroid ),
 				voteBalloon( json, county ),
-				{ maxWidth:500 } );
+				{ maxWidth:300 } );
 		});
 	});
 	
@@ -1129,6 +1137,7 @@ var mousemoved = function( latlng ) {
 
 function countyTable( county, party, balloon ) {
 	fontsize = balloon ? 'font-size:10pt;' : '';
+	pad = balloon ? '8px' : '4px';
 	party = party || opt.party;
 	var lines = [];
 	if( county.total ) {
@@ -1137,13 +1146,21 @@ function countyTable( county, party, balloon ) {
 			var candidate = candidates.all.by.name[tally.name];
 			lines.push( [
 				'<tr>',
-					'<td style="', fontsize, 'text-align:right; padding-right:8px;">',
+					'<td style="', fontsize, 'text-align:right; width:5em; padding-right:', pad, ';">',
 						formatNumber(tally.votes),
 					'</td>',
-					'<td style="', fontsize, 'padding-right:8px;">',
-						'<img class="favicon" src="', imgUrl(tally.name), '" />',
+					'<td style="', fontsize, 'text-align:right; width:2em; padding-right:', pad, ';">',
+						Math.round( tally.votes / county.total * 100 ), '%',
 					'</td>',
-					'<td style="', fontsize, 'padding-right:8px;">',
+					'<td style="width:1%;">',
+						'<div style="width:24px; height:24px; margin:0 4px 2px 0; border:1px solid #888888; background-color:', candidate.color, ';">',
+							'&nbsp;',
+						'</div>',
+					'</td>',
+					//'<td style="', fontsize, 'padding-right:8px;">',
+					//	'<img class="favicon" src="', imgUrl(tally.name), '" />',
+					//'</td>',
+					'<td style="', fontsize, 'xpadding-right:8px; white-space:pre;">',
 						candidate.fullName,
 					'</td>',
 				'</tr>'
@@ -1155,7 +1172,7 @@ function countyTable( county, party, balloon ) {
 	}
 	
 	return [
-		'<h2 style="', fontsize, '">', county.name, ', NH</h2>',
+		'<div style="', fontsize, 'font-weight:bold;">', county.name, ', NH</div>',
 		'<table>',
 			lines.join(''),
 		'</table>'

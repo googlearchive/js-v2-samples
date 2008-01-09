@@ -975,7 +975,7 @@ function showCounties( json, party ) {
 }
 
 function voteBalloon( json, county ) {
-	return countyTable( county );
+	return countyTable( county, null, true );
 }
 
 function makeIcons() {
@@ -1127,7 +1127,8 @@ var mousemoved = function( latlng ) {
 		$('#results').html( countyTable( county ) );
 }
 
-function countyTable( county, party ) {
+function countyTable( county, party, balloon ) {
+	fontsize = balloon ? 'font-size:10pt;' : '';
 	party = party || opt.party;
 	var lines = [];
 	if( county.total ) {
@@ -1136,13 +1137,13 @@ function countyTable( county, party ) {
 			var candidate = candidates.all.by.name[tally.name];
 			lines.push( [
 				'<tr>',
-					'<td style="text-align:right; padding-right:8px;">',
+					'<td style="', fontsize, 'text-align:right; padding-right:8px;">',
 						formatNumber(tally.votes),
 					'</td>',
-					'<td style="padding-right:8px;">',
+					'<td style="', fontsize, 'padding-right:8px;">',
 						'<img class="favicon" src="', imgUrl(tally.name), '" />',
 					'</td>',
-					'<td style="padding-right:8px;">',
+					'<td style="', fontsize, 'padding-right:8px;">',
 						candidate.fullName,
 					'</td>',
 				'</tr>'
@@ -1154,7 +1155,7 @@ function countyTable( county, party ) {
 	}
 	
 	return [
-		'<h2>', county.name, '</h2>',
+		'<h2 style="', fontsize, '">', county.name, ', NH</h2>',
 		'<table>',
 			lines.join(''),
 		'</table>'

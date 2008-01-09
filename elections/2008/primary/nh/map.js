@@ -155,7 +155,7 @@ var candidates = {
 		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#336633' },
 		{ name: 'huckabee', lastName: 'Huckabee', fullName: 'Mike Huckabee', color: '#1700E8' },
 		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#8A5C2E' },
-		{ name: 'keyes', lastName: 'Keyes', fullName: 'Alan Keyes', color: '#EE00B5' },
+		{ name: 'keyes', lastName: 'Keyes', fullName: 'Alan Keyes', color: '#8080FF' },
 		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#FFFA00' },
 		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#E4Af95' },
 		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FF1300' },

@@ -255,6 +255,14 @@ function GAsync( obj ) {
 //var mapplet = location.host == 'gmodules.com';
 var mapplet = ! window.GBrowserIsCompatible;
 
+var partyButtons = opt.party ? '' : [
+	'<div style="margin-top:8px;">',
+		'<b>Vote results:</b>',
+		'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
+		'<button style="margin-left:8px;" id="btnRep">Republican</button>',
+		'</div>'
+].join('');
+
 	document.write( (
 		opt.projector ? [
 			'<style type="text/css">',
@@ -339,11 +347,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 				//	'&nbsp;|&nbsp;',
 				//	'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				//'</div>',
-				'<div style="margin-top:8px;">',
-					'<b>Vote results:</b>',
-					'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
-					'<button style="margin-left:8px;" id="btnRep">Republican</button>',
-				'</div>',
+				partyButtons,
 				'<div id="votesbar">',
 					'<h1 id="votestitle"></h1>',
 					'<div id="legend">',
@@ -393,11 +397,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 						'</div>',
 					'</td>',
 					'<td valign="top">',
-						'<div style="margin-top:8px;">',
-							'<b>Vote results:</b>',
-							'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
-							'<button style="margin-left:8px;" id="btnRep">Republican</button>',
-						'</div>',
+						partyButtons,
 						'<div id="votesbar">',
 							'<h1 id="votestitle">Primary Results</h1>',
 							'<div>Statewide Results</div>',
@@ -1038,18 +1038,21 @@ function load() {
 	if( location.search.slice(1) == 'test' )
 		testdata = true;
 		
-	//var q = opt.party || location.search.slice(1);
-	//var party = parties.by.name[q];
-	//if( party ) {
-	//	loadResults( party );
-	//}
-	//else {
+	var q = opt.party || location.search.slice(1);
+	var party = parties.by.name[q];
+	if( party ) {
+		loadResults( party );
+	}
+	else {
 		//download( gFeedURLs.events, onEventsReady );
+		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
+	}
+	//showCounties();
+	
+	if( mapplet ) {
 		download( gFeedURLs.video, onVideoReady );
 		download( gFeedURLs.news, onNewsReady );
-		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
-	//}
-	//showCounties();
+	}
 	
 	$('#btnDem').click( function() {
 		loadResults( parties.by.name['democrat'] );

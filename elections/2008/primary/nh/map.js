@@ -71,7 +71,7 @@
 var opt = window.GoogleElectionMapOptions || {};
 
 //var imgBaseUrl = 'http://mg.to/iowa/server/images/';
-var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
+var imgBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/';
 
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
@@ -135,8 +135,8 @@ String.prototype.words = function( fun ) {
 };
 
 var parties = [
-	{ name: 'democrat', shortName: 'Democratic', fullName: 'Iowa Democratic Party', url:'http://www.iowademocrats.org/' },
-	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party of Iowa', url:'http://www.iowagop.net/' }
+	{ name: 'democrat', shortName: 'Democratic', fullName: 'Democratic Party', url:'http://www.iowademocrats.org/' },
+	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party', url:'http://www.iowagop.net/' }
 ].index('name');
 
 var candidates = {
@@ -332,16 +332,15 @@ var mapplet = ! window.GBrowserIsCompatible;
 				//	'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				//'</div>',
 				'<div style="margin-top:8px;">',
-					//'<b>Vote results:</b>',
-					//'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
-					//'<button style="margin-left:8px;" id="btnRep">Republican</button>',
-					'<b>Live vote results coming today!</b>',
+					'<b>Vote results:</b>',
+					'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
+					'<button style="margin-left:8px;" id="btnRep">Republican</button>',
 				'</div>',
 				'<div id="votesbar">',
-					//'<h1 id="votestitle"></h1>',
-					//'<div id="legend">',
-					//	'Loading&#8230;',
-					//'</div>',
+					'<h1 id="votestitle"></h1>',
+					'<div id="legend">',
+						'Loading&#8230;',
+					'</div>',
 				'</div>',
 				'<div id="videos" style="margin-top:8px;">',
 				'</div>',
@@ -716,8 +715,9 @@ function showVotes( json, party ) {
 
 function showState( json, party ) {
 	if( opt.projector ) showStateProjector( json, party );
-	else if( mapplet ) showStateSidebar( json, party );
-	else showStateTable( json, party );
+	//else if( mapplet ) showStateSidebar( json, party );
+	//else showStateTable( json, party );
+	else showStateSidebar( json, party );
 }
 
 function formatNumber( nStr ) {
@@ -794,7 +794,7 @@ function showStateProjector( json, party ) {
 }
 
 function showStateSidebar( json, party ) {
-	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	var state = json.state, tallies = state[party], precincts = state.precincts;
 	tallies.index('name');
 	var rows = [];
 	var cands = candidates[party];
@@ -839,7 +839,7 @@ function showStateSidebar( json, party ) {
 }
 
 function showStateTable( json, party ) {
-	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	var state = json.state, tallies = state[party], precincts = state.precincts;
 	tallies.index('name');
 	var cands = candidates[party];
 	
@@ -862,7 +862,7 @@ function showStateTable( json, party ) {
 	
 	function header() {
 		return [
-			'<th class="countyname">County</th>',
+			'<th class="countyname"></th>',
 			cands.map( function( candidate ) {
 				return [ '<th>', candidate.lastName, '</th>' ].join('');
 			}).join(''),
@@ -880,7 +880,8 @@ function showStateTable( json, party ) {
 	}
 	
 	function row( county, name, clas ) {
-		var tallies = county ? json.counties[county.name].candidates : json.state.candidates;
+		var tallies = ( county ? json.counties[county.name] : json.state )[party];
+		if( ! tallies ) return '';
 		tallies.index('name');
 		return [
 			'<tr class="', clas, '">',
@@ -900,19 +901,19 @@ function showCounties( json, party ) {
 		
 		if( json ) {
 			var data = json.counties[county.name];
-			var tallies = county.tallies = data.candidates;
+			var tallies = county.tallies = data[party];
 			county.total = data.total;
 			
-			var leader = tallies[0];
+			var leader = tallies && tallies[0];
 			if( leader ) {
 				var votes = leader.votes;
 				var candidate = candidates[party].by.name[leader.name];
 				var icon = candidate.icon;
 				
-				if( ! opt.projector  &&  ! mapplet ) {
-					var marker = new GMarker( new GLatLng( county.centroid[0], county.centroid[1] ), { icon:icon } );
-					map.addOverlay( marker );
-				}
+				//if( ! opt.projector  &&  ! mapplet ) {
+				//	var marker = new GMarker( new GLatLng( county.centroid[0], county.centroid[1] ), { icon:icon } );
+				//	map.addOverlay( marker );
+				//}
 				
 				var color = candidate.color;
 			}
@@ -948,15 +949,7 @@ function showCounties( json, party ) {
 }
 
 function voteBalloon( json, county ) {
-	var votes = ! json ? '<tr><td>Votes not reported</td></tr>' : [
-	].join('');
-	
-	return [
-		'<h4>', county.name, ', NH</h4>',
-		'<table>',
-			votes,
-		'</table>'
-	].join('');
+	return countyTable( county );
 }
 
 function makeIcons() {
@@ -1019,18 +1012,18 @@ function load() {
 	if( location.search.slice(1) == 'test' )
 		testdata = true;
 		
-	var q = opt.party || location.search.slice(1);
-	var party = parties.by.name[q];
-	if( party ) {
-		loadResults( party );
-	}
-	else {
+	//var q = opt.party || location.search.slice(1);
+	//var party = parties.by.name[q];
+	//if( party ) {
+	//	loadResults( party );
+	//}
+	//else {
 		//download( gFeedURLs.events, onEventsReady );
 		download( gFeedURLs.video, onVideoReady );
 		download( gFeedURLs.news, onNewsReady );
 		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
-	}
-	showCounties();
+	//}
+	//showCounties();
 	
 	$('#btnDem').click( function() {
 		loadResults( parties.by.name['democrat'] );
@@ -1046,10 +1039,10 @@ function load() {
 		map.clearOverlays();
 		if( mapplet )
 			$('#votestitle').html( [
-				'<a href="', party.url, '" target="_blank">', party.fullName, '</a>'
+				party.fullName
 			].join('') );
 		$('#legend').html( 'Loading&#8230;' );
-		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
+		loadScript( 'http://gigapad/elections/2008/primary/nh/results_' + party.name + '.js' );
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
 		//if( testdata )
 		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );
@@ -1100,39 +1093,43 @@ var mousemoved = function( latlng ) {
 	if( i == n ) i = -1;
 	county = counties[i];
 	
-	if( county ) {
-		var lines = [];
-		if( county.total ) {
-			var tallies = county.tallies;
-			tallies.forEach( function( tally ) {
-				var candidate = candidates.all.by.name[tally.name];
-				lines.push( [
-					'<table>',
-						'<tr>',
-							'<td>',
-								'<img class="favicon" src="', imgUrl(tally.name), '" />',
-							'</td>',
-							'<td>',
-								tally.votes,
-							'</td>',
-							'<td>',
-								candidate.lastName,
-							'</td>',
-						'</tr>',
-					'</table>'
-				].join('') );
-			});
-		}
-		else {
-			lines.push( '<div>No votes reported</div>' );
-		}
-		
-		$('#results').html( [
-			'<h2>', county.name, ' County</h2>',
-			lines.join('')
-		].join('') );
+	if( county )
+		$('#results').html( countyTable( county ) );
+}
+
+function countyTable( county, party ) {
+	party = party || opt.party;
+	var lines = [];
+	if( county.total ) {
+		var tallies = county.tallies;
+		tallies.forEach( function( tally ) {
+			var candidate = candidates.all.by.name[tally.name];
+			lines.push( [
+				'<table>',
+					'<tr>',
+						'<td>',
+							'<img class="favicon" src="', imgUrl(tally.name), '" />',
+						'</td>',
+						'<td>',
+							tally.votes,
+						'</td>',
+						'<td>',
+							candidate.lastName,
+						'</td>',
+					'</tr>',
+				'</table>'
+			].join('') );
+		});
 	}
-};
+	else {
+		lines.push( '<div>No votes reported</div>' );
+	}
+	
+	return [
+		'<h2>', county.name, '</h2>',
+		lines.join('')
+	].join('');
+}
 
 //if( ! mapplet ) mousemoved = hoverize( mousemoved );
 

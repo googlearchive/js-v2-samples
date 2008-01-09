@@ -23,7 +23,6 @@ def hh():
 
 def getData( earth=False ):
 	filename = 'cs33_d00_shp' + ['-94',''][earth] + '/cs33_d00.gpx'
-	print earth
 	print 'Reading %s...' % filename
 	xmlRoot = ET.parse( filename )
 	counties = {}
@@ -45,10 +44,12 @@ def getData( earth=False ):
 	return { 'state':{}, 'counties':counties }
 
 def makeKML( earth=False ):
-	data = getData( earth )
-	reader.readVotes( data )
-	writeKML( earth, data['counties'], 'democrat' )
-	writeKML( earth, data['counties'], 'republican' )
+	def make( party ):
+		data = getData( earth )
+		reader.readVotes( data, party )
+		writeKML( earth, data['counties'], party )
+	make( 'democrat' )
+	make( 'republican' )
 
 def writeKML( earth, counties, party ):
 	print 'Writing ' + party
@@ -152,6 +153,23 @@ Data = {
 };
 ''' %( ','.join(ctys) ) )
 
+def makeJson( party ):
+	data = getData()
+	reader.readVotes( data, party )
+	state = data['state']
+	counties = data['counties']
+	
+	result = {
+		'status': 'ok',
+		'state': state,
+		'counties': counties
+	}
+	
+	write(
+		'../results_%s.js' % party,
+		'Json.%sResults(%s)' %( party, json(result) )
+	)
+
 def coord( point ):
 	return str(point[1]) + ',' + str(point[0]) + ',0'
 
@@ -253,7 +271,12 @@ def polyCentroid( points ):
 	if atmp == 0: return []
 	return [ xtmp / (3 * atmp), ytmp / (3 * atmp) ]
 
+def json( obj ):
+	#return sj.dumps( obj, indent=4 )
+	return sj.dumps( obj, separators=( ',', ':' ) )
+
 def write( name, text ):
+	print 'Writing ' + name
 	f = open( name, 'w' )
 	f.write( text )
 	f.close()
@@ -261,10 +284,13 @@ def write( name, text ):
 def main():
 	print 'Retrieving data...'
 	reader.fetchData()
-	print 'Creating Maps KML...'
-	makeKML( False )
+	#print 'Creating Maps KML...'
+	#makeKML( False )
 	print 'Creating Earth KML...'
 	makeKML( True )
+	print 'Creating JSON...'
+	makeJson( 'democrat' )
+	makeJson( 'republican' )
 	print 'Creating data.js...'
 	makeData()
 	print 'Done!'

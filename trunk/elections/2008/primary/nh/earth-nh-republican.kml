@@ -24991,6 +24991,27 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
+					31
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#E4Af95; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/paul-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Ron Paul
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
 					3
 				&lt;/div&gt;
 			&lt;/td&gt;
@@ -27586,6 +27607,27 @@
 		&lt;tr&gt;
 			&lt;td style="text-align:right; width:1%;"&gt;
 				&lt;div style="margin-right:4px;"&gt;
+					4
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#8080FF; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/keyes-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Alan Keyes
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
 					2
 				&lt;/div&gt;
 			&lt;/td&gt;
@@ -29044,6 +29086,27 @@
 			&lt;td&gt;
 				&lt;div&gt;
 					Ron Paul
+				&lt;/div&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+
+		&lt;tr&gt;
+			&lt;td style="text-align:right; width:1%;"&gt;
+				&lt;div style="margin-right:4px;"&gt;
+					4
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%"&gt;
+				&lt;div style="height:18px; width:18px; border:1px solid #888888; background-color:#336633; margin-right:4px;"&gt;
+					&amp;nbsp;
+				&lt;/div&gt;
+			&lt;/td&gt;
+			&lt;td style="width:1%;"&gt;
+				&lt;img style="height:16px; width:16px; margin: 1px 4px 1px 1px;" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/giuliani-border.png" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;div&gt;
+					Rudy Giuliani
 				&lt;/div&gt;
 			&lt;/td&gt;
 		&lt;/tr&gt;

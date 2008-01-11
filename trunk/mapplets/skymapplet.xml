@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-<ModulePrefs title="Clouds"
+<ModulePrefs title="Sky"
              height="150">
   <Require feature="sharedmap"/>
 </ModulePrefs>
 <Content type="html"><![CDATA[
 
-Check out the clouds!
-Courtesy daylightmap.com
+Check out the sky!
+Use in your Maps API mashups via G_SKY_VISIBLE_MAP.
+
 <script>
   // Center the map in the Mediterranean and zoom out to a world view
   var map = new GMap2();

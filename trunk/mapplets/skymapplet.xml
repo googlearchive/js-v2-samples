@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Clouds"
+             height="150">
+  <Require feature="sharedmap"/>
+</ModulePrefs>
+<Content type="html"><![CDATA[
+
+Check out the clouds!
+Courtesy daylightmap.com
+<script>
+  // Center the map in the Mediterranean and zoom out to a world view
+  var map = new GMap2();
+
+  var tlo = new GTileLayerOverlay(new GTileLayer(null, null, null, {
+    tileUrlTemplate: 'http://mw1.google.com/mw-planetary/sky/skytiles_v1/{X}_{Y}_{Z}.jpg'
+  }));
+  map.addOverlay(tlo);
+
+</script>
+
+]]></Content>
+</Module>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>
+			New Hampshire Primary
+		</title>
+	</head>
+	<body>
+
+    <!-- BEGIN GOOGLE MAP -->
+		
+		<script type="text/javascript">
+			GoogleElectionMapOptions = {
+				primary: true,
+				state: 'mi',
+				party: 'democrat',
+				//party: 'republican',
+				_: null
+			};
+			document.write(
+				'<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=',
+				{
+					'gigapad': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxTCDaeoAnk9GZSdGi854AcXbJXoXRS9QqxqDWHL54Twi5thIIANaCUAeA',
+					'mg.to': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxQjDwyFD3YNj60GgWGUlJCU_q5i9hRnvuPxZd7ID_efv8JjDf5c7cLpFw',
+					'gmaps-samples.googlecode.com': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxSPW5CJgpdgO_s4yyMovOaVh_KvvhTTJKW9lb6zh0HdXDgS6Bik41j0ng',
+					'workbench.boston.com': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxQfuT9MeZ_Xd9v5MagqUJG0kHqevBRGbElymbCEaGU7UmodjDkGGpKxpw',
+					'www.boston.com': 'ABQIAAAAgNQJhbWKFHRJJiHCXotPZxTFZpBdPhnOhVBLDts8WXhsjuPLnxSk8kueMyID_uCeit46YrsGeON6EQ'
+				}[location.host],
+				'" type="text/javascript"><\/script>'
+			);
+		</script>
+		
+		<script type="text/javascript" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/library/jquery-1.2.1.js"></script>
+		<script type="text/javascript">jQuery.noConflict();</script>
+		<script type="text/javascript" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/states/mi/data.js"></script>
+		<script type="text/javascript" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/map.js"></script>
+		
+	<!-- END GOOGLE MAP -->
+	
+	</body>
+</html>

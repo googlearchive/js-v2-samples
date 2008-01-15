@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
 <ModulePrefs
-		title="Michigan Primary"
+		title="Presidential Primary"
 		author="Michael Geary"
 		author_email="mapplet.feedback@mg.to"
-		description="Michigan Primary"
+		description="Presidential Primary"
 >
 	<Require feature="sharedmap"/>
 	<Require feature="dynamic-height"/>

@@ -1204,7 +1204,7 @@ function countyTable( county, party, balloon ) {
 	].join('');
 	
 	return [
-		'<div style="', fontsize, 'font-weight:bold;">', county.name, ' County, MI</div>',
+		'<div style="', fontsize, 'font-weight:bold;">', county.name, ' County, Michigan</div>',
 		'<div>',	wikilink, '</div>',
 		'<table style="margin-top:8px;">', lines.join(''), '</table>'
 	].join('');

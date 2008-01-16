@@ -314,7 +314,7 @@ var partyButtons = opt.party ? '' : [
 				'.VideoThumb { float:left; margin-right:8px; }',
 				'.VideoBorder { clear:left; }',
 				'#votestitle { margin:12px 0 6px 0; padding:0; }',
-				'#votesattrib, #votesattrib * { font-size:90%; }',
+				'#votesattrib * { font-size:85%; }',
 				'#legend table { xwidth:100%; }',
 				'#legend .legendboxtd { width:1%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
@@ -385,8 +385,8 @@ var partyButtons = opt.party ? '' : [
 				'#fullstate th, #fullstate td { text-align: right; background-color:#E8E8E8; padding:2px; }',
 				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
 				'.statewide * { font-weight: bold; }',
-				'#votestitle { margin:12px 0 6px 0; padding:0; }',
-				'#votesattrib, #votesattrib * { font-size:90%; }',
+				'#votestitle { margin:12px 0 3px 0; padding:0; }',
+				'#votesattrib * { font-size:85%; }',
 				'#legend table { xwidth:100%; }',
 				'#legend .legendboxtd { width:7%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
@@ -1084,13 +1084,20 @@ function load() {
 		map.clearOverlays();
 		var attrib = location.href.match( /boston\.com/ ) ? '' : [
 			'<a href="http://www.ap.org/" target="_blank">AP</a>',
-			'/',
+			'<span>/</span>',
 			'<a href="http://www.boston.com/" target="_blank">Boston Globe</a>'
 		].join('');
 		$('#votestitle').html( [
-			'<div id="votesattrib" style="float:right;">', attrib, '</div>',
-			'<div><h1>', party.fullName, '</h1></div>',
-			'<div style="clear:right;"></div>'
+			'<table  cellspacing="0" style="width:100%;">',
+				'<tr>',
+					'<td style="text-align:left;">',
+						'<b>', party.fullName, '</b>',
+					'</td>',
+					'<td id="votesattrib" style="text-align:right;">',
+						attrib,
+					'</td>',
+				'</tr>',
+			'</table>'
 		].join('') );
 		$('#legend').html( 'Loading&#8230;' );
 		loadScript( [ opt.baseUrl, 'elections/2008/primary/states/', opt.state, '/results_', party.name, '.js' ].join('') );

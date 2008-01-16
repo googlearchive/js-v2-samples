@@ -1,15 +1,12 @@
 function PanoramioLayerCallback(json, panoLayer) {
-  var batch = [];
   for (var i = 0; i < json.photos.length; i++) {
     var photo = json.photos[i];
     if (!panoLayer.ids[photo.photo_id]) {
       var marker = this.createMarker(photo, panoLayer.markerIcon);
-      batch.push(marker);
+      panoLayer.mgr.addMarker(marker, 0);
       panoLayer.ids[photo.photo_id] = "exists";
     }
   }
-  panoLayer.mgr.addMarkers(batch, 0);
-  panoLayer.mgr.updateMarkers_();
 }
 
 PanoramioLayerCallback.prototype.formImgUrl = function(photoId, imgType) {

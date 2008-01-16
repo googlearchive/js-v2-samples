@@ -150,7 +150,7 @@ var candidates = {
 		{ name: 'kucinich', lastName: 'Kucinich', fullName: 'Dennis Kucinich', color: '#EE00B5' },
 		//{ name: 'obama', lastName: 'Obama', fullName: 'Barack Obama', color: '#1700E8' },
 		//{ name: 'richardson', lastName: 'Richardson', fullName: 'Bill Richardson', color: '#336633' }
-		{ name: 'uncommitted-d', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#336633' }
+		{ name: 'uncommitted-d', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#DDDDDD' }
 	],
 	republican: [
 		{ name: 'brownback', lastName: 'Brownback', fullName: 'Sam Brownback', color: '#8080FF' },
@@ -163,7 +163,7 @@ var candidates = {
 		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FF1300' },
 		{ name: 'tancredo', lastName: 'Tancredo', fullName: 'Tom Tancredo', color: '#EE00B5' },
 		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#20FF1F' },
-		{ name: 'uncommitted-r', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#8080FF' }
+		{ name: 'uncommitted-r', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#DDDDDD' }
 	]
 };
 

@@ -20,6 +20,7 @@ candidates = {
 		{ 'name': 'uncommitted-d', 'lastName': 'Uncommitted', 'fullName': 'Uncommitted', 'color': '#336633' },
 	],
 	'republican': [
+		{ 'name': 'brownback', 'lastName': 'Brownback', 'fullName': 'Sam Brownback', 'color': '#8080FF' },
 		{ 'name': 'giuliani', 'lastName': 'Giuliani', 'fullName': 'Rudy Giuliani', 'color': '#336633' },
 		{ 'name': 'huckabee', 'lastName': 'Huckabee', 'fullName': 'Mike Huckabee', 'color': '#1700E8' },
 		{ 'name': 'hunter', 'lastName': 'Hunter', 'fullName': 'Duncan Hunter', 'color': '#8A5C2E' },
@@ -51,22 +52,22 @@ def readVotes( data, party ):
 	header = []
 	while header == []:
 		header = reader.next()
-	print header
+	#print header
 	for row in reader:
 		if len(row) == 0: continue
 		countyName = fixCountyName( row[0] )
 		if countyName == '*':
 			if( ( party == 'democrat' and row[3] ) or ( party == 'republican' and row[8] ) ):
-				setData( data['state'], row, party )
+				setData( header, data['state'], row, party )
 		else:
-			setData( data['counties'][countyName], row, party )
+			setData( header, data['counties'][countyName], row, party )
 
-def setData( county, row, party ):
+def setData( header, county, row, party ):
 	setPrecincts( county, row )
 	if party != 'democrat':
-		setVotes( county, row, 8, 'republican' )
+		setVotes( header, county, row, 8, 'republican' )
 	if party != 'republican':
-		setVotes( county, row, 3, 'democrat' )
+		setVotes( header, county, row, 3, 'democrat' )
 
 def setPrecincts( county, row ):
 	county['precincts'] = {
@@ -74,10 +75,13 @@ def setPrecincts( county, row ):
 		'total': row[1]
 	}
 
-def setVotes( county, row, col, party ):
+def setVotes( header, county, row, col, party ):
 	tally = []
 	total = 0
 	for candidate in candidates[party]:
+		if header[col] == 'trancredo': header[col] = 'tancredo'
+		if candidate['name'] != header[col]:
+			print 'ERROR!'
 		votes = int(row[col] or 0)
 		if votes:
 			total += votes

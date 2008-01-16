@@ -3,6 +3,7 @@
 iconBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/'
 
 import private
+import os
 import reader
 import elementtree.ElementTree as ET
 import simplejson as sj
@@ -32,7 +33,7 @@ def getData( earth=False ):
 			points.append( [ xmlPoint.attrib['lat'].strip(), xmlPoint.attrib['lon'].strip() ] )
 		name = xmlCounty.findtext('name').strip()
 		number = xmlCounty.findtext('number').strip()
-		print '%s County' % name
+		#print '%s County' % name
 		## Correct error in census data for Wentworth's Location
 		#if( name == "Wentworth" and number == '9' ):
 		#	name = "Wentworth's Location"
@@ -173,7 +174,9 @@ def makeJson( party ):
 		'results_%s.js' % party,
 		'Json.%sResults(%s)' %( party, json(result) )
 	)
-
+	
+	print '%s of %s precincts reporting' %( state['precincts']['reporting'], state['precincts']['total'] )
+	
 def coord( point ):
 	return str(point[1]) + ',' + str(point[0]) + ',0'
 
@@ -288,15 +291,15 @@ def write( name, text ):
 def main():
 	print 'Retrieving data...'
 	reader.fetchData()
-	#print 'Creating Maps KML...'
-	#makeKML( False )
 	print 'Creating Earth KML...'
 	makeKML( True )
-	print 'Creating JSON...'
-	makeJson( 'democrat' )
-	makeJson( 'republican' )
 	print 'Creating data.js...'
 	makeData()
+	print 'Creating Maps JSON...'
+	makeJson( 'democrat' )
+	makeJson( 'republican' )
+	print 'Checking in Maps JSON...'
+	os.system( 'svn ci -m "Vote update" data.js results_democrat.js results_republican.js' )
 	print 'Done!'
 
 if __name__ == "__main__":

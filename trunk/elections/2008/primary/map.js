@@ -142,25 +142,28 @@ var parties = [
 var candidates = {
 	all: [],
 	democrat: [
-		{ name: 'biden', lastName: 'Biden', fullName: 'Joe Biden', color: '#20FF1F' },
+		//{ name: 'biden', lastName: 'Biden', fullName: 'Joe Biden', color: '#20FF1F' },
 		{ name: 'clinton', lastName: 'Clinton', fullName: 'Hillary Clinton', color: '#FFFA00' },
 		{ name: 'dodd', lastName: 'Dodd', fullName: 'Chris Dodd', color: '#E4Af95' },
-		{ name: 'edwards', lastName: 'Edwards', fullName: 'John Edwards', color: '#FF1300' },
+		//{ name: 'edwards', lastName: 'Edwards', fullName: 'John Edwards', color: '#FF1300' },
 		{ name: 'gravel', lastName: 'Gravel', fullName: 'Mike Gravel', color: '#8A5C2E' },
 		{ name: 'kucinich', lastName: 'Kucinich', fullName: 'Dennis Kucinich', color: '#EE00B5' },
-		{ name: 'obama', lastName: 'Obama', fullName: 'Barack Obama', color: '#1700E8' },
-		{ name: 'richardson', lastName: 'Richardson', fullName: 'Bill Richardson', color: '#336633' }
+		//{ name: 'obama', lastName: 'Obama', fullName: 'Barack Obama', color: '#1700E8' },
+		//{ name: 'richardson', lastName: 'Richardson', fullName: 'Bill Richardson', color: '#336633' }
+		{ name: 'uncommitted-d', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#336633' }
 	],
 	republican: [
+		{ name: 'brownback', lastName: 'Brownback', fullName: 'Sam Brownback', color: '#8080FF' },
 		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#336633' },
 		{ name: 'huckabee', lastName: 'Huckabee', fullName: 'Mike Huckabee', color: '#1700E8' },
 		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#8A5C2E' },
-		{ name: 'keyes', lastName: 'Keyes', fullName: 'Alan Keyes', color: '#8080FF' },
+		//{ name: 'keyes', lastName: 'Keyes', fullName: 'Alan Keyes', color: '#8080FF' },
 		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#FFFA00' },
 		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#E4Af95' },
 		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FF1300' },
 		{ name: 'tancredo', lastName: 'Tancredo', fullName: 'Tom Tancredo', color: '#EE00B5' },
-		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#20FF1F' }
+		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#20FF1F' },
+		{ name: 'uncommitted-r', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#8080FF' }
 	]
 };
 

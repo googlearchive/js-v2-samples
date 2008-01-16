@@ -1209,7 +1209,7 @@ function countyTable( county, party, balloon ) {
 		'<a href="http://en.wikipedia.org/wiki/',
 				( county.name + ' County, Michigan' ).replace( / /g, '_' ),
 				'" target="_blank">',
-			'County information from Wikipedia',
+			'County information',
 		'</a>'
 	].join('');
 	

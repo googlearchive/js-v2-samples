@@ -314,6 +314,7 @@ var partyButtons = opt.party ? '' : [
 				'.VideoThumb { float:left; margin-right:8px; }',
 				'.VideoBorder { clear:left; }',
 				'#votestitle { margin:12px 0 6px 0; padding:0; }',
+				'#votesattrib, #votesattrib * { font-size:90%; }',
 				'#legend table { xwidth:100%; }',
 				'#legend .legendboxtd { width:1%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
@@ -352,7 +353,8 @@ var partyButtons = opt.party ? '' : [
 				//'</div>',
 				partyButtons,
 				'<div id="votesbar">',
-					'<h1 id="votestitle"></h1>',
+					'<div id="votestitle">',
+					'</div>',
 					'<div id="legend">',
 						'Loading&#8230;',
 					'</div>',
@@ -383,6 +385,8 @@ var partyButtons = opt.party ? '' : [
 				'#fullstate th, #fullstate td { text-align: right; background-color:#E8E8E8; padding:2px; }',
 				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
 				'.statewide * { font-weight: bold; }',
+				'#votestitle { margin:12px 0 6px 0; padding:0; }',
+				'#votesattrib, #votesattrib * { font-size:90%; }',
 				'#legend table { xwidth:100%; }',
 				'#legend .legendboxtd { width:7%; }',
 				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
@@ -401,10 +405,11 @@ var partyButtons = opt.party ? '' : [
 						'<div id="map" style="width: 450px; height: 420px">',
 						'</div>',
 					'</td>',
-					'<td valign="top">',
+					'<td valign="top" style="width:100%;">',
 						partyButtons,
 						'<div id="votesbar">',
-							'<h1 id="votestitle">Primary Results</h1>',
+							'<div id="votestitle">',
+							'</div>',
 							'<div style="font-weight:bold;">Statewide Results</div>',
 							'<div id="legend">',
 								'Loading&#8230;',
@@ -421,19 +426,10 @@ var partyButtons = opt.party ? '' : [
 			'</div>'
 		] ).join('') );
 
-if( 0 ) {
-	var gFeedURLs = {
-		news:'http://mg.to/iowa/section.xml',
-		events:'http://mg.to/iowa/caucus_events.xml'
-	};
-}
-else {
-	var gFeedURLs = {
-		news: 'http://news.google.com/?ned=us&topic=el&output=rss',
-		events:'http://data.desmoinesregister.com/newsroom_google/xml/caucus_events.xml',
-		video: 'http://www.youtube.com/rss/user/wmurtv/videos.rss'
-	};
-}
+var feed = {
+	news: 'http://news.google.com/?ned=us&topic=el&output=rss',
+	video: 'http://www.youtube.com/rss/user/wmurtv/videos.rss'
+};
 
 var map;
 
@@ -1064,14 +1060,14 @@ function load() {
 		loadResults( party );
 	}
 	else {
-		//download( gFeedURLs.events, onEventsReady );
+		//download( feed.events, onEventsReady );
 		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
 	}
 	//showCounties();
 	
 	if( mapplet ) {
-		download( gFeedURLs.video, onVideoReady );
-		download( gFeedURLs.news, onNewsReady );
+		download( feed.video, onVideoReady );
+		download( feed.news, onNewsReady );
 	}
 	
 	$('#btnDem').click( function() {
@@ -1086,8 +1082,15 @@ function load() {
 	
 	function loadResults( party ) {
 		map.clearOverlays();
+		var attrib = location.href.match( /boston\.com/ ) ? '' : [
+			'<a href="http://www.ap.org/" target="_blank">AP</a>',
+			'/',
+			'<a href="http://www.boston.com/" target="_blank">Boston Globe</a>'
+		].join('');
 		$('#votestitle').html( [
-			party.fullName
+			'<div id="votesattrib" style="float:right;">', attrib, '</div>',
+			'<div><h1>', party.fullName, '</h1></div>',
+			'<div style="clear:right;"></div>'
 		].join('') );
 		$('#legend').html( 'Loading&#8230;' );
 		loadScript( [ opt.baseUrl, 'elections/2008/primary/states/', opt.state, '/results_', party.name, '.js' ].join('') );

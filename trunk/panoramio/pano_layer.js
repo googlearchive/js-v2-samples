@@ -9,7 +9,7 @@ function PanoramioLayerCallback(json, panoLayer) {
     }
   }
   panoLayer.mgr.addMarkers(batch, 0);
-  panoLayer.mgr.refresh();
+  panoLayer.mgr.updateMarkers_();
 }
 
 PanoramioLayerCallback.prototype.formImgUrl = function(photoId, imgType) {

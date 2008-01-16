@@ -326,7 +326,7 @@ var partyButtons = opt.party ? '' : [
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<div id="outer">',
-				'<div>',
+				'<div style="font-weight:bold;">',
 					'<span style="color:red;">New!</span> ',
 					'<a href="http://maps.google.com/maps/mpl?moduleurl=http://www.google.com/mapfiles/mapplets/elections/2008/primary/primaries.xml" target="_top">Michigan Primary live results</a>',
 				'</div>',

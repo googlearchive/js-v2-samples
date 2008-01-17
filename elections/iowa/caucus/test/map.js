@@ -1,7 +1,7 @@
 // hoverize.js
 // Based on hoverintent plugin for jQuery
 
-(function() {
+(function( $ ) {
 	
 	var opt = {
 		slop: 7,
@@ -64,16 +64,14 @@
 			}
 		};
 	}
-})();
+})( jQuery );
 
 var opt = window.opt || {};
 
-(function() {
+(function( $ ) {
 
 var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 //var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
-
-
 
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
@@ -137,9 +135,11 @@ String.prototype.words = function( fun ) {
 };
 
 var parties = [
-	{ name: 'democrat', shortName: 'Democratic', fullName: 'Democratic Party' },
-	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party' }
+	{ name: 'democrat', shortestName: 'Democratic', shortName: 'Democratic', fullName: 'Iowa Democratic Party', url:'http://www.iowademocrats.org/' },
+	{ name: 'republican', shortestName: 'GOP', shortName: 'Republican', fullName: 'Republican Party of Iowa', url:'http://www.iowagop.net/' }
 ].index('name');
+
+opt.party = parties.by.name[ opt.party || location.search.slice(1) ];
 
 var candidates = {
 	all: [],
@@ -154,14 +154,14 @@ var candidates = {
 		{ name: 'richardson', lastName: 'Richardson', fullName: 'Bill Richardson', color: '#336633' }
 	],
 	republican: [
-		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#20FF1F' },
+		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#336633' },
 		{ name: 'huckabee', lastName: 'Huckabee', fullName: 'Mike Huckabee', color: '#1700E8' },
-		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#E4Af95' },
-		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#8A5C2E' },
-		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#FF1300' },
-		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FFFA00' },
+		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#8A5C2E' },
+		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#FFFA00' },
+		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#E4Af95' },
+		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FF1300' },
 		{ name: 'tancredo', lastName: 'Tancredo', fullName: 'Tom Tancredo', color: '#EE00B5' },
-		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#336633' }
+		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#20FF1F' }
 	]
 };
 
@@ -238,6 +238,35 @@ function GAsync( obj ) {
 	
 	var mapplet = ! window.GBrowserIsCompatible;
 	
+	var args = arguments, nArgs = args.length - 1;
+	var results = [], nCalls = 0;
+	
+	for( var iArg = 1;  iArg < nArgs;  ++iArg ) {
+		var name = args[iArg];
+		if( typeof name == 'object' )
+			obj = name;
+		else
+			queue( nCalls++, name, args[iArg+1] );
+	}
+	
+	if( ! mapplet )
+		callback();
+}
+
+//var mapplet = location.host == 'gmodules.com';
+var mapplet = ! window.GBrowserIsCompatible;
+	
+	var partyname = opt.party && ( opt.party.shortestName + ' ' );
+	var precinct = ( opt.party && opt.party.name == 'republican' ? [
+		'<p>',
+			'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/IowaRepublican2008PrelimCaucusResults.pdf" target="_blank">',
+				'Precinct Results ',
+				'<img style="width:17px; height:17px; border:0;" src="http://www.adobe.com/images/pdficon_small.gif" />',
+			'</a>',
+		'</p>'
+	] : [
+	] ).join('');
+
 	document.write( (
 		opt.projector ? [
 			'<style type="text/css">',
@@ -262,8 +291,12 @@ function GAsync( obj ) {
 				'#legend .legendname { font-size:24px; }',
 				'#legend .legendvotes { font-size:18px; }',
 				'#legend .legendclear { clear:left; }',
-				'#legend .legendreporting { font-size:20px; }',
-			'</style>'
+				'#legend .legendreporting * { font-size:20px; }',
+			'</style>',
+			'<div id="legend" style="width: 700px; height: 140px">',
+			'</div>',
+			'<div id="map" style="width: 700px; height: 430px">',
+			'</div>'
 		] : mapplet ? [
 			'<style type="text/css">',
 				'* { font-family: Arial,sans-serif; font-size: 10pt; }',
@@ -284,7 +317,48 @@ function GAsync( obj ) {
 				'.VideoTitle { font-size:110%; }',
 				'.VideoThumb { float:left; margin-right:8px; }',
 				'.VideoBorder { clear:left; }',
-			'</style>'
+				'#votestitle { margin:12px 0 6px 0; padding:0; }',
+				'#legend table { xwidth:100%; }',
+				'#legend .legendboxtd { width:1%; }',
+				'#legend .legendnametd { xfont-size:24px; xwidth:18%; }',
+				'#legend .legendbox { height:24px; width:24px; float:left; margin-right:4px; }',
+				'#legend .legendname { font-size:12pt; }',
+				'#legend .legendvotestd { text-align:right; width:1%; }',
+				'#legend .legendvotes { font-size:10pt; margin-right:4px; }',
+				'#legend .legendclear { clear:left; }',
+				'#legend .legendreporting * { xfont-size:20px; }',
+			'</style>',
+			'<div id="outer">',
+				//'<div>',
+				//	'<select id="lstRegions">',
+				//		'<option value="">',
+				//			'Zoom to a region',
+				//		'</option>',
+				//	'</select>',
+				//	'<input type="checkbox" checked id="chkEvents" xstyle="margin-left:16px;" />',
+				//	'<label for="chkEvents">Show Events</label>',
+				//'</div>',
+				'<div id="links">',
+					'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/article?AID=/20071219/NEWS09/71219068" target="_blank">How the caucuses work</a>',
+					'&nbsp;|&nbsp;',
+					'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
+				'</div>',
+				'<div style="margin-top:8px;">',
+					'<b>Vote results:</b>',
+					'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
+					'<button style="margin-left:8px;" id="btnRep">Republican</button>',
+				'</div>',
+				'<div id="votesbar">',
+					'<h1 id="votestitle"></h1>',
+					'<div id="legend">',
+						'Loading&#8230;',
+					'</div>',
+				'</div>',
+				'<div id="videos" style="margin-top:8px;">',
+				'</div>',
+				'<div id="news" style="margin-top:6px;">',
+				'</div>',
+			'</div>'
 		] : [
 			'<style type="text/css">',
 				'* { font-family: Arial,sans-serif; font-size: 10pt; }',
@@ -293,6 +367,7 @@ function GAsync( obj ) {
 				'#links { margin-bottom:4px; }',
 				'#news { margin-top:4px; padding:4px; }',
 				'#clicknote { display:none; }',
+				'h1 { font-size:12pt; }',
 				'h2 { font-size:11pt; margin:0; padding:0; }',
 				'#loading { font-weight:normal; }',
 				'.NewsHeading { padding-left:4px; }',
@@ -301,26 +376,34 @@ function GAsync( obj ) {
 				'.NewsList  a:hover { text-decoration:underline; }',
 				'.NewsItem { padding:4px 2px 2px 2px; vertical-align:bottom; line-height:125%; }',
 				'.favicon { width:16; height:16; float:left; padding:2px 4px 2px 2px; }',
-			'</style>'
+				'#fullstate { margin-top:12px; }',
+				'#fullstate table { width:700px; }',
+				'#fullstate th, #fullstate td { text-align: right; background-color:#E8E8E8; padding:2px; }',
+				'#fullstate th.countyname, #fullstate td.countyname { text-align:left; font-weight:bold; }',
+				'#results a { font-weight:bold; }',
+				'.statewide * { font-weight:bold; }',
+			'</style>',
+			'<table>',
+				'<tr valign="top">',
+					'<td>',
+						'<div id="map" style="width: 700px; height: 450px">',
+						'</div>',
+					'</td>',
+					'<td valign="top">',
+						'<div id="votesbar">',
+							'<h1 id="votestitle">Caucus Results</h1>',
+							'<p><a href="#fullstate">County Results</a></p>',
+							precinct,
+							'<p>Roll the mouse over the map for county results at a glance.</p>',
+							'<div id="results">',
+							'</div>',
+						'</div>',
+					'</td>',
+				'</tr>',
+			'</table>',
+			'<div id="fullstate">',
+			'</div>'
 		] ).join('') );
-	
-	var args = arguments, nArgs = args.length - 1;
-	var results = [], nCalls = 0;
-	
-	for( var iArg = 1;  iArg < nArgs;  ++iArg ) {
-		var name = args[iArg];
-		if( typeof name == 'object' )
-			obj = name;
-		else
-			queue( nCalls++, name, args[iArg+1] );
-	}
-	
-	if( ! mapplet )
-		callback();
-}
-
-//var mapplet = location.host == 'gmodules.com';
-var mapplet = ! window.GBrowserIsCompatible;
 
 if( 0 ) {
 	var gFeedURLs = {
@@ -466,8 +549,8 @@ function onVideoReady( xml ) {
 
 function initMap() {
 	if( ! mapplet ) {
-		GEvent.addListener( map, 'mousemove', mousemoved.hover );
-		GEvent.addListener( map, 'mouseout', mousemoved.clear );
+		GEvent.addListener( map, 'mousemove', mousemoved/*.hover*/ );
+		//GEvent.addListener( map, 'mouseout', mousemoved.clear );
 	}
 	
 	//setTimeout( function() { $('#clicknote').show( 'slow' ); }, 1000 );
@@ -629,14 +712,19 @@ function randomColor() {
 }
 
 function showVotes( json, party ) {
+	map.clearOverlays();
 	$('script[title=jsonresult]').remove();
+	if( json.status == 'later' ) return;
 	showState( json, party );
 	showCounties( json, party );
+	if( mapplet )
+		_IG_AdjustIFrameHeight();
 }
 
 function showState( json, party ) {
 	if( opt.projector ) showStateProjector( json, party );
-	else showStateNormal( json, party );
+	else if( mapplet ) showStateSidebar( json, party );
+	else showStateTable( json, party );
 }
 
 function formatNumber( nStr ) {
@@ -653,26 +741,38 @@ function formatNumber( nStr ) {
 
 function showStateProjector( json, party ) {
 	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	tallies.index('name');
 	var rows = [];
-	addRow( 0 );
-	addRow( 1 );
+	addRow( 0, 3 );
+	addRow( 4, 7 );
 	
 	var html = [
 		'<table>',
 			rows.join(''),
 		'</table>',
 		'<div class="legendreporting">',
-			precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+			'<table>',
+				'<tr>',
+					'<td style="text-align:left;">',
+						'LIVE: Leading candidates by county',
+					'</td>',
+					'<td style="text-align:right;">',
+						precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+					'</td>',
+				'</tr>',
+		'</table>',
+			'<div style="clear:both;>',
+			'</div>',
 		'</div>'
 	].join('');
 	
 	$('#legend').html( html );
 	
-	function addRow( start ) {
+	function addRow( start, end ) {
 		var cols = [];
-		for( var i = start;  i < tallies.length;  i += 2 ) {
-			var tally = tallies[i];
-			var candidate = candidates.all.by.name[tally.name];
+		for( var i = start;  i <= end;  ++i ) {
+			var candidate = candidates[party][i];
+			var tally = tallies.by.name[candidate.name];
 			cols.push( [
 				'<td class="legendboxtd">',
 					'<div class="legendbox" style="border:1px solid #888888; background-color:', candidate.color, ';">',
@@ -700,7 +800,105 @@ function showStateProjector( json, party ) {
 	}
 }
 
-function showStateNormal( json, party ) {
+function showStateSidebar( json, party ) {
+	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	tallies.index('name');
+	var rows = [];
+	var cands = candidates[party];
+	addRows();
+	
+	var html = [
+		'<table>',
+			rows.join(''),
+		'</table>',
+		'<div class="legendreporting">',
+			precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+		'</div>'
+	].join('');
+	
+	$('#legend').html( html );
+	
+	function addRows() {
+		var cols = [];
+		tallies.forEach( function( tally ) {
+			var candidate = candidates.all.by.name[tally.name];
+			rows.push( [
+				'<tr>',
+					'<td class="legendvotestd">',
+						'<div class="legendvotes">',
+							formatNumber(tally.votes),
+						'</div>',
+					'</td>',
+					'<td class="legendboxtd">',
+						'<div class="legendbox" style="border:1px solid #888888; background-color:', candidate.color, ';">',
+							'&nbsp;',
+						'</div>',
+					'</td>',
+					'<td class="legendnametd">',
+						'<div class="legendname">',
+							candidate.fullName,
+						'</div>',
+					'</td>',
+				'</tr>'
+			].join('') );
+		});
+	}
+}
+
+function showStateTable( json, party ) {
+	var state = json.state, tallies = state.candidates, precincts = state.precincts;
+	tallies.index('name');
+	var cands = candidates[party];
+	
+	var html = [
+		'<table>',
+			'<thead>',
+				header(),
+			'</thead>',
+			'<tbody>',
+				stateRow(),
+				countyRows(),
+			'</tbody>',
+		'</table>',
+		'<div class="legendreporting">',
+			precincts.reporting, ' of ', precincts.total, ' precincts reporting',
+		'</div>'
+	].join('');
+	
+	$('#fullstate').html( html );
+	
+	function header() {
+		return [
+			'<th class="countyname">County</th>',
+			cands.map( function( candidate ) {
+				return [ '<th>', candidate.lastName, '</th>' ].join('');
+			}).join(''),
+		].join('');
+	}
+	
+	function countyRows() {
+		return counties.map( function( county ) {
+			return row( county );
+		}).join('');
+	}
+	
+	function stateRow() {
+		return row( null, 'Entire State', 'statewide' );
+	}
+	
+	function row( county, name, clas ) {
+		var tallies = county ? json.counties[county.name].candidates : json.state.candidates;
+		tallies.index('name');
+		return [
+			'<tr class="', clas, '">',
+				'<td class="countyname">', name || county.name, '</td>',
+				cands.map( function( candidate ) {
+					var tally = tallies.by.name[candidate.name] || { votes:0 };
+					return [ '<td>', formatNumber(tally.votes), '</td>' ].join('');
+				}).join(''),
+			'</tr>'
+		].join('');
+	}
 }
 
 function showCounties( json, party ) {
@@ -718,7 +916,7 @@ function showCounties( json, party ) {
 				var candidate = candidates[party].by.name[leader.name];
 				var icon = candidate.icon;
 				
-				if( ! opt.projector ) {
+				if( ! opt.projector  &&  ! mapplet ) {
 					var marker = new GMarker( new GLatLng( county.centroid[0], county.centroid[1] ), { icon:icon } );
 					map.addOverlay( marker );
 				}
@@ -800,20 +998,46 @@ function load() {
 		}
 	});
 	
-	if( mapplet ) showVotes();
+	//if( mapplet ) showVotes();
 	
-	var q = location.search.slice(1);
-	var party = parties.by.name[q];
-	if( party ) {
-		$('#votestitle').html( party.shortName + ' Caucus Results' );
-		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
-		loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
+	var testdata = false;
+	if( location.search.slice(1) == 'test' )
+		testdata = true;
+	
+	if( opt.party ) {
+		loadResults( opt.party );
 	}
 	else {
-		download( gFeedURLs.events, onEventsReady );
+		//download( gFeedURLs.events, onEventsReady );
 		download( gFeedURLs.video, onVideoReady );
 		download( gFeedURLs.news, onNewsReady );
+		loadResults( parties[ Math.random() < .5 ? 0 : 1 ] );
 	}
+	
+	$('#btnDem').click( function() {
+		loadResults( parties.by.name['democrat'] );
+		return false;
+	});
+
+	$('#btnRep').click( function() {
+		loadResults( parties.by.name['republican'] );
+		return false;
+	});
+	
+	function loadResults( party ) {
+		if( mapplet )
+			$('#votestitle').html( [
+				'<a href="', party.url, '" target="_blank">', party.fullName, '</a>'
+			].join('') );
+		$('#legend').html( 'Loading&#8230;' );
+		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
+		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
+		//if( testdata )
+		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );
+		//else
+			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
+	}
+	
 	
 	//initControls();
 	if( mapplet )
@@ -856,19 +1080,17 @@ var mousemoved = function( latlng ) {
 			tallies.forEach( function( tally ) {
 				var candidate = candidates.all.by.name[tally.name];
 				lines.push( [
-					'<table>',
-						'<tr>',
-							'<td>',
-								'<img class="favicon" src="', imgUrl(tally.name), '" />',
-							'</td>',
-							'<td>',
-								tally.votes,
-							'</td>',
-							'<td>',
-								candidate.lastName,
-							'</td>',
-						'</tr>',
-					'</table>'
+					'<tr>',
+						'<td style="width:2.5em; text-align:right;">',
+							tally.votes,
+						'</td>',
+						'<td>',
+							'<img class="favicon" src="', imgUrl(tally.name), '" />',
+						'</td>',
+						'<td>',
+							candidate.lastName,
+						'</td>',
+					'</tr>'
 				].join('') );
 			});
 		}
@@ -878,12 +1100,14 @@ var mousemoved = function( latlng ) {
 		
 		$('#results').html( [
 			'<h2>', county.name, ' County</h2>',
-			lines.join('')
+			'<table>',
+				lines.join(''),
+			'</table>'
 		].join('') );
 	}
 };
 
-if( ! mapplet ) mousemoved = hoverize( mousemoved );
+//if( ! mapplet ) mousemoved = hoverize( mousemoved );
 
 /*
 function selectRegion( region ) {
@@ -968,4 +1192,5 @@ function download( url, ready ) {
 
 $(window).bind( 'load', load ).bind( 'onunload', GUnload );
 
-})();
+})( jQuery );
+

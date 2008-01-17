@@ -73,6 +73,13 @@ var opt = window.opt || {};
 var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 //var imgBaseUrl = 'http://www.google.com/mapfiles/mapplets/iowacaucus/';
 
+//var mapplet = location.host == 'gmodules.com';
+var mapplet = ! window.GBrowserIsCompatible;
+
+function S() {
+	return Array.prototype.join.call( arguments, '' );
+};
+
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
 	script.type = 'text/javascript';
@@ -133,6 +140,13 @@ String.prototype.trim = function() {
 String.prototype.words = function( fun ) {
 	this.split(' ').forEach( fun );
 };
+
+String.prototype.htmlEscape = function() {
+		var div = document.createElement( 'div' );
+		div.appendChild( document.createTextNode(this) );
+		return div.innerHTML;
+};
+
 
 var parties = [
 	{ name: 'democrat', shortestName: 'Democratic', shortName: 'Democratic', fullName: 'Iowa Democratic Party', url:'http://www.iowademocrats.org/' },
@@ -252,10 +266,223 @@ function GAsync( obj ) {
 	if( ! mapplet )
 		callback();
 }
+ 
+function Locator( a ) {
+	function partyRadio( party ) {
+		var id = 'GoogleLocatorPartyRadio_' + party.name;
+		return S(
+			'<input type="radio" name="GoogleLocatorPartyRadio" class="GoogleLocatorPartyRadio" id="', id, '" />',
+			'<label for="', id, '" class="GoogleLocatorPartyRadioLabel">',
+				party.shortName,
+			'</label>'
+		);
+	}
+	return {
+		link: S(
+			'<span style="color:red;">New! </span> ',
+			'<a id="GoogleLocatorLink" href="#">',
+				a.link || a.title,
+			'</a>'
+		),
+		form: S(
+			'<div id="GoogleLocator" style="display:none; xpadding-bottom:16px; xborder-bottom:1px solid #BBB; border:1px solid rgb(255,153,0); background-color:rgb(255,234,192); margin:8px; padding:4px;">',
+				'<form style="margin:0; padding:0;">',
+					'<div>',
+						'Select party and enter your home address:',
+					'</div>',
+					'<div id="GoogleLocatorPartyRadios">',
+						parties.map( partyRadio ).join( '&nbsp;&nbsp;' ),
+					'</div>',
+					'<table cellspacing="0" style="width:100%;">',
+						'<tr>',
+							'<td>',
+								//'<input id="GoogleLocatorAddress" style="width:99%;" />',
+								'<input id="GoogleLocatorAddress" style="width:99%;" value="100 First St Des Moines IA" />',
+							'</td>',
+							'<td>',
+								'<button type="submit">Search</button>',
+							'</td>',
+						'</tr>',
+					'</table>',
+				'</form>',
+				'<div id="GoogleLocatorLoadingResults">',
+					'&nbsp;',
+				'</div>',
+				'<div id="GoogleLocatorResults" style="display:none;">',
+				'</div>',
+			'</div>'
+		),
+		attach: function() {
+			$.opener( '#GoogleLocatorLink', '#GoogleLocator' );
+			$('#GoogleLocator form').submit( precinctLookup );
+		}
+	};
+}
 
-//var mapplet = location.host == 'gmodules.com';
-var mapplet = ! window.GBrowserIsCompatible;
+var loadingIndicator = 'Loading&#8230;';
+
+function precinctLookup() {
+	$results = $('#GoogleLocatorResults');
+	$results.empty().hide();
+	var address = $('#GoogleLocatorAddress').val();
+	var $loading = $('#GoogleLocatorLoadingResults');
+	$loading.html( loadingIndicator );
 	
+	var coder = new GClientGeocoder;
+	GAsync( coder, 'getLocations', [ address ], function( geo ) {
+		//console.log( geo );
+		var places = geo && geo.Placemark;
+		$loading.html(
+			! places || places.length == 0 ? 'No match for that address.' :
+			places.length == 1 ? 'Your full address:' :
+			'Select your address:' );
+		$results.html( formatPlaces(places) ).slideDown( 'slow', function() {
+			adjustHeight();
+			
+			// HACK
+			setTimeout( function() {
+				var location = {
+					precinct: 'Des Moines 24',
+					name: 'Cattell Elementary',
+					address: '3101 E 12th St',
+					city: 'Des Moines'
+				};
+				$('#GoogleLocatorPlaceRadio0_Result').html( S(
+					'<div style="border:1px solid rgb(255,153,0); background-color:white; margin:4px; padding:4px;">',
+						formatPrecinct( location ),
+					'</div>'
+				) ).slideDown( 'slow' );
+				adjustHeight();
+				markPrecinct( location );
+			}, 500 );
+			// END HACK
+		});
+	});
+	return false;
+	
+	function formatPlaces( places ) {
+		if( ! places ) return 'Check the address and spelling and click Search again.';
+		
+		var list = places.map( function( place, i ) {
+			var id = 'GoogleLocatorPlaceRadio' + i;
+			var checked = ( i == 0 ? 'checked="checked" ' : '' );
+			return S(
+				'<tr class="GoogleLocatorPlace" style="vertical-align:top;">',
+					'<td>',
+						'<input type="radio" ', checked, 'name="GoogleLocatorPlaceRadio" class="GoogleLocatorPlaceRadio" id="', id, '" />',
+					'</td>',
+					'<td>',
+						'<div>',
+							'<label for="', id, '" class="GoogleLocatorPlaceAddress">',
+								place.address.replace( /, USA$/, '' ).htmlEscape(),
+							'</label>',
+						'</div>',
+						'<div id="', id, '_Result" style="display:none;">',
+						'</div>',
+					'</td>',
+				'</tr>'
+			);
+		});
+		
+		return S(
+			'<table id="GoogleLocatorPlaces" cellspacing="0">',
+				list.join(''),
+			'</table>'
+		);
+	}
+}
+
+function formatPrecinct( location ) {
+	return S(
+		'<div style="font-weight:bold;">Caucus Location</div>',
+		'<table>',
+			'<tr>',
+				'<td>',
+					'Precinct:&nbsp;',
+				'</td>',
+				'<td>',
+					location.precinct,
+				'</td>',
+			'</tr>',
+			'<tr>',
+				'<td>',
+					'Location:&nbsp;',
+				'</td>',
+				'<td>',
+					location.name,
+				'</td>',
+			'</tr>',
+			'<tr>',
+				'<td>',
+					'Address:&nbsp;',
+				'</td>',
+				'<td>',
+					location.address,
+				'</td>',
+			'</tr>',
+			'<tr>',
+				'<td>',
+					'City:&nbsp;',
+				'</td>',
+				'<td>',
+					location.city,
+				'</td>',
+			'</tr>',
+		'</table>'
+	);
+}
+
+function markPrecinct( location ) {
+	var address = S( location.address, ', ', location.city, ', IA' );
+	var coder = new GClientGeocoder;
+	GAsync( coder, 'getLocations', [ address ], function( geo ) {
+		console.log( geo );
+		var places = geo && geo.Placemark;
+		//$loading.html(
+		//	! places || places.length == 0 ? 'No match for that address.' :
+		//	places.length == 1 ? 'Full address:' :
+		//	'Select your address:' );
+		var html = S(
+			'<div>',
+				formatPrecinct( location ),
+			'</div>'
+		);
+		var coords = places[0].Point.coordinates;
+		var latlng = new GLatLng( coords[1], coords[0] );
+		
+		var icon = new GIcon;
+		icon.image = 'http://www.google.com/intl/en_us/mapfiles/arrow-white.png';
+		icon.shadow = 'http://www.google.com/intl/en_us/mapfiles/arrowshadow.png';
+		icon.iconSize = new GSize( 23, 34 );
+		icon.shadowSize = new GSize( 39, 34 );
+		icon.iconAnchor = new GPoint( 12, 34 );
+		icon.infoWindowAnchor = new GPoint( 12, 0 );
+		
+		map.clearOverlays();
+		var marker = new GMarker( latlng, icon );
+		map.addOverlay( marker );
+		map.setCenter( latlng, 15 );
+		marker.openInfoWindow( html );
+	});
+}
+
+$.opener = function( link, box ) {
+	var $link = $(link), $box = $(box);
+	var moving = false;
+	$link.click( function() {
+		if( ! moving ) {
+			moving = true;
+			var show = $box.is(':hidden');
+			$box.slideToggle( 'slow', function() {
+				if( show ) $box.find('input:first').focus();
+				moving = false;
+				adjustHeight();
+			});
+		}
+		return false;
+	});
+};
+
 	var partyname = opt.party && ( opt.party.shortestName + ' ' );
 	var precinct = ( opt.party && opt.party.name == 'republican' ? [
 		'<p>',
@@ -266,6 +493,8 @@ var mapplet = ! window.GBrowserIsCompatible;
 		'</p>'
 	] : [
 	] ).join('');
+	
+	var locator = Locator({ title:'Caucus Locator' });
 
 	document.write( (
 		opt.projector ? [
@@ -343,6 +572,8 @@ var mapplet = ! window.GBrowserIsCompatible;
 					'&nbsp;|&nbsp;',
 					'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				'</div>',
+				'<div>', locator.link, '</div>',
+				locator.form,
 				'<div style="margin-top:8px;">',
 					'<b>Vote results:</b>',
 					'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
@@ -351,7 +582,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 				'<div id="votesbar">',
 					'<h1 id="votestitle"></h1>',
 					'<div id="legend">',
-						'Loading&#8230;',
+						loadingIndicator,
 					'</div>',
 				'</div>',
 				'<div id="videos" style="margin-top:8px;">',
@@ -403,7 +634,10 @@ var mapplet = ! window.GBrowserIsCompatible;
 			'</table>',
 			'<div id="fullstate">',
 			'</div>'
-		] ).join('') );
+		] ).join('')
+	);
+
+locator.attach();
 
 if( 0 ) {
 	var gFeedURLs = {
@@ -427,6 +661,11 @@ counties.index( 'name' );
 //var allEventData = [];
 var eventMarkers = [];
 var icons = {};
+
+function adjustHeight() {
+	if( mapplet )
+		_IG_AdjustIFrameHeight();
+}
 
 function onEventsReady( xml ) {
 	var items = {
@@ -496,8 +735,7 @@ function onNewsReady( xml ) {
 	
 	$('#news').html( html );
 	
-	if( mapplet )
-		_IG_AdjustIFrameHeight();
+	adjustHeight();
 }
 
 function onVideoReady( xml ) {
@@ -543,8 +781,7 @@ function onVideoReady( xml ) {
 	
 	$('#videos').html( html );
 	
-	if( mapplet )
-		_IG_AdjustIFrameHeight();
+	adjustHeight();
 }
 
 function initMap() {
@@ -553,7 +790,7 @@ function initMap() {
 		//GEvent.addListener( map, 'mouseout', mousemoved.clear );
 	}
 	
-	//setTimeout( function() { $('#clicknote').show( 'slow' ); }, 1000 );
+	//setTimeout( function() { $('#clicknote').slideDown('slow'); }, 1000 );
 }
 
 function polyMethod( name, fn ) {
@@ -717,8 +954,7 @@ function showVotes( json, party ) {
 	if( json.status == 'later' ) return;
 	showState( json, party );
 	showCounties( json, party );
-	if( mapplet )
-		_IG_AdjustIFrameHeight();
+	adjustHeight();
 }
 
 function showState( json, party ) {
@@ -1029,7 +1265,7 @@ function load() {
 			$('#votestitle').html( [
 				'<a href="', party.url, '" target="_blank">', party.fullName, '</a>'
 			].join('') );
-		$('#legend').html( 'Loading&#8230;' );
+		$('#legend').html( loadingIndicator );
 		//loadScript( 'http://gigapad/iowa/server/' + q + '_results.js' );
 		//loadScript( 'http://mg.to/iowa/server/' + q + '_results.js' );
 		//if( testdata )
@@ -1040,8 +1276,7 @@ function load() {
 	
 	
 	//initControls();
-	if( mapplet )
-		_IG_AdjustIFrameHeight();
+	adjustHeight();
 }
 
 var mousemoved = function( latlng ) {
@@ -1157,8 +1392,7 @@ function showRegionNews( region ) {
 			'</div>'
 		].join('') );
 	
-	if( mapplet )
-		_IG_AdjustIFrameHeight();
+	adjustHeight();
 }
 */
 

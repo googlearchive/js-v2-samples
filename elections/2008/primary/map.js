@@ -600,6 +600,7 @@ polyMethod( 'contains', function( latlng ) {
 });
 
 function zoomToCounty( county ) {
+	// TODO: update for multiple polys
 	map.setCenter(
 	   new GLatLng( county.centroid[0], county.centroid[1] ),
 	   map.getBoundsZoomLevel( county.polygon.base.getBounds() )
@@ -947,8 +948,6 @@ function showStateTable( json, party ) {
 
 function showCounties( json, party ) {
 	counties.forEach( function( county ) {
-		var vertices = county.vertices;
-		
 		if( json ) {
 			var data = json.counties[county.name];
 			var tallies = county.tallies = data[party];
@@ -970,29 +969,30 @@ function showCounties( json, party ) {
 			}
 		}
 		
-		var pts = county.vertices;
-		var border = '#000080';
-		if( json ) {
-			county.polygon = {
-				base:
-					opt.projector ? new GPolygon( pts, border, 1, .5, color, .9 )  :
-					votes ? new GPolygon( pts, border, 1, .5, color, .7 ) :
-					new GPolygon( pts, border, 1, .5 ) //,
-				//select: new GPolygon( pts, color2, 1, .75, color2, .15 )
-			};
-		}
-		else {
-			var color = randomColor();
-			county.polygon = {
-				base: new GPolygon( pts, border, 1, .5, color, .7 )
-			};
-		}
-		map.addOverlay( county.polygon.base );
-		GEvent.addListener( county.polygon.base, 'click', function() {
-			map.openInfoWindowHtml(
-				pointLatLng( county.centroid ),
-				voteBalloon( json, county ),
-				{ maxWidth:300 } );
+		county.shapes.forEach( function( shape ) {
+			var pts = shape.vertices;
+			var border = '#000080';
+			if( json ) {
+				shape.polygon = {
+					base:
+						opt.projector ? new GPolygon( pts, border, 1, .5, color, .9 )  :
+						votes ? new GPolygon( pts, border, 1, .5, color, .7 ) :
+						new GPolygon( pts, border, 1, .5 ) //,
+					//select: new GPolygon( pts, color2, 1, .75, color2, .15 )
+				};
+			}
+			else {
+				shape.polygon = {
+					base: new GPolygon( pts, border, 1, .5, randomColor(), .7 )
+				};
+			}
+			map.addOverlay( shape.polygon.base );
+			GEvent.addListener( shape.polygon.base, 'click', function() {
+				map.openInfoWindowHtml(
+					pointLatLng( shape.centroid ),
+					voteBalloon( json, county ),
+					{ maxWidth:300 } );
+			});
 		});
 	});
 	
@@ -1049,12 +1049,15 @@ function load() {
 	makeIcons();
 	
 	counties.forEach( function( county ) {
-		var points = county.points;
-		var pts = county.vertices = [];
-		for( var i = 0, n = points.length;  i < n;  ++i ) {
-			var point = points[i];
-			pts.push( new GLatLng( point[0], point[1] ) );
-		}
+		county.shapes.forEach( function( shape ) {
+			var points = shape.points;
+			var vertices = shape.vertices = [];
+			// Old fashioned loop for speed
+			for( var i = 0, n = points.length;  i < n;  ++i ) {
+				var point = points[i];
+				vertices.push( new GLatLng( point[0], point[1] ) );
+			}
+		});
 	});
 	
 	//if( mapplet ) showVotes();
@@ -1154,19 +1157,18 @@ var mousemoved = function( latlng ) {
 	selectRegion( region );
 */
 	
-	for( var i = 0, n = counties.length;  i < n;  ++i ) {
+	// Old fashioned loops for speed
+	for( var i = 0, nI = counties.length;  i < nI;  ++i ) {
 		var county = counties[i];
-		if( county.polygon.base.contains( latlng ) ) {
-			//$('#test').css({ color: region.color });
-			break;
+		var shapes = county.shapes;
+		for( var j = 0, nJ = shapes.length;  j < nJ;  ++j ) {
+			if( shapes[j].polygon.base.contains( latlng ) ) {
+				//$('#test').css({ color: region.color });
+				$('#results').html( countyTable( county ) );
+				return;
+			}
 		}
 	}
-
-	if( i == n ) i = -1;
-	county = counties[i];
-	
-	if( county )
-		$('#results').html( countyTable( county ) );
 }
 
 function countyTable( county, party, balloon ) {

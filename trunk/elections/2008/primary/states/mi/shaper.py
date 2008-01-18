@@ -17,10 +17,8 @@ import random
 #	return strings[text] or text
 
 def randomColor():
+	def hh(): return '%02X' %( random.random() *256 )
 	return hh() + hh() + hh()
-
-def hh():
-	return '%02X' %( random.random() *256 )
 
 def getData( earth=False ):
 	filename = 'co26_d00_shp' + ['-82',''][earth] + '/co26_d00.gpx'
@@ -28,21 +26,25 @@ def getData( earth=False ):
 	xmlRoot = ET.parse( filename )
 	counties = {}
 	for xmlCounty in xmlRoot.getiterator('rte'):
-		points = []
-		for xmlPoint in xmlCounty.getiterator('rtept'):
-			points.append( [ xmlPoint.attrib['lat'].strip(), xmlPoint.attrib['lon'].strip() ] )
 		name = xmlCounty.findtext('name').strip()
 		number = xmlCounty.findtext('number').strip()
 		#print '%s County' % name
 		## Correct error in census data for Wentworth's Location
 		#if( name == "Wentworth" and number == '9' ):
 		#	name = "Wentworth's Location"
-		county = {
-			'name': name,
-			'points': points,
-			'centroid': polyCentroid( points )
-		}
-		counties[name] = county
+		if name not in counties:
+			county = {
+				'name': name,
+				'shapes': [],
+				'largest': [ 0, 0 ]
+			}
+			counties[name] = county
+		points = []
+		def attr( pt, key ): return float( pt.attrib[key].strip() )
+		for xmlPoint in xmlCounty.getiterator('rtept'):
+			points.append( [ attr(xmlPoint,'lat'), attr(xmlPoint,'lon') ] )
+		county = counties[name]
+		county['shapes'].append( polyInfo( points ) )
 	return { 'state':{}, 'counties':counties }
 
 def makeKML( earth=False ):
@@ -126,26 +128,38 @@ def makeData():
 	ctys = []
 	for name in ctyNames:
 		county = counties[name]
-		pts = []
+		shapes = []
 		#for point in county['points']:
 		#	pts.append( '[%s,%s]' %( point[0], point[1] ) )
 		#ctys.append( '{name:"%s",centroid:[%.8f,%.8f],points:[%s]}' %(
 		#	county['name'],
 		#	','.join(pts)
 		#) )
-		pts = []
-		#lats = lons = 0
-		minLat = minLon = 360
-		maxLat = maxLon = -360
-		centroid = county['centroid']
-		points = county['points']
-		for point in points:
-			nPoints += 1
-			pts.append( '[%s,%s]' %( point[0], point[1] ) )
-		ctys.append( '{name:"%s",centroid:[%.8f,%.8f],points:[%s]}' %(
+		#centroid = county['centroid']
+		for shape in county['shapes']:
+			pts = []
+			area = shape['area']
+			bounds = shape['bounds']
+			center = shape['center']
+			centroid = shape['centroid']
+			points = shape['points']
+			size = shape['size']
+			for point in points:
+				nPoints += 1
+				# TODO: refactor all this point formatting
+				pts.append( '[%s,%s]' %( point[0], point[1] ) )
+			shapes.append( '{area:%.8f,bounds:[[%.8f,%.8f],[%.8f,%.8f]],size:[%.8f,%.8f],center:[%.8f,%.8f],centroid:[%.8f,%.8f],points:[%s]}' %(
+				area,
+				bounds[0][0], bounds[0][1], 
+				bounds[1][0], bounds[1][1], 
+				size[0], size[1],
+				center[0], center[1],
+				centroid[0], centroid[1],
+				','.join(pts)
+			) )
+		ctys.append( '{name:"%s",shapes:[%s]}' %(
 			reader.fixCountyName( name ),
-			centroid[0], centroid[1],
-			','.join(pts)
+			','.join(shapes)
 		) )
 	
 	print '%d points in %d places' %( nPoints, len(ctys) )
@@ -161,8 +175,8 @@ def makeJson( party ):
 	state = data['state']
 	counties = data['counties']
 	for county in counties.itervalues():
-		del county['centroid']
-		del county['points']
+		#del county['centroid']
+		del county['shapes']
 	
 	result = {
 		'status': 'ok',
@@ -255,28 +269,41 @@ def partyName( party ):
 def formatNumber( number ):
 	return str(number)
 
-# Port of ANSI C code from the article
-# "Centroid of a Polygon"
-# by Gerard Bashein and Paul R. Detmer,
-# (gb@locke.hs.washington.edu, pdetmer@u.washington.edu)
-# in "Graphics Gems IV", Academic Press, 1994
+# Get multiple pieces of info about a polygon
+# See related code:
+# http://local.wasp.uwa.edu.au/~pbourke/geometry/polyarea/
+# http://www.efg2.com/Lab/Graphics/PolygonArea.htm
 # http://tog.acm.org/GraphicsGems/gemsiv/centroid.c
-def polyCentroid( points ):
-	def fix( pt ): return [ float(pt[0]), float(pt[1]) ]
+
+def polyInfo( points ):
 	n = len(points)
-	atmp = xtmp = ytmp = 0
-	if n < 3: return []
-	pI = fix( points[n-1] )
-	for j in xrange( 0, n ):
-		pJ = fix( points[j] )
-		ai = pI[0] * pJ[1] - pJ[0] * pI[1]
-		atmp += ai
-		xtmp += ( pJ[0] + pI[0] ) * ai
-		ytmp += ( pJ[1] + pI[1] ) * ai;
-		pI = pJ
-	area = atmp / 2;
-	if atmp == 0: return []
-	return [ xtmp / (3 * atmp), ytmp / (3 * atmp) ]
+	if n < 3: return None
+	area = cx = cy = 0
+	minX = minY = 360
+	maxX = maxY = -360
+	pt = points[n-1];  xx = pt[0];  yy = pt[1]
+	for pt in points:
+		x = pt[0];  y = pt[1]
+		# bounds
+		minX = min( x, minX );  minY = min( y, minY )
+		maxX = max( x, maxX );  maxY = max( y, maxY )
+		# area and centroid
+		a = xx * y - x * yy
+		area += a
+		cx += ( x + xx ) * a
+		cy += ( y + yy ) * a
+		# next
+		xx = x;  yy = y
+	area /= 2
+	if area == 0: return None
+	return {
+		'area': area,
+		'bounds': [ [ minX, minY ], [ maxX, maxY ] ],
+		'center': [ ( minX + maxX ) / 2, ( minY + maxY ) / 2 ],
+		'centroid': [ cx / area / 6, cy / area / 6 ],
+		'points': points,
+		'size': [ maxX - minX, maxY - minY ]
+	}
 
 def json( obj ):
 	#return sj.dumps( obj, indent=4 )
@@ -289,17 +316,17 @@ def write( name, text ):
 	f.close()
 
 def main():
-	print 'Retrieving data...'
-	reader.fetchData()
-	print 'Creating Earth KML...'
-	makeKML( True )
+	#print 'Retrieving data...'
+	#reader.fetchData()
+	#print 'Creating Earth KML...'
+	#makeKML( True )
 	print 'Creating data.js...'
 	makeData()
 	print 'Creating Maps JSON...'
 	makeJson( 'democrat' )
 	makeJson( 'republican' )
-	print 'Checking in Maps JSON...'
-	os.system( 'svn ci -m "Vote update" data.js results_democrat.js results_republican.js' )
+	#print 'Checking in Maps JSON...'
+	#os.system( 'svn ci -m "Vote update" data.js results_democrat.js results_republican.js' )
 	print 'Done!'
 
 if __name__ == "__main__":

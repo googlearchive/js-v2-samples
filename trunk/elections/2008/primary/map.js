@@ -145,28 +145,31 @@ var parties = [
 var candidates = {
 	all: [],
 	democrat: [
-		//{ name: 'biden', lastName: 'Biden', fullName: 'Joe Biden', color: '#20FF1F', feed: '' },
-		{ name: 'clinton', lastName: 'Clinton', fullName: 'Hillary Clinton', color: '#FFFA00', feed: '2jmb4ula0um5138qnfk621nagg' },
-		{ name: 'dodd', lastName: 'Dodd', fullName: 'Chris Dodd', color: '#E4Af95', feed: 'l06f7eei6qfjns5a4pd5nv6erg' },
-		//{ name: 'edwards', lastName: 'Edwards', fullName: 'John Edwards', color: '#FF1300', feed: '46uusesnavfh045mmfjje0fflo' },
-		{ name: 'gravel', lastName: 'Gravel', fullName: 'Mike Gravel', color: '#8A5C2E', feed: '47r7phlvf8e07lga3poj0ntv8g' },
-		{ name: 'kucinich', lastName: 'Kucinich', fullName: 'Dennis Kucinich', color: '#EE00B5', feed: '7c9gellom85djmbl6664s9cclc' },
-		//{ name: 'obama', lastName: 'Obama', fullName: 'Barack Obama', color: '#1700E8', feed: 'nkt5atdq7cdbes3ehdfpendpnc' },
-		//{ name: 'richardson', lastName: 'Richardson', fullName: 'Bill Richardson', color: '#336633', feed: 'mdgiev7eul12rt1lo6eohg55q0' }
-		{ name: 'uncommitted-d', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#DDDDDD', feed: '' }
+		{ 'name': 'biden', 'lastName': 'Biden', 'fullName': 'Joe Biden', 'color': '#20FF1F', 'feed': '' },
+		{ 'name': 'clinton', 'lastName': 'Clinton', 'fullName': 'Hillary Clinton', 'color': '#FFFA00', 'feed': '2jmb4ula0um5138qnfk621nagg' },
+		{ 'name': 'dodd', 'lastName': 'Dodd', 'fullName': 'Chris Dodd', 'color': '#E4Af95', 'feed': 'l06f7eei6qfjns5a4pd5nv6erg' },
+		{ 'name': 'edwards', 'lastName': 'Edwards', 'fullName': 'John Edwards', 'color': '#FF1300', 'feed': '46uusesnavfh045mmfjje0fflo' },
+		{ 'name': 'gravel', 'lastName': 'Gravel', 'fullName': 'Mike Gravel', 'color': '#8A5C2E', 'feed': '47r7phlvf8e07lga3poj0ntv8g' },
+		{ 'name': 'kucinich', 'lastName': 'Kucinich', 'fullName': 'Dennis Kucinich', 'color': '#EE00B5', 'feed': '7c9gellom85djmbl6664s9cclc' },
+		{ 'name': 'obama', 'lastName': 'Obama', 'fullName': 'Barack Obama', 'color': '#1700E8', 'feed': 'nkt5atdq7cdbes3ehdfpendpnc' },
+		{ 'name': 'richardson', 'lastName': 'Richardson', 'fullName': 'Bill Richardson', 'color': '#336633', 'feed': 'mdgiev7eul12rt1lo6eohg55q0' },
+		{ 'name': 'uncommitted-d', 'lastName': 'Uncommitted', 'fullName': 'Uncommitted', 'color': '#DDDDDD', 'feed': '' }
 	],
 	republican: [
-		{ name: 'brownback', lastName: 'Brownback', fullName: 'Sam Brownback', color: '#8080FF', feed: 'lm63qmbqunob5gbvratl1bo974' },
-		{ name: 'giuliani', lastName: 'Giuliani', fullName: 'Rudy Giuliani', color: '#336633', feed: 'g0tkl52ft6nhrlm2e6v6his400' },
-		{ name: 'huckabee', lastName: 'Huckabee', fullName: 'Mike Huckabee', color: '#1700E8', feed: 'h32i31ojgo9vvb3vnggmq1qrh8' },
-		{ name: 'hunter', lastName: 'Hunter', fullName: 'Duncan Hunter', color: '#8A5C2E', feed: '' },
-		//{ name: 'keyes', lastName: 'Keyes', fullName: 'Alan Keyes', color: '#8080FF', feed: '' },
-		{ name: 'mccain', lastName: 'McCain', fullName: 'John McCain', color: '#FFFA00', feed: 'q1du1ju69m8jecsjkhjr538kbs' },
-		{ name: 'paul', lastName: 'Paul', fullName: 'Ron Paul', color: '#E4Af95', feed: '7p20d17uil4ft2qhvattqrjdgg' },
-		{ name: 'romney', lastName: 'Romney', fullName: 'Mitt Romney', color: '#FF1300', feed: '3mv48r8us0rou62c356om8groc' },
-		{ name: 'tancredo', lastName: 'Tancredo', fullName: 'Tom Tancredo', color: '#EE00B5', feed: '' },
-		{ name: 'thompson', lastName: 'Thompson', fullName: 'Fred Thompson', color: '#20FF1F', feed: 'fhg9gjvi7459qaf0ki43ij1g78' },
-		{ name: 'uncommitted-r', lastName: 'Uncommitted', fullName: 'Uncommitted', color: '#DDDDDD', feed: '' }
+		{ 'name': 'brownback', 'lastName': 'Brownback', 'fullName': 'Sam Brownback', 'color': '#8080FF', 'feed': 'lm63qmbqunob5gbvratl1bo974' },
+		{ 'name': 'cort', 'lastName': 'Cort', 'fullName': 'Hugh Cort', 'color': '#8080FF' },
+		{ 'name': 'cox', 'lastName': 'Cox', 'fullName': 'John Cox', 'color': '#808040' },
+		{ 'name': 'fendig', 'lastName': 'Fendig', 'fullName': 'Cap Fendig', 'color': '#408080' },
+		{ 'name': 'giuliani', 'lastName': 'Giuliani', 'fullName': 'Rudy Giuliani', 'color': '#336633', 'feed': 'g0tkl52ft6nhrlm2e6v6his400' },
+		{ 'name': 'huckabee', 'lastName': 'Huckabee', 'fullName': 'Mike Huckabee', 'color': '#1700E8', 'feed': 'h32i31ojgo9vvb3vnggmq1qrh8' },
+		{ 'name': 'hunter', 'lastName': 'Hunter', 'fullName': 'Duncan Hunter', 'color': '#8A5C2E', 'feed': '' },
+		//{ 'name': 'keyes', 'lastName': 'Keyes', 'fullName': 'Alan Keyes', 'color': '#8080FF', 'feed': '' },
+		{ 'name': 'mccain', 'lastName': 'McCain', 'fullName': 'John McCain', 'color': '#FFFA00', 'feed': 'q1du1ju69m8jecsjkhjr538kbs' },
+		{ 'name': 'paul', 'lastName': 'Paul', 'fullName': 'Ron Paul', 'color': '#E4Af95', 'feed': '7p20d17uil4ft2qhvattqrjdgg' },
+		{ 'name': 'romney', 'lastName': 'Romney', 'fullName': 'Mitt Romney', 'color': '#FF1300', 'feed': '3mv48r8us0rou62c356om8groc' },
+		{ 'name': 'tancredo', 'lastName': 'Tancredo', 'fullName': 'Tom Tancredo', 'color': '#EE00B5', 'feed': '' },
+		{ 'name': 'thompson', 'lastName': 'Thompson', 'fullName': 'Fred Thompson', 'color': '#20FF1F', 'feed': 'fhg9gjvi7459qaf0ki43ij1g78' },
+		{ 'name': 'uncommitted-r', 'lastName': 'Uncommitted', 'fullName': 'Uncommitted', 'color': '#DDDDDD', 'feed': '' }
 	]
 };
 
@@ -408,7 +411,7 @@ var partyButtons = opt.party ? '' : [
 			'<table>',
 				'<tr valign="top">',
 					'<td>',
-						'<div id="map" style="width: 450px; height: 420px">',
+						'<div id="map" style="width: 450px; height: 475px">',
 						'</div>',
 					'</td>',
 					'<td valign="top" style="width:100%;">',
@@ -640,12 +643,15 @@ function initControls() {
 function zoomRegion( region ) {
 	map.closeInfoWindow();
 	if( ! region ) {
-		// Iowa:
-		//map.setCenter( new GLatLng( 41.94, -93.69 ), 7 );
-		// MI:
-		map.setCenter( new GLatLng( 44.500, -86.744 ), 6 );
-		// NH:
-		//map.setCenter( new GLatLng( 43.975, -71.628 ), 8 );
+		var state = opt.state || 'mi';
+		var where = {
+			ia: [ 41.94, -93.69, 7 ],
+			mi: [ 44.500, -86.744, 6 ],
+			nh: [ 43.975, -71.628, 8 ],
+			nv: [ 38.400, -117.100, 6 ],
+			sc: [ 33.850, -80.950, 7 ],
+		}[state];
+		map.setCenter( new GLatLng( where[0], where[1] ), where[2] );
 		//selectRegion();
 	}
 	else {
@@ -1043,7 +1049,8 @@ function load() {
 		map.enableDoubleClickZoom();
 		map.enableGoogleBar();
 		map.enableScrollWheelZoom();
-		map.addControl( new GLargeMapControl() );
+		//map.addControl( new GLargeMapControl() );
+		map.addControl( new GSmallMapControl() );
 	}
 	
 	makeIcons();

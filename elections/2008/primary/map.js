@@ -640,18 +640,47 @@ function initControls() {
 */
 }
 
+var states = {
+	ia: {
+		name: 'Iowa',
+		type: 'Caucus',
+		votesby: 'County',
+		zoom: [ 41.94, -93.69, 7 ]
+	},
+	mi: {
+		name: 'Michigan',
+		type: 'Primary',
+		votesby: 'County',
+		zoom: [ 44.500, -86.744, 6 ]
+	},
+	nh: {
+		name: 'New Hampshire',
+		type: 'Primary',
+		votesby: 'Town',
+		zoom: [ 43.975, -71.628, 8 ]
+	},
+	nv: {
+		name: 'Nevada',
+		type: 'Caucus',
+		votesby: 'County',
+		zoom: [ 38.400, -117.100, 6 ]
+	},
+	sc: {
+		name: 'South Carolina',
+		type: 'Primary',
+		votesby: 'County',
+		zoom: [ 33.850, -80.950, 7 ]
+	}
+};
+
+opt.state = opt.state || 'mi';
+var state = states[opt.state];
+
 function zoomRegion( region ) {
 	map.closeInfoWindow();
 	if( ! region ) {
-		var state = opt.state || 'mi';
-		var where = {
-			ia: [ 41.94, -93.69, 7 ],
-			mi: [ 44.500, -86.744, 6 ],
-			nh: [ 43.975, -71.628, 8 ],
-			nv: [ 38.400, -117.100, 6 ],
-			sc: [ 33.850, -80.950, 7 ],
-		}[state];
-		map.setCenter( new GLatLng( where[0], where[1] ), where[2] );
+		var zoom = state.zoom;
+		map.setCenter( new GLatLng( zoom[0], zoom[1] ), zoom[2] );
 		//selectRegion();
 	}
 	else {
@@ -1178,6 +1207,13 @@ var mousemoved = function( latlng ) {
 	}
 }
 
+function countyName( county ) {
+	var name = county.name.replace( / County$/, '' );
+	if( ! name.match(/ City/) )
+		name += ' ' + state.votesby;
+	return name + ', ' + state.name;
+}
+
 function countyTable( county, party, balloon ) {
 	//var fontsize = balloon ? 'font-size:10pt;' : '';
 	var fontsize = 'font-size:10pt;';
@@ -1226,14 +1262,14 @@ function countyTable( county, party, balloon ) {
 	
 	var wikilink = ! balloon ? '' : [
 		'<a href="http://en.wikipedia.org/wiki/',
-				( county.name + ' County, Michigan' ).replace( / /g, '_' ),
+				countyName(county).replace( / /g, '_' ),
 				'" target="_blank">',
 			'County information',
 		'</a>'
 	].join('');
 	
 	return [
-		'<div style="', fontsize, 'font-weight:bold;">', county.name, ' County, Michigan</div>',
+		'<div style="', fontsize, 'font-weight:bold;">', countyName(county), '</div>',
 		'<div>',	wikilink, '</div>',
 		'<table style="margin-top:8px;">', lines.join(''), '</table>'
 	].join('');

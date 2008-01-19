@@ -1,0 +1,371 @@
+<?xml version="1.0"?>
+<gpx>
+<bounds minlat=" 35.00208500" minlon="-120.00576544" maxlat=" 42.00220700" maxlon="-114.039628567"/>
+<name>co32_d00.shp</name>
+
+<rte><number>0</number><name>Elko</name><cmt>007</cmt>
+ <rtept lat=" 40.11689322" lon="-114.04667846"></rtept>
+ <rtept lat=" 40.12832260" lon="-115.76290149"></rtept>
+ <rtept lat=" 40.12789533" lon="-115.83500273"></rtept>
+ <rtept lat=" 40.12736125" lon="-116.00088898"></rtept>
+ <rtept lat=" 40.66635804" lon="-116.15780263"></rtept>
+ <rtept lat=" 40.99994642" lon="-116.15812308"></rtept>
+ <rtept lat=" 41.00037369" lon="-116.58677827"></rtept>
+ <rtept lat=" 41.00026687" lon="-117.01340395"></rtept>
+ <rtept lat=" 41.00026687" lon="-117.01842433"></rtept>
+ <rtept lat=" 41.99932295" lon="-117.01831752"></rtept>
+ <rtept lat=" 41.99376849" lon="-114.04176489"></rtept>
+ <rtept lat=" 40.11689322" lon="-114.04667846"></rtept>
+</rte>
+
+<rte><number>1</number><name>Humboldt</name><cmt>013</cmt>
+ <rtept lat=" 41.99932295" lon="-117.01831752"></rtept>
+ <rtept lat=" 41.00026687" lon="-117.01842433"></rtept>
+ <rtept lat=" 40.64307201" lon="-117.01863797"></rtept>
+ <rtept lat=" 40.64243111" lon="-117.24679832"></rtept>
+ <rtept lat=" 40.52610779" lon="-117.30063391"></rtept>
+ <rtept lat=" 40.68238054" lon="-117.30116799"></rtept>
+ <rtept lat=" 40.68430324" lon="-117.64436987"></rtept>
+ <rtept lat=" 40.85777347" lon="-117.64426306"></rtept>
+ <rtept lat=" 40.85798710" lon="-118.01406228"></rtept>
+ <rtept lat=" 40.85595758" lon="-118.78677389"></rtept>
+ <rtept lat=" 40.96085153" lon="-118.78666707"></rtept>
+ <rtept lat=" 40.96042426" lon="-119.30964137"></rtept>
+ <rtept lat=" 40.96042426" lon="-119.32972289"></rtept>
+ <rtept lat=" 41.04010948" lon="-119.33143196"></rtept>
+ <rtept lat=" 41.23526349" lon="-119.33111151"></rtept>
+ <rtept lat=" 41.23472941" lon="-119.30579597"></rtept>
+ <rtept lat=" 41.30586929" lon="-119.30419372"></rtept>
+ <rtept lat=" 41.41471545" lon="-119.30451417"></rtept>
+ <rtept lat=" 41.41460864" lon="-119.32342071"></rtept>
+ <rtept lat=" 41.99419575" lon="-119.32416843"></rtept>
+ <rtept lat=" 41.99932295" lon="-117.01831752"></rtept>
+</rte>
+
+<rte><number>2</number><name>Washoe</name><cmt>031</cmt>
+ <rtept lat=" 41.99419575" lon="-119.32416843"></rtept>
+ <rtept lat=" 41.41460864" lon="-119.32342071"></rtept>
+ <rtept lat=" 41.41471545" lon="-119.30451417"></rtept>
+ <rtept lat=" 41.30586929" lon="-119.30419372"></rtept>
+ <rtept lat=" 41.23472941" lon="-119.30579597"></rtept>
+ <rtept lat=" 41.23526349" lon="-119.33111151"></rtept>
+ <rtept lat=" 41.04010948" lon="-119.33143196"></rtept>
+ <rtept lat=" 40.96042426" lon="-119.32972289"></rtept>
+ <rtept lat=" 40.96042426" lon="-119.30964137"></rtept>
+ <rtept lat=" 39.99864719" lon="-119.33933639"></rtept>
+ <rtept lat=" 39.99939491" lon="-119.22514940"></rtept>
+ <rtept lat=" 39.80936810" lon="-119.20752465"></rtept>
+ <rtept lat=" 39.78661615" lon="-119.16992519"></rtept>
+ <rtept lat=" 39.63066385" lon="-119.19160897"></rtept>
+ <rtept lat=" 39.62158444" lon="-119.28368492"></rtept>
+ <rtept lat=" 39.62895479" lon="-119.28250994"></rtept>
+ <rtept lat=" 39.58729629" lon="-119.37106094"></rtept>
+ <rtept lat=" 39.56208757" lon="-119.54506525"></rtept>
+ <rtept lat=" 39.51113603" lon="-119.62443002"></rtept>
+ <rtept lat=" 39.52000181" lon="-119.69567672"></rtept>
+ <rtept lat=" 39.44747331" lon="-119.69610399"></rtept>
+ <rtept lat=" 39.44747331" lon="-119.65508639"></rtept>
+ <rtept lat=" 39.40410575" lon="-119.65711591"></rtept>
+ <rtept lat=" 39.38957868" lon="-119.68542232"></rtept>
+ <rtept lat=" 39.33157725" lon="-119.65850453"></rtept>
+ <rtept lat=" 39.25082386" lon="-119.71266057"></rtept>
+ <rtept lat=" 39.21322440" lon="-119.79790025"></rtept>
+ <rtept lat=" 39.16376830" lon="-119.87993543"></rtept>
+ <rtept lat=" 39.16558418" lon="-120.00448364"></rtept>
+ <rtept lat=" 41.99451620" lon="-119.99914281"></rtept>
+ <rtept lat=" 41.99419575" lon="-119.32416843"></rtept>
+</rte>
+
+<rte><number>3</number><name>Lander</name><cmt>015</cmt>
+ <rtept lat=" 41.00026687" lon="-117.01340395"></rtept>
+ <rtept lat=" 41.00037369" lon="-116.58677827"></rtept>
+ <rtept lat=" 39.16141833" lon="-116.60098489"></rtept>
+ <rtept lat=" 39.16344785" lon="-117.33182437"></rtept>
+ <rtept lat=" 39.09337613" lon="-117.77543390"></rtept>
+ <rtept lat=" 39.14539583" lon="-117.80683799"></rtept>
+ <rtept lat=" 39.21301077" lon="-117.71967561"></rtept>
+ <rtept lat=" 39.24558985" lon="-117.71401433"></rtept>
+ <rtept lat=" 39.36917671" lon="-117.75983867"></rtept>
+ <rtept lat=" 39.42664406" lon="-117.64597212"></rtept>
+ <rtept lat=" 39.46787529" lon="-117.65665379"></rtept>
+ <rtept lat=" 39.51797229" lon="-117.59010702"></rtept>
+ <rtept lat=" 39.53335389" lon="-117.49514702"></rtept>
+ <rtept lat=" 39.62275942" lon="-117.46149978"></rtept>
+ <rtept lat=" 39.64487047" lon="-117.48617442"></rtept>
+ <rtept lat=" 39.67915861" lon="-117.46449064"></rtept>
+ <rtept lat=" 39.76108698" lon="-117.49664245"></rtept>
+ <rtept lat=" 39.91073709" lon="-117.46598608"></rtept>
+ <rtept lat=" 40.00099716" lon="-117.54171908"></rtept>
+ <rtept lat=" 40.52610779" lon="-117.30063391"></rtept>
+ <rtept lat=" 40.64243111" lon="-117.24679832"></rtept>
+ <rtept lat=" 40.64307201" lon="-117.01863797"></rtept>
+ <rtept lat=" 41.00026687" lon="-117.01842433"></rtept>
+ <rtept lat=" 41.00026687" lon="-117.01340395"></rtept>
+</rte>
+
+<rte><number>4</number><name>Eureka</name><cmt>011</cmt>
+ <rtept lat=" 41.00037369" lon="-116.58677827"></rtept>
+ <rtept lat=" 40.99994642" lon="-116.15812308"></rtept>
+ <rtept lat=" 40.66635804" lon="-116.15780263"></rtept>
+ <rtept lat=" 40.12736125" lon="-116.00088898"></rtept>
+ <rtept lat=" 40.12789533" lon="-115.83500273"></rtept>
+ <rtept lat=" 39.98764508" lon="-115.83457546"></rtept>
+ <rtept lat=" 39.85305611" lon="-115.79483967"></rtept>
+ <rtept lat=" 39.72936243" lon="-115.83308003"></rtept>
+ <rtept lat=" 39.59349166" lon="-115.81342576"></rtept>
+ <rtept lat=" 39.47001162" lon="-115.87025222"></rtept>
+ <rtept lat=" 39.46445715" lon="-115.90763804"></rtept>
+ <rtept lat=" 39.16184560" lon="-115.90710396"></rtept>
+ <rtept lat=" 39.16141833" lon="-116.60098489"></rtept>
+ <rtept lat=" 41.00037369" lon="-116.58677827"></rtept>
+</rte>
+
+<rte><number>5</number><name>Pershing</name><cmt>027</cmt>
+ <rtept lat=" 40.85798710" lon="-118.01406228"></rtept>
+ <rtept lat=" 40.85777347" lon="-117.64426306"></rtept>
+ <rtept lat=" 40.68430324" lon="-117.64436987"></rtept>
+ <rtept lat=" 40.68238054" lon="-117.30116799"></rtept>
+ <rtept lat=" 40.52610779" lon="-117.30063391"></rtept>
+ <rtept lat=" 40.00099716" lon="-117.54171908"></rtept>
+ <rtept lat=" 40.00259941" lon="-117.94559281"></rtept>
+ <rtept lat=" 39.99939491" lon="-119.22514940"></rtept>
+ <rtept lat=" 39.99864719" lon="-119.33933639"></rtept>
+ <rtept lat=" 40.96042426" lon="-119.30964137"></rtept>
+ <rtept lat=" 40.96085153" lon="-118.78666707"></rtept>
+ <rtept lat=" 40.85595758" lon="-118.78677389"></rtept>
+ <rtept lat=" 40.85798710" lon="-118.01406228"></rtept>
+</rte>
+
+<rte><number>6</number><name>White Pine</name><cmt>033</cmt>
+ <rtept lat=" 40.12832260" lon="-115.76290149"></rtept>
+ <rtept lat=" 40.11689322" lon="-114.04667846"></rtept>
+ <rtept lat=" 38.67732530" lon="-114.04988296"></rtept>
+ <rtept lat=" 38.67753893" lon="-114.16428359"></rtept>
+ <rtept lat=" 38.67732530" lon="-115.00087155"></rtept>
+ <rtept lat=" 39.16184560" lon="-115.90710396"></rtept>
+ <rtept lat=" 39.46445715" lon="-115.90763804"></rtept>
+ <rtept lat=" 39.47001162" lon="-115.87025222"></rtept>
+ <rtept lat=" 39.59349166" lon="-115.81342576"></rtept>
+ <rtept lat=" 39.72936243" lon="-115.83308003"></rtept>
+ <rtept lat=" 39.85305611" lon="-115.79483967"></rtept>
+ <rtept lat=" 39.98764508" lon="-115.83457546"></rtept>
+ <rtept lat=" 40.12789533" lon="-115.83500273"></rtept>
+ <rtept lat=" 40.12832260" lon="-115.76290149"></rtept>
+</rte>
+
+<rte><number>7</number><name>Churchill</name><cmt>001</cmt>
+ <rtept lat=" 40.00259941" lon="-117.94559281"></rtept>
+ <rtept lat=" 40.00099716" lon="-117.54171908"></rtept>
+ <rtept lat=" 39.91073709" lon="-117.46598608"></rtept>
+ <rtept lat=" 39.76108698" lon="-117.49664245"></rtept>
+ <rtept lat=" 39.67915861" lon="-117.46449064"></rtept>
+ <rtept lat=" 39.64487047" lon="-117.48617442"></rtept>
+ <rtept lat=" 39.62275942" lon="-117.46149978"></rtept>
+ <rtept lat=" 39.53335389" lon="-117.49514702"></rtept>
+ <rtept lat=" 39.51797229" lon="-117.59010702"></rtept>
+ <rtept lat=" 39.46787529" lon="-117.65665379"></rtept>
+ <rtept lat=" 39.42664406" lon="-117.64597212"></rtept>
+ <rtept lat=" 39.36917671" lon="-117.75983867"></rtept>
+ <rtept lat=" 39.24558985" lon="-117.71401433"></rtept>
+ <rtept lat=" 39.21301077" lon="-117.71967561"></rtept>
+ <rtept lat=" 39.14539583" lon="-117.80683799"></rtept>
+ <rtept lat=" 39.09337613" lon="-117.77543390"></rtept>
+ <rtept lat=" 39.07361505" lon="-117.86515988"></rtept>
+ <rtept lat=" 39.07468322" lon="-118.75387436"></rtept>
+ <rtept lat=" 39.11206904" lon="-118.75398118"></rtept>
+ <rtept lat=" 39.11238949" lon="-118.79232835"></rtept>
+ <rtept lat=" 39.14155044" lon="-118.79275562"></rtept>
+ <rtept lat=" 39.19816326" lon="-118.89092012"></rtept>
+ <rtept lat=" 39.22775147" lon="-118.89049285"></rtept>
+ <rtept lat=" 39.38851052" lon="-119.11822594"></rtept>
+ <rtept lat=" 39.51872001" lon="-119.11758504"></rtept>
+ <rtept lat=" 39.51872001" lon="-119.09013316"></rtept>
+ <rtept lat=" 39.72241935" lon="-119.07795606"></rtept>
+ <rtept lat=" 39.73716005" lon="-119.05851543"></rtept>
+ <rtept lat=" 39.63066385" lon="-119.19160897"></rtept>
+ <rtept lat=" 39.78661615" lon="-119.16992519"></rtept>
+ <rtept lat=" 39.80936810" lon="-119.20752465"></rtept>
+ <rtept lat=" 39.99939491" lon="-119.22514940"></rtept>
+ <rtept lat=" 40.00259941" lon="-117.94559281"></rtept>
+</rte>
+
+<rte><number>8</number><name>Lyon</name><cmt>019</cmt>
+ <rtept lat=" 39.63066385" lon="-119.19160897"></rtept>
+ <rtept lat=" 39.73716005" lon="-119.05851543"></rtept>
+ <rtept lat=" 39.72241935" lon="-119.07795606"></rtept>
+ <rtept lat=" 39.51872001" lon="-119.09013316"></rtept>
+ <rtept lat=" 39.51872001" lon="-119.11758504"></rtept>
+ <rtept lat=" 39.38851052" lon="-119.11822594"></rtept>
+ <rtept lat=" 39.22775147" lon="-118.89049285"></rtept>
+ <rtept lat=" 39.19816326" lon="-118.89092012"></rtept>
+ <rtept lat=" 39.14155044" lon="-118.79275562"></rtept>
+ <rtept lat=" 39.11238949" lon="-118.79232835"></rtept>
+ <rtept lat=" 39.11206904" lon="-118.75398118"></rtept>
+ <rtept lat=" 39.07468322" lon="-118.75387436"></rtept>
+ <rtept lat=" 39.07457640" lon="-118.76156516"></rtept>
+ <rtept lat=" 39.07372187" lon="-118.92969456"></rtept>
+ <rtept lat=" 38.94329874" lon="-119.01482743"></rtept>
+ <rtept lat=" 38.85132961" lon="-119.01450698"></rtept>
+ <rtept lat=" 38.85218414" lon="-118.90213587"></rtept>
+ <rtept lat=" 38.41466317" lon="-118.90683580"></rtept>
+ <rtept lat=" 38.41476998" lon="-119.15700038"></rtept>
+ <rtept lat=" 38.53472508" lon="-119.32844109"></rtept>
+ <rtept lat=" 38.72923819" lon="-119.34991124"></rtept>
+ <rtept lat=" 38.73340404" lon="-119.40631043"></rtept>
+ <rtept lat=" 38.80913704" lon="-119.40396046"></rtept>
+ <rtept lat=" 38.88198599" lon="-119.43953041"></rtept>
+ <rtept lat=" 38.88209281" lon="-119.42190566"></rtept>
+ <rtept lat=" 38.98335498" lon="-119.40161050"></rtept>
+ <rtept lat=" 38.99072533" lon="-119.31070953"></rtept>
+ <rtept lat=" 39.08365581" lon="-119.31167088"></rtept>
+ <rtept lat=" 39.08579215" lon="-119.55094017"></rtept>
+ <rtept lat=" 39.15468888" lon="-119.57465346"></rtept>
+ <rtept lat=" 39.19549284" lon="-119.56236955"></rtept>
+ <rtept lat=" 39.19527921" lon="-119.64889103"></rtept>
+ <rtept lat=" 39.25082386" lon="-119.71266057"></rtept>
+ <rtept lat=" 39.33745216" lon="-119.47883893"></rtept>
+ <rtept lat=" 39.62158444" lon="-119.28368492"></rtept>
+ <rtept lat=" 39.63066385" lon="-119.19160897"></rtept>
+</rte>
+
+<rte><number>9</number><name>Storey</name><cmt>029</cmt>
+ <rtept lat=" 39.62895479" lon="-119.28250994"></rtept>
+ <rtept lat=" 39.62158444" lon="-119.28368492"></rtept>
+ <rtept lat=" 39.33745216" lon="-119.47883893"></rtept>
+ <rtept lat=" 39.25082386" lon="-119.71266057"></rtept>
+ <rtept lat=" 39.33157725" lon="-119.65850453"></rtept>
+ <rtept lat=" 39.38957868" lon="-119.68542232"></rtept>
+ <rtept lat=" 39.40410575" lon="-119.65711591"></rtept>
+ <rtept lat=" 39.44747331" lon="-119.65508639"></rtept>
+ <rtept lat=" 39.44747331" lon="-119.69610399"></rtept>
+ <rtept lat=" 39.52000181" lon="-119.69567672"></rtept>
+ <rtept lat=" 39.51113603" lon="-119.62443002"></rtept>
+ <rtept lat=" 39.56208757" lon="-119.54506525"></rtept>
+ <rtept lat=" 39.58729629" lon="-119.37106094"></rtept>
+ <rtept lat=" 39.62895479" lon="-119.28250994"></rtept>
+</rte>
+
+<rte><number>10</number><name>Carson City</name><cmt>510</cmt>
+ <rtept lat=" 39.21322440" lon="-119.79790025"></rtept>
+ <rtept lat=" 39.25082386" lon="-119.71266057"></rtept>
+ <rtept lat=" 39.19527921" lon="-119.64889103"></rtept>
+ <rtept lat=" 39.19549284" lon="-119.56236955"></rtept>
+ <rtept lat=" 39.15468888" lon="-119.57465346"></rtept>
+ <rtept lat=" 39.08579215" lon="-119.55094017"></rtept>
+ <rtept lat=" 39.08493761" lon="-119.75207591"></rtept>
+ <rtept lat=" 39.11399174" lon="-119.76147577"></rtept>
+ <rtept lat=" 39.11270994" lon="-120.00341547"></rtept>
+ <rtept lat=" 39.16558418" lon="-120.00448364"></rtept>
+ <rtept lat=" 39.16376830" lon="-119.87993543"></rtept>
+ <rtept lat=" 39.21322440" lon="-119.79790025"></rtept>
+</rte>
+
+<rte><number>11</number><name>Nye</name><cmt>023</cmt>
+ <rtept lat=" 39.16141833" lon="-116.60098489"></rtept>
+ <rtept lat=" 39.16184560" lon="-115.90710396"></rtept>
+ <rtept lat=" 38.67732530" lon="-115.00087155"></rtept>
+ <rtept lat=" 38.05073886" lon="-115.00087155"></rtept>
+ <rtept lat=" 38.05052523" lon="-115.89385870"></rtept>
+ <rtept lat=" 36.84328351" lon="-115.89449960"></rtept>
+ <rtept lat=" 36.00413194" lon="-115.89834500"></rtept>
+ <rtept lat=" 36.97124985" lon="-117.16604494"></rtept>
+ <rtept lat=" 38.00171002" lon="-117.16561767"></rtept>
+ <rtept lat=" 38.47383959" lon="-117.69104875"></rtept>
+ <rtept lat=" 38.91905136" lon="-118.19618466"></rtept>
+ <rtept lat=" 38.99991156" lon="-118.19629148"></rtept>
+ <rtept lat=" 39.07361505" lon="-117.86515988"></rtept>
+ <rtept lat=" 39.09337613" lon="-117.77543390"></rtept>
+ <rtept lat=" 39.16344785" lon="-117.33182437"></rtept>
+ <rtept lat=" 39.16141833" lon="-116.60098489"></rtept>
+</rte>
+
+<rte><number>12</number><name>Douglas</name><cmt>005</cmt>
+ <rtept lat=" 39.11399174" lon="-119.76147577"></rtept>
+ <rtept lat=" 39.08493761" lon="-119.75207591"></rtept>
+ <rtept lat=" 39.08579215" lon="-119.55094017"></rtept>
+ <rtept lat=" 39.08365581" lon="-119.31167088"></rtept>
+ <rtept lat=" 38.99072533" lon="-119.31070953"></rtept>
+ <rtept lat=" 38.98335498" lon="-119.40161050"></rtept>
+ <rtept lat=" 38.88209281" lon="-119.42190566"></rtept>
+ <rtept lat=" 38.88198599" lon="-119.43953041"></rtept>
+ <rtept lat=" 38.80913704" lon="-119.40396046"></rtept>
+ <rtept lat=" 38.73340404" lon="-119.40631043"></rtept>
+ <rtept lat=" 38.72923819" lon="-119.34991124"></rtept>
+ <rtept lat=" 38.53472508" lon="-119.32844109"></rtept>
+ <rtept lat=" 38.99959111" lon="-120.00106551"></rtept>
+ <rtept lat=" 39.11270994" lon="-120.00341547"></rtept>
+ <rtept lat=" 39.11399174" lon="-119.76147577"></rtept>
+</rte>
+
+<rte><number>13</number><name>Mineral</name><cmt>021</cmt>
+ <rtept lat=" 39.07457640" lon="-118.76156516"></rtept>
+ <rtept lat=" 39.07468322" lon="-118.75387436"></rtept>
+ <rtept lat=" 39.07361505" lon="-117.86515988"></rtept>
+ <rtept lat=" 38.99991156" lon="-118.19629148"></rtept>
+ <rtept lat=" 38.91905136" lon="-118.19618466"></rtept>
+ <rtept lat=" 38.47383959" lon="-117.69104875"></rtept>
+ <rtept lat=" 37.89371839" lon="-118.35149606"></rtept>
+ <rtept lat=" 37.89628199" lon="-118.42776315"></rtept>
+ <rtept lat=" 38.41476998" lon="-119.15700038"></rtept>
+ <rtept lat=" 38.41466317" lon="-118.90683580"></rtept>
+ <rtept lat=" 38.85218414" lon="-118.90213587"></rtept>
+ <rtept lat=" 38.85132961" lon="-119.01450698"></rtept>
+ <rtept lat=" 38.94329874" lon="-119.01482743"></rtept>
+ <rtept lat=" 39.07372187" lon="-118.92969456"></rtept>
+ <rtept lat=" 39.07457640" lon="-118.76156516"></rtept>
+</rte>
+
+<rte><number>14</number><name>Lincoln</name><cmt>017</cmt>
+ <rtept lat=" 38.67753893" lon="-114.16428359"></rtept>
+ <rtept lat=" 38.67732530" lon="-114.04988296"></rtept>
+ <rtept lat=" 36.84317669" lon="-114.05063068"></rtept>
+ <rtept lat=" 36.84317669" lon="-114.08214159"></rtept>
+ <rtept lat=" 36.84328351" lon="-115.89449960"></rtept>
+ <rtept lat=" 38.05052523" lon="-115.89385870"></rtept>
+ <rtept lat=" 38.05073886" lon="-115.00087155"></rtept>
+ <rtept lat=" 38.67732530" lon="-115.00087155"></rtept>
+ <rtept lat=" 38.67753893" lon="-114.16428359"></rtept>
+</rte>
+
+<rte><number>15</number><name>Esmeralda</name><cmt>009</cmt>
+ <rtept lat=" 38.47383959" lon="-117.69104875"></rtept>
+ <rtept lat=" 38.00171002" lon="-117.16561767"></rtept>
+ <rtept lat=" 36.97124985" lon="-117.16604494"></rtept>
+ <rtept lat=" 37.89628199" lon="-118.42776315"></rtept>
+ <rtept lat=" 37.89371839" lon="-118.35149606"></rtept>
+ <rtept lat=" 38.47383959" lon="-117.69104875"></rtept>
+</rte>
+
+<rte><number>16</number><name>Clark</name><cmt>003</cmt>
+ <rtept lat=" 36.84317669" lon="-114.08214159"></rtept>
+ <rtept lat=" 36.84317669" lon="-114.05063068"></rtept>
+ <rtept lat=" 36.19405194" lon="-114.04678528"></rtept>
+ <rtept lat=" 36.11158949" lon="-114.12315918"></rtept>
+ <rtept lat=" 36.02805887" lon="-114.14815427"></rtept>
+ <rtept lat=" 36.02015444" lon="-114.25262095"></rtept>
+ <rtept lat=" 36.05946297" lon="-114.31553595"></rtept>
+ <rtept lat=" 36.08242855" lon="-114.30837924"></rtept>
+ <rtept lat=" 36.14310040" lon="-114.37214878"></rtept>
+ <rtept lat=" 36.14737307" lon="-114.40547557"></rtept>
+ <rtept lat=" 36.12600974" lon="-114.44659998"></rtept>
+ <rtept lat=" 36.12878697" lon="-114.50214463"></rtept>
+ <rtept lat=" 36.15100483" lon="-114.51175813"></rtept>
+ <rtept lat=" 36.14235268" lon="-114.63171322"></rtept>
+ <rtept lat=" 36.08712848" lon="-114.75562053"></rtept>
+ <rtept lat=" 35.94388736" lon="-114.73115952"></rtept>
+ <rtept lat=" 35.87477699" lon="-114.67743075"></rtept>
+ <rtept lat=" 35.80620070" lon="-114.71214616"></rtept>
+ <rtept lat=" 35.65142338" lon="-114.68939421"></rtept>
+ <rtept lat=" 35.61083306" lon="-114.65339700"></rtept>
+ <rtept lat=" 35.48970298" lon="-114.67764438"></rtept>
+ <rtept lat=" 35.35361858" lon="-114.60426135"></rtept>
+ <rtept lat=" 35.18345966" lon="-114.56922549"></rtept>
+ <rtept lat=" 35.12876954" lon="-114.57851853"></rtept>
+ <rtept lat=" 35.10185175" lon="-114.64677437"></rtept>
+ <rtept lat=" 35.06863177" lon="-114.60287273"></rtept>
+ <rtept lat=" 35.00208500" lon="-114.63299502"></rtept>
+ <rtept lat=" 36.00413194" lon="-115.89834500"></rtept>
+ <rtept lat=" 36.84328351" lon="-115.89449960"></rtept>
+ <rtept lat=" 36.84317669" lon="-114.08214159"></rtept>
+</rte>
+</gpx>

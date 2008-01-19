@@ -325,8 +325,9 @@ def main():
 	print 'Creating Maps JSON...'
 	#makeJson( 'democrat' )
 	makeJson( 'republican' )
-	#print 'Checking in Maps JSON...'
+	print 'Checking in Maps JSON...'
 	#os.system( 'svn ci -m "Vote update" data.js results_democrat.js results_republican.js' )
+	os.system( 'svn ci -m "Vote update" data.js results_republican.js' )
 	print 'Done!'
 
 if __name__ == "__main__":

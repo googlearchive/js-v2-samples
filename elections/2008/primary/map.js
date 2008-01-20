@@ -134,6 +134,11 @@ String.prototype.words = function( fun ) {
 	this.split(' ').forEach( fun );
 };
 
+function percent( n ) {
+	n = Math.round( n * 100 );
+	return n ? n + '%' : '';
+}
+
 var parties = [
 	{ name: 'democrat', shortName: 'Democratic', fullName: 'Democratic Party', url:'http://www.iowademocrats.org/' },
 	{ name: 'republican', shortName: 'Republican', fullName: 'Republican Party', url:'http://www.iowagop.net/' }
@@ -905,7 +910,7 @@ function showStateSidebar( json, party ) {
 					'</td>',
 					'<td class="legendpercenttd">',
 						'<div class="legendpercent">',
-							Math.round( tally.votes / state.total * 100 ), '%',
+							percent( tally.votes / state.total ),
 						'</div>',
 					'</td>',
 					'<td class="legendboxtd">',
@@ -1233,7 +1238,7 @@ function countyTable( county, party, balloon ) {
 					'</td>',
 					'<td style="', fontsize, 'text-align:right; width:2em; padding-right:', pad, ';">',
 						'<div>',
-							Math.round( tally.votes / county.total * 100 ), '%',
+							percent( tally.votes / county.total ),
 						'</div>',
 					'</td>',
 					'<td style="width:1%;">',

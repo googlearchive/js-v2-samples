@@ -77,6 +77,7 @@ def setPrecincts( county, row ):
 	}
 
 def setVotes( header, county, row, col, party ):
+	if row[col] == '': return
 	tally = []
 	total = 0
 	for candidate in candidates[party]:

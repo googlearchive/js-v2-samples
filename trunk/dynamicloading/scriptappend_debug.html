@@ -9,15 +9,23 @@
     var map;
 
     function loadMap() {
-      map = new GMap2(document.getElementById("map"));
+        map = new GMap2(document.getElementById("map"));
+    }
+
+    function setupMap() {
       map.setCenter(new GLatLng(37.4419, -122.1419), 6);
       map.addOverlay(new GMarker(map.getCenter()));
     }
+ 
+    function doAll() {
+      loadMap();
+      setupMap();
+    }
 
-    function loadScript() {
+    function loadScript(callbackName) {
       var script = document.createElement("script");
       script.type = "text/javascript";
-      script.src = "http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=loadMap";
+      script.src = "http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=" + callbackName;
       document.body.appendChild(script);
     }
 
@@ -26,6 +34,9 @@
   </head>
   <body onload="">
     <div id="map" style="width: 500px; height: 300px"></div>
-    <input type="button" value="load script + map" onclick="loadScript();"/>
+    <input type="button" value="load map script" onclick="loadScript('loadMap');"/>
+    <input type="button" value="set center and stuff" onclick="setupMap();"/>
+    <Br>OR<br/>
+    <input type="button" value="load map script & set center" onclick="loadScript('doAll');"/>
   </body>
 </html>

@@ -40,7 +40,11 @@
 	
 	var timer, last = { x:0, y:0 }, cur = { x:0, y:0 }, functions = [];
 	
-	hoverize = function( fn ) {
+	hoverize = function( fn, fast ) {
+		
+		function now() {
+			fast && fast.apply( null, args );
+		}
 		
 		function fire() {
 			clear();
@@ -55,11 +59,13 @@
 			
 			now: function() {
 				args = arguments;
+				now();
 				fire();
 			},
 			
 			hover: function() {
 				args = arguments;
+				now();
 				start();
 			}
 		};

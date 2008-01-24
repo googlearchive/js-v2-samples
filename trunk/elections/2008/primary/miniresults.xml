@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Module>
+<ModulePrefs
+	title="Primary Election Results from Google"
+	description="Live election results for the 2008 primaries."
+	category="politics"
+	thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/miniresults-thumb.png"
+	screenshot="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/miniresults-screenshot.png"
+	author="Michael Geary"
+	author_affiliation="Google, Inc."
+	author_email="mapplet.feedback@mg.to"
+	author_location="San Jose, CA"
+	height="352"
+	scrolling="false"
+>
+	<Require feature="dynamic-height"/>
+	<Require feature="flash" />
+	<Require feature="minimessage"/>
+	<Require feature="setprefs"/>
+</ModulePrefs>
+<UserPref name='miniresultsprefs' default_value='' datatype="hidden"/>
+<Content type="html">
+<![CDATA[
+
+<script type="text/javascript" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/miniresults.js">
+</script>
+
+]]>
+</Content>
+</Module>

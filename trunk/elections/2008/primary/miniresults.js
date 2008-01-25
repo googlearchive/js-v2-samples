@@ -56,6 +56,11 @@ function S() {
 	return Array.prototype.join.call( arguments, '' );
 };
 
+function percent( n ) {
+	n = Math.round( n * 100 );
+	return n ? n + '%' : '';
+}
+
 function formatNumber( nStr ) {
 	nStr += '';
 	x = nStr.split('.');
@@ -168,9 +173,10 @@ var candidates = {
 };
 
 var preloadCandidates = candidates.all.map( function( candidate ) {
-	var img = new Image( 16, 16 );
-	img.src = imgUrl( candidate.name );
-	return img;
+	//var img = new Image( 16, 16 );
+	//img.src = imgUrl( candidate.name );
+	//return img;
+	return _IG_GetImage( imgUrl(candidate.name) );
 });
 
 var candidateNameList = [];
@@ -186,7 +192,7 @@ parties.forEach( function( party ) {
 
 candidates.all.index( 'name' );
 
-var reCandidates = new RegExp( candidateNameList.join('|'), 'g' );
+//var reCandidates = new RegExp( candidateNameList.join('|'), 'g' );
 
 function imgUrl( name ) {
 	return imgBaseUrl + name + '.png';
@@ -215,7 +221,7 @@ document.write(
 				formatNumber( candidate.votes ),
 			'</td>',
 			'<td class="icon">',
-				'<img class="favicon" src="', imgUrl(candidate.name), '" />',
+				'<img class="favicon" src="', _IG_GetImageUrl( imgUrl(candidate.name) ), '" />',
 			'</td>',
 			'<td>',
 				candidates.all.by.name[candidate.name].lastName,
@@ -255,6 +261,63 @@ document.write(
 			}).join(''),
 		'</table>'
 	);
+	
+	//function col( state, partyname, second ) {
+	//	var total = state[partyname].total;
+	//	var candidate = state[partyname][partyname][0];
+	//	return ! second ? S(
+	//		'<td class="icon">',
+	//			'<img class="favicon" src="', _IG_GetImageUrl( imgUrl(candidate.name) ), '" />',
+	//		'</td>',
+	//		'<td>',
+	//			candidates.all.by.name[candidate.name].lastName,
+	//		'</td>'
+	//	) : S(
+	//		'<td class="percent">',
+	//			percent( candidate.votes / total ),
+	//		'</td>',
+	//		'<td class="votes">',
+	//			formatNumber( candidate.votes ),
+	//		'</td>'
+	//	);
+	//}
+	//
+	//var odd;
+	//document.write(
+	//	'<table>',
+	//		'<tr>',
+	//			'<td colspan="2">',
+	//			'</td>',
+	//			'<td class="party" colspan="2">',
+	//				'Democratic',
+	//			'</td>',
+	//			'<td class="party" colspan="2">',
+	//				'Republican',
+	//			'</td>',
+	//		'</tr>',
+	//		states.map( function( state ) {
+	//			if( ! state.democrat  &&  ! state.republican ) return '';
+	//			odd = ! odd;
+	//			return S(
+	//				'<tr class="', odd ? 'odd' : 'even', '">',
+	//					'<td class="expander" rowspan="2">',
+	//						'<div>',
+	//						'</div>',
+	//					'</td>',
+	//					'<td class="state" rowspan="2">',
+	//						state.abbr.toUpperCase(), '&nbsp;',
+	//					'</td>',
+	//					col( state, 'democrat' ),
+	//					col( state, 'republican' ),
+	//				'</tr>',
+	//				'<tr class="', odd ? 'odd' : 'even', '">',
+	//					col( state, 'democrat', true ),
+	//					col( state, 'republican', true ),
+	//				'</tr>'
+	//			);
+	//		}).join(''),
+	//	'</table>'
+	//);
 	
 })();
 

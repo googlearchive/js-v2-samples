@@ -166,11 +166,12 @@ var candidates = {
 		{ 'name': 'uncommitted-r', 'lastName': 'Uncommitted', 'fullName': 'Uncommitted', 'color': '#DDDDDD', 'feed': '' }
 	]
 };
-//var preloadCandidates = candidates.all.forEach( function( candidate ) {
-//	var img = new Image( 16, 16 );
-//	img.src = imgUrl( candidate.name );
-//	return img;
-//});
+
+var preloadCandidates = candidates.all.map( function( candidate ) {
+	var img = new Image( 16, 16 );
+	img.src = imgUrl( candidate.name );
+	return img;
+});
 
 var candidateNameList = [];
 parties.forEach( function( party ) {
@@ -256,3 +257,11 @@ document.write(
 	);
 	
 })();
+
+document.write(
+	'<div>',
+		'<a href="http://maps.google.com/decision2008">',
+			'Complete results and election map',
+		'</a>',
+	'</div>'
+);

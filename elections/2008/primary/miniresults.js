@@ -97,8 +97,10 @@ var states = [
 	{ 'abbr': 'md', 'name': 'Maryland' },
 	{ 'abbr': 'ma', 'name': 'Massachusetts' },
 	{ 'abbr': 'mi', 'name': 'Michigan',
-		"democrat":{"total":592798,"precincts":{"total":"5385","reporting":"5385"},"democrat":[{"votes":328151,"name":"clinton"},{"votes":236723,"name":"uncommitted-d"},{"votes":21708,"name":"kucinich"},{"votes":3853,"name":"dodd"},{"votes":2363,"name":"gravel"}]},
-		"republican":{"republican":[{"votes":337847,"name":"romney"},{"votes":257521,"name":"mccain"},{"votes":139699,"name":"huckabee"},{"votes":54434,"name":"paul"},{"votes":32135,"name":"thompson"},{"votes":24706,"name":"giuliani"},{"votes":17971,"name":"uncommitted-r"},{"votes":2823,"name":"hunter"},{"votes":458,"name":"tancredo"},{"votes":354,"name":"brownback"}],"total":867948,"precincts":{"total":"5385","reporting":"5385"}}
+		'results': {
+			"democrat":{"total":592798,"precincts":{"total":"5385","reporting":"5385"},"democrat":[{"votes":328151,"name":"clinton"},{"votes":236723,"name":"uncommitted-d"},{"votes":21708,"name":"kucinich"},{"votes":3853,"name":"dodd"},{"votes":2363,"name":"gravel"}]},
+			"republican":{"republican":[{"votes":337847,"name":"romney"},{"votes":257521,"name":"mccain"},{"votes":139699,"name":"huckabee"},{"votes":54434,"name":"paul"},{"votes":32135,"name":"thompson"},{"votes":24706,"name":"giuliani"},{"votes":17971,"name":"uncommitted-r"},{"votes":2823,"name":"hunter"},{"votes":458,"name":"tancredo"},{"votes":354,"name":"brownback"}],"total":867948,"precincts":{"total":"5385","reporting":"5385"}}
+		}
 	},
 	{ 'abbr': 'mn', 'name': 'Minnesota' },
 	{ 'abbr': 'ms', 'name': 'Mississippi' },
@@ -106,8 +108,10 @@ var states = [
 	{ 'abbr': 'mt', 'name': 'Montana' },
 	{ 'abbr': 'ne', 'name': 'Nebraska' },
 	{ 'abbr': 'nv', 'name': 'Nevada',
-		"democrat":{"total":10560,"precincts":{"total":"1797","reporting":"1762"},"democrat":[{"votes":5355,"name":"clinton"},{"votes":4773,"name":"obama"},{"votes":396,"name":"edwards"},{"votes":31,"name":"uncommitted-d"},{"votes":5,"name":"kucinich"}]},
-		"republican":{"republican":[{"votes":22649,"name":"romney"},{"votes":6087,"name":"paul"},{"votes":5651,"name":"mccain"},{"votes":3616,"name":"huckabee"},{"votes":3521,"name":"thompson"},{"votes":1910,"name":"giuliani"},{"votes":890,"name":"hunter"}],"total":44324,"precincts":{"total":"1797","reporting":"1797"}}
+		'results': {
+			"democrat":{"total":10560,"precincts":{"total":"1797","reporting":"1762"},"democrat":[{"votes":5355,"name":"clinton"},{"votes":4773,"name":"obama"},{"votes":396,"name":"edwards"},{"votes":31,"name":"uncommitted-d"},{"votes":5,"name":"kucinich"}]},
+			"republican":{"republican":[{"votes":22649,"name":"romney"},{"votes":6087,"name":"paul"},{"votes":5651,"name":"mccain"},{"votes":3616,"name":"huckabee"},{"votes":3521,"name":"thompson"},{"votes":1910,"name":"giuliani"},{"votes":890,"name":"hunter"}],"total":44324,"precincts":{"total":"1797","reporting":"1797"}}
+		}
 	},
 	{ 'abbr': 'nh', 'name': 'New Hampshire' },
 	{ 'abbr': 'nj', 'name': 'New Jersey' },
@@ -121,8 +125,9 @@ var states = [
 	{ 'abbr': 'pa', 'name': 'Pennsylvania' },
 	{ 'abbr': 'ri', 'name': 'Rhode Island' },
 	{ 'abbr': 'sc', 'name': 'South Carolina',
-		"democrat":{"total":241010,"precincts":{"total":"2259","reporting":"2259"},"democrat":[{"votes":103158,"name":"kucinich"},{"votes":93751,"name":"uncommitted-d"},{"votes":16689,"name":"gravel"},{"votes":14623,"name":"clinton"},{"votes":12789,"name":"dodd"}]},
-		"republican":{"republican":[{"votes":143224,"name":"mccain"},{"votes":128908,"name":"huckabee"},{"votes":67897,"name":"thompson"},{"votes":64970,"name":"romney"},{"votes":15773,"name":"paul"},{"votes":9112,"name":"giuliani"},{"votes":1035,"name":"hunter"},{"votes":115,"name":"tancredo"},{"votes":83,"name":"cox"},{"votes":56,"name":"cort"},{"votes":23,"name":"fendig"}],"total":431196,"precincts":{"total":"2259","reporting":"2249"}}
+		'results': {
+			"republican":{"republican":[{"votes":143224,"name":"mccain"},{"votes":128908,"name":"huckabee"},{"votes":67897,"name":"thompson"},{"votes":64970,"name":"romney"},{"votes":15773,"name":"paul"},{"votes":9112,"name":"giuliani"},{"votes":1035,"name":"hunter"},{"votes":115,"name":"tancredo"},{"votes":83,"name":"cox"},{"votes":56,"name":"cort"},{"votes":23,"name":"fendig"}],"total":431196,"precincts":{"total":"2259","reporting":"2249"}}
+		}
 	},
 	{ 'abbr': 'sd', 'name': 'South Dakota' },
 	{ 'abbr': 'tn', 'name': 'Tennessee' },
@@ -215,7 +220,9 @@ document.write(
 (function() {
 	
 	function col( state, partyname ) {
-		var candidate = state[partyname][partyname][0];
+		var results = state.results[partyname];
+		if( ! results ) return '<td colspan="3"></td>';
+		var candidate = results[partyname][0];
 		return S(
 			'<td class="votes">',
 				formatNumber( candidate.votes ),
@@ -243,7 +250,7 @@ document.write(
 				'</td>',
 			'</tr>',
 			states.map( function( state ) {
-				if( ! state.democrat  &&  ! state.republican ) return '';
+				if( ! state.results ) return '';
 				odd = ! odd;
 				return S(
 					'<tr class="', odd ? 'odd' : 'even', '">',

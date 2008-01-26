@@ -89,7 +89,12 @@ var states = [
 	{ 'abbr': 'id', 'name': 'Idaho' },
 	{ 'abbr': 'il', 'name': 'Illinois' },
 	{ 'abbr': 'in', 'name': 'Indiana' },
-	{ 'abbr': 'ia', 'name': 'Iowa' },
+	{ 'abbr': 'ia', 'name': 'Iowa',
+		'results': {
+			"democrat":{"precincts":{"total":1781,"reporting":1772},"total":13420,"democrat":[{"votes":4688,"name":"obama"},{"votes":4194,"name":"edwards"},{"votes":4089,"name":"clinton"},{"votes":298,"name":"richardson"},{"votes":147,"name":"biden"},{"votes":4,"name":"dodd"},{"votes":0,"name":"kucinich"},{"votes":0,"name":"gravel"}]},
+			"republican":{"precincts":{"total":1781,"reporting":1781},"total":118696,"republican":[{"votes":40841,"name":"huckabee"},{"votes":29949,"name":"romney"},{"votes":15904,"name":"thompson"},{"votes":15559,"name":"mccain"},{"votes":11817,"name":"paul"},{"votes":4097,"name":"giuliani"},{"votes":524,"name":"hunter"},{"votes":5,"name":"tancredo"}]}
+		}
+	},
 	{ 'abbr': 'ks', 'name': 'Kansas' },
 	{ 'abbr': 'ky', 'name': 'Kentucky' },
 	{ 'abbr': 'la', 'name': 'Louisiana' },
@@ -211,80 +216,28 @@ document.write(
 		'tr.odd { background-color: #F0F0F0; }',
 		'.expander { vertical-align: center; }',
 		'.expander div { width: 12px; height: 12px; margin-top: 3px; background-image: url(http://img0.gmodules.com/ig/images/max_min_dark_blue.gif) }',
-		'td.party { font-weight: bold; text-align: center; }',
+		'td.party { font-weight: bold; }',
 		'td.state { font-weight: bold; width: 1%; }',
-		'.votes { text-align: right; }',
+		'.votes { text-align: center; padding-right:16px; }',
+		'.favicon { margin-top:2px; }',
 	'</style>'
 );
 
 (function() {
 	
-	function col( state, partyname ) {
-		var results = state.results[partyname];
-		if( ! results ) return '<td colspan="3"></td>';
-		var candidate = results[partyname][0];
-		return S(
-			'<td class="votes">',
-				formatNumber( candidate.votes ),
-			'</td>',
-			'<td class="icon">',
-				'<img class="favicon" src="', _IG_GetImageUrl( imgUrl(candidate.name) ), '" />',
-			'</td>',
-			'<td>',
-				candidates.all.by.name[candidate.name].lastName,
-			'</td>'
-		);
-	}
-	
-	var odd;
-	document.write(
-		'<table>',
-			'<tr>',
-				'<td colspan="2">',
-				'</td>',
-				'<td class="party" colspan="3">',
-					'Democratic',
-				'</td>',
-				'<td class="party" colspan="3">',
-					'Republican',
-				'</td>',
-			'</tr>',
-			states.map( function( state ) {
-				if( ! state.results ) return '';
-				odd = ! odd;
-				return S(
-					'<tr class="', odd ? 'odd' : 'even', '">',
-						'<td class="expander">',
-							'<div>',
-							'</div>',
-						'</td>',
-						'<td class="state">',
-							state.abbr.toUpperCase(), '&nbsp;',
-						'</td>',
-						col( state, 'democrat' ),
-						col( state, 'republican' ),
-					'</tr>'
-				);
-			}).join(''),
-		'</table>'
-	);
-	
-	//function col( state, partyname, second ) {
-	//	var total = state[partyname].total;
-	//	var candidate = state[partyname][partyname][0];
-	//	return ! second ? S(
+	//function col( state, partyname ) {
+	//	var results = state.results[partyname];
+	//	if( ! results ) return '<td colspan="3"></td>';
+	//	var candidate = results[partyname][0];
+	//	return S(
+	//		'<td class="votes">',
+	//			formatNumber( candidate.votes ),
+	//		'</td>',
 	//		'<td class="icon">',
 	//			'<img class="favicon" src="', _IG_GetImageUrl( imgUrl(candidate.name) ), '" />',
 	//		'</td>',
 	//		'<td>',
 	//			candidates.all.by.name[candidate.name].lastName,
-	//		'</td>'
-	//	) : S(
-	//		'<td class="percent">',
-	//			percent( candidate.votes / total ),
-	//		'</td>',
-	//		'<td class="votes">',
-	//			formatNumber( candidate.votes ),
 	//		'</td>'
 	//	);
 	//}
@@ -295,36 +248,87 @@ document.write(
 	//		'<tr>',
 	//			'<td colspan="2">',
 	//			'</td>',
-	//			'<td class="party" colspan="2">',
+	//			'<td class="party" colspan="3">',
 	//				'Democratic',
 	//			'</td>',
-	//			'<td class="party" colspan="2">',
+	//			'<td class="party" colspan="3">',
 	//				'Republican',
 	//			'</td>',
 	//		'</tr>',
 	//		states.map( function( state ) {
-	//			if( ! state.democrat  &&  ! state.republican ) return '';
+	//			if( ! state.results ) return '';
 	//			odd = ! odd;
 	//			return S(
 	//				'<tr class="', odd ? 'odd' : 'even', '">',
-	//					'<td class="expander" rowspan="2">',
+	//					'<td class="expander">',
 	//						'<div>',
 	//						'</div>',
 	//					'</td>',
-	//					'<td class="state" rowspan="2">',
+	//					'<td class="state">',
 	//						state.abbr.toUpperCase(), '&nbsp;',
 	//					'</td>',
 	//					col( state, 'democrat' ),
 	//					col( state, 'republican' ),
-	//				'</tr>',
-	//				'<tr class="', odd ? 'odd' : 'even', '">',
-	//					col( state, 'democrat', true ),
-	//					col( state, 'republican', true ),
 	//				'</tr>'
 	//			);
 	//		}).join(''),
 	//	'</table>'
 	//);
+	
+	function col( state, partyname, second ) {
+		var results = state.results[partyname];
+		if( ! results ) return '<td colspan="2"></td>';
+		var total = results.total;
+		var candidate = results[partyname][0];
+		return ! second ? S(
+			'<td class="icon">',
+				'<img class="favicon" src="', _IG_GetImageUrl( imgUrl(candidate.name) ), '" />',
+			'</td>',
+			'<td>',
+				candidates.all.by.name[candidate.name].lastName,
+			'</td>'
+		) : S(
+			'<td class="percent">',
+				percent( candidate.votes / total ),
+			'</td>',
+			'<td class="votes">',
+				formatNumber( candidate.votes ),
+			'</td>'
+		);
+	}
+
+	var odd;
+	document.write(
+		'<table cellspacing="0">',
+			'<tr>',
+				'<td>',
+				'</td>',
+				'<td class="party" colspan="2">',
+					'Democratic',
+				'</td>',
+				'<td class="party" colspan="2">',
+					'Republican',
+				'</td>',
+			'</tr>',
+			states.map( function( state ) {
+				if( ! state.results ) return '';
+				odd = ! odd;
+				return S(
+					'<tr class="', odd ? 'odd' : 'even', '">',
+						'<td class="state" rowspan="2">',
+							state.abbr.toUpperCase(), '&nbsp;',
+						'</td>',
+						col( state, 'democrat' ),
+						col( state, 'republican' ),
+					'</tr>',
+					'<tr class="', odd ? 'odd' : 'even', '">',
+						col( state, 'democrat', true ),
+						col( state, 'republican', true ),
+					'</tr>'
+				);
+			}).join(''),
+		'</table>'
+	);
 	
 })();
 
@@ -335,3 +339,4 @@ document.write(
 		'</a>',
 	'</div>'
 );
+

@@ -1,7 +1,5 @@
 var imgBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/';
 
-var prefs = new _IG_Prefs();
-var useTestData = prefs.getBool('testdata');
 
 if( ! Array.prototype.forEach ) {
 	Array.prototype.forEach = function( fun /*, thisp*/ ) {
@@ -84,68 +82,68 @@ var states = [
 	{ 'abbr': 'co', 'name': 'Colorado' },
 	{ 'abbr': 'ct', 'name': 'Connecticut' },
 	{ 'abbr': 'de', 'name': 'Delaware' },
-	//{ 'abbr': 'dc', 'name': 'District Of Columbia' },
-	//{ 'abbr': 'fl', 'name': 'Florida' },
+	{ 'abbr': 'dc', 'name': 'District Of Columbia' },
+	{ 'abbr': 'fl', 'name': 'Florida' },
 	{ 'abbr': 'ga', 'name': 'Georgia' },
-	//{ 'abbr': 'hi', 'name': 'Hawaii' },
+	{ 'abbr': 'hi', 'name': 'Hawaii' },
 	{ 'abbr': 'id', 'name': 'Idaho' },
 	{ 'abbr': 'il', 'name': 'Illinois' },
-	//{ 'abbr': 'in', 'name': 'Indiana' },
-	//{ 'abbr': 'ia', 'name': 'Iowa',
-	//	'results': {
-	//		"democrat":{"precincts":{"total":1781,"reporting":1772},"total":13420,"democrat":[{"votes":4688,"name":"obama"},{"votes":4194,"name":"edwards"},{"votes":4089,"name":"clinton"},{"votes":298,"name":"richardson"},{"votes":147,"name":"biden"},{"votes":4,"name":"dodd"},{"votes":0,"name":"kucinich"},{"votes":0,"name":"gravel"}]},
-	//		"republican":{"precincts":{"total":1781,"reporting":1781},"total":118696,"republican":[{"votes":40841,"name":"huckabee"},{"votes":29949,"name":"romney"},{"votes":15904,"name":"thompson"},{"votes":15559,"name":"mccain"},{"votes":11817,"name":"paul"},{"votes":4097,"name":"giuliani"},{"votes":524,"name":"hunter"},{"votes":5,"name":"tancredo"}]}
-	//	}
-	//},
+	{ 'abbr': 'in', 'name': 'Indiana' },
+	{ 'abbr': 'ia', 'name': 'Iowa',
+		'results': {
+			"democrat":{"precincts":{"total":1781,"reporting":1772},"total":13420,"democrat":[{"votes":4688,"name":"obama"},{"votes":4194,"name":"edwards"},{"votes":4089,"name":"clinton"},{"votes":298,"name":"richardson"},{"votes":147,"name":"biden"},{"votes":4,"name":"dodd"},{"votes":0,"name":"kucinich"},{"votes":0,"name":"gravel"}]},
+			"republican":{"precincts":{"total":1781,"reporting":1781},"total":118696,"republican":[{"votes":40841,"name":"huckabee"},{"votes":29949,"name":"romney"},{"votes":15904,"name":"thompson"},{"votes":15559,"name":"mccain"},{"votes":11817,"name":"paul"},{"votes":4097,"name":"giuliani"},{"votes":524,"name":"hunter"},{"votes":5,"name":"tancredo"}]}
+		}
+	},
 	{ 'abbr': 'ks', 'name': 'Kansas' },
-	//{ 'abbr': 'ky', 'name': 'Kentucky' },
-	//{ 'abbr': 'la', 'name': 'Louisiana' },
-	//{ 'abbr': 'me', 'name': 'Maine' },
-	//{ 'abbr': 'md', 'name': 'Maryland' },
+	{ 'abbr': 'ky', 'name': 'Kentucky' },
+	{ 'abbr': 'la', 'name': 'Louisiana' },
+	{ 'abbr': 'me', 'name': 'Maine' },
+	{ 'abbr': 'md', 'name': 'Maryland' },
 	{ 'abbr': 'ma', 'name': 'Massachusetts' },
-	//{ 'abbr': 'mi', 'name': 'Michigan',
-	//	'results': {
-	//		"democrat":{"total":592798,"precincts":{"total":"5385","reporting":"5385"},"democrat":[{"votes":328151,"name":"clinton"},{"votes":236723,"name":"uncommitted-d"},{"votes":21708,"name":"kucinich"},{"votes":3853,"name":"dodd"},{"votes":2363,"name":"gravel"}]},
-	//		"republican":{"republican":[{"votes":337847,"name":"romney"},{"votes":257521,"name":"mccain"},{"votes":139699,"name":"huckabee"},{"votes":54434,"name":"paul"},{"votes":32135,"name":"thompson"},{"votes":24706,"name":"giuliani"},{"votes":17971,"name":"uncommitted-r"},{"votes":2823,"name":"hunter"},{"votes":458,"name":"tancredo"},{"votes":354,"name":"brownback"}],"total":867948,"precincts":{"total":"5385","reporting":"5385"}}
-	//	}
-	//},
+	{ 'abbr': 'mi', 'name': 'Michigan',
+		'results': {
+			"democrat":{"total":592798,"precincts":{"total":"5385","reporting":"5385"},"democrat":[{"votes":328151,"name":"clinton"},{"votes":236723,"name":"uncommitted-d"},{"votes":21708,"name":"kucinich"},{"votes":3853,"name":"dodd"},{"votes":2363,"name":"gravel"}]},
+			"republican":{"republican":[{"votes":337847,"name":"romney"},{"votes":257521,"name":"mccain"},{"votes":139699,"name":"huckabee"},{"votes":54434,"name":"paul"},{"votes":32135,"name":"thompson"},{"votes":24706,"name":"giuliani"},{"votes":17971,"name":"uncommitted-r"},{"votes":2823,"name":"hunter"},{"votes":458,"name":"tancredo"},{"votes":354,"name":"brownback"}],"total":867948,"precincts":{"total":"5385","reporting":"5385"}}
+		}
+	},
 	{ 'abbr': 'mn', 'name': 'Minnesota' },
-	//{ 'abbr': 'ms', 'name': 'Mississippi' },
+	{ 'abbr': 'ms', 'name': 'Mississippi' },
 	{ 'abbr': 'mo', 'name': 'Missouri' },
 	{ 'abbr': 'mt', 'name': 'Montana' },
-	//{ 'abbr': 'ne', 'name': 'Nebraska' },
-	//{ 'abbr': 'nv', 'name': 'Nevada',
-	//	'results': {
-	//		"democrat":{"total":10560,"precincts":{"total":"1797","reporting":"1762"},"democrat":[{"votes":5355,"name":"clinton"},{"votes":4773,"name":"obama"},{"votes":396,"name":"edwards"},{"votes":31,"name":"uncommitted-d"},{"votes":5,"name":"kucinich"}]},
-	//		"republican":{"republican":[{"votes":22649,"name":"romney"},{"votes":6087,"name":"paul"},{"votes":5651,"name":"mccain"},{"votes":3616,"name":"huckabee"},{"votes":3521,"name":"thompson"},{"votes":1910,"name":"giuliani"},{"votes":890,"name":"hunter"}],"total":44324,"precincts":{"total":"1797","reporting":"1797"}}
-	//	}
-	//},
-	//{ 'abbr': 'nh', 'name': 'New Hampshire' },
+	{ 'abbr': 'ne', 'name': 'Nebraska' },
+	{ 'abbr': 'nv', 'name': 'Nevada',
+		'results': {
+			"democrat":{"total":10560,"precincts":{"total":"1797","reporting":"1762"},"democrat":[{"votes":5355,"name":"clinton"},{"votes":4773,"name":"obama"},{"votes":396,"name":"edwards"},{"votes":31,"name":"uncommitted-d"},{"votes":5,"name":"kucinich"}]},
+			"republican":{"republican":[{"votes":22649,"name":"romney"},{"votes":6087,"name":"paul"},{"votes":5651,"name":"mccain"},{"votes":3616,"name":"huckabee"},{"votes":3521,"name":"thompson"},{"votes":1910,"name":"giuliani"},{"votes":890,"name":"hunter"}],"total":44324,"precincts":{"total":"1797","reporting":"1797"}}
+		}
+	},
+	{ 'abbr': 'nh', 'name': 'New Hampshire' },
 	{ 'abbr': 'nj', 'name': 'New Jersey' },
 	{ 'abbr': 'nm', 'name': 'New Mexico' },
 	{ 'abbr': 'ny', 'name': 'New York' },
-	//{ 'abbr': 'nc', 'name': 'North Carolina' },
+	{ 'abbr': 'nc', 'name': 'North Carolina' },
 	{ 'abbr': 'nd', 'name': 'North Dakota' },
-	//{ 'abbr': 'oh', 'name': 'Ohio' },
+	{ 'abbr': 'oh', 'name': 'Ohio' },
 	{ 'abbr': 'ok', 'name': 'Oklahoma' },
-	//{ 'abbr': 'or', 'name': 'Oregon' },
-	//{ 'abbr': 'pa', 'name': 'Pennsylvania' },
-	//{ 'abbr': 'ri', 'name': 'Rhode Island' },
-	//{ 'abbr': 'sc', 'name': 'South Carolina',
-	//	'results': {
-	//		"republican":{"republican":[{"votes":143224,"name":"mccain"},{"votes":128908,"name":"huckabee"},{"votes":67897,"name":"thompson"},{"votes":64970,"name":"romney"},{"votes":15773,"name":"paul"},{"votes":9112,"name":"giuliani"},{"votes":1035,"name":"hunter"},{"votes":115,"name":"tancredo"},{"votes":83,"name":"cox"},{"votes":56,"name":"cort"},{"votes":23,"name":"fendig"}],"total":431196,"precincts":{"total":"2259","reporting":"2249"}}
-	//	}
-	//},
-	//{ 'abbr': 'sd', 'name': 'South Dakota' },
+	{ 'abbr': 'or', 'name': 'Oregon' },
+	{ 'abbr': 'pa', 'name': 'Pennsylvania' },
+	{ 'abbr': 'ri', 'name': 'Rhode Island' },
+	{ 'abbr': 'sc', 'name': 'South Carolina',
+		'results': {
+			"republican":{"republican":[{"votes":143224,"name":"mccain"},{"votes":128908,"name":"huckabee"},{"votes":67897,"name":"thompson"},{"votes":64970,"name":"romney"},{"votes":15773,"name":"paul"},{"votes":9112,"name":"giuliani"},{"votes":1035,"name":"hunter"},{"votes":115,"name":"tancredo"},{"votes":83,"name":"cox"},{"votes":56,"name":"cort"},{"votes":23,"name":"fendig"}],"total":431196,"precincts":{"total":"2259","reporting":"2249"}}
+		}
+	},
+	{ 'abbr': 'sd', 'name': 'South Dakota' },
 	{ 'abbr': 'tn', 'name': 'Tennessee' },
-	//{ 'abbr': 'tx', 'name': 'Texas' },
+	{ 'abbr': 'tx', 'name': 'Texas' },
 	{ 'abbr': 'ut', 'name': 'Utah' },
-	//{ 'abbr': 'vt', 'name': 'Vermont' },
-	//{ 'abbr': 'va', 'name': 'Virginia' },
-	//{ 'abbr': 'wa', 'name': 'Washington' },
-	//{ 'abbr': 'wv', 'name': 'West Virginia' },
-	//{ 'abbr': 'wi', 'name': 'Wisconsin' },
-	//{ 'abbr': 'wy', 'name': 'Wyoming' }
+	{ 'abbr': 'vt', 'name': 'Vermont' },
+	{ 'abbr': 'va', 'name': 'Virginia' },
+	{ 'abbr': 'wa', 'name': 'Washington' },
+	{ 'abbr': 'wv', 'name': 'West Virginia' },
+	{ 'abbr': 'wi', 'name': 'Wisconsin' },
+	{ 'abbr': 'wy', 'name': 'Wyoming' }
 ];
 
 var parties = [
@@ -184,12 +182,12 @@ var candidates = {
 	]
 };
 
-//var preloadCandidates = candidates.all.map( function( candidate ) {
-//	//var img = new Image( 16, 16 );
-//	//img.src = imgUrl( candidate.name );
-//	//return img;
-//	return _IG_GetImage( imgUrl(candidate.name) );
-//});
+var preloadCandidates = candidates.all.map( function( candidate ) {
+	//var img = new Image( 16, 16 );
+	//img.src = imgUrl( candidate.name );
+	//return img;
+	return _IG_GetImage( imgUrl(candidate.name) );
+});
 
 var candidateNameList = [];
 parties.forEach( function( party ) {
@@ -205,34 +203,6 @@ parties.forEach( function( party ) {
 candidates.all.index( 'name' );
 
 //var reCandidates = new RegExp( candidateNameList.join('|'), 'g' );
-
-function randInt( min, max ) {
-	return min + Math.floor( Math.random() * ( max - min ) );
-}
-
-if( useTestData ) {
-	states.forEach( function( state ) {
-		state.results = {};
-		var total = 0;
-		parties.forEach( function( party ) {
-			var precincts = randInt( 1000, 10000 );
-			var reporting = randInt( 0, precincts );
-			var results = [];
-			state.results[party.name] = {
-				precincts: { total: precincts, reporting: reporting },
-				results: results
-			};
-			candidates[party.name].forEach( function( candidate ) {
-				var votes = randInt( 0, 1000000 );
-				total += votes;
-				results.push({ name: candidate.name, votes: votes });
-			});
-			console.log( results );
-			results.sort( function( a, b ) { return b.votes - a.votes } );
-			state.results.total = total;
-		});
-	});
-}
 
 function imgUrl( name ) {
 	return imgBaseUrl + name + '.png';
@@ -309,7 +279,7 @@ document.write(
 		var results = state.results[partyname];
 		if( ! results ) return '<td colspan="2"></td>';
 		var total = results.total;
-		var candidate = results.results[0];
+		var candidate = results[partyname][0];
 		return ! second ? S(
 			'<td class="icon">',
 				'<img class="favicon" src="', _IG_GetImageUrl( imgUrl(candidate.name) ), '" />',

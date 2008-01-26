@@ -33,7 +33,7 @@
 
    function searchLocationsNear(center) {
      var radius = document.getElementById('radiusSelect').value;
-     var searchUrl = 'phpsqlajax_search.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
+     var searchUrl = 'phpsqlsearch_genxml.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
      GDownloadUrl(searchUrl, function(data) {
        var xml = GXml.parse(data);
        var markers = xml.documentElement.getElementsByTagName('marker');

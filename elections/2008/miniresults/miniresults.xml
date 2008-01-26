@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs
+	title="Election Results from Google"
+	title_url="http://maps.google.com/decision2008"
+	description="View live election results for the 2008 primaries."
+	category="politics"
+	thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/miniresults/miniresults-thumb.png"
+	screenshot="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/miniresults/miniresults-screenshot.png"
+	author="Michael Geary"
+	author_affiliation="Google, Inc."
+	author_email="gearylabs.feedback+miniresults@gmail.com"
+	author_location="San Jose, CA"
+	height="352"
+	scaling="false"
+	scrolling="false"
+>
+	<Require feature="minimessage"/>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+	<script type="text/javascript">
+		document.write(
+			'<script type="text/javascript" src="',
+				_IG_GetCachedUrl( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/miniresults/miniresults.js', { refreshInterval:120 } ),
+			'">',
+			'<\/script>'
+		);
+	</script>
+]]>
+</Content>
+</Module>

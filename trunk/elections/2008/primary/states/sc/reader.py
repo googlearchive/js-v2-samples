@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# reader.py - vote reader for MI primary
+# reader.py - vote reader for SC primary
 
 import private
 import re

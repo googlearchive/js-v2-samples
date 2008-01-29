@@ -3,7 +3,7 @@
 <ModulePrefs
 		title="US Presidential Primary"
 		author="Michael Geary"
-		author_email="mapplet.feedback@mg.to"
+		author_email="gearylabs.feedback+mapplet@gmail.com"
 		description="US Presidential Primary"
 >
 	<Require feature="sharedmap"/>

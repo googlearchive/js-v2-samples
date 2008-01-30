@@ -328,7 +328,7 @@ var partyButtons = opt.party ? '' : [
 			'<div id="outer">',
 				'<div style="font-weight:bold;">',
 					'<span style="color:red;">New!</span> ',
-					'<a href="http://maps.google.com/maps/mpl?moduleurl=http://www.google.com/mapfiles/mapplets/elections/2008/primary/primaries.xml" target="_top">Michigan Primary live results</a>',
+					'<a href="http://maps.google.com/maps/mpl?moduleurl=http://www.google.com/mapfiles/mapplets/elections/2008/primary/primaries.xml" target="_top">Flordia Primary live results</a>',
 				'</div>',
 				'<div>',
 					'Click the map for town info and results',

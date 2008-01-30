@@ -1,7 +1,7 @@
 (function() {
 	var opt = GoogleElectionMapOptions = {
 		primary: true,
-		state: 'mi',
+		state: 'fl',
 		//party: 'democrat',
 		//party: 'republican',
 		baseUrl: 'http://gmaps-samples.googlecode.com/svn/trunk/',

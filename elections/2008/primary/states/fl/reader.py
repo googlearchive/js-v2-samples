@@ -75,8 +75,8 @@ def setData( header, county, row, party ):
 
 def setPrecincts( county, row ):
 	county['precincts'] = {
-		'reporting': row[1],
-		'total': row[2]
+		'reporting': row[2],
+		'total': row[1]
 	}
 
 def setVotes( header, county, row, col, party ):

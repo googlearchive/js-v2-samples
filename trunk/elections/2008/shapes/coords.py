@@ -13,8 +13,10 @@ def geoToPixel( point, zoom, tilesize=256 ):
 	scale = ( 1 << zoom ) * tilesize
 	return [ int( lng * scale ), int( lat * scale ) ]
 
-print geoToPixel( [ 0.0, 0.0 ], 0 ) == [ 128, 128 ]
-print geoToPixel( [ 0.0, 0.0 ], 1 ) == [ 256, 256 ]
-
-print geoToPixel( [ -60.0, 45.0 ], 0 ) == [ 85, 92 ]
-print geoToPixel( [ -60.0, 45.0 ], 1 ) == [ 170, 184 ]
+#print geoToPixel( [ 0.0, 0.0 ], 0 ) == [ 128, 128 ]
+#print geoToPixel( [ 0.0, 0.0 ], 1 ) == [ 256, 256 ]
+#
+#print geoToPixel( [ -60.0, 45.0 ], 0 ) == [ 85, 92 ]
+#print geoToPixel( [ -60.0, 45.0 ], 1 ) == [ 170, 184 ]
+#
+#print geoToPixel( [ 0.0, 0.0 ], 13 )

@@ -81,36 +81,30 @@ def readRecordPoint(fp):
 def readRecordMultiPoint(fp):
 	shape = { 'bounds': readBounds(fp) }
 	points = shape['points'] = []
-	npoints = readAndUnpack('i', fp.read(4))
-	for i in xrange(npoints):
+	nPoints = readAndUnpack('i', fp.read(4))
+	for i in xrange(nPoints):
 		points.append(readRecordPoint(fp))
 	return shape
 
 def readRecordPolyLine(fp):
 	shape = { 'bounds': readBounds(fp) }
-	nparts = readAndUnpack('i', fp.read(4))
-	npoints = readAndUnpack('i', fp.read(4))
-	# TODO: this code fails if more than one part
-	if nparts > 1:
-		print 'ERROR: readRecordPolyLine does not handle more than one part'
-	offsets = []
-	for i in xrange(nparts):
-		offsets.append(readAndUnpack('i', fp.read(4)))
-	points_initial_index = fp.tell()
+	nParts = readAndUnpack('i', fp.read(4))
+	nPoints = readAndUnpack('i', fp.read(4))
+	if readAndUnpack('i', fp.read(4)):
+		print 'ERROR: First part offset must be 0'
+	counts = []; prev = 0
+	for i in xrange(nParts-1):
+		next = readAndUnpack('i', fp.read(4))
+		counts.append( next - prev )
+		prev = next
+	counts.append( nPoints - prev )
 	parts = shape['parts'] = []
-	points_read = 0
-	for i in xrange(nparts):
+	for i in xrange(nParts):
 		part = {}
 		parts.append( part )
-		
-		# if(!isset(shape['parts'][i]['points']) or !is_array(shape['parts'][i]['points'])):
 		points = part['points'] = []
-		
-		# while( ! in_array( points_read, shape['parts']) and points_read < shape['npoints'] and !feof(fp)):
-		while (points_read < npoints):
+		for j in xrange(counts[i]):
 			points.append(readRecordPoint(fp))
-			points_read += 1
-	fp.seek(points_initial_index + (points_read * XY_POINT_RECORD_LENGTH))
 	return shape
 
 # General defs
@@ -126,7 +120,7 @@ def readAndUnpack(type, data):
 	return unpack(type, data)[0]
 
 def getPolyInfo( feature ):
-	npoints = cx = cy = 0
+	nPoints = cx = cy = 0
 	shape = feature['shape']
 	type = shape['type']
 	if type == 3  or type ==5:

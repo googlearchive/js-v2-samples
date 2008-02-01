@@ -3,6 +3,7 @@
 # maketiles.py
 
 from geo import Geo
+import magick
 import math
 import os
 import random
@@ -53,7 +54,7 @@ def featuresBounds( features ):
 			bounds = geo.extendBounds( bounds, part['bounds'] )
 	return bounds
 
-def generate( filename, zoom ):
+def generate( path, filename, zoom ):
 	print 'Generating %s zoom %d' %( filename, zoom )
 	scale = 10
 	draw = '''
@@ -87,11 +88,13 @@ scale .1,.1
 		#print 'Feature %d: %s' %( i, name )
 		for part in feature['shape']['parts']:
 			nPolys += 1
-			draw += '''
+			if 0:
+				draw += '''
 fill  #%sA0
 stroke #00000080
 polygon''' % randomColor()
-#			draw += '''
+			else:
+				draw += '''
 #fill  #00000000
 #stroke #00000080
 #polygon'''
@@ -110,16 +113,22 @@ polygon''' % randomColor()
 	t2 = time.time()
 	print '%0.3f seconds to generate commands' %( t2 - t1 )
 	
-	t1 = time.time()
-	#os.system( 'convert null: -resize %dx%d -draw "@draw.cmd" -crop 256x256 tile.png' %( dim, dim ) )
-	command = 'convert null: -resize %dx%d! -draw "@draw.cmd" tile%d.png' %( tilebounds[1][0], tilebounds[1][1], zoom )
-	print command
-	os.system( command )
-	t2 = time.time()
-	print '%0.3f seconds to generate graphics' %( t2 - t1 )
+	crop = ''
+	#crop = '-crop 256x256'
+	blank = magick.blank( tilebounds[1] )
+	command = '%s -draw "@draw.cmd" %s %s/tile-%d.png' %( blank, crop, path, zoom )
+	#command = 'null: -resize %(cx)dx%(cy)d! -draw "@draw.cmd" %(crop)s tile%(zoom)d.png' %({
+	#	'cx': tilebounds[1][0],
+	#	'cy': tilebounds[1][1],
+	#	'crop': crop,
+	#	'zoom': zoom
+	#})
+	magick.convert( command )
 
 for z in xrange(9):
-	generate( 'states/st99_d00_shp-25/st99_d00.shp', z )
+	generate( 'tiles-25', 'states/st99_d00_shp-25/st99_d00.shp', z )
+	generate( 'tiles-75', 'states/st99_d00_shp-75/st99_d00.shp', z )
+	generate( 'tiles-90', 'states/st99_d00_shp-90/st99_d00.shp', z )
 #generate( 'counties/co99_d00_shp-60/co99_d00.shp', 2 )
 #generate( '../primary/states/mi/co26_d00_shp-82/co26_d00.shp', 5 )
 

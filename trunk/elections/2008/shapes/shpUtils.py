@@ -21,7 +21,7 @@ def loadShapefile( filename ):
 	
 	# get basic shapefile configuration
 	fp.seek(32)
-	type = readAndUnpack('i', fp.read(4))
+	filetype = readAndUnpack('i', fp.read(4))
 	bounds = readBounds( fp )
 	
 	# fetch Records
@@ -32,7 +32,7 @@ def loadShapefile( filename ):
 		if feature == False: break
 		getPolyInfo( feature )
 		features.append( feature )
-	return { 'type': type, 'bounds': bounds, 'features': features }
+	return { 'type': filetype, 'bounds': bounds, 'features': features }
 
 record_class = { 0:'RecordNull', 1:'RecordPoint', 8:'RecordMultiPoint', 3:'RecordPolyLine', 5:'RecordPolygon' }
 
@@ -41,28 +41,31 @@ def createRecord(fp):
 	record_number = readAndUnpack('>L', fp.read(4))
 	if record_number == '': return False
 	content_length = readAndUnpack('>L', fp.read(4))
-	type = readAndUnpack('<L', fp.read(4))
+	rectype = readAndUnpack('<L', fp.read(4))
 
-	shape = readRecordAny(fp,type)
-	shape['type'] = type
+	shape = readRecordAny(fp,rectype)
+	shape['type'] = rectype
 	info = {}
 	names = db[0]
 	values = db[record_number+1]
 	for i in xrange(len(names)):
-		info[ names[i] ] = values[i]
+		value = values[i]
+		if isinstance( value, str ):
+			value = value.strip()
+		info[ names[i] ] = value
 	
 	return { 'shape':shape, 'info':info }
 	
 # Reading defs
 
-def readRecordAny(fp, type):
-	if type==0:
+def readRecordAny(fp, rectype):
+	if rectype==0:
 		return readRecordNull(fp)
-	elif type==1:
+	elif rectype==1:
 		return readRecordPoint(fp)
-	elif type==8:
+	elif rectype==8:
 		return readRecordMultiPoint(fp)
-	elif type==3 or type==5:
+	elif rectype==3 or rectype==5:
 		return readRecordPolyLine(fp)
 	else:
 		return False
@@ -115,15 +118,15 @@ def readBounds(fp):
 		[ readAndUnpack('d',fp.read(8)), readAndUnpack('d',fp.read(8)) ]
 	]
 
-def readAndUnpack(type, data):
+def readAndUnpack(fieldtype, data):
 	if data=='': return data
-	return unpack(type, data)[0]
+	return unpack(fieldtype, data)[0]
 
 def getPolyInfo( feature ):
 	nPoints = cx = cy = 0
 	shape = feature['shape']
-	type = shape['type']
-	if type == 3  or type ==5:
+	shapetype = shape['type']
+	if shapetype == 3  or shapetype ==5:
 		for part in shape['parts']:
 			getPartInfo( part )
 

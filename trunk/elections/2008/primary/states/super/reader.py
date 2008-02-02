@@ -7,17 +7,17 @@ import re
 import urllib
 import csv
 import states
-from template import T
+from template import *
 
 from candidates import candidates
 
 parties = {
-	'dem': { 'name':'Democratic' },
-	'gop': { 'name':'Republican' }
+	'dem': { 'name':'Democrats' },
+	'gop': { 'name':'Republicans' }
 }
 
 def fetchData():
-	urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
+	#urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
 	pass
 
 def readVotes():
@@ -59,39 +59,41 @@ def linkParty( party, match ):
 	name = parties[party]['name']
 	if party == match:
 		return T('''
-			<span class="thatparty">
+			<span class="thisparty">
 				%(name)s
 			</span>
 		''', { 'name': name } )
 	else:
 		return T('''
-			<a class="thisparty" href="#" onclick="switchParty('%(party)s')">
+			<a class="thatparty" href="#" onclick="switchParty('%(party)s')">
 				%(name)s
-			</span>
+			</a>
 		''', { 'name': name, 'party': party } )
 
 def makeMini():
-	short = makeMiniVersion( 'short', 'CA NY IL MA' )
-	long = makeMiniVersion( 'long', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT' )
+	short = makeMiniVersion( 'short', 'Election Coverage', 'CA NY IL MA' )
+	long = makeMiniVersion( 'long', 'Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT' )
 	
-def makeMiniVersion( kind, statenames ):
-	writeMiniParty( kind, statenames, 'dem', 'clinton obama' )
-	writeMiniParty( kind, statenames,'gop' , 'huckabee mccain paul romney' )
+def makeMiniVersion( kind, title, statenames ):
+	writeMiniParty( kind, title, statenames, 'dem', 'clinton obama' )
+	writeMiniParty( kind, title, statenames,'gop' , 'huckabee mccain paul romney' )
 
-def writeMiniParty( kind, statenames, partyname, names ):
-	text = makeMiniParty( statenames, partyname, names )
+def writeMiniParty( kind, title, statenames, partyname, names ):
+	text = makeMiniParty( title, statenames, partyname, names )
 	write( 'miniresults-%s-%s.html' %( kind, partyname ), text )
 
-def makeMiniParty( statenames, partyname, names ):
+def makeMiniParty( title, statenames, partyname, names ):
 	statelist = statenames.split()
 	names = names.split()
-	head = [ '<th class="state">State</th>' ]
+	head = [ '<th class="state"><div>State</div></th>' ]
 	for name in names:
 		head.append( T('''
 			<th class="name">
-				%(name)s
+				<div>
+					%(name)s
+				</div>
 			</th>
-		''', { 'name':name } ) )
+		''', { 'name':candidates['byname'][name]['lastName'] } ) )
 	rows = []
 	for stateabbr in statelist:
 		state = states.byAbbr[stateabbr]
@@ -102,14 +104,15 @@ def makeMiniParty( statenames, partyname, names ):
 		if 'votes' not in party: continue
 		votes = party['votes']
 		for name in votes:
-			total += votes[name]
-			if votes[name] > winner['votes']:
-				winner = { 'name': name, 'votes': winner['votes'] }
+			vote = votes[name]
+			total += vote
+			if vote > winner['votes']:
+				winner = { 'name': name, 'votes': vote }
 		precincts = party['precincts']
 		for name in names:
 			win = check = ''
 			if name == winner['name']:
-				win = 'win'
+				win = 'win-%s' % partyname
 				if precincts['reporting'] == precincts['total']:
 					check = 'check'
 			if name in votes:
@@ -118,35 +121,55 @@ def makeMiniParty( statenames, partyname, names ):
 				percent = 0
 			cols.append( T('''
 				<td class="votes %(win)s %(check)s">
-					%(percent)s
+					<div class="col">
+						%(percent)s%%
+					</div>
 				</td>
 			''', {
 				'win':win,
 				'check':check,
 				'percent':percent
 			}) )
-		percent = int( 100 * precincts['reporting'] / precincts['total'] )
+		reporting = int( 100 * precincts['reporting'] / precincts['total'] )
 		rows.append( T('''
 			<tr class="state">
 				<td class="state">
-					<span class="state">
-						%(state)s
-					</span>
-					<span class="percent">
-						%(percent)s%%
-					</span>
+					<div class="col">
+						<span class="state">
+							%(state)s&nbsp;
+						</span>
+						<span class="reporting">
+							%(reporting)s%%
+						</span>
+					</div>
 				</td>
 				%(cols)s
 			</tr>
 		''', {
 			'state': stateabbr,
-			'percent': percent,
+			'reporting': reporting,
 			'cols': ''.join(cols)
 		}) )
-	return T('''
+	css = S('''
+		<style type="text/css">
+			body * { font-family:arial,sans-serif; font-size:16px; }
+			.top { margin-bottom:4px; }
+			.resultstitle { font-weight:bold; font-size:120%; }
+			.thisparty { font-weight:bold; }
+			table.results { width:100%; }
+			.state { text-align:left; }
+			.reporting { font-size:85%; color:#666666; }
+			th { background-color:#E0E0E0; }
+			tr { background-color:#F1EFEF; }
+			td.votes { text-align:center; }
+			.win-dem { color:white; background-color:#AA0031; }
+			.win-gop { color:white; background-color:#3366CC; }
+		</style>
+	''');
+	return css + T('''
 		<div class="top">
 			<span class="resultstitle">
-				Results:
+				%(title)s:&nbsp;
 			</span>
 			<span class="partylinks">
 				%(dem)s | %(gop)s
@@ -166,6 +189,7 @@ def makeMiniParty( statenames, partyname, names ):
 			</a>
 		</div>
 		''', {
+			'title': title,
 			'dem': linkParty( 'dem', partyname ),
 			'gop': linkParty( 'gop', partyname ),
 			'head': ''.join(head),

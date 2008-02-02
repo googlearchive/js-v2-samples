@@ -24,8 +24,13 @@ if (!$db_selected) {
 }
 
 // Search the rows in the markers table
-$query = "SELECT address, name, lat, lng, ( 3959 * acos( cos( radians(".$center_lat.") ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(".$center_lng.") ) + sin( radians(".$center_lat.") ) * sin( radians( lat ) ) ) ) AS distance FROM markers HAVING distance < ".$radius." ORDER BY distance LIMIT 0 , 20";
+$query = sprintf("SELECT address, name, lat, lng, ( 3959 * acos( cos( radians('%s') ) * cos( radians( lat ) ) * cos( radians( lng ) - radians('%s') ) + sin( radians('%s') ) * sin( radians( lat ) ) ) ) AS distance FROM locations HAVING distance < '%s' ORDER BY distance LIMIT 0 , 20",
+  mysql_real_escape_string($center_lat),
+  mysql_real_escape_string($center_lng),
+  mysql_real_escape_string($center_lat),
+  mysql_real_escape_string($radius));
 $result = mysql_query($query);
+
 if (!$result) {
   die("Invalid query: " . mysql_error());
 }

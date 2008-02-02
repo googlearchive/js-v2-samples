@@ -41,12 +41,10 @@ class Geo:
 	def tileBounds( self,  bounds ):
 		def lo( n ): return int( n / self.tilesize ) * self.tilesize
 		def hi( n ): return ( int( n / self.tilesize ) + 1 ) * self.tilesize
-		tilebounds = [
-			[ lo(bounds[0][0]), lo(bounds[0][1]) ],
-			[ hi(bounds[1][0]), hi(bounds[1][1]) ]
-		]
-		offset = [ tilebounds[0][0], tilebounds[0][1] ]
-		return offset, self.offsetBoundsMinus( tilebounds, offset )
+		min = bounds[0]; max = bounds[1]
+		offset = [ lo(min[0]), lo(min[1]) ]
+		size = [ hi(max[0]) - offset[0], hi(max[1]) - offset[1] ]
+		return offset, size
 	
 	def pixFromGeoPoint( self, point ):
 		lng = point[0]

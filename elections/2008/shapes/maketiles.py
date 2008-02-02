@@ -7,6 +7,7 @@ import magick
 import math
 import os
 import random
+import stat
 import sys
 import time
 import shpUtils
@@ -77,9 +78,9 @@ scale .1,.1
 	fb = featuresBounds( features )
 	outer = pixgeo.pixFromGeoBounds( fb )
 	outer = pixgeo.inflateBounds( outer, 8 )
-	offset, tilebounds = pixgeo.tileBounds( outer )
-	scaleoffset = pixgeo.scalePoint( offset, scale )
-	print 'Offset:[%d,%d], Size:[%d,%d]' %( offset[0], offset[1], tilebounds[1][0], tilebounds[1][1] )
+	gridoffset, gridsize = pixgeo.tileBounds( outer )
+	scaleoffset = pixgeo.scalePoint( gridoffset, scale )
+	print 'Offset:[%d,%d], Size:[%d,%d]' %( gridoffset[0], gridoffset[1], gridsize[0], gridsize[1] )
 	
 	#for feature in features:
 	for i in xrange(len(features)):
@@ -88,16 +89,16 @@ scale .1,.1
 		#print 'Feature %d: %s' %( i, name )
 		for part in feature['shape']['parts']:
 			nPolys += 1
-			if 0:
+			if 1:
 				draw += '''
 fill  #%sA0
 stroke #00000080
 polygon''' % randomColor()
 			else:
 				draw += '''
-#fill  #00000000
-#stroke #00000080
-#polygon'''
+fill  #00000000
+stroke #00000080
+polygon'''
 			points = part['points']
 			n = len(points) - 1
 			nPoints += n
@@ -113,22 +114,45 @@ polygon''' % randomColor()
 	t2 = time.time()
 	print '%0.3f seconds to generate commands' %( t2 - t1 )
 	
-	crop = ''
-	#crop = '-crop 256x256'
-	blank = magick.blank( tilebounds[1] )
-	command = '%s -draw "@draw.cmd" %s %s/tile-%d.png' %( blank, crop, path, zoom )
+	crop = True
+	if crop:
+		cropcmd = '-crop 256x256'
+	else:
+		cropcmd = ''
+	blank = magick.blank( gridsize )
+	base = '%s/tile-%d' %( path, zoom )
+	command = ( '%s -draw "@draw.cmd" %s ' + base + '.png' )%( blank, cropcmd )
 	#command = 'null: -resize %(cx)dx%(cy)d! -draw "@draw.cmd" %(crop)s tile%(zoom)d.png' %({
-	#	'cx': tilebounds[1][0],
-	#	'cy': tilebounds[1][1],
+	#	'cx': gridsize[0],
+	#	'cy': gridsize[1],
 	#	'crop': crop,
 	#	'zoom': zoom
 	#})
 	magick.convert( command )
+	if crop:
+		n = 0
+		x0 = gridoffset[0] / 256; 
+		y0 = gridoffset[1] / 256
+		xN = gridsize[0] / 256
+		yN = gridsize[1] /256
+		for y in xrange( y0, y0 + yN ):
+			for x in xrange( x0, x0 + xN ):
+				if xN == 1 and yN == 1:
+					source = '%s.png' %( base )
+				else:
+					source = '%s-%d.png' %( base, n )
+				target = '%s-%d-%d.png' %( base, y, x )
+				if os.path.exists( target ): os.remove( target )
+				if os.stat(source)[stat.ST_SIZE] > 415:
+					os.rename( source, target )
+				else:
+					os.remove( source )
+				n += 1
 
 for z in xrange(9):
-	generate( 'tiles-25', 'states/st99_d00_shp-25/st99_d00.shp', z )
+	#generate( 'tiles-25', 'states/st99_d00_shp-25/st99_d00.shp', z )
 	generate( 'tiles-75', 'states/st99_d00_shp-75/st99_d00.shp', z )
-	generate( 'tiles-90', 'states/st99_d00_shp-90/st99_d00.shp', z )
+	#generate( 'tiles-90', 'states/st99_d00_shp-90/st99_d00.shp', z )
 #generate( 'counties/co99_d00_shp-60/co99_d00.shp', 2 )
 #generate( '../primary/states/mi/co26_d00_shp-82/co26_d00.shp', 5 )
 

@@ -79,10 +79,10 @@ def makeMiniVersion( kind, title, statenames ):
 	writeMiniParty( kind, title, statenames,'gop' , 'huckabee mccain paul romney' )
 
 def writeMiniParty( kind, title, statenames, partyname, names ):
-	text = makeMiniParty( title, statenames, partyname, names )
+	text = makeMiniParty( kind, title, statenames, partyname, names )
 	write( 'miniresults-%s-%s.html' %( kind, partyname ), text )
 
-def makeMiniParty( title, statenames, partyname, names ):
+def makeMiniParty( kind, title, statenames, partyname, names ):
 	statelist = statenames.split()
 	names = names.split()
 	head = [ '<th class="state"><div>State</div></th>' ]
@@ -166,6 +166,15 @@ def makeMiniParty( title, statenames, partyname, names ):
 			.win-gop { color:white; background-color:#3366CC; }
 		</style>
 	''');
+	if kind == 'short':
+		details = S('''
+			<a href="http://news.google.com/?ned=us&topic=el" target="_top">
+				Full election coverage and results &raquo;
+			</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+		''')
+	else:
+		details = ''
 	return css + T('''
 		<div class="top">
 			<span class="resultstitle">
@@ -184,8 +193,9 @@ def makeMiniParty( title, statenames, partyname, names ):
 			</tbody>
 		</table>
 		<div class="foot">
+			%(details)s
 			<a href="http://maps.google.com/decision2008" target="_top">
-				View on a map
+				View on a map &raquo;
 			</a>
 		</div>
 		''', {
@@ -193,7 +203,8 @@ def makeMiniParty( title, statenames, partyname, names ):
 			'dem': linkParty( 'dem', partyname ),
 			'gop': linkParty( 'gop', partyname ),
 			'head': ''.join(head),
-			'rows': ''.join(rows)
+			'rows': ''.join(rows),
+			'details': details
 		})
 
 def write( name, text ):

@@ -150,12 +150,15 @@ def getPartInfo( part ):
 		# next
 		xx = x;  yy = y
 	area /= 2
-	if area == 0: return None
+	if area:
+		centroid = [ cx / area / 6, cy / area / 6 ]
+	else:
+		centroid = None
 	part.update({
 		'area': abs(area),
 		'bounds': [ [ xmin, ymin ], [ xmax, ymax ] ],
 		'center': [ ( xmin + xmax ) / 2, ( ymin + ymax ) / 2 ],
-		'centroid': [ cx / area / 6, cy / area / 6 ],
+		'centroid': centroid,
 		'extent': [ abs( xmax - xmin ), abs( ymax - ymin ) ]
 	})
 

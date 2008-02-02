@@ -162,8 +162,8 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 			th { font-weight:normal; background-color:#E0E0E0; }
 			tr { background-color:#F1EFEF; }
 			td.votes { text-align:center; }
-			.win-dem { color:white; background-color:#AA0031; }
-			.win-gop { color:white; background-color:#3366CC; }
+			.win-dem { color:white; background-color:#3366CC; }
+			.win-gop { color:white; background-color:#AA0031; }
 		</style>
 	''');
 	if kind == 'short':

@@ -152,14 +152,14 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		}) )
 	css = S('''
 		<style type="text/css">
-			body * { font-family:arial,sans-serif; font-size:16px; }
+			body * { font-family:arial,sans-serif; font-size:15px; }
 			.top { margin-bottom:4px; }
 			.resultstitle { font-weight:bold; font-size:120%; }
 			.thisparty { font-weight:bold; }
 			table.results { width:100%; }
 			.state { text-align:left; }
 			.reporting { font-size:85%; color:#666666; }
-			th { background-color:#E0E0E0; }
+			th { font-weight:normal; background-color:#E0E0E0; }
 			tr { background-color:#F1EFEF; }
 			td.votes { text-align:center; }
 			.win-dem { color:white; background-color:#AA0031; }

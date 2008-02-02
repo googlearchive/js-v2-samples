@@ -15,8 +15,9 @@
 	scaling="false"
 	scrolling="false"
 >
-	<Require feature="minimessage"/>
 </ModulePrefs>
+<UserPref name="homepage" default_value="false" datatype="bool" display_name="Home&#160;Page&#160;version"/>
+<UserPref name="testdata" default_value="false" datatype="bool" display_name="Use&#160;TEST&#160;DATA"/>
 <Content type="html">
 <![CDATA[
 	<script type="text/javascript">

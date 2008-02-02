@@ -314,6 +314,12 @@ states = [
 		}
 	},
 	{
+		'abbr': 'PR',
+		'name': 'Puerto Rico',
+		'parties': {
+		}
+	},
+	{
 		'abbr': 'RI',
 		'name': 'Rhode Island',
 		'parties': {
@@ -413,4 +419,8 @@ states = [
 
 statesByAbbr = {}
 for state in states:
-	statesByAbbr[ state['abbr'] ] = state['name']
+	statesByAbbr[ state['abbr'] ] = state
+
+statesByName = {}
+for state in states:
+	statesByName[ state['name'] ] = state

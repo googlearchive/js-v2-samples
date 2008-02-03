@@ -173,3 +173,18 @@ def getBoundCenters(features):
 	
 def getMAT(features):
 	print 'feature not yet available'
+
+def dumpFeatureInfo( features ):
+	fields = []
+	rows = []
+	for feature in features:
+		info = feature['info']
+		if not len(fields):
+			for key in info:
+				fields.append( key )
+			rows.append( ','.join(fields) )
+		cols = []
+		for field in fields:
+			cols.append( str( feature['info'][field] ) )
+		rows.append( ','.join(cols) )
+	return '\r\n'.join(rows)

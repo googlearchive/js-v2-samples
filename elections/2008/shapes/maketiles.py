@@ -56,7 +56,12 @@ def featuresBounds( features ):
 			bounds = geo.extendBounds( bounds, part['bounds'] )
 	return bounds
 
-def generate( path, filename, zoom ):
+def writeFile( filename, data ):
+	f = open( filename, 'wb' )
+	f.write( data )
+	f.close()
+
+def generate( state, filename, path, zoom ):
 	print '----------------------------------------'
 	print 'Generating %s zoom %d' %( filename, zoom )
 	scale = 10
@@ -76,6 +81,9 @@ scale .1,.1
 	
 	features = filterCONUS( features )
 	print '%d features in CONUS' % len(features)
+	
+	writeFile( 'features.csv', shpUtils.dumpFeatureInfo(features) )
+	
 	#outer = pixgeo.pixFromGeoBounds( featuresBounds(features) )
 	fb = featuresBounds( features )
 	outer = pixgeo.pixFromGeoBounds( fb )
@@ -109,9 +117,7 @@ polygon'''
 				draw += ' %d,%d' %( point[0] - scaleoffset[0], point[1] - scaleoffset[1] )
 	print '%d points in %d polygons' %( nPoints, nPolys )
 	
-	f = open( 'draw.cmd', 'wb' )
-	f.write( draw )
-	f.close()
+	writeFile( 'draw.cmd', draw )
 	
 	t2 = time.time()
 	print '%0.3f seconds to generate commands' %( t2 - t1 )
@@ -168,10 +174,11 @@ polygon'''
 		t2 = time.time()
 		print '%0.3f seconds to move files' %( t2 - t1 )
 
-for z in xrange(6):
-	#generate( 'tiles-25', 'states/st99_d00_shp-25/st99_d00.shp', z )
-	generate( 'tiles-75', 'states/st99_d00_shp-75/st99_d00.shp', z )
-	#generate( 'tiles-90', 'states/st99_d00_shp-90/st99_d00.shp', z )
+for z in xrange(1):
+	#generate( None, 'states/st99_d00_shp-25/st99_d00.shp', 'tiles-25', z )
+	generate( None, 'states/st99_d00_shp-75/st99_d00.shp', 'tiles-75', z )
+	#generate( None, 'states/st99_d00_shp-90/st99_d00.shp', 'tiles-90', z )
+	
 #generate( 'counties/co99_d00_shp-60/co99_d00.shp', 2 )
 #generate( '../primary/states/mi/co26_d00_shp-82/co26_d00.shp', 5 )
 

@@ -42,18 +42,20 @@ def filterCONUS( features ):
 		shape = feature['shape']
 		if shape['type'] != 5: continue
 		info = feature['info']
-		name = info['NAME']
-		if name == 'Alaska': continue
-		if name == 'Hawaii': continue
-		if name == 'Puerto Rico': continue
+		state = int(info['STATE'])
+		if state == 2: continue  # Alaska
+		if state == 15: continue  # Hawaii
+		if state == 72: continue  # Puerto Rico
 		result.append( feature )
 	return result
 
 def featuresBounds( features ):
 	bounds = [ [ 180.0, 90.0 ], [ -180.0, -90.0 ] ]
 	for feature in features:
-		for part in feature['shape']['parts']:
-			bounds = geo.extendBounds( bounds, part['bounds'] )
+		shape = feature['shape']
+		if shape['type'] == 5:
+			for part in shape['parts']:
+				bounds = geo.extendBounds( bounds, part['bounds'] )
 	return bounds
 
 def writeFile( filename, data ):
@@ -97,24 +99,26 @@ scale .1,.1
 		feature = features[i]
 		color = featureByName( feature )['color']
 		#print 'Feature %d: %s' %( i, name )
-		for part in feature['shape']['parts']:
-			nPolys += 1
-			if 1:
-				draw += '''
+		shape = feature['shape']
+		if shape['type'] == 5:
+			for part in shape['parts']:
+				nPolys += 1
+				if 1:
+					draw += '''
 fill  #%sA0
 stroke #00000080
 polygon''' % randomColor()
-			else:
-				draw += '''
+				else:
+					draw += '''
 fill  #00000000
 stroke #00000080
 polygon'''
-			points = part['points']
-			n = len(points) - 1
-			nPoints += n
-			for j in xrange(n):
-				point = geo.pixFromGeoPoint( points[j] )
-				draw += ' %d,%d' %( point[0] - scaleoffset[0], point[1] - scaleoffset[1] )
+				points = part['points']
+				n = len(points) - 1
+				nPoints += n
+				for j in xrange(n):
+					point = geo.pixFromGeoPoint( points[j] )
+					draw += ' %d,%d' %( point[0] - scaleoffset[0], point[1] - scaleoffset[1] )
 	print '%d points in %d polygons' %( nPoints, nPolys )
 	
 	writeFile( 'draw.cmd', draw )
@@ -174,12 +178,13 @@ polygon'''
 		t2 = time.time()
 		print '%0.3f seconds to move files' %( t2 - t1 )
 
-for z in xrange(1):
-	#generate( None, 'states/st99_d00_shp-25/st99_d00.shp', 'tiles-25', z )
-	generate( None, 'states/st99_d00_shp-75/st99_d00.shp', 'tiles-75', z )
-	#generate( None, 'states/st99_d00_shp-90/st99_d00.shp', 'tiles-90', z )
+#for z in xrange(1):
+#	#generate( None, 'states/st99_d00_shp-25/st99_d00.shp', 'tiles-25', z )
+#	generate( None, 'states/st99_d00_shp-75/st99_d00.shp', 'tiles-75', z )
+#	#generate( None, 'states/st99_d00_shp-90/st99_d00.shp', 'tiles-90', z )
 	
-#generate( 'counties/co99_d00_shp-60/co99_d00.shp', 2 )
+for z in xrange(7,8):
+	generate( 'x', 'counties/co99_d00_shp-80/co99_d00.shp', 'tiles-county', z )
 #generate( '../primary/states/mi/co26_d00_shp-82/co26_d00.shp', 5 )
 
 print 'Done!'

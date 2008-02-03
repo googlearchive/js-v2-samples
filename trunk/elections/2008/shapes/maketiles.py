@@ -7,6 +7,7 @@ import magick
 import math
 import os
 import random
+import shutil
 import stat
 import sys
 import time
@@ -56,6 +57,7 @@ def featuresBounds( features ):
 	return bounds
 
 def generate( path, filename, zoom ):
+	print '----------------------------------------'
 	print 'Generating %s zoom %d' %( filename, zoom )
 	scale = 10
 	draw = '''
@@ -130,26 +132,43 @@ polygon'''
 	#})
 	magick.convert( command )
 	if crop:
+		xyCount = 2 << zoom
 		n = 0
-		x0 = gridoffset[0] / 256; 
-		y0 = gridoffset[1] / 256
+		xMin = gridoffset[0] / 256
+		xMinEdge = max( xMin - 2, 0 )
+		yMin = gridoffset[1] / 256
+		yMinEdge = max( yMin - 2, 0 )
 		xN = gridsize[0] / 256
 		yN = gridsize[1] /256
-		for y in xrange( y0, y0 + yN ):
-			for x in xrange( x0, x0 + xN ):
-				if xN == 1 and yN == 1:
-					source = '%s.png' %( base )
-				else:
-					source = '%s-%d.png' %( base, n )
+		xLim = xMin + xN
+		xLimEdge = min( xLim + 2, xyCount )
+		yLim = yMin + yN
+		yLimEdge = min( yLim + 2, xyCount )
+		nMoving = xN * yN
+		nCopying = ( xLimEdge - xMinEdge ) * ( yLimEdge - yMinEdge ) - nMoving
+		print 'Moving %d tiles, copying %d blank tiles...' %( nMoving, nCopying )
+		t1 = time.time()
+		for y in xrange( yMinEdge, yLimEdge ):
+			for x in xrange( xMinEdge, xLimEdge ):
 				target = '%s-%d-%d.png' %( base, y, x )
-				if os.path.exists( target ): os.remove( target )
-				if os.stat(source)[stat.ST_SIZE] > 415:
-					os.rename( source, target )
+				if xMin <= x < xLim and yMin <= y < yLim:
+					if xN == 1 and yN == 1:
+						source = '%s.png' %( base )
+					else:
+						source = '%s-%d.png' %( base, n )
+					if os.path.exists( target ): os.remove( target )
+					if os.stat(source)[stat.ST_SIZE] > 415:
+						os.rename( source, target )
+					else:
+						os.remove( source )
+						shutil.copy( 'blanktile.png', target )
+					n += 1
 				else:
-					os.remove( source )
-				n += 1
+					shutil.copy( 'blanktile.png', target )
+		t2 = time.time()
+		print '%0.3f seconds to move files' %( t2 - t1 )
 
-for z in xrange(9):
+for z in xrange(6):
 	#generate( 'tiles-25', 'states/st99_d00_shp-25/st99_d00.shp', z )
 	generate( 'tiles-75', 'states/st99_d00_shp-75/st99_d00.shp', z )
 	#generate( 'tiles-90', 'states/st99_d00_shp-90/st99_d00.shp', z )

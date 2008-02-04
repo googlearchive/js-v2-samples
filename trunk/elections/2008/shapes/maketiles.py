@@ -63,65 +63,54 @@ def writeFile( filename, data ):
 	f.write( data )
 	f.close()
 
-def generate( state, filename, path, zoom ):
+def generate( state, stateFilename, countyFilename, path, zoom ):
+	global geo, scaleoffset
 	print '----------------------------------------'
-	print 'Generating %s zoom %d' %( filename, zoom )
+	print 'Generating %s %s zoom %d' %( stateFilename, countyFilename, zoom )
 	scale = 10
-	draw = '''
-stroke-width 10
-scale .1,.1
-	'''
-	global geo
+	
 	geo = Geo( zoom, 256*scale )
 	pixgeo = Geo( zoom, 256 )
-	shapefile = loadshapefile( filename )
+	stateShapefile = loadshapefile( stateFilename )
+	
 	t1 = time.time()
 	
-	nPolys = nPoints = 0
-	features = shapefile['features']
-	print '%d features' % len(features)
+	stateFeatures = stateShapefile['features']
+	print '%d state features' % len(stateFeatures)
 	
-	features = filterCONUS( features )
-	print '%d features in CONUS' % len(features)
+	stateFeatures = filterCONUS( stateFeatures )
+	print '%d features in CONUS states' % len(stateFeatures)
 	
-	writeFile( 'features.csv', shpUtils.dumpFeatureInfo(features) )
+	#writeFile( 'features.csv', shpUtils.dumpFeatureInfo(features) )
 	
 	#outer = pixgeo.pixFromGeoBounds( featuresBounds(features) )
-	fb = featuresBounds( features )
+	fb = featuresBounds( stateFeatures )
 	outer = pixgeo.pixFromGeoBounds( fb )
 	outer = pixgeo.inflateBounds( outer, 8 )
 	gridoffset, gridsize = pixgeo.tileBounds( outer )
 	scaleoffset = pixgeo.scalePoint( gridoffset, scale )
 	print 'Offset:[%d,%d], Size:[%d,%d]' %( gridoffset[0], gridoffset[1], gridsize[0], gridsize[1] )
+
+	draw = [ 'scale .1,.1\n' ]
 	
-	#for feature in features:
-	for i in xrange(len(features)):
-		feature = features[i]
-		color = featureByName( feature )['color']
-		#print 'Feature %d: %s' %( i, name )
-		shape = feature['shape']
-		if shape['type'] == 5:
-			for part in shape['parts']:
-				nPolys += 1
-				if 1:
-					draw += '''
-fill  #%s80
-stroke #00000060
-polygon''' % randomColor()
-				else:
-					draw += '''
-fill  #00000000
-stroke #00000080
-polygon'''
-				points = part['points']
-				n = len(points) - 1
-				nPoints += n
-				for j in xrange(n):
-					point = geo.pixFromGeoPoint( points[j] )
-					draw += ' %d,%d' %( point[0] - scaleoffset[0], point[1] - scaleoffset[1] )
-	print '%d points in %d polygons' %( nPoints, nPolys )
-	
-	writeFile( 'draw.cmd', draw )
+	if countyFilename:
+		countyShapefile = loadshapefile( countyFilename )
+		countyFeatures = countyShapefile['features']
+		print '%d county features' % len(countyFeatures)
+		
+		countyFeatures = filterCONUS( countyFeatures )
+		print '%d features in CONUS counties' % len(countyFeatures)
+		
+		draw.append( 'stroke-width 10\n' )
+		drawFeatures( draw, countyFeatures, getRandomColor )
+		
+		draw.append( 'stroke-width 20\n' )
+		drawFeatures( draw, stateFeatures, None )
+	else:
+		draw.append( 'stroke-width 10\n' )
+		drawFeatures( draw, stateFeatures, getRandomColor )
+					 
+	writeFile( 'draw.cmd', ''.join(draw) )
 	
 	t2 = time.time()
 	print '%0.3f seconds to generate commands' %( t2 - t1 )
@@ -146,6 +135,7 @@ polygon'''
 	if crop:
 		xyCount = 2 << zoom
 		n = 0
+		# TODO: refactor
 		xMin = gridoffset[0] / 256
 		xMinEdge = max( xMin - 2, 0 )
 		yMin = gridoffset[1] / 256
@@ -180,15 +170,43 @@ polygon'''
 		t2 = time.time()
 		print '%0.3f seconds to move files' %( t2 - t1 )
 
-#for z in xrange(0,5):
-#	generate( None, 'states/st99_d00_shp-75/st99_d00.shp', 'tiles', z )
-##	#generate( None, 'states/st99_d00_shp-25/st99_d00.shp', 'tiles-25', z )
-##	#generate( None, 'states/st99_d00_shp-90/st99_d00.shp', 'tiles-90', z )
+def drawFeatures( draw, features, getColor ):
+	global geo, scaleoffset
+	nPolys = nPoints = 0
+	#for feature in features:
+	for i in xrange(len(features)):
+		feature = features[i]
+		color = featureByName( feature )['color']
+		#print 'Feature %d: %s' %( i, name )
+		shape = feature['shape']
+		if shape['type'] == 5:
+			for part in shape['parts']:
+				nPolys += 1
+				if getColor:
+					draw += '''
+fill  #%s80
+stroke #00000040
+polygon''' % getColor(feature)
+				else:
+					draw += '''
+fill  #00000000
+stroke #00000060
+polygon'''
+				points = part['points']
+				n = len(points) - 1
+				nPoints += n
+				for j in xrange(n):
+					point = geo.pixFromGeoPoint( points[j] )
+					draw += ' %d,%d' %( point[0] - scaleoffset[0], point[1] - scaleoffset[1] )
+	print '%d points in %d polygons' %( nPoints, nPolys )
+
+def getRandomColor( feature ):
+	return randomColor()
+
+for z in xrange(0,5):
+	generate( None, 'states/st99_d00_shp-75/st99_d00.shp', None, 'tiles', z )
 	
-#for z in xrange(9):
-#for z in xrange(5,6):
-for z in xrange(4,5):
-	generate( 'x', 'counties/co99_d00_shp-80/co99_d00.shp', 'tiles', z )
-#generate( '../primary/states/mi/co26_d00_shp-82/co26_d00.shp', 5 )
+for z in xrange(5,9):
+	generate( 'x', 'states/st99_d00_shp-75/st99_d00.shp', 'counties/co99_d00_shp-80/co99_d00.shp', 'tiles', z )
 
 print 'Done!'

@@ -105,8 +105,8 @@ scale .1,.1
 				nPolys += 1
 				if 1:
 					draw += '''
-fill  #%sA0
-stroke #00000080
+fill  #%s80
+stroke #00000060
 polygon''' % randomColor()
 				else:
 					draw += '''
@@ -134,6 +134,8 @@ polygon'''
 	blank = magick.blank( gridsize )
 	base = '%s/tile-%d' %( path, zoom )
 	command = ( '%s -draw "@draw.cmd" %s ' + base + '.png' )%( blank, cropcmd )
+	#command = ( '%s -draw "@draw.cmd" %s -depth 8 -type Palette -floodfill 0x0 white -background white -transparent-color white ' + base + '.png' )%( blank, cropcmd )
+	#command = ( 'null: -resize %dx%d! -floodfill 0x0 white -draw "@draw.cmd" %s -depth 8 -type Palette -background white -transparent white -transparent-color white ' + base + '.png' )%( gridsize[0], gridsize[1], cropcmd )
 	#command = 'null: -resize %(cx)dx%(cy)d! -draw "@draw.cmd" %(crop)s tile%(zoom)d.png' %({
 	#	'cx': gridsize[0],
 	#	'cy': gridsize[1],
@@ -178,13 +180,15 @@ polygon'''
 		t2 = time.time()
 		print '%0.3f seconds to move files' %( t2 - t1 )
 
-#for z in xrange(1):
-#	#generate( None, 'states/st99_d00_shp-25/st99_d00.shp', 'tiles-25', z )
-#	generate( None, 'states/st99_d00_shp-75/st99_d00.shp', 'tiles-75', z )
-#	#generate( None, 'states/st99_d00_shp-90/st99_d00.shp', 'tiles-90', z )
+#for z in xrange(0,5):
+#	generate( None, 'states/st99_d00_shp-75/st99_d00.shp', 'tiles', z )
+##	#generate( None, 'states/st99_d00_shp-25/st99_d00.shp', 'tiles-25', z )
+##	#generate( None, 'states/st99_d00_shp-90/st99_d00.shp', 'tiles-90', z )
 	
-for z in xrange(7,8):
-	generate( 'x', 'counties/co99_d00_shp-80/co99_d00.shp', 'tiles-county', z )
+#for z in xrange(9):
+#for z in xrange(5,6):
+for z in xrange(4,5):
+	generate( 'x', 'counties/co99_d00_shp-80/co99_d00.shp', 'tiles', z )
 #generate( '../primary/states/mi/co26_d00_shp-82/co26_d00.shp', 5 )
 
 print 'Done!'

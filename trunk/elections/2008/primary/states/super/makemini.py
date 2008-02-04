@@ -59,13 +59,13 @@ def linkParty( party, match ):
 	name = parties[party]['name']
 	if party == match:
 		return T('''
-			<span class="thisparty">
+			<span style="font-weight:bold;">
 				%(name)s
 			</span>
 		''', { 'name': name } )
 	else:
 		return T('''
-			<a class="thatparty" href="#" onclick="refresh('%(party)s'); return false;">
+			<a href="#" onclick="refresh('%(party)s'); return false;">
 				%(name)s
 			</a>
 		''', { 'name': name, 'party': party } )
@@ -85,15 +85,17 @@ def writeMiniParty( kind, title, statenames, partyname, names ):
 def makeMiniParty( kind, title, statenames, partyname, names ):
 	statelist = statenames.split()
 	names = names.split()
-	head = [ '<th class="state"><div>State</div></th>' ]
+	style = 'font-weight:normal; background-color:#E0E0E0;'
+	head = [ '<th style="text-align:left; %s">State</th>' % style ]
 	for name in names:
 		head.append( T('''
-			<th class="name">
-				<div>
-					%(name)s
-				</div>
+			<th style="%(style)s">
+				%(name)s
 			</th>
-		''', { 'name':candidates['byname'][name]['lastName'] } ) )
+		''', {
+			'name': candidates['byname'][name]['lastName'],
+			'style': style
+		} ) )
 	rows = []
 	for stateabbr in statelist:
 		state = states.byAbbr[stateabbr]
@@ -112,16 +114,19 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		for name in names:
 			win = check = ''
 			if name == winner['name']:
-				win = 'win-%s' % partyname
-				if precincts['reporting'] == precincts['total']:
-					check = 'check'
+				if partyname == 'dem':
+					win = 'color:white; background-color:#3366CC;'
+				else:
+					win = 'color:white; background-color:#AA0031;'
+				#if precincts['reporting'] == precincts['total']:
+				#	check = 'check'
 			if name in votes:
 				percent = int( 100 * votes[name] / total )
 			else:
 				percent = 0
 			cols.append( T('''
-				<td class="votes %(win)s %(check)s">
-					<div class="col">
+				<td style="text-align:center;%(win)s%(check)s">
+					<div>
 						%(percent)s%%
 					</div>
 				</td>
@@ -132,13 +137,13 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 			}) )
 		reporting = int( 100 * precincts['reporting'] / precincts['total'] )
 		rows.append( T('''
-			<tr class="state">
-				<td class="state">
-					<div class="col">
-						<span class="state">
+			<tr style="background-color:#F1EFEF;">
+				<td>
+					<div>
+						<span>
 							%(state)s&nbsp;
 						</span>
-						<span class="reporting">
+						<span style="color:#666666;">
 							%(reporting)s%%
 						</span>
 					</div>
@@ -150,22 +155,6 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 			'reporting': reporting,
 			'cols': ''.join(cols)
 		}) )
-	css = S('''
-		<style type="text/css">
-			body * { font-family:arial,sans-serif; font-size:15px; }
-			.top { margin-bottom:4px; }
-			.resultstitle { font-weight:bold; font-size:120%; }
-			.thisparty { font-weight:bold; }
-			table.results { width:100%; }
-			.state { text-align:left; }
-			.reporting { font-size:85%; color:#666666; }
-			th { font-weight:normal; background-color:#E0E0E0; }
-			tr { background-color:#F1EFEF; }
-			td.votes { text-align:center; }
-			.win-dem { color:white; background-color:#3366CC; }
-			.win-gop { color:white; background-color:#AA0031; }
-		</style>
-	''');
 	if kind == 'short':
 		details = S('''
 			<a href="http://news.google.com/?ned=us&topic=el" target="_top">
@@ -175,28 +164,30 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		''')
 	else:
 		details = ''
-	return css + T('''
-		<div class="top">
-			<span class="resultstitle">
-				%(title)s:&nbsp;
-			</span>
-			<span class="partylinks">
-				%(dem)s | %(gop)s
-			</span>
-		</div>
-		<table class="results">
-			<thead>
-				%(head)s
-			</thead>
-			<tbody>
-				%(rows)s
-			</tbody>
-		</table>
-		<div class="foot">
-			%(details)s
-			<a href="http://maps.google.com/decision2008" target="_top">
-				View on a map &raquo;
-			</a>
+	return T('''
+		<div style="font-family:arial,sans-serif; font-size:90%%;">
+			<div style="margin-bottom:4px;">
+				<span style="font-size:110%%; font-weight:bold;">
+					%(title)s:&nbsp;
+				</span>
+				<span>
+					%(dem)s | %(gop)s
+				</span>
+			</div>
+			<table style="width:100%%; font-size:90%%;">
+				<thead>
+					%(head)s
+				</thead>
+				<tbody>
+					%(rows)s
+				</tbody>
+			</table>
+			<div>
+				%(details)s
+				<a href="http://maps.google.com/decision2008" target="_top">
+					View on a map &raquo;
+				</a>
+			</div>
 		</div>
 		''', {
 			'title': title,

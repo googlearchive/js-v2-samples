@@ -280,6 +280,7 @@ var partyButtons = opt.party ? '' : [
 		'<b>Vote results:</b>',
 		'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
 		'<button style="margin-left:8px;" id="btnRep">Republican</button>',
+		//'<button style="margin-left:8px;" id="btnTest">Reload</button>',
 		'</div>'
 ].join('');
 
@@ -422,7 +423,7 @@ var partyButtons = opt.party ? '' : [
 			'<table>',
 				'<tr valign="top">',
 					'<td>',
-						'<div id="map" style="width: 450px; height: 475px">',
+						'<div id="map" style="width: ', opt.mapWidth || '450px', '; height: ', opt.mapHeight || '300px', '">',
 						'</div>',
 					'</td>',
 					'<td valign="top" style="width:100%;">',
@@ -430,12 +431,14 @@ var partyButtons = opt.party ? '' : [
 						'<div id="votesbar">',
 							'<div id="votestitle">',
 							'</div>',
-							'<div style="font-weight:bold;">Statewide Results</div>',
+							//'<div style="font-weight:bold;">Statewide Results</div>',
 							'<div id="legend">',
 								'Loading&#8230;',
 							'</div>',
 							'<div id="results">',
-								'Roll the mouse over the map for county-by-county results<br /><br />',
+								//'Roll the mouse over the map for county-by-county results.<br /><br />',
+								'Roll the mouse over the map for state-by-state results.<br />',
+								'Zoom in for county-by-county results.<br /><br />',
 								//'Scroll down for statewide details',
 							'</div>',
 						'</div>',
@@ -702,7 +705,10 @@ function zoomRegion( region ) {
 		map.setCenter( new GLatLng( zoom[0], zoom[1] ), zoom[2] );
 		//selectRegion();
 	}
-	else {
+	else if( ! mapplet ) {
+		var center = new GLatLng( 37.0625, -95.677068 );
+		var zoom = opt.zoom || 3;
+		map.setCenter( center, zoom );
 		//GAsync( region.polygon.base, 'getBounds',
 		//	function( bounds ) {
 		//		GAsync( map, 'getBoundsZoomLevel', [ bounds ],
@@ -1142,15 +1148,11 @@ function load() {
 		//download( feed.news, onNewsReady );
 	}
 	
-	var tileLayerOverlay = new GTileLayerOverlay(
-		new GTileLayer( null, 1, 1, {
-			tileUrlTemplate: 'http://padlet/elections/2008/shapes/tile-{Z}-{X}-{Y}.png', 
-			isPng:true,
-			opacity:1.0
-		})
-	);
-	
-	map.addOverlay( tileLayerOverlay );
+	loadTiles();
+	$('#btnTest').click( function() {
+		loadTiles();
+		return false;
+	});
 
 	$('#btnDem').click( function() {
 		loadResults( parties.by.name['democrat'] );
@@ -1165,7 +1167,7 @@ function load() {
 	function loadResults( party ) {
 		map.clearOverlays();
 		var attrib = location.href.match( /boston\.com/ ) ? '' : [
-			'<a href="http://www.ap.org/" target="_blank">AP</a>',
+			'<span>AP</span>',
 			'<span>/</span>',
 			'<a href="http://www.boston.com/" target="_blank">Boston Globe</a>'
 		].join('');
@@ -1173,7 +1175,8 @@ function load() {
 			'<table  cellspacing="0" style="width:100%;">',
 				'<tr>',
 					'<td style="text-align:left;">',
-						'<b>', party.fullName, '</b>',
+						//'<b>', party.fullName, '</b>',
+						'<b>Nationwide Results</b>',
 					'</td>',
 					'<td id="votesattrib" style="text-align:right;">',
 						attrib,
@@ -1235,6 +1238,27 @@ var mousemoved = function( latlng ) {
 			}
 		}
 	}
+}
+
+var tileSeq = new Date().getTime();
+var tileLayerOverlay;
+function loadTiles() {
+	if( tileLayerOverlay ) map.removeOverlay( tileLayerOverlay );
+	
+	//base = 'http://padlet/elections/2008/shapes/tiles/';
+	base = 'http://gmodules.com/ig/proxy?url=http://mg.to/elections/tiles/';
+	//base = 'http://padlet/elections/2008/shapes/tiles-county/';
+	//base = 'http://gmodules.com/ig/proxy?url=http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles-75/';
+	//base = 'http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles-75/';
+	tileLayerOverlay = new GTileLayerOverlay(
+		new GTileLayer( null, 1, 1, {
+			tileUrlTemplate: base + 'tile-{Z}-{Y}-{X}.png?'+ (++tileSeq), 
+			isPng:true,
+			opacity:1.0
+		})
+	);
+	
+	map.addOverlay( tileLayerOverlay );
 }
 
 function countyName( county ) {

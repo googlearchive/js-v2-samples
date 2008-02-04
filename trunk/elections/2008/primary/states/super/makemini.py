@@ -65,7 +65,7 @@ def linkParty( party, match ):
 		''', { 'name': name } )
 	else:
 		return T('''
-			<a class="thatparty" href="#" onclick="refresh('%(party)s')">
+			<a class="thatparty" href="#" onclick="refresh('%(party)s'); return false;">
 				%(name)s
 			</a>
 		''', { 'name': name, 'party': party } )

@@ -1306,11 +1306,13 @@ function loadTiles() {
 	//base = 'http://gmodules.com/ig/proxy?url=http://mg.to/elections/tiles/';
 	//base = 'http://padlet/elections/2008/shapes/tiles-county/';
 	//base = 'http://gmodules.com/ig/proxy?url=http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles/';
+	//base = 'http://gmodules.com/ig/proxy?url=http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles/';
 	base = 'http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles/';
 	//base = 'http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles-75/';
+	
 	tileLayerOverlay = new GTileLayerOverlay(
 		new GTileLayer( null, 1, 1, {
-			tileUrlTemplate: base + 'tile-{Z}-{Y}-{X}.png?'+ (++tileSeq), 
+			tileUrlTemplate: base + 'tile-{Z}-{Y}-{X}.png', 
 			isPng:true,
 			opacity:1.0
 		})

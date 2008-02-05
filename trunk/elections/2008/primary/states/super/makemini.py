@@ -13,7 +13,6 @@ from template import *
 import private
 from candidates import candidates
 
-
 parties = {
 	'dem': { 'name':'Democrats' },
 	'gop': { 'name':'Republicans' }
@@ -105,15 +104,16 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		state = states.byAbbr[stateabbr]
 		cols = []
 		winner = { 'name': None, 'votes': 0 }
-		total = 0
 		party = state['parties'][partyname]
 		if 'votes' not in party: continue
 		votes = party['votes']
 		for name in votes:
-			vote = votes[name]
-			total += vote
-			if vote > winner['votes']:
-				winner = { 'name': name, 'votes': vote }
+			if name == 'total-d' or name == 'total-r':
+				total = party['total'] = votes[name]
+			else:
+				vote = votes[name]
+				if vote > winner['votes']:
+					winner = { 'name': name, 'votes': vote }
 		precincts = party['precincts']
 		for name in names:
 			win = check = ''

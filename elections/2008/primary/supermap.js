@@ -1507,7 +1507,7 @@ function tweetBubble( tweet ) {
 		'<div style="font-family: Arial,sans-serif; font-size: 10pt;">',
 			img,
 			'<div>',
-				'<a target="_new" href="http://twittervision.com/', htmlEscape(tweet.user), '">', htmlEscape(tweet.user), '</a>',
+				'<a target="_new" href="http://twitter.com/', htmlEscape(tweet.user), '">', htmlEscape(tweet.user), '</a>',
 			'<div>',
 			author,
 			'<div>',

@@ -1,5 +1,5 @@
-//var contentBase = window.contentBase || 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/states/super/';
-var contentBase = 'http://mg.to/elections/';
+var contentBase = window.contentBase || 'http://primary-maps-2008-data.googlecode.com/svn/trunk/miniresults/';
+//var contentBase = 'http://mg.to/elections/';
 
 var prefs = new _IG_Prefs();
 var useTestData = prefs.getBool('testdata');

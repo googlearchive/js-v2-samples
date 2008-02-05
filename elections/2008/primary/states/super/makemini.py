@@ -17,7 +17,7 @@ parties = {
 }
 
 def fetchData():
-	#urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
+	urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
 	pass
 
 def readVotes():
@@ -72,7 +72,7 @@ def linkParty( party, match ):
 
 def makeMini():
 	short = makeMiniVersion( 'short', 'Election&nbsp;Coverage', 'CA NY IL MA' )
-	long = makeMiniVersion( 'long', 'Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT' )
+	long = makeMiniVersion( 'long', 'Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT WV' )
 	
 def makeMiniVersion( kind, title, statenames ):
 	writeMiniParty( kind, title, statenames, 'dem', 'clinton obama' )
@@ -98,6 +98,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		} ) )
 	rows = []
 	for stateabbr in statelist:
+		if stateabbr == 'WV' and partyname == 'dem': continue
 		state = states.byAbbr[stateabbr]
 		cols = []
 		winner = { 'name': None, 'votes': 0 }
@@ -106,7 +107,8 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		if 'votes' not in party: continue
 		votes = party['votes']
 		for name in votes:
-			vote = votes[name]
+			#vote = votes[name]
+			vote = 0  #### TEMP ####
 			total += vote
 			if vote > winner['votes']:
 				winner = { 'name': name, 'votes': vote }
@@ -120,14 +122,14 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 					win = 'color:white; background-color:#AA0031;'
 				#if precincts['reporting'] == precincts['total']:
 				#	check = 'check'
-			if name in votes:
-				percent = int( 100 * votes[name] / total )
+			if name in votes and total > 0:
+				percent = '%d%%' % int( 100 * votes[name] / total )
 			else:
-				percent = 0
+				percent = '--'
 			cols.append( T('''
 				<td style="width:%(width)s%%; text-align:center; %(win)s%(check)s">
 					<div>
-						%(percent)s%%
+						%(percent)s
 					</div>
 				</td>
 			''', {
@@ -136,7 +138,8 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				'check': check,
 				'percent': percent
 			}) )
-		reporting = int( 100 * precincts['reporting'] / precincts['total'] )
+		#reporting = int( 100 * precincts['reporting'] / precincts['total'] )
+		reporting = 0  #### TEMP ####
 		rows.append( T('''
 			<tr style="background-color:#F1EFEF;">
 				<td style="width:20%%;">

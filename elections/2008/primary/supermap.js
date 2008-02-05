@@ -380,15 +380,11 @@ var partyButtons = opt.party ? '' : [
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<div id="outer">',
-				'<div style="font-weight:bold;">',
-					'Coming Soon:',
+				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
+					'We\'ve joined forces with <a href="http://twitter.com/" target="_blank">Twitter</a> and <a href="http://twittervision.com/" target="_blank">Twittervision</a> to give you instant updates on Super Tuesday. Throughout the day, you can watch Twitter texts from across the country. And send in your own updates!',
 				'</div>',
-				'<div>',
-					'<ul>',
-						'<li>YouTube Videos</li>',
-						'<li>Live Election Results</li>',
-						'<li>Get This Map for your website</li>',
-					'</ul>',
+				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
+					'Come back after the polls close (around 8PM EST) for live election results of all the Super Tuesday states!',
 				'</div>',
 				//'<div>',
 				//	'<span style="color:red;">New!</span> ',
@@ -1502,13 +1498,13 @@ function tweetBubble( tweet ) {
 			'style="border:1px solid black; float:left; width:48px; height:48px; margin:0 6px 6px 0; vertical-align:top;" ',
 			'src="', tweet.image || '', '" />'
 	);
-	var author = ! tweet.author || tweet.author == tweet.user ? '' : S( '<div>(', htmlEscape(tweet.author), ')</div>' );
+	var author = ! tweet.author || tweet.author == tweet.user ? '' : S( '<div>', htmlEscape(tweet.author), '</div>' );
 	return S(
 		'<div style="font-family: Arial,sans-serif; font-size: 10pt;">',
 			img,
-			'<div>',
+			'<div style="font-weight:bold;">',
 				'<a target="_new" href="http://twitter.com/', htmlEscape(tweet.user), '">', htmlEscape(tweet.user), '</a>',
-			'<div>',
+			'</div>',
 			author,
 			'<div>',
 				htmlEscape( tweet.where || '' ),

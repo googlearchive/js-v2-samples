@@ -76,6 +76,24 @@
 
 var opt = window.GoogleElectionMapOptions || {};
 
+//var mapplet = location.host == 'gmodules.com';
+var mapplet = ! window.GBrowserIsCompatible;
+
+if( ! mapplet  &  window._IG_Prefs ) {
+	var p = new _IG_Prefs();
+	opt.zoom = p.getInt('zoom');
+	opt.sidebarWidth = p.getInt('sidebarwidth');
+	opt.mapWidth = window.innerWidth - opt.sidebarWidth ;
+	opt.mapHeight = window.innerHeight - 24;
+	opt.party = p.getString('party');
+	opt.twitter = p.getBool('twitter');
+}
+
+opt.zoom = opt.zoom || 3;
+opt.sidebarWidth = opt.sidebarWidth || 240;
+opt.mapWidth = opt.mapWidth || 400;
+opt.mapHeight = opt.mapHeight || 300;
+
 //var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 var imgBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/';
 
@@ -272,9 +290,6 @@ function GAsync( obj ) {
 		callback();
 }
 
-//var mapplet = location.host == 'gmodules.com';
-var mapplet = ! window.GBrowserIsCompatible;
-
 var partyButtons = opt.party ? '' : [
 	'<div style="margin-top:8px;">',
 		'<b>Vote results:</b>',
@@ -387,6 +402,7 @@ var partyButtons = opt.party ? '' : [
 			'</div>'
 		] : [
 			'<style type="text/css">',
+				'body { margin:0; padding:0; }',
 				'* { font-family: Arial,sans-serif; font-size: 10pt; }',
 				'#outer {}',
 				'#eventbar { display:none; }',
@@ -423,10 +439,10 @@ var partyButtons = opt.party ? '' : [
 			'<table>',
 				'<tr valign="top">',
 					'<td>',
-						'<div id="map" style="width: ', opt.mapWidth || '450px', '; height: ', opt.mapHeight || '300px', '">',
+						'<div id="map" style="width:', opt.mapWidth, 'px; height:', opt.mapHeight, 'px;">',
 						'</div>',
 					'</td>',
-					'<td valign="top" style="width:100%;">',
+					'<td valign="top" style="width:', opt.sidebarWidth, 'px;">',
 						partyButtons,
 						'<div id="votesbar">',
 							'<div id="votestitle">',
@@ -707,8 +723,7 @@ function zoomRegion( region ) {
 	}
 	else if( ! mapplet ) {
 		var center = new GLatLng( 37.0625, -95.677068 );
-		var zoom = opt.zoom || 3;
-		map.setCenter( center, zoom );
+		map.setCenter( center, opt.zoom );
 		//GAsync( region.polygon.base, 'getBounds',
 		//	function( bounds ) {
 		//		GAsync( map, 'getBoundsZoomLevel', [ bounds ],

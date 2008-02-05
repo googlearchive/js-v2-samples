@@ -1161,6 +1161,7 @@ function load() {
 	if( mapplet ) {
 		download( feed.video, onVideoReady );
 		download( feed.news, onNewsReady );
+		//loadYouTubeMap();
 	}
 	
 	loadTiles();
@@ -1428,5 +1429,183 @@ function download( url, ready ) {
 }
 
 $(window).bind( 'load', load ).bind( 'onunload', GUnload );
+
+function loadYouTubeMap() {
+	
+	var contestID = 18;
+	var vlist = null;
+	var temp_vlist = null;
+	var vOfCount = 0;
+	var tabs = null;
+	var selectedVid = 0;
+	var user_vid = "";
+	var user_id = "";
+	var _json_with_no_cache = 1;
+	var timerHandle = 0;
+	var page = 1;
+	
+	
+	var overlayscleared = 0;
+	var marker = null;
+	
+	var DEFAULT_MARKER_POINT = new GLatLng(38.496593,-98.338623);//new GLatLng(37.4228, -122.085)
+	var DEFAULT_BIG_ZOOM = 4;
+	var DEFAULT_SMALL_ZOOM = 6;
+
+	
+	var gicons = [
+		new GIcon(G_DEFAULT_ICON, _IG_GetImageUrl("http://contests.labpixies.com/gadget/super_tue/images/1.png")),
+		new GIcon(G_DEFAULT_ICON, _IG_GetImageUrl("http://contests.labpixies.com/gadget/super_tue/images/2.png")),		
+		new GIcon(G_DEFAULT_ICON, _IG_GetImageUrl("http://contests.labpixies.com/gadget/super_tue/images/3.png")),
+		new GIcon(G_DEFAULT_ICON, _IG_GetImageUrl("http://contests.labpixies.com/gadget/super_tue/images/4.png"))	
+	];
+	
+	for(var i=0; i < gicons.length ; i++){
+		var tmp = gicons[i];
+		tmp.iconSize = new GSize(22,21);
+		tmp.shadowSize = new GSize(0,0);
+	}
+	
+	var gmarkers = [];
+	var gmarkers_htmls = [];
+	var gmarkers_ids = [];
+	var gmarkers_idx = 0;
+	
+	var url = "http://contests.labpixies.com/get_videos/?cid="+contestID+"&v_phase=0";
+	_IG_FetchContent(url, parseResponse, { refreshInterval: (60 * 1) });
+	
+	function parseResponse(response){
+		
+		if (response == null || typeof(response) != "string") {
+			_gel("mainmap").innerHTML = "Temporary unavailable, please try again in a few seconds";
+			return;
+		}
+		
+		videos_data = eval("("+response+")");
+		
+		
+		vlist = videos_data.list;
+		vlist.splice(vlist.length-1,1);
+		
+		if(vlist.length == 0){
+			//_gel("mainmap").innerHTML = "No video available, please try again in a few seconds";
+			//return;
+		}
+		
+		vlist.sort( randOrd );
+		vOfCount = vlist.length;
+		
+		
+		loadMainMap();
+		
+	}
+	
+	
+	function loadMainMap() {
+		
+		var bounds = new GLatLngBounds();
+		
+console.log('creating markers ' + vlist.length);		
+		for (var i=0; i<vlist.length && i<50; i++) {
+console.log('creating marker ' +i);		
+			var latlng = vlist[i].geo.split("s");
+			var point = new GLatLng(latlng[0], latlng[1]);
+			var _marker = createCustomMarker(point, vlist[i].v_name, vlist[i].yt_id, vlist[i].cat);
+			//map.addOverlay(_marker);
+			bounds.extend(point);
+		}
+		
+		
+		//map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
+		//map.setCenter(new GLatLng("38.548165","-99.492187"), 4);
+		
+console.log('adding markers');		
+		for (var i = 0; i < gmarkers.length; i++) {
+			map.addOverlay(gmarkers[i]);
+		}
+console.log('done adding markers');		
+		setTimeout("gmarkers_click(0);",2000);
+	}
+	
+	function createCustomMarker(point,name,yt_id,category) {
+        var html = '<table><tr><td width="230" height="20" class="smallBlueText">'+name+'</td></tr><tr><td width="230" height="190" id="testCont">&nbsp;</td></tr></table>';
+		
+		var _marker = new GMarker(point,gicons[category-1]);
+        GEvent.addListener(_marker, "click", function() {
+			_marker.openInfoWindowHtml(html);
+			var curl = ("http://www.youtube.com/v/"+yt_id+"&rel=0&autoplay=1&border=0");
+			_LP_EmbedFlash(curl, "testCont", {width: 230,height: 190,wmode:'transparent'});
+			gadgetTracker._trackEvent('map-playVideo',name);
+			_gel("report_pixel").src = "http://contests.labpixies.com/view.php?vid="+yt_id+"&cont_id="+contestID+"&rand="+Math.round(Math.random()*100000);
+        });
+        
+		GEvent.addListener(_marker, "infowindowbeforeclose", function() {
+			_gel("testCont").innerHTML = "";
+        });
+		
+        gmarkers[gmarkers_idx] = _marker;
+        gmarkers_htmls[gmarkers_idx] = html;
+		gmarkers_ids[gmarkers_idx] = yt_id;
+		
+        gmarkers_idx++;
+        return _marker;
+    }
+	
+	
+	function gmarkers_click(_idx) {
+		gmarkers[_idx].openInfoWindowHtml(gmarkers_htmls[_idx]);
+		var curl = ("http://www.youtube.com/v/"+gmarkers_ids[_idx]+"&rel=0&autoplay=1&border=0");
+		_LP_EmbedFlash(curl, "testCont", {width: 230,height: 190,wmode:'transparent'});
+		gadgetTracker._trackEvent('map-playVideo',gmarkers_ids[_idx]);
+		_gel("report_pixel").src = "http://contests.labpixies.com/view.php?vid="+gmarkers_ids[_idx]+"&cont_id="+contestID+"&rand="+Math.round(Math.random()*100000);
+	}
+	
+	//Utils
+  function randOrd(){
+	return (Math.round(Math.random())-0.5); 
+  }
+	 
+  function getJson(b,errorReportFunction){
+        
+        clearTimeout(timerHandle);
+        timerHandle = setTimeout(errorReportFunction,30000);
+        var c=document.getElementsByTagName("head")[0];
+        var d=document.createElement("script");
+        d.type="text/javascript";
+        d.charset="utf-8";
+        d.defer="defer";
+        var e=b;
+        e=e+"&nocache="+_json_with_no_cache++;
+        d.src=e;
+        var f=function(){
+            var j=d.parentNode;
+            j.removeChild(d);
+            delete d
+        };
+        var g=function(j){
+            var s=(j?j:window.event).target?(j?j:window.event).target:(j?j:window.event).srcElement;
+            if(s.readyState=="loaded"||s.readyState=="complete"){
+                f();
+                return;
+            }
+        };
+        if(navigator.product=="Gecko"){
+            d.onload=f;
+        }else{
+            d.onreadystatechange=g;
+        }
+        c.appendChild(d)
+    }
+	
+	function _LP_EmbedFlash(_url, _id, _params){
+	  var isFF = ((navigator.userAgent.toLowerCase().indexOf("firefox") >= 0) || (navigator.userAgent.toLowerCase().indexOf("camino") >= 0));
+	  if(!isFF){
+		_IG_EmbedFlash(_url, _id,  _params);
+	  }else{
+		var params = _params;
+		_gel(_id).innerHTML = '<object width="'+params.width+'" height="'+params.height+'"><param name="movie" value="'+_url+'"></param><param name="wmode" value="'+params.wmode+'"></param><embed src="'+_url+'" type="application/x-shockwave-flash" wmode="'+params.wmode+'" width="'+params.width+'" height="'+params.height+'"></embed></object>';    
+	  }
+	}
+}
 
 })( jQuery );

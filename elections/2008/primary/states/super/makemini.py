@@ -125,7 +125,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				#if precincts['reporting'] == precincts['total']:
 				#	check = 'check'
 			if name in votes and total > 0:
-				percent = '%d%%' % round( 100 * votes[name] / total )
+				percent = '%d%%' % int( round( 100 * votes[name] / total ) )
 			else:
 				percent = '--'
 			cols.append( T('''
@@ -140,7 +140,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				'check': check,
 				'percent': percent
 			}) )
-		reporting = round( 100 * precincts['reporting'] / precincts['total'] )
+		reporting = int( round( 100 * precincts['reporting'] / precincts['total'] ) )
 		rows.append( T('''
 			<tr style="background-color:#F1EFEF;">
 				<td style="width:20%%;">

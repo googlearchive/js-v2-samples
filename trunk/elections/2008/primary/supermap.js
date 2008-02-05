@@ -158,6 +158,16 @@ String.prototype.words = function( fun ) {
 	this.split(' ').forEach( fun );
 };
 
+function S() {
+	return Array.prototype.join.call( arguments, '' );
+};
+
+function htmlEscape( str ) {
+	var div = document.createElement( 'div' );
+	div.appendChild( document.createTextNode( str ) );
+	return div.innerHTML;
+}
+
 function percent( n ) {
 	n = Math.round( n * 100 );
 	return n ? n + '%' : '';
@@ -1159,9 +1169,10 @@ function load() {
 	//showCounties();
 	
 	if( mapplet ) {
-		download( feed.video, onVideoReady );
+		//download( feed.video, onVideoReady );
 		download( feed.news, onNewsReady );
 		//loadYouTubeMap();
+		loadTwitter();
 	}
 	
 	loadTiles();
@@ -1429,6 +1440,69 @@ function download( url, ready ) {
 }
 
 $(window).bind( 'load', load ).bind( 'onunload', GUnload );
+
+function loadTwitter() {
+	var url = 'http://primary-maps-2008-data.googlecode.com/svn/trunk/tweets/tweets.js?t=' + new Date().getTime();
+	_IG_FetchContent( url, function( t ) {
+		window.tweets = eval( '(' + t + ')' );
+		//var list = [], markers = [];
+		//tweets.forEach( function( tweet ) {
+		//	markers.push();
+		//});
+		showTweet();
+	});
+}
+
+function showTweet() {
+	var tweet = tweets.shift();
+	if( tweet )
+		addTweetMarker( tweet );
+	else
+		loadTwitter();
+}
+
+var tweetMarker;
+function addTweetMarker( tweet ) {
+	if( tweetMarker ) {
+		map.closeInfoWindow();
+		map.removeOverlay( tweetMarker );
+	}
+	
+	var latlng = new GLatLng( tweet.lat, tweet.lon );
+	tweetMarker = new GMarker( latlng/*, { icon:icons[color] }*/ );
+	map.addOverlay( tweetMarker );
+	//marker.openInfoWindowHtml( tweetBubble(tweet) );
+	var bubble = tweetBubble(tweet);
+	//alert( bubble );
+	tweetMarker.openInfoWindowHtml( bubble, { maxWidth:300, disableGoogleLinks:true } );
+	
+	setTimeout( showTweet, 15000 );
+}
+
+function tweetBubble( tweet ) {
+	var img = ! tweet.image ? '' : S(
+		'<img ',
+			'style="border:1px solid black; float:left; width:48px; height:48px; margin:0 6px 6px 0; vertical-align:top;" ',
+			'src="', tweet.image || '', '" />'
+	);
+	var author = ! tweet.author ? '' : S( '<div>(', htmlEscape(tweet.author), ')</div>' );
+	return S(
+		'<div style="font-family: Arial,sans-serif; font-size: 10pt;">',
+			img,
+			'<div>',
+				'<a target="_new" href="http://twittervision.com/', htmlEscape(tweet.user), '">', htmlEscape(tweet.user), '</a>',
+			'<div>',
+			author,
+			'<div style="display: inline;">',
+				htmlEscape(tweet.message),
+			'</div>',
+			'<div>',
+				htmlEscape( tweet.where || '' ),
+			'</div>',
+			//'<div id="statusupdated">less than a minute ago in WWW</div>
+		'</div>'
+	);
+}
 
 function loadYouTubeMap() {
 	

@@ -16,7 +16,7 @@ function refresh( p ) {
 		document.getElementById('container').innerHTML = html;
 	},
 	{
-		refreshInterval:0
+		refreshInterval: 150
 	});
 }
 

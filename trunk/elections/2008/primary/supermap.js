@@ -348,16 +348,16 @@ var partyButtons = opt.party ? '' : [
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<div id="outer">',
-				'<div>',
-					'<span style="color:red;">New!</span> ',
-					'Click the map for county info and results',
-				'</div>',
-				'<div style="padding-bottom:6px; display:none;">',
-					'View in <a href="http://earth.google.com/" target="_blank">Google Earth</a>: ',
-					'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/', opt.state, '/earth-', opt.state, '-democrat.kml">Democratic</a>',
-					' ',
-					'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/', opt.state, '/earth-', opt.state, '-republican.kml">Republican</a>',
-				'</div>',
+				//'<div>',
+				//	'<span style="color:red;">New!</span> ',
+				//	'Click the map for county info and results',
+				//'</div>',
+				//'<div style="padding-bottom:6px; display:none;">',
+				//	'View in <a href="http://earth.google.com/" target="_blank">Google Earth</a>: ',
+				//	'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/', opt.state, '/earth-', opt.state, '-democrat.kml">Democratic</a>',
+				//	' ',
+				//	'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/', opt.state, '/earth-', opt.state, '-republican.kml">Republican</a>',
+				//'</div>',
 				//'<div>',
 				//	'<select id="lstRegions">',
 				//		'<option value="">',
@@ -372,14 +372,14 @@ var partyButtons = opt.party ? '' : [
 				//	'&nbsp;|&nbsp;',
 				//	'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				//'</div>',
-				partyButtons,
-				'<div id="votesbar">',
-					'<div id="votestitle">',
-					'</div>',
-					'<div id="legend">',
-						'Loading&#8230;',
-					'</div>',
-				'</div>',
+				//partyButtons,
+				//'<div id="votesbar">',
+				//	'<div id="votestitle">',
+				//	'</div>',
+				//	'<div id="legend">',
+				//		'Loading&#8230;',
+				//	'</div>',
+				//'</div>',
 				'<div id="videos" style="margin-top:8px;">',
 				'</div>',
 				'<div id="news" style="margin-top:6px;">',
@@ -1144,8 +1144,8 @@ function load() {
 	//showCounties();
 	
 	if( mapplet ) {
-		//download( feed.video, onVideoReady );
-		//download( feed.news, onNewsReady );
+		download( feed.video, onVideoReady );
+		download( feed.news, onNewsReady );
 	}
 	
 	loadTiles();
@@ -1246,9 +1246,9 @@ function loadTiles() {
 	if( tileLayerOverlay ) map.removeOverlay( tileLayerOverlay );
 	
 	//base = 'http://padlet/elections/2008/shapes/tiles/';
-	base = 'http://gmodules.com/ig/proxy?url=http://mg.to/elections/tiles/';
+	//base = 'http://gmodules.com/ig/proxy?url=http://mg.to/elections/tiles/';
 	//base = 'http://padlet/elections/2008/shapes/tiles-county/';
-	//base = 'http://gmodules.com/ig/proxy?url=http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles-75/';
+	base = 'http://gmodules.com/ig/proxy?url=http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles/';
 	//base = 'http://primary-maps-2008-test.googlecode.com/svn/trunk/tiles/us/tiles-75/';
 	tileLayerOverlay = new GTileLayerOverlay(
 		new GTileLayer( null, 1, 1, {

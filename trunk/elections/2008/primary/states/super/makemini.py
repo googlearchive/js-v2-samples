@@ -2,14 +2,17 @@
 
 # reader.py - vote reader for Super Tuesday
 
-import private
-import re
-import urllib
 import csv
+import os
+import re
+import time
+import urllib
 import states
 from template import *
 
+import private
 from candidates import candidates
+
 
 parties = {
 	'dem': { 'name':'Democrats' },
@@ -17,13 +20,13 @@ parties = {
 }
 
 def fetchData():
-	urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
+	urllib.urlretrieve( private.csvFeedUrl, 'miniresults/text_output_for_mapping.csv' )
 	pass
 
 def readVotes():
 	print 'Processing vote data'
 	#reader = csv.reader( open( 'test.csv', 'rb' ) )
-	reader = csv.reader( open( 'text_output_for_mapping.csv', 'rb' ) )
+	reader = csv.reader( open( 'miniresults/text_output_for_mapping.csv', 'rb' ) )
 	header = []
 	while header == []:
 		header = reader.next()
@@ -80,7 +83,7 @@ def makeMiniVersion( kind, title, statenames ):
 
 def writeMiniParty( kind, title, statenames, partyname, names ):
 	text = makeMiniParty( kind, title, statenames, partyname, names )
-	write( 'miniresults-%s-%s.html' %( kind, partyname ), text )
+	write( 'miniresults/miniresults-%s-%s.html' %( kind, partyname ), text )
 
 def makeMiniParty( kind, title, statenames, partyname, names ):
 	statelist = statenames.split()
@@ -107,8 +110,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		if 'votes' not in party: continue
 		votes = party['votes']
 		for name in votes:
-			#vote = votes[name]
-			vote = 0  #### TEMP ####
+			vote = votes[name]
 			total += vote
 			if vote > winner['votes']:
 				winner = { 'name': name, 'votes': vote }
@@ -138,8 +140,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				'check': check,
 				'percent': percent
 			}) )
-		#reporting = int( 100 * precincts['reporting'] / precincts['total'] )
-		reporting = 0  #### TEMP ####
+		reporting = int( 100 * precincts['reporting'] / precincts['total'] )
 		rows.append( T('''
 			<tr style="background-color:#F1EFEF;">
 				<td style="width:20%%;">
@@ -218,16 +219,23 @@ def write( name, text ):
 	f.write( text )
 	f.close()
 	
-def main():
+def update():
 	print 'Retrieving data...'
 	fetchData()
 	print 'Parsing data...'
 	readVotes()
-	print 'Creating Mini Gadget HTML...'
+	print 'Creating Miniresults HTML...'
 	makeMini()
-	#print 'Checking in Maps JSON...'
-	#os.system( 'svn ci -m "Vote update" fl_text_output_for_mapping.csv data.js results_democrat.js results_republican.js' )
+	print 'Checking in Miniresults HTML...'
+	os.system( 'svn ci -m "Miniresults update" miniresults/*' )
 	print 'Done!'
+
+def main():
+	while 1:
+		update()
+		print 'Waiting 1 minute...'
+		time.sleep( 60 )
 
 if __name__ == "__main__":
     main()
+	

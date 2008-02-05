@@ -1485,7 +1485,7 @@ function tweetBubble( tweet ) {
 			'style="border:1px solid black; float:left; width:48px; height:48px; margin:0 6px 6px 0; vertical-align:top;" ',
 			'src="', tweet.image || '', '" />'
 	);
-	var author = ! tweet.author ? '' : S( '<div>(', htmlEscape(tweet.author), ')</div>' );
+	var author = ! tweet.author || tweet.author == tweet.user ? '' : S( '<div>(', htmlEscape(tweet.author), ')</div>' );
 	return S(
 		'<div style="font-family: Arial,sans-serif; font-size: 10pt;">',
 			img,
@@ -1493,11 +1493,11 @@ function tweetBubble( tweet ) {
 				'<a target="_new" href="http://twittervision.com/', htmlEscape(tweet.user), '">', htmlEscape(tweet.user), '</a>',
 			'<div>',
 			author,
-			'<div style="display: inline;">',
-				htmlEscape(tweet.message),
-			'</div>',
 			'<div>',
 				htmlEscape( tweet.where || '' ),
+			'</div>',
+			'<div style="display: inline;">',
+				htmlEscape(tweet.message),
 			'</div>',
 			//'<div id="statusupdated">less than a minute ago in WWW</div>
 		'</div>'

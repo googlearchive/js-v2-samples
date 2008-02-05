@@ -94,6 +94,9 @@ opt.sidebarWidth = opt.sidebarWidth || 240;
 opt.mapWidth = opt.mapWidth || 400;
 opt.mapHeight = opt.mapHeight || 300;
 
+opt.mapWidth = opt.mapWidth.replace( /px$/, '' );
+opt.mapHeight = opt.mapHeight.replace( /px$/, '' );
+
 //var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 var imgBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/';
 

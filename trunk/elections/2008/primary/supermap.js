@@ -168,6 +168,10 @@ function htmlEscape( str ) {
 	return div.innerHTML;
 }
 
+function htmlLinks( str ) {
+	return str.replace( /(http:\/\/\S+)/g, '<a href="$1" target="_blank">$1</a>' );
+}
+
 function percent( n ) {
 	n = Math.round( n * 100 );
 	return n ? n + '%' : '';
@@ -1497,7 +1501,7 @@ function tweetBubble( tweet ) {
 				htmlEscape( tweet.where || '' ),
 			'</div>',
 			'<div style="display: inline;">',
-				htmlEscape(tweet.message),
+				htmlLinks( htmlEscape(tweet.message) ),
 			'</div>',
 			//'<div id="statusupdated">less than a minute ago in WWW</div>
 		'</div>'

@@ -199,7 +199,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 			</table>
 			<div>
 				%(details)s
-				<a href="http://maps.google.com/decision2008" target="_top" style="color:green;">
+				<a href="http://maps.google.com/decision2008" target="_blank" style="color:green;">
 					View on a map &raquo;
 				</a>
 			</div>

@@ -27,6 +27,5 @@ function reload() {
 
 document.write(
 	'<div id="container">',
-		'Loading&#8230',
 	'</div>'
 );

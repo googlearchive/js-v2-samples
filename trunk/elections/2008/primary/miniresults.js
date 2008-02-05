@@ -7,16 +7,21 @@ var homepage = prefs.getBool('homepage');
 var which = homepage ? 'short' : 'long';
 var party = ( Math.random() < .5 ? 'dem' : 'gop' );
 
-setTimeout( function() { refresh(); }, 1 );
+setTimeout( reload, 1 );
 
 function refresh( p ) {
 	party = p || party;
+	reload();
+}
+
+function reload() {
 	var url = contentBase + 'miniresults-' + which + '-' + party + '.html';
 	_IG_FetchContent( url, function( html ) {
 		document.getElementById('container').innerHTML = html;
+		setTimeout( reload, 60000 );
 	},
 	{
-		refreshInterval: 150
+		refreshInterval: 60
 	});
 }
 

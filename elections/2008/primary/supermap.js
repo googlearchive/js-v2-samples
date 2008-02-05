@@ -94,8 +94,8 @@ opt.sidebarWidth = opt.sidebarWidth || 240;
 opt.mapWidth = opt.mapWidth || 400;
 opt.mapHeight = opt.mapHeight || 300;
 
-opt.mapWidth = opt.mapWidth.replace( /px$/, '' );
-opt.mapHeight = opt.mapHeight.replace( /px$/, '' );
+opt.mapWidth = ( '' + opt.mapWidth ).replace( /px$/, '' );
+opt.mapHeight = ( '' + opt.mapHeight ).replace( /px$/, '' );
 
 //var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 var imgBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/';
@@ -171,7 +171,7 @@ function htmlEscape( str ) {
 	return div.innerHTML;
 }
 
-function htmlLinks( str ) {
+function httpLinks( str ) {
 	return str.replace( /(http:\/\/\S+)/g, '<a href="$1" target="_blank">$1</a>' );
 }
 
@@ -1504,7 +1504,7 @@ function tweetBubble( tweet ) {
 				htmlEscape( tweet.where || '' ),
 			'</div>',
 			'<div style="display: inline;">',
-				htmlLinks( htmlEscape(tweet.message) ),
+				httpLinks( htmlEscape(tweet.message) ),
 			'</div>',
 			//'<div id="statusupdated">less than a minute ago in WWW</div>
 		'</div>'

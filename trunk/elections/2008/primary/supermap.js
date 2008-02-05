@@ -77,25 +77,35 @@
 var opt = window.GoogleElectionMapOptions || {};
 
 //var mapplet = location.host == 'gmodules.com';
-var mapplet = ! window.GBrowserIsCompatible;
+var mapplet;
 
-if( ! mapplet  &  window._IG_Prefs ) {
+if( window._IG_Prefs ) {
 	var p = new _IG_Prefs();
-	opt.zoom = p.getInt('zoom');
+	var zoom = p.getInt('zoom');
+}
+if( zoom ) {
+	opt.zoom = zoom;
 	opt.sidebarWidth = p.getInt('sidebarwidth');
 	opt.mapWidth = window.innerWidth - opt.sidebarWidth ;
 	opt.mapHeight = window.innerHeight - 24;
 	opt.party = p.getString('party');
 	opt.twitter = p.getBool('twitter');
+	opt.youtube = p.getBool('youtube');
+}
+else {
+	mapplet = true;
 }
 
 opt.zoom = opt.zoom || 3;
-opt.sidebarWidth = opt.sidebarWidth || 240;
+opt.sidebarWidth = opt.sidebarWidth || 280;
 opt.mapWidth = opt.mapWidth || 400;
 opt.mapHeight = opt.mapHeight || 300;
 
 opt.mapWidth = ( '' + opt.mapWidth ).replace( /px$/, '' );
 opt.mapHeight = ( '' + opt.mapHeight ).replace( /px$/, '' );
+
+opt.twitter = opt.twitter || mapplet;
+opt.youtube = opt.youtube || mapplet;
 
 //var imgBaseUrl = 'http://mg.to/iowa/server/images/';
 var imgBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/';
@@ -309,12 +319,18 @@ function GAsync( obj ) {
 
 var partyButtons = opt.party ? '' : [
 	'<div style="margin-top:8px;">',
-		'<b>Vote results:</b>',
-		'<button style="margin-left:8px;" id="btnDem">Democratic</button>',
-		'<button style="margin-left:8px;" id="btnRep">Republican</button>',
+		'<b>Results:</b>',
+		'<button style="margin-left:8px; padding:0;" id="btnDem">Democratic</button>',
+		'<button style="margin-left:8px; padding:0;" id="btnRep">Republican</button>',
 		//'<button style="margin-left:8px;" id="btnTest">Reload</button>',
 		'</div>'
 ].join('');
+
+twitterBlurb = ! opt.twitter ? '' : S(
+	'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
+		'We\'ve joined forces with <a href="http://twitter.com/" target="_blank">Twitter</a> and <a href="http://twittervision.com/" target="_blank">Twittervision</a> to give you instant updates on Super Tuesday. You can watch Twitter texts from across the country and send in your own updates!',
+	'</div>'
+);
 
 	document.write( (
 		opt.projector ? [
@@ -380,9 +396,7 @@ var partyButtons = opt.party ? '' : [
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<div id="outer">',
-				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
-					'We\'ve joined forces with <a href="http://twitter.com/" target="_blank">Twitter</a> and <a href="http://twittervision.com/" target="_blank">Twittervision</a> to give you instant updates on Super Tuesday. Throughout the day, you can watch Twitter texts from across the country. And send in your own updates!',
-				'</div>',
+				twitterBlurb,
 				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 					'Come back after the polls close (around 8PM EST) for live election results of all the Super Tuesday states!',
 				'</div>',
@@ -466,21 +480,23 @@ var partyButtons = opt.party ? '' : [
 						'</div>',
 					'</td>',
 					'<td valign="top" style="width:', opt.sidebarWidth, 'px;">',
-						partyButtons,
-						'<div id="votesbar">',
-							'<div id="votestitle">',
-							'</div>',
-							//'<div style="font-weight:bold;">Statewide Results</div>',
-							'<div id="legend">',
-								'Loading&#8230;',
-							'</div>',
-							'<div id="results">',
-								//'Roll the mouse over the map for county-by-county results.<br /><br />',
-								'Roll the mouse over the map for state-by-state results.<br />',
-								'Zoom in for county-by-county results.<br /><br />',
-								//'Scroll down for statewide details',
-							'</div>',
-						'</div>',
+						twitterBlurb,
+						'Come back after the polls close for live vote updates&#8230;',
+						//partyButtons,
+						//'<div id="votesbar">',
+						//	'<div id="votestitle">',
+						//	'</div>',
+						//	//'<div style="font-weight:bold;">Statewide Results</div>',
+						//	'<div id="legend">',
+						//		'Loading&#8230;',
+						//	'</div>',
+						//	'<div id="results">',
+						//		//'Roll the mouse over the map for county-by-county results.<br /><br />',
+						//		'Roll the mouse over the map for state-by-state results.<br />',
+						//		'Zoom in for county-by-county results.<br /><br />',
+						//		//'Scroll down for statewide details',
+						//	'</div>',
+						//'</div>',
 					'</td>',
 				'</tr>',
 			'</table>',
@@ -1185,8 +1201,9 @@ function load() {
 		//download( feed.video, onVideoReady );
 		download( feed.news, onNewsReady );
 		//loadYouTubeMap();
-		loadTwitter();
 	}
+	
+	if( opt.twitter ) loadTwitter();
 	
 	loadTiles();
 	$('#btnTest').click( function() {
@@ -1209,7 +1226,7 @@ function load() {
 		var attrib = location.href.match( /boston\.com/ ) ? '' : [
 			'<span>AP</span>',
 			'<span>/</span>',
-			'<a href="http://www.boston.com/" target="_blank">Boston Globe</a>'
+			'<a href="http://www.boston.com/" target="_blank">Boston&nbsp;Globe</a>'
 		].join('');
 		$('#votestitle').html( [
 			'<table  cellspacing="0" style="width:100%;">',
@@ -1486,7 +1503,6 @@ function addTweetMarker( tweet ) {
 	map.addOverlay( tweetMarker );
 	//marker.openInfoWindowHtml( tweetBubble(tweet) );
 	var bubble = tweetBubble(tweet);
-	//alert( bubble );
 	tweetMarker.openInfoWindowHtml( bubble, { maxWidth:300, disableGoogleLinks:true } );
 	
 	setTimeout( showTweet, 15000 );

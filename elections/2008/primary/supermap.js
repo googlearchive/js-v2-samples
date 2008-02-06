@@ -400,6 +400,8 @@ twitterBlurb = ! opt.twitter ? '' : S(
 					'<span style="color:red;">New!</span> ',
 					'<a href="http://gmodules.com/ig/creator?synd=open&url=http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap1.xml" target="_blank">Get this map for your website</a>',
 				'</div>',
+				'<div id="resultlist">',
+				'</div>',
 				twitterBlurb,
 				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 					'Come back after the polls close (around 8PM EST) for live election results of all the Super Tuesday states!',
@@ -1201,6 +1203,7 @@ function load() {
 		//download( feed.video, onVideoReady );
 		download( feed.news, onNewsReady );
 		//loadYouTubeMap();
+		loadVotes();
 	}
 	
 	if( opt.twitter ) loadTwitter();
@@ -1294,6 +1297,33 @@ var mousemoved = function( latlng ) {
 				return;
 			}
 		}
+	}
+}
+
+function loadVotes() {
+	debugger;
+	var contentBase = window.contentBase || 'http://primary-maps-2008-data.googlecode.com/svn/trunk/miniresults/';
+
+	var party = ( Math.random() < .5 ? 'dem' : 'gop' );
+	
+	setTimeout( reload, 1 );
+	
+	refresh = function( p ) {
+		party = p || party;
+		reload();
+	}
+	
+	function reload() {
+		var url = contentBase + 'miniresults-long-' + party + '.html';
+		_IG_FetchContent( url, function( html ) {
+			document.getElementById('resultlist').innerHTML = html;
+			if( mapplet )
+				_IG_AdjustIFrameHeight();
+			setTimeout( reload, 120000 );
+		},
+		{
+			refreshInterval: 120
+		});
 	}
 }
 

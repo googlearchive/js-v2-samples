@@ -1300,6 +1300,7 @@ var mousemoved = function( latlng ) {
 var tileSeq = new Date().getTime();
 var tileLayerOverlay;
 function loadTiles() {
+	return;
 	if( tileLayerOverlay ) map.removeOverlay( tileLayerOverlay );
 	
 	//base = 'http://padlet/elections/2008/shapes/tiles/';

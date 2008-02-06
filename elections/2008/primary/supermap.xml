@@ -11,8 +11,8 @@
 	author_affiliation="Google, Inc."
 	author_email="elections@google.com"
 	author_location="San Jose, CA"
-	width="700"
-	height="400"
+	width="800"
+	height="610"
 	scaling="false"
 	scrolling="false"
 >
@@ -23,14 +23,14 @@
 	<EnumValue value="4"/>
 	<EnumValue value="5"/>
 </UserPref>
-<UserPref name="sidebarwidth" default_value="280" datatype="string" display_name="Sidebar&#160;width"/>
-<UserPref name="party" default_value="" datatype="enum" display_name="Party">
-	<EnumValue value="" display_value="Both"/>
-	<EnumValue value="democrat" display_value="Democratic"/>
-	<EnumValue value="republican" display_value="Republican"/>
-</UserPref>
-<UserPref name="twitter" default_value="false" datatype="bool" display_name="Twitter&#160;updates"/>
-<UserPref name="youtube" default_value="false" datatype="bool" display_name="YouTube&#160;videos"/>
+<UserPref name="sidebarwidth" default_value="350" datatype="string" display_name="Sidebar&#160;width"/>
+<!--<UserPref name="party" default_value="" datatype="enum" display_name="Party">-->
+<!--	<EnumValue value="" display_value="Both"/>-->
+<!--	<EnumValue value="democrat" display_value="Democratic"/>-->
+<!--	<EnumValue value="republican" display_value="Republican"/>-->
+<!--</UserPref>-->
+<!--<UserPref name="twitter" default_value="true" datatype="bool" display_name="Twitter&#160;updates"/>-->
+<!--<UserPref name="youtube" default_value="false" datatype="bool" display_name="YouTube&#160;videos"/>-->
 <Content type="html">
 <![CDATA[
 

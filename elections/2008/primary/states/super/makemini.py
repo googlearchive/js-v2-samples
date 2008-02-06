@@ -75,6 +75,7 @@ def linkParty( party, match ):
 def makeMini():
 	short = makeMiniVersion( 'short', 'Election&nbsp;Coverage', 'CA NY IL MA' )
 	long = makeMiniVersion( 'long', 'Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT WV' )
+	map = makeMiniVersion( 'map', 'Live Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT WV' )
 	
 def makeMiniVersion( kind, title, statenames ):
 	writeMiniParty( kind, title, statenames, 'dem', 'clinton obama' )
@@ -125,7 +126,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				#if precincts['reporting'] == precincts['total']:
 				#	check = 'check'
 			if name in votes and total > 0:
-				percent = '%d%%' % int( round( 100 * votes[name] / total ) )
+				percent = '%d%%' % int( round( 100.0 * votes[name] / total ) )
 			else:
 				percent = '--'
 			cols.append( T('''
@@ -140,7 +141,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				'check': check,
 				'percent': percent
 			}) )
-		reporting = int( round( 100 * precincts['reporting'] / precincts['total'] ) )
+		reporting = int( round( 100.0 * precincts['reporting'] / precincts['total'] ) )
 		rows.append( T('''
 			<tr style="background-color:#F1EFEF;">
 				<td style="width:20%%;">
@@ -169,6 +170,16 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		''')
 	else:
 		details = ''
+	if kind != 'map':
+		refresh = ''
+		viewmap = S('''
+			<a href="http://maps.google.com/decision2008" target="_blank" style="color:green;">
+				View on a map &raquo;
+			</a>
+		''')
+	else:
+		refresh = '<span style="font-size:75%; text-align:center;">Refreshes every two minutes</span>'
+		viewmap = ''
 	return T('''
 		<div style="font-family:arial,sans-serif; font-size:13px;">
 			<div style="margin-bottom:4px;">
@@ -199,18 +210,18 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 			</table>
 			<div>
 				%(details)s
-				<a href="http://maps.google.com/decision2008" target="_blank" style="color:green;">
-					View on a map &raquo;
-				</a>
+				%(viewmap)s
 			</div>
 		</div>
 		''', {
 			'title': title + ': ',
+			'refresh': refresh,
 			'dem': linkParty( 'dem', partyname ),
 			'gop': linkParty( 'gop', partyname ),
 			'head': ''.join(head),
 			'rows': ''.join(rows),
-			'details': details
+			'details': details,
+			'viewmap': viewmap
 		})
 
 def write( name, text ):

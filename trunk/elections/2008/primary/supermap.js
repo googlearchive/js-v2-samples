@@ -93,7 +93,7 @@ if( zoom ) {
 	opt.youtube = p.getBool('youtube');
 }
 else {
-	mapplet = true;
+	mapplet = ! opt.zoom;
 }
 
 opt.zoom = opt.zoom || 3;
@@ -402,7 +402,7 @@ twitterBlurb = ! opt.twitter ? '' : S(
 			'<div id="outer">',
 				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 					'<span style="color:red;">New!</span> ',
-					'<a href="http://gmodules.com/ig/creator?synd=open&url=http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap1.xml" target="_blank">Get this map for your website</a>',
+					'<a href="http://gmodules.com/ig/creator?synd=open&url=http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap2.xml" target="_blank">Get this map for your website</a>',
 				'</div>',
 				'<div id="resultlist">',
 				'</div>',
@@ -488,7 +488,6 @@ twitterBlurb = ! opt.twitter ? '' : S(
 					'<td valign="top" style="width:', opt.sidebarWidth, 'px;">',
 						'<div id="resultlist">',
 						'</div>',
-						twitterBlurb,
 						//partyButtons,
 						//'<div id="votesbar">',
 						//	'<div id="votestitle">',
@@ -1208,9 +1207,9 @@ function load() {
 		//download( feed.video, onVideoReady );
 		download( feed.news, onNewsReady );
 		//loadYouTubeMap();
-		loadVotes();
 	}
 	
+	loadVotes();
 	if( opt.twitter ) loadTwitter();
 	
 	loadTiles();

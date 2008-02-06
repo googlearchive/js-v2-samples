@@ -181,6 +181,10 @@ function htmlEscape( str ) {
 	return div.innerHTML;
 }
 
+//function atLinks( str ) {
+//	return str.replace( /(^|\s)@(\S+)(\s|$)/g, '$1<a href="$2" target="_blank">$2</a>$3' );
+//}
+
 function httpLinks( str ) {
 	return str.replace( /(http:\/\/\S+)/g, '<a href="$1" target="_blank">$1</a>' );
 }
@@ -1225,8 +1229,14 @@ function load() {
 		return false;
 	});
 	
+	var curParty;
+	setParty = function( party ) {
+		if( party != curParty ) loadResults( party );
+	}
+	
 	function loadResults( party ) {
-		map.clearOverlays();
+		curParty = party;
+		//map.clearOverlays();
 		var attrib = location.href.match( /boston\.com/ ) ? '' : [
 			'<span>AP</span>',
 			'<span>/</span>',
@@ -1525,12 +1535,22 @@ function showTweet() {
 		loadTwitter();
 }
 
+var demRE = /hillary|clinton|barack|obama|democrat/i;
+var gopRE = /huckabee|mccain|paul|romney|gop|republican/i;
+
 var tweetMarker;
 function addTweetMarker( tweet ) {
 	if( tweetMarker ) {
 		map.closeInfoWindow();
 		map.removeOverlay( tweetMarker );
 	}
+	
+	var dem = tweet.message.match( demRE );
+	var gop = tweet.message.match( gopRE );
+	if( dem && ! gop )
+		refresh( 'dem' );
+	else if( gop && ! dem )
+		refresh( 'gop' );
 	
 	var latlng = new GLatLng( tweet.lat, tweet.lon );
 	tweetMarker = new GMarker( latlng/*, { icon:icons[color] }*/ );

@@ -123,15 +123,16 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 					win = 'color:white; background-color:#3366CC;'
 				else:
 					win = 'color:white; background-color:#AA0031;'
-				#if precincts['reporting'] == precincts['total']:
-				#	check = 'check'
+				if precincts['reporting'] == precincts['total']:
+					check = '<img src="http://padlet/elections/2008/images/checkmark.gif" style="width:7px; height:6px; margin:0 3px 2px 0" />'
 			if name in votes and total > 0:
-				percent = '%d%%' % int( round( 100.0 * votes[name] / total ) )
+				percent = '%d%%' % int( round( 100.0 * float(votes[name]) / float(total) ) )
 			else:
 				percent = '--'
 			cols.append( T('''
-				<td style="width:%(width)s%%; text-align:center; %(win)s%(check)s">
+				<td style="width:%(width)s%%; text-align:center; %(win)s">
 					<div>
+						%(check)s
 						%(percent)s
 					</div>
 				</td>
@@ -141,7 +142,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				'check': check,
 				'percent': percent
 			}) )
-		reporting = int( round( 100.0 * precincts['reporting'] / precincts['total'] ) )
+		reporting = int( round( 100.0 * float(precincts['reporting']) / float(precincts['total']) ) )
 		rows.append( T('''
 			<tr style="background-color:#F1EFEF;">
 				<td style="width:20%%;">

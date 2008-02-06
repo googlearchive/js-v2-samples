@@ -89,12 +89,15 @@ if( zoom ) {
 	opt.mapWidth = window.innerWidth - opt.sidebarWidth ;
 	opt.mapHeight = window.innerHeight - 24;
 	opt.party = p.getString('party');
-	opt.twitter = p.getBool('twitter');
-	opt.youtube = p.getBool('youtube');
+	//opt.twitter = p.getBool('twitter');
+	//opt.youtube = p.getBool('youtube');
 }
 else {
 	mapplet = ! opt.zoom;
 }
+
+opt.twitter = true;
+opt.youtube = false;
 
 opt.zoom = opt.zoom || 3;
 opt.sidebarWidth = opt.sidebarWidth || 280;

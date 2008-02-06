@@ -1301,7 +1301,6 @@ var mousemoved = function( latlng ) {
 }
 
 function loadVotes() {
-	debugger;
 	var contentBase = window.contentBase || 'http://primary-maps-2008-data.googlecode.com/svn/trunk/miniresults/';
 
 	var party = ( Math.random() < .5 ? 'dem' : 'gop' );

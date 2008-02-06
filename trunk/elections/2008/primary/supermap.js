@@ -403,11 +403,16 @@ twitterBlurb = ! opt.twitter ? '' : S(
 				'#legend .legendreporting * { xfont-size:20px; }',
 			'</style>',
 			'<div id="outer">',
+				'<div id="resultlist">',
+				'</div>',
+				'<div id="attribution" style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px; text-align:right; display:none;">',
+					'<span>AP</span>',
+					'<span>/</span>',
+					'<a href="http://www.boston.com/" target="_blank">Boston&nbsp;Globe</a>',
+				'</div>',
 				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 					'<span style="color:red;">New!</span> ',
 					'<a href="http://gmodules.com/ig/creator?synd=open&url=http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap2.xml" target="_blank">Get this map for your website</a>',
-				'</div>',
-				'<div id="resultlist">',
 				'</div>',
 				twitterBlurb,
 				//'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
@@ -1329,6 +1334,7 @@ function loadVotes() {
 		var url = contentBase + 'miniresults-map-' + party + '.html';
 		_IG_FetchContent( url, function( html ) {
 			document.getElementById('resultlist').innerHTML = html;
+			$('#attribution').show();
 			if( mapplet )
 				_IG_AdjustIFrameHeight();
 			setTimeout( reload, 120000 );

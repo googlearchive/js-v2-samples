@@ -1314,7 +1314,7 @@ function loadVotes() {
 	}
 	
 	function reload() {
-		var url = contentBase + 'miniresults-long-' + party + '.html';
+		var url = contentBase + 'miniresults-map-' + party + '.html';
 		_IG_FetchContent( url, function( html ) {
 			document.getElementById('resultlist').innerHTML = html;
 			if( mapplet )

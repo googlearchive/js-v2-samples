@@ -10,7 +10,7 @@ require 'json'
 require 'net/http'
 require 'xmpp4r-simple'
 
-MAX_UPDATES = 30
+MAX_UPDATES = 50
 
 lastwrite = Time.now
 

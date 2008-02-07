@@ -1321,6 +1321,11 @@ var mousemoved = function( latlng ) {
 	}
 }
 
+function following() {
+	var chk = $('#chkFollow')[0];
+	return ! chk  ||  chk.checked;
+}
+
 function loadVotes() {
 	var contentBase = window.contentBase || 'http://primary-maps-2008-data.googlecode.com/svn/trunk/miniresults/';
 
@@ -1328,7 +1333,16 @@ function loadVotes() {
 	
 	setTimeout( reload, 1 );
 	
-	refresh = function( p ) {
+	refresh = function( p) {
+		$('#chkFollow')[0].checked = false;
+		loadParty( p );
+	}
+	
+	changePartyIfFollowing = function( p ) {
+		if( following() )  loadParty( p );
+	}
+	
+	loadParty = function( p ) {
 		party = p || party;
 		reload();
 	}
@@ -1336,11 +1350,14 @@ function loadVotes() {
 	function reload() {
 		var url = contentBase + 'miniresults-map-' + party + '.html';
 		_IG_FetchContent( url, function( html ) {
+			var follow = following();
 			$('#resultlist').html( html );
+			$('#chkFollow')[0].checked = follow;
+			$('#spanFollow').css({ display:'inline' });
 			$('#attribution').show();
 			if( mapplet )
 				_IG_AdjustIFrameHeight();
-			setTimeout( reload, 120000 );
+			setTimeout( reload, 120000 ); 
 		},
 		{
 			refreshInterval: 120
@@ -1559,9 +1576,9 @@ function addTweetMarker( tweet ) {
 	var dem = tweet.message.match( demRE );
 	var gop = tweet.message.match( gopRE );
 	if( dem && ! gop )
-		refresh( 'dem' );
+		changePartyIfFollowing( 'dem' );
 	else if( gop && ! dem )
-		refresh( 'gop' );
+		changePartyIfFollowing( 'gop' );
 	
 	var latlng = new GLatLng( tweet.lat, tweet.lon );
 	tweetMarker = new GMarker( latlng/*, { icon:icons[color] }*/ );

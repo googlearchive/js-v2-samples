@@ -185,7 +185,10 @@ function htmlEscape( str ) {
 }
 
 //function atLinks( str ) {
-//	return str.replace( /(^|\s)@(\S+)(\s|$)/g, '$1<a href="$2" target="_blank">$2</a>$3' );
+//	var replacement = '$1@<a href="$2" target="_blank">$2</a>$3';
+//	return str
+//		.replace( /(^|\s)@([^\s:]+)(:)/g, replacement )
+//		.replace( /(^|\s)@(\S+)(\s|$)/g, replacement );
 //}
 
 function httpLinks( str ) {
@@ -1333,7 +1336,7 @@ function loadVotes() {
 	function reload() {
 		var url = contentBase + 'miniresults-map-' + party + '.html';
 		_IG_FetchContent( url, function( html ) {
-			document.getElementById('resultlist').innerHTML = html;
+			$('#resultlist').html( html );
 			$('#attribution').show();
 			if( mapplet )
 				_IG_AdjustIFrameHeight();
@@ -1589,6 +1592,7 @@ function tweetBubble( tweet ) {
 			'</div>',
 			'<div style="display: inline;">',
 				httpLinks( htmlEscape(tweet.message) ),
+				//atLinks( httpLinks( htmlEscape(tweet.message) ) ),
 			'</div>',
 			//'<div id="statusupdated">less than a minute ago in WWW</div>
 		'</div>'

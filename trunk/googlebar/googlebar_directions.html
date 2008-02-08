@@ -60,7 +60,7 @@
       GEvent.addListener(dir, "load", function() {
         var tr = document.createElement('tr');
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(markerResult.result.titleNoFormatting));
+        td.appendChild(document.createTextNode(markers[num].result.titleNoFormatting));
         tr.appendChild(td);
         var td = document.createElement('td');
         td.innerHTML = dir.getDistance().html;

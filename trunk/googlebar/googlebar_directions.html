@@ -54,8 +54,8 @@
     }
 
     function getDirections(markers, tbody, num) {
-      var lat = markerResult.result.lat;
-      var lng = markerResult.result.lng;
+      var lat = markers[num].result.lat;
+      var lng = markers[num].result.lng;
       var dir = new GDirections();
       GEvent.addListener(dir, "load", function() {
         var tr = document.createElement('tr');

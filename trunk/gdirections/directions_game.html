@@ -133,7 +133,7 @@
      }
 
     function updateUserLine() {
-      map.removeOverlay(userLine);
+      if (userLine) map.removeOverlay(userLine);
       userLine = new GPolyline(userPoints);
       map.addOverlay(userLine);
 

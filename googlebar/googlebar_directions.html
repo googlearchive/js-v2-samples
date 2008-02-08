@@ -50,12 +50,10 @@
       var tbody = document.createElement('tbody');
       table.appendChild(tbody);
       document.getElementById("results").appendChild(table);
-      for (var i = 0; i < markers.length; i++) {
-        getDirections(markers[i], tbody);
-      }
+      getDirections(markers[0], tbody, 0);
     }
 
-    function getDirections(markerResult, tbody) {
+    function getDirections(markerResult, tbody, num) {
       var lat = markerResult.result.lat;
       var lng = markerResult.result.lng;
       var dir = new GDirections();
@@ -68,6 +66,7 @@
         td.innerHTML = dir.getDistance().html;
         tr.appendChild(td);
         tbody.appendChild(tr);
+        getDirections(markers[num+1], tbody, (num+1));
       });
       dir.load("from: " + start.lat() + "," + start.lng()  + " to: " + lat + "," + lng);
     }

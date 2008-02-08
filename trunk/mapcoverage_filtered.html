@@ -51,6 +51,7 @@
 	</head>
 	<body onload ='startUp()' onunload = 'dispose()'>
 
+		<div id="infoContainer"><!--all content will be auto-generated here--></div>
 		<div id="dataContainer"><!--all content will be auto-generated here--></div>
 		<div id="scriptContainer"><!--new scripts will go here--></div>
 		<div id="loading-message">Loading...<small>If this message does not disappear, please ensure that the document you specified is published...</small></div>
@@ -223,9 +224,9 @@
 				//fill up the dropDown with all of the unique values we saw
 				populateDropDowns();
 				//apply the alternating yellow fill
-				//reAlternate();
 				//show the table we just constructed, and hide the loading message... we're done!
 				doneLoading();
+                                countRows();
 			}
 			
 			function valueSeen(colIndex, value) {
@@ -329,24 +330,19 @@
 					//one of the other options was picked.  just filter on the value they picked.
 					filterBasedOn(i,_colHeaders[i].dropDown.options[_colHeaders[i].dropDown.selectedIndex].value);
 				}
-				//we most likely need to realternate after filtering.
-				//reAlternate();
-				
+				countRows();	
 			}
 			
-			function reAlternate() {
-				//applies an alternating fill to the data rows.
-				var even = false;
+			function countRows() {
 				//avoid accessing an unnecessary property every loop.
 				var length = _dataRows.length;
-				//we'll make a local pointer to _dataRows so we don't have to 
-				//ramble up the scope chain every time through the loop.
 				var dataRows = _dataRows;
+                                var numRows = 0;
 				for(var i = 0; i < length; i++) {
 					if(dataRows[i].hidden) continue;
-					dataRows[i].ele.className = even ? "even" : "";
-					even = !even;
+                                        numRows++;
 				}
+                                document.getElementById("infoContainer").innerHTML = "Number of rows in result: " + numRows;
 			}
 			
 			function hideRow(rowID) {

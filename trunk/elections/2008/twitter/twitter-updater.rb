@@ -2,6 +2,8 @@
 
 #puts 'starting'
 
+require 'rubygems'
+
 require 'banned-words'
 require 'secret'
 

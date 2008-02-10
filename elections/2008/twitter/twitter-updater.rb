@@ -18,6 +18,17 @@ users = {}
 updates = {}
 updatelist = []
 
+#def readupdates()
+#	File.open( 'tweets/tweets.js', 'r' ) do |f|
+#		data = f.read
+#		oldUpdates = JSON.parse( data )
+#		oldUpdates.each { |update|
+#			updates[ update['message'] ] = update
+#			updatelist.push( update )
+#		}
+#	end
+#end
+
 def writeupdates( updatelist )
 	File.open( 'tweets/tweets.js', 'w' ) do |f|
 		f.puts updatelist.to_json
@@ -26,6 +37,8 @@ def writeupdates( updatelist )
 	`svn ci -m "Twitter update" tweets/tweets.js`
 	p 'Done checking in'
 end
+
+#readupdates
 
 im = Jabber::Simple.new( Secret::USERNAME, Secret::PASSWORD )
 im.deliver( 'twitter@twitter.com', 'on' )
@@ -38,7 +51,7 @@ while true
 			if match
 				username = match[1]
 				message = match[2]
-				if Banned.banned(message)
+				if Banned.banned(body)
 					p "Blocked: #{message}"
 				else
 					user = users[username]
@@ -69,15 +82,20 @@ while true
 					user = users[username]
 					if user
 						update = {
+							'body' => msg.body,
 							'message' => message,
 							'time' => Time.xmlschema( (doc/:published).text ).to_i
 						}.merge( user )
-						updates[msg.body] = update
-						updatelist.push( update )
-						updatelist.delete_at(0) if updatelist.length > MAX_UPDATES
-						if Time.now - lastwrite > 300 # or updatelist.length > 1
-							lastwrite = Time.now
-							writeupdates updatelist
+						if Banned.banned( update['where'] )
+							p "Blocked location: #{update['where']}"
+						else
+							updates[msg.body] = update
+							updatelist.push( update )
+							updatelist.delete_at(0) if updatelist.length > MAX_UPDATES
+							if Time.now - lastwrite > 300 # or updatelist.length > 1
+								lastwrite = Time.now
+								writeupdates updatelist
+							end
 						end
 					end
 				end

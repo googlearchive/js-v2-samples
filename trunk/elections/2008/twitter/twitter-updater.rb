@@ -91,6 +91,7 @@ while true
 						if Banned.banned( update['where'] )
 							p "Blocked location: #{update['where']}"
 						else
+							p "Posting: #{message}"
 							updates[msg.body] = update
 							updatelist.push( update )
 							updatelist.delete_at(0) if updatelist.length > MAX_UPDATES

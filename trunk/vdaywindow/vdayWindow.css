@@ -1,5 +1,5 @@
 #vday_window {
-width:300px;
+width:280px;
 }
 #vday_window_contents {
 background:#ffade3 url( vdayWindow_contents.png) no-repeat scroll center bottom;
@@ -60,8 +60,9 @@ background-image:none;
 background:transparent url(vdayWindow_close.png) no-repeat scroll left top;
 cursor:pointer;
 height:18px;
-margin:0px 0pt 0pt 0px;
 width:18px;
+margin-left: -5px;
+margin-top: 5px;
 }
 * html #vday_window_close {
 background-image:none;

@@ -3,7 +3,7 @@ width:280px;
 }
 #vday_window_contents {
 background:#ffade3 url( vdayWindow_contents.png) no-repeat scroll center bottom;
-font-family:"courier new";
+font-family: Arial, Helvetica, sans serif;
 font-size:12px;
 }
 #vday_window_contents div {

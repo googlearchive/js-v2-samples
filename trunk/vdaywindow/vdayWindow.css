@@ -59,9 +59,9 @@ background-image:none;
 #vday_window_close {
 background:transparent url(vdayWindow_close.png) no-repeat scroll left top;
 cursor:pointer;
-height:55px;
-margin:-20px 0pt 0pt 20px;
-width:57px;
+height:18px;
+margin:0px 0pt 0pt 0px;
+width:18px;
 }
 * html #vday_window_close {
 background-image:none;

@@ -14,7 +14,10 @@
       function load() {
         if (GBrowserIsCompatible()) {
           map = new GMap2(document.getElementById("map"));
+          map.addMapType(G_PHYSICAL_MAP);
           map.setCenter(new GLatLng(54, -87.642), 4);
+          map.setMapType(G_PHYSICAL_MAP);
+          map.addControl(new GMenuMapTypeControl());
           var icon = new GIcon(G_DEFAULT_ICON);
           icon.image = 'vdayWindow_marker.png';
           marker = new GMarker( new GLatLng(41.882, -87.642), {icon: icon});

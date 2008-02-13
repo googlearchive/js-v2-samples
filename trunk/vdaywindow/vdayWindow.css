@@ -1,0 +1,76 @@
+#vday_window {
+width:300px;
+}
+#vday_window_contents {
+background:#C3D9FF url( vdayWindow_contents.png) no-repeat scroll center bottom;
+font-family:"courier new";
+font-size:12px;
+}
+#vday_window_contents div {
+font-style:italic;
+margin:0pt 10px;
+}
+#vday_window_tl {
+background:transparent url(vdayWindow_tl.png) no-repeat scroll left top;
+height:14px;
+width:14px;
+}
+* html #vday_window_tl {
+background-image:none;
+}
+#vday_window_t {
+background:transparent url(vdayWindow_t.png) repeat-x scroll left top;
+}
+#vday_window_tr {
+background:transparent url(vdayWindow_tr.png) no-repeat scroll left top;
+height:14px;
+width:14px;
+}
+* html #vday_window_tr {
+background-image:none;
+}
+#vday_window_l {
+background:transparent url(vdayWindow_l.png) repeat-y scroll left top;
+width:3px;
+}
+#vday_window_r {
+background:transparent url(vdayWindow_r.png) repeat-y scroll right top;
+width:3px;
+}
+#vday_window_bl {
+background:transparent url(vdayWindow_bl.png) no-repeat scroll left top;
+height:14px;
+width:14px;
+}
+* html #vday_window_bl {
+background-image:none;
+}
+#vday_window_b {
+background:transparent url(vdayWindow_b.png) repeat-x scroll left top;
+}
+#vday_window_br {
+background:transparent url(vdayWindow_br.png) no-repeat scroll left top;
+height:14px;
+width:14px;
+}
+* html #vday_window_br {
+background-image:none;
+}
+#vday_window_close {
+background:transparent url(vdayWindow_close.png) no-repeat scroll left top;
+cursor:pointer;
+height:55px;
+margin:-20px 0pt 0pt 20px;
+width:57px;
+}
+* html #vday_window_close {
+background-image:none;
+}
+#vday_window_beak {
+background:transparent url(vdayWindow_beak.png) no-repeat scroll left top;
+height:37px;
+width:27px;
+}
+* html #vday_window_beak {
+background-image:none;
+}

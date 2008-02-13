@@ -414,10 +414,10 @@ twitterBlurb = ! opt.twitter ? '' : S(
 					'<a href="http://www.boston.com/" target="_blank">Boston&nbsp;Globe</a>',
 				'</div>',
 				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
-					'<span style="color:red;">New!</span> ',
+					//'<span style="color:red;">New!</span> ',
 					'<a href="http://gmodules.com/ig/creator?synd=open&url=http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap2.xml" target="_blank">Get this map for your website</a>',
 				'</div>',
-				twitterBlurb,
+				//twitterBlurb,
 				//'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 				//	'Come back after the polls close (around 8PM EST) for live election results of all the Super Tuesday states!',
 				//'</div>',
@@ -1220,7 +1220,7 @@ function load() {
 		//loadYouTubeMap();
 	}
 	
-	loadVotes();
+	//loadVotes();
 	if( opt.twitter ) loadTwitter();
 	
 	loadTiles();
@@ -1568,21 +1568,31 @@ var gopRE = /huckabee|mccain|paul|romney|gop|republican/i;
 
 var tweetMarker;
 function addTweetMarker( tweet ) {
-	if( tweetMarker ) {
-		map.closeInfoWindow();
-		map.removeOverlay( tweetMarker );
-	}
+	//debugger;
+	//if( tweetMarker ) {
+	//	//map.closeInfoWindow();
+	//	map.removeOverlay( tweetMarker );
+	//	tweetMarker = null;
+	//}
 	
-	var dem = tweet.message.match( demRE );
-	var gop = tweet.message.match( gopRE );
-	if( dem && ! gop )
-		changePartyIfFollowing( 'dem' );
-	else if( gop && ! dem )
-		changePartyIfFollowing( 'gop' );
+	//var dem = tweet.message.match( demRE );
+	//var gop = tweet.message.match( gopRE );
+	//if( dem && ! gop )
+	//	changePartyIfFollowing( 'dem' );
+	//else if( gop && ! dem )
+	//	changePartyIfFollowing( 'gop' );
 	
 	var latlng = new GLatLng( tweet.lat, tweet.lon );
-	tweetMarker = new GMarker( latlng/*, { icon:icons[color] }*/ );
-	map.addOverlay( tweetMarker );
+	if( ! tweetMarker ) {
+		tweetMarker = new GMarker( latlng/*, { icon:icons[color] }*/ );
+		map.addOverlay( tweetMarker );
+	}
+	else {
+		if( mapplet )
+			tweetMarker.setPoint( latlng );
+		else
+			tweetMarker.setLatLng( latlng );
+	}
 	//marker.openInfoWindowHtml( tweetBubble(tweet) );
 	var bubble = tweetBubble(tweet);
 	tweetMarker.openInfoWindowHtml( bubble, { maxWidth:300, disableGoogleLinks:true } );

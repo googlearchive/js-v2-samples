@@ -75,8 +75,12 @@
       );
     }
 
-   function updateMessage() {
+   function previewMessage() {
      GEvent.trigger(marker, "click");
+     updateMessage();
+   }
+
+   function updateMessage() {
      message = document.getElementById("messageInput").value;
      document.getElementById("message").innerHTML = message;
      updateURL();
@@ -126,7 +130,7 @@
       </textarea>
       </td>
       <td style="text-align:center">
-      <input type="button" onclick="updateMessage();" value="Preview"/>
+      <input type="button" onclick="previewMessage();" value="Preview"/>
       </td>
     </tr>
     <tr>

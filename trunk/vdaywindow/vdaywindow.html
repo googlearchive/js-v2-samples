@@ -13,6 +13,7 @@
       var marker;
       var geocoder;
       var message;
+      var address;
 
       function load() {
         var param_message = getURLParam("message");
@@ -64,7 +65,7 @@
       }
 
    function updateMarker() {
-      var address = document.getElementById("addressInput").value;
+      address = document.getElementById("addressInput").value;
       geocoder.getLatLng(
         address,
         function(point) {
@@ -73,6 +74,7 @@
           } else {
             map.setCenter(point, 13);
             marker.setLatLng(point);
+            updateURL();
           }
         }
       );
@@ -101,7 +103,7 @@
     }
 
    function updateURL(){
-     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(message)+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom();
+     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(message)+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom()+"&address="+escape(address);
      document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
 
     }

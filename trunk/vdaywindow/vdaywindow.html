@@ -19,7 +19,7 @@
         var param_message = getURLParam("message");
         var param_address = getURLParam("address");
         if (param_message != "") {
-          message = unescape(reverseString(param_message));
+          message = reverseString(unescape(param_message));
         } else {
           message = '..we discovered our mutual love for Google Maps?';
         }

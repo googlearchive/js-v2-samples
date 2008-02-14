@@ -44,6 +44,7 @@
           var mtypes = {"k": G_SATELLITE_MAP, "p": G_PHYSICAL_MAP, "h": G_HYBRID_MAP, "m": G_NORMAL_MAP};
           map.setMapType(mtypes[param_maptype]);
           map.addControl(new GMenuMapTypeControl());
+          map.addControl(new GSmallMapControl());
           GEvent.addListener(map, "moveend", updateURL);
           GEvent.addListener(map, "maptypechanged", updateURL);
           var icon = new GIcon(G_DEFAULT_ICON);
@@ -55,7 +56,7 @@
               "vday_window",
               "<img src='vdayWindow_header.png' width='203' height='38'/><br/><div id='message' style='height:160px'>" + message + "</div>",
               {
-                beakOffset: 3,
+                beakOffset: 1,
               }
             ); 
           });

@@ -19,7 +19,7 @@
         var param_message = getURLParam("message");
         var param_address = getURLParam("address");
         if (param_message != "") {
-          message = unescape(param_message);
+          message = unescape(reverseString(param_message));
         } else {
           message = '..we discovered our mutual love for Google Maps?';
         }
@@ -114,11 +114,20 @@
 
    function updateURL(){
      
-     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(message)+"&mtype="+map.getCurrentMapType().getUrlArg()+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom()+"&address="+escape(address);
+     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(reverseString(message))+"&mtype="+map.getCurrentMapType().getUrlArg()+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom()+"&address="+escape(address);
      document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
 
     }
-  
+
+    function reverseString(str) {
+      var counter = str.length;
+      var newString = "";
+      for (counter; counter > 0; counter-- ) { 
+         newString += str.substring(counter-1, counter); 
+      }
+      return newString;
+    }
+   
     function showCustomize() {
       document.getElementById("customizeDiv").style.display = "block";
     }

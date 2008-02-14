@@ -61,8 +61,8 @@ background:transparent url(vdayWindow_close2.png) no-repeat scroll left top;
 cursor:pointer;
 height:72px;
 width:76px;
-margin-left: -20px;
-margin-top: -10px;
+margin-left: 25px;
+margin-top: -20px;
 }
 * html #vday_window_close {
 background-image:none;

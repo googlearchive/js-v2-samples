@@ -52,10 +52,11 @@
           icon.infoWindowAnchor = new GPoint(5, 20);
           marker = new GMarker(map.getCenter(), {icon: icon, draggable: true});
           GEvent.addListener(marker, 'click', function(){ 
+            var html = "<img src='vdayWindow_header.png' width='203' height='38'/><br/><div id='message' style='height:160px'>" + message + "</div>";
             marker.openExtInfoWindow(
               map,
               "vday_window",
-              "<img src='vdayWindow_header.png' width='203' height='38'/><br/><div id='message' style='height:160px'>" + message + "</div>",
+              html,
               {
                 beakOffset: 4,
               }

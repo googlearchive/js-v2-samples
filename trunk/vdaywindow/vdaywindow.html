@@ -34,15 +34,18 @@
         var param_lat = getURLParam("lat") || 37.400470;
         var param_lng = getURLParam("lng") || -122.072981;
         var param_zoom = getURLParam("zoom") || 4;
+        var param_maptype = getURLParam("mtype") || "k";
 
         if (GBrowserIsCompatible()) {
           geocoder = new GClientGeocoder();
           map = new GMap2(document.getElementById("map"));
           map.addMapType(G_PHYSICAL_MAP);
           map.setCenter(new GLatLng(parseFloat(param_lat), parseFloat(param_lng)), parseInt(param_zoom));
-          map.setMapType(G_PHYSICAL_MAP);
+          var mtypes = {"k": G_SATELLITE_MAP, "p": G_PHYSICAL_MAP, "h": G_HYBRID_MAP, "m": G_NORMAL_MAP};
+          map.setMapType(mtypes[param_mtype]);
           map.addControl(new GMenuMapTypeControl());
-
+          GEvent.addListener(map, "moveend", updateURL);
+          GEvent.addListener(map, "maptypechanged", updateURL);
           var icon = new GIcon(G_DEFAULT_ICON);
           icon.image = 'vdayWindow_marker.png';
           marker = new GMarker(map.getCenter(), {icon: icon, draggable: true});
@@ -56,9 +59,7 @@
               }
             ); 
           });
-          GEvent.addListener(marker, "dragend", function() {
-            updateURL();
-          });
+          GEvent.addListener(marker, "dragend", updateURL);
           map.addOverlay(marker);
           updateURL();
 
@@ -110,7 +111,8 @@
     }
 
    function updateURL(){
-     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(message)+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom()+"&address="+escape(address);
+     
+     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(message)+"&mtype="+map.getCurrentMapType().getUrlArg()+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom()+"&address="+escape(address);
      document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
 
     }

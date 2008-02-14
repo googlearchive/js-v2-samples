@@ -42,7 +42,7 @@
           map.addMapType(G_PHYSICAL_MAP);
           map.setCenter(new GLatLng(parseFloat(param_lat), parseFloat(param_lng)), parseInt(param_zoom));
           var mtypes = {"k": G_SATELLITE_MAP, "p": G_PHYSICAL_MAP, "h": G_HYBRID_MAP, "m": G_NORMAL_MAP};
-          map.setMapType(mtypes[param_mtype]);
+          map.setMapType(mtypes[param_maptype]);
           map.addControl(new GMenuMapTypeControl());
           GEvent.addListener(map, "moveend", updateURL);
           GEvent.addListener(map, "maptypechanged", updateURL);

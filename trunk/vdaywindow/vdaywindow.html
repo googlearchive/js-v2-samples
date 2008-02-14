@@ -55,6 +55,7 @@
           updateURL();
 
           if (param_message) { 
+            document.getElementById("customizeButton").style.display = "block";
             GEvent.trigger(marker, "click");
           }
         }
@@ -102,9 +103,16 @@
      document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
 
     }
+  
+    function showCustomize() {
+      document.getElementById("customizeDiv").style.display = "block";
+    }
+
     </script>
   </head>
   <body onload="load()" onunload="GUnload()">
+    <input style="display: none;" id="customizeButton" type="button" onclick="showCustomize();" value="Customize a new message!"/>
+    <div style="display: none;" id="customizeDiv">
     <table style="font-family: Arial, sans serif; font-size: 11px;">
     <tr>
       <td colspan="2">
@@ -138,6 +146,7 @@
       <div id="status" style="width:500px; color:#000000;"></div>
     </tr>
    </table>
+   </div>
     <br/>
     <div id="map" style="width: 500px; height: 350px" ></div>
   </body>

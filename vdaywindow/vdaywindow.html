@@ -17,10 +17,17 @@
 
       function load() {
         var param_message = getURLParam("message");
+        var param_message = getURLParam("address");
         if (param_message != "") {
           message = unescape(param_message);
         } else {
           message = '..we discovered our mutual love for Google Maps?';
+        }
+        document.getElementById("messageInput").value = message;
+        if (param_address != "") {
+          message = unescape(param_address);
+        } else {
+          message = 'Mountain View CA';
         }
         document.getElementById("messageInput").value = message;
  

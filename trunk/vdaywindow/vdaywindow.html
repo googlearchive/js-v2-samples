@@ -51,7 +51,8 @@
           icon.image = 'vdayWindow_marker.png';
           icon.infoWindowAnchor = new GPoint(5, 20);
           marker = new GMarker(map.getCenter(), {icon: icon, draggable: true});
-          GEvent.addListener(map, 'click', function(){ 
+ /*
+          GEvent.addListener(marker, 'click', function(){ 
             marker.openExtInfoWindow(
               map,
               "vday_window",
@@ -61,6 +62,7 @@
               }
             ); 
           });
+*/
           GEvent.addListener(marker, "dragend", updateURL);
           map.addOverlay(marker);
           updateURL();
@@ -83,7 +85,7 @@
             alert(address + " not found");
           } else {
             map.setCenter(point, 13);
-            //marker.setLatLng(point);
+            marker.setLatLng(point);
             updateURL();
           }
         }

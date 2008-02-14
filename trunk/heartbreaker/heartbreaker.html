@@ -38,6 +38,7 @@
     var currentScore = 0;
     var gameTime = 30;
     var map;
+    var numClicks = 0;
 
     function load() {
       if (GBrowserIsCompatible()) {
@@ -46,6 +47,12 @@
         map.disableDragging();
         map.setCenter(new GLatLng(37.425857, -122.084197), 16);
         map.setMapType(G_SATELLITE_MAP);
+        GEvent.addListener(map, "click", function() {
+          if(inGame()) {
+            numClicks++; 
+            updateScoreAndTime();
+          }
+        });
       }
     }
 
@@ -69,6 +76,7 @@
           currentScore++;
           marker.setImage('marker_heart_broken.png');
           marker.whackState = "broken";
+          updateScoreAndTime();
         } 
      });
       return marker;
@@ -81,6 +89,7 @@
       }
       gameSeconds = 0;
       currentScore = 0;
+      numClicks = 0;
       clearInterval(gameTimer);
       gameTimer = setInterval(popMoles,1000);
       updateScoreAndTime();
@@ -95,6 +104,11 @@
     }
 
     function updateScoreAndTime() {
+      if (numClicks == 0) { 
+        document.getElementById("accuracy").innerHTML = '--';
+      } else {
+        document.getElementById("accuracy").innerHTML = Math.floor((currentScore/numClicks)*100);
+      }
       document.getElementById("score").innerHTML = currentScore;
       document.getElementById("time").innerHTML = gameTime - gameSeconds;
     }
@@ -123,16 +137,18 @@
 
     </td>
     <td valign="top">
-    Moles have invaded Mountain View!
+    Break as many hearts as you can in 30 seconds! 
     <br/>
     <br/>
-    Whack as many as you can before time runs out!
     <br/>
+    SCORE:
     <br/>
-    <img src="score.png" /> 
-    <br/>
-
     <span id="score" style="font-size:36px">0</span>
+    <br/>
+    <br/>
+    ACCURACY:
+    <br/>
+    <span id="accuracy" style="font-size:36px">0</span>
     <br/>
     <br/>
     <br/>

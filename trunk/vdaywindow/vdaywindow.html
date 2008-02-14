@@ -31,8 +31,8 @@
         }
         document.getElementById("addressInput").value = address;
  
-        var param_lat = getURLParam("lat") || 37.400470;
-        var param_lng = getURLParam("lng") || -122.072981;
+        var param_lat = getURLParam("lat") || 27.7713359;
+        var param_lng = getURLParam("lng") || -15.6969738006;
         var param_zoom = getURLParam("zoom") || 4;
         var param_maptype = getURLParam("mtype") || "k";
 
@@ -116,7 +116,7 @@
 
    function updateURL(){
      
-     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(reverseString(message))+"&mtype="+map.getCurrentMapType().getUrlArg()+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom()+"&address="+escape(address);
+     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(reverseString(message))+"&mtype="+map.getCurrentMapType().getUrlArg()+"&lat="+marker.getLatLng().lat().toFixed(6)+"&lng="+marker.getLatLng().lng().toFixed(6)+"&zoom="+map.getZoom()+"&address="+escape(address);
      document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
 
     }

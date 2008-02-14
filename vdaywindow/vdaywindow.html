@@ -54,6 +54,10 @@
           });
           map.addOverlay(marker);
           updateURL();
+
+          if (param_message) { 
+            GEvent.trigger(marker, "click");
+          }
         }
       }
 

@@ -49,7 +49,7 @@
           GEvent.addListener(map, "maptypechanged", updateURL);
           var icon = new GIcon(G_DEFAULT_ICON);
           icon.image = 'vdayWindow_marker.png';
-          icon.infoWindowAnchor = new GPoint(8, 20);
+          icon.infoWindowAnchor = new GPoint(5, 20);
           marker = new GMarker(map.getCenter(), {icon: icon, draggable: true});
           GEvent.addListener(marker, 'click', function(){ 
             marker.openExtInfoWindow(

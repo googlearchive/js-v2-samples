@@ -96,7 +96,7 @@
 
    function updateMessage() {
      message = document.getElementById("messageInput").value;
-     document.getElementById("message").innerHTML = message;
+     if (document.getElementById("message")) document.getElementById("message").innerHTML = message;
      updateURL();
    }
 

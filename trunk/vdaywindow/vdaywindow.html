@@ -11,32 +11,127 @@
 
     <script type="text/javascript">
       var map;
+      var marker;
+      var geocoder;
+      var message;
+
       function load() {
+        var param_message = getURLParam("message");
+        if (param_message != "") {
+          message = unescape(param_message);
+        } else {
+          message = '..when we discovered our mutual love for Google Maps?';
+        }
+        document.getElementById("messageInput").value = message;
+ 
+        var param_lat = getURLParam("lat") || 37.400470;
+        var param_lng = getURLParam("lng") || -122.072981;
+        var param_zoom = getURLParam("zoom") || 4;
+
         if (GBrowserIsCompatible()) {
+          geocoder = new GClientGeocoder();
           map = new GMap2(document.getElementById("map"));
           map.addMapType(G_PHYSICAL_MAP);
-          map.setCenter(new GLatLng(54, -87.642), 4);
+          map.setCenter(new GLatLng(parseFloat(param_lat), parseFloat(param_lng)), parseInt(param_zoom));
           map.setMapType(G_PHYSICAL_MAP);
           map.addControl(new GMenuMapTypeControl());
+
           var icon = new GIcon(G_DEFAULT_ICON);
           icon.image = 'vdayWindow_marker.png';
-          marker = new GMarker( new GLatLng(41.882, -87.642), {icon: icon});
+          marker = new GMarker(map.getCenter(), {icon: icon, draggable: true});
           GEvent.addListener(marker, 'click', function(){ 
             marker.openExtInfoWindow(
               map,
               "vday_window",
-              "<img src='vdayWindow_header.png' width='203' height='38'/><br/><div style='height:200px'>Sally sold seashells by the seashore?</div>",
+              "<img src='vdayWindow_header.png' width='203' height='38'/><br/><div id='message' style='height:200px'>" + message + "</div>",
               {
                 beakOffset: 3,
               }
             ); 
           });
+          GEvent.addListener(marker, "dragend", function() {
+            updateURL();
+          });
           map.addOverlay(marker);
+          updateURL();
         }
       }
+
+   function updateMarker() {
+      var address = document.getElementById("addressInput").value;
+      geocoder.getLatLng(
+        address,
+        function(point) {
+          if (!point) {
+            alert(address + " not found");
+          } else {
+            map.setCenter(point, 13);
+            marker.setLatLng(point);
+          }
+        }
+      );
+    }
+
+   function updateMessage() {
+     GEvent.trigger(marker, "click");
+     message = document.getElementById("messageInput").value;
+     document.getElementById("message").innerHTML = message;
+     updateURL();
+   }
+
+   function getURLParam(name) {
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var tmpURL = window.location.href;
+      var results = regex.exec( tmpURL );
+      if( results == null )
+        return "";
+      else
+        return results[1];
+    }
+
+   function updateURL(){
+     var mapURL = "http://gmaps.examples.googlepages.com/gpolyletters.htm?message="+escape(message)+"&lat="+marker.getLatLng().lat()+"&lng="+marker.getLatLng().lng()+"&zoom="+map.getZoom();
+     document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
+
+    }
     </script>
   </head>
   <body onload="load()" onunload="GUnload()">
+    <table>
+    <tr>
+      <td colspan="2">
+      1) Position the map: 
+      </td>
+    </tr>
+    <tr>
+      <td> 
+      <input type="text" style="width:100%" name="address" id="addressInput" value="(Type address or region here)" />
+      </td>
+      <td style="text-align:center">
+      <input type="button" onclick="updateMarker();" value="Find" />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      2) Write your message:
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <textarea style="width:100%" name="messageInput" id="messageInput" onkeyup="updateMessage();" onkeydown="updateMessage();">
+      </textarea>
+      </td>
+      <td style="text-align:center">
+      <input type="button" onclick="updateMessage();" value="Preview"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      <div id="status" style="width:500px; color:#000000;"></div>
+    </tr>
+   </table>
+    <br/>
     <div id="map" style="width: 500px; height: 500px" ></div>
   </body>
 </html>

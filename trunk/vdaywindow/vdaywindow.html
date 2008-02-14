@@ -61,9 +61,6 @@
               }
             ); 
           });
-          GEvent.addListener(marker, "changed", function() {
-            map.closeExtInfoWindow();
-          });
           GEvent.addListener(marker, "dragend", updateURL);
           map.addOverlay(marker);
           updateURL();
@@ -85,6 +82,7 @@
           if (!point) {
             alert(address + " not found");
           } else {
+            map.closeExtInfoWindow();
             map.setCenter(point, 13);
             marker.setLatLng(point);
             updateURL();

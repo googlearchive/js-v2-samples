@@ -29,6 +29,7 @@
           if (!point) {
             alert(address + " not found");
           } else {
+            map.clearOverlays();
             map.setCenter(point, 13);
             var marker = new GMarker(point, {draggable: true});
             GEvent.addListener(marker, "dragend", function() {
@@ -37,7 +38,8 @@
               document.getElementById("lonbox").value = latlng.lng();
               map.addOverlay(marker);
             });
-            GEvent.trigger(marker, "dragend");
+            document.getElementById("latbox").value = latlng.lat();
+            document.getElementById("lonbox").value = latlng.lng();
           }
         }
       );

@@ -9,11 +9,12 @@
     <script type="text/javascript">
  
     var geocoder;
+    var map;
  
     function initialize() {
       if (GBrowserIsCompatible()) {
-        var geocoder = new GClientGeocoder();
-        var map = new GMap2(document.getElementById("map_canvas"));
+        geocoder = new GClientGeocoder();
+        map = new GMap2(document.getElementById("map_canvas"));
         map.setCenter(new GLatLng(37.4419, -122.1419), 2);
         map.addControl(new GSmallMapControl());
         map.addControl(new GMapTypeControl());

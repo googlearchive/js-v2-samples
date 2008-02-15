@@ -38,6 +38,7 @@
               document.getElementById("lonbox").value = latlng.lng();
               map.addOverlay(marker);
             });
+            var latlng = marker.getLatLng();
             document.getElementById("latbox").value = latlng.lat();
             document.getElementById("lonbox").value = latlng.lng();
           }

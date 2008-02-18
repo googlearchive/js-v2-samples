@@ -42,24 +42,12 @@ function getURLParam(name) {
 */
 function getParamsURL(){
   var paramsURL = "";
-  
-  paramsURL += "&addressTEXT=" + document.getElementById("addressTEXT").value;
-  var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
-  infoWindowTEXT = infoWindowTEXT.replace("<","&lt;");
-  infoWindowTEXT = infoWindowTEXT.replace(">","&gt;");
-  paramsURL += "&infoWindowTEXT=" + escape(infoWindowTEXT);
-  paramsURL += "&infoWindowCHECKBOX=" + document.getElementById("infoWindowCHECKBOX").checked;
   paramsURL += "&mapWidthTEXT=" + document.getElementById("mapWidthTEXT").value;
   paramsURL += "&mapHeightTEXT=" + document.getElementById("mapHeightTEXT").value;
-  paramsURL += "&mapControlCHECKBOX=" + document.getElementById("mapControlCHECKBOX").checked;
-  paramsURL += "&mapTypeControlCHECKBOX=" + document.getElementById("mapTypeControlCHECKBOX").checked;
   paramsURL += "&mapZoom=" + map.getZoom();
-  paramsURL += "&mapType=" + document.getElementById("mapTypeSELECT").selectedIndex;
-
   if(marker != null) {
     paramsURL += "&markerPointLat=" + marker.getPoint().lat() + "&markerPointLng=" + marker.getPoint().lng(); 
   }
- 
   return paramsURL;
 }
 
@@ -94,7 +82,6 @@ function populateForm() {
  
   if (presetSiteURL != "") {
     document.getElementById("siteURL").value = presetSiteURL;  
-    document.getElementById("generatedCodeDIV").style.display = "block";
   }
 
   var mapWidthTEXT = getURLParam("mapWidthTEXT");
@@ -136,14 +123,16 @@ function updateImage() {
    var params = [];
    params.push("center=" + map.getCenter().lat() + "," + map.getCenter().lng());
    if (marker) {
-     params.push("markers=" + marker.getPoint().lat() + "," + marker.getPoint().lng() + ",blue");
+     params.push("markers=" + marker.getPoint().lat() + "," + marker.getPoint().lng() + ",red");
    }
    params.push("zoom=" + map.getZoom());
    params.push("size=" + document.getElementById("mapWidthTEXT").value + "x" + document.getElementById("mapHeightTEXT").value);
-   params.push("key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw");
    var img = document.createElement("img");
-   img.src = baseUrl + params.join("&");
+   img.src = baseUrl + params.join("&") + "key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw";
+   document.getElementById("staticMapIMG").innerHTML = "";
    document.getElementById("staticMapIMG").appendChild(img);
+
+   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "key=" + mapKey;
 }
 
 function load() {
@@ -179,6 +168,7 @@ function showAddress() {
             updateImage();
           });
           map.addOverlay(marker);
+          updateImage();
         }
       }
     );
@@ -196,11 +186,6 @@ function showAddress() {
 
 <h3><img src="http://www.google.com/uds/solutions/wizards/img/1b.gif" 
 style="vertical-align:middle"/> Customize Map View & Marker Location</h3>
-  Map width: &nbsp;
-  <input type="text" size="3" id="mapWidthTEXT" value="500" onkeyup="updateImage()" onkeypress="updateImage()" />
-  &nbsp; &nbsp; &nbsp;
-  Map height: &nbsp;
-  <input type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateImage()" onkeypress="updateImage()" />
   <p>First, enter the desired address/location in the box and press the button. If the marker is a little off, drag it around to where it should be.
   Then use the map control to zoom in/out to the desired zoom level.
   </p>
@@ -214,8 +199,15 @@ style="vertical-align:middle"/> Customize Map View & Marker Location</h3>
 <br clear="all"/>
 
 <h3><img src="http://www.google.com/uds/solutions/wizards/img/2b.gif" 
-style="vertical-align:middle"/>Customize Info Window & Map Controls</h3>
-<div id="staticMapIMG"></div>
+style="vertical-align:middle"/>Customize Size & Preview</h3>
+  <p>
+  Map width: &nbsp;
+  <input type="text" size="3" id="mapWidthTEXT" value="500" onkeyup="updateImage()" onkeypress="updateImage()" />
+  &nbsp; &nbsp; &nbsp;
+  Map height: &nbsp;
+  <input type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateImage()" onkeypress="updateImage()" />
+  </p>
+  <div id="staticMapIMG" style="width: 500px; margin-left: 20px; height: 300px"></div>
 <br clear="all"/>
 
 <h3><img src="http://www.google.com/uds/solutions/wizards/img/3b.gif" 
@@ -230,7 +222,7 @@ After generating the key, the page will reload with the generated code and you c
 Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
 <input type="button" onclick="generateKey();" value="Generate Key"/>
 </p>
-<pre class="code">
+<pre id="staticMapURL" class="code">
 </pre>
 
 </body>

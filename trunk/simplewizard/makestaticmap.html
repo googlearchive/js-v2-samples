@@ -132,7 +132,7 @@ function updateImage() {
    document.getElementById("staticMapIMG").innerHTML = "";
    document.getElementById("staticMapIMG").appendChild(img);
 
-   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "key=" + mapKey;
+   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "&key=" + mapKey;
 }
 
 function load() {

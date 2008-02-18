@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<script type="text/javascript"
+      src="http://maps.google.com/maps?file=api&amp;&v=2.75&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
+<style type="text/css">
+td {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  height: 40px;
+  font-size: 11pt;
+}
+body {
+ font-family: Arial, sans serif;
+ font-size: 11pt;
+}
+</style>
+<script>
+
+var map;
+var mapKey;
+var marker;
+var KEY_RE = /^([a-zA-Z0-9\-\_=]{86})|(internal.*)$/
+
+/* *
+* Utility function to extract parameters appended to URL.
+* @param {String} name Name of parameter in URL
+* @return {String} Value of parameter, or "" if not found
+*/
+function getURLParam(name) {
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  return (results == null ? "" : results[1]);
+}
+
+/**
+* Function to create URL-friendly version of parameters.
+* @return {String} String of concatenated parameters
+*/
+function getParamsURL(){
+  var paramsURL = "";
+  
+  paramsURL += "&addressTEXT=" + document.getElementById("addressTEXT").value;
+  var infoWindowTEXT = document.getElementById("infoWindowTEXT").value;
+  infoWindowTEXT = infoWindowTEXT.replace("<","&lt;");
+  infoWindowTEXT = infoWindowTEXT.replace(">","&gt;");
+  paramsURL += "&infoWindowTEXT=" + escape(infoWindowTEXT);
+  paramsURL += "&infoWindowCHECKBOX=" + document.getElementById("infoWindowCHECKBOX").checked;
+  paramsURL += "&mapWidthTEXT=" + document.getElementById("mapWidthTEXT").value;
+  paramsURL += "&mapHeightTEXT=" + document.getElementById("mapHeightTEXT").value;
+  paramsURL += "&mapControlCHECKBOX=" + document.getElementById("mapControlCHECKBOX").checked;
+  paramsURL += "&mapTypeControlCHECKBOX=" + document.getElementById("mapTypeControlCHECKBOX").checked;
+  paramsURL += "&mapZoom=" + map.getZoom();
+  paramsURL += "&mapType=" + document.getElementById("mapTypeSELECT").selectedIndex;
+
+  if(marker != null) {
+    paramsURL += "&markerPointLat=" + marker.getPoint().lat() + "&markerPointLng=" + marker.getPoint().lng(); 
+  }
+ 
+  return paramsURL;
+}
+
+function generateKey() {
+  var siteUrl = document.getElementById("siteURL").value;
+  var targetPage = "http://www.google.com/maps/api_key";
+  var landingPage = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+                    "simplewizard/makestaticmap.html" + "?generated=1" +
+                    getParamsURL();
+
+  var redirPage = targetPage + "?q=" + encodeURIComponent(landingPage) + 
+                  "&client=google-maps";
+  top.location = redirPage + "&url=" + encodeURIComponent(siteUrl);
+}
+
+
+function getKeyFromParams() {
+
+  if (getURLParam('key')) {
+    passedKey = getURLParam('key');
+    if (passedKey.match(KEY_RE)) {
+      return passedKey;
+    }
+  }
+  return "";
+}
+
+function populateForm() {
+  mapKey = getKeyFromParams();
+
+  var presetSiteURL = getURLParam("url");
+ 
+  if (presetSiteURL != "") {
+    document.getElementById("siteURL").value = presetSiteURL;  
+    document.getElementById("generatedCodeDIV").style.display = "block";
+  }
+
+  var mapWidthTEXT = getURLParam("mapWidthTEXT");
+  if(mapWidthTEXT != "") {
+    document.getElementById("mapWidthTEXT").value = mapWidthTEXT;
+  }
+  var mapHeightTEXT = getURLParam("mapHeightTEXT");
+  if(mapHeightTEXT != "") {
+    document.getElementById("mapHeightTEXT").value = mapHeightTEXT;
+  }
+  
+  var markerPointLat = getURLParam("markerPointLat");
+  var markerPointLng = getURLParam("markerPointLng");
+
+  if(markerPointLat != "" && markerPointLng != "") {
+    var point = new GLatLng(parseFloat(markerPointLat), parseFloat(markerPointLng));
+    map.clearOverlays();
+    map.setCenter(point, 13);
+    marker = new GMarker(point, {draggable:true});
+    GEvent.addListener(marker, 'click', function() {
+      marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
+    });
+    GEvent.addListener(marker, 'dragend', function() {
+      updateImage();
+    });
+
+    map.addOverlay(marker);
+  }
+
+
+  var mapZoom = getURLParam("mapZoom");
+  if(mapZoom != "") {
+    map.setZoom(parseInt(mapZoom));
+  }
+}
+
+function updateImage() {
+   var baseUrl = "http://www.google.com/staticmap?";
+   var params = [];
+   params.push("center=" + map.getCenter().lat() + "," + map.getCenter().lng());
+   if (marker) {
+     params.push("markers=" + marker.getPoint().lat() + "," + marker.getPoint().lng() + ",blue");
+   }
+   params.push("zoom=" + map.getZoom());
+   params.push("size=" + document.getElementById("mapWidthTEXT").value + "x" + document.getElementById("mapHeightTEXT").value);
+   params.push("key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw");
+   var img = document.createElement("img");
+   img.src = baseUrl + params.join("&");
+   document.getElementById("staticMapIMG").appendChild(img);
+}
+
+function load() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map"));
+    map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+    map.addControl(new GSmallMapControl());
+    GEvent.addListener(map, "moveend", function(marker, point) {
+      updateImage();
+    });
+    geocoder = new GClientGeocoder();
+    populateForm();
+    updateImage();
+  }
+}
+
+function showAddress() {
+  var address = document.getElementById("addressTEXT").value;
+  if (geocoder) {
+    geocoder.getLatLng(
+      address,
+      function(point) {
+        if (!point) {
+          alert(address + " not found");
+        } else {
+          map.clearOverlays();
+          map.setCenter(point, 13);
+          marker = new GMarker(point, {draggable:true});
+	  GEvent.addListener(marker, 'click', function() {
+            marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
+          });
+	  GEvent.addListener(marker, 'dragend', function() {
+            updateImage();
+          });
+          map.addOverlay(marker);
+        }
+      }
+    );
+  }
+}
+  
+</script>
+<link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css">
+</head>
+<body onload="load()">
+<h2>Create a map with a marker and optional info window.</h2>
+  <p>
+  This wizard uses the <a href="http://www.google.com/apis/maps/documentation/" target="_blank">Google Maps API</a>.
+  </p>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/1b.gif" 
+style="vertical-align:middle"/> Customize Map View & Marker Location</h3>
+  Map width: &nbsp;
+  <input type="text" size="3" id="mapWidthTEXT" value="500" onkeyup="updateImage()" onkeypress="updateImage()" />
+  &nbsp; &nbsp; &nbsp;
+  Map height: &nbsp;
+  <input type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateImage()" onkeypress="updateImage()" />
+  <p>First, enter the desired address/location in the box and press the button. If the marker is a little off, drag it around to where it should be.
+  Then use the map control to zoom in/out to the desired zoom level.
+  </p>
+  <p>
+  <input type="text" size="60" id="addressTEXT" value="1600 Amphitheatre Pky, Mountain View, CA" />
+  <input type="button" value="Create Marker Here" onclick="showAddress()"/>
+  </p>
+  <br/>
+  <div id="map" style="width: 500px; margin-left: 20px; height: 300px"></div>
+
+<br clear="all"/>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/2b.gif" 
+style="vertical-align:middle"/>Customize Info Window & Map Controls</h3>
+<div id="staticMapIMG"></div>
+<br clear="all"/>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/3b.gif" 
+style="vertical-align:middle"/>Generate Code</h3>
+<p>The Maps API requires a free API key that's associated with your
+<a href="http://www.google.com/accounts/"> Google Account</a> and the URL of your web site.
+By using these APIs you are agreeing to the Maps API <a href="http://www.google.com/apis/maps/terms.html">terms of use</a>.
+After generating the key, the page will reload with the generated code and you can continue tweaking the customization options.
+</p>
+
+<p>
+Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
+<input type="button" onclick="generateKey();" value="Generate Key"/>
+</p>
+<pre class="code">
+</pre>
+
+</body>
+</html>
+
+

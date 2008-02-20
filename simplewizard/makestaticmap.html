@@ -174,7 +174,11 @@ function showAddress() {
     );
   }
 }
-  
+ 
+function enableKeyGeneration() {
+  var keyBUTTON = document.getElementById('keyBUTTON');
+  keyBUTTON.removeAttribute('disabled');
+} 
 </script>
 <link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css">
 </head>
@@ -214,13 +218,13 @@ style="vertical-align:middle"/>Customize Size & Preview</h3>
 style="vertical-align:middle"/>Generate Code</h3>
 <p>The Maps API requires a free API key that's associated with your
 <a href="http://www.google.com/accounts/"> Google Account</a> and the URL of your web site.
-By using these APIs you are agreeing to the Maps API <a href="http://www.google.com/apis/maps/terms.html">terms of use</a>.
 After generating the key, the page will reload with the generated code and you can continue tweaking the customization options.
 </p>
-
+<input type="checkbox" id="geocodeCHECKBOX" onclick="enableKeyGeneration()"/> I agree to abide by the Maps API <a href="http://code.google.com/apis/maps/terms.html">Terms of Use</a>.
+<br/>
 <p>
 Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
-<input type="button" onclick="generateKey();" value="Generate Key"/>
+<input id="keyBUTTON" disabled="true" type="button" onclick="generateKey();" value="Generate Key"/>
 </p>
 <pre id="staticMapURL" class="code">
 </pre>

@@ -14,11 +14,11 @@
         var map = new GMap2(document.getElementById("map_canvas"));
         map.setCenter(new GLatLng(37.4419, -122.1419), 2);
       
-        GEvent.addListener(map, 'click', function(overlay, point) {
-          var latLngStr = "Lat = " + point.lat() + ", Long = " + point.lng();
-          map.openInfoWindow(point, latLngStr);
-          document.getElementById("latbox").value = point.lat();
-          document.getElementById("lonbox").value = point.lng();
+        GEvent.addListener(map, 'click', function(overlay, latlng) {
+          var latLngStr = "Lat = " + latlng.lat() + ", Long = " + latlng.lng();
+          map.openInfoWindow(latlng, latLngStr);
+          document.getElementById("latbox").value = latlng.lat();
+          document.getElementById("lonbox").value = latlng.lng();
         });
         map.addControl(new GSmallMapControl());
         map.addControl(new GMapTypeControl());

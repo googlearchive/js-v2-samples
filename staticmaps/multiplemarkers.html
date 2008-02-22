@@ -189,7 +189,7 @@ function createMarker(ind) {
  */
 function formatAddressForMaps(business) {
   var address = business.street + ' ' + business.city + ' ' + business.state + ' ' + business.zip;
-  return _esc(address.replace(' ', '+'));
+  return escape(address.replace(' ', '+'));
 }
 
 /**

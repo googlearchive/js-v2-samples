@@ -135,7 +135,7 @@ function loadMap() {
     // The .98 value is just a guess right now, may need tweaking.
     var newBounds = map.getBounds();
     var newLatSpan = newBounds.toSpan().lat();
-    if (latSpan/newLatSpan > .97) { map.zoomOut(); }
+    if (latSpan/newLatSpan > .96) { map.zoomOut(); }
 
     for (var i = 0; i < businesses.length; i++) {
       var marker = createMarker(i);

@@ -146,7 +146,7 @@ function cm_loadMapJSON(json) {
           sidebarText += rank + ") ";
         } 
         sidebarText += label;
-        markerA.appendChild(document.createTextNode(sidebarText));
+        markerA.appendChild(document.createTextNode(currentNum + ": " + sidebarText));
         sidebarDIV.appendChild(markerA);
         sidebarDIV.appendChild(document.createElement("br"));
         sidebarDIV.appendChild(document.createElement("br"));

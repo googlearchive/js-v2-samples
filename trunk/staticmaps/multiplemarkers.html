@@ -247,7 +247,7 @@ function loadMapGadget() {
     markerString.push(businesses[i].lat + ',' + businesses[i].lng + ',red');
   }
   urlString.push(markerString.join('|'));
-  urlString.push('&w=500', '&h=300');
+  urlString.push('&size=500x300');
   urlString.push('&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw');
   mapDiv.style.background = 'url(\'' + urlString.join('') + '\')';
 

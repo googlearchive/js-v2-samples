@@ -142,7 +142,7 @@ function loadMap() {
       var latlng = marker.getLatLng();
       var pixel = map.fromLatLngToDivPixel(latlng);
       if (Math.abs(pixel.x - clickedX) < 12 && Math.abs(pixel.y - clickedY) < 20) {
-        GEvent.trigger(marker, 'click');
+        //GEvent.trigger(marker, 'click');
       }
       map.addOverlay(marker);
     }

@@ -1,0 +1,263 @@
+<html>
+<body>
+<head>
+<title>Static -> Dynamic Maps with Multiple Markers</title>
+</head>
+<style type="text/css">
+body { 
+  font-family: Arial, sans serif;
+}
+
+.message {
+  font-size: 80%;
+  padding: 2px;
+  font-weight: bold;
+  text-align: center;
+  width: 100px;
+  background-color: #ffcc00;
+  border: 1px solid white;
+  position: relative;
+}
+</style>
+<script type="text/javascript">
+
+var businesses = [
+{name: 'Osha Union',
+street: '2033 Union St',
+city: 'San Francisco',
+state: 'CA',
+zip: '94102',
+country: 'USA',
+phone: '(415) 567-6742',
+lat: 37.797456, lng: -122.432752},
+{name: 'Osha Geary Street',
+street: '696 Geary Street',
+city: 'San Francisco',
+state: 'CA',
+zip: '94102',
+country: 'USA',
+phone: '(415) 673-2368',
+lat: 37.786558, lng: -122.414789},
+{name: 'Osha Thai',
+street: '819 Valencia Street',
+city: 'San Francisco',
+state: 'CA',
+zip: '94110',
+country: 'USA',
+phone: '415.826.7738',
+lat: 37.759782, lng: -122.421408},
+{name: 'Osha Thai Restaurant',
+street: '149 2nd St',
+city: 'San Francisco',
+state: 'CA',
+zip: '94110',
+country: 'USA',
+phone: '(415) 278-9991',
+lat: 37.787394, lng: -122.398986},
+{name: 'Osha Thai',
+street: '100 Drumm St',
+city: 'San Francisco',
+state: 'CA',
+zip: '94110',
+country: 'USA',
+phone: '(415) 788-6742',
+lat: 37.794616, lng: -122.396531}];
+
+/**
+ * The map object, null until script loads in.
+ * @type {GMap2}
+ */
+var map = null;  
+
+/**
+ * The bounds of the markers once loaded in.
+ * @type {GLatLngBounds}
+ */
+var bounds = null;
+
+/**
+ * The marker with currently opened info window.
+ * @type {GMarker}
+ */
+var currentMarker = null;
+
+/**
+ * The dom element that the map is loaded into
+ * @type {Element}
+ */
+var mapDiv = null;
+
+/**
+ * The dom element that everything is a child of.
+ * @type {Element}
+ */
+var containerDiv = null;
+
+/**
+ * Position of mouse click (clientX) on map div when in static mode.
+ * @type {Number}
+ */
+var clickedX = 0;
+
+/**
+ * Position of mouse click (clientY) on map div when in static mode.
+ * @type {Number}
+ */
+var clickedY = 0;
+
+/**
+ * Indicates whether we've created a script tag with Maps API yet
+ * @type {Boolean}
+ */
+var isLoaded = false;
+
+
+/**
+ * Called after script is asynchronously loaded in.
+ * Creates the GMap2, GMarker objects and performs actions according to 
+ * what the user did to trigger the map load (search, zoom, click etc).
+ */
+function loadMap() {
+  if (GBrowserIsCompatible()) {
+    mapDiv.style.background = '#fff';
+    mapDiv.style.cursor = '';
+    map = new GMap2(mapDiv, {logoPassive: true});
+    bounds = new GLatLngBounds();
+    for (var i = 0; i < businesses.length; i++) {
+      bounds.extend(new GLatLng(businesses[i].lat, businesses[i].lng));
+    }
+    var latSpan = bounds.toSpan().lat();
+    map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
+
+    // The static map server gives markers more space when calculating
+    // bounds and zoom level, so sometimes the API will give a higher
+    // zoom level than was used by the static map server.
+    // The .98 value is just a guess right now, may need tweaking.
+    var newBounds = map.getBounds();
+    var newLatSpan = newBounds.toSpan().lat();
+    if (latSpan/newLatSpan > .97) { map.zoomOut(); }
+
+    for (var i = 0; i < businesses.length; i++) {
+      var marker = createMarker(i);
+      var latlng = marker.getLatLng();
+      var pixel = map.fromLatLngToDivPixel(latlng);
+      if (Math.abs(pixel.x - clickedX) < 12 && Math.abs(pixel.y - clickedY) < 20) {
+        GEvent.trigger(marker, 'click');
+      }
+      map.addOverlay(marker);
+    }
+  }
+}
+
+/**
+ * Zooms to the viewport that fits all the markers.
+ */
+function zoomToAll() {
+  map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
+}
+
+/**
+ * Creates a marker for the given business.
+ * @param {Number} ind
+ * @return {GMarker}
+ */
+function createMarker(ind) {
+  var business = businesses[ind];
+  var marker = new GMarker(new GLatLng(business.lat, business.lng));
+  GEvent.addListener(marker, 'click', function() {
+    marker.html = ['<b>', business.name, '</b><br>', 
+                 business.street, '<br> ', business.city, ',', 
+                 business.state, ' ', business.zip, '<br>',
+                 business.phone, '<br><br>', 'Get directions: ', 
+                 '<a target="_blank" ',
+                 'href="http://maps.google.com/maps?saddr=&daddr=',
+                 formatAddressForMaps(business), '">to here</a> - ', 
+                 '<a target="_blank" ',
+                 'href="http://maps.google.com/maps?saddr=',
+                 formatAddressForMaps(business), '&daddr=', '"> from here <br> ',
+                 '<a href="javascript:zoomToAll()">View all locations</a>'].join('');
+    currentMarker = marker;
+    marker.openInfoWindow(marker.html);
+  });
+  return marker;
+}
+
+/**
+ * Formats business info into a URL-friendly version for maps url.
+ * @param {Object} business
+ * @return {String}
+ */
+function formatAddressForMaps(business) {
+  var address = business.street + ' ' + business.city + ' ' + business.state + ' ' + business.zip;
+  return _esc(address.replace(' ', '+'));
+}
+
+/**
+ * Convenience function for creating an element and assigning an id to it.
+ * @param {String} elementType
+ * @param {String} id
+ * @return {Element} 
+ */
+function _cel(elementType, id) {
+  var element = document.createElement(elementType);
+  element.id = id;
+  return element;
+}
+
+/**
+ * Loads in the Maps API script. This is called after some sort of user interaction.
+ * The script loads asynchronously and calls loadMap once it's in.
+ */
+function loadScript() {
+  if (!isLoaded) {
+    isLoaded = true;
+    var div = document.createElement('div');
+    div.className = 'message';
+    div.innerHTML = 'Loading...';
+    div.style.left = (gadgetWidth/2 - 53) + 'px';
+    div.style.top = gadgetHeight/2 + 'px'; 
+    mapDiv.appendChild(div);
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'http://maps.google.com/maps?file=api&v=2.x' + 
+                 '&async=2&callback=loadMap&key=ABQIAAAA-O3c-Om9OcvXMOJXre' +
+                 'XHAxTRERdeAiwZ9EeJWta3L_JZVS0bOBQy_WgIBXG5UeRHOQW5hMUKcIjhtQ';
+    document.body.appendChild(script);
+  }
+}
+
+/**
+ * Sets up the gadget by setting CSS and click events.
+ */
+function loadMapGadget() {
+  containerDiv = _gel('container');
+  mapDiv = _gel('map');
+
+  mapDiv.onclick = function (e) {
+    clickedX = (window.event && window.event.offsetX) || e.clientX;
+    clickedY = (window.event && window.event.offsetY) || e.clientY;
+    loadScript(); 
+  };
+
+  mapDiv.style.cursor = 'pointer';
+
+  var urlString = ['http://maps.google.com/staticmap?markers='];
+  var markerString = [];
+  for (var i = 0; i < businesses.length; i++) {
+    markerString.push(businesses[i].lat, ',', businesses[i].lng, ',red');
+  }
+  urlString.push(markerString.join('|'));
+  urlString.push('&w=500', '&h=300');
+  urlString.push('&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw');
+  mapDiv.style.background = 'url(\'' + urlString.join('') + '\')';
+
+}
+
+</script>
+</head>
+<body onload="loadMapGadget();">
+<div id="container">
+  <div id="map" style="overflow:hidden"></div>
+</div>
+</body>
+</html>

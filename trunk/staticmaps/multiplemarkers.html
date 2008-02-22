@@ -230,8 +230,8 @@ function loadScript() {
  * Sets up the gadget by setting CSS and click events.
  */
 function loadMapGadget() {
-  containerDiv = _gel('container');
-  mapDiv = _gel('map');
+  containerDiv = document.getElementById('container');
+  mapDiv = document.getElementById('map');
 
   mapDiv.onclick = function (e) {
     clickedX = (window.event && window.event.offsetX) || e.clientX;

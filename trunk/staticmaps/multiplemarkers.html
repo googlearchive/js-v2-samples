@@ -244,7 +244,7 @@ function loadMapGadget() {
   var urlString = ['http://maps.google.com/staticmap?markers='];
   var markerString = [];
   for (var i = 0; i < businesses.length; i++) {
-    markerString.push(businesses[i].lat + ',' businesses[i].lng + ',red');
+    markerString.push(businesses[i].lat + ',' + businesses[i].lng + ',red');
   }
   urlString.push(markerString.join('|'));
   urlString.push('&w=500', '&h=300');

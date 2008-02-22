@@ -177,7 +177,7 @@ function createMarker(ind) {
                  formatAddressForMaps(business), '&daddr=', '"> from here <br> ',
                  '<a href="javascript:zoomToAll()">View all locations</a>'].join('');
     currentMarker = marker;
-    //marker.openInfoWindow(marker.html);
+    marker.openInfoWindowHtml(marker.html);
   });
   return marker;
 }

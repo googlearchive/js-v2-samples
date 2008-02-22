@@ -138,7 +138,8 @@ function cm_loadMapJSON(json) {
     
       if(param_useSidebar == true) {
         var markerA = document.createElement("a");
-        markerA.setAttribute("href","javascript:cm_markerClicked('" + i +"')");
+        var currentNum = cm_mapMarkers.length - 1;
+        markerA.setAttribute("href","javascript:cm_markerClicked('" + currentNum +"')");
         markerA.style.color = "#000000";
         var sidebarText= "";
         if(usingRank) {

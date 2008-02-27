@@ -110,7 +110,7 @@ function cm_loadMapJSON(json) {
     json.feed.entry.sort(cm_sortRows);
   }
 
-  for (var i = 0; i < json.feed.entry.length; i++) {
+  for (var i = 0; i < Math.min(json.feed.entry.length, 200); i++) {
     var entry = json.feed.entry[i];
     if(entry["gsx$" + param_latColumn] && entry["gsx$" + param_latColumn].$t != "") {
       var lat = parseFloat(entry["gsx$" + param_latColumn].$t);

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head> 
+<title>Google Maps API Demo Gallery</title>
+<link type="text/css" rel="StyleSheet" href="cisoft/sliderwe/luna.css" />
+<style type="text/css">
+  body {
+    font-family: Arial, sans serif;
+    font-size: 12px;
+  }
+  td {
+    border: none;
+    background-color: #eee;
+  }
+  img { 
+    border: 1px solid grey;
+  }
+</style>
+
+<script type="text/javascript">
+//<![CDATA[
+var feed;
+var curNum;
+
+// Change these parameters to customize map
+var param_wsId = "od6";
+var param_ssKey = "o16162288751915453340.4402783830945175750";
+function cm_load() {  
+  cm_getJSON();
+}
+
+function cm_loadMapJSON(json) {
+  feed = json.feed;
+  curNum = 0;
+  if ( !feed.entry) {
+    document.getElementById("sidebar").innerHTML = "Try again!";
+  } 
+  updateGallery();
+    
+  if (feed.entry.length <=5) {
+    document.getElementById("nextBUTTON").disabled = true;
+  } else {
+    document.getElementById("nextBUTTON").disabled = false;
+  }
+  document.getElementById("previousBUTTON").disabled = true;
+}
+
+function updateGallery() {
+  var min = curNum;
+  var max = Math.min(curNum+5, feed.entry.length);
+  var htmlAll = ['Showing ' + (min + 1) + ' - ' + max + ' of ' + feed.entry.length];
+  htmlAll.push('<table><tbody>');
+  for (var i = min; i < max; i++) {
+      var entry = feed.entry[i];
+      var title = entry.gsx$title.$t;
+      var author = entry.gsx$author.$t;
+      var description = entry.gsx$description.$t;
+      var thumbnailurl = entry.gsx$thumbnailurl.$t;
+      var url = entry.gsx$url.$t;
+      var html = '<tr><td><a href="' + url + '"><img style="width: 160px; height: 128px" src="' + thumbnailurl + '"></a></td><td valign="top"><strong><a href="' + url + '">' + title + '</a></strong> <br/>' + description + '<br/><br/><span style="font-size:10px; font-style: italic">' + 'Example by ' + author + '</span></td></tr>';
+      htmlAll.push(html);
+  }
+  htmlAll.push('</tbody></table>');
+  document.getElementById("sidebar").innerHTML = htmlAll.join("<br/>");
+}
+
+function showNext() {
+  curNum += 5;
+  updateGallery();
+  document.getElementById("previousBUTTON").disabled = false;
+  if (curNum >= (feed.entry.length)) {
+    document.getElementById("nextBUTTON").disabled = true;
+  }
+}
+
+function showPrevious() {
+  curNum -= 5;
+  updateGallery();
+  if (curNum <= 0) {
+    document.getElementById("previousBUTTON").disabled = true;
+  } 
+  if (curNum < feed.entry.length) {
+    document.getElementById("nextBUTTON").disabled = false;
+  }
+}
+
+/**
+ * Creates a script tag in the page that loads in the 
+ * JSON feed for the specified key/ID. 
+ * Once loaded, it calls cm_loadMapJSON.
+ */
+function cm_getJSON() {
+
+  // Retrieve the JSON feed.
+  var script = document.createElement('script');
+
+  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od6/public/values' +
+                        '?q=' + document.getElementById("searchbox").value + 
+                        '&alt=json-in-script&callback=cm_loadMapJSON');
+  script.setAttribute('id', 'jsonScript');
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+
+
+//]]>
+
+</script>
+
+</head>
+<body onload="cm_load()">
+
+<!-- ++Begin GSpreadsheets Map Wizard Generated Code++ -->
+
+<input type="text" id="searchbox" value="" /> <input type="button" value="Search" onclick="cm_getJSON()" />
+<br/><br/>
+<div id="sidebar"></div>
+<br/>
+<input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>
+<input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
+
+</body> </html>

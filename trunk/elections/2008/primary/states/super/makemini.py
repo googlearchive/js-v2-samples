@@ -75,7 +75,7 @@ def linkParty( party, match ):
 def makeMini():
 	short = makeMiniVersion( 'short', 'Election&nbsp;Coverage', 'CA NY IL MA' )
 	long = makeMiniVersion( 'long', 'Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT WV' )
-	map = makeMiniVersion( 'map', 'Live Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT WV' )
+	map = makeMiniVersion( 'map', 'Results', 'AL AK AZ AR CA CO CT DE GA ID IL KS MA MN MO MT NJ NM NY ND OK TN UT WV' )
 	
 def makeMiniVersion( kind, title, statenames ):
 	writeMiniParty( kind, title, statenames, 'dem', 'clinton obama' )
@@ -124,9 +124,9 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				else:
 					win = 'color:white; background-color:#AA0031;'
 				if precincts['reporting'] == precincts['total']:
-					check = '<img src="http://padlet/elections/2008/images/checkmark.gif" style="width:7px; height:6px; margin:0 3px 2px 0" />'
+					check = '<img src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/checkmark.gif" style="width:7px; height:6px; margin:0 3px 2px 0" />'
 			if name in votes and total > 0:
-				percent = '%d%%' % int( round( 100.0 * float(votes[name]) / float(total) ) )
+				percent = '%d%%' % percentage( float(votes[name]) / float(total) )
 			else:
 				percent = '--'
 			cols.append( T('''
@@ -142,7 +142,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				'check': check,
 				'percent': percent
 			}) )
-		reporting = int( round( 100.0 * float(precincts['reporting']) / float(precincts['total']) ) )
+		reporting = percentage( float(precincts['reporting']) / float(precincts['total']) )
 		rows.append( T('''
 			<tr style="background-color:#F1EFEF;">
 				<td style="width:20%%;">
@@ -171,16 +171,16 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		''')
 	else:
 		details = ''
-	if kind != 'map':
-		refresh = ''
+	if kind == 'map':
+		follow = '<span id="spanFollow" style="display:none;"><input type="checkbox" checked="checked" id="chkFollow" /><label for="chkFollow">Follow</label></span>'
+		viewmap = ''
+	else:
+		follow = ''
 		viewmap = S('''
 			<a href="http://maps.google.com/decision2008" target="_blank" style="color:green;">
 				View on a map &raquo;
 			</a>
 		''')
-	else:
-		refresh = '<span style="font-size:75%; text-align:center;">Refreshes every two minutes</span>'
-		viewmap = ''
 	return T('''
 		<div style="font-family:arial,sans-serif; font-size:13px;">
 			<div style="margin-bottom:4px;">
@@ -191,6 +191,12 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 								<div style="font-size:16px; font-weight:bold;">
 									%(title)s
 								</div>
+							</td>
+							<td style="text-align:center;">
+								<div style="font-size:13px;">
+									%(follow)s
+								</div>
+							</td>
 							</td>
 							<td style="text-align:right;">
 								<div style="font-size:13px;">
@@ -216,7 +222,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 		</div>
 		''', {
 			'title': title + ': ',
-			'refresh': refresh,
+			'follow': follow,
 			'dem': linkParty( 'dem', partyname ),
 			'gop': linkParty( 'gop', partyname ),
 			'head': ''.join(head),
@@ -225,8 +231,14 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 			'viewmap': viewmap
 		})
 
+def percentage( n ):
+	pct = int( round( 100.0 * float(n) ) )
+	if pct == 100 and n < 1: pct = 99
+	return pct
+
+
 def write( name, text ):
-	print 'Writing ' + name
+	#print 'Writing ' + name
 	f = open( name, 'w' )
 	f.write( text )
 	f.close()
@@ -245,9 +257,8 @@ def update():
 def main():
 	while 1:
 		update()
-		print 'Waiting 1 minute...'
-		time.sleep( 60 )
+		print 'Waiting 10 minute...'
+		time.sleep( 600 )
 
 if __name__ == "__main__":
     main()
-	

@@ -62,7 +62,7 @@ def writeFile( filename, data ):
 	f.write( data )
 	f.close()
 
-def generate( state, filename ):
+def generate( outfile, state, filename ):
 	print '----------------------------------------'
 	print 'Generating %s %s' %( state, filename )
 	
@@ -83,8 +83,12 @@ def generate( state, filename ):
 		info = feature['info']
 		name = info['NAME']
 		if name not in places:
-			places[name] = { 'name': name, 'shapes': [] }
-		shapes = places[name]['shapes']
+			places[name] = {
+				'name': name,
+				'shapes': []
+			}
+		place = places[name]
+		shapes = place['shapes']
 		for part in shape['parts']:
 			nPolys += 1
 			points = part['points']
@@ -92,6 +96,7 @@ def generate( state, filename ):
 			nPoints += n
 			pts = []
 			area = part['area']
+			if area == 0: continue
 			bounds = part['bounds']
 			center = part['center']
 			centroid = part['centroid']
@@ -117,12 +122,13 @@ def generate( state, filename ):
 			','.join(places[name]['shapes'])
 		) )
 	print '%d points in %d places' %( nPoints, len(places) )
-	writeFile( 'data.js', '''
+	writeFile( outfile, '''
 Data = {
 	places: [%s]
 };
 ''' %( ','.join(json) ) )
 
-generate( None, 'states/st99_d00_shp-75/st99_d00.shp' )
+generate( 'states.js', None, 'states/st99_d00_shp-75/st99_d00.shp' )
+generate( 'counties.js', None, 'counties/co99_d00_shp-90/co99_d00.shp' )
 
 print 'Done!'

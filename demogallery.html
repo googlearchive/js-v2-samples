@@ -55,7 +55,7 @@ function updateGallery() {
       var description = entry.gsx$description.$t;
       var thumbnailurl = entry.gsx$thumbnailurl.$t;
       var url = entry.gsx$url.$t;
-      var html = '<tr><td><a target="_blank" href="' + url + '"><img style="width: 160px; height: 128px" src="' + thumbnailurl + '"></a></td><td valign="top"><strong><a href="' + url + '">' + title + '</a></strong> <br/>' + description + '<br/><br/><span style="font-size:10px; font-style: italic">' + 'Example by ' + author + '</span></td></tr>';
+      var html = '<tr><td><a target="_blank" href="' + url + '"><img style="width: 160px; height: 128px" src="' + thumbnailurl + '"></a></td><td valign="top"><strong><a target="_blank" href="' + url + '">' + title + '</a></strong> <br/>' + description + '<br/><br/><span style="font-size:10px; font-style: italic">' + 'Example by ' + author + '</span></td></tr>';
       htmlAll.push(html);
   }
   htmlAll.push('</tbody></table>');

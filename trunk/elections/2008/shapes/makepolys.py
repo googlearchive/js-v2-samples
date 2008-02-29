@@ -10,10 +10,11 @@ import stat
 import sys
 import time
 
-#from geo import Geo
+from geo import Geo
 import shpUtils
 import states
 
+geo = Geo()
 keysep = '|'
 states.statesByNumber = {}
 useTowns = {
@@ -99,6 +100,7 @@ def readShapefile( filename ):
 			places[key] = {
 				'name': name,
 				'state': state,
+				'bounds': [ [ 180.0, 90.0 ], [ -180.0, -90.0 ] ],
 				'shapes': []
 			}
 		place = places[key]
@@ -112,17 +114,16 @@ def readShapefile( filename ):
 			area = part['area']
 			if area == 0: continue
 			bounds = part['bounds']
-			center = part['center']
+			place['bounds'] = geo.extendBounds( place['bounds'], bounds )
 			centroid = part['centroid']
 			points = part['points']
 			for j in xrange(n):
 				point = points[j]
 				pts.append( '[%s,%s]' %( point[0], point[1] ) )
-			shapes.append( '{area:%.8f,bounds:[[%.8f,%.8f],[%.8f,%.8f]],center:[%.8f,%.8f],centroid:[%.8f,%.8f],points:[%s]}' %(
+			shapes.append( '{area:%.8f,bounds:[[%.8f,%.8f],[%.8f,%.8f]],centroid:[%.8f,%.8f],points:[%s]}' %(
 				area,
 				bounds[0][0], bounds[0][1], 
 				bounds[1][0], bounds[1][1], 
-				center[0], center[1],
 				centroid[0], centroid[1],
 				','.join(pts)
 			) )
@@ -134,11 +135,7 @@ def writeUS( places ):
 	keys = places.keys()
 	keys.sort()
 	for key in keys:
-		json.append( '{name:"%s",shapes:[%s]}' %(
-			#reader.fixCountyName( name ),
-			key.split(keysep)[0],
-			','.join(places[key]['shapes'])
-		) )
+		json.append( getPlaceJSON( places, key ) )
 	writeFile( 'json/us.js', '''
 States = window.States || {};
 States.us = {
@@ -152,11 +149,7 @@ def writeStates( places ):
 	for key in keys:
 		name, number = key.split(keysep)
 		state = states.statesByNumber[number]
-		state['json'].append( '{name:"%s",shapes:[%s]}' %(
-			#reader.fixCountyName( name ),
-			name,
-			','.join(places[key]['shapes'])
-		) )
+		state['json'].append( getPlaceJSON( places, key ) )
 	for state in states.states:
 		abbr = state['abbr'].lower()
 		writeFile(
@@ -167,6 +160,18 @@ States.%s = {
 	places: [%s]
 };
 ''' %( abbr, ','.join(state['json']) ) )
+
+def getPlaceJSON( places, key ):
+	place = places[key]
+	bounds = place['bounds']
+	centroid = [ 0, 0 ] # place['centroid']
+	return '{name:"%s",bounds:[[%.8f,%.8f],[%.8f,%.8f]],centroid:[%.8f,%.8f],shapes:[%s]}' %(
+		key.split(keysep)[0],
+		bounds[0][0], bounds[0][1], 
+		bounds[1][0], bounds[1][1], 
+		centroid[0], centroid[1],
+		','.join(place['shapes'])
+	)
 
 def generateStates():
 	shapefile, places = readShapefile( 'states/st99_d00_shp-90/st99_d00.shp' )

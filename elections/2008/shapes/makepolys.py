@@ -136,12 +136,7 @@ def writeUS( places ):
 	keys.sort()
 	for key in keys:
 		json.append( getPlaceJSON( places, key ) )
-	writeFile( 'json/us.js', '''
-States = window.States || {};
-States.us = {
-	places: [%s]
-};
-''' %( ','.join(json) ) )
+	writeJSON( 'us', json )
 
 def writeStates( places ):
 	keys = places.keys()
@@ -152,14 +147,17 @@ def writeStates( places ):
 		state['json'].append( getPlaceJSON( places, key ) )
 	for state in states.states:
 		abbr = state['abbr'].lower()
-		writeFile(
-			'json/%s.js' % abbr,
-			'''
-States = window.States || {};
-States.%s = {
+		writeJSON( state['abbr'].lower(), state['json'] )
+
+def writeJSON( abbr, json ):
+	writeFile(
+		'json/%s.js' % abbr,
+		'''
+GoogleElectionMap.load({
+	state: "%s",
 	places: [%s]
-};
-''' %( abbr, ','.join(state['json']) ) )
+})
+''' %( abbr, ','.join(json) ) )
 
 def getPlaceJSON( places, key ):
 	place = places[key]

@@ -16,7 +16,12 @@ import states
 
 keysep = '|'
 states.statesByNumber = {}
-useTowns = [ 'New Hampshire', 'Vermont' ]
+useTowns = {
+	'CT': 80,
+	'MA': 80,
+	'NH': 94,
+	'VT': 80
+}
 
 def loadshapefile( filename ):
 	print 'Loading shapefile %s' % filename
@@ -178,15 +183,23 @@ def generateCounties():
 	shapefile, places = readShapefile( 'counties/co99_d00_shp-90/co99_d00.shp' )
 	for key, place in places.iteritems():
 		name, number = key.split(keysep)
-		if True: # name not in useTowns:
+		state = states.statesByNumber[number]
+		abbr = state['abbr']
+		if abbr not in useTowns:
+			state['counties'].append( place )
+	for abbr, simplify in useTowns.iteritems():
+		state = states.statesByAbbr[abbr]
+		number = state['number']
+		townshapefile, townplaces = readShapefile(
+			'towns/cs%(number)s_d00_shp-%(simplify)s/cs%(number)s_d00.shp' %{
+				'number':number,
+				'simplify':simplify
+			} )
+		for key, place in townplaces.iteritems():
+			name, number = key.split(keysep)
 			state = states.statesByNumber[number]
 			state['counties'].append( place )
-	#shapefile, places = readShapefile( 'towns/co99_d00_shp-90/co99_d00.shp' )
-	#for key, place in places.iterItems():
-	#	name, number = key.split(keysep)
-	#	if name not in useTowns:
-	#		state = states.statesByNumber[number]
-	#		state['counties'].append( place )
+			places[key] = place
 	writeStates( places )
 
 generateStates()

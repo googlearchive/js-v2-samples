@@ -79,9 +79,17 @@ GoogleElectionMap = {
 		var abbr = data.state;
 		var state = stateByAbbr( abbr );
 		state.data = data;
+		if( abbr == 'us' )
+			initStateBounds( data );
 		stateReady( data );
 	}
 };
+
+function initStateBounds( data ) {
+	data.places.forEach( function( place ) {
+		statesByName[place.name].bounds = place.bounds;
+	});
+}
 
 //var mapplet = location.host == 'gmodules.com';
 var mapplet;
@@ -545,7 +553,11 @@ var states = [
 
 var stateUS = {
 	'abbr': 'US',
-	'name': 'United States'
+	'name': 'United States',
+	bounds: [
+		[ -124.72846051, 24.54570037 ],
+		[ -66.95221658, 49.38362494 ]
+	]
 };
 
 var statesByAbbr = {};
@@ -792,7 +804,6 @@ twitterBlurb = ! opt.twitter ? '' : S(
 	stateSelector = S(
 		'<select id="stateSelector">',
 			'<option value="us">Entire USA</option>',
-			'<option value="us">Continental USA</option>',
 			states.map( function( state ) {
 				return S( '<option value="', state.abbr, '">', state.name, '</option>' );
 			}),
@@ -1305,9 +1316,24 @@ function stateReady( data ) {
 	map.clearOverlays();
 	//$('script[title=jsonresult]').remove();
 	//if( json.status == 'later' ) return;
-	showPolys( data, opt.party, null );
-	if( mapplet )
-		_IG_AdjustIFrameHeight();
+	var abbr = data.state;
+	var state = stateByAbbr( abbr );
+	var bounds = state.bounds;
+	if( bounds ) {
+		var latpad = ( bounds[1][1] - bounds[0][1] ) / 20;
+		var lngpad = ( bounds[1][0] - bounds[0][0] ) / 20;
+		var latlngbounds = new GLatLngBounds(
+			new GLatLng( bounds[0][1] - latpad, bounds[0][0] - lngpad ),
+			new GLatLng( bounds[1][1] + latpad, bounds[1][0] + lngpad )
+		);
+		GAsync( map, 'getBoundsZoomLevel', [ latlngbounds ], function( zoom ) {
+			map.setCenter( latlngbounds.getCenter(), zoom );
+			showPolys( data, opt.party, null );
+		});
+	}
+	else {
+		showPolys( data, opt.party, null );
+	}
 }
 
 function showVotes( json, party ) {

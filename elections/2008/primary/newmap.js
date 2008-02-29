@@ -76,6 +76,9 @@
 
 GoogleElectionMap = {
 	load: function( data ) {
+		var abbr = data.state;
+		var state = stateByAbbr( abbr );
+		state.data = data;
 		stateReady( data );
 	}
 };
@@ -540,14 +543,22 @@ var states = [
 	}
 ];
 
-var statesByAbbr = {};
-for( state in states )
-	statesByAbbr[state.abbr] = state;
+var stateUS = {
+	'abbr': 'US',
+	'name': 'United States'
+};
 
+var statesByAbbr = {};
 var statesByName = {};
-for( state in states )
+states.forEach( function( state ) {
+	statesByAbbr[state.abbr] = state;
 	statesByName[state.name] = state;
-	
+});
+
+function stateByAbbr( abbr ) {
+	return statesByAbbr[abbr.toUpperCase()] || stateUS;
+}
+
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
 	script.type = 'text/javascript';
@@ -777,6 +788,18 @@ twitterBlurb = ! opt.twitter ? '' : S(
 	'</div>'
 );
 
+(function() {
+	stateSelector = S(
+		'<select id="stateSelector">',
+			'<option value="us">Entire USA</option>',
+			'<option value="us">Continental USA</option>',
+			states.map( function( state ) {
+				return S( '<option value="', state.abbr, '">', state.name, '</option>' );
+			}),
+		'</select>'
+	);
+})();
+
 	document.write( (
 		opt.projector ? [
 			'<style type="text/css">',
@@ -851,6 +874,9 @@ twitterBlurb = ! opt.twitter ? '' : S(
 				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 					//'<span style="color:red;">New!</span> ',
 					'<a href="http://gmodules.com/ig/creator?synd=open&url=http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap2.xml" target="_blank">Get this map for your website</a>',
+				'</div>',
+				'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
+					stateSelector,
 				'</div>',
 				//twitterBlurb,
 				//'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
@@ -1641,6 +1667,11 @@ function load() {
 		return false;
 	});
 	
+	$('#stateSelector').change( function() {
+		opt.state = this.value.toLowerCase();
+		loadState();
+	});
+	
 	var curParty;
 	setParty = function( party ) {
 		if( party != curParty ) loadResults( party );
@@ -1730,7 +1761,16 @@ function following() {
 }
 
 function loadState() {
-	loadScript( [ opt.baseUrl, 'elections/2008/shapes/json/', opt.state, '.js' ].join('') );
+	var abbr = opt.state;
+	var state = stateByAbbr( abbr );
+	if( state.data ) {
+		console.log( 'state ready', state.name );
+		stateReady( state.data );
+	}
+	else {
+		console.log( 'loading state', abbr );
+		loadScript( [ opt.baseUrl, 'elections/2008/shapes/json/', abbr.toLowerCase(), '.js' ].join('') );
+	}
 }
 
 function loadVotes() {

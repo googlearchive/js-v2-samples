@@ -4,7 +4,7 @@ import math
 
 class Geo:
 	
-	def __init__( self, zoom, tilesize=256 ):
+	def __init__( self, zoom=0, tilesize=256 ):
 		self.zoom = zoom
 		self.tilesize = tilesize
 	

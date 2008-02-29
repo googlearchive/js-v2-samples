@@ -140,7 +140,7 @@ def writeUS( places ):
 			','.join(places[key]['shapes'])
 		) )
 	writeFile( 'json/us.js', '''
-States = States || {};
+States = window.States || {};
 States.us = {
 	places: [%s]
 };
@@ -162,7 +162,7 @@ def writeStates( places ):
 		writeFile(
 			'json/%s.js' % abbr,
 			'''
-States = States || {};
+States = window.States || {};
 States.%s = {
 	places: [%s]
 };

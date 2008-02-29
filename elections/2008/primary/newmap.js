@@ -571,12 +571,20 @@ function stateByAbbr( abbr ) {
 	return statesByAbbr[abbr.toUpperCase()] || stateUS;
 }
 
-function loadScript( url ) {
+function loadScript( url, cache ) {
 	var script = document.createElement( 'script' );
 	script.type = 'text/javascript';
 	script.charset = 'utf-8';
-	var seq = (new Date).getTime();
-	script.src = url + '?q=' + seq;
+	if( opt.nocache ) {
+		var seq = (new Date).getTime();
+		url +='?q=' + seq;
+	}
+	else {
+		if( cache == null ) cache = 120;
+		if( cache && mapplet )
+			url = _IG_GetCachedUrl( url, { refreshInterval:cache } );
+	}
+	script.src = url;
 	script.title = 'jsonresult';
 	$('head')[0].appendChild( script );
 }
@@ -804,7 +812,7 @@ twitterBlurb = ! opt.twitter ? '' : S(
 	stateSelector = S(
 		'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 			'<div>',
-				'Select a state or click the map for local results:',
+				'Select a state or click the map for local results',
 			'</div>',
 			'<div>',
 				'<select id="stateSelector">',
@@ -1805,12 +1813,12 @@ function loadState() {
 	var abbr = opt.state;
 	var state = stateByAbbr( abbr );
 	if( state.data ) {
-		console.log( 'state ready', state.name );
+		//console.log( 'state ready', state.name );
 		stateReady( state.data );
 	}
 	else {
-		console.log( 'loading state', abbr );
-		loadScript( [ opt.dataUrl, 'shapes/', abbr.toLowerCase(), '.js' ].join('') );
+		//console.log( 'loading state', abbr );
+		loadScript( S( opt.dataUrl, 'shapes/', abbr.toLowerCase(), '.js' ), 120 );
 	}
 }
 

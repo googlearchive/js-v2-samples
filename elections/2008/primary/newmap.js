@@ -1005,7 +1005,7 @@ var feed = {
 
 var map;
 
-opt.baseUrl = opt.baseUrl || 'http://gmaps-samples.googlecode.com/svn/trunk/';
+opt.dataUrl = opt.dataUrl || 'http://primary-maps-2008-data.googlecode.com/svn/trunk/';
 opt.state = opt.state || 'us';
 
 var state = states[opt.state];
@@ -1810,13 +1810,13 @@ function loadState() {
 	}
 	else {
 		console.log( 'loading state', abbr );
-		loadScript( [ opt.baseUrl, 'elections/2008/shapes/json/', abbr.toLowerCase(), '.js' ].join('') );
+		loadScript( [ opt.dataUrl, 'shapes/', abbr.toLowerCase(), '.js' ].join('') );
 	}
 }
 
 function loadVotes() {
 	return;
-		//loadScript( [ opt.baseUrl, 'elections/2008/primary/states/', opt.state, '/results_', party.name, '.js' ].join('') );
+		//loadScript( [ opt.dataUrl, 'elections/2008/primary/states/', opt.state, '/results_', party.name, '.js' ].join('') );
 		
 	var contentBase = window.contentBase || 'http://primary-maps-2008-data.googlecode.com/svn/trunk/miniresults/';
 

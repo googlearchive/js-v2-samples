@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-# maketiles.py
+# makepolys.py
 
-#from geo import Geo
 import math
 import os
 import random
@@ -10,7 +9,14 @@ import shutil
 import stat
 import sys
 import time
+
+#from geo import Geo
 import shpUtils
+import states
+
+keysep = '|'
+states.statesByNumber = {}
+useTowns = [ 'New Hampshire', 'Vermont' ]
 
 def loadshapefile( filename ):
 	print 'Loading shapefile %s' % filename
@@ -62,9 +68,9 @@ def writeFile( filename, data ):
 	f.write( data )
 	f.close()
 
-def generate( outfile, state, filename ):
+def readShapefile( filename ):
 	print '----------------------------------------'
-	print 'Generating %s %s' %( state, filename )
+	print 'Loading %s' % filename
 	
 	shapefile = loadshapefile( filename )
 	features = shapefile['features']
@@ -82,12 +88,15 @@ def generate( outfile, state, filename ):
 		if shape['type'] != 5: continue
 		info = feature['info']
 		name = info['NAME']
-		if name not in places:
-			places[name] = {
+		state = info['STATE']
+		key = name + keysep + state
+		if key not in places:
+			places[key] = {
 				'name': name,
+				'state': state,
 				'shapes': []
 			}
-		place = places[name]
+		place = places[key]
 		shapes = place['shapes']
 		for part in shape['parts']:
 			nPolys += 1
@@ -112,23 +121,75 @@ def generate( outfile, state, filename ):
 				centroid[0], centroid[1],
 				','.join(pts)
 			) )
+	print '%d points in %d places' %( nPoints, len(places) )
+	return shapefile, places
+
+def writeUS( places ):
 	json = []
-	names = places.keys()
-	names.sort()
-	for name in names:
+	keys = places.keys()
+	keys.sort()
+	for key in keys:
 		json.append( '{name:"%s",shapes:[%s]}' %(
 			#reader.fixCountyName( name ),
-			name,
-			','.join(places[name]['shapes'])
+			key.split(keysep)[0],
+			','.join(places[key]['shapes'])
 		) )
-	print '%d points in %d places' %( nPoints, len(places) )
-	writeFile( outfile, '''
-Data = {
+	writeFile( 'json/us.js', '''
+States = States || {};
+States.us = {
 	places: [%s]
 };
 ''' %( ','.join(json) ) )
 
-generate( 'states.js', None, 'states/st99_d00_shp-75/st99_d00.shp' )
-generate( 'counties.js', None, 'counties/co99_d00_shp-90/co99_d00.shp' )
+def writeStates( places ):
+	keys = places.keys()
+	keys.sort()
+	for key in keys:
+		name, number = key.split(keysep)
+		state = states.statesByNumber[number]
+		state['json'].append( '{name:"%s",shapes:[%s]}' %(
+			#reader.fixCountyName( name ),
+			name,
+			','.join(places[key]['shapes'])
+		) )
+	for state in states.states:
+		abbr = state['abbr'].lower()
+		writeFile(
+			'json/%s.js' % abbr,
+			'''
+States = States || {};
+States.%s = {
+	places: [%s]
+};
+''' %( abbr, ','.join(state['json']) ) )
+
+def generateStates():
+	shapefile, places = readShapefile( 'states/st99_d00_shp-90/st99_d00.shp' )
+	for key in places:
+		name, number = key.split(keysep)
+		state = states.statesByName[name]
+		state['json'] = []
+		state['counties'] = []
+		state['number'] = number
+		states.statesByNumber[number] = state
+	writeUS( places )
+
+def generateCounties():
+	shapefile, places = readShapefile( 'counties/co99_d00_shp-90/co99_d00.shp' )
+	for key, place in places.iteritems():
+		name, number = key.split(keysep)
+		if True: # name not in useTowns:
+			state = states.statesByNumber[number]
+			state['counties'].append( place )
+	#shapefile, places = readShapefile( 'towns/co99_d00_shp-90/co99_d00.shp' )
+	#for key, place in places.iterItems():
+	#	name, number = key.split(keysep)
+	#	if name not in useTowns:
+	#		state = states.statesByNumber[number]
+	#		state['counties'].append( place )
+	writeStates( places )
+
+generateStates()
+generateCounties()
 
 print 'Done!'

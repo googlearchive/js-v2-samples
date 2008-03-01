@@ -1,22 +1,19 @@
 #!/usr/bin/env python
 
-# voter.py - vote reader for Super Tuesday
+# voter.py - vote reader for March 4 primaries
 
 import csv
 import os
 import re
 import time
 import urllib
-import states
-#from template import *
 
-import private
 from candidates import candidates
-#import reader
-
-
-import simplejson as sj
+#from template import *
+import private
 import random
+import simplejson as sj
+import states
 
 #def str( text ):
 #	strings = {
@@ -25,31 +22,26 @@ import random
 #	}
 #	return strings[text] or text
 
-def getLeader( county, party ):
-	tally = county.get(party)
-	if tally == None  or  len(tally) == 0:
-		return None
-	return reader.candidates['byname'][party][ tally[0]['name'] ]
-
-def partyName( party ):
-	return { 'democrat':'Democratic', 'republican':'Republican' }[ party ]
-
 def formatNumber( number ):
 	return str(number)
 
 def json( obj ):
 	#return sj.dumps( obj, indent=4 )
-	return sj.dumps( obj, separators=( ',', ':' ) )
-
-
-parties = {
-	'dem': { 'name':'Democrats' },
-	'gop': { 'name':'Republicans' }
-}
+	#return re.sub( '},{', '},\n{', sj.dumps( obj, separators=( ',', ':' ) ) )
+	#return sj.dumps( obj, indent=0, separators=( ',', ':' ) )
+	json = sj.dumps( obj, separators=( ',', ':' ) )
+	#json = re.sub( ':{', ':\n{', json )
+	#json = re.sub( ':\[', ':\n[', json )
+	json = re.sub( '\],"', '],\n"', json )
+	json = re.sub( ':\[{', ':[\n{', json )
+	json = re.sub( '":{', '":\n{', json )
+	json = re.sub( '},{', '},\n{', json )
+	json = re.sub( '},"', '},\n"', json )
+	#json = re.sub( '\],\[', '],\n[', json )
+	return json
 
 def fetchData():
 	urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
-	pass
 
 		## Correct error in census data for Wentworth's Location
 		#if( name == "Wentworth" and number == '9' ):
@@ -123,6 +115,7 @@ def makeJson( party ):
 		if 'votes' not in stateparty: continue
 		sortVotes( stateparty )
 		statevotes[ state['abbr'] ] = stateparty
+		print 'Loading %s %s' %( state['name'], party )
 		for vote in stateparty['votes']:
 			name = vote['name']
 			count = vote['votes']
@@ -158,33 +151,15 @@ def makeJson( party ):
 		'Json.%sResults(%s)' %( party, json({
 				'status': 'ok',
 				'party': party,
-				'state': 'us',
+				'state': 'US',
 				'total': ustotal,
 				'totals': usparty,
 				'locals': statevotes
 		}) ) )
-		
-	#state = data['state']
-	#counties = data['counties']
-	#for county in counties.itervalues():
-	#	#del county['centroid']
-	#	del county['shapes']
-	#
-	#result = {
-	#	'status': 'ok',
-	#	'state': state,
-	#	'counties': counties
-	#}
-	#
-	#write(
-	#	'results_%s.js' % party,
-	#	'Json.%sResults(%s)' %( party, json(result) )
-	#)
-	#
 	#print '%s of %s precincts reporting' %( state['precincts']['reporting'], state['precincts']['total'] )
 
 def write( name, text ):
-	#print 'Writing ' + name
+	print 'Writing %s' % name
 	f = open( name, 'w' )
 	f.write( text )
 	f.close()
@@ -198,13 +173,13 @@ def update():
 	makeJson( 'dem' )
 	makeJson( 'gop' )
 	#print 'Checking in Maps JSON...'
-	#os.system( 'svn ci -m "Vote update" sc_text_output_for_mapping.csv data.js results_democrat.js results_republican.js' )
+	#os.system( 'svn ci -m "Vote update" votes/*' )
 	print 'Done!'
 
 def main():
 	#while 1:
 		update()
-		#print 'Waiting 10 minute...'
+		#print 'Waiting 10 minutes...'
 		#time.sleep( 600 )
 
 if __name__ == "__main__":

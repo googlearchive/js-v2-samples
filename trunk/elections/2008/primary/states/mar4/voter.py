@@ -107,7 +107,7 @@ def makeJson( party ):
 		if party not in parties: continue
 		stateparty = state['parties'][party]
 		stateparty['name'] = state['name']
-		if 'votes' not in stateparty: continue
+		if 'votes' not in stateparty: stateparty['votes'] = {}
 		sortVotes( stateparty )
 		statevotes[ state['name'] ] = stateparty
 		print 'Loading %s %s' %( state['name'], party )
@@ -120,7 +120,7 @@ def makeJson( party ):
 			ustotal += count
 			statetotal += count
 		countyvotes = {}
-		counties = state['counties']
+		counties = state.get( 'counties', {} )
 		for countyname, county in counties.iteritems():
 			countyparty = county['parties'][party]
 			countyparty['name'] = countyname
@@ -167,8 +167,8 @@ def update():
 	print 'Creating Maps JSON...'
 	makeJson( 'dem' )
 	makeJson( 'gop' )
-	#print 'Checking in Maps JSON...'
-	#os.system( 'svn ci -m "Vote update" votes/*' )
+	print 'Checking in Maps JSON...'
+	os.system( 'svn ci -m "Vote update" votes' )
 	print 'Done!'
 
 def main():

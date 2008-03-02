@@ -15,6 +15,8 @@ import random
 import simplejson as sj
 import states
 
+votespath = '../../../../../election-data/votes'
+
 #def str( text ):
 #	strings = {
 #		'county': 'town',
@@ -26,14 +28,16 @@ def formatNumber( number ):
 	return str(number)
 
 def json( obj ):
-	return sj.dumps( obj, indent=4 )
-	#json = sj.dumps( obj, separators=( ',', ':' ) )
-	#json = re.sub( '\],"', '],\n"', json )
-	#json = re.sub( ':\[{', ':[\n{', json )
-	#json = re.sub( '":{', '":\n{', json )
-	#json = re.sub( '},{', '},\n{', json )
-	#json = re.sub( '},"', '},\n"', json )
-	#return json
+	if 0:
+		json = sj.dumps( obj, indent=4 )
+	else:
+		json = sj.dumps( obj, separators=( ',', ':' ) )
+		json = re.sub( '\],"', '],\n"', json )
+		json = re.sub( ':\[{', ':[\n{', json )
+		json = re.sub( '":{', '":\n{', json )
+		json = re.sub( '},{', '},\n{', json )
+		json = re.sub( '},"', '},\n"', json )
+	return json
 
 def fetchData():
 	urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
@@ -131,7 +135,7 @@ def makeJson( party ):
 			countyparty['total'] = countytotal
 			countyvotes[countyname] = countyparty
 		write(
-			'votes/%s_%s.js' %( state['abbr'].lower(), party ),
+			'%s/%s_%s.js' %( votespath, state['abbr'].lower(), party ),
 			'GoogleElectionMap.votesReady(%s)' % json({
 					'status': 'ok',
 					'party': party,
@@ -142,7 +146,7 @@ def makeJson( party ):
 			}) )
 	sortVotes( usparty )
 	write(
-		'votes/%s_%s.js' %( 'us', party ),
+		'%s/%s_%s.js' %( votespath, 'us', party ),
 		'GoogleElectionMap.votesReady(%s)' % json({
 				'status': 'ok',
 				'party': party,
@@ -168,7 +172,7 @@ def update():
 	makeJson( 'dem' )
 	makeJson( 'gop' )
 	print 'Checking in Maps JSON...'
-	os.system( 'svn ci -m "Vote update" votes' )
+	os.system( 'svn ci -m "Vote update" %s' % votespath )
 	print 'Done!'
 
 def main():

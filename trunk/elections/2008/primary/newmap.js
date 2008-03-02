@@ -31,11 +31,21 @@ if( ! Array.prototype.map ) {
 if( ! Array.prototype.index ) {
 	Array.prototype.index = function( field ) {
 		this.by = {};
-		var by = this.by[field] = {};
-		for( var i = 0, n = this.length;  i < n;  ++i ) {
-			var obj = this[i];
-			by[obj[field]] = obj;
-			obj.index = i;
+		if( field ) {
+			var by = this.by[field] = {};
+			for( var i = 0, n = this.length;  i < n;  ++i ) {
+				var obj = this[i];
+				by[obj[field]] = obj;
+				obj.index = i;
+			}
+		}
+		else {
+			var by = this.by;
+			for( var i = 0, n = this.length;  i < n;  ++i ) {
+				var str = this[i];
+				by[str] = str;
+				str.index = i;
+			}
 		}
 		return this;
 	};
@@ -136,7 +146,7 @@ GoogleElectionMap = {
 		state.places = data.places;
 		if( abbr == 'us' )
 			initStateBounds( state.places );
-		loadScript( S( opt.dataUrl, 'primary/states/mar4/votes/', abbr.toLowerCase(), '_', curParty.name, '.js' ), 120 );
+		loadScript( S( opt.dataUrl, 'votes/', abbr.toLowerCase(), '_', curParty.name, '.js' ), 120 );
 	},
 	votesReady: function( votes ) {
 		var abbr = votes.state;
@@ -819,6 +829,10 @@ twitterBlurb = ! opt.twitter ? '' : S(
 );
 
 (function() {
+	var hotStates = [ 'OH', 'RI', 'TX', 'VT' ]/*.index()*/;
+	function option( state ) {
+		return S( '<option value="', state.abbr, '">', state.name, '</option>' );
+	}
 	stateSelector = S(
 		'<div style="padding-bottom:4px; border-bottom:1px solid #DDD; margin-bottom:4px;">',
 			'<div>',
@@ -827,9 +841,14 @@ twitterBlurb = ! opt.twitter ? '' : S(
 			'<div>',
 				'<select id="stateSelector">',
 					'<option value="us">Entire USA</option>',
+					'<option value="" style="color:#AAA; font-style:italic; font-weight:bold;">March 4</option>',
+					hotStates.map( function( abbr ) {
+						return option( statesByAbbr[abbr] );
+					}).join(''),
+					'<option value="" style="color:#AAA; font-style:italic; font-weight:bold;">All States</option>',
 					states.map( function( state ) {
-						return S( '<option value="', state.abbr, '">', state.name, '</option>' );
-					}),
+						return /*hotStates.by[state.abbr] ? '' :*/ option(state);
+					}).join(''),
 				'</select>',
 			'</div>',
 		'</div>'
@@ -936,7 +955,7 @@ twitterBlurb = ! opt.twitter ? '' : S(
 				//	'&nbsp;|&nbsp;',
 				//	'<a href="http://www.desmoinesregister.com/apps/pbcs.dll/section?Category=caucus" target="_blank">Des Moines Register</a>',
 				//'</div>',
-				//partyButtons,
+				partyButtons,
 				//'<div id="votesbar">',
 				//	'<div id="votestitle">',
 				//	'</div>',
@@ -1727,7 +1746,12 @@ function load() {
 	});
 	
 	$('#stateSelector').change( function() {
-		opt.state = this.value.toLowerCase();
+		var value = this.value.toLowerCase();
+		if( ! value ) {
+			value = 'us';
+			this.selectedIndex = 0;
+		}
+		opt.state = value;
 		loadState();
 	});
 	
@@ -1827,7 +1851,7 @@ function loadState() {
 	}
 	else {
 		//console.log( 'loading state', abbr );
-		loadScript( S( opt.dataUrl, 'shapes/shapes/', abbr.toLowerCase(), '.js' ), 120 );
+		loadScript( S( opt.dataUrl, 'shapes/', abbr.toLowerCase(), '.js' ), 120 );
 	}
 }
 

@@ -26,19 +26,14 @@ def formatNumber( number ):
 	return str(number)
 
 def json( obj ):
-	#return sj.dumps( obj, indent=4 )
-	#return re.sub( '},{', '},\n{', sj.dumps( obj, separators=( ',', ':' ) ) )
-	#return sj.dumps( obj, indent=0, separators=( ',', ':' ) )
-	json = sj.dumps( obj, separators=( ',', ':' ) )
-	#json = re.sub( ':{', ':\n{', json )
-	#json = re.sub( ':\[', ':\n[', json )
-	json = re.sub( '\],"', '],\n"', json )
-	json = re.sub( ':\[{', ':[\n{', json )
-	json = re.sub( '":{', '":\n{', json )
-	json = re.sub( '},{', '},\n{', json )
-	json = re.sub( '},"', '},\n"', json )
-	#json = re.sub( '\],\[', '],\n[', json )
-	return json
+	return sj.dumps( obj, indent=4 )
+	#json = sj.dumps( obj, separators=( ',', ':' ) )
+	#json = re.sub( '\],"', '],\n"', json )
+	#json = re.sub( ':\[{', ':[\n{', json )
+	#json = re.sub( '":{', '":\n{', json )
+	#json = re.sub( '},{', '},\n{', json )
+	#json = re.sub( '},"', '},\n"', json )
+	#return json
 
 def fetchData():
 	urllib.urlretrieve( private.csvFeedUrl, 'text_output_for_mapping.csv' )
@@ -114,7 +109,7 @@ def makeJson( party ):
 		stateparty['name'] = state['name']
 		if 'votes' not in stateparty: continue
 		sortVotes( stateparty )
-		statevotes[ state['abbr'] ] = stateparty
+		statevotes[ state['name'] ] = stateparty
 		print 'Loading %s %s' %( state['name'], party )
 		for vote in stateparty['votes']:
 			name = vote['name']
@@ -137,7 +132,7 @@ def makeJson( party ):
 			countyvotes[countyname] = countyparty
 		write(
 			'votes/%s_%s.js' %( state['abbr'].lower(), party ),
-			'Json.results(%s)' % json({
+			'GoogleElectionMap.votesReady(%s)' % json({
 					'status': 'ok',
 					'party': party,
 					'state': state['abbr'],
@@ -148,14 +143,14 @@ def makeJson( party ):
 	sortVotes( usparty )
 	write(
 		'votes/%s_%s.js' %( 'us', party ),
-		'Json.%sResults(%s)' %( party, json({
+		'GoogleElectionMap.votesReady(%s)' % json({
 				'status': 'ok',
 				'party': party,
 				'state': 'US',
 				'total': ustotal,
 				'totals': usparty,
 				'locals': statevotes
-		}) ) )
+		}) )
 	#print '%s of %s precincts reporting' %( state['precincts']['reporting'], state['precincts']['total'] )
 
 def write( name, text ):

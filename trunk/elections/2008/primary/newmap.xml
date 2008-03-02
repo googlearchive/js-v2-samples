@@ -53,7 +53,6 @@ e.custom(start,val,"");}});return true;});},queue:function(type,fn){if(jQuery.is
 		twitter: false,
 		primary: true,
 		state: '',
-		baseUrl: 'http://padlet/',
 		_: null
 	};
 </script>

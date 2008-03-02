@@ -60,14 +60,14 @@ def filterCONUS( features ):
 		result.append( feature )
 	return result
 
-#def featuresBounds( features ):
-#	bounds = [ [ 180.0, 90.0 ], [ -180.0, -90.0 ] ]
-#	for feature in features:
-#		shape = feature['shape']
-#		if shape['type'] == 5:
-#			for part in shape['parts']:
-#				bounds = geo.extendBounds( bounds, part['bounds'] )
-#	return bounds
+def featuresBounds( features ):
+	bounds = [ [ 180.0, 90.0 ], [ -180.0, -90.0 ] ]
+	for feature in features:
+		shape = feature['shape']
+		if shape['type'] == 5:
+			for part in shape['parts']:
+				bounds = geo.extendBounds( bounds, part['bounds'] )
+	return bounds
 
 def writeFile( filename, data ):
 	f = open( filename, 'wb' )
@@ -81,6 +81,9 @@ def readShapefile( filename ):
 	shapefile = loadshapefile( filename )
 	features = shapefile['features']
 	print '%d features' % len(features)
+	
+	#conus = filterCONUS( features )
+	#conusBounds = featuresBounds( conus )
 	
 	#stateFeatures = filterCONUS( stateFeatures )
 	#print '%d features in CONUS states' % len(stateFeatures)
@@ -151,9 +154,9 @@ def writeStates( places ):
 
 def writeJSON( abbr, json ):
 	writeFile(
-		'json/%s.js' % abbr,
+		'shapes/%s.js' % abbr,
 		'''
-GoogleElectionMap.load({
+GoogleElectionMap.shapesReady({
 	state: "%s",
 	places: [%s]
 })

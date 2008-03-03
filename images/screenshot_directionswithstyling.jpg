@@ -1,0 +1,11 @@
+       <html> <head> <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"> <style type="text/css"><!--
+
+      th {
+        font-family: arial, verdena, sans-serif;
+        text-align: center;
+        background: rgb(253, 206, 142);
+        border: solid 2px #D28414;
+        padding: .85em 2em;
+        width: 500px;
+      }
+    --> </style> <title>Bandwidth or Pageview Quota Exceeded</title> </head> <body> <table width="99%" height="92%"> <tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> <tr> <td height="1%">&nbsp;</td> <th width="1%" height="1%"> The bandwidth or page view limit for this site has been exceeded and the page cannot be viewed at this time. Once the site is below the limit, it will once again begin serving as normal.       <div style="border: 1px solid red; margin-top: 5px;"> <p style="color:red; font-weight:bold;"> This option is only given to internal users. It will set a cookie for this domain that subsequently allows viewing all disabled/hidden/throttled content on it. </p> <form action="/letmeinanyway" method="post"> <input type="hidden" name="redirect" value="http://gmaps.api.demos.googlepages.com/screenshot_directionswithstyling.jpg"> <input type="submit" value="View Anyway"> </form> </div>   </th> <td>&nbsp;</td> </tr> <tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr> </table> </body> </html>  

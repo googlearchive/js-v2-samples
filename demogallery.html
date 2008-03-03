@@ -93,7 +93,7 @@ function cm_getJSON() {
   var script = document.createElement('script');
 
   script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od6/public/values' +
-                        '?q=' + document.getElementById("searchbox").value + 
+                        '?reverse=true&q=' + document.getElementById("searchbox").value + 
                         '&alt=json-in-script&callback=cm_loadMapJSON');
   script.setAttribute('id', 'jsonScript');
   script.setAttribute('type', 'text/javascript');

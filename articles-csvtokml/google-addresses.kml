@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<kml>
+<kml http://earth.google.com/kml/2.2="xmlns">
   <Document>
     <Placemark>
       <ExtendedData>
@@ -11,16 +11,6 @@
         <Data name="Address1">
           <value>
             1600 Amphitheatre Parkway
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -67,16 +57,6 @@
             76 Ninth Avenue
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             New York
@@ -119,16 +99,6 @@
         <Data name="Address1">
           <value>
             201 South Division Street
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -175,16 +145,6 @@
             10 10th Street NE
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Atlanta
@@ -227,16 +187,6 @@
         <Data name="Address1">
           <value>
             2590 Pearl St.
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -283,16 +233,6 @@
             One Broadway
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Cambridge
@@ -337,16 +277,6 @@
             20 West Kinzie St.
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Chicago
@@ -389,16 +319,6 @@
         <Data name="Address1">
           <value>
             701 Canyon Drive
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -450,11 +370,6 @@
             5430 LBJ Freeway
           </value>
         </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Dallas
@@ -497,16 +412,6 @@
         <Data name="Address1">
           <value>
             4600 S. Syracuse St.
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -553,16 +458,6 @@
             2000 Town Center
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Southfield
@@ -605,16 +500,6 @@
         <Data name="Address1">
           <value>
             19540 Jamboree Road
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -661,16 +546,6 @@
             1551 S. Rural Road
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Tempe
@@ -715,16 +590,6 @@
             4720 Forbes Avenue
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Pittsburgh
@@ -738,16 +603,6 @@
         <Data name="Zip">
           <value>
             15213
-          </value>
-        </Data>
-        <Data name="Phone">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Fax">
-          <value>
-            
           </value>
         </Data>
       </ExtendedData>
@@ -767,16 +622,6 @@
         <Data name="Address1">
           <value>
             604 Arizona Avenue
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -823,16 +668,6 @@
             720 4th Avenue
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Kirkland
@@ -875,16 +710,6 @@
         <Data name="Address1">
           <value>
             501 N. 34th Street
-          </value>
-        </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
           </value>
         </Data>
         <Data name="City">
@@ -931,16 +756,6 @@
             1001 Pennsylvania Avenue NW
           </value>
         </Data>
-        <Data name="Address2">
-          <value>
-            
-          </value>
-        </Data>
-        <Data name="Address3">
-          <value>
-            
-          </value>
-        </Data>
         <Data name="City">
           <value>
             Washington
@@ -959,11 +774,6 @@
         <Data name="Phone">
           <value>
             202-742-6520
-          </value>
-        </Data>
-        <Data name="Fax">
-          <value>
-            
           </value>
         </Data>
       </ExtendedData>

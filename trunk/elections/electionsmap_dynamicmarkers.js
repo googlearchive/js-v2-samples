@@ -1716,22 +1716,16 @@ function showPolys( state, party ) {
     //place.total = tally.total;
     var leader = tally.votes && tally.votes[0];
     if( leader ) {
+     log(leader);
      var votes = leader.votes;
      var candidate = candidates[party.name].by.name[leader.name];
      var icon = candidate.icon;
-     
-     //if( ! opt.projector  &&  ! mapplet ) {
-     // var marker = new GMarker( new GLatLng( place.centroid[0], place.centroid[1] ), { icon:icon } );
-     // map.addOverlay( marker );
-     //}
      
      place.color = candidate.color;
      place.opacity = place.precincts.reporting / place.precincts.total * .7;
     }
    }
   }
-//  if (place.precincts) 
-//    console.log(place.name + ": " + place.precincts && place.precincts.reporting);
   var size = 12;
   if (leader) {
     if (leader.votes > 800000) { size = 38; }

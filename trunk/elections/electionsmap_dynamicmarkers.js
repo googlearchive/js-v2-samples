@@ -1703,7 +1703,7 @@ function log(bla) {
 }
 
 function showPolys( state, party ) {
- var isState = (state == "US") ? true : false;
+ var isState = (state == "US");
  log(isState);
  var tallies = state.votes && state.votes[party.name] || {};
  state.places.forEach( function( place ) {

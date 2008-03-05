@@ -1725,6 +1725,22 @@ function showPolys( state, party ) {
     }
    }
   }
+
+		place.shapes.forEach( function( shape ) {
+			var points = shape.points;
+			var vertices = shape.vertices = [];
+			// Old fashioned loop for speed
+			for( var i = 0, n = points.length;  i < n;  ++i ) {
+				var point = points[i];
+				vertices.push( new GLatLng( point[1], point[0] ) );
+			}
+			
+			var border = '#000080';
+			shape.polygon = {
+				base: new GPolygon( vertices, border, 1, .5, place.color, place.opacity, { clickable:false } )
+			};
+		});
+
   if (isState) {
     var size = 12;
     if (leader) {

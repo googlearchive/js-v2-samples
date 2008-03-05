@@ -1739,6 +1739,8 @@ function showPolys( state, party ) {
 			shape.polygon = {
 				base: new GPolygon( vertices, border, 1, .5, place.color, place.opacity, { clickable:false } )
 			};
+			shape.polygon.base.$_place_$ = { parent:state, place:place };
+			map.addOverlay( shape.polygon.base );
 		});
 
   if (isState) {

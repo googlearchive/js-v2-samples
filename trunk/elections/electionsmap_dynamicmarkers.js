@@ -1703,8 +1703,8 @@ function log(bla) {
 }
 
 function showPolys( state, party ) {
+ var isState = (state == "US") ? true : false;
  var tallies = state.votes && state.votes[party.name] || {};
- log(state);
  state.places.forEach( function( place ) {
   place.color = randomGray();
   place.opacity = .15;
@@ -1726,14 +1726,24 @@ function showPolys( state, party ) {
     }
    }
   }
-  var size = 12;
-  if (leader) {
-    if (leader.votes > 800000) { size = 38; }
-    else if (leader.votes > 500000) { size = 32;} 
-    else if (leader.votes > 300000) { size = 24;}
-    else { size = 18;}
-  } 
-  place.marker = createStateMarker(place, size, (state=="US"));
+  if (isState) {
+    var size = 12;
+    if (leader) {
+      if (leader.votes > 800000) { size = 38; }
+      else if (leader.votes > 500000) { size = 32;} 
+      else if (leader.votes > 300000) { size = 24;}
+      else { size = 18;}
+    } 
+  } else {
+    var size = 12;
+    if (leader) {
+      if (leader.votes > 15000) { size = 38; }
+      else if (leader.votes > 5000) { size = 32;} 
+      else if (leader.votes > 500) { size = 24;}
+      else { size = 18;}
+    } 
+  }
+  place.marker = createStateMarker(place, size, isState);
   map.addOverlay(place.marker);
  }); 
  initMap();

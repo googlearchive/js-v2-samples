@@ -1705,8 +1705,6 @@ function log(bla) {
 function showPolys( state, party ) {
  var isState = false;
  if (state.abbr == "US") var isState = true;
- log(state); 
- log(isState);
  var tallies = state.votes && state.votes[party.name] || {};
  state.places.forEach( function( place ) {
   place.color = randomGray();
@@ -1718,7 +1716,6 @@ function showPolys( state, party ) {
     //place.total = tally.total;
     var leader = tally.votes && tally.votes[0];
     if( leader ) {
-     log(leader);
      var votes = leader.votes;
      var candidate = candidates[party.name].by.name[leader.name];
      var icon = candidate.icon;

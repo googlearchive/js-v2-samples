@@ -1696,16 +1696,18 @@ function showStateTable( json, party ) {
  }
 }
 
+function log(bla) {
+  if (console) {
+    console.log(bla);
+  }
+}
+
 function showPolys( state, party ) {
  var tallies = state.votes && state.votes[party.name] || {};
+ log(state);
  state.places.forEach( function( place ) {
-  //place.color = randomColor();
   place.color = randomGray();
-  //place.opacity = Math.random();
   place.opacity = .15;
-  
-  //place.color = 'black';
-  //place.opacity = 0;
   
   if( tallies && tallies.locals ) {
    var tally = tallies.locals[place.name];

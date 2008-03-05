@@ -1696,8 +1696,6 @@ function showStateTable( json, party ) {
  }
 }
 
-var globalMax = 0;
-var globalMin = 99999;
 function showPolys( state, party ) {
  var tallies = state.votes && state.votes[party.name] || {};
  state.places.forEach( function( place ) {
@@ -1730,17 +1728,14 @@ function showPolys( state, party ) {
     }
    }
   }
-  if (leader) {
-    if (leader.votes > globalMax) globalMax = leader.votes;
-    if (leader.votes < globalMin) globalMin = leader.votes; 
-  }
 //  if (place.precincts) 
 //    console.log(place.name + ": " + place.precincts && place.precincts.reporting);
-  var size = 16;
+  var size = 12;
   if (leader) {
     if (leader.votes > 800000) { size = 38; }
     else if (leader.votes > 500000) { size = 32;} 
     else if (leader.votes > 300000) { size = 24;}
+    else { size = 18;}
   } 
   place.marker = createStateMarker(place, size);
   map.addOverlay(place.marker);

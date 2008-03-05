@@ -1703,13 +1703,14 @@ function log(bla) {
 }
 
 function showPolys( state, party ) {
- var isState = (state == "US");
+ var isState = false;
+ if (state == "US") var isState = true;
+ 
  log(isState);
  var tallies = state.votes && state.votes[party.name] || {};
  state.places.forEach( function( place ) {
   place.color = randomGray();
   place.opacity = .15;
-  log(state.place);
   if( tallies && tallies.locals ) {
    var tally = tallies.locals[place.name];
    if( tally ) {

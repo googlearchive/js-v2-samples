@@ -1707,8 +1707,8 @@ function showPolys( state, party ) {
  if (state.abbr == "US") var isState = true;
  var tallies = state.votes && state.votes[party.name] || {};
  state.places.forEach( function( place ) {
-  place.color = randomGray();
-  place.opacity = .15;
+  place.fillColor = randomGray();
+  place.fillOpacity = .15;
   if( tallies && tallies.locals ) {
    var tally = tallies.locals[place.name];
    if( tally ) {
@@ -1737,7 +1737,7 @@ function showPolys( state, party ) {
 			
 			var border = '#000080';
 			shape.polygon = {
-				base: new GPolygon( vertices, border, 1, .5, place.color, place.opacity, { clickable:false } )
+				base: new GPolygon( vertices, border, 1, .5, place.fillColor, place.fillOpacity, { clickable:false } )
 			};
 			shape.polygon.base.$_place_$ = { parent:state, place:place };
 			map.addOverlay( shape.polygon.base );

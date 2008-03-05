@@ -1704,6 +1704,7 @@ function log(bla) {
 
 function showPolys( state, party ) {
  var isState = (state == "US") ? true : false;
+ log(isState);
  var tallies = state.votes && state.votes[party.name] || {};
  state.places.forEach( function( place ) {
   place.color = randomGray();

@@ -1704,7 +1704,6 @@ function log(bla) {
 
 function showPolys( state, party ) {
  var tallies = state.votes && state.votes[party.name] || {};
- log(state);
  state.places.forEach( function( place ) {
   place.color = randomGray();
   place.opacity = .15;
@@ -1739,21 +1738,22 @@ function showPolys( state, party ) {
     else if (leader.votes > 300000) { size = 24;}
     else { size = 18;}
   } 
-  place.marker = createStateMarker(place, size);
+  place.marker = createStateMarker(place, size, (state=="US"));
   map.addOverlay(place.marker);
  }); 
  initMap();
 }
 
-function createStateMarker(place, size) {
+function createStateMarker(place, size, isState) {
   var state = statesByName[place.name];
   var iconOptions = {width: size, height: size, primaryColor: place.color, cornerColor: place.color};
   var icon = IconFactory.createMarkerIcon(iconOptions);
   var marker = new GMarker(pointLatLng(place.centroid), {icon: icon});
-  
-  GEvent.addListener(marker, "click", function() {
-    marker.openInfoWindowHtml(stateBalloon(state, place), { maxWidth:300 } );
-  });
+  if (isState) {
+    GEvent.addListener(marker, "click", function() {
+      marker.openInfoWindowHtml(stateBalloon(state, place), { maxWidth:300 } );
+    });
+  }
   return marker;
 }
 

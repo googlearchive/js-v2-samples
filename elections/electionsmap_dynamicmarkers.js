@@ -1704,10 +1704,11 @@ function log(bla) {
 
 function showPolys( state, party ) {
  var tallies = state.votes && state.votes[party.name] || {};
+ log(state);
  state.places.forEach( function( place ) {
   place.color = randomGray();
   place.opacity = .15;
-  
+  log(state.place);
   if( tallies && tallies.locals ) {
    var tally = tallies.locals[place.name];
    if( tally ) {

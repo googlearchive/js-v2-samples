@@ -1704,7 +1704,7 @@ function log(bla) {
 
 function showPolys( state, party ) {
  var isState = false;
- if (state.name == "US") var isState = true;
+ if (state.abbr == "US") var isState = true;
  log(state); 
  log(isState);
  var tallies = state.votes && state.votes[party.name] || {};

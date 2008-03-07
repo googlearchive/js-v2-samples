@@ -40,7 +40,7 @@ def createKML(csvReader, fileName, order):
   kmlDoc = xml.dom.minidom.Document()
   
   kmlElement = kmlDoc.createElementNS('http://earth.google.com/kml/2.2', 'kml')
-  kmlElement.setAttribute('http://earth.google.com/kml/2.2','xmlns')
+  kmlElement.setAttribute('xmlns', 'http://earth.google.com/kml/2.2')
   kmlElement = kmlDoc.appendChild(kmlElement)
   documentElement = kmlDoc.createElement('Document')
   documentElement = kmlElement.appendChild(documentElement)

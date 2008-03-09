@@ -7,31 +7,33 @@
     <script type="text/javascript">
 
     //<![CDATA[
+    var currentCountry = 'russia';
 
     var countryData = {
-      "russia": { width: 21, height: 14, lat: 55.749917, lng: 37.620964, hl: 'ru'},
-      "greece": { width: 28, height: 14, lat: 38.134557, lng: 22.148438, hl: 'el'},
-      "thailand": { width: 28, height: 14, lat: 14.381476, lng: 100.744629, hl: 'th'},
-      "japan": { width: 28, height: 14, lat: 36.204824, lng: 138.252924, hl: 'ja'}
+      'russia': { width: 21, height: 14, lat: 55.749917, lng: 37.620964, hl: 'ru'},
+      'greece': { width: 28, height: 14, lat: 38.134557, lng: 22.148438, hl: 'el'},
+      'thailand': { width: 28, height: 14, lat: 14.381476, lng: 100.744629, hl: 'th'},
+      'japan': { width: 28, height: 14, lat: 36.204824, lng: 138.252924, hl: 'ja'}
     };
 
     function loadMap() {
       if (GBrowserIsCompatible()) {
-        var map = new GMap2(document.getElementById("map"));
+        var map = new GMap2(document.getElementById('map'));
         map.addControl(new GMapTypeControl());
-        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+        map.setCenter(new GLatLng(countryData[country].lat, countryData[country].lng), 13);
       }
     }
 
     function loadScript(country, inNative) {
+      currentCountry = country; 
       var lang = 'en';
       if (inNative) {
         lang = countryDate[country].hl;
       } 
         
-      var script = document.createElement("script");
+      var script = document.createElement('script');
       document.body.appendChild(script);
-      script.src = "http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=loadMap&hl=" + lang;
+      script.src = 'http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=loadMap&hl=' + lang;
     }
 
     //]]>

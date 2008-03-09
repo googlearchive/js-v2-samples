@@ -23,11 +23,15 @@
       }
     }
 
-    function loadScript(country, lang) {
-      var lang = document.getElementById("lang").value;
+    function loadScript(country, inNative) {
+      var lang = 'en';
+      if (inNative) {
+        lang = countryDate[country].hl;
+      } 
+        
       var script = document.createElement("script");
       document.body.appendChild(script);
-      script.src = "http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=loadMap&hl=" + lang;
+      script.src = "http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=loadMap&hl=" + lang;
     }
 
     //]]>
@@ -42,10 +46,10 @@
     <td><a href="#" onclick="zoomTo('japan')"><img src="icon_japan.png" border="1"></a></td>
     </tr>
     <tr>
-    <td>Russia <br/>(English | Russian)</td>
-    <td>Greece <br/>(English | Greek)</td>
-    <td>Thailand <br/>(English | Thai)</td>
-    <td>Japan <br/>(English | Japanese)</td>
+    <td>Russia <br/>(<a href="#" onclick="loadScript('russia', false)">English</a> | <a href="#" onclick="loadScript('russia', true)">Russian</a>)</td>
+    <td>Greece <br/>(<a href="#" onclick="loadScript('greece', false)">English</a> | <a href="#" onclick="loadScript('greece', true)">Greek</a>)</td>
+    <td>Thailand <br/>(<a href="#" onclick="loadScript('thailand', false)">English</a> | <a href="#" onclick="loadScript('thailand', true)">Thai</a>)</td>
+    <td>Japan <br/>(<a href="#" onclick="loadScript('japan', false)">English</a> | <a href="#" onclick="loadScript('japan', true)">Japanese</a>)</td>
     </table>
     <div id="map" style="width: 500px; height: 300px"></div>
     <input type="text" value="de" id="lang"/>

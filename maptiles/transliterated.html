@@ -21,7 +21,7 @@
         var map = new GMap2(document.getElementById('map'));
         map.addControl(new GMapTypeControl());
         map.addControl(new GSmallMapControl());
-        map.setCenter(new GLatLng(countryData[currentCountry].lat, countryData[currentCountry].lng), 13);
+        map.setCenter(new GLatLng(countryData[currentCountry].lat, countryData[currentCountry].lng), 11);
       }
     }
 
@@ -40,7 +40,7 @@
     //]]>
     </script>
   </head>
-  <body onload="">
+  <body onload="loadScript('russia', false)">
     <table>
     <tr>
     <td><a href="#" onclick="zoomTo('russia')"><img src="icon_russia.png" border="1"></a></td>

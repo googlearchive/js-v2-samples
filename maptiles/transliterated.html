@@ -20,6 +20,7 @@
       if (GBrowserIsCompatible()) {
         var map = new GMap2(document.getElementById('map'));
         map.addControl(new GMapTypeControl());
+        map.addControl(new GLargeMapControl());
         map.setCenter(new GLatLng(countryData[currentCountry].lat, countryData[currentCountry].lng), 13);
       }
     }

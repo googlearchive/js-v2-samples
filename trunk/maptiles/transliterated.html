@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script type="text/javascript">
+
+    //<![CDATA[
+
+    var countryData = {
+      "russia": { width: 21, height: 14, lat: 55.749917, lng: 37.620964, hl: 'ru'},
+      "greece": { width: 28, height: 14, lat: 38.134557, lng: 22.148438, hl: 'el'},
+      "thailand": { width: 28, height: 14, lat: 14.381476, lng: 100.744629, hl: 'th'},
+      "japan": { width: 28, height: 14, lat: 36.204824, lng: 138.252924, hl: 'ja'}
+    };
+
+    function loadMap() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+        map.addControl(new GMapTypeControl());
+        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+      }
+    }
+
+    function loadScript(country, lang) {
+      var lang = document.getElementById("lang").value;
+      var script = document.createElement("script");
+      document.body.appendChild(script);
+      script.src = "http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=loadMap&hl=" + lang;
+    }
+
+    //]]>
+    </script>
+  </head>
+  <body onload="">
+
+  <div dth="450">
+    <tr>
+    <td><a href="#" onclick="zoomTo('russia')"><img src="icon_russia.png" border="1"></a></td>
+    <td><a href="#" onclick="zoomTo('greece')"><img src="icon_greece.png" border="1"></a></td>
+    <td><a href="#" onclick="zoomTo('thailand')"><img src="icon_thailand.png" border="1"></a></td>
+    <td><a href="#" onclick="zoomTo('japan')"><img src="icon_japan.png" border="1"></a></td>
+    </tr>
+    <tr>
+    <td>Russia <br/>(English | Russian)</td>
+    <td>Greece <br/>(English | Greek)</td>
+    <td>Thailand <br/>(English | Thai)</td>
+    <td>Japan <br/>(English | Japanese)</td>
+    </table>
+    <div id="map" style="width: 500px; height: 300px"></div>
+    <input type="text" value="de" id="lang"/>
+    <input type="button" value="load map script" onclick="loadScript();"/>
+  </body>
+</html>

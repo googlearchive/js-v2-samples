@@ -6,7 +6,8 @@
     <title>Google Maps JavaScript API Example</title>
     <style type="text/css">
     td {
-      border: 1px solid grey;
+      border: none;
+      text-align: center;
     }
     </style>
     <script type="text/javascript">
@@ -15,10 +16,10 @@
     var currentCountry = 'russia';
 
     var countryData = {
-      'russia': { width: 21, height: 14, lat: 55.749917, lng: 37.620964, hl: 'ru'},
-      'greece': { width: 28, height: 14, lat: 38.134557, lng: 22.148438, hl: 'el'},
-      'thailand': { width: 28, height: 14, lat: 14.381476, lng: 100.744629, hl: 'th'},
-      'japan': { width: 28, height: 14, lat: 36.204824, lng: 138.252924, hl: 'ja'}
+      'russia': { lat: 55.749917, lng: 37.620964, hl: 'ru'},
+      'greece': { lat: 38.134557, lng: 22.148438, hl: 'el'},
+      'thailand': { lat: 14.381476, lng: 100.744629, hl: 'th'},
+      'japan': { lat: 36.204824, lng: 138.252924, hl: 'ja'}
     };
 
     function loadMap() {
@@ -40,6 +41,11 @@
       var script = document.createElement('script');
       document.body.appendChild(script);
       script.src = 'http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&async=2&callback=loadMap&hl=' + lang;
+
+      var img = document.createElement('img');
+      img.src = 'http://maps.google.com/staticmap?center=' + countryData[currentCountry].lat + ',' + countryData[currentCountry].lng + '&zoom=5&size=500x300&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow&hl=' + lang;
+      document.getElementById('staticmap').appendChild(img);
+      
     }
 
     //]]>
@@ -49,7 +55,7 @@
     <table width="500">
     <tr>
     <td><img src="icon_russia.png" border="1"> Russia</td>
-    <td><img src="icon_greece.png" border="1"> Greeece</td>
+    <td><img src="icon_greece.png" border="1"> Greece</td>
     <td><img src="icon_thailand.png" border="1"> Thailand</td>
     <td><img src="icon_japan.jpg" border="1"> Japan</td>
     </tr>
@@ -60,7 +66,6 @@
     <td>(<a href="#" onclick="loadScript('japan', false)">English</a> | <a href="#" onclick="loadScript('japan', true)">Japanese</a>)</td>
     </table>
     <div id="map" style="width: 500px; height: 300px"></div>
-    <input type="text" value="de" id="lang"/>
-    <input type="button" value="load map script" onclick="loadScript();"/>
+    <div id="staticmap"></div>
   </body>
 </html>

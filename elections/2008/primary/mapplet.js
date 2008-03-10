@@ -3,6 +3,7 @@
 		mapplet: true,
 		primary: true,
 		state: '',
+		pins: true,
 		_: null
 	};
 

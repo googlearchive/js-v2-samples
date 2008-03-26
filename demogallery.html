@@ -24,7 +24,20 @@ var curNum;
 var param_wsId = "od6";
 var param_ssKey = "o16162288751915453340.4402783830945175750";
 function cm_load() {  
+  document.getElementById("searchbox").value = getURLParam("searchquery");
   cm_getJSON();
+}
+
+/**
+* Utility function to extract parameters appended to URL.
+* @param {String} name Name of parameter in URL
+* @return {String} Value of parameter, or "" if not found
+*/
+function getURLParam(name) {
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  return (results === null ? "" : results[1]);
 }
 
 function cm_loadMapJSON(json) {

@@ -17,7 +17,7 @@ if (!$db_selected) {
 }
 
 // Select all the rows in the markers table
-$query = "SELECT * FROM markers2 WHERE 1";
+$query = "SELECT * FROM markers WHERE 1";
 $result = mysql_query($query);
 if (!$result) {
   die("Invalid query: " . mysql_error());
@@ -47,7 +47,7 @@ while ($row = @mysql_fetch_assoc($result)) {
       $lat = $coordinatesSplit[1];
       $lng = $coordinatesSplit[0];
 
-      $query = sprintf("UPDATE markers2 " .
+      $query = sprintf("UPDATE markers " .
              " SET lat = '%s', lng = '%s' " .
              " WHERE id = '%s' LIMIT 1;",
              mysql_real_escape_string($lat),

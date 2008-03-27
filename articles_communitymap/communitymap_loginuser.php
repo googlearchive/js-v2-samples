@@ -2,8 +2,8 @@
  
 require_once 'communitymap_globals.php';
  
-$username = $_GET['username'];
-$password = $_GET['password'];
+$username = $_POST['username'];
+$password = $_POST['password'];
  
 $gdClient = setupClient();
  

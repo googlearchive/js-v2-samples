@@ -25,21 +25,27 @@
     *
     *  Author: Thor Mitchell
     *
-    *  Street View API Example: Following driving directions in Street View
+    *  Street View API Example: Following driving directions in Street View,
+    *
+    *  We extract the polyline generated for the route and then attempt to
+    *  follow links that match the direction of the line segment as we move
+    *  along it. Sometimes we find a gap in coverage, or that a link does
+    *  not exist in the direction we need. When this happens we jump to the
+    *  start of the next step given in the text directions.
     */
 
    /**
-    * GMap2 of the route map
+    * GMap2 of the route map.
     */  
     var map;
 
    /**
-    * GStreetviewPanorama of the Flash viewer
+    * GStreetviewPanorama of the Flash viewer.
     */
     var pano;
 
    /**
-    * GStreetviewCLient used to retrieve meta data for panoramas we reach
+    * GStreetviewClient used to retrieve meta data for panoramas we reach
     * by following links.
     */
     var svClient;
@@ -50,7 +56,7 @@
     var directions;
 
    /**
-    * The GRoute we are following extracted from the directions response
+    * The GRoute we are following extracted from the directions response.
     */
     var route;
 
@@ -60,7 +66,7 @@
     * when trying to determine how close we are to the next vertex, so it's
     * better to collapse these duplicated vertices out.
     *
-    * The array of route vertices with duplicates removed
+    * The array of route vertices with duplicates removed.
     */
     var vertices;
 
@@ -83,7 +89,7 @@
 
    /**
     * An array that gives the route step number that each
-    * point in the vertices array is part of
+    * point in the vertices array is part of.
     */
     var stepMap;
 
@@ -94,7 +100,7 @@
 
    /**
     * Metadata for the current panorama including the list of
-    * available links, loaded using GStreetviewClient
+    * available links, loaded using GStreetviewClient.
     */
     var panoMetaData;
 
@@ -119,12 +125,12 @@
 
    /**
     * The index of the vertex we are heading towards on the route in the
-    * vertices array
+    * vertices array.
     */
     var nextVertexId;
 
    /**
-    * GLatLng of the vertex we are heading towards on the route
+    * GLatLng of the vertex we are heading towards on the route.
     */
     var nextVertex;
 
@@ -145,7 +151,7 @@
     var progressDistance;
 
    /**
-    * Index of the route step we are currently on
+    * Index of the route step we are currently on.
     */
     var currentStep;
 
@@ -165,7 +171,7 @@
 
    /**
     * boolean flag indicating whether we are currently driving (automatically
-    * following links, or stationary.
+    * following) links, or are stationary.
     */
     var driving = false;
 
@@ -252,7 +258,7 @@
       /* Extract the one and only route from this response */
       route = directions.getRoute(0);
 
-      /* Simplify the list if polyline vertices by removing duplicates */
+      /* Simplify the list of polyline vertices by removing duplicates */
       collapseVertices(directions.getPolyline());
 
       /* Center the map on the start of the route at street level */
@@ -303,23 +309,119 @@
     }
 
    /**
-    * Select which link in the current panorama most closely
-    * matches the directions we should be going in.
-    * @param {number} yaw The direction we are looking to move in
-    * @return {Object} The number of the closest link and the
-    *      difference between it's yaw and the desired direction
+    * Jump to a particular point on the route. This is used to
+    * queue up the start of the route, when a user selects a step
+    * in the driving directions, and when there is a gap in coverage
+    * that we need to jump over.
+    * @param {number} idx The vertex number in the vertices array
     */ 
-    function selectLink(yaw) {
-      var Selected = new Object();
+    function jumpToVertex(idx) {
+      currentLatLng = vertices[idx];
+      nextVertex = vertices[idx + 1];
+      nextVertexId = idx + 1;
 
-      for (var i = 0; i < panoMetaData.links.length; i++) {
-        var d = getYawDelta(yaw, panoMetaData.links[i].yaw);
-        if (Selected.delta == null || d < Selected.delta) {
-          Selected.idx = i;
-          Selected.delta = d;
+          bearing = getBearingFromVertex(idx);
+      nextBearing = getBearingFromVertex(idx + 1);
+
+      setCarMarkerImage(bearing);
+      carMarker.setLatLng(currentLatLng);
+      carMarker.show();
+
+      currentStep = stepMap[idx];
+      constructProgressArray(idx);
+      setProgressDistance();
+      updateProgressBar(0);
+
+      map.panTo(currentLatLng, 16);
+      highlightStep(currentStep);
+      checkDistanceFromNextVertex();
+
+      pano.setLocationAndPOV(currentLatLng, { yaw:bearing, pitch:0 });
+      svClient.getNearestPanorama(currentLatLng, function(loc) {
+        if (loc.code == 500) {
+          setTimeout("jumpToVertex(" + idx + ")", 1000);
+        } else if (loc.code == 600) {
+          jumpToVertex(nextVertexId);
+        } else {
+          panoMetaData = loc.location;
+          panoMetaData.pov.yaw = bearing;
+          moveCar();
+        }
+      });
+    }
+
+   /**
+    * Called by the panorama's initialized event handler in
+    * response to a link being followed. Updates the location
+    * of the vehicle marker and the center of the map to match
+    * the location of the panorama loaded by following the link.
+    */ 
+    function moveCar() {
+      currentLatLng = panoMetaData.latlng;
+      carMarker.setLatLng(currentLatLng);
+      map.panTo(currentLatLng);
+
+     /* Now retrieve the links for this panorama so we can
+      * work out where to go next.
+      */
+      svClient.getNearestPanorama(panoMetaData.latlng, function(svData) {
+        if (svData.code == 500) {
+         /* Server error. Retry once a second */
+          setTimeout("moveCar()", 1000);
+        } else if (svData.code == 600) {
+         /* No panorama. Should never happen as we have
+          * already loaded this panorama in the Flash viewer.
+          */
+          jumpToVertex(nextVertexId);
+        } else {
+          panoMetaData.links = svData.links;
+          checkDistanceFromNextVertex();
+          if (driving) {
+            advance();
+          }
+        }
+      });
+    }
+
+   /**
+    * Check if we have already passed the next vertex, or if we are
+    * close enough to the next vertex to look out for the next turn.
+    */ 
+    function checkDistanceFromNextVertex() {
+      close = false;
+      var d = currentLatLng.distanceFrom(nextVertex);
+      var b = getBearing(currentLatLng, nextVertex);
+
+     /* If the bearing of the next vertex is more than 90 degrees away from
+      * the bearing we have been travelling in, we must have passed it already.
+      */
+      if (getYawDelta(bearing, b) > 90) {
+        incrementVertex();
+
+        /* If the vertices are closely spaced we may
+         * already be close to the next vertex
+         */
+        if (driving) {
+          checkDistanceFromNextVertex();
+        }
+
+      } else {
+       /* Recalculate how far we have travelled within the current step
+        * and update the progress bar accordingly.
+        */
+        updateProgressBar(progressDistance - d);
+        if (driving) {
+          updateViewerDirections(progressDistance - d);
+        }
+
+       /* If we are less than 10m from a vertex we consider ourself to be
+        * close enough to preferentially follow links that take us in the
+        * direction we should be going when the vertex has been passed.
+        */
+        if (d < 10) {
+          close = true;
         }
       }
-      return Selected;
     }
 
    /**
@@ -367,158 +469,27 @@
     }
 
    /**
-    * Called by the panorama's initialized event handler in
-    * response to a link being followed. Updates the location
-    * of the vehicle marker and the center of the map to match
-    * the location of the panorama loaded by following the link.
+    * Select which link in the current panorama most closely
+    * matches the directions we should be going in.
+    * @param {number} yaw The direction we are looking to move in
+    * @return {Object} The number of the closest link and the
+    *      difference between it's yaw and the desired direction
     */ 
-    function moveCar() {
-      currentLatLng = panoMetaData.latlng;
-      carMarker.setLatLng(currentLatLng);
-      map.panTo(currentLatLng);
+    function selectLink(yaw) {
+      var Selected = new Object();
 
-     /* Now retrieve the links for this panorama so we can
-      * work out where to go next.
-      */
-      svClient.getNearestPanorama(panoMetaData.latlng, function(svData) {
-        if (svData.code == 500) {
-         /* Server error. Retry once a second */
-          setTimeout("moveCar()", 1000);
-        } else if (svData.code == 600) {
-         /* No panorama. Should never happen as we have
-          * already loaded this panorama in the Flash viewer.
-          */
-          jumpToVertex(nextVertexId);
-        } else {
-          panoMetaData.links = svData.links;
-          checkDistanceFromNextVertex();
-          if (driving) {
-            advance();
-          }
-        }
-      });
-    }
-    
-   /**
-    * Jump to a particular point on the route. This is used to
-    * queue up the start of the route, when a user selects a step
-    * in the driving directions, and when there is a gap in coverage
-    * that we need to jump over.
-    * @param {number} idx The vertex number in the vertices array
-    */ 
-    function jumpToVertex(idx) {
-      currentLatLng = vertices[idx];
-      nextVertex = vertices[idx + 1];
-      nextVertexId = idx + 1;
-
-          bearing = getBearingFromVertex(idx);
-      nextBearing = getBearingFromVertex(idx + 1);
-
-      setCarMarkerImage(bearing);
-      carMarker.setLatLng(currentLatLng);
-      carMarker.show();
-
-      currentStep = stepMap[idx];
-      constructProgressArray(idx);
-      setProgressDistance();
-      updateProgressBar(0);
-
-      map.panTo(currentLatLng, 16);
-      highlightStep(currentStep);
-      checkDistanceFromNextVertex();
-
-      pano.setLocationAndPOV(currentLatLng, { yaw:bearing, pitch:0 });
-      svClient.getNearestPanorama(currentLatLng, function(loc) {
-        if (loc.code == 500) {
-          setTimeout("jumpToVertex(" + idx + ")", 1000);
-        } else if (loc.code == 600) {
-          jumpToVertex(nextVertexId);
-        } else {
-          panoMetaData = loc.location;
-          panoMetaData.pov.yaw = bearing;
-          moveCar();
-        }
-      });
-    }
-
-   /**
-    * Rebuild the progressArray after jumping to a particular vertex
-    * @param {number} vertexId The vertex number in the vertices array
-    */ 
-    function constructProgressArray(vertexId) {
-      progressArray = new Array();
-      var stepStart = stepToVertex[currentStep];
-      for (var i = stepToVertex[currentStep]; i <= vertexId + 1; i++) {
-        progressArray.push(vertices[i]);
-      }
-    }
-
-   /**
-    * Check if we have already passed the next vertex, or if we are
-    * close enough to the next vertex to look out for the next turn.
-    */ 
-    function checkDistanceFromNextVertex() {
-      close = false;
-      var d = currentLatLng.distanceFrom(nextVertex);
-      var b = getBearing(currentLatLng, nextVertex);
-
-     /* If the bearing of the next vertex is more than 90 degrees away from
-      * the bearing we have been travelling in, we must have passed it already.
-      */
-      if (getYawDelta(bearing, b) > 90) {
-        incrementVertex();
-
-        /* If the vertices are closely spaced we may
-         * already be close to the next vertex
-         */
-        if (driving) {
-          checkDistanceFromNextVertex();
-        }
-
-      } else {
-       /* Recalculate how far we have travelled within the current step
-        * and update the progress bar accordingly.
-        */
-        updateProgressBar(progressDistance - d);
-
-       /* If we are less than 10m from a vertex we consider ourself to be
-        * close enough to preferentially follow links that take us in the
-        * direction we should be going when the vertex has been passed.
-        */
-        if (d < 10) {
-          close = true;
+      for (var i = 0; i < panoMetaData.links.length; i++) {
+        var d = getYawDelta(yaw, panoMetaData.links[i].yaw);
+        if (Selected.delta == null || d < Selected.delta) {
+          Selected.idx = i;
+          Selected.delta = d;
         }
       }
+      return Selected;
     }
 
    /**
-    * Calculate the difference in degrees between two bearings.
-    * @param {number} a bearing in degrees
-    * @param {number} b bearing in degrees
-    * @return {number} The angle between a and b
-    */
-    function getYawDelta(a, b) {
-      var d = Math.abs(sanitiseYaw(a) - sanitiseYaw(b));
-      if (d > 180) {
-        d = 360 - d;
-      }
-      return d;
-    }
-
-   /**
-    * Sometimes after following a link the yaw is > 360
-    * @param {number} yaw bearing in degrees
-    * @return {number} yaw as a value between -360 and +360
-    */
-    function sanitiseYaw(yaw) {
-      if (yaw > 360 || yaw < 360) {
-        yaw = yaw % 360;
-      }
-      return yaw;
-    }
-
-   /**
-    * Called when we have reached the next vertex
+    * Called when we have reached a vertex
     * and now need to head towards the next
     */
     function incrementVertex() {
@@ -568,6 +539,79 @@
     }
 
    /**
+    * Get the direction to head in from a particular vertex
+    * @param {number} n Index of the vertex in the vertices array
+    * @return {number} bearing in degrees
+    */
+    function getBearingFromVertex(n) {
+      var origin = vertices[n];
+      var destination = vertices[n+1];
+      if (destination != undefined) {
+        return getBearing(origin, destination);
+      } else {
+        return null;
+      }
+    }
+
+   /**
+    * Update the in Flash viewer next step driving directions
+    * @param {number} distanceFromStartOfStep Distance in meters from the start
+    *     of the current route step
+    */
+    function updateViewerDirections(distanceFromStartOfStep) {
+      var lengthOfStep = route.getStep(currentStep).getDistance().meters;
+      var distanceFromEndOfStep = (lengthOfStep - distanceFromStartOfStep);
+
+      /* Convert from meters to feet */
+      distanceFromEndOfStep *= 3.2808399;
+
+      var uiDistance, unit;
+
+      /* Convert to human friendly representation */
+      if (distanceFromEndOfStep > 7920) {
+        distanceFromEndOfStep /= 5280;
+        uiDistance = distanceFromEndOfStep.toFixed(0);
+        unit = 'miles';
+      } else if (distanceFromEndOfStep > 4620) {
+        uiDistance = '1';
+        unit = 'mile';
+      } else if (distanceFromEndOfStep > 3300) {
+        /* Display "3/4 mile" between 5/8 and 7/8 of a mile */
+        uiDistance = '&frac34;';
+        unit = 'mile';
+      } else if (distanceFromEndOfStep > 1980) {
+        /* Display "1/2 mile" between 3/8 and 5/8 of a mile */
+        uiDistance = '&frac12;';
+        unit = 'mile';
+      } else if (distanceFromEndOfStep >  660) {
+        /* Display "1/4 mile" between 1/8 and 3/8 of a mile */
+        uiDistance = '&frac14;';
+        unit = 'mile';
+      } else {
+        uiDistance = (Math.round(distanceFromEndOfStep / 10)) * 10;
+        unit = "ft";
+      }
+
+      if (route.getStep(currentStep + 1) != undefined) {
+        showInstruction('In ' + uiDistance + ' ' + unit + ': ' + route.getStep(currentStep + 1).getDescriptionHtml());
+      } else {
+        showInstruction('In ' + uiDistance + ' ' + unit + ': You will reach your destination');
+      }
+    }
+
+   /**
+    * Rebuild the progressArray after jumping to a particular vertex
+    * @param {number} vertexId The vertex number in the vertices array
+    */ 
+    function constructProgressArray(vertexId) {
+      progressArray = new Array();
+      var stepStart = stepToVertex[currentStep];
+      for (var i = stepToVertex[currentStep]; i <= vertexId + 1; i++) {
+        progressArray.push(vertices[i]);
+      }
+    }
+
+   /**
     * Calculate the distance in meters from the start of this
     * step to the next vertex by building a polyline from the
     * intermediate points.
@@ -583,9 +627,9 @@
     *     since the start of this step
     */
     function updateProgressBar(progress) {
-      var step = stepMap[nextVertexId - 1];
-      var stepLength = route.getStep(step).getDistance().meters;
-      setProgressBarLength(progress / stepLength);
+      progress = (progress < 0 ? 0 : progress);
+      var stepLength = route.getStep(currentStep).getDistance().meters;
+      setProgressBarLength(1 - (progress / stepLength));
     }
 
    /**
@@ -601,18 +645,29 @@
     }
 
    /**
-    * Get the direction to head in from a particular vertex
-    * @param {number} n Index of the vertex in the vertices array
-    * @return {number} bearing in degrees
+    * Calculate the difference in degrees between two bearings.
+    * @param {number} a bearing in degrees
+    * @param {number} b bearing in degrees
+    * @return {number} The angle between a and b
     */
-    function getBearingFromVertex(n) {
-      var origin = vertices[n];
-      var destination = vertices[n+1];
-      if (destination != undefined) {
-        return getBearing(origin, destination);
-      } else {
-        return null;
+    function getYawDelta(a, b) {
+      var d = Math.abs(sanitiseYaw(a) - sanitiseYaw(b));
+      if (d > 180) {
+        d = 360 - d;
       }
+      return d;
+    }
+
+   /**
+    * Sometimes after following a link the yaw is > 360
+    * @param {number} yaw bearing in degrees
+    * @return {number} yaw as a value between -360 and +360
+    */
+    function sanitiseYaw(yaw) {
+      if (yaw > 360 || yaw < 360) {
+        yaw = yaw % 360;
+      }
+      return yaw;
     }
 
    /**
@@ -701,6 +756,11 @@
 
       /* Fill in the div on the page with the generated HTML */
       document.getElementById("directions").innerHTML = html;
+
+      /* Set the icons used in the address blocks using the appropriate
+       * technique for the browser to preserve PNG transparency */
+      setWaypointIcon('A');
+      setWaypointIcon('B');
     }
 
    /**
@@ -711,9 +771,24 @@
     * @return {String} the generated HTML 
     */
     function getDirectionsWaypointHtml(address, letter) {
-      var content = '<img width="24" height="38" src="http://maps.google.com/intl/en_us/mapfiles/icon_green' + letter + '.png">';
-          content += '<span class="waypointAddress">' + address + '</span>';
-      return getDivHtml("", "waypoint", content);
+     var content = getDivHtml('letter' + letter, 'letterIcon', "");
+         content += '<span class="waypointAddress">' + address + '</span>';
+      return getDivHtml("wayPoint" + letter, "waypoint", content);
+    }
+
+   /**
+    * Set the icons used in the textual directions address blocks
+    * using the appropriate technique for the browser to preserve
+    * PNG transparency
+    */
+    function setWaypointIcon(letter) {
+      var png = 'http://maps.google.com/intl/en_us/mapfiles/icon_green' + letter + '.png';
+      /*@cc_on @*/
+      /*@if (@_jscript_version < 5.7)
+      document.getElementById('letter' + letter).style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + png + '", sizingMethod="scale");';
+      return;
+      /*@end @*/ 
+      document.getElementById('letter' + letter).style.backgroundImage = 'url(' + png + ')';
     }
 
    /**
@@ -766,10 +841,10 @@
     * Update the UI for driving and start following links
     */
     function startDriving() {
+      hideInstruction();
       document.getElementById("route").disabled = true;
       document.getElementById("drive").disabled = true;
       document.getElementById("stop").disabled = false;
-      hideInstruction();
       driving = true;
       advance();
     }
@@ -790,6 +865,7 @@
     * @param {String} message The message to display
     */
     function showStatus(message) {
+      hideInstruction();
       document.getElementById("status").innerHTML = message;
       document.getElementById("status").style.display = "block";
       document.getElementById("streetview").style.display = "none";
@@ -932,10 +1008,10 @@ body {
 #progressBar {
   position: absolute;
   background-color: #000066;
-  width: 1px;
+  width: 636px;
   height: 8px;
   top: 1px;
-  left: 1px;
+  right:1px;
 }
 
 #map {
@@ -962,10 +1038,16 @@ body {
   font: 10pt sans-serif;
 }
 
+.letterIcon {
+  width: 24px;
+  height: 38px;
+  background-image: none;
+}
+
 .waypointAddress {
   position: absolute;
-  top: 16px;
-  left: 30px;
+  top: 17px;
+  left: 32px;
 }
 
 #summary {

@@ -1,0 +1,1277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="2008 Olympic Torch Relay"
+             author="Mingjin Wu, Fei Chen, Jeff Hall"
+             author_email="chinamaps-devtools+torchrelay@google.com"
+             author_affiliation="Digital Maelstrom"
+             description="Search for timetable and venues for Beijing Olympic Beijing 2008 Olympic torch relay"
+             height="150">
+  <Require feature="sharedmap" />
+</ModulePrefs>
+
+<Content type="html"><![CDATA[
+<style>
+div, ul, li, a{
+  margin:0;
+  padding:0;
+  border:0;
+}
+div.torchrelay{
+  font-size:13px;
+  height:320px;
+  width:300px;
+}
+div.torchrelay a:link, div.torchrelay a:visited{
+  color:#0033FF;
+  text-decoration:none;
+}
+div.torchrelay a:hover{
+  font-weight:bold;
+}
+div.torchrelay a:active{
+  color:#0033FF;
+  text-decoration:none;
+}
+/* board head */
+div.boardhead{
+  width:300px;
+  position:relative;
+}
+a.player{
+  display: block;
+  float: left;
+  height: 18px;
+  background-position: 0 0;
+  margin-right: 1em;
+}
+a.prevButton{
+  width: 36px;
+  background-image: url("http://phinix.chen.googlepages.com/prevButton.png");
+}
+a.playButton{
+  width: 49px;
+  background-image: url("http://phinix.chen.googlepages.com/playButton.png");
+}
+a.nextButton{
+  width: 36px;
+  background-image: url("http://phinix.chen.googlepages.com/nextButton.png");
+}
+a.pauseButton{
+  width: 49px;
+  background-image: url("http://phinix.chen.googlepages.com/pauseButton.png");
+  display:none;
+}
+a.player:hover{
+  background-position: 0 -18px;
+}
+a.player:active{
+  background-position: 0 -36px;
+}
+div.regionLink{
+  float:right;
+  clear:right;
+  text-align: right;
+  font-size: 12px;
+}
+div.regionLink a{
+  margin:0 0 0 1em;
+  text-decoration:underline;
+}
+
+div.regionLink a.selected{
+  color: #000000;
+  padding:0 0 2px 0;
+  background-image: url("http://phinix.chen.googlepages.com/triangle.gif");
+  background-repeat: no-repeat;
+  background-position: center 100%;
+}
+/* board content */
+.scrollWrapper{
+  border-top:#e60000 solid 2px;
+  border-bottom:#e60000 solid 2px;
+  position:relative;
+  height:270px;
+}
+div.boardContent{
+  float:left;
+  width:300px;
+  height:250px;
+  overflow-y:hidden;
+}
+html>body div.scrollWrapper{
+  position:relative;
+  float:left;
+}
+li{
+  padding-left:8px;
+  line-height:2em;
+  list-style-type:none; 
+  border-bottom:#ccc solid 1px;
+  border-top:#ccc solid 1px;
+}
+html>body li{
+  position:relative;
+}
+li.noTorch{
+  background:#f2f2f2;
+  list-style-image:url("http://phinix.chen.googlepages.com/dot-gray.gif");
+  list-style-position:inside;
+}
+li.torched{
+  background:#fff;
+  list-style-image:url("http://phinix.chen.googlepages.com/dot-red-transparent.png");
+  list-style-position:inside;
+}
+li.selected{
+  font-weight:bold;
+  border:#999 solid 2px;
+  list-style-image: url("http://phinix.chen.googlepages.com/torch.png");
+  list-style-position:inside;
+  padding-left:0;
+}
+span.date{
+  color:#666;
+  position:absolute;
+  right:8px;
+}
+a.name{
+  padding-right:23px;
+  background-position:100%;
+}
+div.show a.name{
+  background-image:url("http://phinix.chen.googlepages.com/minus_sm.gif");
+  background-repeat:no-repeat;
+}
+div.show ul{
+  display:block;
+}
+div.hide a.name{
+  background-image:url("http://phinix.chen.googlepages.com/plus_sm.gif");
+  background-repeat:no-repeat;
+}
+div.hide ul{
+  display:none;
+}
+div.province ul li{
+  padding-left:28px;
+}
+div.province ul li.selected{
+  padding-left:20px;
+}
+div.province ul a.name{
+  background-image:none;
+}
+ul.show{
+  display:block;
+}
+ul.hide{
+  display:none;
+}
+a.selected{
+  font-weight:bold;
+  text-decoration:none;
+}
+.scrollUp, .scrollDown{
+  position:relative;
+  float:left;
+  left:0;
+  z-index:5;
+  width:300px;
+  height:10px;
+  background-position:0 10px;
+}
+.scrollUp{
+  top:0;
+  background-image:url("http://phinix.chen.googlepages.com/scrollUp.gif");
+}
+.scrollDown{
+  bottom:0;
+  background-image:url("http://phinix.chen.googlepages.com/scrollDown.gif");
+}
+.scrollUp:hover, .scrollDown:hover{
+  background-position:0 0;
+}
+</style>
+<div class="torchrelay">
+  <div class="boardhead">
+    <a class="player prevButton" id="prevButton" href="#"></a>
+    <a class="player playButton" id="playButton" href="#"></a>
+    <a class="player pauseButton" id="pauseButton" href="#"></a>
+    <a class="player nextButton" id="nextButton" href="#"></a>
+    <div class="regionLink">
+      <a id="worldLink" href="javascript:TorchMgr.changeRegion('worldLink')">World</a>
+      <a id="chinaLink" href="javascript:TorchMgr.changeRegion('chinaLink')">China</a>
+    </div>
+  </div>
+  <div class="scrollWrapper">
+    <a class="scrollUp" id="scrollUp" href="javascript:TorchMgr.autoScroll(1)" onmouseover="TorchMgr.startScroll(1)" onmouseout="TorchMgr.stopScroll()"></a> 
+    <div class="boardContent" id="boardContent">
+    <ul id="worldList"></ul>
+    <ul id="chinaList"></ul>
+    </div>
+    <a class="scrollDown" id="scrollDown" href="javascript:TorchMgr.autoScroll(2)" onmouseover="TorchMgr.startScroll(2)" onmouseout="TorchMgr.stopScroll()"></a>
+  </div>
+</div>
+
+<script>    
+/**
+ * @author Mingjin Wu, Fei Chen
+ * Latest update: 2008/1/17
+ * To control the torch relay schedule in the Frame and mark the locations and
+ * paths on the Map;
+ * Written by Mingjin Wu first, continued by Fei Chen from 2007/11/23
+ */
+
+/**
+ * The class relative to the mapplet frame in the browser, used to display and
+ * control the torch relay scheduler and the player.
+ */
+function Frame() {
+  var TIME_SPAN = 5000;
+  var currentCityId = null;
+  
+  /**
+   * Do the real new region setup work in the frame. 
+   * @param {int} region
+   */
+  this.setRegion = function(region) {
+    var worldLink = document.getElementById("worldLink");
+    var chinaLink = document.getElementById("chinaLink");
+    var worldList = document.getElementById("worldList");
+    var chinaList = document.getElementById("chinaList");
+    if (region == TorchMgr.REGION_WORLD) {
+      worldLink.className = "selected";
+      chinaLink.className = "";
+      worldList.className = "show";
+      chinaList.className = "hide";
+    } else {
+      worldLink.className = "";
+      chinaLink.className = "selected";
+      worldList.className = "hide";
+      chinaList.className = "show";
+    }
+  }
+
+  /**
+   * Change province node to expand/collapse.
+   * @param {Eelment} nameNode The text node of province's name.
+   */
+  function changeProvinceStyle(cityNode) {
+    var controlNode = cityNode.parentNode;
+    if (controlNode.className.search(/hide/) != -1) {
+      var result = controlNode.className.split(/\s*hide\s*/);
+      controlNode.className = result.join(" ") + " show";
+      collapseProvinces(cityNode.id);
+    } else if(controlNode.className.search(/show/) != -1){
+      var result = controlNode.className.split(/\s*show\s*/);
+      controlNode.className = result.join(" ") + " hide";
+    }
+  }
+	
+	/**
+	 * Collapse all province nodes except the special node.
+	 * @param {String} opt_specialId The id of province node that needn't collapsed.
+	 */
+	function collapseProvinces(opt_specialId){
+		var list = TorchMgr.chinaProvinceList;
+		for(var i = 0, prov; prov = list[i]; i++){
+			if(opt_specialId && prov.id == opt_specialId){
+				continue;
+			}
+			var provNode = document.getElementById(prov.id).parentNode;
+      if (provNode.className.search(/show/) != -1) {
+        var result = provNode.className.split(/\s*show\s*/);
+        provNode.className = result.join(" ") + " hide";
+      }
+		}
+	}
+
+  /**
+   * Do the real new city setup work in the frame.
+   * @param {City} city City Object.
+   */
+  function changeCity(city) {
+		var cityId = city.id;
+    // Restore the current city's style
+    var currentCity = document.getElementById(currentCityId);
+    if (currentCityId && currentCity) {
+      var result = currentCity.className.split(/\s*selected\s*/);
+      currentCity.className = result.join(" ");
+    }
+    // Highlight "new" current city.
+    currentCityId = cityId;
+    currentCity = document.getElementById(currentCityId);
+    var className = currentCity.className;
+    currentCity.className = className + " selected";
+    // Change the style of the city's province if it is collapse, only when the
+    // city under a province
+    if (cityId.search(/^c/) == 0 && cityId.search(/^cp/) != 0) {
+      var cityIndex = parseInt(cityId.match(/\d+/));
+      var provinceId = TorchMgr.chinaCityList[cityIndex].parentId;
+      var provinceNode = document.getElementById(provinceId);
+      if (provinceNode.parentNode.className.search(/hide/) != -1) {
+        changeProvinceStyle(provinceNode);
+      }
+    }
+		scrollToVisible(currentCity);
+  }
+	
+	/**
+	 * Auto scroll the city list.
+	 * @param {Element} cityElem
+	 */
+	function scrollToVisible(cityElem){
+    var topParent = document.getElementById("boardContent");
+    var height = topParent.offsetHeight;
+    var scrollTop = topParent.scrollTop;
+    var nowPosition = getPosition(cityElem, topParent)-scrollTop;
+    if(nowPosition > height){
+      topParent.scrollTop = scrollTop + (nowPosition - height);
+    }else if(nowPosition < 0){
+      topParent.scrollTop = scrollTop + nowPosition - 2*cityElem.offsetHeight;
+    }
+    
+
+    function getPosition(element, topParent) {
+      var height = 0;
+      for (var e = element;e && e != topParent; e = e.offsetParent)
+        height += e.offsetTop;
+      for (e = element.parentNode;e && e != topParent; e = e.parentNode)
+        if (e.scrollTop)
+          height -= e.scrollTop;
+      return height;
+    }
+  }
+
+  /**
+   * Perform as the event listener on the event of name node click.
+   */
+  function onCityNameClick() {
+    var cityId = this.parentNode.id;
+		var city = TorchMgr.getCityById(cityId);
+    if (city.type == TorchMgr.TYPE_CHINA_PROVINCE) {
+      changeProvinceStyle(this.parentNode);
+    }
+    if (currentCityId != cityId) {
+      changeCity(city);
+      TorchMgr.setCity(city, TorchMgr.EVENT_FROM_FRAME);
+    }
+  }
+
+  /**
+   * Add cityList into frame and define relative node and event.
+   * @param {Array} cityList The list of cities.
+   * @param {int} startIndex The start index indicat where should be started to
+   *                         add the city into the frame.
+   * @param {int} endIndex The end index indicate where should be stopped adding
+   *                       the city into the frame.
+   * @param {String} cityStatus Indicate all the cities's status that added into 
+   *                            the frame.
+   * @param {String} cityType Indicate all the cities's type that added into
+   *                          the frame.
+   */
+  this.importCity = function(cityList, startIndex, endIndex, cityStatus, cityType) {
+   /**
+     * Inner function of importCity(). Define the "li" tag to wrap the city.
+     * Its id equals city's id, class determined by city status to display
+     * relative icon.
+     * NOTE: If the city is province type, its default cities list is hide.
+     * @param {City} city
+     */
+    function createCityNode(city, className) {
+      var cityNode = document.createElement("li");
+      cityNode.className = className;
+			var parentNode;
+      switch (city.type) {
+        case TorchMgr.TYPE_WORLD_CITY:
+				  city.parentId = "worldList";
+          cityNode.setAttribute("id",city.id);
+          parentNode = document.getElementById("worldList");
+          parentNode.appendChild(cityNode);
+          break;
+        case TorchMgr.TYPE_CHINA_PROVINCE:
+				  city.parentId = "chinaList";
+          cityNode.setAttribute("id",city.id);
+          parentNode = document.getElementById("chinaList");
+          // Create div wrapper first
+          var divWrapper = document.createElement("div");
+          divWrapper.className = "province hide";
+          parentNode.appendChild(divWrapper);
+          divWrapper.appendChild(cityNode);
+          // Create 'ul' tag
+          var provinceUL = document.createElement("ul");
+          divWrapper.appendChild(provinceUL);
+          break;
+        case TorchMgr.TYPE_CHINA_CITY:
+				  city.parentId = "cp" + city.prtIndex;
+          cityNode.setAttribute("id",city.id);
+          parentNode = document.getElementById(city.parentId).nextSibling; // The "ul" tag node
+          parentNode.appendChild(cityNode);
+          break;
+      }
+      return cityNode;
+    }
+    
+    /**
+     * Inner function of importCity(). Define a "a" tag to wrap the city name
+     * and add event.
+     * @param {String} name City name.
+     * @param {Element} cityNode The "li" tag element.
+     */
+    function createNameNode(name, cityNode) {
+      var nameNode = document.createElement("a");
+      nameNode.className = "name";
+      nameNode.setAttribute("href","#"); // Make the ':hover' act
+      cityNode.appendChild(nameNode);
+      nameNode.appendChild(document.createTextNode(name));
+      nameNode.onclick = onCityNameClick;
+    }
+    
+    /**
+     * Inner function of importCity(). Define a "span" tag to wrap the city
+     * date.
+     * @param {String} date Torch relay date in the city.
+     * @param {Element} cityNode The "li" tag element.
+     */
+    function createDateNode(date, cityNode) {
+      var dateNode = document.createElement("span");
+      dateNode.className = "date";
+      cityNode.appendChild(dateNode);
+      var localDate = TorchMgr.toZhDate(date);
+      dateNode.appendChild(document.createTextNode(localDate));
+    }
+    
+    // constructor
+    var className = (cityStatus == TorchMgr.STATUS_NOTORCH) ? "noTorch" : "torched";
+    for (var i = startIndex; i <= endIndex; i++) {
+      var city = cityList[i];
+      city.type = cityType;
+      city.id = cityType + city.index;
+      var cityNode = createCityNode(city, className);
+      createNameNode(city.name, cityNode);
+      createDateNode(city.date, cityNode);
+    }
+  }
+
+  /**
+   * Invoked by TorchMgr.setCity(), and change the current city in the frame.
+   * @param {City} city The target city to go to.
+   * @param {int} opt_region If the region is also changed, this should be given.
+   */
+  this.setCity = function(city) {
+		changeCity(city);
+  }
+
+  /**
+   * Frame initiation.
+   * @param {int} region Indicate which region frame should start and display.
+   */
+  this.init = function(region) {
+    /**
+     * Inner function of init(). Define the city player in the frame.
+     */
+    function showPlayer() {
+      /**
+       * Inner function of showPlayer().
+       */
+      function setButton(id, clickCall) {
+        var button = document.getElementById(id);
+        button.onclick = clickCall;
+      }
+      
+      /**
+       * Inner function of showPlayer().
+       */
+      function play() {
+				var currentCity = TorchMgr.currentCity;
+				if (TorchMgr.currentCity.id.search(/^cp/) == 0) {
+					var cityList = TorchMgr.chinaCityList;
+					var firstCity = document
+							.getElementById(TorchMgr.currentCity.id).nextSibling.firstChild;
+					var cityIndex = parseInt(firstCity.id.match(/\d+/));
+					currentCity = TorchMgr.currentCity = cityList[cityIndex];
+				}
+				TorchMgr.map.setCity(currentCity);
+				TorchMgr.frame.setCity(currentCity);
+
+				TorchMgr.playerIntervalId = setInterval("TorchMgr.toNext(1);",
+						TIME_SPAN);
+				document.getElementById("playButton").style.display = "none";
+				document.getElementById("pauseButton").style.display = "block";
+			}
+      
+      /**
+       * Inner function of showPlayer().
+       */
+      function stop() {
+        clearInterval(TorchMgr.playerIntervalId);
+        TorchMgr.playerIntervalId == null;
+      }
+      
+      /**
+       * Inner function of showPlayer().
+       */
+      function pause() {
+        stop();
+        document.getElementById("playButton").style.display = "block";
+        document.getElementById("pauseButton").style.display = "none";
+      }
+      
+      /**
+       * Inner function of showPlayer().
+       */
+      function previous() {
+        pause();
+        TorchMgr.toNext(0);
+      }
+      
+      /**
+       * Inner function of showPlayer().
+       */
+      function next() {
+        pause();
+        TorchMgr.toNext(1);
+      }
+      
+      // showPlayer() constructor
+      setButton("prevButton", previous);
+      setButton("playButton", play);
+      setButton("pauseButton", pause);
+      setButton("nextButton", next);
+    }
+    
+    function showScroll() {
+			var topParent = document.getElementById("boardContent");
+			var childHeight = getChildOffsetHeight(topParent);
+			if (childHeight < topParent.offsetHeight) {
+				document.getElementById("scrollUp").style.display = "none";
+				document.getElementById("scrollDown").style.display = "none";
+			} 
+
+			function getChildOffsetHeight(elem) {
+				var childNodes = elem.getElementsByTagName("ul");
+				var height = 0;
+				for (var i = 0, node;node = childNodes[i]; i++) {
+					height += node.offsetHeight;
+				}
+				return height;
+			}
+		} 
+    
+    // init() constructor
+		showPlayer();
+		this.setRegion(region);
+		if(TorchMgr.torchCity){
+			this.setCity(TorchMgr.torchCity);
+		}
+		showScroll();
+  }
+}
+
+/**
+ * The class relative to the map in the browser, used to display and
+ * control the torch relay locations and path.
+ */
+function Map() {
+  var TORCH_ICON_URL = TorchMgr.SITE_URL + "torch.png";
+  var GRAY_ICON_URL = TorchMgr.SITE_URL + "dot-gray-transparent.png";
+  var RED_ICON_URL = TorchMgr.SITE_URL + "dot-red-transparent.png";
+  var grayIcon = createIcon(GRAY_ICON_URL, new GSize(12, 12), new GPoint(6, 6), new GPoint(6, 4));
+  var redIcon = createIcon(RED_ICON_URL, new GSize(12, 12), new GPoint(6, 6), new GPoint(6, 4));
+  var torchIcon = createIcon(TORCH_ICON_URL, new GSize(18, 18), new GPoint(9, 9), new GPoint(9, 4));
+  var grayLineColor = "#333333";
+  var redLineColor = "#ff0000";
+  var worldCenter = new GLatLng(37.633300, 21.616759);
+  var chinaCenter = new GLatLng(34.264915, 108.954401);
+	var DEFAULT_WORLD_LEVEL = 2;
+  var DEFAULT_CHINA_LEVEL = 4;
+  var DEFAULT_PROV_LEVEL = 8;
+  
+  var gmap = new GMap2();
+  var overlayManager = new OverlayManager(gmap);
+  var torchMarker = null;
+
+  /**
+   * The manager class to manage the markers and polylines, including adding the
+   * overlays to map, and hiding or showing them.
+   * @param {GMap2} gmap
+   */
+  function OverlayManager(gmap) {
+    var LEVEL_RANGE_WORLD = [1, 3];
+    var LEVEL_RANGE_CHINA = [4, 17];
+    var LEVEL_RANGE_CHINA_PROV = [4, 5];
+    var LEVEL_RANGE_CHINA_CITY = [6, 17];
+    var LEVEL_WORLD = 1;
+    var LEVEL_CHINA = 2;
+    var LEVEL_CHINA_PROV = 3;
+    var LEVEL_CHINA_CITY = 4;
+    
+    var map = gmap;
+		// All overlays arrays' first elem store the flag as added or not
+		// and the second elem store the flag as showed or not 
+		var worldCityMarkers = [false/*isAdded*/, false/*isShowed*/];
+		var chinaCityMarkers = [false, false];
+		var chinaProvinceMarkers = [false, false];
+		var worldPolylines = [false, false];
+		var chinaPolylines = [false, false];
+		
+		/**
+		 * Show all the overlays in the given list.
+		 * Note: if the overlays do not added to the map, add them.
+		 * @param {Array} overlayList The list of overlays.
+		 */
+    function showOverlays(overlayList) {
+      if (!overlayList[0]) {
+        add(overlayList);
+        overlayList[0] = true;
+				overlayList[1] = true;
+      } else if (!overlayList[1]) {
+        show(overlayList);
+        overlayList[1] = true;
+      }
+      
+			/**
+			 * Inner function, add the overlays into map.
+			 * @param {Array} overlayList
+			 */
+      function add(overlayList) {
+        for (var i = 2, overlay; overlay = overlayList[i]; i++) {
+          map.addOverlay(overlay);
+        }
+      }
+			
+			/**
+			 * Inner function, show the overlays.
+			 * @param {Array} overlayList 
+			 */
+      function show(overlayList) {
+        for (var i = 2, overlay; overlay = overlayList[i]; i++) {
+          overlay.show();
+        }
+      }
+    }
+		
+		/**
+     * Hide all the overlays in the given list, if still not added to the map,
+     * do nothing.
+     * @param {Array} overlayList
+     */
+    function hideOverlays(overlayList) {
+			if (overlayList[0] && overlayList[1]) {
+        hide(overlayList);
+        overlayList[1] = false;
+      }
+			
+			/**
+       * Inner function, hide the overlays.
+       * @param {Array} overlayList 
+       */
+      function hide(overlayList) {
+        for (var i = 2, overlay; overlay = overlayList[i]; i++) {
+          overlay.hide();
+        }
+      }
+    }
+
+    /**
+     * Add marker into the overlayManager.
+     * @param {GMarker} marker
+     * @param {int} cityType
+     */
+    this.addMarker = function(marker, cityType) {
+			switch (cityType) {
+        case TorchMgr.TYPE_WORLD_CITY:
+          worldCityMarkers.push(marker);
+          break;
+        case TorchMgr.TYPE_CHINA_CITY:
+          chinaCityMarkers.push(marker);
+          break;
+        case TorchMgr.TYPE_CHINA_PROVINCE:
+          chinaProvinceMarkers.push(marker);
+      }
+    }
+		
+		/**
+		 * Add polyline into the overlayManager.
+		 * @param {GPolyline} polyline
+		 * @param {int} cityType
+		 */
+    this.addPolyline = function(polyline, cityType) {
+			switch (cityType) {
+        case TorchMgr.TYPE_WORLD_CITY:
+          worldPolylines.push(polyline);
+          break;
+        case TorchMgr.TYPE_CHINA_CITY:
+          chinaPolylines.push(polyline);
+      }
+    }
+		
+		/**
+		 * Invoked when the region is changed.
+		 * @param {int} region
+		 */
+    this.refresh = function(region) {
+			switch (region) {
+        case TorchMgr.REGION_WORLD:
+				  map.setCenter(worldCenter, DEFAULT_WORLD_LEVEL);
+          break;
+        case TorchMgr.REGION_CHINA:
+				  map.setCenter(chinaCenter, DEFAULT_CHINA_LEVEL);
+      }
+    }
+		
+		/**
+		 * Show special markers according to the level range.
+		 * @param {int} levelRange
+		 */
+    function showMarkers(levelRange) {
+      switch (levelRange) {
+        case LEVEL_CHINA_PROV:
+          showOverlays(chinaProvinceMarkers);
+          break;
+        case LEVEL_CHINA_CITY:
+          showOverlays(chinaCityMarkers);
+          break;
+        case LEVEL_WORLD:
+          showOverlays(worldCityMarkers);
+      }
+    }
+		
+		/**
+		 * Hide special markers according to the level range.
+		 * @param {int} levelRange
+		 */
+		function hideMarkers(levelRange) {
+      switch (levelRange) {
+        case LEVEL_CHINA_PROV:
+          hideOverlays(chinaProvinceMarkers);
+          break;
+        case LEVEL_CHINA_CITY:
+          hideOverlays(chinaCityMarkers);
+          break;
+        case LEVEL_WORLD:
+          hideOverlays(worldCityMarkers);
+      }
+    }
+		
+		/**
+		 * Show special polylines according to the level range.
+		 * @param {int} levelRange
+		 */
+		function showPolylines(levelRange) {
+      switch (levelRange) {
+        case LEVEL_WORLD:
+          showOverlays(worldPolylines);
+					break;
+        case LEVEL_CHINA_PROV:
+				case LEVEL_CHINA_CITY:
+          showOverlays(chinaPolylines);
+      }
+    }
+		
+		/**
+		 * Hide special polylines according to the level range.
+		 * @param {Object} levelRange
+		 */
+    function hidePolylines(levelRange) {
+      switch (levelRange) {
+        case LEVEL_WORLD:
+          hideOverlays(worldPolylines);
+					break;
+        case LEVEL_CHINA_PROV:
+        case LEVEL_CHINA_CITY:
+          hideOverlays(chinaPolylines);
+      }
+    }
+		
+		/**
+		 * Get level range according to the given level.
+		 * @param {int} level The Google map's level.
+		 */
+    function getLevelRange(level) {
+      if (LEVEL_RANGE_CHINA_PROV[0] <= level && level <= LEVEL_RANGE_CHINA_PROV[1]) {
+        return LEVEL_CHINA_PROV;
+      }
+      if (LEVEL_RANGE_CHINA_CITY[0] <= level && level <= LEVEL_RANGE_CHINA_CITY[1]) {
+        return LEVEL_CHINA_CITY;
+      }
+      if (LEVEL_RANGE_WORLD[0] <= level && level <= LEVEL_RANGE_WORLD[1]) {
+        return LEVEL_WORLD;
+      }
+    }
+    
+		/**
+		 * Get region code according the the special level.
+		 * @param {int} newLevel The Google map's level.
+		 */
+		this.getRegionByLevel = function(level) {
+			if ( level >= LEVEL_RANGE_CHINA[0]) {
+        return TorchMgr.REGION_CHINA;
+      } else if ( level <= LEVEL_RANGE_WORLD[1]) {
+        return TorchMgr.REGION_WORLD;   
+      }
+		}
+		
+		/**
+		 * Control the overlays' display on the map according to the levels. 
+		 * @param {int} oldLevel The Google Map's level. 
+		 *                       Need to hide overlays on this level.
+		 * @param {int} newLevel The Google Map's level.
+		 *                       Need to show overlays on this level.
+		 */
+    this.changeOverlays = function(oldLevel, newLevel) {
+			var oldLevelRange = getLevelRange(oldLevel);
+      var newLevelRange = getLevelRange(newLevel);
+      if (oldLevelRange != newLevelRange) {
+        hideMarkers(oldLevelRange);
+				hidePolylines(oldLevelRange);
+        showMarkers(newLevelRange);
+        showPolylines(newLevelRange);
+      }
+    }
+  }
+
+  /**
+   * Do the real new city setup work in the map.
+   * @param {City} city The target city to go to.
+   */
+  function changeCity(city) {
+    if (torchMarker) {
+      gmap.removeOverlay(torchMarker);
+      torchMarker.setPoint(new GLatLng(city.lat, city.lng));
+    } else {
+      torchMarker = new GMarker(new GLatLng(city.lat, city.lng), { icon : torchIcon });;
+    }
+    gmap.panTo(new GLatLng(city.lat, city.lng));
+    gmap.addOverlay(torchMarker);
+    addMarkerEvent(torchMarker, city);
+    // Show info window
+    var infoWindowHtml = getInfoWindowHtml(city);
+    torchMarker.openInfoWindowHtml(infoWindowHtml, { disableGoogleLinks : true });
+  }
+	
+	function getInfoWindowHtml(city) {
+		var html = '<div style="font-size: 12pt; font-weight: bold;">' +
+                city.name + '</div>';
+    html += '<div><span style="font-size: 10pt; color: #333;">' +
+            TorchMgr.toZhDate(city.date) + '</span></div>';
+		return html;
+	}
+
+  /**
+   * A helper method to create GIcon object.
+   */
+  function createIcon(image, iconSize, iconAnchor, infoWindowAnchor) {
+    var icon = new GIcon();
+    icon.image = image;
+    icon.iconSize = iconSize;
+    icon.iconAnchor = iconAnchor;
+    icon.infoWindowAnchor = infoWindowAnchor;
+    return icon;
+  }
+  
+  /**
+	 * A helper method to add marker event listener.
+	 * 
+	 * @param {GMarker}  marker
+	 * @param {City}  city
+	 */
+	function addMarkerEvent(marker, city) {
+		GEvent.addListener(marker, 'click', function() {
+			changeCity(city);
+			TorchMgr.setCity(city, TorchMgr.EVENT_FROM_MAP);
+		});
+	}
+	
+  /**
+	 * Define relative maker and polyline. NOTE: Different from the frame, there
+	 * is still not add city into map.
+	 * 
+	 * @param city
+	 *            The city get from the city data.
+	 */
+  this.importCity = function(cityList, startIndex, endIndex, cityStatus, cityType) {
+		var icon = (cityStatus == TorchMgr.STATUS_NOTORCH) ? grayIcon : redIcon;
+		var points = [];
+		if(startIndex != 0 && cityList[startIndex-1]){
+			var city = cityList[startIndex-1];
+		  points.push(new GLatLng(city.lat, city.lng));
+		}
+    for (var i = startIndex; i <= endIndex; i++) {
+      var city = cityList[i];
+			var point = new GLatLng(city.lat, city.lng);
+      var marker = new GMarker(point, { icon: icon, title: city.name });
+      overlayManager.addMarker(marker, cityType);
+			addMarkerEvent(marker, city);
+			points.push(point);
+		}
+    if (city.type != TorchMgr.TYPE_CHINA_PROVINCE && points.length > 0) {
+      var polylineColor = (cityStatus == TorchMgr.STATUS_NOTORCH) ? grayLineColor : redLineColor;
+      for(var i = 1, point; point = points[i]; i++){
+				var polyline = new GPolyline([points[i-1], point], polylineColor, 2, 1);
+        overlayManager.addPolyline(polyline, cityType);
+			}
+    }
+  }
+
+  /**
+   * Invoked by TorchMgr.setCity(), and change the current city in the map.
+   * @param {City} city The target city to go to.
+   */
+  this.setCity = function(city) {
+    changeCity(city);
+		switch(city.type){
+			case TorchMgr.TYPE_WORLD_CITY:
+			  gmap.setZoom(DEFAULT_WORLD_LEVEL);
+				break;
+			case TorchMgr.TYPE_CHINA_PROVINCE:
+        gmap.setZoom(DEFAULT_CHINA_LEVEL);
+        break;
+				case TorchMgr.TYPE_CHINA_CITY:
+        gmap.setZoom(DEFAULT_PROV_LEVEL);
+        break;
+		}
+  }
+	
+	/**
+	 * To set the map's display region.
+	 * @param {int} region The region code.
+	 */
+	this.setRegion = function(region) {
+		if (torchMarker) {
+			gmap.removeOverlay(torchMarker);
+		}
+    overlayManager.refresh(region);
+	}
+
+ /**
+   * Map initiation.
+   * @param {int} region Indicate which region map should start from and display.
+   */
+  this.init = function(region) {
+		gmap.clearOverlays();
+		// A hack to show overlays when init
+    switch (region) {
+      case TorchMgr.REGION_WORLD:
+        overlayManager.changeOverlays(DEFAULT_CHINA_LEVEL, DEFAULT_WORLD_LEVEL);
+        break;
+      case TorchMgr.REGION_CHINA:
+        overlayManager.changeOverlays(DEFAULT_WORLD_LEVEL, DEFAULT_CHINA_LEVEL);
+    }
+    this.setRegion(region);
+		GEvent.addListener(gmap, "zoomend", function(oldLevel, newLevel) {
+			var region = overlayManager.getRegionByLevel(newLevel);
+      if (region != TorchMgr.currentRegion) {
+				TorchMgr.setRegion(region, TorchMgr.EVENT_FROM_MAP);
+			}
+			overlayManager.changeOverlays(oldLevel, newLevel);
+    });
+		
+		if (TorchMgr.torchCity) {
+      var city = TorchMgr.torchCity;
+      torchMarker = new GMarker(new GLatLng(city.lat, city.lng), { icon : torchIcon });
+			gmap.addOverlay(torchMarker);
+			addMarkerEvent(torchMarker, city);
+    }
+  }
+}
+
+/**
+ * TorchMgr is a manager class to manage the instances of the Frame class and
+ * the Map class, it also perform as a global controller which hold on global
+ * static variables and utility methods.
+ */
+function TorchMgr() {}
+
+TorchMgr.SITE_URL = 'http://code.digitalmaelstrom.net/google/olympic/';
+TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "torchRelayJSON-en_us.txt";
+TorchMgr.TYPE_WORLD_CITY = "w";
+TorchMgr.TYPE_CHINA_PROVINCE = "cp";
+TorchMgr.TYPE_CHINA_CITY = "c";
+TorchMgr.STATUS_TORCHED = 1;
+TorchMgr.STATUS_NOTORCH = 2;
+TorchMgr.REGION_WORLD = 1;
+TorchMgr.REGION_CHINA = 2;
+TorchMgr.EVENT_FROM_MAP = 1;
+TorchMgr.EVENT_FROM_FRAME = 2;
+TorchMgr.AUTO_SCROLL_UP = 1;
+TorchMgr.AUTO_SCROLL_DOWN = 2;
+
+TorchMgr.frame = new Frame();
+TorchMgr.map = new Map();
+TorchMgr.worldCityList = null;
+TorchMgr.chinaCityList = null;
+TorchMgr.chinaProvinceList = null;
+TorchMgr.worldDefaultCity = null;
+TorchMgr.chinaDefaultCity = null;
+TorchMgr.torchCity = null;
+TorchMgr.currentRegion = -1;
+TorchMgr.currentCity = null;
+TorchMgr.playerIntervalId = null;
+TorchMgr.scrollId = null;
+
+/**
+ * To change current city and invoke relative method in frame and/or map.
+ * @param {String} cityId City's id.
+ * @param {int} whereComeFrom Indicate who change city initially.
+ */
+TorchMgr.setCity = function(city, whereComeFrom) {
+	TorchMgr.currentCity = city;
+  if (whereComeFrom == TorchMgr.EVENT_FROM_FRAME) {
+    TorchMgr.map.setCity(city);
+  } else if (whereComeFrom == TorchMgr.EVENT_FROM_MAP) {
+    TorchMgr.frame.setCity(city);
+  } 
+}
+
+/**
+ * To change current region and invoke relative method in frame and/or map.
+ * Only invoked by onclick event from the player's link in browser.
+ * @param {String} id The 'a' tag's id of the player in browser.
+ */
+TorchMgr.changeRegion = function(id) {
+  var region = null;
+  if (id == "worldLink") {
+    region = TorchMgr.REGION_WORLD;
+  } else if (id == "chinaLink") {
+    region = TorchMgr.REGION_CHINA;
+  }
+	TorchMgr.currentRegion = region;
+  TorchMgr.map.setRegion(region);
+  TorchMgr.frame.setRegion(region);
+  TorchMgr.currentCity = (region == TorchMgr.REGION_WORLD) ? TorchMgr.worldDefaultCity : TorchMgr.chinaDefaultCity;
+}
+
+/**
+ * To set the current region, invoked by the map currently.
+ * @param {int} region
+ * @param {int} whereComeFrom Indicate who change city initially.
+ */
+TorchMgr.setRegion = function(region, whereComeFrom){
+	TorchMgr.currentRegion = region;
+	if (whereComeFrom == TorchMgr.EVENT_FROM_FRAME) {
+    TorchMgr.map.setRegion(region);
+  } else if (whereComeFrom == TorchMgr.EVENT_FROM_MAP) {
+    TorchMgr.frame.setRegion(region);
+  }
+  TorchMgr.currentCity = (region == TorchMgr.REGION_WORLD) ? TorchMgr.worldDefaultCity : TorchMgr.chinaDefaultCity;
+}
+
+/**
+ * A help method of city player.
+ * @param {int} isAscend Flag to determine which direction player should go.
+ *              o:ascend; 1:descend.
+ */
+TorchMgr.toNext = function(isAscend) {
+  var cityList = (TorchMgr.currentRegion == TorchMgr.REGION_WORLD) ? TorchMgr.worldCityList : TorchMgr.chinaCityList;
+  var cityIndex;
+  if(TorchMgr.currentCity.id.search(/^cp/) == 0) {
+    // TODO: If current city is province, toNext is still to the next province
+    // or its first city? Now implement is to the province's first city.
+    var firstCity = document.getElementById(TorchMgr.currentCity.id).nextSibling.firstChild;
+    cityIndex = parseInt(firstCity.id.match(/\d+/));
+  }else{
+    cityIndex = parseInt(TorchMgr.currentCity.id.match(/\d+/));
+  }
+  var nextCity = isAscend ? cityList[cityIndex + 1] : cityList[cityIndex - 1];
+  if (nextCity) {
+    TorchMgr.currentCity = nextCity;
+    TorchMgr.map.setCity(nextCity);
+    TorchMgr.frame.setCity(nextCity);
+  }
+}
+
+/**
+ * A help method to transform Date object to locale string, now only for
+ * Chinese. However, it can be extended for i18n if necessary.
+ * @param {Object} date
+ */
+TorchMgr.toZhDate = function(date) {
+  var localDate;
+  if (date.indexOf("-") != -1) {
+    var dateArray = date.split("-");
+    localDate = (new Date(dateArray[0])).toLocaleDateString().substr(5, 6) +
+                 "-" +
+                 (new Date(dateArray[1])).toLocaleDateString().substr(5, 6);
+  } else {
+    localDate = (new Date(date)).toLocaleDateString().substr(5, 6);
+  }
+  return localDate;
+}
+
+TorchMgr.autoScroll = function(direction){
+  var topParent = document.getElementById("boardContent");
+  if(direction == TorchMgr.AUTO_SCROLL_UP){
+    topParent.scrollTop = topParent.scrollTop-20;
+  }else if(direction == TorchMgr.AUTO_SCROLL_DOWN){
+    topParent.scrollTop = topParent.scrollTop+20;
+  }
+}
+
+TorchMgr.startScroll = function(direction){
+	TorchMgr.autoScroll(direction);
+	TorchMgr.scrollId = setInterval("TorchMgr.autoScroll("+direction+");", 500);
+} 
+TorchMgr.stopScroll = function(){
+	clearInterval(TorchMgr.scrollId);
+  TorchMgr.scrollId == null;
+} 
+
+/**
+ * A help method to get the city by its id.
+ * @param {String} cityId
+ */
+TorchMgr.getCityById = function(cityId) {
+  var city = null;
+  var cityIndex = parseInt(cityId.match(/\d+/));
+  // Get the city first
+  if (cityId.search(/^w/) == 0) {
+    city = TorchMgr.worldCityList[cityIndex];
+  } else {
+    if (cityId.search(/^cp/) == 0) {
+      city = TorchMgr.chinaProvinceList[cityIndex];
+    } else {
+      city = TorchMgr.chinaCityList[cityIndex];
+    }
+  }
+	return city;
+}
+
+/**
+ * The entrance of the whole, fired by the onload method of Google Gadget.
+ */
+TorchMgr.start = function() {
+  
+  /**
+   * Get city from array and add it with its status into the frame and the map.
+   * @param {Array} cityListArray Array of city list.
+   * @param {int} opt_status The status of all cities should be. If not been
+   *                         given, use torch city as a point to determine the
+   *                         city's status.
+   */
+  function loadCities(cityListArray, opt_status) {
+    /**
+     * Inner function of loadCities(). Can't change the import sequence.
+     */
+    function importCity(cityList, startIndex, endIndex, cityStatus, cityType) {
+			TorchMgr.frame.importCity(cityList, startIndex, endIndex, cityStatus, cityType);
+			TorchMgr.map.importCity(cityList, startIndex, endIndex, cityStatus, cityType);
+    }
+
+    // loadCities() start execute
+    if (cityListArray.length == 1) {  // World
+      var cityList = cityListArray[0];
+      if (opt_status) {
+        importCity(cityList, 0, cityList.length - 1, opt_status, TorchMgr.TYPE_WORLD_CITY);
+      } else {
+        var cityIndex = parseInt(TorchMgr.torchCity.index);
+        importCity(cityList, 0, cityIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_WORLD_CITY);
+        importCity(cityList, cityIndex + 1, cityList.length - 1, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_WORLD_CITY);
+      }
+    } else if(cityListArray.length == 2){  // China
+      var cityList = cityListArray[0];
+      var provinceList = cityListArray[1];
+      if (opt_status) {
+        importCity(provinceList, 0, provinceList.length - 1, opt_status, TorchMgr.TYPE_CHINA_PROVINCE);
+        importCity(cityList, 0, cityList.length - 1, opt_status, TorchMgr.TYPE_CHINA_CITY);
+      } else {
+        var cityIndex = parseInt(TorchMgr.torchCity.index);
+        var provinceIndex = parseInt(TorchMgr.torchCity.prtIndex);
+        importCity(provinceList, 0, provinceIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_PROVINCE);
+        importCity(provinceList, provinceIndex + 1, provinceList.length - 1, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_PROVINCE);
+        importCity(cityList, 0, cityIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_CITY);
+        importCity(cityList, cityIndex + 1, cityList.length - 1, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_CITY);
+      }
+    }
+  }
+
+  /**
+   * Find the city where the torch should be currently.
+   * @param {Array} cityList Array of cities.
+   * @param {Date} now Current date object.
+   */
+  function findTorchCity(cityList, now) {
+    /**
+     * Inner function of findTorchCity(). Find torch city using binary search.
+     */
+    function quickSearch(today, beginIndex, endIndex, cityList) {
+      if (beginIndex == endIndex) {
+        return cityList[beginIndex];
+      }
+      var middleIndex = Math.floor((endIndex + beginIndex) / 2);
+      var city = cityList[middleIndex];
+      var cityDate = city.date;
+      var cityDays = cityDate.replace(/(\d{4})\/(\d{2})\/(\d{2})/g, "$1$2$3").match(/\d{8}/g);
+      // The city date format is '****/**/**' or '****/**/** - ****/**/**'. So
+      // cityDays[0] is the numbers of the city date or the date before '-', and
+      // cityDays[1] might be exist as the numbers of the date after '-'.
+      if (today < cityDays[0] && middleIndex > beginIndex) {
+        return quickSearch(today, beginIndex, --middleIndex, cityList);
+      } else if ((cityDays[1] && (today > cityDays[1] && middleIndex < endIndex)) ||
+                 (!cityDays[1] && (today > cityDays[0] && middleIndex < endIndex))) {
+        return quickSearch(today, ++middleIndex, endIndex, cityList);
+      } else {
+        return cityList[middleIndex];
+      }
+    }
+    
+    // findTorchCity() start.
+		var startDate = new Date(Date.UTC(2008, 3 - 1, 24, 0 - 8, 0, 0, 0)); 
+		var endDate = new Date(Date.UTC(2008, 8 - 1, 8, 24 - 8, 0, 0, 0)); 
+		if(now.getTime()<startDate.getTime() || now.getTime() > endDate.getTime()){
+			return null;
+		}
+		
+    var month = now.getMonth() + 1;  // getMonth() is start from 0.
+    var date = now.getDate();
+    var today = now.getFullYear() + (month < 10 ? "0" + month : month)
+        + (date < 10 ? "0" + date : date); 
+    return quickSearch(today, 0, cityList.length - 1, cityList);
+  }
+
+  //TorchMgr.start() start execute.
+	var now = new Date();
+  // Beijing Time:2008.05.04 00:00
+  var dateMileStone = new Date(Date.UTC(2008, 5 - 1, 4, 0 - 8, 0, 0, 0)); 
+  TorchMgr.currentRegion = ((dateMileStone.getTime() - now.getTime()) > 0) ? TorchMgr.REGION_WORLD : TorchMgr.REGION_CHINA;
+  
+	_IG_FetchContent(TorchMgr.TORCH_DATA_URL, function(data){
+    var torchDataList = eval(data);
+    TorchMgr.worldCityList = torchDataList[0].worldCityList;
+		TorchMgr.chinaProvinceList = torchDataList[1].chinaProvList;
+    TorchMgr.chinaCityList = torchDataList[2].chinaCityList;
+    // Begin load data and display
+    if (TorchMgr.currentRegion == TorchMgr.REGION_WORLD) { // Display world view by default
+      TorchMgr.torchCity = findTorchCity(TorchMgr.worldCityList, now);
+			if(TorchMgr.torchCity){
+				TorchMgr.currentCity= TorchMgr.worldDefaultCity = TorchMgr.torchCity;
+				loadCities([TorchMgr.worldCityList]);
+			}else{
+				TorchMgr.currentCity= TorchMgr.worldDefaultCity = TorchMgr.worldCityList[0];
+				loadCities([TorchMgr.worldCityList], TorchMgr.STATUS_NOTORCH);
+			}
+      TorchMgr.chinaDefaultCity = TorchMgr.chinaCityList[0];
+      loadCities([TorchMgr.chinaCityList, TorchMgr.chinaProvinceList], TorchMgr.STATUS_NOTORCH);
+    } else { // Display China view by default, same logic as above
+      TorchMgr.torchCity = findTorchCity(TorchMgr.chinaCityList, now);
+      if(TorchMgr.torchCity){
+        TorchMgr.currentCity= TorchMgr.chinaDefaultCity = TorchMgr.torchCity;
+				loadCities([TorchMgr.chinaCityList, TorchMgr.chinaProvinceList]);
+      }else{
+        TorchMgr.currentCity= TorchMgr.chinaDefaultCity = TorchMgr.chinaCityList[0];
+				loadCities([TorchMgr.chinaCityList, TorchMgr.chinaProvinceList], TorchMgr.STATUS_TORCHED);
+      }
+      TorchMgr.worldDefaultCity = TorchMgr.worldCityList[0];
+      loadCities([TorchMgr.worldCityList], TorchMgr.STATUS_TORCHED);
+    }
+		TorchMgr.frame.init(TorchMgr.currentRegion);
+    TorchMgr.map.init(TorchMgr.currentRegion);
+  });
+}
+/**
+ * All begin from here, it invoke the TorchMgr.start() method.
+ */
+_IG_RegisterOnloadHandler(TorchMgr.start);
+</script>
+]]></Content>
+</Module>

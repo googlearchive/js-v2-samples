@@ -6,39 +6,22 @@
    {name:"San Pietroburgo, Russia",index:4,lat:59.939039,lng:30.315785,date:"2008/04/05",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=san+pietroburgo%2C+Russia&btnG=Cerca&meta='>Scopri altro su San Pietroburgo.</a>"},
    {name:"Londra, Regno Unito",index:5,lat:51.500152,lng:-0.126236,date:"2008/04/06",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=Londra%2C+Regno+Unito&btnG=Cerca&meta='>Scopri altro su Londra.</a>"},
    {name:"Parigi, Francia",index:6,lat:48.856558,lng:2.350966,date:"2008/04/07",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=Parigi%2C+Francia&btnG=Cerca&meta='>Scopri altro su Parigi.</a>"},
-   {name:"San Francisco, Stati Uniti",index:7,lat:37.779160,lng:-122.420090,date:"2008/04/09",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=san+francisco%2C+stati+uniti&btnG=Cerca&meta=
-   '>Scopri altro su San Francisco.</a>"},
-   {name:"Buenos Aires, Argentina",index:8,lat:-34.611781,lng:-58.417309,date:"2008/04/11",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=buenos+aires%2C+argentina&btnG=Cerca&meta=
-   '>Scopri altro su Buenos Aires.</a>"},
-   {name:"Dar es Salam, Tanzania",index:9,lat:-6.819800,lng:39.279900,date:"2008/04/13",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=dar+es+salam%2C+tanzania&btnG=Cerca&meta=
-   '>Scopri altro su Dar es Salam.</a>"},
-   {name:"Muscat, Oman",index:10,lat:23.608600,lng:58.592200,date:"2008/04/14",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=muscat%2C+oman&btnG=Cerca&meta=
-   '>Scopri altro su Muscat.</a>"},
-   {name:"Islamabad, Pakistan",index:11,lat:30.516667,lng:72.800000,date:"2008/04/16",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=islamabad%2C+pakistan&btnG=Cerca&meta=
-   '>Scopri altro su Islamabad.</a>"},
-   {name:"Nuova Delhi, India",index:12,lat:19.017656,lng:72.856178,date:"2008/04/17",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=nuova+delhi%2C+india&btnG=Cerca&meta=
-   '>Scopri altro su Nuova Delhi.</a>"},
-   {name:"Bangkok, Tailandia",index:13,lat:13.730780,lng:100.521004,date:"2008/04/19",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=bangkok%2C+tailandia&btnG=Cerca&meta=
-   '>Scopri altro su Bangkok.</a>"},
-   {name:"Kuala Lumpur, Malesia",index:14,lat:3.124333,lng:101.684376,date:"2008/04/21",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=kuala+lumpur%2C+malesia&btnG=Cerca&meta=
-   '>Scopri altro su Kuala Lumpur.</a>"},
-   {name:"Giacarta, Indonesia",index:15,lat:-6.186190,lng:106.806300,date:"2008/04/22",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=giacarta%2C+indonesia&btnG=Cerca&meta=
-   '>Scopri altro su Giacarta.</a>"},
-   {name:"Canberra, Australia",index:16,lat:-35.282040,lng:149.128580,date:"2008/04/24",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=canberra%2C+australia&btnG=Cerca&meta=
-   '>Scopri altro su Canberra.</a>"},
-   {name:"Nagano, Giappone",index:17,lat:36.643010,lng:138.188700,date:"2008/04/26",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=nagano%2C+giappone&btnG=Cerca&meta=
-   '>Scopri altro su Nagano.</a>"},
-   {name:"Seoul, Corea del Sud",index:18,lat:37.532308,lng:126.957440,date:"2008/04/27",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=seoul%2C+corea+del+sud&btnG=Cerca&meta=
-   '>Scopri altro su Seoul.</a>"},
-   {name:"Pyongyang, Corea del Nord",index:19,lat:39.031859,lng:125.753765,date:"2008/04/28",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=pyongyang%2C+corea+del+nord&btnG=Cerca&meta=
-   '>Scopri altro su Pyongyang.</a>"},
-   {name:"Ho Chi Min, Vietnam",index:20,lat:10.772462,lng:106.678555,date:"2008/04/29",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=Parigi%2C+Francia&btnG=Cerca&meta=
-   http://www.google.it/search?hl=it&q=ho+chi+min%2C+vietnam&btnG=Cerca&meta=
-   '>Scopri altro su Ho Chi Min.</a>"},
-   {name:"Hong Kong, Cina",index:21,lat:22.396428,lng:114.109497,date:"2008/05/02",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=hong+kong%2C+cina&btnG=Cerca&meta=
-   '>Scopri altro su Hong Kong.</a>"},
-   {name:"Macao, Cina",index:22,lat:22.198745,lng:113.543873,date:"2008/05/03",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=macao%2C+cina&btnG=Cerca&meta=
-   '>Scopri altro su Macao.</a>"}]},
+   {name:"San Francisco, Stati Uniti",index:7,lat:37.779160,lng:-122.420090,date:"2008/04/09",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=san+francisco%2C+stati+uniti&btnG=Cerca&meta='>Scopri altro su San Francisco.</a>"},
+   {name:"Buenos Aires, Argentina",index:8,lat:-34.611781,lng:-58.417309,date:"2008/04/11",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=buenos+aires%2C+argentina&btnG=Cerca&meta='>Scopri altro su Buenos Aires.</a>"},
+   {name:"Dar es Salam, Tanzania",index:9,lat:-6.819800,lng:39.279900,date:"2008/04/13",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=dar+es+salam%2C+tanzania&btnG=Cerca&meta='>Scopri altro su Dar es Salam.</a>"},
+   {name:"Muscat, Oman",index:10,lat:23.608600,lng:58.592200,date:"2008/04/14",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=muscat%2C+oman&btnG=Cerca&meta='>Scopri altro su Muscat.</a>"},
+   {name:"Islamabad, Pakistan",index:11,lat:30.516667,lng:72.800000,date:"2008/04/16",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=islamabad%2C+pakistan&btnG=Cerca&meta='>Scopri altro su Islamabad.</a>"},
+   {name:"Nuova Delhi, India",index:12,lat:19.017656,lng:72.856178,date:"2008/04/17",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=nuova+delhi%2C+india&btnG=Cerca&meta='>Scopri altro su Nuova Delhi.</a>"},
+   {name:"Bangkok, Tailandia",index:13,lat:13.730780,lng:100.521004,date:"2008/04/19",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=bangkok%2C+tailandia&btnG=Cerca&meta='>Scopri altro su Bangkok.</a>"},
+   {name:"Kuala Lumpur, Malesia",index:14,lat:3.124333,lng:101.684376,date:"2008/04/21",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=kuala+lumpur%2C+malesia&btnG=Cerca&meta='>Scopri altro su Kuala Lumpur.</a>"},
+   {name:"Giacarta, Indonesia",index:15,lat:-6.186190,lng:106.806300,date:"2008/04/22",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=giacarta%2C+indonesia&btnG=Cerca&meta='>Scopri altro su Giacarta.</a>"},
+   {name:"Canberra, Australia",index:16,lat:-35.282040,lng:149.128580,date:"2008/04/24",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=canberra%2C+australia&btnG=Cerca&meta='>Scopri altro su Canberra.</a>"},
+   {name:"Nagano, Giappone",index:17,lat:36.643010,lng:138.188700,date:"2008/04/26",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=nagano%2C+giappone&btnG=Cerca&meta='>Scopri altro su Nagano.</a>"},
+   {name:"Seoul, Corea del Sud",index:18,lat:37.532308,lng:126.957440,date:"2008/04/27",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=seoul%2C+corea+del+sud&btnG=Cerca&meta='>Scopri altro su Seoul.</a>"},
+   {name:"Pyongyang, Corea del Nord",index:19,lat:39.031859,lng:125.753765,date:"2008/04/28",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=pyongyang%2C+corea+del+nord&btnG=Cerca&meta='>Scopri altro su Pyongyang.</a>"},
+   {name:"Ho Chi Min, Vietnam",index:20,lat:10.772462,lng:106.678555,date:"2008/04/29",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=ho+chi+min%2C+vietnam&btnG=Cerca&meta='>Scopri altro su Ho Chi Min.</a>"},
+   {name:"Hong Kong, Cina",index:21,lat:22.396428,lng:114.109497,date:"2008/05/02",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=hong+kong%2C+cina&btnG=Cerca&meta='>Scopri altro su Hong Kong.</a>"},
+   {name:"Macao, Cina",index:22,lat:22.198745,lng:113.543873,date:"2008/05/03",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=macao%2C+cina&btnG=Cerca&meta='>Scopri altro su Macao.</a>"}]},
 {chinaProvList:[
    {name:"Hainan Province",index:0,lat:20.032303,lng:110.320198,date:"2008/05/04-2008/05/06"},
    {name:"Guangdong Province",index:1,lat:23.134104,lng:113.322323,date:"2008/05/07-2008/05/10"},

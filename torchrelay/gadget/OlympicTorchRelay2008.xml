@@ -62,7 +62,7 @@ a.player{
   float: left;
   height: 18px;
   background-position: 0 0;
-  margin-right: 1em;
+  margin-right: 2px;
 }
 a#prevButton__MODULE_ID__{
   width: 36px;
@@ -2014,7 +2014,7 @@ dm.TorchPlayerControl.prototype.initialize = function(map)
 
 dm.TorchPlayerControl.prototype.getDefaultPosition = function()
 {
-	return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_LEFT, new google.maps.Size(10, 30) );
+	return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_LEFT, new google.maps.Size(36, 6) );
 }
 
 dm.TorchPlayerControl.prototype.printable = function()

@@ -831,9 +831,8 @@ function Map(mapDiv) {
   var gmap = new google.maps.Map2(mapDiv);
   gmap.setCenter(new GLatLng(37.4419, -122.1419), 13);
   
-  gmap.addControl(new google.maps.LargeMapControl());
-  gmap.addControl(new google.maps.ScaleControl());
-  gmap.addControl(new google.maps.MapTypeControl());
+  gmap.addControl(new google.maps.SmallMapControl());
+  gmap.addControl(new google.maps.MenuMapTypeControl());
   gmap.addControl(new dm.TorchPlayerControl());
     
   var overlayManager = new OverlayManager(gmap);		// For backward compatability
@@ -1979,7 +1978,7 @@ dm.TorchPlayerControl.prototype.initialize = function(map)
        <a class="player playButton" id="playButton" href="#"></a>
        <a class="player pauseButton" id="pauseButton" href="#"></a>
        <a class="player nextButton" id="nextButton" href="#"></a>
-*/
+    */
 	var containerElement = map.getContainer();
 	var playerContainer = document.createElement('div');
 	playerContainer.className = "playerControl";
@@ -2015,7 +2014,7 @@ dm.TorchPlayerControl.prototype.initialize = function(map)
 
 dm.TorchPlayerControl.prototype.getDefaultPosition = function()
 {
-	return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_RIGHT, new google.maps.Size(10, 30) );
+	return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_LEFT, new google.maps.Size(10, 30) );
 }
 
 dm.TorchPlayerControl.prototype.printable = function()

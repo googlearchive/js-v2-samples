@@ -162,6 +162,9 @@ function cm_getJSON() {
   script.setAttribute('id', 'jsonScript');
   script.setAttribute('type', 'text/javascript');
   document.documentElement.firstChild.appendChild(script);
+
+  var searchLink = window.location.protocol + '//' + window.location.host + window.location.pathname + '?searchquery=' + searchTerm + '&classname=' + className;
+  document.getElementById('pagelink').href = searchLink;
 }
 
 
@@ -177,6 +180,7 @@ function cm_getJSON() {
 Enter keyword <input type="text" id="searchbox" value="" /> 
  or select a class <select id="classdropdown"></select>
 <input type="button" value="Search" onclick="cm_getJSON()" />
+ (<a href="" id="pagelink">Link to this search</a>)
 <br/><br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>

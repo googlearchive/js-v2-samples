@@ -15,7 +15,7 @@
 	<Locale lang="nl"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/NL_ALL.xml" />
 	<Locale lang="es"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/ES_ALL.xml" />
 </ModulePrefs>
-<UserPref name="locale" display_name="Language" datatype="enum" default_value="__MSG_DEFAULT_LOCALE__">
+<UserPref name="locale" display_name="Info Language" datatype="enum" default_value="__MSG_DEFAULT_LOCALE__">
   <EnumValue value="en_us" display_value="English (US)" />
   <!--<EnumValue value="zh_cn" display_value="Simplified Chinese" />-->
   <EnumValue value="en_uk" display_value="English (UK)" />

@@ -436,6 +436,76 @@ function Map(mapDiv) {
   	throw new Error("Can't get torch map");
   }
   
+  /////////////////////////////////////////////////////////////////////////
+  /**
+   *  Torch Player Map Control
+   *  Modified from original to derive from GControl
+   */
+  dm = function() {}
+  dm.TorchPlayerControl = function() 
+  {
+  	google.maps.Control.call(this, false, false); 
+  }
+
+  dm.TorchPlayerControl.prototype = new google.maps.Control();
+
+  dm.TorchPlayerControl.prototype.initialize = function(map)
+  {
+  	/*
+  	   <a class="player prevButton" id="prevButton" href="#"></a>
+         <a class="player playButton" id="playButton" href="#"></a>
+         <a class="player pauseButton" id="pauseButton" href="#"></a>
+         <a class="player nextButton" id="nextButton" href="#"></a>
+  */
+  	var containerElement = map.getContainer();
+  	var playerContainer = document.createElement('div');
+  	playerContainer.className = "playerControl";
+
+  	var prevButton = document.createElement('a');
+  	prevButton.className = "player prevButton";
+  	prevButton.id = "prevButton";
+  	prevButton.setAttribute("href", "#");
+
+  	var playButton = document.createElement('a');
+  	playButton.className = "player playButton";
+  	playButton.id = "playButton";
+  	playButton.setAttribute("href", "#");
+
+  	var pauseButton = document.createElement('a');
+  	pauseButton.className = "player pauseButton";
+  	pauseButton.id = "pauseButton";
+  	pauseButton.setAttribute("href", "#");
+
+  	var nextButton = document.createElement('a');
+  	nextButton.className = "player nextButton";
+  	nextButton.id = "nextButton";
+  	nextButton.setAttribute("href", "#");
+
+  	playerContainer.appendChild(prevButton);
+  	playerContainer.appendChild(playButton);
+  	playerContainer.appendChild(pauseButton);
+  	playerContainer.appendChild(nextButton);
+
+  	containerElement.appendChild(playerContainer);
+  	return playerContainer;
+  }
+
+  dm.TorchPlayerControl.prototype.getDefaultPosition = function()
+  {
+  	return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_RIGHT, new google.maps.Size(10, 30) );
+  }
+
+  dm.TorchPlayerControl.prototype.printable = function()
+  {
+  	return false;
+  }
+
+  dm.TorchPlayerControl.prototype.selectable = function()
+  {
+  	return false;
+  }
+  ////////////////////////////////////////////////////////////////////
+  
   // Force init of Google Map
   var gmap = new google.maps.Map2(mapDiv);
   gmap.setCenter(new GLatLng(37.4419, -122.1419), 13);
@@ -1031,8 +1101,8 @@ function Map(mapDiv) {
 function TorchMgr() {}
 
 TorchMgr.SITE_URL = '';
-TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "torchRelayJSON-" + determineLocale() + ".json";
-TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "photolinks.json";
+TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "./data/torchRelayJSON-" + determineLocale() + ".json";
+TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "./data/photolinks.json";
 TorchMgr.IMAGES_PATH = "images/";
 TorchMgr.LOG = false;
 
@@ -1460,6 +1530,22 @@ function initialize()
 	TorchMgr.Log('Language: ' + determineLanguage());
 	TorchMgr.Log('Date: ' + determineDate());
 	
+	document.body.onresize = function() {
+	   resizeApp();
+	};
+	
+	document.body.onunload = function() {
+	   google.maps.Unload();
+	};
+	
+	window.onresize = function() {
+	   resizeApp();
+	};
+	
+	window.onunload = function() {
+	   google.maps.Unload();
+	};
+	
 	resizeApp();
 	if(!mapDiv)
 	{
@@ -1524,8 +1610,7 @@ function resizeApp()
 	map.style.height = mapHeight + "px";
 	
 	//frame.style.height = (mapHeight - 40) + "px";
-	
-	
+		
 	scrollWindow.style.height = (mapHeight - FRAME_OFFSET - BUTTON_OFFSET) + "px";
 	scrollWrapper.style.height = (mapHeight - FRAME_OFFSET) + "px";
 
@@ -1549,74 +1634,8 @@ function localizeContainer(data)
 	attribution.innerHTML = data.attribution;	
 }
 
+TorchMgr.Log("Locale: " + determineLocale() + ", Language: " + determineLanguage());
+
+// Kickstart everything
 google.setOnLoadCallback(initialize);
-//TorchMgr.Log("Locale: " + determineLocale() + ", Language: " + determineLanguage());
-
-
-/**
- *  Torch Player Map Control
- *  Modified from original to derive from GControl
- */
-dm = function() {}
-dm.TorchPlayerControl = function() 
-{
-	google.maps.Control.call(this, false, false); 
-}
-
-dm.TorchPlayerControl.prototype = new google.maps.Control();
-
-dm.TorchPlayerControl.prototype.initialize = function(map)
-{
-	/*
-	   <a class="player prevButton" id="prevButton" href="#"></a>
-       <a class="player playButton" id="playButton" href="#"></a>
-       <a class="player pauseButton" id="pauseButton" href="#"></a>
-       <a class="player nextButton" id="nextButton" href="#"></a>
-*/
-	var containerElement = map.getContainer();
-	var playerContainer = document.createElement('div');
-	playerContainer.className = "playerControl";
-
-	var prevButton = document.createElement('a');
-	prevButton.className = "player prevButton";
-	prevButton.id = "prevButton";
-	prevButton.setAttribute("href", "#");
-
-	var playButton = document.createElement('a');
-	playButton.className = "player playButton";
-	playButton.id = "playButton";
-	playButton.setAttribute("href", "#");
-
-	var pauseButton = document.createElement('a');
-	pauseButton.className = "player pauseButton";
-	pauseButton.id = "pauseButton";
-	pauseButton.setAttribute("href", "#");
-
-	var nextButton = document.createElement('a');
-	nextButton.className = "player nextButton";
-	nextButton.id = "nextButton";
-	nextButton.setAttribute("href", "#");
-	
-	playerContainer.appendChild(prevButton);
-	playerContainer.appendChild(playButton);
-	playerContainer.appendChild(pauseButton);
-	playerContainer.appendChild(nextButton);
-	
-	containerElement.appendChild(playerContainer);
-	return playerContainer;
-}
-
-dm.TorchPlayerControl.prototype.getDefaultPosition = function()
-{
-	return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_RIGHT, new google.maps.Size(10, 30) );
-}
-
-dm.TorchPlayerControl.prototype.printable = function()
-{
-	return false;
-}
-
-dm.TorchPlayerControl.prototype.selectable = function()
-{
-	return false;
-}
+google.load("maps", "2", {locale:determineLanguage()});

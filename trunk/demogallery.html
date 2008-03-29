@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head> 
 <title>Google Maps API Demo Gallery</title>
-<link type="text/css" rel="StyleSheet" href="cisoft/sliderwe/luna.css" />
 <style type="text/css">
   body {
     font-family: Arial, sans serif;
@@ -20,11 +19,33 @@
 var feed;
 var curNum;
 
+var classes = [
+'GMarker',
+'GMarkerOptions',
+'GIcon',
+'GDirections',
+'GDraggableObject',
+'GPolygon',
+'GPolyline',
+'GClientGeocoder',
+'GGeoXml',
+'GGoogleBarOptions',
+'GGroundOverlay',
+'GScreenOverlay',
+'GInfoWindowOptions',
+'GOverlay',
+'GControl',
+'GStreetviewPanorama',
+'GStreetviewClient',
+'GStreetviewOverlay'];
+
+
 // Change these parameters to customize map
 var param_wsId = "od6";
 var param_ssKey = "o16162288751915453340.4402783830945175750";
 function cm_load() {  
   document.getElementById("searchbox").value = getURLParam("searchquery");
+  createClassSelect();
   cm_getJSON();
 }
 
@@ -89,9 +110,32 @@ function showPrevious() {
   updateGallery();
   if (curNum <= 0) {
     document.getElementById("previousBUTTON").disabled = true;
+    document.getElementById("previousBUTTON2").disabled = true;
   } 
   if (curNum < feed.entry.length) {
     document.getElementById("nextBUTTON").disabled = false;
+    document.getElementById("nextBUTTON2").disabled = false;
+  }
+}
+function createClassSelect() {
+  var classSelect = document.getElementById("classdropdown");
+
+  var classOption = document.createElement("option");
+  classOption.setAttribute("value", '');
+  var txt = document.createTextNode('');
+  classOption.appendChild(txt);
+  classSelect.appendChild(classOption);
+
+  for (var j = 0; j < classes.length; j++){
+    var className = classes[j];
+    var classOption = document.createElement("option");
+    classOption.setAttribute("value",className);
+    var txt = document.createTextNode(className);
+    if(className.toLowerCase() == getURLParam("classname").toLowerCase()) {
+      classOption.setAttribute("selected", true);
+    }
+    classOption.appendChild(txt);
+    classSelect.appendChild(classOption);
   }
 }
 
@@ -101,12 +145,19 @@ function showPrevious() {
  * Once loaded, it calls cm_loadMapJSON.
  */
 function cm_getJSON() {
+  var className = document.getElementById('classdropdown').value;
+  var searchTerm = document.getElementById('searchbox').value;
 
   // Retrieve the JSON feed.
   var script = document.createElement('script');
-
+  var query = '';
+  if (className != '') {
+    query = '&sq=' + className.toLowerCase() + '%3Dyes';
+  } else if (searchTerm != '') {
+    query = '&q=' + searchTerm.toLowerCase();
+  } 
   script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od6/public/values' +
-                        '?reverse=true&q=' + document.getElementById("searchbox").value + 
+                        '?reverse=true'+ query + 
                         '&alt=json-in-script&callback=cm_loadMapJSON');
   script.setAttribute('id', 'jsonScript');
   script.setAttribute('type', 'text/javascript');
@@ -123,15 +174,17 @@ function cm_getJSON() {
 
 <!-- ++Begin GSpreadsheets Map Wizard Generated Code++ -->
 
-<input type="text" id="searchbox" value="" /> <input type="button" value="Search" onclick="cm_getJSON()" />
+Enter keyword <input type="text" id="searchbox" value="" /> 
+ or select a class <select id="classdropdown"></select>
+<input type="button" value="Search" onclick="cm_getJSON()" />
 <br/><br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>
 <br/>
 <div id="sidebar"></div>
 <br/>
-<input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
-<input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>
+<input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON2"/>
+<input type="button" onclick="showNext()" value="Next" id="nextBUTTON2"/>
 <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
 </script>
 <script type="text/javascript">

@@ -159,18 +159,22 @@ function createClassSelect() {
  * JSON feed for the specified key/ID. 
  * Once loaded, it calls cm_loadMapJSON.
  */
-function cm_getJSON() {
-  var className = document.getElementById('classdropdown').value;
-  var searchTerm = document.getElementById('searchbox').value;
-
-  // Retrieve the JSON feed.
-  var script = document.createElement('script');
+function cm_getJSON(preferSearch) {
   var query = '';
-  if (className != '') {
-    query = '&sq=' + className.toLowerCase() + '%3Dyes';
-  } else if (searchTerm != '') {
+
+  var searchTerm = document.getElementById('searchbox').value;
+  if (searchTerm != '' && preferSearch) {
+    document.getElementById('classdropdown').selectedIndex = 0;
     query = '&q=' + searchTerm.toLowerCase();
-  } 
+  }
+
+  var className = document.getElementById('classdropdown').value;
+  if (className != '' && !preferSearch) {
+    document.getElementById('searchbox').selectedIndex = 0;
+    query = '&sq=' + className.toLowerCase() + '%3Dyes';
+  }
+ 
+  var script = document.createElement('script');
   script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od6/public/values' +
                         '?reverse=true'+ query + 
                         '&alt=json-in-script&callback=cm_loadMapJSON');
@@ -190,8 +194,8 @@ function cm_getJSON() {
 <!-- ++Begin GSpreadsheets Map Wizard Generated Code++ -->
 
 Enter keyword <input type="text" id="searchbox" value="" /> 
-<input type="button" value="Search" onclick="cm_getJSON()" />
- or select a class <select id="classdropdown" onchange="cm_getJSON()"></select>
+<input type="button" value="Search" onclick="cm_getJSON(true)" />
+ or select a class <select id="classdropdown" onchange="cm_getJSON(false)"></select>
 <br/><br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>

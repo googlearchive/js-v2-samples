@@ -170,7 +170,7 @@ function cm_getJSON(preferSearch) {
 
   var className = document.getElementById('classdropdown').value;
   if (className != '' && !preferSearch) {
-    document.getElementById('searchbox').selectedIndex = 0;
+    document.getElementById('searchbox').value = '';
     query = '&sq=' + className.toLowerCase() + '%3Dyes';
   }
  

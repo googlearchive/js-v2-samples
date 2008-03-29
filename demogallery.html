@@ -169,7 +169,7 @@ function cm_getJSON(preferSearch) {
   }
 
   var className = document.getElementById('classdropdown').value;
-  if (className != '' && !preferSearch) {
+  if ((className != '' && !preferSearch) || (className != '' && searchTerm == '')) {
     document.getElementById('searchbox').value = '';
     query = '&sq=' + className.toLowerCase() + '%3Dyes';
   }

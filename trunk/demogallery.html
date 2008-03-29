@@ -163,7 +163,7 @@ function cm_getJSON() {
   script.setAttribute('type', 'text/javascript');
   document.documentElement.firstChild.appendChild(script);
 
-  var searchLink = window.location.protocol + '//' + window.location.host + window.location.pathname + '?searchquery=' + searchTerm + '&classname=' + className;
+  var searchLink = 'http://code.google.com/apis/maps/documentation/demogallery.html' + '?searchquery=' + searchTerm + '&classname=' + className;
   document.getElementById('pagelink').href = searchLink;
 }
 

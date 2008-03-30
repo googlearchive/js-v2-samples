@@ -1463,14 +1463,16 @@ TorchMgr.start = function(mapDiv,locale,date) {
   TorchMgr.Log('Initial region: ' + TorchMgr.currentRegion);
 	// Support for Google Maps API
 	// Get image data first.
-	google.maps.DownloadUrl(TorchMgr.CITY_IMAGE_DATA_URL, function(data){
+	//google.maps.DownloadUrl(TorchMgr.CITY_IMAGE_DATA_URL, function(data){
+	getCityImagesJson(TorchMgr.CITY_IMAGE_DATA_URL, function(data){
   		var imageData = eval(data);
   		TorchMgr.cityImageList = imageData;
    	});
   	
   	// Fetch localized langage data next.
-	google.maps.DownloadUrl(TorchMgr.TORCH_DATA_URL,function(data){
+	//google.maps.DownloadUrl(TorchMgr.TORCH_DATA_URL,function(data){
 	//	_IG_FetchContent(TorchMgr.TORCH_DATA_URL, function(data){
+	getCityListJson(TorchMgr.TORCH_DATA_URL, function(data) {
     var torchDataList = eval(data);
     
     // Hard-coded region lists 
@@ -1555,6 +1557,32 @@ function initialize()
 	{
 		TorchMgr.start(mapDiv, locale,date);
 	}
+}
+
+function getCityListJson(url, callback){
+    city_list = function(data)
+   {
+      delete city_list;
+      callback(data);
+   }
+   
+   var script = document.createElement("script");
+   script.src = url;
+   document.body.appendChild(script);
+   
+}
+
+function getCityImagesJson(url, callback){
+    city_images = function(data)
+   {
+      delete city_images;
+      callback(data);
+   }
+   
+   var script = document.createElement("script");
+   script.src = url;
+   document.body.appendChild(script);
+   
 }
 
 /**

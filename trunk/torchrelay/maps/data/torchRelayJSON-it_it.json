@@ -1,4 +1,4 @@
-[{worldCityList:[
+city_list([{worldCityList:[
    {name:"Olimpia, Grecia",index:0,lat:37.633300,lng:21.616759,date:"2008/03/24",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=olimpia%2C+grecia&btnG=Cerca&meta='>Scopri altro su Olimpia.</a>"},
    {name:"Pechino, Cina",index:1,lat:39.908170,lng:116.397945,date:"2008/03/31",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=pechino%2C+cina&btnG=Cerca&meta='>Scopri altro su Pechino.</a>"},
    {name:"Almaty, Kazakistan",index:2,lat:43.275800,lng:76.929200,date:"2008/04/02",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=almaty%2C+kazakistan&btnG=Cerca&meta='>Scopri altro su Almaty.</a>"},
@@ -171,3 +171,4 @@
 	},
 {localizedText:{worldLink:'World',chinaLink:'China',learnMore:"Learn more about", info:"Info", video:"Video"}},
 {localizedContainerText:{title:"La Torcia Olimpica", header:"Segui la fiaccola olimpica nel suo viaggio attraverso l'Italia ed il resto del mondo.", body:"<p>Il 25 marzo la torcia olimpica verrà accesa nell'antica città di Olimpia, in Grecia, dove per la prima volta fu accesa nell'anno 766 a.C. La staffetta della fiaccola continuerà nei mesi seguenti viaggiando dalla Grecia a Pechino e poi in giro per tutto il mondo attraverso città e oceani, raggiungendo addirittura il tetto del mondo, il Monte Everest.</p><p>Segui il percorso della torcia olimpica e guarda i filmati del suo viaggio su Google Maps.</p>", button:"Aggiungi al mio sito", ge_link:"Novità! Segui la staffetta della torcia olimpica  su Google Earth. Non hai ancora Google Earth? Scaricalo qui", attribution:"Video per gentile concessione di CCTV.com"}}]
+)

@@ -1012,7 +1012,7 @@ function Map(mapDiv) {
 	    	google.maps.Event.addListener(TorchMgr, "precacheComplete", function(){
 	    		TorchMgr.Log('Fired image precache event ' + selMarker);
 	    		var tabs = [];
-				tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.info, infoWindowHtml));
+				tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.info, '<div class="torchInfoViewer">' + infoWindowHtml + '</div>'));
 				if(city.video)
 				{
 					var videoHtml = '<div style="text-align:center;margin:10px;"><object width="300" height="242">'
@@ -1029,10 +1029,10 @@ function Map(mapDiv) {
 					videoHtml += TorchMgr.localizedText.webLink ? TorchMgr.localizedText.webLink : "";
 					videoHtml += TorchMgr.localizedText.videoDisclaimer ? "<div class='videoDisclaimer'>" + TorchMgr.localizedText.videoDisclaimer + "</div>" : "";
 					videoHtml += "</div>";
-					tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.video, videoHtml));
+					tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.video, '<div class="torchInfoViewer">' + videoHtml + '</div>'));
 				}
 	    		
-	    		selMarker.openInfoWindowTabsHtml( tabs, { maxWidth: 400, disableGoogleLinks : true });
+	    		selMarker.openInfoWindowTabsHtml( tabs, { maxWidth: 350, disableGoogleLinks : true });
 	    	});
 			// Precache image
 			TorchMgr.precacheCityImage(TorchMgr.cityImageList[city.index].picURL);
@@ -1588,12 +1588,13 @@ function getWindowWidth() {
  */
 function resizeApp()
 {
-	var TOP_OFFSET = 205;
-	var BOTTOM_OFFSET = 40;
-	var BUTTON_OFFSET = 20;
-	var FRAME_OFFSET = 22;
-	var RIGHT_OFFSET = 330;
-	var PADDING = 10;
+	var TOP_OFFSET = 205;      // Top of container
+	var BOTTOM_OFFSET = 40;    // Bottom of container
+	var BUTTON_OFFSET = 20;    // offset for frame buttons (necessary, despite buttons have been moved)
+	var FRAME_OFFSET = 22;     // offset to line-up frame bottom to map
+	var RIGHT_OFFSET = 330;    // offset from right side
+	var PADDING = 10;          // Overall container padding
+	
 	var height = getWindowHeight() - PADDING;
 	var width = getWindowWidth() - PADDING;
 	
@@ -1608,8 +1609,6 @@ function resizeApp()
 	container.style.height = mapHeight + "px";
 	map.style.width = mapWidth + "px";
 	map.style.height = mapHeight + "px";
-	
-	//frame.style.height = (mapHeight - 40) + "px";
 		
 	scrollWindow.style.height = (mapHeight - FRAME_OFFSET - BUTTON_OFFSET) + "px";
 	scrollWrapper.style.height = (mapHeight - FRAME_OFFSET) + "px";
@@ -1621,6 +1620,7 @@ function resizeApp()
  */
 function localizeContainer(data)
 {
+   /* Page to be localized by Google container
 	var container = document.getElementById('container');
 	var title = document.getElementById('title');
 	var preamble = document.getElementById('preamble');
@@ -1632,6 +1632,7 @@ function localizeContainer(data)
 	preamble.innerHTML = "<h4>" + data.header + "</h4><p>" + data.body + "</p>";
 	ge_link.innerHTML = data.ge_link;
 	attribution.innerHTML = data.attribution;	
+	*/
 }
 
 TorchMgr.Log("Locale: " + determineLocale() + ", Language: " + determineLanguage());

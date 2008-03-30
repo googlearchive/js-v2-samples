@@ -1101,8 +1101,8 @@ function Map(mapDiv) {
 function TorchMgr() {}
 
 TorchMgr.SITE_URL = 'http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps';
-TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "./data/torchRelayJSON-" + determineLocale() + ".json";
-TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "./data/photolinks.json";
+TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "/data/torchRelayJSON-" + determineLocale() + ".json";
+TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "/data/photolinks.json";
 TorchMgr.IMAGES_PATH = "images/";
 TorchMgr.LOG = false;
 

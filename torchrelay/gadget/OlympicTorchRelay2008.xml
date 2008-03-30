@@ -7,7 +7,7 @@
              author_affiliation="Google, Digital Maelstrom"
              description="__MSG_gadget_description__"
              screenshot="__MSG_gadget_screenshot"
-             height="300">
+             height="350">
 	<Require feature="tabs"/>
 	<Locale             messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/ALL_ALL.xml" />
 	<Locale lang="en"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/EN_ALL.xml" />

@@ -1408,8 +1408,8 @@ function Map(mapDiv) {
 		gmap.addOverlay(torchMarker);
 		addMarkerEvent(torchMarker, city);
 		addMarkerEvent(selectionMarker, city);
-		// Need to open info window, as well.
-		openInfoWindow(selectionMarker, city);
+		// Don't open info window by default in gadget
+		// openInfoWindow(selectionMarker, city);
     }
     else
     {

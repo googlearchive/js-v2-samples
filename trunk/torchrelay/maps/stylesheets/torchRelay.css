@@ -88,19 +88,19 @@ a.player{
 }
 a.prevButton{
   width: 36px;
-  background-image: url("../images/prevButton.png");
+  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/prevButton.png");
 }
 a.playButton{
   width: 49px;
-  background-image: url("../images/playButton.png");
+  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/playButton.png");
 }
 a.nextButton{
   width: 36px;
-  background-image: url("../images/nextButton.png");
+  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/nextButton.png");
 }
 a.pauseButton{
   width: 49px;
-  background-image: url("../images/pauseButton.png");
+  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/pauseButton.png");
   display:none;
 }
 a.player:hover{
@@ -123,7 +123,7 @@ div.regionLink a{
 div.regionLink a.selected{
   color: #000000;
   padding:0 0 2px 0;
-  background-image: url("../images/triangle.gif");
+  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/triangle.gif");
   background-repeat: no-repeat;
   background-position: center 100%;
 }
@@ -173,7 +173,7 @@ li{
 }
 li.noTorch{
   background:#f2f2f2;
-  list-style-image:url("../images/dot-gray.gif");
+  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-gray.gif");
   list-style-position:inside;
 }
 
@@ -183,13 +183,13 @@ li.noTorch span.torch {
 
 li.torched{
   background:#fff;
-  list-style-image:url("../images/dot-red-transparent.png");
+  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-red-transparent.png");
   list-style-position:inside;
 }
 li.selected{
   font-weight:bold;
   border:#999 solid 2px;
-  list-style-image:url("../images/dot-blue-transparent.png");
+  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-blue-transparent.png");
   list-style-position:inside;
 }
 
@@ -200,7 +200,7 @@ li.hasTorch span.torch {
   right: 0px;
   width: 36px;
   height: 36px;
-  background-image: url("../images/olympic-torch-36.png");
+  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/olympic-torch-36.png");
   background-repeat: no-repeat;	
   visibility: visible;
 }
@@ -215,14 +215,14 @@ a.name{
   background-position:100%;
 }
 div.show a.name{
-  background-image:url("../images/minus_sm.gif");
+  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/minus_sm.gif");
   background-repeat:no-repeat;
 }
 div.show ul{
   display:block;
 }
 div.hide a.name{
-  background-image:url("../images/plus_sm.gif");
+  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/plus_sm.gif");
   background-repeat:no-repeat;
 }
 div.hide ul{
@@ -259,11 +259,11 @@ a.selected{
 }
 .scrollUp{
   top:0;
-  background-image:url("../images/scrollUp.gif");
+  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/scrollUp.gif");
 }
 .scrollDown{
   bottom:0;
-  background-image:url("../images/scrollDown.gif");
+  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/scrollDown.gif");
 }
 .scrollUp:hover, .scrollDown:hover{
   background-position:0 0;

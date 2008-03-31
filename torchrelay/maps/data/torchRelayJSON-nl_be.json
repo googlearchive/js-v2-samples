@@ -1,4 +1,4 @@
-city_list([{worldCityList:[
+[{worldCityList:[
    {name:"Olympia, Griekenland",index:0,lat:37.633300,lng:21.616759,date:"2008/03/24",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.be/search?hl=nl&q=olympia+griekenland&btnG=Zoeken&meta=' target='_blank'>Meer informatie over Olympia.</a>"},
    {name:"Beijing, China",index:1,lat:39.908170,lng:116.397945,date:"2008/03/31",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.be/search?hl=nl&q=beijing&btnG=Google+zoeken&meta=' target='_blank'>Meer informatie over Beijing.</a>"},
    {name:"Almaty, Kazachstan",index:2,lat:43.275800,lng:76.929200,date:"2008/04/02",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.be/search?hl=nl&q=almaty&btnG=Google+zoeken&meta=' target='_blank'>Meer informatie over Almaty.</a>"},
@@ -171,4 +171,3 @@ city_list([{worldCityList:[
 	},
 {localizedText:{worldLink:'World',chinaLink:'China',learnMore:"Learn more about", info:"Info", video:"Video"}},
 {localizedContainerText:{title:"De Olympische vlam", header:"Volg de olympische vlam in jouw land en over de hele wereld.", body:"<p>Sinds 766 v.Chr. wordt er voor de olympische spelen een fakkel met het olympische vuur aangestoken in Olympia, Griekenland. Om deze traditie te continueren zal op 25 maart een fakkel met de olympische vlam aangestoken worden. De fakkel zal daarna een reis van Griekenland naar China maken en de fakkel doet tijdens deze reis verschillende steden, landen en zelfs de hoogste berg in de wereld (de Mt. Everest) aan.</p><p>Bekijk video's en volg de tocht van de olympische vlam op Google Maps.</p>", button:"Embed in mijn website", ge_link:"Nieuw! Volg de olympische vlam in Google Earth. Heb je nog geen Google Earth? Download het hier.", attribution:"Video met dank aan CCTV.com"}}]
-)

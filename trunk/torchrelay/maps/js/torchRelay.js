@@ -1035,7 +1035,7 @@ function Map(mapDiv) {
 					tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.video, '<div class="torchInfoViewer">' + videoHtml + '</div>'));
 				}
 	    		
-	    		selMarker.openInfoWindowTabsHtml( tabs, { maxWidth: 250, disableGoogleLinks : true });
+	    		selMarker.openInfoWindowTabsHtml( tabs, { maxWidth: 255, disableGoogleLinks : true });
 	    	});
 			// Precache image
 			TorchMgr.precacheCityImage(TorchMgr.cityImageList[city.index].picURL);

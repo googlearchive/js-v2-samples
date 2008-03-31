@@ -36,6 +36,7 @@ div#torchMap__MODULE_ID__
 {
   width: 100%;
   height: 90%;
+  position:relative;
 }
 
 div#torchFrame__MODULE_ID__{
@@ -1424,8 +1425,8 @@ function Map(mapDiv) {
 function TorchMgr() {}
 
 TorchMgr.SITE_URL = 'http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/';
-TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "data/torchRelayJSON-" + determineLocale() + ".json?nocache=1";
-TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "data/photolinks.json?nocache=1";
+TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "data/torchRelayJSON-" + determineLocale() + ".json";
+TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "data/photolinks.json";
 TorchMgr.IMAGES_PATH = "images/";
 TorchMgr.LOG = false;
 

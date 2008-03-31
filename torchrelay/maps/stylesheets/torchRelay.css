@@ -50,17 +50,17 @@ div#title
 	font-family: sans-serif;
 }
 /*------------------------------------------*/
-div.torchrelay{
+div#torchFrame{
   font-size:13px;
   /*height:600px;*/
   width:300px;
-  float:right;
+  height:100%;
   padding: 0;
   margin: 0;
 /*overflow:hidden;*/
   position:absolute;
   right: 4px;
-  top: 200px;
+/*  top: 200px;*/
 }
 div.torchrelay a:link, div.torchrelay a:visited{
   color:#0033FF;
@@ -129,11 +129,12 @@ div.regionLink a.selected{
 }
 /* board content */
 .scrollWrapper{
+  position:relative;
+  float:left;
   border-top:#e60000 solid 2px;
   border-bottom:#e60000 solid 2px;
   width: 100%;
   height: 100%;
-  //height:270px;
 }
 
 #scrollWindow
@@ -152,10 +153,6 @@ div#boardContent{
   //overflow:hidden;
   //position:relative;
   */
-}
-div.scrollWrapper{
-  position:relative;
-  float:left;
 }
 li{
   padding-top: 0px;
@@ -273,8 +270,8 @@ div#torchMap
 {
 	position:absolute;
 	left: 4px;
-	top: 200px;
-	width:300px;
+/*	top: 200px;*/
+	width:76%;
 	height:100%;
 	
 }

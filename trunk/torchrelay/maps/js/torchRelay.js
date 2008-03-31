@@ -1114,6 +1114,9 @@ TorchMgr.TYPE_WORLD_CITY = "w";
 TorchMgr.TYPE_CHINA_PROVINCE = "cp";
 TorchMgr.TYPE_CHINA_CITY = "c";
 
+TorchMgr.CHINA_LIST_START_INDEX = 21;
+TorchMgr.CHINA_LIST_END_INDEX = 135;
+
 TorchMgr.STATUS_TORCHED = 1;
 TorchMgr.STATUS_NOTORCH = 2;
 TorchMgr.REGION_WORLD = 1;
@@ -1375,8 +1378,8 @@ TorchMgr.start = function(mapDiv,locale,date) {
         var provinceIndex = parseInt(TorchMgr.torchCity.prtIndex);
         importCity(provinceList, 0, provinceIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_PROVINCE);
         importCity(provinceList, provinceIndex + 1, provinceList.length - 1, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_PROVINCE);
-        importCity(cityList, 0, cityIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_CITY);
-        importCity(cityList, cityIndex + 1, cityList.length - 1, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_CITY);
+        importCity(cityList, TorchMgr.CHINA_LIST_START_INDEX, cityIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_CITY);
+        importCity(cityList, cityIndex + 1, TorchMgr.CHINA_LIST_END_INDEX, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_CITY);
       }
     }
   }

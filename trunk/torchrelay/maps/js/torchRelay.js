@@ -1212,7 +1212,7 @@ TorchMgr.changeRegion = function(id) {
  * @param {int} whereComeFrom Indicate who change city initially.
  */
 TorchMgr.setRegion = function(region, whereComeFrom){
-  TorchMgr.Log('[TorchMgr.setRegion] ' + region + ', ' + whereComeFrome);
+  TorchMgr.Log('[TorchMgr.setRegion] ' + region + ', ' + whereComeFrom);
 
 	TorchMgr.currentRegion = region;
 	if (whereComeFrom == TorchMgr.EVENT_FROM_FRAME) {

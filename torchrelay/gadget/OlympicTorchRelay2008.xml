@@ -1196,12 +1196,8 @@ function Map(mapDiv) {
     	                + '<p style="font-size:9pt; font-family:sans-serif;">' 
 			+ (city.info != undefined ? city.info : "") 
 			+ '</p>'
-			+ '<div style="font-size:9pt;font-family:sans-serif;float:right">' 
-			+ (city.attribution != undefined ? city.attribution : "") 
-			+ '</div>' 
-			+ (city.learnMore ? learnLink : "") 
-			+ '</div>'
-			+ '</div>';
+			+ '<div style="font-size: 9pt">' + (city.attribution != undefined ? city.attribution : "") + '</div>'
+			+ (city.learnMore ? learnLink : "") + '</div>';
 		return html;
 	}
 	

@@ -875,9 +875,9 @@ function Map(mapDiv) {
  	   }
     	html += '</div>';
     	html += '<div style="bottom:0"><p style="font-size:9pt; font-family:sans-serif;">' 
-			+ (city.info != undefined ? city.info : "") + '</p><div style="font-size:10pt;font-family:sans-serif;float:right">' 
+			+ (city.info != undefined ? city.info : "") + '</p> 
 			+ (city.attribution != undefined ? city.attribution : "") 
-			+ '</div>' + (city.learnMore ? learnLink : "") + '</div></div>';
+			+ (city.learnMore ? learnLink : "") + '</div>';
 		return html;
 	}
 	

@@ -107,7 +107,7 @@ function Frame() {
     // city under a province
     if (cityId.search(/^c/) == 0 && cityId.search(/^cp/) != 0) {
       var cityIndex = parseInt(cityId.match(/\d+/));
-      var provinceId = TorchMgr.chinaCityList[cityIndex].parentId;
+      var provinceId = TorchMgr.chinaCityList[cityIndex-TorchMgr.CHINA_CITY_START_INDEX].parentId;
       var provinceNode = document.getElementById(provinceId);
       if (provinceNode.parentNode.className.search(/hide/) != -1) {
         changeProvinceStyle(provinceNode);

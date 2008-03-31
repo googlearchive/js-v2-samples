@@ -861,7 +861,7 @@ function Map(mapDiv) {
 	    var image = "";
 	    if(TorchMgr.cityImageList && city.index < TorchMgr.cityImageList.length)
 	    {
-			image = '<img width="300" style="margin:auto" src="' + TorchMgr.cityImageList[city.index].picURL + '" alt="Image of ' + city.name + '"></img>';
+			image = '<img width="200" style="margin:auto" src="' + TorchMgr.cityImageList[city.index].picURL + '" alt="Image of ' + city.name + '"></img>';
 	    }	    
 	    	    
 	    var learnLink = '<p style="font-size:10pt;font-family:sans-serif;">' + city.learnMore + '</p>';
@@ -869,7 +869,10 @@ function Map(mapDiv) {
 		var html = '<span style="font-size: 12pt; font-weight: bold;margin-right: 10px">' + city.name + '</span>';
 		html += '<span style="font-size: 9pt; color: #333;font-weight:normal;margin-right: 5px;">' + TorchMgr.toLocaleDate(city.date) + '</span>';
     	html += '<div style="text-align:center">';
-    	html += imageLink;
+    	if(city.type != TorchMgr.TYPE_CHINA_PROVINCE)
+      {
+    	   html += imageLink;
+ 	   }
     	html += '</div>';
     	html += '<div style="bottom:0"><p style="font-size:9pt; font-family:sans-serif;">' 
 			+ (city.info != undefined ? city.info : "") + '</p><div style="font-size:10pt;font-family:sans-serif;float:right">' 
@@ -1015,13 +1018,13 @@ function Map(mapDiv) {
 				tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.info, '<div class="torchInfoViewer">' + infoWindowHtml + '</div>'));
 				if(city.video)
 				{
-					var videoHtml = '<div style="text-align:center;margin:10px;"><object width="300" height="242">'
+					var videoHtml = '<div style="text-align:center;margin:10px;"><object width="250" height="200">'
 					+ '<param name="movie" value="http://intl.2008.cctv.com/newplayer/player.swf"></param>'
 					+ '<param name="allowScriptAccess" value="always"></param>'
 					+ '<param name="wmode" value="window"></param>'
 					+ '<param name="flashvars" value="size=1&id=' + city.video + '&site=http://2008.cctv.com"></param>'
 					+ '<embed flashvars="size=1&id=' + city.video + '&site=http://intl.2008.cctv.com" src="http://intl.2008.cctv.com/newplayer/player.swf"'
-					+ 'type="application/x-shockwave-flash"  width="300" height="242" allowFullScreen="true" wmode="window" allowScriptAccess="always"></embed>'
+					+ 'type="application/x-shockwave-flash"  width="250" height="200" allowFullScreen="true" wmode="window" allowScriptAccess="always"></embed>'
 					+ '</object></div>';
 					
 					videoHtml += "<div id='infoWindowFooter'>";
@@ -1032,7 +1035,7 @@ function Map(mapDiv) {
 					tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.video, '<div class="torchInfoViewer">' + videoHtml + '</div>'));
 				}
 	    		
-	    		selMarker.openInfoWindowTabsHtml( tabs, { maxWidth: 350, disableGoogleLinks : true });
+	    		selMarker.openInfoWindowTabsHtml( tabs, { maxWidth: 250, disableGoogleLinks : true });
 	    	});
 			// Precache image
 			TorchMgr.precacheCityImage(TorchMgr.cityImageList[city.index].picURL);

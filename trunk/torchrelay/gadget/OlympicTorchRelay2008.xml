@@ -499,7 +499,7 @@ function Frame() {
     // city under a province
     if (cityId.search(/^c/) == 0 && cityId.search(/^cp/) != 0) {
       var cityIndex = parseInt(cityId.match(/\d+/));
-      var provinceId = TorchMgr.chinaCityList[cityIndex].parentId;
+      var provinceId = TorchMgr.chinaCityList[cityIndex-TorchMgr.CHINA_LIST_START_INDEX]].parentId;
       var provinceNode = document.getElementById(provinceId);
       if (provinceNode.parentNode.className.search(/hide/) != -1) {
         changeProvinceStyle(provinceNode);
@@ -1434,6 +1434,9 @@ TorchMgr.TYPE_WORLD_CITY = "w";
 TorchMgr.TYPE_CHINA_PROVINCE = "cp";
 TorchMgr.TYPE_CHINA_CITY = "c";
 
+TorchMgr.CHINA_LIST_START_INDEX = 21;
+TorchMgr.CHINA_LIST_END_INDEX = 135;
+
 TorchMgr.STATUS_TORCHED = 1;
 TorchMgr.STATUS_NOTORCH = 2;
 TorchMgr.REGION_WORLD = 1;
@@ -1642,12 +1645,12 @@ TorchMgr.getCityById = function(cityId) {
   var cityIndex = parseInt(cityId.match(/\d+/));
   // Get the city first
   if (cityId.search(/^w/) == 0) {
-    city = TorchMgr.worldCityList[cityIndex];
+    city = TorchMgr.worldCityList[cityIndex;
   } else {
     if (cityId.search(/^cp/) == 0) {
       city = TorchMgr.chinaProvinceList[cityIndex];
     } else {
-      city = TorchMgr.chinaCityList[cityIndex];
+      city = TorchMgr.chinaCityList[cityIndex-TorchMgr.CHINA_LIST_START_INDEX]];
     }
   }
 	return city;

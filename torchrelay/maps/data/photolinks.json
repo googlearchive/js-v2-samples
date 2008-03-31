@@ -132,5 +132,6 @@ city_images([{index:0, 'pageURL': 'http://www.panoramio.com/photo/83416', 'picUR
  {index: 132, 'pageURL': 'http://www.panoramio.com/photo/872178', 'picURL': 'http://mw2.google.com/mw-panoramio/photos/medium/872178.jpg'},
  {index: 133, 'pageURL': 'http://www.panoramio.com/photo/1638436', 'picURL': 'http://mw2.google.com/mw-panoramio/photos/medium/1638436.jpg'},
  {index: 134, 'pageURL': 'http://www.panoramio.com/photo/1519546', 'picURL': 'http://mw2.google.com/mw-panoramio/photos/medium/1519546.jpg'},
+ {index:135, 'pageURL': 'http://www.panoramio.com/photo/436377', 'picURL': 'http://static.panoramio.com/photos/original/436377.jpg'},
  {index: 200, 'pageURL': 'http://www.panoramio.com/photo/490861', 'picURL': 'http://www.panoramio.com/photos/original/490861.jpg'}
 ])

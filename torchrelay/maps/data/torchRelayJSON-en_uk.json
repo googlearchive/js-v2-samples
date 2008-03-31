@@ -36,7 +36,7 @@ city_list([{worldCityList:[
    {name:"Guizhou Province",index:12,lat:26.567955,lng:106.708617,date:"2008/06/10-2008/06/12"},
    {name:"Chongqing Municipality",index:13,lat:29.554917,lng:106.548426,date:"2008/06/13-2008/06/14"},
    {name:"Sichuan Province",index:14,lat:30.658120,lng:104.065828,date:"2008/06/15-2008/06/18"},
-   {name:"Xizang Tibetan Autonomous Region",index:15,lat:29.654967,lng:91.119239,date:"2008/06/19—2008/06/21"},
+   {name:"Xizang Tibetan Autonomous Region",index:15,lat:29.654967,lng:91.119239,date:"2008/06/19-2008/06/21"},
    {name:"Qinghai Province",index:16,lat:36.624350,lng:101.804810,date:"2008/06/22-2008/06/24"},
    {name:"Xinjiang Uyghur Autonomous Region",index:17,lat:43.796078,lng:87.603809,date:"2008/06/25-2008/06/27"},
    {name:"Gansu Province",index:18,lat:36.062420,lng:103.793330,date:"2008/06/28-2008/06/30"},
@@ -110,7 +110,7 @@ city_list([{worldCityList:[
 	{name:"Yibin City",index:75,lat:28.759226,lng:104.628696,date:"2008/06/17",prtIndex:14, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Chengdu City",index:76,lat:30.658120,lng:104.065828,date:"2008/06/18",prtIndex:14, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Shannan",index:77,lat:28.139820,lng:93.114620,date:"2008/06/19",prtIndex:15, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
-	{name:"Lhasa City",index:78,lat:29.654967,lng:91.119239,date:"2008/06/20-2008/06/21",prtIndex:15, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
+	{name:"Lhasa",index:78,lat:29.654967,lng:91.119239,date:"2008/06/20-2008/06/21",prtIndex:15, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Golmud City",index:79,lat:36.403600,lng:94.894410,date:"2008/06/22",prtIndex:16, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Qinghai Lake",index:80,lat:37.160320,lng:100.173340,date:"2008/06/23",prtIndex:16, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Xining City",index:81,lat:36.624350,lng:101.804810,date:"2008/06/24",prtIndex:16, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
@@ -168,7 +168,7 @@ city_list([{worldCityList:[
 	{name:"Tangshan City",index:133,lat:39.678655,lng:118.153839,date:"2008/08/03",prtIndex:28, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Tianjin City",index:134,lat:39.103853,lng:117.252380,date:"2008/08/04-2008/08/05",prtIndex:29, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Beijing City",index:135,lat:39.908170,lng:116.397945,date:"2008/08/06-2008/08/08",prtIndex:30, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"}]
- about	},
+	},
 {localizedText:{worldLink:'World',chinaLink:'China',learnMore:"Learn more about", info:"Info", video:"Video", videoDisclaimer:"<p>Torch relay video will be updated here after the relay happens in this city. Historial footage is featured before the torch arrives at this location.</p>", videoCopyright:"© Video copyright and provision by CCTV.com", webLink:"<p>Official online broadcast of the Olympic Torch Relay from <a href='http://houju.cctv.com/index_en.php'>CCTV.com</a></p>"}},
 {localizedContainerText:{title:"Torch Relay", header:"Track the torch in your country and around the world.", body:"<p>An ongoing tradition from 766 B.C. has been to ignite the torch at the ancient site in Olympia, Greece. From March 25th until the start of May, the Torch Relay will travel across Greece, into Beijing, and then around the world through cities, oceans, and even the world's highest mountain, Mt. Everest.</p><p>Watch relay video footage and track the current torch location on Google Maps.</p>", button:"Embed in my website", ge_link:"New! Track the torch in Google Earth. Don't have Google Earth? Download it here.", attribution:"Video courtesy of CCTV.com"}}]
 )

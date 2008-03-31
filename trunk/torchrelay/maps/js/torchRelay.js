@@ -875,7 +875,7 @@ function Map(mapDiv) {
  	   }
     	html += '</div>';
     	html += '<div style="bottom:0"><p style="font-size:9pt; font-family:sans-serif;">' 
-			+ (city.info != undefined ? city.info : "") + '</p> 
+			+ (city.info != undefined ? city.info : "") + '</p>' 
 			+ (city.attribution != undefined ? city.attribution : "") 
 			+ (city.learnMore ? learnLink : "") + '</div>';
 		return html;

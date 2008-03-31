@@ -1645,7 +1645,7 @@ TorchMgr.getCityById = function(cityId) {
   var cityIndex = parseInt(cityId.match(/\d+/));
   // Get the city first
   if (cityId.search(/^w/) == 0) {
-    city = TorchMgr.worldCityList[cityIndex;
+    city = TorchMgr.worldCityList[cityIndex];
   } else {
     if (cityId.search(/^cp/) == 0) {
       city = TorchMgr.chinaProvinceList[cityIndex];

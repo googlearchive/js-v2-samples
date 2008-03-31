@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+  <Folder>
+    <name>Sample</name>
+    <description>Examples of ground overlays</description>
+    <GroundOverlay>
+      <name>Sample</name>
+      <Region>
+        <LatLonAltBox>
+          <north>37.78665907664123</north>
+          <south>37.74174331243523</south>
+          <east>-122.27238736745187</east>
+          <west>-122.47004427317312</west>
+          <minAltitude>0</minAltitude>
+          <maxAltitude>0</maxAltitude>
+        </LatLonAltBox>
+        <Lod>
+          <minLodPixels>128</minLodPixels>
+          <maxLodPixel>-1</maxLodPixel>
+          <minFadeExtent>0</minFadeExtent>
+          <maxFadeExtent>-1</maxFadeExtent>
+        </Lod>
+      </Region>
+      <Icon>
+        <href>http://text2image.ning.com/TextToImage.php?text=San+Francisco%2C+here+we+come%21&amp;LabelType=2&amp;FontSize=24&amp;casing=asis&amp;alignment=1&amp;font=arial&amp;fontStyle=bold&amp;LabelLocation=topleft&amp;dX=11&amp;dY=0&amp;FontColor=00ff00f9&amp;ShadowColor=00000000&amp;depth=3&amp;effect=0&amp;LabelHeight=35&amp;LabelWidth=438&amp;IconHeight=18&amp;IconName=http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png</href>
+      </Icon>
+      <LatLonBox>
+        <north>37.78665907664123</north>
+        <south>37.74174331243523</south>
+        <east>-122.27238736745187</east>
+        <west>-122.47004427317312</west>
+      </LatLonBox>
+    </GroundOverlay>
+  </Folder>
+</kml>

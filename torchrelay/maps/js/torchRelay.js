@@ -1330,7 +1330,7 @@ TorchMgr.getCityById = function(cityId) {
     if (cityId.search(/^cp/) == 0) {
       city = TorchMgr.chinaProvinceList[cityIndex];
     } else {
-      city = TorchMgr.chinaCityList[cityIndex-TorchMgr.CHINA_CITY_START_INDEX];
+      city = TorchMgr.chinaCityList[cityIndex-TorchMgr.CHINA_LIST_START_INDEX];
     }
   }
 	return city;

@@ -5,7 +5,7 @@ city_list([{worldCityList:[
      lng:21.616759,
      date:"2008/03/24",
      attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>",
-     learnMore:"<a href='http://www.google.fr/search?hl=fr&q=olympie&btnG=Recherche+Google&meta=' target='_blank'>En savoir plus à propos d'Olympie</a>",
+     learnMore:"<a href='http://www.google.fr/search?hl=fr&q=olympie&btnG=Recherche+Google&meta=' target='_blank'>En savoir plus à propos d'Olympie</a>"
    },
    {name:"Pékin, Chine",index:1,lat:39.908170,lng:116.397945,date:"2008/03/31", attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.fr/search?hl=fr&q=pekin&btnG=Rechercher&meta=' target='_blank'>En savoir plus à propos de Pékin</a>"},
    {name:"Almaty, Kazakhstan",index:2,lat:43.275800,lng:76.929200,date:"2008/04/02", attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.fr/search?hl=fr&q=almaty&btnG=Rechercher&meta=' target='_blank'>En savoir plus à propos d'Almaty</a>"},

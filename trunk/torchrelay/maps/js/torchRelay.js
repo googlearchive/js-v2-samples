@@ -1018,7 +1018,7 @@ function Map(mapDiv) {
 				tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.info, '<div class="torchInfoViewer">' + infoWindowHtml + '</div>'));
 				if(city.video)
 				{
-					var videoHtml = '<div style="text-align:center;margin:10px;"><object width="245" height="197">'
+					var videoHtml = '<div style="text-align:center;"><object width="245" height="197">'
 					+ '<param name="movie" value="http://intl.2008.cctv.com/newplayer/player.swf"></param>'
 					+ '<param name="allowScriptAccess" value="always"></param>'
 					+ '<param name="wmode" value="window"></param>'

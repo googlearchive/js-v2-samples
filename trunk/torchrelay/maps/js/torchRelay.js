@@ -427,9 +427,9 @@ function Map(mapDiv) {
   var redLineColor = "#ff0000";
   var worldCenter = new google.maps.LatLng(37.633300, 21.616759);
   var chinaCenter = new google.maps.LatLng(34.264915, 108.954401);
-  var DEFAULT_WORLD_LEVEL = 3;
-  var DEFAULT_CHINA_LEVEL = 4;
-  var DEFAULT_PROV_LEVEL = 8;
+  var DEFAULT_WORLD_LEVEL = 2;
+  var DEFAULT_CHINA_LEVEL = 3;
+  var DEFAULT_PROV_LEVEL = 7;
   
   if(!mapDiv)
   {

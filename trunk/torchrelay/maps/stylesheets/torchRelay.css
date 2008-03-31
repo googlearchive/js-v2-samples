@@ -63,6 +63,7 @@ div#torchFrame{
 /*overflow:hidden;*/
   position:absolute;
   right: 0px;
+  bottom:0px;
 /*  top: 200px;*/
 }
 div.torchrelay a:link, div.torchrelay a:visited{

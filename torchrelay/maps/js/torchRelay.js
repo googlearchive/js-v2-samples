@@ -1616,6 +1616,7 @@ function getWindowWidth() {
  */
 function resizeApp()
 {
+   /* No need to resize app in iFrame
 	var TOP_OFFSET = 205;      // Top of container
 	var BOTTOM_OFFSET = 40;    // Bottom of container
 	var BUTTON_OFFSET = 20;    // offset for frame buttons (necessary, despite buttons have been moved)
@@ -1640,7 +1641,7 @@ function resizeApp()
 		
 	scrollWindow.style.height = (mapHeight - FRAME_OFFSET - BUTTON_OFFSET) + "px";
 	scrollWrapper.style.height = (mapHeight - FRAME_OFFSET) + "px";
-
+   */
 }
 
 /**

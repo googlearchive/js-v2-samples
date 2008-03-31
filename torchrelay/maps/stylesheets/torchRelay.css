@@ -269,8 +269,6 @@ a.selected{
 div#torchMap
 {
 	position:absolute;
-	left: 4px;
-/*	top: 200px;*/
 	width:440px;
 	height:460px;
 	

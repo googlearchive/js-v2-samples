@@ -57,9 +57,10 @@ div#torchFrame{
   height:460px;
   padding: 0;
   margin: 0;
+  margin-top:2px;
 /*overflow:hidden;*/
   position:absolute;
-  right: 4px;
+  right: 0px;
 /*  top: 200px;*/
 }
 div.torchrelay a:link, div.torchrelay a:visited{
@@ -270,7 +271,7 @@ a.selected{
 div#torchMap
 {
 	position:absolute;
-	width:460px;
+	width:480px;
 	height:460px;
 	
 }

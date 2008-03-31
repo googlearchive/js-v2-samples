@@ -1018,13 +1018,13 @@ function Map(mapDiv) {
 				tabs.push(new google.maps.InfoWindowTab(TorchMgr.localizedText.info, '<div class="torchInfoViewer">' + infoWindowHtml + '</div>'));
 				if(city.video)
 				{
-					var videoHtml = '<div style="text-align:center;margin:10px;"><object width="250" height="200">'
+					var videoHtml = '<div style="text-align:center;margin:10px;"><object width="245" height="197">'
 					+ '<param name="movie" value="http://intl.2008.cctv.com/newplayer/player.swf"></param>'
 					+ '<param name="allowScriptAccess" value="always"></param>'
 					+ '<param name="wmode" value="window"></param>'
 					+ '<param name="flashvars" value="size=1&id=' + city.video + '&site=http://2008.cctv.com"></param>'
 					+ '<embed flashvars="size=1&id=' + city.video + '&site=http://intl.2008.cctv.com" src="http://intl.2008.cctv.com/newplayer/player.swf"'
-					+ 'type="application/x-shockwave-flash"  width="250" height="200" allowFullScreen="true" wmode="window" allowScriptAccess="always"></embed>'
+					+ 'type="application/x-shockwave-flash"  width="245" height="197" allowFullScreen="true" wmode="window" allowScriptAccess="always"></embed>'
 					+ '</object></div>';
 					
 					videoHtml += "<div id='infoWindowFooter'>";

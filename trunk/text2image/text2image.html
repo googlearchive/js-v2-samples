@@ -12,18 +12,23 @@
       type="text/javascript"></script>
     <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxTPZYElJSBeBUeMSX5xXgq6lLjHthSAk20WnZ_iuuzhMt60X_ukms-AUg"></script>
     <script type="text/javascript">
-    function setupMap(){var pointCenter = new GLatLng(37.775196,-122.419204);
-var map = new GMap2(document.getElementById("map"));
-map.setCenter(pointCenter, 10);
+    var map = null;
+    function setupMap(){
+    var pointCenter = new GLatLng(37.775196,-122.419204);
+    var map = new GMap2(document.getElementById("map"));
+    map.setCenter(pointCenter, 10);
+    map.addControl(new GSmallMapControl());
+    map.enableDoubleClickZoom();
+    map.enableScrollWheelZoom();
+    var pointSW = new GLatLng(37.741743,-122.470044);
+    var pointNE = new GLatLng(37.786659,-122.272387);
 
-var pointSW = new GLatLng(37.741743,-122.470044);
-var pointNE = new GLatLng(37.786659,-122.272387);
-
-var groundOverlay = new GGroundOverlay(
+    var groundOverlay = new GGroundOverlay(
    "http://text2image.ning.com/TextToImage.php?text=San+Francisco%2C+here+we+come%21&LabelType=2&FontSize=24&casing=asis&alignment=1&font=arial&fontStyle=bold&LabelLocation=topleft&dX=11&dY=0&FontColor=00ff00f9&ShadowColor=00000000&depth=3&effect=0&LabelHeight=35&LabelWidth=438&IconHeight=18&IconName=http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png", 
    new GLatLngBounds(pointSW, pointNE));
 
-map.addOverlay(groundOverlay);}
+map.addOverlay(groundOverlay);
+}
 </script>
   <body onload="setupMap()" onunload="GUnload()">
   <div id="map" width: 800px; height: 600px"></div>

@@ -32,12 +32,6 @@
 <Content type="html"><![CDATA[
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <style type="text/css">
-div#container__MODULE_ID__
-{
-  width: 100%;
-  height: 100%;
-}
-
 div#torchMap__MODULE_ID__
 {
   width: 100%;

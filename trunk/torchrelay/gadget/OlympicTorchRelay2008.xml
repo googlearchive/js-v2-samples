@@ -2036,8 +2036,6 @@ dm.TorchPlayerControl.prototype.selectable = function()
 
 google.setOnLoadCallback(initialize);
 //TorchMgr.Log("Locale: " + determineLocale() + ", Language: " + determineLanguage());
-
-google.setOnLoadCallback(initialize);
  </script>
  
 <script type="text/javascript">

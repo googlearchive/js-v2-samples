@@ -176,5 +176,5 @@
 	{name:"Tianjin City",index:111,lat:39.103853,lng:117.252380,date:"2008/08/04-2008/08/05",prtIndex:29},
 	{name:"Beijing City",index:112,lat:39.908170,lng:116.397945,date:"2008/08/06-2008/08/08",prtIndex:30}]
 	},
-{localizedText:{worldLink:'World',chinaLink:'China',learnMore:"Learn more about", info:"Info", video:"Video"}},
+{localizedText:{worldLink:'Monde',chinaLink:'Chine',learnMore:"Learn more about", info:"Info", video:"Video"}},
 {localizedContainerText:{title:"La Flamme Olympique", header:"Suivez la flamme olympique lors de son passage en France et partout dans le monde.", body:"<p>Le 25 mars, la flamme olympique s’élancera depuis la ville d’Olympie en Grèce, où elle fut allumée pour la première fois en 766 avant Jésus Christ. Pendant près de deux mois, elle sera portée de main en main tout autour du monde, traversera des océans, et sera même hissée sur le toit du monde, au sommet de l’Everest, pour finalement atteindre Pékin en Chine.</p><p>Suivez le trajet de la flamme olympique et regardez des vidéos, le tout sur Google Maps.</p>", button:"Ajouter à votre site", ge_link:"Nouveau ! Suivez la flamme olympique dans Google Earth. Vous n’avez pas encore Google Earth ? Téléchargez-le ici.", attribution:"Vidéos: Courtesy of CCTV.com"}}]

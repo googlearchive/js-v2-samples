@@ -169,5 +169,5 @@
 	{name:"Tianjin City",index:111,lat:39.103853,lng:117.252380,date:"2008/08/04-2008/08/05",prtIndex:29},
 	{name:"Beijing City",index:112,lat:39.908170,lng:116.397945,date:"2008/08/06-2008/08/08",prtIndex:30}]
 	},
-{localizedText:{worldLink:'World',chinaLink:'China',learnMore:"Learn more about", info:"Info", video:"Video"}},
+{localizedText:{worldLink:'Mundo',chinaLink:'China',learnMore:"Learn more about", info:"Info", video:"Video"}},
 {localizedContainerText:{title:"La antorcha olímpica", header:"Sigue el recorrido de la antorcha olímpica por todo el mundo.", body:"<p>El 25 de Marzo, la antorcha olímpica se encenderá en la antigua ciudad de Olimpia, Grecia, donde se encendió por primera vez en el año 766 a.C. Durante dos meses viajará desde Grecia a Pekín recorriendo todo el mundo por ciudades, océanos e incluso de la cumbre del Everest.</p><p>Sigue el trayecto de la antorcha olímpica y disfruta de los vídeos. Todo en Google Maps.</p>", button:"Insertar en mi web", ge_link:"¡Nuevo! Sigue la antorcha olímpica en Google Earth. ¿Aún no tienes Google Earth? Descárgalo aquí.", attribution:"Vídeos cortesía de CCTV.com"}}]

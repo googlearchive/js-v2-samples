@@ -171,6 +171,6 @@ city_list([{worldCityList:[
 	{name:"Tianjin City",index:134,lat:39.103853,lng:117.252380,date:"2008/08/04-2008/08/05",prtIndex:29, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"},
 	{name:"Beijing City",index:135,lat:39.908170,lng:116.397945,date:"2008/08/06-2008/08/08",prtIndex:30, attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>"}]
 	},
-{localizedText:{worldLink:'World',chinaLink:'China',learnMore:"Learn more about", info:"Info", video:"Video"}},
+{localizedText:{worldLink:'Mondo',chinaLink:'Cina',learnMore:"Learn more about", info:"Info", video:"Video"}},
 {localizedContainerText:{title:"La Torcia Olimpica", header:"Segui la fiaccola olimpica nel suo viaggio attraverso l'Italia ed il resto del mondo.", body:"<p>Il 25 marzo la torcia olimpica verrà accesa nell'antica città di Olimpia, in Grecia, dove per la prima volta fu accesa nell'anno 766 a.C. La staffetta della fiaccola continuerà nei mesi seguenti viaggiando dalla Grecia a Pechino e poi in giro per tutto il mondo attraverso città e oceani, raggiungendo addirittura il tetto del mondo, il Monte Everest.</p><p>Segui il percorso della torcia olimpica e guarda i filmati del suo viaggio su Google Maps.</p>", button:"Aggiungi al mio sito", ge_link:"Novità! Segui la staffetta della torcia olimpica  su Google Earth. Non hai ancora Google Earth? Scaricalo qui", attribution:"Video per gentile concessione di CCTV.com"}}]
 )

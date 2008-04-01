@@ -1935,7 +1935,7 @@ function resizeApp()
 	var frame = document.getElementById('torchFrame__MODULE_ID__');
 	var scrollWindow = document.getElementById('scrollWindow__MODULE_ID__');
 	var scrollWrapper = document.getElementById('scrollWrapper__MODULE_ID__');
-	container.style.height = mapHeight + "px";
+	
 	map.style.width = mapWidth + "px";
 	map.style.height = mapHeight + "px";
 		

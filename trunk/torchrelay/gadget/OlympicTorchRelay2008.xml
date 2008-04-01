@@ -1887,26 +1887,36 @@ function initialize()
  * Borrow javascript from Google Maps to support application height/width comprehension.
  */
 function getWindowHeight() {
-	if (window.self && self.innerHeight) {
-		return self.innerHeight;
-	}
-	if (document.documentElement && document.documentElement.clientHeight) {
-		return document.documentElement.clientHeight;
-	}
-	return 0;
+  if (self.innerHeight) {
+    // all except Explorer
+    return self.innerHeight;
+  } else if (document.documentElement &&
+             document.documentElement.clientHeight) {
+    // Explorer 6 Strict Mode
+    return document.documentElement.clientHeight;
+  } else if (document.body) {
+    // other Explorers
+    return document.body.clientHeight;
+  }
+  return 0;
 }
 /**
  * Borrow javascript from Google Maps to support application height/width comprehension.
  */
 
 function getWindowWidth() {
-	if (window.self && self.innerWidth) {
-		return self.innerWidth;
-	}
-	if (document.documentElement && document.documentElement.clientWidth) {
-		return document.documentElement.clientWidth;
-	}
-	return 0;
+  if (self.innerWidth) {
+    // all except Explorer
+    return self.innerWidth;
+  } else if (document.documentElement &&
+             document.documentElement.clientWidth) {
+    // Explorer 6 Strict Mode
+    return document.documentElement.clientWidth;
+  } else if (document.body) {
+    // other Explorers
+    return document.body.clientWidth;
+  }
+  return 0;
 }
 
 /**

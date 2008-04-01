@@ -1633,7 +1633,7 @@ if (date.indexOf("-") != -1) {
   var dateArray = date.split("-");
   var dateA = new Date(dateArray[0]);
   var dateB = new Date(dateArray[1]);
-  localDate = months[dateA.getMonth()] + " " + dateA.getDate() + ", " + dateA.getFullYear()
+  localDate = months[dateA.getMonth()] + " " + dateA.getDate() + ", " + dateA.getFullYear() +
                "-" +
                months[dateB.getMonth()] + " " + dateB.getDate() + ", " + dateB.getFullYear();
 } else {

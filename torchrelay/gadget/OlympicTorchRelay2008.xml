@@ -1595,6 +1595,10 @@ TorchMgr.toLocaleDate = function(date) {
   	case "en_us":
   		return TorchMgr.toEnDate(date);
   	break;
+	case "fr_fr":
+	case "fr_be":
+		return TorchMgr.toFrDate(date);
+	break;
   	case "zh_cn":
   		return TorchMgr.toZhDate(date);
   	break;
@@ -1616,6 +1620,28 @@ TorchMgr.toEnDate = function(date){
   }
 
   return localDate;
+
+}
+
+TorchMgr.toFrDate = function(date){
+	var months = [	"Janvier", 	"Février", 	"Mars", 
+					"Avril", 	"Mai", 		"Juin", 
+					"Juillet", 	"Août", 	"Septembre", 
+					"Octobre", 	"Novembre", "Décembre" ];
+					
+if (date.indexOf("-") != -1) {
+  var dateArray = date.split("-");
+  var dateA = new Date(dateArray[0]);
+  var dateB = new Date(dateArray[1]);
+  localDate = months[dateA.getMonth()] + " " + dateA.getDate() + ", " + dateA.getFullYear()
+               "-" +
+               months[dateB.getMonth()] + " " + dateB.getDate() + ", " + dateB.getFullYear();
+} else {
+  var dateC = new Date(date);
+  localDate = months[dateC.getMonth()] + " " + dateC.getDate() + ", " + dateC.getFullYear()
+}
+
+return localDate;
 
 }
 

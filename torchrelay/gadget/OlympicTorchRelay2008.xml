@@ -1914,7 +1914,6 @@ function getWindowWidth() {
  */
 function resizeApp()
 {
-/*	Not used by Gadget
 	var TOP_OFFSET = 205;
 	var BOTTOM_OFFSET = 40;
 	var BUTTON_OFFSET = 20;
@@ -1924,8 +1923,8 @@ function resizeApp()
 	var height = getWindowHeight() - PADDING;
 	var width = getWindowWidth() - PADDING;
 	
-	var mapWidth = width - RIGHT_OFFSET;
-	var mapHeight = height - TOP_OFFSET - BOTTOM_OFFSET;
+	var mapWidth = width;
+	var mapHeight = height;
 	
 	var container = document.getElementById('container__MODULE_ID__');
 	var map = document.getElementById('torchMap__MODULE_ID__');
@@ -1935,13 +1934,9 @@ function resizeApp()
 	container.style.height = mapHeight + "px";
 	map.style.width = mapWidth + "px";
 	map.style.height = mapHeight + "px";
-	
-	//frame.style.height = (mapHeight - 40) + "px";
-	
-	
+		
 	scrollWindow.style.height = (mapHeight - FRAME_OFFSET - BUTTON_OFFSET) + "px";
 	scrollWrapper.style.height = (mapHeight - FRAME_OFFSET) + "px";
-*/
 }
 
 /**

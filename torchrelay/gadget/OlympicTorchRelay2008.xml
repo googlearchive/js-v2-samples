@@ -1629,20 +1629,18 @@ TorchMgr.toFrDate = function(date){
 					"Juillet", 	"Août", 	"Septembre", 
 					"Octobre", 	"Novembre", "Décembre" ];
 					
-if (date.indexOf("-") != -1) {
-  var dateArray = date.split("-");
-  var dateA = new Date(dateArray[0]);
-  var dateB = new Date(dateArray[1]);
-  localDate = months[dateA.getMonth()] + " " + dateA.getDate() + ", " + dateA.getFullYear() +
-               "-" +
-               months[dateB.getMonth()] + " " + dateB.getDate() + ", " + dateB.getFullYear();
-} else {
-  var dateC = new Date(date);
-  localDate = months[dateC.getMonth()] + " " + dateC.getDate() + ", " + dateC.getFullYear()
-}
-
-return localDate;
-
+   if (date.indexOf("-") != -1) {
+     var dateArray = date.split("-");
+     var dateA = new Date(dateArray[0]);
+     var dateB = new Date(dateArray[1]);
+     localDate = dateA.getDate() + " " + months[dateA.getMonth()] + ", " + dateA.getFullYear() +
+                  "-" +
+                  dateB.getDate() + " " + months[dateB.getMonth()] + ", " + dateB.getFullYear();
+   } else {
+     var dateC = new Date(date);
+     localDate = dateC.getDate() + " " + months[dateC.getMonth()] + ", " + dateC.getFullYear()
+   }
+   return localDate;
 }
 
 TorchMgr.autoScroll = function(direction){

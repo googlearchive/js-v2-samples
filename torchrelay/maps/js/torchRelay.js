@@ -1312,12 +1312,12 @@ TorchMgr.toFrDate = function(date){
      var dateArray = date.split("-");
      var dateA = new Date(dateArray[0]);
      var dateB = new Date(dateArray[1]);
-     localDate = months[dateA.getMonth()] + " " + dateA.getDate() + ", " + dateA.getFullYear() +
+     localDate = dateA.getDate() + " " +months[dateA.getMonth()] + ", " + dateA.getFullYear() +
                   "-" +
-                  months[dateB.getMonth()] + " " + dateB.getDate() + ", " + dateB.getFullYear();
+                  dateB.getDate() + " " + months[dateB.getMonth()] + ", " + dateB.getFullYear();
    } else {
      var dateC = new Date(date);
-     localDate = months[dateC.getMonth()] + " " + dateC.getDate() + ", " + dateC.getFullYear()
+     localDate = dateC.getDate() + " " + months[dateC.getMonth()] + ", " + dateC.getFullYear()
    }
    return localDate;
 }

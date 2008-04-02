@@ -19,9 +19,7 @@
    {name:"Nagano, Giappone",index:17,lat:36.643010,lng:138.188700,date:"2008/04/26",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=nagano%2C+giappone&btnG=Cerca&meta='>Scopri altro su Nagano.</a>"},
    {name:"Seoul, Corea del Sud",index:18,lat:37.532308,lng:126.957440,date:"2008/04/27",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=seoul%2C+corea+del+sud&btnG=Cerca&meta='>Scopri altro su Seoul.</a>"},
    {name:"Pyongyang, Corea del Nord",index:19,lat:39.031859,lng:125.753765,date:"2008/04/28",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=pyongyang%2C+corea+del+nord&btnG=Cerca&meta='>Scopri altro su Pyongyang.</a>"},
-   {name:"Ho Chi Min, Vietnam",index:20,lat:10.772462,lng:106.678555,date:"2008/04/29",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=ho+chi+min%2C+vietnam&btnG=Cerca&meta='>Scopri altro su Ho Chi Min.</a>"},
-   {name:"Hong Kong, Cina",index:21,lat:22.396428,lng:114.109497,date:"2008/05/02",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=hong+kong%2C+cina&btnG=Cerca&meta='>Scopri altro su Hong Kong.</a>"},
-   {name:"Macao, Cina",index:22,lat:22.198745,lng:113.543873,date:"2008/05/03",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=macao%2C+cina&btnG=Cerca&meta='>Scopri altro su Macao.</a>"}]},
+   {name:"Ho Chi Min, Vietnam",index:20,lat:10.772462,lng:106.678555,date:"2008/04/29",attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=ho+chi+min%2C+vietnam&btnG=Cerca&meta='>Scopri altro su Ho Chi Min.</a>"}]},
 {chinaProvList:[
    {name:"Hainan Province",index:0,lat:20.032303,lng:110.320198,date:"2008/05/04-2008/05/06"},
    {name:"Guangdong Province",index:1,lat:23.134104,lng:113.322323,date:"2008/05/07-2008/05/10"},
@@ -55,7 +53,9 @@
    {name:"Tianjin Municipality",index:29,lat:39.103853,lng:117.252380,date:"2008/08/04-2008/08/05"},
    {name:"Beijing Municipality",index:30,lat:39.908170,lng:116.397945,date:"2008/08/06-2008/08/08"}]},
 {chinaCityList:[
-	{name:"Sanya City",index:0,lat:18.235517,lng:109.513615,date:"2008/05/04",prtIndex:0},
+   {name:"Hong Kong, Cina",index:21,lat:22.396428,lng:114.109497,date:"2008/05/02", prtIndex:0, prtAction:"before", attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=hong+kong%2C+cina&btnG=Cerca&meta='>Scopri altro su Hong Kong.</a>"},
+   {name:"Macao, Cina",index:22,lat:22.198745,lng:113.543873,date:"2008/05/03", prtIndex:0, prtAction:"before", attribution:"Image © <a target='_blank' href='http://www.panoramio.com'>Panoramio</a>", learnMore:"<a href='http://www.google.it/search?hl=it&q=macao%2C+cina&btnG=Cerca&meta='>Scopri altro su Macao.</a>"},
+   {name:"Sanya City",index:0,lat:18.235517,lng:109.513615,date:"2008/05/04",prtIndex:0},
 	{name:"Wuzhishan City",index:1,lat:18.775580,lng:109.513860,date:"2008/05/05",prtIndex:0},
 	{name:"Wanning City",index:2,lat:18.797120,lng:110.396120,date:"2008/05/05",prtIndex:0},
 	{name:"Haikou City",index:3,lat:20.032303,lng:110.320198,date:"2008/05/06",prtIndex:0},

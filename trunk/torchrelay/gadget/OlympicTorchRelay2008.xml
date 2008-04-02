@@ -1593,6 +1593,9 @@ TorchMgr.toLocaleDate = function(date) {
   switch(TorchMgr.locale)
   {
   	case "en_us":
+	case "en_uk":
+	case "en_nz":
+	case "en_au":
   		return TorchMgr.toEnDate(date);
   	break;
 	case "fr_fr":
@@ -1603,7 +1606,7 @@ TorchMgr.toLocaleDate = function(date) {
   		return TorchMgr.toZhDate(date);
   	break;
   	default:
-  		return TorchMgr.toEnDate(date);
+  		return TorchMgr.toWorldDate(date);
   	break;
   }
 }
@@ -1639,6 +1642,21 @@ TorchMgr.toFrDate = function(date){
    } else {
      var dateC = new Date(date);
      localDate = dateC.getDate() + " " + months[dateC.getMonth()] + ", " + dateC.getFullYear()
+   }
+   return localDate;
+}
+
+TorchMgr.toWorldDate = function(date){
+   if (date.indexOf("-") != -1) {
+     var dateArray = date.split("-");
+     var dateA = new Date(dateArray[0]);
+     var dateB = new Date(dateArray[1]);
+     localDate = dateA.getDate() + " " + (dateA.getMonth() + 1) + ", " + dateA.getFullYear() +
+                  "-" +
+                  dateB.getDate() + " " + (dateB.getMonth() + 1) + ", " + dateB.getFullYear();
+   } else {
+     var dateC = new Date(date);
+     localDate = dateC.getDate() + " " + (dateC.getMonth() + 1) + ", " + dateC.getFullYear()
    }
    return localDate;
 }

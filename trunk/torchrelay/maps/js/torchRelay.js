@@ -215,7 +215,7 @@ function Frame() {
           parentNode = document.getElementById(city.parentId).nextSibling; // The "ul" tag node
           if(city.prtAction == "before")
           {
-            document.getElementById("chinaList").insertBefore(cityNode, document.getElementById(city.parentId));
+            document.getElementById("chinaList").insertBefore(cityNode, document.getElementById(city.parentId).parentNode);
           }
           else
           {

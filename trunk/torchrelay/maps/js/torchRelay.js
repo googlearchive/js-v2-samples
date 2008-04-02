@@ -191,13 +191,13 @@ function Frame() {
 	  var parentNode;
       switch (city.type) {
         case TorchMgr.TYPE_WORLD_CITY:
-		  city.parentId = "worldList";
+	  city.parentId = "worldList";
           cityNode.setAttribute("id",city.id);
           parentNode = document.getElementById("worldList");
           parentNode.appendChild(cityNode);
           break;
         case TorchMgr.TYPE_CHINA_PROVINCE:
-		  city.parentId = "chinaList";
+	  city.parentId = "chinaList";
           cityNode.setAttribute("id",city.id);
           parentNode = document.getElementById("chinaList");
           // Create div wrapper first
@@ -210,9 +210,10 @@ function Frame() {
           divWrapper.appendChild(provinceUL);
           break;
         case TorchMgr.TYPE_CHINA_CITY:
-		  city.parentId = "cp" + city.prtIndex;
+	  city.parentId = "cp" + city.prtIndex;
           cityNode.setAttribute("id",city.id);
           parentNode = document.getElementById(city.parentId).nextSibling; // The "ul" tag node
+          parentNode = (null == parentNode) ? document.getElementById("chinaList") : parentNode;
           parentNode.appendChild(cityNode);
           break;
       }

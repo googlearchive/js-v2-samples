@@ -1612,6 +1612,21 @@ TorchMgr.toLocaleDate = function(date) {
 }
 
 TorchMgr.toEnDate = function(date){
+   if (date.indexOf("-") != -1) {
+     var dateArray = date.split("-");
+     var dateA = new Date(dateArray[0]);
+     var dateB = new Date(dateArray[1]);
+     localDate = (dateA.getMonth() + 1) + "/" +  dateA.getDate() + "/" + dateA.getFullYear() +
+                  "-" +
+                  (dateB.getMonth() + 1) + "/" + dateB.getDate() + "/" + dateB.getFullYear();
+   } else {
+     var dateC = new Date(date);
+     localDate = (dateC.getMonth() + 1) + "/" + dateC.getDate() + "/" + dateC.getFullYear()
+   }
+   return localDate;
+}
+
+TorchMgr.toEnLocaleDate = function(date){
   // Add support for English
   if (date.indexOf("-") != -1) {
     var dateArray = date.split("-");
@@ -1651,12 +1666,12 @@ TorchMgr.toWorldDate = function(date){
      var dateArray = date.split("-");
      var dateA = new Date(dateArray[0]);
      var dateB = new Date(dateArray[1]);
-     localDate = dateA.getDate() + " " + (dateA.getMonth() + 1) + ", " + dateA.getFullYear() +
+     localDate = dateA.getDate() + "/" + (dateA.getMonth() + 1) + "/" + dateA.getFullYear() +
                   "-" +
-                  dateB.getDate() + " " + (dateB.getMonth() + 1) + ", " + dateB.getFullYear();
+                  dateB.getDate() + "/" + (dateB.getMonth() + 1) + "/" + dateB.getFullYear();
    } else {
      var dateC = new Date(date);
-     localDate = dateC.getDate() + " " + (dateC.getMonth() + 1) + ", " + dateC.getFullYear()
+     localDate = dateC.getDate() + "/" + (dateC.getMonth() + 1) + "/" + dateC.getFullYear()
    }
    return localDate;
 }

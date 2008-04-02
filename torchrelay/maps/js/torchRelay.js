@@ -213,11 +213,14 @@ function Frame() {
 	  city.parentId = "cp" + city.prtIndex;
           cityNode.setAttribute("id",city.id);
           parentNode = document.getElementById(city.parentId).nextSibling; // The "ul" tag node
-          if(city.prtAction == "before" && parentNode.parentNode != null)
+          if(city.prtAction == "before")
           {
-            parentNode.parentNode.insertBefore(cityNode, parentNode);
+            document.getElementById("chinaList").insertBefore(cityNode, parentNode);
           }
-          parentNode.appendChild(cityNode);
+          else
+          {
+            parentNode.appendChild(cityNode);
+          }
           break;
       }
       

@@ -212,8 +212,8 @@ function Frame() {
         case TorchMgr.TYPE_CHINA_CITY:
 	  city.parentId = "cp" + city.prtIndex;
           cityNode.setAttribute("id",city.id);
-          parentNode = document.getElementById(city.parentId).nextSibling; // The "ul" tag node
-          parentNode = (null == parentNode) ? document.getElementById("chinaList") : parentNode;
+          parentNode = (null == city.parentId) ? document.getElementById("chinaList")
+                      : document.getElementById(city.parentId).nextSibling; // The "ul" tag node
           parentNode.appendChild(cityNode);
           break;
       }

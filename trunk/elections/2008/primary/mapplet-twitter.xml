@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
 <ModulePrefs
-		title="Twitter Election Map on Padlet"
+		title="Twitter Election Map"
 		author="Michael Geary"
 		author_email="mapplet.feedback@mg.to"
-		description="Twitter Election Map on Padlet"
+		description="Twitter Election Map"
 >
 	<Require feature="sharedmap"/>
 	<Require feature="dynamic-height"/>

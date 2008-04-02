@@ -317,7 +317,7 @@ function Frame() {
 					var firstCity = document
 							.getElementById(TorchMgr.currentCity.id).nextSibling.firstChild;
 					var cityIndex = parseInt(firstCity.id.match(/\d+/));
-					currentCity = TorchMgr.currentCity = cityList[cityIndex];
+					currentCity = TorchMgr.currentCity = cityList[cityIndex - TorchMgr.CHINA_LIST_START_INDEX];
 				}
 				TorchMgr.map.setCity(currentCity);
 				TorchMgr.frame.setCity(currentCity);
@@ -1246,7 +1246,7 @@ TorchMgr.toNext = function(isAscend) {
   }else{
     cityIndex = parseInt(TorchMgr.currentCity.id.match(/\d+/));
   }
-  var nextCity = isAscend ? cityList[cityIndex + 1] : cityList[cityIndex - 1];
+  var nextCity = isAscend ? cityList[cityIndex - TorchMgr.CHINA_LIST_START_INDEX + 1] : cityList[cityIndex - TorchMgr.CHINA_LIST_START_INDEX - 1];
   if (nextCity) {
     TorchMgr.currentCity = nextCity;
     TorchMgr.map.setCity(nextCity);

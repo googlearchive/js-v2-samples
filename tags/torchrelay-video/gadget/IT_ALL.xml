@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messagebundle>
+  <msg name="DEFAULT_LOCALE">it_it</msg>
+  <msg name="gadget_title">2008 Global Torch Relay (IT)</msg>
+  <msg name="gadget_description">Testing</msg>
+  <msg name="gadget_screenshot">http://img0.gmodules.com/ig/images/sprite_arrow_enlarge_max_min_shrink_x_blue.gif</msg>
+</messagebundle>

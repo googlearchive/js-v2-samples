@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>Google Olympic Map prototype</title>
+   <link rel="stylesheet" href="stylesheets/torchRelay.css" type="text/css" charset="utf-8" />
+   <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAnzsbsyefrc1Fq9xVxZcZSxSPW5CJgpdgO_s4yyMovOaVh_KvvhTXHLjgdltBIxJkkXcL4p6fPXOPXw"></script>
+   <script type="text/javascript" src="js/locale.js"></script>
+   <script type="text/javascript" src="js/torchRelay.js"></script>
+</head>
+
+<body>
+   <div id="header">
+   		<img id="logo" src="images/google_maps.gif" />
+   		<div id="title">Torch Relay</div>
+   </div>
+   <div id="preamble">
+   <h4>Track the torch in your country and around the world.</h4><p>Since 766 B.C., the torch has been ignited at the site of the ancient Summer Games in Olympia, Greece. From March 25th until the start of May, the Torch Relay will travel across Greece, into Beijing, and then around the world through citites, oceans, and even the world's highest mountain, Mt. Everest.</p><p>Watch relay video footage and track the current location, all on Google Maps.</p>
+</div>
+   <div id="container">
+   <div id="torchMap">
+   </div>
+   
+   <div id="torchFrame" class="torchrelay">
+     <div id="boardHead" class="boardhead">
+       <div class="regionLink">
+         <a id="worldLink" href="javascript:TorchMgr.changeRegion('worldLink')">W</a>
+         <a id="chinaLink" href="javascript:TorchMgr.changeRegion('chinaLink')">C</a>
+       </div>
+     </div>
+     <div id="scrollWrapper" class="scrollWrapper">
+       <a class="scrollUp" id="scrollUp" href="javascript:TorchMgr.autoScroll(1);" onmouseover="TorchMgr.startScroll(1);" onmouseout="TorchMgr.stopScroll();"></a> 
+	   <div id="scrollWindow" class="scrollWindow">
+       <div class="boardContent" id="boardContent">
+       <ul id="worldList"></ul>
+       <ul id="chinaList"></ul>
+       </div>
+       </div>
+       <a class="scrollDown" id="scrollDown" href="javascript:TorchMgr.autoScroll(2);" onmouseover="TorchMgr.startScroll(2);" onmouseout="TorchMgr.stopScroll();"></a>
+     </div>
+   </div>
+   <div id="footer">
+   	<div id="ge_link">
+   		
+   	</div>
+	<div id="attribution">
+		
+	</div>
+   </div>
+
+   </div>
+      
+</body>
+</html>

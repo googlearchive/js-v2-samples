@@ -1567,7 +1567,8 @@ TorchMgr.toNext = function(isAscend) {
   }else{
     cityIndex = parseInt(TorchMgr.currentCity.id.match(/\d+/));
   }
-  var nextCity = isAscend ? cityList[cityIndex - TorchMgr.CHINA_LIST_START_INDEX + 1] : cityList[cityIndex - TorchMgr.CHINA_LIST_START_INDEX - 1];
+  var offset = (TorchMgr.currentRegion == TorchMgr.REGION_WORLD) ? 0 : TorchMgr.CHINA_LIST_START_INDEX;
+  var nextCity = isAscend ? cityList[cityIndex - offset + 1] : cityList[cityIndex - offset - 1];
   if (nextCity) {
     TorchMgr.currentCity = nextCity;
     TorchMgr.map.setCity(nextCity);

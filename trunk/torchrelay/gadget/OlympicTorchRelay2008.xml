@@ -584,13 +584,13 @@ function Frame() {
       var parentNode;
       switch (city.type) {
         case TorchMgr.TYPE_WORLD_CITY:
-	  city.parentId = "worldList";
+	  city.parentId = "worldList__MODULE_ID__";
           cityNode.setAttribute("id",city.id);
           parentNode = document.getElementById("worldList__MODULE_ID__");
           parentNode.appendChild(cityNode);
           break;
         case TorchMgr.TYPE_CHINA_PROVINCE:
-	  city.parentId = "chinaList";
+	  city.parentId = "chinaList__MODULE_ID__";
           cityNode.setAttribute("id",city.id);
           parentNode = document.getElementById("chinaList__MODULE_ID__");
           // Create div wrapper first
@@ -608,7 +608,7 @@ function Frame() {
           parentNode = document.getElementById(city.parentId).nextSibling; // The "ul" tag node
           if(city.prtAction == "before")
           {
-            document.getElementById("chinaList").insertBefore(cityNode, document.getElementById(city.parentId).parentNode);
+            document.getElementById("chinaList__MODULE_ID__").insertBefore(cityNode, document.getElementById(city.parentId).parentNode);
           }
           else
           {
@@ -1523,9 +1523,9 @@ TorchMgr.setCity = function(city, whereComeFrom) {
 TorchMgr.changeRegion = function(id) {
   TorchMgr.Log('[TorchMgr.changeRegion] ' + id);
   var region = null;
-  if (id == "worldLink") {
+  if (id == "worldLink__MODULE_ID__") {
     region = TorchMgr.REGION_WORLD;
-  } else if (id == "chinaLink") {
+  } else if (id == "chinaLink__MODULE_ID__") {
     region = TorchMgr.REGION_CHINA;
   }
 	TorchMgr.currentRegion = region;

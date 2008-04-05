@@ -10,7 +10,7 @@
 {name:"达累斯萨拉姆 - 坦桑尼亚",index:9,lat:-6.819800,lng:39.279900,date:"2008/04/13", info:"", attribution:"", link:"http://www.google.cn/search?q=dar+es+sallam&hl=zh-CN"},
 {name:"马斯喀特 - 阿曼",index:10,lat:23.608600,lng:58.592200,date:"2008/04/14", info:"", attribution:"", link:"http://www.google.cn/search?q=muscat&hl=zh-CN"},
 {name:"伊斯兰堡 - 巴基斯坦",index:11,lat:30.516667,lng:72.800000,date:"2008/04/16", info:"", attribution:"", link:"http://www.google.cn/search?q=islamabad&hl=zh-CN"},
-{name:"孟买 - 印度",index:12,lat:19.017656,lng:72.856178,date:"2008/04/17", info:"", attribution:"", link:"http://www.google.cn/search?q=new+delhi&hl=zh-CN"},
+{name:"孟买 - 印度",index:12,lat:28.634329,lng:77.226334,date:"2008/04/17", info:"", attribution:"", link:"http://www.google.cn/search?q=new+delhi&hl=zh-CN"},
 {name:"曼谷 - 泰国",index:13,lat:13.730780,lng:100.521004,date:"2008/04/19", info:"", attribution:"", link:"http://www.google.cn/search?q=bangkok&hl=zh-CN"},
 {name:"吉隆坡 - 马来西亚",index:14,lat:3.124333,lng:101.684376,date:"2008/04/21", info:"", attribution:"", link:"http://www.google.cn/search?q=kuala+lumpur&hl=zh-CN"},
 {name:"雅加达 - 印度尼西亚",index:15,lat:-6.186190,lng:106.806300,date:"2008/04/22", info:"", attribution:"", link:"http://www.google.cn/search?q=jakarta&hl=zh-CN"},

@@ -1431,7 +1431,7 @@ function Map(mapDiv) {
  */
 function TorchMgr() {}
 
-TorchMgr.SITE_URL = 'http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/';
+TorchMgr.SITE_URL = 'http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/';
 TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "data/torchRelayJSON-" + determineLocale() + ".json";
 TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "data/photolinks.json";
 TorchMgr.IMAGES_PATH = "images/";
@@ -1856,15 +1856,16 @@ TorchMgr.start = function(mapDiv,locale,date) {
 	// Support for Google Maps API
 	// Get image data first.
 	//google.maps.DownloadUrl(TorchMgr.CITY_IMAGE_DATA_URL, function(data){
-	_IG_FetchContent(TorchMgr.CITY_IMAGE_DATA_URL, function(data){
+	getCityImagesJson(TorchMgr.CITY_IMAGE_DATA_URL, function(data){
   		var imageData = eval(data);
   		TorchMgr.cityImageList = imageData;
    	});
   	
   	// Fetch localized langage data next.
 	//google.maps.DownloadUrl(TorchMgr.TORCH_DATA_URL,function(data){
-	_IG_FetchContent(TorchMgr.TORCH_DATA_URL, function(data){
-    var torchDataList = eval(data);
+	//	_IG_FetchContent(TorchMgr.TORCH_DATA_URL, function(data){
+	getCityListJson(TorchMgr.TORCH_DATA_URL, function(data) {
+     var torchDataList = eval(data);
     
     // Hard-coded region lists 
     TorchMgr.worldCityList = torchDataList[0].worldCityList;
@@ -1940,6 +1941,32 @@ function initialize()
 	 tabs.addTab("Map", "torchMap__MODULE_ID__");
 	 tabs.addTab("Cities", "torchFrame__MODULE_ID__");
 
+}
+
+function getCityListJson(url, callback){
+    city_list = function(data)
+   {
+      delete city_list;
+      callback(data);
+   }
+   
+   var script = document.createElement("script");
+   script.src = url;
+   document.body.appendChild(script);
+   
+}
+
+function getCityImagesJson(url, callback){
+    city_images = function(data)
+   {
+      delete city_images;
+      callback(data);
+   }
+   
+   var script = document.createElement("script");
+   script.src = url;
+   document.body.appendChild(script);
+   
 }
 
 /**

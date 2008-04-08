@@ -114,23 +114,38 @@ a.player:active{
   background-position: 0 -36px;
 }
 div.regionLink{
-  float:right;
-  clear:right;
-  text-align: right;
+  float:left;
+  clear:left;
+  text-align: left;
   font-size: 12px;
 }
 div.regionLink a{
-  margin:0 0 0 1em;
+  margin:0 0 0 2px;
+  padding: 3px 3px 0px 3px;
   text-decoration:underline;
+  color: #ffffff;
+  background-color: #cccccc;
+  border-top: 1px solid #777777;
+  border-left: 1px solid #777777;
+  border-right: 1px solid #777777;
+
+}
+
+div.regionLink a:active{
+	color:white;
 }
 
 div.regionLink a.selected{
   color: #000000;
-  padding:0 0 2px 0;
+  padding:3px 3px 2px 3px;
+  background-color: white;
+  /*
   background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/triangle.gif");
   background-repeat: no-repeat;
   background-position: center 100%;
+  */
 }
+
 /* board content */
 .scrollWrapper{
   position:relative;

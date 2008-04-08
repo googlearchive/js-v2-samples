@@ -1200,11 +1200,18 @@ TorchMgr.setCity = function(city, whereComeFrom) {
  * @param {String} id The 'a' tag's id of the player in browser.
  */
 TorchMgr.changeRegion = function(id) {
+  var worldLink = document.getElementById('worldLink');
+  var chinaLink = document.getElementById('chinaLink');
+  
   TorchMgr.Log('[TorchMgr.changeRegion] ' + id);
   var region = null;
   if (id == "worldLink") {
+  	worldLink.className = "selected";
+  	chinaLink.className = ""; 
     region = TorchMgr.REGION_WORLD;
   } else if (id == "chinaLink") {
+    worldLink.className = "";
+    chinaLink.className = "selected";
     region = TorchMgr.REGION_CHINA;
   }
 	TorchMgr.currentRegion = region;

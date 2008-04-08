@@ -873,7 +873,7 @@ function Map(mapDiv) {
 	    	    
 	    var learnLink = '<p style="font-size:10pt;font-family:sans-serif;">' + city.learnMore + '</p>';
 		var imageLink = '<a href="' + TorchMgr.cityImageList[city.index].pageURL + '" target="_blank">' + image + '</a>';
-		var html = '<span style="font-size: 12pt; font-weight: bold;margin-right: 10px">' + city.name + '</span>';
+		var html = '<span style="font-size: 12pt; font-weight: bold;margin-right: 10px">' + city.name + '</span><br/>';
 		html += '<span style="font-size: 9pt; color: #333;font-weight:normal;margin-right: 5px;">' + TorchMgr.toLocaleDate(city.date) + '</span>';
     	html += '<div style="text-align:center">';
     	if(city.type != TorchMgr.TYPE_CHINA_PROVINCE)

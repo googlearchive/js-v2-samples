@@ -137,6 +137,7 @@ function startSlideShowInternal() {
     var page = SLIDES[i];
     var slideDot = document.createElement("div");
     slideDot.className = "slidedot";
+    slideDot.innerHTML = SLIDES[i].title;
     slideDot.setAttribute("onclick", "showSlide(" + i + ")");
     slideDot.setAttribute("title", SLIDES[i].title || ("Slide " + (i + 1)));
     slideDot.setAttribute("id", "__dot" + i);

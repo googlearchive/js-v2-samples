@@ -17,15 +17,6 @@ var SLIDES = [
     onload: "setupTitlePage()"
   },
   {
-    title: "Examples",
-    footer: "Google Developer Day 2007",
-    center: "slides/examples.html",
-    onload: "setupTitlePage();if (window.showMiniMap) {showMiniMap();}",
-    script: ["slides/minimap.js"]
-  },
-
-
-  {
     title: "Basics",
     footer: "Google Developer Day 2007",
     onload: "setupTextSlideAndMap()",

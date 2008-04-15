@@ -1170,13 +1170,7 @@ TorchMgr.precacheCityImage = function(url)
 /**
  * Convience logging function
  */
-TorchMgr.Log = function(content)
-{
-	if(TorchMgr.LOG)
-	{
-		google.maps.Log.write(content);
-	}
-}
+TorchMgr.Log = function(content){};
 
 /**
  * To change current city and invoke relative method in frame and/or map.
@@ -1471,8 +1465,11 @@ TorchMgr.start = function(mapDiv,locale,date) {
       var middleIndex = Math.floor((endIndex + beginIndex) / 2);
       TorchMgr.Log('quickSearch(' + [today,beginIndex,endIndex].join(',') + ', ...) Middle index: ' + middleIndex);
       var city = cityList[middleIndex];
+      var nextCity = cityList[middleIndex+1];
       var cityDate = city.date;
       var cityDays = cityDate.replace(/(\d{4})\/(\d{2})\/(\d{2})/g, "$1$2$3").match(/\d{8}/g);
+      var nextCityDate = nextCity.date;
+      var nextCityDays = nextCityDate.replace(/(\d{4})\/(\d{2})\/(\d{2})/g, "$1$2$3").match(/\d{8}/g);
       // The city date format is '****/**/**' or '****/**/** - ****/**/**'. So
       // cityDays[0] is the numbers of the city date or the date before '-', and
       // cityDays[1] might be exist as the numbers of the date after '-'.
@@ -1494,7 +1491,7 @@ TorchMgr.start = function(mapDiv,locale,date) {
         return quickSearch(today, beginIndex, --middleIndex, cityList);
       } else if ((cityDays[1] && (today > cityDays[1] && middleIndex < endIndex))) {
         return quickSearch(today, ++middleIndex, endIndex, cityList);
-      } else if ((!cityDays[1] && (today > cityDays[0] && middleIndex < endIndex))){
+      } else if ((!cityDays[1] && (today > cityDays[0] && today >= nextCityDays[0] && middleIndex < endIndex))){
       	return quickSearch(today, ++middleIndex, endIndex, cityList);
       } else {
         TorchMgr.Log('quickSearch =' + middleIndex);
@@ -1634,6 +1631,15 @@ function initialize()
 	{
 		TorchMgr.start(mapDiv, locale,date);
 	}
+
+	TorchMgr.Log = function(content)
+	{
+		if(TorchMgr.LOG)
+		{
+			google.maps.Log.write(content);
+		}
+	}
+	
 }
 
 function getCityListJson(url, callback){

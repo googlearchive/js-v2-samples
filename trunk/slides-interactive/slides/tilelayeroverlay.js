@@ -2,7 +2,7 @@ var stanford = new GTileLayer(
     new GCopyrightCollection(""), 0, 17);
 stanford.getTileUrl = function(tile, zoom) {
   return "http://www.stanford.edu/dept/ucomm/" +
-         "map/tiles/base_" + tile.x +
+         "map/tiles/tile_" + tile.x +
          "_" + tile.y + "_" + zoom + ".png";
 };
 stanford.isPng = function() { return true; };

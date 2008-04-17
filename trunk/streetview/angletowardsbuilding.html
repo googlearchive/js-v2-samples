@@ -17,8 +17,11 @@
       map.setCenter(new GLatLng(42.345573,-71.098326), 15);
       map.addControl(new GSmallMapControl());
       map.addControl(new GMapTypeControl());
+
       houseMarker = new GMarker(new GLatLng(42.34611158, -71.09825849), {draggable: true});
       map.addOverlay(houseMarker); 
+      houseMarker.openInfoWindowHtml("Drag me to angle the panorama towards a
+          potential building location.");
       GEvent.addListener(houseMarker, "dragend", function() {
         panoClient.getNearestPanorama(houseMarker.getLatLng(), showPanoData);
       });

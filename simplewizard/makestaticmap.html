@@ -122,9 +122,9 @@ function populateForm() {
 function updateImage() {
    var baseUrl = "http://maps.google.com/staticmap?";
    var params = [];
-   params.push("center=" + map.getCenter().lat() + "," + map.getCenter().lng());
+   params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
    if (marker) {
-     params.push("markers=" + marker.getPoint().lat() + "," + marker.getPoint().lng() + ",red");
+     params.push("markers=" + marker.getPoint().lat().toFixed(6) + "," + marker.getPoint().lng().toFixed(6) + ",red");
    }
    params.push("zoom=" + map.getZoom());
    params.push("size=" + document.getElementById("mapWidthTEXT").value + "x" + document.getElementById("mapHeightTEXT").value);
@@ -219,13 +219,13 @@ style="vertical-align:middle"/>Customize Size & Preview</h3>
 style="vertical-align:middle"/>Generate URL</h3>
 <p>The Static Maps API requires a free API key that's associated with your
 <a href="http://www.google.com/accounts/"> Google Account</a> and the URL of your web site.
-After generating the key, the page will reload with the generated code and you can continue tweaking the customization options.
+You can sign up for one <a
+href="http://code.google.com/apis/maps/signup.html">here</a>, and substitute it
+as the value of the "&key=" parameter in the URL below.
 <br/>
-<input type="checkbox" id="geocodeCHECKBOX" onclick="enableKeyGeneration()"/> I agree to abide by the Maps API <a href="http://code.google.com/apis/maps/terms.html">Terms of Use</a>.
-</p>
 <p>
-Site URL: &nbsp;<input type="text" id="siteURL" value="http://"/>
-<input id="keyBUTTON" disabled="true" type="button" onclick="generateKey();" value="Generate Key"/>
+<!--<input id="keyBUTTON" type="button" onclick="generateKey();"
+value="Generate Key"/>-->
 </p>
 <pre id="staticMapURL" class="code">
 </pre>

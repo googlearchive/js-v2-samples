@@ -10,9 +10,6 @@ xmlns:v="urn:schemas-microsoft-com:vml">
       font-family: Arial, sans serif;
       font-size: 11px;
     }
-    v\:* {
-      behavior:url(#default#VML);
-    }
     </style>
     <script type="text/javascript"> 
 var map;
@@ -27,10 +24,7 @@ var layers = {
   "name": "Tour de France"},
  "japanpics": 
  {"url" : "http://kml.lover.googlepages.com/my-vacation-photos.kml",
-   "name": "Japan Pics"},
- "juiceflorida":
- {"url" : "http://www.juiceanalytics.com/downloads/fl_co_ma.kmz",
-  "name" : "Florida (Juice Analytics)"}
+   "name": "Japan Pics"}
 };
 
 function onLoad() {
@@ -105,13 +99,14 @@ function zoomToGeoXML(geoXml) {
 
 function toggleGeoXML(id, checked) {
   if (checked) {
-      var geoXml = new GGeoXml(layers[id].url, function() {
-        if (geoXml.loadedCorrectly()) {
-          geoXml.gotoDefaultViewport(map);
-          layers[id].geoxml = geoXml;
-          document.getElementById("status").innerHTML = "";
-        }
-      });
+    var geoXml = new GGeoXml(layers[id].url);
+    GEvent.addListener(geoXml, 'load', function() {
+      if (geoXml.loadedCorrectly()) {
+        geoXml.gotoDefaultViewport(map);
+        layers[id].geoxml = geoXml;
+        document.getElementById("status").innerHTML = "";
+      }
+    });
     layers[id].geoXml = geoXml;
     map.addOverlay(layers[id].geoXml);
     document.getElementById("status").innerHTML = "Loading...";

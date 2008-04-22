@@ -20,24 +20,31 @@ var feed;
 var curNum;
 
 var classes = [
-'GMarker',
-'GMarkerOptions',
-'GIcon',
+'GControl',
+'GClientGeocoder',
 'GDirections',
 'GDraggableObject',
-'GPolygon',
-'GPolyline',
-'GClientGeocoder',
 'GGeoXml',
 'GGoogleBarOptions',
 'GGroundOverlay',
-'GScreenOverlay',
+'GIcon',
 'GInfoWindowOptions',
+'GMarker',
+'GMarkerOptions',
 'GOverlay',
-'GControl',
+'GPolygon',
+'GPolyline',
+'GScreenOverlay',
 'GStreetviewPanorama',
 'GStreetviewClient',
-'GStreetviewOverlay'];
+'GStreetviewOverlay',
+' ',
+'DragZoomControl',
+'ExtInfoWindow',
+'ExtMapTypeControl',
+'LabeledMarker',
+'MarkerManager'
+];
 
 
 // Change these parameters to customize map
@@ -96,7 +103,7 @@ function updateGallery() {
       var classesUsed = [];
       for (var j = 0; j < classes.length; j++) {
         var classColumnName = 'gsx$' + classes[j].toLowerCase();
-        if (entry[classColumnName].$t == 'yes') {
+        if (entry[classColumnName] && entry[classColumnName].$t == 'yes') {
           classesUsed.push(classes[j]);
         }
       }

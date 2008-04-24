@@ -14,6 +14,7 @@
       if (GBrowserIsCompatible()) {
         map = new GMap2(document.getElementById("map_canvas"));
         map.setCenter(new GLatLng(37.4419, -122.1419), 1);
+        map.setMapType(G_HYBRID_MAP);
         map.addControl(new GLargeMapControl());
         map.addControl(new GMapTypeControl());
         geocoder = new GClientGeocoder();
@@ -49,7 +50,7 @@
   <body onload="initialize()" onunload="GUnload()">
     <form action="#" onsubmit="showAddress(this.address.value); return false">
       <p>
-        <input type="text" style="width:200px" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
+        <input type="text" style="width:350px" name="address" value="1600 Amphitheatre Pky, Mountain View, CA" />
         <input type="submit" value="Go!" />
       </p>
       <div id="map_canvas" style="width: 500px; height: 300px"></div>

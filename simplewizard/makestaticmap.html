@@ -3,6 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
 <title>Static Map Wizard</title>
+<!--
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxTZdFmpiU8vv3PBIA-hr88t-5BzzxSWLKKXiJcvC2EABsDlfXq6gJWAxA"
+      type="text/javascript"></script>
+-->
 <script type="text/javascript"
       src="http://maps.google.com/maps?file=api&amp;&v=2.75&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
 <style type="text/css">
@@ -21,6 +25,8 @@ body {
 <script>
 
 var map;
+var poly;
+var polyLatLngs = [];
 var mapKey;
 var marker;
 var KEY_RE = /^([a-zA-Z0-9\-\_=]{86})|(internal.*)$/
@@ -124,11 +130,26 @@ function updateImage() {
    var params = [];
    params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
    if (marker) {
-     params.push("markers=" + marker.getPoint().lat().toFixed(6) + "," + marker.getPoint().lng().toFixed(6) + ",red");
+     var markerSize = document.getElementById("markerSizeSELECT").value;
+     var markerColor = document.getElementById("markerColorSELECT").value;
+     var markerLetter = document.getElementById("markerLetterSELECT").value;
+     var markerParams = markerSize + markerColor + markerLetter;
+     params.push("markers=" + marker.getPoint().lat().toFixed(6) + "," + marker.getPoint().lng().toFixed(6) + "," + markerParams);
+   }
+   if (poly) {
+     var polyColor = document.getElementById("polyColorSELECT").value;
+     var polyAlpha = document.getElementById("polyAlphaSELECT").value;
+     var polyWeight = document.getElementById("polyWeightSELECT").value;
+     var polyParams = "rgba:0x" + polyColor + polyAlpha + ",weight:" + polyWeight + "|";
+     for (var i = 0; i < poly.getVertexCount(); i++) {
+       polyParams += poly.getVertex(i).lat().toFixed(5) + "," + poly.getVertex(i).lng().toFixed(5) + "|";
+     }
+     params.push("path=" + polyParams);
    }
    params.push("zoom=" + map.getZoom());
    params.push("size=" + document.getElementById("mapWidthTEXT").value + "x" + document.getElementById("mapHeightTEXT").value);
    var img = document.createElement("img");
+   //img.src = baseUrl + params.join("&") + "&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxTZdFmpiU8vv3PBIA-hr88t-5BzzxSWLKKXiJcvC2EABsDlfXq6gJWAxA";
    img.src = baseUrl + params.join("&") + "&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw";
    document.getElementById("staticMapIMG").innerHTML = "";
    document.getElementById("staticMapIMG").appendChild(img);
@@ -144,10 +165,39 @@ function load() {
     GEvent.addListener(map, "moveend", function(marker, point) {
       updateImage();
     });
+    GEvent.addListener(map, "click", processMapClick);
     geocoder = new GClientGeocoder();
     populateForm();
     updateImage();
   }
+}
+
+function processMapClick(overlay, latlng) {
+  if (latlng) {
+    polyLatLngs.push(latlng);
+  }
+  if (overlay && overlay instanceof GMarker) {
+    polyLatLngs.push(overlay.getLatLng());
+  }
+  if (poly) map.removeOverlay(poly);
+  poly = new GPolyline(polyLatLngs);
+  map.addOverlay(poly);
+  updateImage();
+}
+
+function clearMarker() {
+  if (marker) {
+    map.removeOverlay(marker);
+  }
+  marker = null;
+}
+
+function clearPoly() {
+  if (poly) {
+    map.removeOverlay(poly);
+  }
+  poly = null;
+  polyLatLngs.length = 0;
 }
 
 function showAddress() {
@@ -162,9 +212,6 @@ function showAddress() {
           map.clearOverlays();
           map.setCenter(point, 13);
           marker = new GMarker(point, {draggable:true});
-	  GEvent.addListener(marker, 'click', function() {
-            marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
-          });
 	  GEvent.addListener(marker, 'dragend', function() {
             updateImage();
           });
@@ -174,6 +221,19 @@ function showAddress() {
       }
     );
   }
+}
+
+function disableSelects() {
+  document.getElementById("markerSizeSELECT").disabled = false;
+  document.getElementById("markerColorSELECT").disabled = false;
+  document.getElementById("markerLetterSELECT").disabled = false;
+
+  var markerColor = document.getElementById("markerColorSELECT").value;
+  var markerSize = document.getElementById("markerSizeSELECT").value;
+  if (markerSize == "small" || markerSize == "tiny") { 
+    document.getElementById("markerLetterSELECT").selectedIndex = 0;
+    document.getElementById("markerLetterSELECT").disabled = true;
+  } 
 }
  
 function enableKeyGeneration() {
@@ -190,27 +250,130 @@ function enableKeyGeneration() {
   </p>
 
 <h3><img src="http://www.google.com/uds/solutions/wizards/img/1b.gif" 
-style="vertical-align:middle"/> Customize Map View & Marker Location</h3>
-  <p>First, enter the desired address/location in the box and press the button. If the marker is a little off, drag it around to where it should be.
-  Then use the map control to zoom in/out to the desired zoom level.
-  </p>
+style="vertical-align:middle"/> Customize Map View, Marker Location, & Paths</h3>
+<br/>
+  <b>To change the map view:</b>
   <p>
-  <input type="text" size="60" id="addressTEXT" value="1600 Amphitheatre Pky, Mountain View, CA" />
+  Use the map control to zoom in/out to the desired zoom level.
+  </p>
+<br/>
+   <b>To create a marker:</b>
+  <p>Enter the desired address/location in the box and press the button. If the marker is a little off, drag it around to where it should be.
+  <br/>
+  <input type="text" size="30" id="addressTEXT" value="Mountain View, CA" />
   <input type="button" value="Create Marker Here" onclick="showAddress()"/>
+  </p>
+<br/>
+  <b>To add a path:</b>
+  <p>
+  You can optionally click on the map to indicate a starting point for a path. Clicking multiple times afterwards builds out the path.
   </p>
   <br/>
   <div id="map" style="width: 500px; margin-left: 20px; height: 300px"></div>
-
+  <p>
+  <input type="button" value="Clear Marker" onclick="map.removeOverlay(marker);"/>
+  <input type="button" value="Clear Poly" onclick="clearPoly();"/>
+  </p>
 <br clear="all"/>
 
 <h3><img src="http://www.google.com/uds/solutions/wizards/img/2b.gif" 
 style="vertical-align:middle"/>Customize Size & Preview</h3>
   <p>
-  Map width: &nbsp;
+  <table>
+  <tr>
+  <td><b>Map</b></td>
+  <td>width:
   <input type="text" size="3" id="mapWidthTEXT" value="500" onkeyup="updateImage()" onkeypress="updateImage()" />
-  &nbsp; &nbsp; &nbsp;
-  Map height: &nbsp;
+  </td>
+  <td>height:
   <input type="text" size="3" id="mapHeightTEXT" value="300" onkeyup="updateImage()" onkeypress="updateImage()" />
+  </td>
+  </tr> 
+  <tr>
+  <td><b>Marker</b></td>
+  <td>size: 
+  <select id="markerSizeSELECT" onchange="disableSelects(); updateImage();">
+    <option value="" SELECTED>normal</option>
+    <option value="mid">mid</option>
+    <option value="small">small</option>
+    <option value="tiny">tiny</option>
+  </select>
+  </td>
+  <td>Color:
+  <select id="markerColorSELECT" onchange="updateImage();">
+    <option value="black">black</option>
+    <option value="brown">brown</option>
+    <option value="green">green</option>
+    <option value="purple">purple</option>
+    <option value="yellow">yellow</option>
+    <option value="blue">blue</option>
+    <option value="gray">gray</option>
+    <option value="orange">orange</option>
+    <option value="red" SELECTED>red</option>
+    <option value="white">white</option>
+  </select>
+  </td>
+  <td>Letter:
+  <select id="markerLetterSELECT" onchange="updateImage();">
+    <option value="">None</option>
+    <option value="a">A</option>
+    <option value="b">B</option>
+    <option value="c">C</option>
+    <option value="d">D</option>
+    <option value="e">E</option>
+    <option value="f">F</option>
+    <option value="g">G</option>
+  </select>
+  </td>
+  </tr>
+  <tr>
+  <td><b>Path</b></td>
+  <td>Color:
+  <select id="polyColorSELECT" onchange="updateImage();">
+    <option value="000000">black</option>
+    <option value="8B4513">brown</option>
+    <option value="008000">green</option>
+    <option value="800080">purple</option>
+    <option value="800080">yellow</option>
+    <option value="0000FF" SELECTED>blue</option> 
+    <option value="808080">gray</option>
+    <option value="ffa500">orange</option>
+    <option value="ff0000">red</option>
+    <option value="ffffff">white</option>
+  </select>
+  </td>
+  <td>
+  Alpha:
+  <select id="polyAlphaSELECT" onchange="updateImage();">
+    <option value="19">10%</option>
+    <option value="33">20%</option>
+    <option value="4d">30%</option>
+    <option value="66">40%</option>
+    <option value="80" SELECTED>50%</option>
+    <option value="99">60%</option>
+    <option value="b3">70%</option>
+    <option value="cc">80%</option>
+    <option value="e6">90%</option>
+    <option value="ff">100%</option>
+  </select>
+  </td>
+  <td>
+  Weight:
+  <select id="polyWeightSELECT" onchange="updateImage();">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5" SELECTED>5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
+  </td>
+  </tr>
+  </table>
   </p>
   <div id="staticMapIMG" style="width: 500px; margin-left: 20px; height: 300px"></div>
 <br clear="all"/>

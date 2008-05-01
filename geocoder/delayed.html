@@ -59,6 +59,7 @@
         map.setMapType(G_HYBRID_MAP);
 
         geocoder = new GClientGeocoder();
+        geocoder.setCache(null);
         window.setTimeout(geocodeAll, 50);
       }
     }

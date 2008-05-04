@@ -8,13 +8,27 @@
             type="text/javascript"></script>
     <script type="text/javascript"> 
     //<![CDATA[ 
+    // Taken from Kip, Modified by Pamela Fox & Dave Parsons
     var map;
 
-    // Taken from Kip
+    /**
+     * Add a circle to the global variable "map". This function won't work for circles that encompass
+     * the North or South Pole. Also, there is a slight distortion in the upper-left, upper-right,
+     * lower-left, and lower-right sections of the circle that worsens as it gets larger and/or closer
+     * to a pole.
+     * @param lat Latitude in degrees
+     * @param lng Longitude in degrees
+     * @param radius Radius of the circle in statute miles
+     * @param {String} strokeColor Color of the circle outline in HTML hex style, e.g. "#FF0000"
+     * @param strokeWidth Width of the circle outline in pixels
+     * @param strokeOpacity Opacity of the circle outline between 0.0 and 1.0
+     * @param {String} fillColor Color of the inside of the circle in HTML hex style, e.g. "#FF0000"
+     * @param fillOpacity Opacity of the inside of the circle between 0.0 and 1.0
+     */
     function drawCircle(lat, lng, radius, strokeColor, strokeWidth, strokeOpacity, fillColor, fillOpacity) {
-      var d2r = Math.PI/180; 
-      var r2d = 180/Math.PI; 
-      var Clat = (radius/3963)*r2d; 
+      var d2r = Math.PI/180;
+      var r2d = 180/Math.PI;
+      var Clat = radius * 0.014483;  // Convert statute miles into degrees latitude
       var Clng = Clat/Math.cos(lat*d2r); 
       var Cpoints = []; 
       for (var i=0; i < 33; i++) { 
@@ -25,15 +39,15 @@
         Cpoints.push(P); 
       }
 
-	var polygon = new GPolygon(Cpoints, strokeColor, strokeWidth, strokeOpacity, fillColor, fillOpacity);
-	map.addOverlay(polygon);
+      var polygon = new GPolygon(Cpoints, strokeColor, strokeWidth, strokeOpacity, fillColor, fillOpacity);
+      map.addOverlay(polygon);
      }
 
     function load() { 
       if (GBrowserIsCompatible()) { 
         map = new GMap2(document.getElementById("map")); 
         map.setCenter(new GLatLng(53.479874, -2.246704), 9); 
-	drawCircle(53.479874, -2.246704, 10.0, "#000080", 1, 0.75, "#0000FF",.5); 	
+        drawCircle(53.479874, -2.246704, 10.0, "#000080", 1, 0.75, "#0000FF",.5);   
       } 
     } 
     //]]> 

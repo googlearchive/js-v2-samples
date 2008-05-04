@@ -41,25 +41,17 @@ if (!$result) {
   die('Invalid query: ' . mysql_error());
 }
 
-
 // Start XML file, echo parent node
-
-
-
 echo "<markers>\n";
 // Iterate through the rows, printing XML nodes for each
 while ($row = @mysql_fetch_assoc($result)){
   // ADD TO XML DOCUMENT NODE
   echo '<marker ';
-  
-  
-  echo 'NAME="' . parseToXML($row['name']) . '" ';
-  echo 'ADDRESS="' . parseToXML($row['address']) . '" ';
-  echo 'LAT="' . $row['lat'] . '" ';
-  echo 'LNG="' . $row['lng'] . '" ';
+  echo 'name="' . parseToXML($row['name']) . '" ';
+  echo 'address="' . parseToXML($row['address']) . '" ';
+  echo 'lat="' . $row['lat'] . '" ';
+  echo 'lng="' . $row['lng'] . '" ';
   echo 'distance="' . $row['distance'] . '" ';
-  
-  
   echo "/>\n";
 }
 

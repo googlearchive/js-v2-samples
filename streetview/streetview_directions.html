@@ -175,6 +175,18 @@
     */
     var driving = false;
 
+  /**
+   * Id of the timer that adds a delay between following each link to give the
+   * panorama time to load. We need this to cancel the timer if the user clicks
+   * Stop while we are waiting to follow the next link.
+   */
+    var advanceTimer = null;
+    
+  /**
+   * Delay in seconds between following each link.
+   */
+    var advanceDelay = 1;
+    
    /**
     * Set up the initial view and register the various event listeners.
     */
@@ -377,7 +389,7 @@
           panoMetaData.links = svData.links;
           checkDistanceFromNextVertex();
           if (driving) {
-            advance();
+            advanceTimer = setTimeout("advance()", advanceDelay * 1000);
           }
         }
       });
@@ -843,8 +855,9 @@
     function startDriving() {
       hideInstruction();
       document.getElementById("route").disabled = true;
-      document.getElementById("drive").disabled = true;
-      document.getElementById("stop").disabled = false;
+      document.getElementById("stopgo").value = "Stop";
+      document.getElementById("stopgo").setAttribute('onclick', 'stopDriving()'); 
+      document.getElementById("stopgo").onclick = function() { stopDriving(); }
       driving = true;
       advance();
     }
@@ -854,12 +867,28 @@
     */
     function stopDriving() {
       driving = false;
+      
+      if (advanceTimer != null) {
+        clearTimeout(advanceTimer);
+        advanceTimer = null;
+      }
+      
       document.getElementById("route").disabled = false;
-      document.getElementById("drive").disabled = false;
-      document.getElementById("stop").disabled = true;
+      document.getElementById("stopgo").disabled = false;
+      document.getElementById("stopgo").value = "Drive";
+      document.getElementById("stopgo").setAttribute('onclick', 'startDriving()'); 
+      document.getElementById("stopgo").onclick = function() { startDriving(); }
       showInstruction('Press <b>Drive</b> to follow your route');
     }
 
+   /**
+    * Change the speed at which driving progresses by adjusting the delay
+    * between following links from one panorama to the next
+    */
+    function setSpeed() {
+      advanceDelay = document.getElementById('speed').selectedIndex;
+    }
+    
    /**
     * Display a status message that fills the Flash viewer
     * @param {String} message The message to display
@@ -1017,7 +1046,7 @@ body {
 #map {
   width: 317px;
   height: 317px;
-  margin:-right: 1px;
+  margin-right: 1px;
   overflow: hidden;
 }
 
@@ -1073,21 +1102,26 @@ body {
   float: left;
   position: relative;
   top: 4px;
+  margin-right: 5px;
 }
 
 .input {
-  float: right;
+  float: left;
   width: 252px;
   text-align: left;
 }
 
-.controls, #buttons {
+.controls {
  clear: both;
  padding: 4px;
 }
 
+#speed {
+  float: left;
+}
+
 #buttons {
- text-align: right;
+ float: right;
 }
 
 table {
@@ -1101,43 +1135,52 @@ td {
   </style>
   </head>
   <body onload="load();" onunload="GUnload();">
-   <div id="content">
-   <table cellpadding="0" cellspacing="0">
-   <tr>
-     <td colspan="2">
-       <div id="svPanel">
-         <div id="streetview" style="width: 638px; height: 319px;"></div>
-         <div id="status">Enter your start and end addresses and click <b>Route</b></div>
-         <div id="instruction"></div>
-       </div>
-       <div id="progressBorder">
-         <div id="progressBar"></div>
-       </div>
-     </td>
-   </tr>
-   <tr>
-     <td>
-       <div id="map"></div>
-         <div class="controls">
-           <div class="label">From</div>
-           <div class="input"><input id="from" size="30" value="stanyan st, san francisco"/></div>
-         </div>
-         <div class="controls">
-           <div class="label">To</div>
-           <div class="input"><input id="to" size="30" value="twin peaks blvd, san francisco"/></div>
-         </div>
-         <div id="buttons">
-           <input type="button" value="Route"  id="route" onclick="generateRoute()" />
-           <input type="button" value="Drive" id="drive" onclick="startDriving()" disabled />
-           <input type="button" value="Stop"  id="stop"  onclick="stopDriving()"  disabled />
-         </div>
+    <div id="content">
+    <table cellpadding="0" cellspacing="0">
+    <tr>
+      <td colspan="2">
+        <div id="svPanel">
+          <div id="streetview" style="width: 638px; height: 319px;"></div>
+          <div id="status">Enter your start and end addresses and click <b>Route</b></div>
+          <div id="instruction"></div>
+        </div>
+        <div id="progressBorder">
+          <div id="progressBar"></div>
         </div>
       </td>
-     <td>
-       <div id="directions"></div>
-     </td>
-   </tr>
-   </table>
-   </div>
+    </tr>
+    <tr>
+      <td>
+        <div id="map"></div>
+          <div class="controls">
+            <div class="label">From</div>
+            <div class="input"><input id="from" size="30" value="stanyan st, san francisco"/></div>
+          </div>
+          <div class="controls">
+            <div class="label">To</div>
+            <div class="input"><input id="to" size="30" value="twin peaks blvd, san francisco"/></div>
+          </div>
+          <div class="controls">
+            <div class="label">Speed</div>
+            <div id="actions">
+              <select id="speed" onchange="setSpeed()">
+                <option value="0">Fast</option>
+                <option value="1" SELECTED>Medium</option>
+                <option value="2">Slow</option>
+              </select>
+              <div id="buttons">
+                <input type="button" value="Route" id="route" onclick="generateRoute()" />
+                <input type="button" value="Drive" id="stopgo"  onclick="startDriving()"  disabled />
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div id="directions"></div>
+      </td>
+    </tr>
+  </table>
+  </div>
   </body>
 </html>

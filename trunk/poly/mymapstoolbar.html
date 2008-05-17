@@ -6,6 +6,10 @@
     <title>Google Maps JavaScript API Example: Editable Polylines</title>
    <link rel="stylesheet" type="text/css" href="http://www.corp.google.com/~golden/poly-edit.css">
    <style type="text/css">
+body {
+  font-family: Arial, sans serif;
+  font-size: 11px;
+}
 #hand_b {
   width:31px;
   height:31px;
@@ -137,7 +141,7 @@ function startDrawing(poly, name, onUpdate, color) {
       } else {
         var newColor = getColor(false);
         cells.color.style.backgroundColor = newColor
-        poly.setStrokeStyle({color: newColor, weight: 2});
+        poly.setStrokeStyle({color: newColor, weight: 4});
       }
     });
   });
@@ -195,10 +199,6 @@ function initialize() {
   </head>
 
 <body onload="initialize()" onunload="GUnload">
-<p>To draw on the map, click on one of the buttons below and then click on the map.  Double-click to stop drawing a line or shape.
-</p><p>Click on an element to change color.
-</p><p>To edit a line or shape, mouse over it and drag the points.  Click on a point to delete it.
-</p>
 
 <table><tr style="vertical-align:top">
   <td style="width:15em">
@@ -216,14 +216,15 @@ function initialize() {
 
     <input type="hidden" id="featuredetails" rows=2>
     </input>
-     <table id ="featuretable"></table>
+     <table id ="featuretable">
+<p>To draw on the map, click on one of the buttons below and then click on the map.  Double-click to stop drawing a line or shape. Click on an element to change color. To edit a line or shape, mouse over it and drag the points.  Click on a point to delete it.
+</p>
+</table>
   </td>
   <td>
     <!-- The frame used to measure the screen size -->
     <div id="frame" class="frame"></div>
-    <!-- The node that holds the map -->
-    <!-- The node that holds the map -->
-    <div id="map" class="map" style="width: 500px; height: 500px"></div>
+    <div id="map" class="map" style="width: 300px; height: 300px"></div>
   </td>
 </tr></table>
 </body>

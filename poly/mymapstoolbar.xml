@@ -69,7 +69,7 @@ body {
     <input type="hidden" id="featuredetails" rows=2>
     </input>
      <table id ="featuretable">
-<p>To draw on the map, click on one of the buttons below and then click on the map.  Double-click to stop drawing a line or shape. Click on an element to change color. To edit a line or shape, mouse over it and drag the points.  Click on a point to delete it.
+<p>To draw on the map, click on one of the buttons and then click on the map.  Double-click to stop drawing a line or shape. Click on an element to change color. To edit a line or shape, mouse over it and drag the points.  Click on a point to delete it.
 </p>
 </table>
   </td>

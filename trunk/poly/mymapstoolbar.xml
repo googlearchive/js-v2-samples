@@ -226,6 +226,8 @@ function initialize() {
     select("hand_b");
   }
 }
+
+initialize();
     </script>
 ]]></Content>
 </Module>

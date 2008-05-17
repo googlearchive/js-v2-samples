@@ -71,6 +71,12 @@
         optsFound = true;
      }
 
+     var listingTypes = document.getElementById("opt_listingTypes").value;
+     if (listingTypes != "localonly") {
+        opts["listingTypes"] = "\"" + listingTypes + "\"";
+        optsFound = true;
+     }
+
      var onIdleCallback = document.getElementById("opt_onIdleCallback").checked;
      if (onIdleCallback) {
        opts["onIdleCallback"] = 'function() { alert("search control is idle");}';
@@ -188,6 +194,13 @@
    searchFormHint: <input type="text" id="opt_searchFormHint" size="15" value="search the map"/>
    &nbsp;
    showOnLoad <input type="checkbox" id="opt_showOnLoad"/>
+   <br/><br/>
+   listingTypes: 
+     <select id="opt_listingTypes" onchange="updateCode()">
+       <option value="blended">blended</option>
+       <option value="kmlonly">kmlonly</option>
+       <option value="localonly" SELECTED>localonly</option>
+     </select>
    <br/><br/>
    <input type="button" value="Update Code and Map" onclick="updateCode()"/>
    <br/><br/>

@@ -215,7 +215,7 @@ function updateMarker(marker, cells, opt_changeColor) {
 
 function initialize() {
   if (GBrowserIsCompatible()) {
-    map = new GMap2(document.getElementById("map"));
+    map = new GMap2();
     map.setCenter(new GLatLng(37.4419, -122.1419), 13);
     map.addControl(new GSmallMapControl());
     map.addControl(new GMapTypeControl());

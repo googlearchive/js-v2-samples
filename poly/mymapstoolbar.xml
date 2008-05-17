@@ -214,7 +214,6 @@ function updateMarker(marker, cells, opt_changeColor) {
 
 
 function initialize() {
-  if (GBrowserIsCompatible()) {
     map = new GMap2();
     map.setCenter(new GLatLng(37.4419, -122.1419), 13);
     map.addControl(new GSmallMapControl());
@@ -224,7 +223,6 @@ function initialize() {
     featureTable_ = document.getElementById("featuretable");
     detailInfo_.innerHTML = "hello";
     select("hand_b");
-  }
 }
 
 initialize();

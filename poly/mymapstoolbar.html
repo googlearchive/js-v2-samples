@@ -55,7 +55,6 @@ var lineCounter_ = 0;
 var shapeCounter_ = 0;
 var markerCounter_ = 0;
 var colorIndex_ = 0;
-var detailInfo_;
 var featureTable_;
 var map;
 
@@ -88,7 +87,6 @@ function startShape() {
   var color = getColor(false);
   var polygon = new GPolygon([], color, 2, 0.7, color, 0.2);
   startDrawing(polygon, "Shape " + (++shapeCounter_), function() {
-    detailInfo_.value = "edit polygon";
     var cell = this;
     var area = polygon.getArea();
     cell.innerHTML = (Math.round(area / 10000) / 100) + "km<sup>2</sup>";
@@ -100,7 +98,6 @@ function startLine() {
   var color = getColor(false);
   var line = new GPolyline([], color);
   startDrawing(line, "Line " + (++lineCounter_), function() {
-    detailInfo_.value = "edit line";
     var cell = this;
     var len = line.getLength();
     cell.innerHTML = (Math.round(len / 10) / 100) + "km";
@@ -130,10 +127,8 @@ function startDrawing(poly, name, onUpdate, color) {
   GEvent.addListener(poly, "endline", function() {
     select("hand_b");
     var cells = addFeatureEntry(name, color);
-    detailInfo_.value = "endline";
     GEvent.bind(poly, "lineupdated", cells.desc, onUpdate);
     GEvent.addListener(poly, "click", function(latlng, index) {
-      detailInfo_.value = "latlng = " + latlng + ", index = " + index;
       if (typeof index == "number") {
         poly.deleteVertex(index);
       } else {
@@ -157,11 +152,9 @@ function placeMarker() {
       var cells = addFeatureEntry("Placemark " + (++markerCounter_), color);
       updateMarker(marker, cells);
       GEvent.addListener(marker, "dragend", function() {
-        detailInfo_.value = "dragend";
         updateMarker(marker, cells);
       });
       GEvent.addListener(marker, "click", function() {
-        detailInfo_.value = "click";
         updateMarker(marker, cells, true);
       });
     }
@@ -187,9 +180,7 @@ function initialize() {
     map.addControl(new GSmallMapControl());
     map.addControl(new GMapTypeControl());
     map.clearOverlays();
-    detailInfo_ = document.getElementById("featuredetails");
     featureTable_ = document.getElementById("featuretable");
-    detailInfo_.value = "hello";
     select("hand_b");
   }
 }

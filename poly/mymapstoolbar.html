@@ -180,7 +180,7 @@ function initialize() {
     map.addControl(new GSmallMapControl());
     map.addControl(new GMapTypeControl());
     map.clearOverlays();
-    featureTable_ = document.getElementById("featuretable");
+    featureTable_ = document.getElementById("featuretbody");
     select("hand_b");
   }
 }
@@ -204,10 +204,11 @@ function initialize() {
 
     <input type="hidden" id="featuredetails" rows=2>
     </input>
-     <table id ="featuretable">
 <p>To draw on the map, click on one of the buttons and then click on the map.  Double-click to stop drawing a line or shape. Click on an element to change color. To edit a line or shape, mouse over it and drag the points.  Click on a point to delete it.
 </p>
-</table>
+     <table id ="featuretable">
+     <tbody id="featuretbody"></tbody>
+    </table>
   </td>
   <td>
     <!-- The frame used to measure the screen size -->

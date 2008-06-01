@@ -1,4 +1,7 @@
 function PanoramioLayerCallback(json, panoLayer) {
+  this.panoLayer = panoLayer;
+
+  var batch = [];
   for (var i = 0; i < json.photos.length; i++) {
     var photo = json.photos[i];
     if (!panoLayer.ids[photo.photo_id]) {
@@ -7,6 +10,9 @@ function PanoramioLayerCallback(json, panoLayer) {
       panoLayer.ids[photo.photo_id] = "exists";
     }
   }
+//  panoLayer.mgr.addMarkers(batch, 0);
+  panoLayer.mgr.addMarkers(batch, panoLayer.map.getZoom());
+  panoLayer.mgr.refresh();
 }
 
 PanoramioLayerCallback.prototype.formImgUrl = function(photoId, imgType) {
@@ -18,6 +24,7 @@ PanoramioLayerCallback.prototype.formPageUrl = function(photoId) {
 }
 
 PanoramioLayerCallback.prototype.createMarker = function(photo, baseIcon) {
+  var me = this;
   var markerIcon = new GIcon(baseIcon);
   markerIcon.image = this.formImgUrl(photo.photo_id, "mini_square");
   var marker = new GMarker(new GLatLng(photo.latitude, photo.longitude), {icon: markerIcon, title: photo.photo_title});
@@ -40,7 +47,7 @@ PanoramioLayerCallback.prototype.createMarker = function(photo, baseIcon) {
   marker.html = html;
 
   GEvent.addListener(marker, "click", function() {
-    map.openInfoWindow(marker.getLatLng(), marker.html, {noCloseOnClick: true});
+    me.panoLayer.map.openInfoWindow(marker.getLatLng(), marker.html, {noCloseOnClick: true});
   });
  
   return marker;
@@ -49,6 +56,7 @@ PanoramioLayerCallback.prototype.createMarker = function(photo, baseIcon) {
 
 function PanoramioLayer(map, opt_opts) {
   var me = this;
+  me.map = map;
   me.ids = {};
   me.mgr = new MarkerManager(map, {maxZoom: 19});
 

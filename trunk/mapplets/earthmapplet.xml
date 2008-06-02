@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Earth Mapplet"
+             description="Syncs a Google earth in the sidebar along with your map viewport."
+             author="Pamela Fox"
+             author_email="pamela.fox+mapplets@gmail.com"
+             author_affiliation="Google, Inc."
+             author_location="Mountain View, CA"
+              screenshot="http://pamela.fox.googlepages.com/screenshot_earthmapplet.jpg"
+             thumbnail="http://pamela.fox.googlepages.com/thumbnail_earthmapplet.jpg"
+             height="300">
+  <Require feature="sharedmap"/>
+</ModulePrefs>
+<Content type="html"><![CDATA[
+
+<div id='map3d_container'
+           style='border: 1px solid silver; height: 200px; width: 270px;'>
+        <div id='map3d' style='height: 100%;'></div>
+      </div>
+
+<script src="http://www.google.com/jsapi?key=ABQIAAAA5El50zA4PeDTEMlv-sXFfRSsTL4WIgxhMZ0ZK_kHjwHeQuOD4xTdBhxbkZWuzyYTVeclkwYHpb17ZQ"></script>
+<script>
+google.setOnLoadCallback(init);
+google.load("earth", "1");
+
+var ge = null;
+var map = new GMap2();
+
+function init() {
+  google.earth.createInstance("map3d", initCallback, failureCallback);
+}
+
+function initCallback(object) {
+  ge = object;
+  ge.getWindow().setVisibility(true);
+  updateEarth();
+  GEvent.addListener(map, "moveend", function() {
+    updateEarth();
+  });
+}
+
+function updateEarth() {
+  GAsync(map, 'getCenter', 'getZoom', function(latlng, zoom) {
+    var meters = convertZoomLevelToMeters(zoom);
+    var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+    lookAt.setLatitude(latlng.lat());
+    lookAt.setLongitude(latlng.lng());
+    lookAt.setRange(meters);
+    ge.getView().setAbstractView(lookAt);
+  });
+}
+
+function failureCallback(object) {
+  alert("Install ze plugin!");
+}
+
+/**
+ * Convert GMap zoom level to a distance value.
+ *
+ * @param {number} zoomLevel Map zoom level
+ *
+ * @returns {number} range value in meters
+ */
+function convertZoomLevelToMeters(zoomLevel) {
+  // Zoom levels below level 19 behave differently than >= 19.  The
+  // distant zooms increase as 937.5ft times powers of two, whereas
+  // the near zooms decrease as 500ft divided by powers of two.
+  if (zoomLevel >= 19) {
+    var levelDiff = zoomLevel - 19;
+    // 152.4m == 500ft * .3048m/ft
+    return 152.4 / Math.pow(2, levelDiff);
+  } else {
+    var levelDiff = 18 - zoomLevel;
+    // 285.75m == 937.5ft * .3048m/ft
+    return 285.75 * Math.pow(2, levelDiff);
+  }
+}
+</script>
+
+]]></Content>
+</Module>

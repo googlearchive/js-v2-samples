@@ -204,9 +204,10 @@ function cm_getJSON(preferSearch) {
 <body onload="cm_load()">
 
 <!-- ++Begin GSpreadsheets Map Wizard Generated Code++ -->
-
+<form action="demogallery.html" onsubmit="cm_getJSON(true); return false;" method="get">
 Enter keyword <input type="text" id="searchbox" value="" /> 
-<input type="button" value="Search" onclick="cm_getJSON(true)" />
+<input type="submit" value="Search" onclick="cm_getJSON(true)" />
+</form>
  or select a class <select id="classdropdown" onchange="cm_getJSON(false)"></select>
 <br/><br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>

@@ -8,7 +8,7 @@
       type="text/javascript"></script>
 -->
 <script type="text/javascript"
-      src="http://maps.google.com/maps?file=api&amp;&v=2.75&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
+      src="http://maps.google.com/maps?file=api&amp;&v=2&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
 <style type="text/css">
 td {
   border: 0px;
@@ -25,127 +25,39 @@ body {
 <script>
 
 var map;
-var poly;
-var polyLatLngs = [];
-var mapKey;
-var marker;
-var KEY_RE = /^([a-zA-Z0-9\-\_=]{86})|(internal.*)$/
-
-/* *
-* Utility function to extract parameters appended to URL.
-* @param {String} name Name of parameter in URL
-* @return {String} Value of parameter, or "" if not found
-*/
-function getURLParam(name) {
-  var regexS = "[\\?&]" + name + "=([^&#]*)";
-  var regex = new RegExp(regexS);
-  var results = regex.exec(window.location.href);
-  return (results == null ? "" : results[1]);
-}
-
-/**
-* Function to create URL-friendly version of parameters.
-* @return {String} String of concatenated parameters
-*/
-function getParamsURL(){
-  var paramsURL = "";
-  paramsURL += "&mapWidthTEXT=" + document.getElementById("mapWidthTEXT").value;
-  paramsURL += "&mapHeightTEXT=" + document.getElementById("mapHeightTEXT").value;
-  paramsURL += "&mapZoom=" + map.getZoom();
-  if(marker != null) {
-    paramsURL += "&markerPointLat=" + marker.getPoint().lat() + "&markerPointLng=" + marker.getPoint().lng(); 
-  }
-  return paramsURL;
-}
-
-function generateKey() {
-  var siteUrl = document.getElementById("siteURL").value;
-  var targetPage = "http://www.google.com/maps/api_key";
-  var landingPage = "http://gmaps-samples.googlecode.com/svn/trunk/" +
-                    "simplewizard/makestaticmap.html" + "?generated=1" +
-                    getParamsURL();
-
-  var redirPage = targetPage + "?q=" + encodeURIComponent(landingPage) + 
-                  "&client=google-maps";
-  top.location = redirPage + "&url=" + encodeURIComponent(siteUrl);
-}
-
-
-function getKeyFromParams() {
-
-  if (getURLParam('key')) {
-    passedKey = getURLParam('key');
-    if (passedKey.match(KEY_RE)) {
-      return passedKey;
-    }
-  }
-  return "";
-}
-
-function populateForm() {
-  mapKey = getKeyFromParams();
-
-  var presetSiteURL = getURLParam("url");
- 
-  if (presetSiteURL != "") {
-    document.getElementById("siteURL").value = presetSiteURL;  
-  }
-
-  var mapWidthTEXT = getURLParam("mapWidthTEXT");
-  if(mapWidthTEXT != "") {
-    document.getElementById("mapWidthTEXT").value = mapWidthTEXT;
-  }
-  var mapHeightTEXT = getURLParam("mapHeightTEXT");
-  if(mapHeightTEXT != "") {
-    document.getElementById("mapHeightTEXT").value = mapHeightTEXT;
-  }
-  
-  var markerPointLat = getURLParam("markerPointLat");
-  var markerPointLng = getURLParam("markerPointLng");
-
-  if(markerPointLat != "" && markerPointLng != "") {
-    var point = new GLatLng(parseFloat(markerPointLat), parseFloat(markerPointLng));
-    map.clearOverlays();
-    map.setCenter(point, 13);
-    marker = new GMarker(point, {draggable:true});
-    GEvent.addListener(marker, 'click', function() {
-      marker.openInfoWindow(document.getElementById("infoWindowTEXT").value);
-    });
-    GEvent.addListener(marker, 'dragend', function() {
-      updateImage();
-    });
-
-    map.addOverlay(marker);
-  }
-
-
-  var mapZoom = getURLParam("mapZoom");
-  if(mapZoom != "") {
-    map.setZoom(parseInt(mapZoom));
-  }
-}
+var polys = [];
+var markers = [];
+var editingNow = false;
 
 function updateImage() {
    var baseUrl = "http://maps.google.com/staticmap?";
+
    var params = [];
    params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
-   if (marker) {
-     var markerSize = document.getElementById("markerSizeSELECT").value;
-     var markerColor = document.getElementById("markerColorSELECT").value;
-     var markerLetter = document.getElementById("markerLetterSELECT").value;
-     var markerParams = markerSize + markerColor + markerLetter;
-     params.push("markers=" + marker.getPoint().lat().toFixed(6) + "," + marker.getPoint().lng().toFixed(6) + "," + markerParams);
+
+   var markerSize = document.getElementById("markerSizeSELECT").value;
+   var markerColor = document.getElementById("markerColorSELECT").value;
+   var markerLetter = document.getElementById("markerLetterSELECT").value;
+   var markerParams = markerSize + markerColor + markerLetter;
+   var markersArray = [];
+   for (var i = 0; i < markers.length; i++) {  
+     markersArray.push(markers[i].getLatLng().lat().toFixed(6) + "," + markers[i].getLatLng().lng().toFixed(6) + "," + markerParams);
    }
-   if (poly) {
-     var polyColor = document.getElementById("polyColorSELECT").value;
-     var polyAlpha = document.getElementById("polyAlphaSELECT").value;
-     var polyWeight = document.getElementById("polyWeightSELECT").value;
-     var polyParams = "rgba:0x" + polyColor + polyAlpha + ",weight:" + polyWeight + "|";
-     for (var i = 0; i < poly.getVertexCount(); i++) {
-       polyParams += poly.getVertex(i).lat().toFixed(5) + "," + poly.getVertex(i).lng().toFixed(5) + "|";
+   if (markersArray.length) params.push("markers=" + markersArray.join("|"));
+
+   var polyColor = document.getElementById("polyColorSELECT").value;
+   var polyAlpha = document.getElementById("polyAlphaSELECT").value;
+   var polyWeight = document.getElementById("polyWeightSELECT").value;
+   var polyParams = "rgba:0x" + polyColor + polyAlpha + ",weight:" + polyWeight + "|";
+   for (var i = 0; i < polys.length; i++) {
+     var poly = polys[i];
+     var polyLatLngs = [];
+     for (var j = 0; j < poly.getVertexCount(); j++) {
+       polyLatLngs.push(poly.getVertex(j).lat().toFixed(5) + "," + poly.getVertex(j).lng().toFixed(5));
      }
-     params.push("path=" + polyParams);
+     params.push("path=" + polyParams + polyLatLngs.join("|"));
    }
+
    params.push("zoom=" + map.getZoom());
    params.push("size=" + document.getElementById("mapWidthTEXT").value + "x" + document.getElementById("mapHeightTEXT").value);
    var img = document.createElement("img");
@@ -154,73 +66,88 @@ function updateImage() {
    document.getElementById("staticMapIMG").innerHTML = "";
    document.getElementById("staticMapIMG").appendChild(img);
 
-   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "&key=" + mapKey;
+   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "&key=YOUR_KEY_HERE";
 }
 
 function load() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
-    map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+    map.setCenter(new GLatLng(37.400470,-122.072981), 13);
     map.addControl(new GSmallMapControl());
     GEvent.addListener(map, "moveend", function(marker, point) {
       updateImage();
     });
-    GEvent.addListener(map, "click", processMapClick);
+    GEvent.addListener(map, "click", function(overlay, latlng) {
+      if (latlng && !editingNow) {
+        createPolyAt(latlng);
+      }
+      updateImage();
+     });
     geocoder = new GClientGeocoder();
-    populateForm();
     updateImage();
   }
 }
 
-function processMapClick(overlay, latlng) {
-  if (latlng) {
-    polyLatLngs.push(latlng);
-  }
-  if (overlay && overlay instanceof GMarker) {
-    polyLatLngs.push(overlay.getLatLng());
-  }
-  if (poly) map.removeOverlay(poly);
-  poly = new GPolyline(polyLatLngs);
+
+function createPolyAt(latlng) {
+  var poly = new GPolyline([latlng]);
   map.addOverlay(poly);
+  poly.enableDrawing();
+  editingNow = true;
+  GEvent.addListener(poly, "mouseover", function() {
+    poly.enableEditing();
+  });
+  GEvent.addListener(poly, "mouseout", function() {
+    poly.disableEditing();
+  });
+  GEvent.addListener(poly, "lineupdated", function() {
+    updateImage();
+  });
+  GEvent.addListener(poly, "endline", function() {
+    editingNow = false;
+  });
+  polys.push(poly);
+}
+
+function createMarkerAt(latlng) {
+  var marker = new GMarker(latlng, {draggable:true});
+  GEvent.addListener(marker, 'dragend', function() {
+    updateImage();
+  });
+  map.addOverlay(marker);
+  markers.push(marker);
+}
+
+function clearMarkers() {
+  for (var i = 0; i < markers.length; i++) {
+    map.removeOverlay(markers[i]);
+  }
+  markers = [];
   updateImage();
 }
 
-function clearMarker() {
-  if (marker) {
-    map.removeOverlay(marker);
+function clearPolys() {
+  for (var i = 0; i < polys.length; i++) {
+    map.removeOverlay(polys[i]);
   }
-  marker = null;
-}
-
-function clearPoly() {
-  if (poly) {
-    map.removeOverlay(poly);
-  }
-  poly = null;
-  polyLatLngs.length = 0;
+  polys = [];
+  updateImage();
 }
 
 function showAddress() {
   var address = document.getElementById("addressTEXT").value;
-  if (geocoder) {
-    geocoder.getLatLng(
-      address,
-      function(point) {
-        if (!point) {
-          alert(address + " not found");
-        } else {
-          map.clearOverlays();
-          map.setCenter(point, 13);
-          marker = new GMarker(point, {draggable:true});
-	  GEvent.addListener(marker, 'dragend', function() {
-            updateImage();
-          });
-          map.addOverlay(marker);
-          updateImage();
-        }
+  geocoder.getLatLng(
+    address,
+    function(latlng) {
+      if (!latlng) {
+        alert(address + " not found");
+      } else {
+        map.setCenter(latlng, 13);
+        createMarkerAt(latlng);
+        updateImage();
       }
-    );
-  }
+    }
+  );
 }
 
 function disableSelects() {
@@ -236,10 +163,6 @@ function disableSelects() {
   } 
 }
  
-function enableKeyGeneration() {
-  var keyBUTTON = document.getElementById('keyBUTTON');
-  keyBUTTON.removeAttribute('disabled');
-} 
 </script>
 <link rel="stylesheet" type="text/css" href="http://code.google.com/css/dev_docs.css">
 </head>
@@ -271,8 +194,8 @@ style="vertical-align:middle"/> Customize Map View, Marker Location, & Paths</h3
   <br/>
   <div id="map" style="width: 500px; margin-left: 20px; height: 300px"></div>
   <p>
-  <input type="button" value="Clear Marker" onclick="map.removeOverlay(marker);"/>
-  <input type="button" value="Clear Poly" onclick="clearPoly();"/>
+  <input type="button" value="Clear Marker" onclick="clearMarkers()"/>
+  <input type="button" value="Clear Poly" onclick="clearPolys();"/>
   </p>
 <br clear="all"/>
 

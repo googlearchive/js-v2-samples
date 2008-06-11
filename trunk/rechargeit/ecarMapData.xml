@@ -1,0 +1,1342 @@
+<!-- Latitude and Longitude markers for car data -->
+<!-- Data from CalCars.org -->
+<!-- Author: squinn@google.com (Siobhan Quinn) -->
+
+<!-- Definitions:                                                         -->
+<!-- converter: the company that converted the car                        -->
+<!-- converter_website: the website of the company that converted the car -->
+<!-- date: the date the car was converted                                 -->
+<!-- desc: a description of the vehicle                                   -->
+<!-- lat: the latitude of the marker                                      -->
+<!-- lng: the longitude of the marker                                     -->
+<!-- location: the human readable location of the car                     -->
+<!-- minzoom: min zoom level for the marker (default is 3)                -->
+<!-- owner: the car's owner                                               -->
+<!-- owner_website: the owner's website                                   -->
+
+<!-- Group these images by region so we can easily decide which zoom      -->
+<!-- to put the marker at. If a lot of markers are clustered, set         -->
+<!-- minzoom="5" or minzoom="6"                                           -->
+
+<!-- Midwest -->
+<markers>
+  <marker
+    lat="45.175015" lng="-93.213377"
+    owner="Hourcar"
+    owner_website="http://www.hourcar.org"
+    date="August 2006"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Twin Cities, MN">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="41.86612" lng="-88.11063"
+    owner="Chris Ewert"
+    owner_website="http://www.eaa-phev.org/wiki/User:Cewert"
+    date="April 2007"
+    converter="Did it themselves!"
+    desc="EAA-PHEV with modified mounting method"
+    converter_website="http://www.eaa-phev.org/wiki/User:Cewert"
+    location="Wheaton, IL">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="41.84508" lng="-87.82298"
+    owner="Todd Dore and Fox Valley Electric Auto Association"
+    owner_website="http://www.fveaa.org/"
+    desc="GrayPearl EAA-PHEV/Manzanita Micro-style Design"
+    date="November 2006"
+    converter="Fox Valley Electric Auto Association"
+    converter_website="http://www.fveaa.org/"
+    location="N. Riverside, IL">
+  </marker>
+
+  <marker
+    minzoom="0" 
+    lat="43.15967" lng="-89.14757"
+    owner="Wisconsin Public Power Inc."
+    owner_website="http://www.wppisys.org/"
+    date="May 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Sun Prairie, WI"
+    image="http://www.google.org/images/carmap/39.jpg"
+    image_large="http://www.google.org/images/carmap/39_large.jpg">
+  </marker>
+
+  <marker 
+    lat="41.8346"
+    lng="-87.628893"
+    owner="Illinois Institute of Technology"
+    owner_website="http://www.iit.edu/"
+    date="March 2007"
+    desc="Ford Escape Hybrid"
+    converter="All Cell Technologies"
+    converter_website="http://www.allcelltech.com/"
+    image="http://www.google.org/images/carmap/iit-ccmtce-escape-thumb.jpg"
+    image_large="http://www.google.org/images/carmap/iit-ccmtce-escape-large.jpg"
+    location="Chicago, IL">
+  </marker>
+
+  <marker
+    lat="41.713"
+    lng="-87.961"
+    owner_website="http://www.anl.gov/"
+    owner="Argonne National Labs"
+    converter_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion5"
+    desc="PHEV Prius"
+    converter="Hybrids Plus"
+    date="July 2007"
+    location="Chicago, IL">
+  </marker>
+
+  <marker
+    lat="43.201"
+    lng="-89.204"
+    owner_website="http://www.wppisys.org/"
+    owner="Wisconsin Public Power Inc"
+    converter="Hymotion"
+    date="July 2007"
+    location="Sun Prairie, WI"
+    image_large="http://www.calcars.org/images/where-phevs-are/wpp2-full.jpg">
+  </marker>
+
+  <marker
+    lat="46.835"
+    lng="-100.765"
+    owner_website="http://www.basinelectric.com/"
+    owner="Basin Electric Power Cooperative"
+    desc="2008 Ford Escape"
+    converter="Hymotion"
+    date="Oct 2007"
+    location="Bismarck, ND"
+    image_large="http://www.calcars.org/images/where-phevs-are/basin-electric-plugin.jpg">
+  </marker>
+
+<!-- Southern California -->
+  <marker 
+    lat="34.143181" lng="-118.055286"
+    minzoom="5"
+    owner="Southern California Edison"
+    owner_website="http://www.sce.com/"
+    date="August 2006"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.org"
+    location="Los Angeles County, CA">
+  </marker>
+
+  <marker 
+    lat="34.02" lng="-117.8"
+    minzoom="7"
+    owner="South Coast Air Quality Management District"
+    owner_website="http://www.aqmd.gov/"
+    date="August 2006"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.org"
+    location="Diamond Bar, CA">
+  </marker>
+
+  <marker
+    minzoom="0" 
+    lat="34.000283" lng="-117.829973"
+    date="March 2006"
+    owner="South Coast Air Quality Management District"
+    owner_website="http://www.aqmd.gov/"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="Diamond Bar, CA"
+    image="http://www.google.org/images/carmap/7.jpg">
+  </marker>
+
+  <marker
+    minzoom="4" 
+    lat="33.812" lng="-118.295505"
+    owner="EnergyCS"
+    owner_website="http://www.energycs.com"
+    date="March 2005"
+    converter="Greg Hanssen, Pete Nortman and team."
+    converter_website="http://www.energycs.com"
+    location="Los Angeles County, CA"
+    image="http://www.google.org/images/carmap/2.jpg">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="33.9" lng="-118"
+    owner="EnergyCS / Clean-Tech"
+    owner_website="http://www.energycs.com"
+    date="May 2005"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="Los Angeles County, CA"
+    image="http://www.google.org/images/carmap/3.jpg">
+  </marker>
+
+  <marker 
+    minzoom="6"
+    lat="34.01132" lng="-118.49195"
+    owner="City of Santa Monica"
+    owner_website="http://www.smgov.net"
+    date="May 2006"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="Santa Monica, CA">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="34.178"
+    lng="-118.316"
+    owner="Burbank Water and Power"
+    owner_website="http://www.burbankwaterandpower.com/phev.html"
+    converter="Energy CS"
+    desc="2007 Prius"
+    date="May 2007"
+    location="Burbank, CA"
+    image_large="http://www.calcars.org/images/photos/burbank-water-power-full.jpg">
+  </marker>
+
+  <marker
+    minzoom="2"
+    lat="32.72"
+    lng="-117.164"
+    owner_website="http://www.sdge.com/"
+    owner="San Diego Gas &amp; Electric"
+    desc="SDGE Prius #1"
+    converter_website="http://www.greengears.net/"
+    converter="Green Gears"
+    location="San Diego, CA"
+    date="July, 2007">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="32.72"
+    lng="-117.164"
+    owner_website="http://www.sdge.com/"
+    owner="San Diego Gas &amp; Electric"
+    desc="SDGE Prius #2"
+    converter_website="http://www.greengears.net/"
+    converter="Green Gears"
+    location="San Diego, CA"
+    date="July, 2007">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="34.062"
+    lng="-118.333"
+    owner_website="http://www.midway-group.com/"
+    owner="Midway Group"
+    converter_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion9"
+    desc="Prius"
+    converter="Hybrids Plus"
+    date="Oct 2007"
+    location="Los Angeles CA">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="34.058"
+    lng="-118.249"
+    owner_website="http://www.ladwp.com/"
+    owner="Los Angeles Water District"
+    desc="Prius"
+    converter="Hymotion/Green Gears"
+    converter_website="http://www.greengears.net/"
+    date="December 2007"
+    location="Los Angeles, CA">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="34.058"
+    lng="-118.249"
+    owner_website="http://www.ladwp.com/"
+    owner="Los Angeles Water District"
+    desc="Prius"
+    converter="Hymotion/Green Gears"
+    converter_website="http://www.greengears.net/"
+    date="December 2007"
+    location="Los Angeles, CA">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="34.182"
+    lng="-118.308"
+    owner="Rick Eye"
+    converter_website="http://www.go100mpg.com/"
+    converter="GO100mpg"
+    desc="Prius+ conversion, EAA-PHEV method, using Plug-In Supply&apos;s PbA system"
+    date="February 2008"
+    location="Burbank, CA"
+    image_large="http://www.calcars.org/images/photos/go100mpg.jpg">
+  </marker>
+
+<!-- Colorado -->
+
+  <marker 
+    minzoom="6"
+    lat="40.01527" lng="-105.27911"
+    owner="State of Colorado Energy Office"
+    owner_website="http://www.state.co.us/oemc/"
+    date="September 2006"
+    converter="Hybrids Plus"
+    converter_website="http://www.hybridsplus.com/"
+    location="Boulder, CO">
+  </marker>
+
+  <marker
+   minzoom="1"
+   lat="39.582348" lng="-104.838927"
+   owner="Nilar, Inc"
+   owner_website="http://www.nilar.com/"
+   converter="Did it themselves!"
+   desc="EAA-PHEV with Nilar NiMH batteries"
+   converter_website="http://www.eaa-phev.org"
+   date="May 2007"
+   location="Centennial, CO"
+   image="http://www.google.org/images/carmap/nilar_thumb.jpg">
+  </marker>
+
+  <marker
+    minzoom="2"
+    lat="39.756"
+    lng="-105.22"
+    owner="NREL"
+    owner_website="http://www.nrel.gov/"
+    date="June 2006"
+    desc="Toyota Prius"
+    converter="EnergyCS"
+    location="Golden, CO">
+  </marker>
+
+  <marker
+    minzoom="2"
+    lat="32.783"
+    lng="-79.931"
+    owner_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion8"
+    owner="Hybrids Plus"
+    desc="Prius"
+    converter_website="http://www.hybrids-plus.com/"
+    converter="Hybrids Plus"
+    date="Sept 2007"
+    location="Boulder CO">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="40.031"
+    lng="-105.279"
+    owner="Private individual"
+    desc="Prius"
+    converter_website="http://www.hybrids-plus.com/"
+    converter="Hybrids Plus"
+    date="Oct 2007"
+    location="Boulder CO">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="40.024"
+    lng="-105.25"
+    owner="Private Individual"
+    converter_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion10"
+    desc="Prius"
+    converter="Hybrids Plus"
+    date="Nov 2007"
+    location="Boulder, CO">
+  </marker>
+
+  <marker
+    minzoom="4"
+    lat="38.877"
+    lng="-106.963"
+    owner_website="http://www.alisongannett.com/"
+    owner="Office for Resource Efficiency"
+    converter_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion20"
+    desc="Escape"
+    converter="Hybrids Plus"
+    date="January 16, 2008"
+    location="Crested Butte, CO">
+  </marker>
+
+<!-- South West -->
+  <marker 
+    minzoom="2"
+    lat="33.443827" lng="-112.076398"
+    owner="Electric Transportation Applications and Electric Transportation Engineering Corporation ETEC"
+    owner_website="http://avt.inl.gov/phev.shtml"
+    location="Phoenix, AZ"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com" >
+  </marker>
+
+  <marker 
+    minzoom="7"
+    lat="33.44793" lng="-112.08254"
+    owner="Electric Transportation Applications and Electric Transportation Engineering Corporation ETEC"
+    owner_website="http://avt.inl.gov/phev.shtml"
+    location="Phoenix, AZ"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    desc="Prius">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="32.783"
+    lng="-79.931"
+    owner_website="http://www.plugincarolina.org/"
+    owner="Plug-In Hybrid Coalition of the Carolinas"
+    converter_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion17"
+    desc="PHEV Prius"
+    converter="Hybrids Plus"
+    date="Oct 2007"
+    location="Charleston, SC">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="34.545"
+    lng="-77.953"
+    owner_website="http://www.fourcty.org/"
+    owner="Four County EMC"
+    desc="2007 Prius"
+    converter="Hymotion"
+    date="Oct 2007"
+    location="Burgaw, NC"
+    image_large="http://www.calcars.org/images/where-phevs-are/fourcty-crn-prius.jpg">
+  </marker>
+
+<!-- Canada -->
+  <marker 
+    minzoom="1"
+    lat="49.89942" lng="-97.14073"
+    owner="Manitoba Hydro"
+    owner_website="http://www.hydro.mb.ca/"
+    date="September 2006"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="Winnipeg, Manitoba">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="49.805976" lng="-97.138688"
+    date="April 2007"
+    owner="University of Manitoba"
+    owner_website="http://www.umanitoba.ca/"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Winnipeg, Manitoba">
+  </marker>
+
+  <marker  
+    minzoom="5"
+    lat="43.85076" lng="-79.02105"
+    owner="Veridian Corp."
+    owner_website="www.veridian.on.ca"
+    date="September 2006"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Ajax, Ontario">
+  </marker>
+
+  <marker
+    minzoom="1"
+    lat="43.64854" lng="-79.38537"
+    owner="Hymotion"
+    owner_website="http://www.hymotion.com/"
+    date="February 2006"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com/"
+    location="Toronto, Ontario"
+    image="http://www.google.org/images/carmap/5.jpg">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="43.669"
+    lng="-79.385"
+    owner_website="http://www.toronto.ca/fleet/index.htm/"
+    owner="City of Toronto"
+    desc="Prius"
+    converter="Hymotion"
+    date="August 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="43.687"
+    lng="-79.4"
+    owner_website="http://www.ene.gov.on.ca/"
+    owner="Ontario Ministry of the Environment"
+    desc="Prius"
+    converter="Hymotion"
+    date="August 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="43.664"
+    lng="-79.389"
+    owner_website="http://www.ene.gov.on.ca/"
+    owner="Ontario Ministry of the Environment"
+    desc="Prius"
+    converter="Hymotion"
+    date="August 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="43.681"
+    lng="-79.381"
+    owner_website="http://www.autoshare.com/"
+    owner="AutoShare"
+    desc="Prius"
+    converter="Hymotion"
+    date="September 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="43.681"
+    lng="-79.381"
+    owner_website="http://www.torontohydro.com/"
+    owner="Toronto Hydro"
+    desc="Prius"
+    converter="Hymotion"
+    date="October 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="43.647"
+    lng="-79.395"
+    owner_website="http://www.bullfrogpower.com/"
+    owner="Bullfrog Power"
+    desc="Prius"
+    converter="Hymotion"
+    date="November 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="43.654"
+    lng="-79.384"
+    owner_website="http://www.yorku.ca/"
+    owner="York University"
+    desc="Prius"
+    converter="Hymotion"
+    date="November 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="43.654"
+    lng="-79.384"
+    owner_website="http://www.utoronto.ca/"
+    owner="University of Toronto"
+    desc="Ford Escape Hybrid"
+    converter="Hymotion"
+    date="December 2007"
+    location="Toronto, ON, Canada">
+  </marker>
+
+<!-- DC Area -->
+  <marker 
+    minzoom="4"
+    lat="38.97673" lng="-76.48991"
+    owner="Costar Corporation"
+    owner_website="http://www.costar.com"
+    date="October 2006"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Annapolis, MD">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="38.88951" lng="-77.032"
+    owner="A123 Systems"
+    owner_website="http://www.a123systems.com/newsite/index.php#/home/phev/"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    date="February 2007"
+    location="W`ashington, DC">
+  </marker>
+
+  <marker 
+    minzoom="2"
+    lat="38.84151" lng="-77.30812"
+    owner="Fairfax County, VA"
+    owner_website="http://www.fairfaxcounty.gov"
+    date="November 2006"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Fairfax County, VA">
+  </marker>
+
+<!-- Central Washington -->
+  <marker
+    minzoom="5"
+    lat="47.464988" lng="-120.335507"
+    owner="Advanced Vehicle Innovations"
+    owner_website="http://www.plugincenter.com"
+    date="October 2006"
+    desc="WhiteBird"
+    converter="Manzanita Micro"
+    converter_website="http://www.manzanitamicro.com"
+    location="Chelan County, WA">
+  </marker>
+
+  <marker
+    minzoom="4"
+    lat="47.990322" lng="-120.400036"
+    owner="Lake Chelan School District"
+    owner_website="http://www.chelanschools.org/"
+    date="June 2007"
+    location="Chelan, WA"
+    converter="Advanced Energy"
+    converter_website="http://www.hybridschoolbus.org/"
+    desc="Plug-in Hybrid School Bus"
+    image="http://www.google.org/images/carmap/wake-bus-thumb.jpg"
+    image_large="http://www.google.org/images/carmap/wake-bus-large.jpg">
+   </marker>
+
+  <marker
+    minzoom="5"
+    lat="38.806"
+    lng="-77.042"
+    owner="John Clinton"
+    desc="2004 Prius+ PbA conversion"
+    converter_website="http://www.harveyev.com/"
+    converter="Harvey EV"
+    date="January 2008"
+    location="Alexandria, VA">
+  </marker>
+
+  <marker
+    lat="38.978"
+    lng="-76.489"
+    minzoom="4"
+    owner="James Woolsey (former CIA Director, Co-Founder SetAmericaFree)"
+    desc="Prius"
+    converter="Hymotion"
+    date="March 2008"
+    location="Annapolis, Md">
+  </marker>
+
+<!-- Silicon Valley -->
+  <marker 
+    minzoom="7"
+    lat="37.44462" lng="-122.16077"
+    owner="Thesen-Kramer Family"
+    date="November 2006 "
+    converter="Did it themselves!"
+    converter_website="http://www.eaa-phev.org/wiki/PriusPlus"
+    desc="CalCars-EAA-PHEV. A Prototype for Do-It-Yourself Project"
+    location="Palo Alto, CA">
+  </marker>
+
+  <marker
+    minzoom="1"
+    lat="37.48412" lng="-122.22712"
+    owner="Calcars/Felix Kramer"
+    owner_website="http://www.calcars.org"
+    date="March 2006"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="San Mateo County, CA" 
+    image="http://www.google.org/images/carmap/8.jpg"
+    image_large="http://www.google.org/images/carmap/8_large.jpg">
+  </marker>
+
+  <marker  
+    minzoom="6"
+    lat="37.416579" lng="-122.08048"
+    owner="Google"
+    owner_website="http://www.google.org/recharge/index.html"
+    date="February 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    image="http://www.google.org/images/carmap/google1.jpg"
+    location="Mountain View, CA">
+  </marker>
+
+  <marker 
+    lat="37.423111" lng="-122.081783"
+    minzoom="7"
+    owner="Google"
+    owner_website="http://www.google.org/recharge/index.html"
+    date="February 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    image="http://www.google.org/images/carmap/google2.jpg"
+    location="Mountain View, CA">
+  </marker>
+
+  <marker 
+    lat="37.420593" lng="-122.07244"
+    minzoom="7"
+    owner="Google"
+    owner_website="http://www.google.org/recharge/index.html"
+    date="February 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    image="http://www.google.org/images/carmap/google3.jpg"
+    location="Mountain View, CA">
+  </marker>
+
+  <marker 
+    lat="37.417912" lng="-122.085307"
+    minzoom="7"
+    owner="Google"
+    owner_website="http://www.google.org/recharge/index.html"
+    date="February 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    image="http://www.google.org/images/carmap/google4.jpg"
+    location="Mountain View, CA">
+  </marker>
+
+  <marker 
+    lat="37.4188" lng="-122.0801"
+    minzoom="7"
+    owner="Google"
+    owner_website="http://www.google.org/recharge/index.html"
+    date="February 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    image="http://www.google.org/images/carmap/google5.jpg"
+    location="Mountain View, CA">
+  </marker>
+
+  <marker 
+    lat="37.420793" lng="-122.083488"
+    minzoom="7"
+    owner="Google"
+    owner_website="http://www.google.org/recharge/index.html"
+    date="February 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    image="http://www.google.org/images/carmap/google6.jpg"
+    location="Mountain View, CA">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="37.471"
+    lng="-122.197"
+    owner="Joe &amp; Jill Lervold"
+    converter_website="http://www.lusciousgarage.com/"
+    converter="Luscious Garage"
+    desc="Prius+ conversion, EAA-PHEV, using Plug-In Supply&apos;s PbA system"
+    date="February 2008"
+    location="Atherton, CA">
+  </marker>
+
+<!-- Idaho -->
+  <marker 
+    lat="43.49204" lng="-112.04196"
+    minzoom="4"
+    owner="Idaho National Laboratory of US Department of Energy"
+    owner_website="http://www.inl.gov/"
+    date="November 2006"
+    converter="EnergyCS"
+    converter_website="http://energycs.com"
+    location="Idaho Falls, ID">
+  </marker>
+
+  <marker 
+    lat="43.5" lng="-112"
+    minzoom="5"
+    owner="Idaho National Laboratory of US Department of Energy"
+    owner_website="http://www.inl.gov/"
+    date="November 2006"
+    converter="Hymotion"
+    converter_website="http://hymotion.com"
+    location="Idaho Falls, ID">
+  </marker>
+
+<!-- NY -->
+  <marker 
+    minzoom="5"
+    lat="40.744886" lng="-73.934804"
+    owner="Horacio Calvento"
+    date="December 2006"
+    converter="Long Island Prius Owners Group"
+    converter_website="http://www.lipog.org/PHEV%20PowerPoint.htm"
+    location="Long Island, NY"
+    desc="Dual-PWR, EAA-PHEV/Manzanita Micro Style">
+  </marker>
+
+<!-- North East -->
+  <marker  
+    minzoom="4"
+    lat="40.10279" lng="-75.27462"
+    owner="Lithium Technologies"
+    owner_website="http://www.lithiumtech.com/"
+    date="May 2007"
+    converter="Hybrids-Plus"
+    converter_website="http://www.hybrids-plus.com/"
+    location="Plymouth Meeting, PA">
+  </marker>
+
+  <marker
+    minzoom="4"
+    lat="40.73877" lng="-75.30953"
+    owner="Jennings Transportation"
+    date="April 2007"
+    location="Nazareth, PA"
+    converter="Advanced Energy"
+    converter_website="http://www.hybridschoolbus.org/"
+    desc="Plug-in Hybrid School Bus"
+    image="http://www.google.org/images/carmap/wake-bus-thumb.jpg"
+    image_large="http://www.google.org/images/carmap/wake-bus-large.jpg">
+   </marker>
+
+  <marker 
+    minzoom="6"
+    lat="43.60487"
+    lng="-72.97152"
+    owner="Central Vermont Public Service"
+    owner_website="http://www.cvps.com/"
+    date="June 2007"
+    desc="Plug&apos;n go #1"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Rutland, VT">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="43.611"
+    lng="-72.982"
+    owner="Central Vermont Public Service"
+    desc="Plug'n go #2"
+    converter="Hymotion"
+    date="July 2007"
+    location="Rutland, VT">
+  </marker>
+
+  <marker
+    minzoom="0"
+    lat="41.39251" lng="-73.45386"
+    owner="Electro Energy"
+    owner_website="http://www.electroenergyinc.com/"
+    date="March 2006"
+    converter="CalCars and Electro Energy"
+    converter_website="http://www.electroenergyinc.com/"
+    location="Danbury, CT"
+    image="http://www.google.org/images/carmap/6.jpg" 
+    image_large="http://www.google.org/images/carmap/6_large.jpg">
+  </marker>
+
+  <marker
+    minzoom="2"
+    lat="42.361273" lng="-71.362858"
+    owner="Armin Kusig"
+    date="July 2006"
+    location="Wayland, MA"
+    converter="Did it themselves!"
+    desc="Honda Insight">
+  </marker>
+
+  <marker
+    lat="42.704"
+    lng="-73.862"
+    minzoom="2"
+    owner_website="http://www.nyserda.org/"
+    owner="NYSERDA (New York State Energy Research and Development Authority)"
+    converter_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion2"
+    desc="PHEV Escape"
+    converter="Hybrids Plus"
+    date="Sept 2007"
+    location="Albany, NY">
+  </marker>
+
+<!-- UK -->
+  <marker  
+    minzoom="4"
+    lat="52.468056" lng="-0.251110"
+    owner="Jim Fell"
+    date="January 2007"
+    converter="Did it themselves!"
+    desc="EAA-PHEV Manzanita Micro-style conversion with Thundersky cells"
+    converter_website="http://www.eaa-phev.org/wiki/FellUK"
+    location="Peterborough, England">
+  </marker>
+
+  <marker  
+    minzoom="4"
+    lat="51.36" lng="00.05"
+    owner="GreenTomato Cars"
+    owner_website="http://www.greentomatocars.com/"
+    date="February 2007"
+    converter="Amberjac/EnergyCS"
+    converter_website="http://www.amberjac-projects.co.uk"
+    location="London, UK">
+  </marker>
+
+  <marker 
+    minzoom="5"
+    lat="51.40" lng="00.03"
+    owner="Jim Tech Ltd."
+    date="March 2007 "
+    converter="Amberjac / EnergyCS"
+    converter_website="http://www.amberjac-projects.co.uk"
+    location="London, UK">
+  </marker>
+
+  <marker  
+    minzoom="2"
+    lat="53.78333" lng="-1.75000"
+    owner="Private Individual"
+    converter="Amberjac/EnergyCS"
+    converter_website="http://www.amberjac-projects.co.uk"
+    date="April 2007"
+    location="Bradford, UK">
+  </marker>
+
+  <marker  
+    minzoom="4"
+    lat="51.12" lng="00.40"
+    owner="Private Individual"
+    date="May 2007"
+    converter="Amberjac/EnergyCS"
+    converter_website="http://www.amberjac-projects.co.uk"
+    location="Kent, UK">
+  </marker>
+
+  <marker  
+    minzoom="4"
+    lat="52.78" lng="-01.13"
+    owner="Beacon Energy"
+    owner_website="http://www.beaconenergy.co.uk/"
+    date="May 2007"
+    converter="Amberjac/EnergyCS"
+    converter_website="http://www.amberjac-projects.co.uk"
+    location="Loughborough, UK">
+  </marker>
+
+  <marker
+    minzoom="0" 
+    lat="53.13" lng="-0.24"
+    owner="Amberjac Projects Lt"
+    owner_website="http://www.amberjac-projects.co.uk"
+    date="September 2005"
+    converter="EnergyCS, Amberjac"
+    converter_website="http://www.amberjac-projects.co.uk"
+    location="Lincolnshire, UK"
+    image="http://www.google.org/images/carmap/4.jpg">
+  </marker>
+
+<!-- South -->
+  <marker  
+    minzoom="1"
+    lat="34.11865" lng="-83.57098"
+    owner="Jackson EMC Electricity Cooperative"
+    owner_website="http://www.jacksonemc.com/index2.html"
+    date="February 2007"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="Jefferson, GA">
+  </marker>
+
+  <marker
+    minzoom="1"
+    lat="27.495251" lng="-82.564326"
+    owner="Manatee County School District"
+    owner_website="http://www.manatee.k12.fl.us/"
+    date="March 2007"
+    location="Bradenton, FL"
+    converter="Advanced Energy"
+    converter_website="http://www.hybridschoolbus.org/"
+    desc="Plug-in Hybrid School Bus"
+    image="http://www.google.org/images/carmap/wake-bus-thumb.jpg"
+    image_large="http://www.google.org/images/carmap/wake-bus-large.jpg">
+   </marker>
+
+  <marker
+    minzoom="2"
+    lat="35.831524" lng="-78.618253"
+    owner="Wake County School District"
+    owner_website="http://www.wcpss.net/news/2007_may17_hybrid_bus/"
+    date="May 2007"
+    location="Raleigh, NC"
+    converter="Advanced Energy"
+    converter_website="http://www.hybridschoolbus.org/"
+    desc="Plug-in Hybrid School Bus"
+    image="http://www.google.org/images/carmap/wake-bus-thumb.jpg"
+    image_large="http://www.google.org/images/carmap/wake-bus-large.jpg">
+   </marker>
+
+  <marker
+    minzoom="4"
+    lat="35.21926" lng="-80.841047"
+    owner="Charlotte Mecklenburg Schools"
+    owner_website="http://www.cms.k12.nc.us/includes/gfi.asp?fileHandle=4279.asp"
+    date="May 2007"
+    location="Charlotte, NC"
+    converter="Advanced Energy"
+    converter_website="http://www.hybridschoolbus.org/"
+    desc="Plug-in Hybrid School Bus"
+    image="http://www.google.org/images/carmap/CMS-Bus-Thumb.jpg"
+    image_large="http://www.google.org/images/carmap/CMS-Bus-Large.jpg">
+   </marker>
+
+  <marker
+    minzoom="1"
+    lat="34.74865" lng="-92.27448"
+    owner="Little Rock School District"
+    owner_website="http://www.lrsd.org/"
+    date="May 2007"
+    location="Little Rock, AR"
+    converter="Advanced Energy"
+    converter_website="http://www.hybridschoolbus.org/"
+    desc="Plug-in Hybrid School Bus"
+    image="http://www.google.org/images/carmap/wake-bus-thumb.jpg"
+    image_large="http://www.google.org/images/carmap/wake-bus-large.jpg">
+   </marker>
+
+  <marker
+    minzoom="6"
+    lat="35.775"
+    lng="-78.638"
+    owner_website="http://www.progress-energy.com/"
+    owner="Progress Energy Corporation"
+    converter_website="http://www.avrc.com/"
+    converter="Advanced Vehicle Research Center"
+    desc="Converted with Hymotion kit"
+    date="July 2007"
+    location="Raleigh, NC"
+    image_large="http://www.calcars.org/images/photos/progress-energy.jpg">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="35.774"
+    lng="-78.68"
+    owner_website="http://www.advancedenergy.org/"
+    owner="Advanced Energy"
+    desc="Prius"
+    converter="Hymotion and Advanced Vehicle Research Center"
+    date="July 2007"
+    location="Raleigh, NC">
+  </marker>
+
+  <marker
+    lat="35.225"
+    lng="-80.849"
+    minzoom="5"
+    owner_website="http://www.duke-energy.com/"
+    owner="Duke Energy"
+    desc="Prius"
+    converter="Hymotion and Advanced Vehicle Research Center"
+    date="July 2007"
+    location="Charlotte, NC">
+  </marker>
+
+<!-- Texas -->
+  <marker  
+    lat="30.26757" lng="-97.74296"
+    owner="Austin Energy"
+    owner_website="http://www.austinenergy.com/"
+    date="March 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Austin, TX">
+  </marker>
+
+  <marker  
+    lat="30.2" lng="-97.7"
+    owner="Austin Energy"
+    owner_website="http://www.austinenergy.com/"
+    date="March 2007"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    minzoom="5"
+    location="Austin, TX">
+  </marker>
+
+  <marker 
+    minzoom="0"
+    lat="29.76047"
+    lng="-95.36982"
+    owner="Philippi Family"
+    date="May 2007"
+    converter="CalCars and Maker Faire Team"
+    converter_website="http://www.calcars.org"
+    location="Houston, TX">
+  </marker>
+
+<!-- Iceland -->
+  <marker
+    minzoom="0"
+    lat="65.686"
+    lng="-18.11"
+    owner="Gudmundur Arnason, sponsored by Iceland&apos;s National Energy Authority"
+    desc="Prius"
+    converter="Amberjac/EnergyCS"
+    date="August 2007"
+    location="Akureyri, Iceland"
+    image_large="http://www.calcars.org/images/photos/kramer-thorkelsson-arnason-full.jpg">
+  </marker>
+
+<!-- Europe (Non UK) -->
+  <marker  
+    lat="50.9129" lng="5.76849"
+    owner="EcoFys"
+    owner_website="http://www.ecofys.com/"
+    date="March 2007"
+    converter="Amberjac / EnergyCS"
+    converter_website="http://www.amberjac-projects.co.uk"
+    location="Maastrich, Netherlands">
+  </marker>
+
+  <marker  
+    minzoom="5"
+    lat="52.354727" lng="4.904053"
+    owner="Ecordis/Spinnovation"
+    date="May 2007"
+    converter="Amberjac/EnergyCS"
+    converter_website="http://www.amberjac-projects.co.uk"
+    location="Amsterdam, Netherlands">
+  </marker> 
+
+<!-- Central Valley, CA -->
+  <marker
+    minzoom="4"
+    lat="38.54655" lng="-121.74488"
+    owner="UC Davis Hybrid Center"
+    owner_website="http://www.team-fate.net/"
+    converter="UC Davis Team Fate"
+    converter_website="http://www.team-fate.net/"
+    date="Since 1993"
+    desc="Multiple Vehicles"
+    location="Davis, CA"
+    image="http://www.google.org/images/carmap/team-fate-thumb.jpg">
+  </marker>
+
+  <marker
+    minzoom="5" 
+    lat="38.377385" lng="-121.444905"
+    owner="Sacramento Municipal Utility District"
+    owner_website="http://www.smud.org/"
+    date="April 2006"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="Sacramento, CA"
+    image="http://www.google.org/images/carmap/9.jpg">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="38.541"
+    lng="-121.747"
+    owner_website="http://www.ucdavis.edu/"
+    owner="UC-Davis"
+    desc="Prius"
+    converter_website="http://www.greengears.net/"
+    converter="Green Gears"
+    date="Oct 2007"
+    location="Davis, CA">
+  </marker>
+
+<!-- North West -->
+  <marker 
+    minzoom="6"
+    lat="47.60342" lng="-122.32971"
+    owner="Dave Moore"
+    date="May 2007"
+    converter="Hybrids-Plus"
+    converter_website="http://www.hybrids-plus.com/"
+    location="Seattle, WA">
+  </marker>
+
+  <marker 
+    minzoom="0" 
+    lat="47.33" lng="-122.272"
+    owner="Ryan Fulcher of Seattle Electric Auto Association"
+    date="April 2006"
+    converter="CalCars and Maker Faire team"
+    owner_website="http://www.eaa-phev.org/wiki/PriusBlue"
+    converter_website="http://www.manzanitamicro.com"
+    location="Auburn, WA"
+    image="http://www.google.org/images/carmap/10.jpg"
+    image_large="http://www.google.org/images/carmap/10_large.jpg">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="47.683852" lng="-122.193358"
+    date="April 2007"
+    owner="Green Car Company"
+    owner_website="http://www.thegreencarco.com/"
+    converter="Manzanita Micro"
+    converter_website="http://www.manzanitamicro.com"
+    desc="Green Machine (PiPrius)"
+    location="Kirkland, WA"
+    image="http://www.google.org/images/carmap/green_car_co.jpg">
+  </marker>
+
+  <marker
+    lat="44.949"
+    lng="-123.051"
+    owner_website="http://www.salemelectric.com/"
+    owner="Salem Electric"
+    desc="PHEV Escape"
+    converter_website="http://www.hybrids-plus.com/"
+    converter="Hybrids Plus"
+    date="Sept 25, 2007"
+    location="Salem, Oregon">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="47.608"
+    lng="-122.327"
+    owner="Peter Mullen"
+    converter_website="http://www.hybrids-plus.com/pmwiki/index.php?n=&quot;Ext.Conversion19"
+    desc="2008 Prius"
+    converter="Hybrids Plus"
+    date="Nov 2007"
+    location="Seattle, WA">
+  </marker>
+
+<!-- North San Francisco Bay -->
+  <marker
+    minzoom="2"
+    lat="38.068225" lng="-122.688415"
+    owner="CalCars PRIUS+/Ron Gremban"
+    date="Fall 2004"
+    converter="Ron Gremban, CalCars team"
+    desc="Initially with EnergyCS technology"
+    owner_website="http://www.calcars.org"
+    converter_website="http://www.calcars.org"
+    location="Marin County, CA"
+    image="http://www.google.org/images/carmap/1.jpg" 
+    image_large="http://www.google.org/images/carmap/1_large.jpg">
+  </marker>
+
+  <marker 
+    lat="38.513106"
+    lng="-122.782527"
+    minzoom="4"
+    owner="Sonoma County Water Agency"
+    owner_website="http://www.scwa.ca.gov/"
+    date="May 2007"
+    desc="Sparky"
+    converter="Hymotion"
+    converter_website="http://www.hymotion.com"
+    location="Santa Rosa, CA">
+  </marker>
+
+  <marker
+    lat="37.974"
+    lng="-122.562"
+    owner_website="http://www.diy-mpg.com/"
+    owner="Darren Overby"
+    desc="Prius"
+    converter="CalCars"
+    date="Nov 2007"
+    location="San Anselmo, CA"
+    image_large="http://www.calcars.org/images/where-phevs-are/diy-mpg.jpg">
+  </marker>
+
+<!-- San Francisco -->
+  <marker
+    minzoom="5"
+    lat="37.77912" lng="-122.42009" 
+    owner="PG&amp;E"
+    owner_website="http://www.pge.com/about_us/environment/features/fleet.html"
+    date="July 2006"
+    desc="Sparky"
+    converter="EnergyCS"
+    converter_website="http://www.energycs.com"
+    location="San Francisco, CA"
+    image="http://www.google.org/images/carmap/12.jpg"
+    image_large="http://www.google.org/images/carmap/12_large.jpg">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="37.785"
+    lng="-122.405"
+    owner_website="http://www.lusciousgarage.com/"
+    owner="Luscious Garage"
+    desc="Prius+"
+    converter_website="http://www.lusciousgarage.com/"
+    converter="Luscious Garage"
+    date="January 2008"
+    location="San Francisco, CA">
+  </marker>
+
+  <marker
+    minzoom="5"
+    lat="37.752"
+    lng="-122.39"
+    owner_website="http://www.greengears.net/"
+    owner="Green Gears, Inc."
+    desc="Prius"
+    converter="Green Gears, using A123/Hymotion system"
+    converter_website="http://www.greengears.net/"
+    date="February 1, 2008"
+    location="Pat&apos;s Garage San Francisco, CA">
+  </marker>
+
+  <marker
+    minzoom="6"
+    lat="37.779"
+    lng="-122.419"
+    owner="City &amp; County of San Francisco"
+    owner_website="http://www.sfgov.org/"
+    desc="Prius"
+    converter="Green Gears, using A123/Hymotion system"
+    converter_website="http://www.greengears.net/"
+    date="February, 2008"
+    location="Pat&apos;s Garage San Francisco, CA"
+    image_large="http://www.calcars.org/images/where-phevs-are/three-sf-cars.jpg">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="37.779"
+    lng="-122.419"
+    owner="City &amp; County of San Francisco"
+    owner_website="http://www.sfgov.org/"
+    desc="Prius"
+    converter="Green Gears, using A123/Hymotion system"
+    converter_website="http://www.greengears.net/"
+    date="February, 2008"
+    location="Pat&apos;s Garage San Francisco, CA"
+    image_large="http://www.calcars.org/images/where-phevs-are/three-sf-cars.jpg">
+  </marker>
+
+  <marker
+    minzoom="7"
+    lat="37.779"
+    lng="-122.419"
+    owner="City &amp; County of San Francisco"
+    owner_website="http://www.sfgov.org/"
+    desc="Prius"
+    converter="Green Gears, using A123/Hymotion system"
+    converter_website="http://www.greengears.net/"
+    date="February, 2008"
+    location="Pat&apos;s Garage San Francisco, CA"
+    image_large="http://www.calcars.org/images/where-phevs-are/three-sf-cars.jpg">
+  </marker>
+</markers>

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>RechargeIT.org</title>
+<link href="../../fixed.css" rel="stylesheet" type="text/css">
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAqMAZpYIqo07WG-7RUKnPWRQJlUI_E82Z_jYPG3SqxxK0F_suuxQgqxAbq1FMIK1oPIY1E1i_l79KKw" type="text/javascript"></script>
+<script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js" type="text/javascript"></script>
+<script src="../spreadsheetslayer.js" type="text/javascript"></script>
+<script type="text/javascript">
+ 
+ var geocoder;
+ var map;
+ var geocoded = false;
+
+ function initialize() {
+      if (GBrowserIsCompatible()) {
+        geocoder = new GClientGeocoder();
+        map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(37.4419, -122.1419), 2);
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());
+        map.enableScrollWheelZoom();
+        var spreadsheetsLayer = new SpreadsheetsLayer(map, {video_width: '270px', video_height: '200px', column_title: 'name', column_desc: 'urlofyoutubevideo', query: 'sq=approved%3Dyes'});
+        spreadsheetsLayer.enable();
+      }
+    }
+
+function maybeGeocode() {
+  var zip = document.getElementById("zipcode").value;
+  if (zip.length >= 5) {
+    showAddress(zip);
+  }
+}
+
+    function showAddress(address) {
+      geocoder.getLatLng(
+        address,
+        function(point) {
+          if (!point) {
+            alert(address + " not found");
+          } else {
+            map.clearOverlays();
+            map.setCenter(point, 13);
+            var marker = new GMarker(point, {draggable: true});
+            GEvent.addListener(marker, "dragend", function() {
+              var latlng = marker.getLatLng();
+              document.getElementById("latbox").value = latlng.lat();
+              document.getElementById("lonbox").value = latlng.lng();
+            });
+            var latlng = marker.getLatLng();
+            document.getElementById("latbox").value = latlng.lat();
+            document.getElementById("lonbox").value = latlng.lng();
+            map.addOverlay(marker);
+          }
+        }
+      );
+    }
+
+    </script>
+<style>
+#formtable td { padding:5px; vertical-align:top; }
+</style>
+</head>
+<body onload="initialize()">
+ 
+<form action="https://spreadsheets.google.com/formResponse?key=p9pdwsai2hDM44qo4oZ5EfQ" method="POST">
+<table id="formtable"><tr valign=top><td>
+Name: </td><td> <input type="text" size="35" class="ss-q-short" name="single:0" id="entry_0" />
+</td></tr><tr valign=top><td>
+Zip Code: </td><td> <input type="text" size="10" id="zipcode" onkeyup="maybeGeocode()" onkeypress="maybeGeocode()" />
+</td></tr><tr><td>&nbsp;</td>
+<td><div id="map_canvas" style="width: 300px; height: 250px" align="right"></div></td>
+</tr>
+<div style="display:none">
+<input type="text" id="latbox" class="ss-q-short" name="single:2" />
+<input type="text" id="lonbox" class="ss-q-short" name="single:3" />
+</div>
+<tr valign=top><td>
+YouTube Video URL: </td><td> <input type="text" size="50" class="ss-q-short" name="single:1" id="entry_3" />
+</td></tr></table><br>
+<input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>

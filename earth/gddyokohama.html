@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <head>
+    <title></title>
+    <!-- *** Replace the key below below with your own API key, available at http://code.google.com/apis/maps/signup.html *** -->
+    <script src="http://www.google.com/jsapi?key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
+    <script>
+google.load("earth", "1");
+
+var ge = null;
+var degree=0;
+function init() {
+  google.earth.createInstance("map3d", initCallback, failureCallback);
+
+}
+
+function initCallback(object) {
+
+  ge = object;
+  try{
+  ge.getWindow().setVisibility(true);
+  ge.getNavigationControl().setVisibility(true);
+  }
+  catch(Exception){
+  ge.getWindow().setVisibility(true);
+  alert(Exception);
+  }
+var oldFlyToSpeed = ge.getOptions().getFlyToSpeed();
+ge.getOptions().setFlyToSpeed(1.0);
+la = ge.createLookAt('');
+la.set(35.457552,139.637826,0,ge.ALTITUDE_RELATIVE_TO_GROUND,0,45,450);
+
+ge.getView().setAbstractView(la);
+
+var networkLink = ge.createNetworkLink("");
+networkLink.setDescription("NetworkLink open to fetched content");
+networkLink.setName("Open NetworkLink");
+networkLink.setFlyToView(false);  
+var link = ge.createLink("");
+link.setHref("http://gmaps-samples.googlecode.com/svn/trunk/earth/gdd-jap.kmz");
+networkLink.setLink(link);
+setTimeout(ge.getFeatures().appendChild(networkLink),100000);
+
+
+var x = 0;
+var y = true;
+go = function(count) {
+ 
+
+  la.setHeading(la.getHeading() + .5);
+  ge.getView().setAbstractView(la);
+  if (count < 50) {
+
+    setTimeout('go(' + (count+1) + ')', 500);
+  } else {
+    //ge.getOptions().setFlyToSpeed(oldFlyToSpeed);
+  }
+}
+
+go(0);
+
+}
+ 
+function rotate(la) {
+la.setHeading(la.getHeading() +25);
+ge.getView().setAbstractView(la);
+    
+}
+function failureCallback(object) {
+}
+    </script>
+  </head>
+  <body onload='init()' id='body'>
+    <center>
+
+
+      <div id='map3d_container'
+           style='border: 1px solid silver; height: 600px; width: 800px;'>
+        <div id='map3d' style='height: 100%;'></div>
+      </div>
+    </center>
+  </body>
+</html>

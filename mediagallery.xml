@@ -69,7 +69,6 @@ maybeUpdateGallery();
 }
 function youtubeLoaded(json) {
 youtubeFeed = json.feed;
-console.log(youtubeFeed);
 maybeUpdateGallery();
 }
 

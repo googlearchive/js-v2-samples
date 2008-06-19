@@ -24,21 +24,17 @@ img {
 border: 1px solid grey;
 }
 </style>
-<!--
-<form action="demogallery.html" onsubmit="getJSON(true); return false;" method="get">
-Enter keyword <input type="text" id="searchbox" value="" />
-<select id="typedropdown">
+
+<form action="demogallery.html" onsubmit="searchEntries(); return false;" method="get">
+Enter keyword <input type="text" id="searchbox" value="" style="width:100px"/> <input type="submit" value="Search" onclick="searchEntries()" />
+or select a type
+<select id="typedropdown" onchange="changeView()">
+<option value="both">All</option>
 <option value="videos">Videos</option>
 <option value="slides">Slides</option>
 </select>
-<input type="submit" value="Search" onclick="getJSON(true)" />
 </form>
-<br/><br/>
--->
-Show me:
-<input type="radio" name="group1" id="youtubeCHECKBOX" onclick="changeView()"/>Videos
-<input type="radio" name="group1" id="spreadsheetsCHECKBOX" onclick="changeView()"/>Slides
-<input type="radio" name="group1" id="bothCHECKBOX" onclick="changeView()" checked/>Both
+
 <br/><br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>
@@ -49,187 +45,199 @@ Show me:
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON2"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON2"/>
 
-
-
 <script type="text/javascript">
 //<![CDATA[
 var entries;
+var allEntries;
 var curNum;
 
 var youtubeFeed = null;
 var spreadsheetsFeed = null;
 
-function load() {
-getJSON(true);
+function load() {  
+  getJSON(true);
 }
 
 function spreadsheetLoaded(json) {
-spreadsheetsFeed = json.feed;
-maybeUpdateGallery();
+  spreadsheetsFeed = json.feed;
+  maybeUpdateGallery();
 }
 function youtubeLoaded(json) {
-youtubeFeed = json.feed;
-maybeUpdateGallery();
+  youtubeFeed = json.feed;
+  maybeUpdateGallery();
 }
 
 function maybeUpdateGallery() {
-if (youtubeFeed && spreadsheetsFeed) {
-entries = youtubeFeed.entry.concat(spreadsheetsFeed.entry);
-curNum = 0;
-updateGallery();
-}
+  if (youtubeFeed && spreadsheetsFeed) {
+    allEntries = youtubeFeed.entry.concat(spreadsheetsFeed.entry);
+    entries = allEntries;
+    curNum = 0;
+    updateGallery();
+  }
 }
 
 function changeView() {
-var youtubeChecked = document.getElementById("youtubeCHECKBOX").checked;
-var spreadsheetsChecked = document.getElementById("spreadsheetsCHECKBOX").checked;
-var bothChecked = document.getElementById("bothCHECKBOX").checked;
-if (bothChecked) entries = youtubeFeed.entry.concat(spreadsheetsFeed.entry);
-if (youtubeChecked) entries = youtubeFeed.entry;
-if (spreadsheetsChecked) entries = spreadsheetsFeed.entry;
-curNum = 0;
-updateGallery();
+  var selectedType = document.getElementById("typedropdown").value;
+  
+  if (selectedType == "both") entries = youtubeFeed.entry.concat(spreadsheetsFeed.entry);
+  if (selectedType == "videos") entries = youtubeFeed.entry;
+  if (selectedType == "slides") entries = spreadsheetsFeed.entry;
+  curNum = 0;
+  updateGallery();
 }
 
 function enableAll() {
-enableNext();
-enablePrevious();
+  enableNext();
+  enablePrevious();
 }
 
 function disableAll() {
-disableNext();
-disablePrevious();
+  disableNext();
+  disablePrevious();
 }
 
 function enableNext() {
-document.getElementById("nextBUTTON").disabled = false;
-document.getElementById("nextBUTTON2").disabled = false;
+  document.getElementById("nextBUTTON").disabled = false;
+  document.getElementById("nextBUTTON2").disabled = false;
 }
 
 function enablePrevious() {
-document.getElementById("previousBUTTON").disabled = false;
-document.getElementById("previousBUTTON2").disabled = false;
+  document.getElementById("previousBUTTON").disabled = false;
+  document.getElementById("previousBUTTON2").disabled = false;
 }
 
-
+  
 function disableNext() {
-document.getElementById("nextBUTTON").disabled = true;
-document.getElementById("nextBUTTON2").disabled = true;
+  document.getElementById("nextBUTTON").disabled = true;
+  document.getElementById("nextBUTTON2").disabled = true;
 }
 
 function disablePrevious() {
-document.getElementById("previousBUTTON").disabled = true;
-document.getElementById("previousBUTTON2").disabled = true;
+  document.getElementById("previousBUTTON").disabled = true;
+  document.getElementById("previousBUTTON2").disabled = true;
 }
 
 
 
 function updateGallery() {
-disableAll();
-if (entries.length > 5) {
-enableNext();
-}
-
-var min = curNum;
-var max = Math.min(curNum+5, entries.length);
-document.getElementById('showingSPAN').innerHTML = 'Showing ' + (min + 1) + ' - ' + max + ' of ' + entries.length;
-
-var htmlAll = [''];
-for (var i = min; i < max; i++) {
-var entry = entries[i];
-var title = getTitle(entry);
-var author = getAuthor(entry);
-var description = getDescription(entry);
-if (description.length > 300) description = description.substr(0, 300) + '...';
-var thumbnailurl = getThumbnail(entry);
-var url = getUrl(entry);
-var html = '<div class="entry">';
-if (thumbnailurl) html += '<a target="_blank" href="' + url + '"><img align="left" style="width: 160px; height: 128px" src="' + thumbnailurl + '"/></a>';
-html += '<strong><a target="_blank" href="' + url + '">' + title + '</a></strong> <br/>' + description + '<br/><br/>';
-html += '</div>';
-html += '<div class="divider">&nbsp;</div>';
-htmlAll.push(html);
-}
-htmlAll.push('');
-document.getElementById("sidebar").innerHTML = htmlAll.join("");
+  disableAll();
+  if (entries.length > 5) {
+    enableNext();
+  }
+ 
+  var min = curNum;
+  var max = Math.min(curNum+5, entries.length);
+  document.getElementById('showingSPAN').innerHTML = 'Showing ' + (min + 1) + ' - ' + max + ' of ' + entries.length;
+  
+  var htmlAll = [''];
+  for (var i = min; i < max; i++) {
+      var entry = entries[i];
+      var title = getTitle(entry);
+      var author = getAuthor(entry);
+      var description = getDescription(entry);
+      if (description.length > 300) description = description.substr(0, 300) + '...';
+      var thumbnailurl = getThumbnail(entry);
+      var url = getUrl(entry);
+      var html = '<div class="entry">';
+      if (thumbnailurl) html += '<a target="_blank" href="' + url + '"><img align="left" style="width: 160px; height: 128px" src="' + thumbnailurl + '"/></a>';
+      html += '<strong><a target="_blank" href="' + url + '">' + title + '</a></strong> <br/>' + description + '<br/><br/>';
+      html += '</div>';
+      html += '<div class="divider">&nbsp;</div>';
+      htmlAll.push(html);
+  }
+  htmlAll.push('');
+  document.getElementById("sidebar").innerHTML = htmlAll.join("");
 }
 
 function getTitle(entry) {
-return (entry.gsx$title && entry.gsx$title.$t) || (entry.title && entry.title.$t);
+  return (entry.gsx$title && entry.gsx$title.$t) || (entry.title && entry.title.$t);
 }
 
 function getAuthor(entry) {
-return (entry.gsx$author && entry.gsx$author.$t) || (entry.author && entry.author[0] && entry.author[0].name && entry.author[0].name.$t);
+  return (entry.gsx$author && entry.gsx$author.$t) || (entry.author && entry.author[0] && entry.author[0].name && entry.author[0].name.$t);
 }
-
+  
 function getDescription(entry) {
-return (entry.gsx$description && entry.gsx$description.$t) || (entry.content && entry.content.$t);
+  return (entry.gsx$description && entry.gsx$description.$t) || (entry.content && entry.content.$t);
 }
 
 function getThumbnail(entry) {
-return (entry.gsx$thumbnailurl && entry.gsx$thumbnailurl.$t) || (entry.media$group && entry.media$group.media$thumbnail && entry.media$group.media$thumbnail[0].url);
+  return (entry.gsx$thumbnailurl && entry.gsx$thumbnailurl.$t) || (entry.media$group && entry.media$group.media$thumbnail && entry.media$group.media$thumbnail[0].url);
 }
-
+  
 function getUrl(entry) {
-return (entry.gsx$url && entry.gsx$url.$t) || (entry.link && entry.link[0] && entry.link[0].href);
+  return (entry.gsx$url && entry.gsx$url.$t) || (entry.link && entry.link[0] && entry.link[0].href);
 }
 
 function showNext() {
-curNum += 5;
-updateGallery();
-
-enableAll();
-if (curNum >= (entries.length - 5)) {
-disableNext();
-}
+  curNum += 5;
+  updateGallery();
+  
+  enableAll();
+  if (curNum >= (entries.length - 5)) {
+    disableNext();
+  }
 }
 
 function showPrevious() {
-curNum -= 5;
-updateGallery();
+  curNum -= 5;
+  updateGallery();
+  
+  enableAll();
+  if (curNum <= 0) {
+    disablePrevious();
+  } 
+  if (curNum < entries.length) {
+    enableNext();
+  }
+}
 
-enableAll();
-if (curNum <= 0) {
-disablePrevious();
+function searchEntries() {
+  var searchTerm = document.getElementById('searchbox').value.toLowerCase();
+  
+  entries = [];
+  for (var i = 0; i < allEntries.length; i++) {
+    var entry = allEntries[i];
+    var title = getTitle(entry).toLowerCase();
+    var description = getDescription(entry).toLowerCase();
+    if (title.indexOf(searchTerm) != -1 || description.indexOf(searchTerm) != -1) {
+      entries.push(entry);
+    }
+  }
+  curNum = 0;
+  updateGallery();
 }
-if (curNum < entries.length) {
-enableNext();
-}
-}
-
 
 /**
-* Creates a script tag in the page that loads in the
-* JSON feed for the specified key/ID.
-* Once loaded, it calls cm_loadMapJSON.
-*/
+ * Creates a script tag in the page that loads in the 
+ * JSON feed for the specified key/ID. 
+ * Once loaded, it calls cm_loadMapJSON.
+ */
 function getJSON() {
-/*
-var query = '';
-
-var searchTerm = document.getElementById('searchbox').value;
-if (searchTerm != '') {
-document.getElementById('classdropdown').selectedIndex = 0;
-query = '&q=' + searchTerm.toLowerCase();
+  /*
+  var query = '';
+  var searchTerm = document.getElementById('searchbox').value;
+  if (searchTerm != '') {
+    document.getElementById('classdropdown').selectedIndex = 0;
+    query = '&q=' + searchTerm.toLowerCase();
+  }
+  */
+  
+  youtubeFeed = null;
+  spreadsheetsFeed = null;
+  
+  loadJSONP('http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od4/public/values?reverse=true&alt=json-in-script&callback=spreadsheetLoaded'); 
+  loadJSONP('http://gdata.youtube.com/feeds/api/playlists/56139FBEC374EFEF?alt=json-in-script&callback=youtubeLoaded');
 }
-*/
-
-youtubeFeed = null;
-spreadsheetsFeed = null;
-
-loadJSONP('http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od4/public/values?reverse=true&alt=json-in-script&callback=spreadsheetLoaded');
-loadJSONP('http://gdata.youtube.com/feeds/api/playlists/56139FBEC374EFEF?alt=json-in-script&callback=youtubeLoaded');
-}
-
+ 
 function loadJSONP(url) {
-var script = document.createElement('script');
-script.setAttribute('src', url);
-script.setAttribute('type', 'text/javascript');
-document.documentElement.firstChild.appendChild(script);
+  var script = document.createElement('script');
+  script.setAttribute('src', url);
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
 }
 
 load();
 </script>
 ]]></Content>
 </Module>
-

@@ -31,34 +31,20 @@ ge.getLayerRoot().enableLayerById(ge.LAYER_BUILDINGS, true);
 ge.getOptions().setFlyToSpeed(1.0);
 la = ge.createLookAt('');
 
-la.set(19.302856,-99.150419,0,ge.ALTITUDE_RELATIVE_TO_GROUND,0,45,450);
-
-ge.getView().setAbstractView(la);
-wait(10000);
-
-la.set(19.435417,-99.202389,0,ge.ALTITUDE_RELATIVE_TO_GROUND,0,45,400);
-ge.getView().setAbstractView(la);
-wait(10000);
-la.set(19.387586,-99.253947,0,ge.ALTITUDE_RELATIVE_TO_GROUND,270,70,700);
-ge.getView().setAbstractView(la);
-wait(10000);
-la.set(19.424292,-99.175425,0,ge.ALTITUDE_RELATIVE_TO_GROUND,0,45,700);
-
-
-ge.getView().setAbstractView(la);
+setTimeout("changeLookAt(ge,la,19.302856,-99.150419,0,45,450)",0);
+setTimeout("changeLookAt(ge,la,19.435417,-99.202389,0,45,450)",11000);
+setTimeout("changeLookAt(ge,la,19.387586,-99.253947,270,70,700)",22000);
+setTimeout("changeLookAt(ge,la,19.424292,-99.175425,0,45,700)",33000);
 
 
 
 }
- function wait(msecs)
-{
-var start = new Date().getTime();
-var cur = start
-while(cur - start < msecs)
-{
-cur = new Date().getTime();
+function changeLookAt(ge, la, lat,lng,heading,tilt,range){
+la.set(lat,lng,0,ge.ALTITUDE_RELATIVE_TO_GROUND,heading,tilt,range);
+ge.getView().setAbstractView(la);
 }
-} 
+
+
 function rotate(la) {
 la.setHeading(la.getHeading() +25);
 ge.getView().setAbstractView(la);

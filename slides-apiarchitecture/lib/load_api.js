@@ -4,11 +4,11 @@
 //
 // Base testing javascript functionality.
 
-// Key for steffen.meschkat@gmail.com for http://google.com/. Needed
+// Key for googlecode.com. Needed
 // to make geocoding work.
 var key =
-'ABQIAAAAxbUqKHbysaeYVxn1etTCYBSsTL4WIgxhMZ0' +
-'ZK_kHjwHeQuOD4xS7c0kJFKRlC35Wm4hRi_7aWTj1Rw';
+'ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xQGj0PqsCtx' +
+'KvarsoS-iqLdqZSKfxRfHupBSkUYXfT0GTt95nHf-rkeQQ';
 
 function script(src) {
   var onerror =

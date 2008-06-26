@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <head>
+    <title></title>
+    <!-- *** Replace the key below below with your own API key, available at http://code.google.com/apis/maps/signup.html *** -->
+    <script src="http://www.google.com/jsapi?key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
+    <script>
+
+google.load("earth", "1");
+
+var ge = null;
+var degree=0;
+function init() {
+  google.earth.createInstance("map3d", initCallback, failureCallback);
+  
+  }
+
+function initCallback(object) {
+
+  ge = object;
+  try{
+  ge.getWindow().setVisibility(true);
+  ge.getNavigationControl().setVisibility(true);
+  }
+  catch(Exception){
+  ge.getWindow().setVisibility(true);
+  alert(Exception);
+  }
+var oldFlyToSpeed = ge.getOptions().getFlyToSpeed();
+ge.getLayerRoot().enableLayerById(ge.LAYER_BUILDINGS, true);
+ge.getOptions().setFlyToSpeed(1.0);
+la = ge.createLookAt('');
+
+setTimeout("changeLookAt(ge,la,-23.55130403784188,-46.6352534053789,-0.01054991784452623,69.72307366410836,379.9202636131302)",0);
+setTimeout("changeLookAt(ge,la,-23.54201285984384,-46.63556381672292,-178.1349575580252,68.48063569209634,470.0588769783614)",11000);
+setTimeout("changeLookAt(ge,la,-23.61187225614689,-46.69702938622166,-11.10811549431843,34.71888274548371,580.7118959037217)",22000);
+setTimeout("changeLookAt(ge,la,-23.6081886316902,-46.69738649467814,93.85313612074965,42.89492592667571,438.2661710754784)",26000);
+
+
+
+
+}
+function changeLookAt(ge, la, lat,lng,heading,tilt,range){
+la.set(lat,lng,0,ge.ALTITUDE_RELATIVE_TO_GROUND,heading,tilt,range);
+ge.getView().setAbstractView(la);
+}
+
+
+function rotate(la) {
+la.setHeading(la.getHeading() +25);
+ge.getView().setAbstractView(la);
+    
+}
+function failureCallback(object) {
+}
+    </script>
+  </head>
+  <body onload='init()' id='body'>
+    <center>
+
+
+      <div id='map3d_container'
+           style='border: 1px solid silver; height: 600px; width: 800px;'>
+        <div id='map3d' style='height: 100%;'></div>
+      </div>
+    </center>
+  </body>
+</html>

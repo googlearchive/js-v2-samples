@@ -1,0 +1,72 @@
+BODY {
+  margin-right: 20%;
+  margin-left: 5%;
+}
+
+H1 {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 150%;
+  margin-top: 2em;
+  margin-left: -1em;
+}
+
+H2 {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 120%;
+  margin-top: 2em;
+  margin-left: -1em;
+}
+
+H3 {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 100%;
+  margin-top: 2em;
+  margin-left: -1em;
+}
+
+H3.talk { 
+  background: #f0f5f0;
+  padding: 0.2em;
+  width: 80%;
+}
+
+P {
+  margin-top: 1em;
+  line-height: 1.3em;
+  width: 75%;
+}
+
+UL LI {
+  margin-top: 0.3em;
+  line-height: 1.3em;
+  width: 75%;
+}
+
+H1 + P {
+  margin-top: 50px;
+}
+
+P + P {
+  margin-top: 1em;
+}
+
+P > A { 
+  text-decoration: none;
+  color: orange;
+}
+
+P > A:hover { 
+  text-decoration: underline;
+  color: red;
+}
+
+UL.talklog { 
+  padding: 0;
+}
+
+UL.talklog LI { 
+  display: block;
+}

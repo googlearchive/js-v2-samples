@@ -1,0 +1,53 @@
+.background { 
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.shade { 
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.float { 
+  display: none;
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+}
+
+.float .content { 
+  padding: 0.5em;
+  font-size: 20px;
+}
+
+.item { 
+  margin-top: 0.5em;
+}
+
+/* Layering follows -- set z-index only in the section below. */
+
+body {
+  z-index: 0;
+}
+
+
+.background { 
+  z-index: 1;
+}
+
+
+.shade { 
+  z-index: 2;
+}
+
+
+.logo { 
+  z-index: 4;
+}
+
+.float, #workshop { 
+  z-index: 5;
+}

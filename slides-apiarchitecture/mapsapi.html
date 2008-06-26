@@ -1,0 +1,794 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Maps API</title>
+
+    <script src="lib/jslib.js"></script>
+    <script src="lib/slides.js"></script>
+    <link href="lib/slides-gdd.css" rel="stylesheet" type="text/css"/>
+
+    <script src="mapsapi/workshop.js"></script>
+
+    <script>
+      window.__apiparams__ = {
+        api: 'http://ditu.google.com/',
+        file: 'googleapi',
+        hl: 'zh-CN'
+      }; 
+    </script>
+
+    <script src="lib/load_api.js" language="JavaScript"></script>
+    <script src="lib/state.js" language="JavaScript"></script>
+    <script src="lib/state_util.js" language="JavaScript"></script>
+    
+    <script src="lib/mapsapi.js"></script>
+    <link href="lib/mapsapi.css" rel="stylesheet" type="text/css"/>    
+
+    <script src="lib/prettify.js"></script>
+    <link href="lib/prettify.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+      img.diagram { float: left; width: 40%; margin-right: 2em; }
+      span.codemark { font-weight: bold; text-decoration: underline; }
+pre {
+  border: 1px solid silver;
+}
+
+div.snippet {
+  position: relative;
+  margin: 0.5em;
+}
+
+div.snippet > div.label {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border: 1px solid silver;
+  color: green;
+  font-family: monospace;
+  background-color: #f0f0f0;
+  padding: 0.2em;
+}
+
+.slide > DIV { 
+  margin-top: 0.5em;
+}
+
+.slide TABLE { 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slide TH { 
+  font-size: 20px;
+  font-family: sans-serif;
+  padding: 5px;
+}
+
+.slide TD { 
+  font-size: 20px;
+  font-family: sans-serif;
+  padding: 5px;
+}
+
+.slide UL, .slide OL { 
+  margin-top: 0.5em;
+}
+
+.slide > DIV { 
+  margin-top: 0.5em;
+}
+
+.slide P { 
+  font-size: 20px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.slide DT { 
+  font-size: 20px;
+  font-family: sans-serif;
+  margin-bottom: 0.3em;
+}
+
+.slide DD { 
+  font-size: 20px;
+  font-family: sans-serif;
+  margin-bottom: 2em;
+}
+
+.slide CODE { 
+  color: green;
+  font-size: 100%;
+}
+
+.slide .code { 
+  color: green;
+  font-size: 100%;
+  font-family: monospace;
+  background-color: silver;
+  border: 1px solid gray;
+  margin: 10px 30px 10px 10px;
+  padding: 10px;
+}
+
+.slide CODE.b { 
+  font-weight: bold;
+}
+
+.prettyprint .h { 
+  background-color: #ffff50;
+ }
+
+.slide PRE {
+  overflow: hidden;
+  line-height: 140%;
+  font-weight: bold;
+}
+
+.slide DIV.hint { 
+  font-size: 80%;
+  color: #c0c0c0;
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 3px;
+  width: 100%;
+  color: gray;
+}
+
+.slide.glance li b { color: #505050; }
+.slide.glance code { font-size: 120%; }
+
+    </style>
+  </head>
+
+  <body onload="initmap('beijing');initslides();prettyPrint()"
+        onunload="exitmap()">
+
+    <div id="bgpage" class="background">
+      <div id="bgmap" class="background"></div>
+    </div>
+
+    <div id="shade" class="shade"></div>
+
+    <div class="header">
+    </div>
+
+    <div id="footer" class="footer">
+      <div id="navigator"></div>
+    </div>
+
+    <img id="logo2" class="logo position-corner-lr" 
+         src="lib/google-cubes.png"/>
+
+    <div id="slides" class="slides">
+      <div class="slide title"
+           onshow="d0('navigator','footer','logo','logo2');v0('bgpage')"
+           onhide="d1('navigator','footer','logo','logo2');v1('bgpage')">
+        
+        <div style="
+             position:relative;
+             float:left;
+             top:-1em;
+             background-color:#0078d4;
+             padding:1em;
+             padding-top:4em;
+             padding-right:2em;
+             ">
+          <span style="color:#001d38">Google</span><br/>
+          <span style="color:#ffffff">Developer</span><br/>
+          <span style="color:#ffffff">Day</span><span
+          style="color:#389aff">2008</span>
+        </div>
+        
+        <!-- div style="float:right;padding:1em;font-size:small;width:50%;">
+          Status: Draft, as of 2007-06-08.
+          <br/>TODO:
+          <ul style="margin-top:0">
+            <li>more zh text snippets - translate headlines?</li>
+            <li>paddign around code snippets</li>
+            <li>border in workshop examples</li>
+            <li>section about mapplets</li>
+          </ul>
+          <br/>NOTE:
+          <ul style="margin-top:0">
+            <li>Looks bad in IE</li>
+          </ul>
+        </div -->
+
+        <div style="position:relative;clear:both">
+          <div style="font-size:130%;font-weight:bold;white-space:nowrap">
+            Maps API &mdash; Architecture and Principles
+          </div>
+        </div>
+        
+        <div style="position:relative;" class="venue">
+          <div style="font-size:100%;color:gray;font-weight:bold">
+            孟熙 (Steffen Meschkat)
+          </div>
+        </div>
+
+        <img src="lib/google-cubes-larger.png"
+             style="position:absolute;bottom:0.1em;right:0.1em;"/>
+             
+        <div style="position:absolute;bottom:1em;
+        font-size:70%;color:gray">Copyright 2008 Google, Inc.</div>
+      </div>
+      
+
+      <div class="slide noprint" group="intermission">
+        <div class="banner">
+          <div class="semiopaque"></div>
+          <div class="content">
+            Concepts
+          </div>
+        </div>
+      </div>
+
+
+      <div class="slide" group="content" steps="6">
+        <h1>Why Maps</h1>
+        <ul>
+          <li step="1">The other failsafe way of organizing information:</li>
+          <li step="2">0 &mdash; Search.</li>
+          <li step="3">1 &mdash; Order chronologically.</li>
+          <li step="4">2 &mdash; Draw a map.</li>
+          <li step="5">Putting it on a map is a great way to organize
+          information.</li>
+        </ul>
+      </div>
+
+
+      <div class="slide" group="content" steps="5">
+        <h1>The Google Maps API</h1>
+        <ul>
+          <li step="1">&mdash; A library of "HTML elements" for places.</li>
+          <li step="2">&mdash; An "HTML element" with augmented behavior.</li>
+          <li step="3">&mdash; A page format for your content.</li>
+          <li step="4">&mdash; A mashup application component.</li>
+        </ul>
+      </div>
+
+
+      <div class="slide noprint" group="intermission">
+        <div class="banner">
+          <div class="semiopaque"></div>
+          <div class="content">
+            Architecture of the API
+          </div>
+        </div>
+      </div>
+
+
+      <div class="slide glance" group="content">
+        <h1>The API at a Glance</h1>
+        <ul>
+          <li><b>Namespace</b>: <code>google.maps.*</code> or
+          <code>G*</code>.</li>
+          <li><b>Core</b>: <code>Map2</code>,
+          <code>LatLng</code>,
+          <code>Point</code>,
+          <code>Event</code>.</li>
+
+          <li><b>User Interface</b>:
+          <code>LargeMapControl</code>,
+          <code>ZoomControl</code>,
+          <code>ScaleControl</code>,
+          <code>OverviewMapControl</code>.</li>
+
+          <li><b>Content</b>:
+          <code>Marker</code>,
+          <code>Polyline</code>,
+          <code>Polygon</code>,
+          <code>GroundOverlay</code>,
+          <code>ScreenOverlay</code>,
+          <code>InfoWindow</code>,
+          <code>GeoXml</code>.</li>
+
+          <li><b>Services</b>:
+          <code>ClientGeocoder</code>.</li>
+
+          <li><b>Extension Interfaces</b>:
+          <code>Control</code>,
+          <code>Overlay</code>,
+          <code>TileLayer</code>.</li>
+
+          <li><b>Components</b>:
+          <code>Keyboard</code>,
+          <code>MarkerManager</code>.</li>
+
+          <li><b>Utilities</b>:
+          <code>XmlHttp</code>,
+          <code>Xml</code>,
+          <code>Xslt</code>.</li>
+        </ul>
+      </div>
+      
+
+      <div class="slide" group="content">
+        <h1>Hello World</h1>
+
+        <div class="snippet">
+          <div class="label">hello.html</div>
+          <pre class="prettyprint">
+&lt;html>
+  &lt;head>
+    &lt;script src="http://ditu.google.com/?file=googleapi">&lt;/script>
+  &lt;/head>
+  &lt;body onload="hello()" onunload="google.maps.Unload()">
+    &lt;div id="map" style="width:400px;height:300px">&lt;/div>
+    &lt;script>
+      function hello() {
+        var map = new google.maps.Map2(document.getElementById("map"));
+        var point = new google.maps.LatLng(39.905523, 116.400146);
+        map.setCenter(point, 2); 
+        var marker = new google.maps.Marker(point);
+        map.addOverlay(marker); 
+        marker.openInfoWindowHtml("Hello World!");
+      }
+    &lt;/script>
+  &lt;/body>
+&lt;/html></pre></div>
+      </div>
+
+      <div class="slide" group="content" floater="hello"></div>
+
+      <div class="slide" group="content" floater="controls"></div>
+
+      <div class="slide" group="content" floater="behavior"></div>
+
+      <div class="slide" group="content">
+        <h1>Hello again, World</h1>
+
+        <div class="snippet">
+          <div class="label"><span class="codemark">hello.html</span></div>
+          <pre class="prettyprint">
+&lt;html>
+  &lt;head>
+    &lt;script src="<span class="codemark">http://ditu.google.com/?file=googleapi</span>">&lt;/script>
+  &lt;/head>
+  &lt;body onload="hello()" onunload="google.maps.Unload()">
+    &lt;div id="map" style="width:400px;height:300px">&lt;/div>
+    &lt;script>
+      function hello() {
+        var map = new google.maps.Map2(document.getElementById("map"));
+        var point = new google.maps.LatLng(39.905523, 116.400146);
+        map.setCenter(point, 2);
+        var marker = new google.maps.Marker(point);
+        map.addOverlay(marker); 
+        marker.openInfoWindowHtml("Hello World!");
+      }
+    &lt;/script>
+  &lt;/body>
+&lt;/html></pre></div>
+      </div>
+
+
+      <div class="slide print" group="content" steps="6">
+        <h1>How the maps API is loaded</h1>
+
+        <img src="jsonp/jsxss-lib-boot.png" class="diagram"
+             style="width:14em;"/>
+
+        <div step="1">Page from application site &mdash;</div>
+          
+        <ul>
+          <li step="2">1. loads library boot script from library
+          site,</li>
+
+          <li step="3">2. which loads compiled, versioned script
+          library from library site,</li>
+
+          <li step="4">3. and uses functionality provided by the
+          library.</li>
+        </ul>
+
+        <div step="5" style="clear:left">Note</div>
+        <ul step="5">
+          <li>Two step process to manage versions with safe
+          caching.</li>
+          <li>Later, loads even more script when it's needed.</li>
+        </ul>
+      </div>
+
+
+      <div class="slide print" group="content">
+        <h1>Maps API Boot Code</h1>
+        
+        <div>Application page:</div>
+        <div class="snippet">
+          <div class="label">hello.html</div>
+        <pre class="prettyprint">
+&lt;script language="JavaScript"
+        src="http://ditu.google.com/?file=googleapi">
+&lt;/script></pre>
+        </div>
+
+        <div>Library boot script:</div>
+        <div class="snippet">
+          <div class="label">http://ditu.google.com/?file=googleapi</div>
+        <pre class="prettyprint">
+document.write('&lt;script src="http://ditu.google.com/intl/zh-CN/' + 
+  'mapfiles/114/maps2.api/main.js' + 
+  '">&lt;/script>');</pre>
+        </div>
+      </div>
+
+
+      <div class="slide print" group="content">
+        <h1>Maps API Library Code</h1>
+        <div class="snippet">
+          <div class="label">.../mapfiles/114/maps2.api/main.js</div>
+        <pre class="prettyprint">
+/* Copyright 2005-2007 Google. */ (function(){ function
+ba(a,b,c){a.prototype[b]=c}function ca(a,b,c){a[b]=c}function
+da(a,b){for(var c=0;c&lt;b.length;++c){var d=b[c],e=d[1];if(d[0]){var
+f=ea(a,d[0]);if(f.length==1)aa(f[0],e);else{var g=window;for(var
+h=0;h&lt;f.length-1;++h){var
+i=f[h];if(!g[i])g[i]={};g=g[i]}ca(g,f[f.length-1],e)}}
+...,[pq,"Map2"],[qq,"MapType"],
+[rq,"MapTypeControl"],...  })()</pre>
+        </div>
+
+        <div>Note</div>
+        <ul>
+          <li>Condensation to reduce code size.</li>
+          <li>Wrap in anonymous namespace to isolate library and
+          application code.</li>
+          <li>Export public API to make it accessible.</li>
+        </ul>
+      </div>
+
+      <div class="slide" group="content" floater="geocoder"></div>
+
+      <div class="slide" group="content">
+        <h1>Hello Beijing</h1>
+
+        <div class="snippet">
+          <div class="label"><b>hellobeijing.html</b></div>
+          <pre class="prettyprint">
+&lt;div id="map" style="width:400px;height:300px">&lt;/div>
+&lt;form id="geo">&lt;input id="address"/>&lt;/form>
+&lt;script>
+  function hello() {
+    var map = new google.maps.Map2(document.getElementById("map"));
+    var geocoder = new google.maps.ClientGeocoder;
+    $('geo').onsubmit = function() {
+      var address = $('address').value;
+      geocoder.getLatLng(address, function(latlng) {
+        map.setCenter(latlng);
+        var marker = new GMarker(latlng);
+        map.addOverlay(marker);
+        marker.openInfoWindowHtml("Hello " + address + "!");
+      });
+    };
+  }
+&lt;/script></pre></div>
+      </div>
+
+      <div class="slide print" group="content" steps="8">
+        <h1>How services talk to maps &mdash; JSONP</h1>
+
+        <img src="jsonp/jsxss-svc.png" class="diagram"
+             style="width:14em;"/>
+
+        <div step="1">Page with the API library &mdash;</div>
+        <ul>
+          <li step="2">1. registers callback function to receive
+          result,</li>
+
+          <li step="3">2. encodes request and callback in script
+          URL,</li>
+
+          <li step="4">3. creates <code>SCRIPT</code> element with URL
+          in <code>src</code>.</li>
+        </ul>
+
+        <div step="5">Server &mdash;</div>
+        <ul>
+          <li step="5">4. executes service request,</li>
+
+          <li step="6">5. creates callback invocation with result data
+          as argument.</li>
+        </ul>
+
+        <div step="7">Page &mdash;</div>
+        <ul>
+          <li step="7">6. loads script, invoking the callback.</li>
+          <!-- NOTE: it's actually the browser who does thia, on
+               behalf of the page. -->
+        </ul>
+      </div>
+
+      <!-- div class="slide print" group="content">
+        <h1>JSONP</h1>
+        <div>Note</div>
+        <ul>
+          <li>Circumvents same origin policy.</li>
+        </ul>
+      </div -->
+
+      <div class="slide print" group="content">
+        <h1>JSONP Session</h1>
+
+        <div class="snippet">
+          <div class="label">Request URL</div>
+          <pre class="prettyprint">
+http://maps.google.com/maps/geo
+  ?q=beijing
+  &amp;output=json
+  &amp;callback=cbstore.cb001
+  &amp;hl=en
+  &amp;key=xxx</pre>
+        </div>
+
+        <div class="snippet">
+          <div class="label">Response Body</div>
+          <pre class="prettyprint">
+cbstore.cb001({
+  name: "beijing",
+  Status: { code: 200, request: "geocode" },
+  Placemark: {
+    address: "Beijing, China",
+    Point: {
+      coordinates: [ 116.400146, 39.905523, 0 ]
+    }
+  }
+});</pre>
+        </div>
+      </div>
+
+
+      <div class="slide" steps="3">
+        <h1>The Google Maps API</h1>
+        <ul>
+          <li step="1">&mdash; A library of "HTML elements" for places.</li>
+          <li step="1">&mdash; An "HTML element" with augmented behavior.</li>
+          <li step="1">&mdash; A page format for your content.</li>
+          <li step="1">&mdash; A mashup application component.</li>
+          <li step="2">&mdash; <b>An API to extend ditu.google.com.</b></li>
+        </ul>
+      </div>
+
+
+      <div class="slide" group="content">
+        <iframe style="width:99%;height:99%;border:1px solid silver"
+                src="about:blank"
+        xsrc="http://ditu.google.com/maps/mpl?moduleurl=http://www.google.com/ig/modules/geoscratchpad.xml"></iframe>
+      </div>
+
+
+      <div class="slide">
+        <h1>Mapplet</h1>
+        <div class="snippet">
+          <div class="label">hello.xml</div>
+<pre class="prettyprint">&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;Module>
+&lt;ModulePrefs>
+  <span class="mark">&lt;Require feature="sharedmap"/></span>
+&lt;/ModulePrefs>
+&lt;Content type="html">&lt;![CDATA[
+&lt;h2>Hello World!&lt;/h2>
+&lt;script> 
+  var map = new GMap2;
+  var point = new GLatLng(39.905523, 116.400146);
+  map.setCenter(point, 2);
+  var marker = new GMarker(point);
+  map.addOverlay(marker); 
+  marker.openInfoWindowHtml("Hello World!"); 
+&lt;/script>
+]]&gt;&lt;/Content>
+&lt;/Module></pre>
+        </div>
+      </div>
+
+      
+      <div class="slide">
+        <h1>Mapplets Architecture</h1>
+        <img style="width:100%"
+             src="mapsapi/images/mapplets-architecture.png"/>
+      </div>
+
+
+      <div class="slide" steps="5">
+        <h1>How mapplets talk to maps &mdash; IDC</h1>
+        <img src="mapsapi/images/mapplets-page.png" class="diagram"
+             style="width:14em;"/>
+        <!-- 
+          style="float:right;width:50%;margin-left:0.2em;margin-bottom:0.2em;"
+        -->
+        <div step="1">In the mapplet &mdash;</div>
+        <ul>
+          <li step="1">1. API function calls are encoded in hash part
+          of a URL.</li>
+          <li step="2">2. Mapplet creates an iframe in the
+          <code>maps.google.com</code> domain with URL in src.</li>
+        </ul>
+        <div step="3">In the maps page &mdash;</div>
+        <ul>
+          <li step="3">3. Iframe loads, reads the function call
+          from URL and forwards it to map.</li>
+          <li step="4">4. Map executes call.</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>IDC</h1>
+        <div>Note</div>
+        <ul>
+          <li>All communication takes place in the browser. No server
+          round trips!</li>
+          <li>Analog for communication from page to mapplet (for
+          events and return values).</li>
+          <li>Safely circumvents cross site scripting restrictions.</li>
+        </ul>
+      </div>
+
+
+      <div class="slide print" group="content">
+        <h1>IDC Session Fragment</h1>
+
+        <div class="snippet">
+          <div class="label">Map sending event</div>
+          <pre class="prettyprint">
+http://maps.gmodules.com/ig/idc
+#maps.google.com
+&amp;000001remote_iframe_22
+%261405%26top%26%26top
+%2613%252C34%252Cclick%261%252C1%252C37.71859%252C6.679688&amp;
+          </pre>
+        </div>
+
+        <div class="snippet">
+          <div class="label">Mapplet sending back command to open info
+          window</div>
+          <pre class="prettyprint">
+http://maps.google.com/maps/mpl/relay
+#maps.gmodules.com
+&amp;000002top%26319%26remote_iframe_22%26%26remote_iframe_22
+%2613%252C3%252C0%252C1%252C1%252CHello%252520World!%252C0%252C0&amp;
+          </pre>
+        </div>
+      </div>
+
+      <div class="slide print" group="content">
+        <h1>Summary API Architecture</h1>
+        <div>Maps API provides library and services to any web page
+        &mdash;</div>
+        <ul>
+          <li>Library loaded by two-step boot procedure to manage
+          versions.</li>
+          <li>Services by <b>JSON</b> with <b>P</b>adding
+          (JSONP).</li>
+          <li>API exported to public namespaces
+          <code>google.maps.*</code> or <code>G</code>.</li>
+        </ul>
+        <div>Mapplet API &mdash</div>
+        <ul>
+          <li>Allows to extend <code>ditu.google.com</code> using the
+          Maps API,</li>
+          <li>Communicates with <code>ditu.google.com</code> page by
+          IDC.</li>
+        </ul>
+      </div>
+
+
+      <div class="slide" group="intermission">
+        <div class="banner">
+          <div class="semiopaque"></div>
+          <div class="content">
+            更多信息，请访问<br/>
+            <a href="http://code.google.com/intl/zh-CN/">
+              http://code.google.com/intl/zh-CN/
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="float" id="controls">
+      <div class="semiopaque"></div>
+      <div class="content">Controls:
+        <a href="javascript:void(0)"
+           onclick="control('map')">Pan &amp; zoom</a>,
+        <a href="javascript:void(0)"
+           onclick="control('zoom')">Zoom</a>,
+        <a href="javascript:void(0)"
+           onclick="control('type')">Map Type</a>,
+        <a href="javascript:void(0)"
+           onclick="control('scale')">Scale</a>,
+        <a href="javascript:void(0)"
+           onclick="control('overview')">Overview</a>.
+      </div>
+    </div>
+
+    <div class="float" id="hello">
+      <div class="semiopaque"></div>
+      <div class="content">
+        <a href="javascript:void(0)" onclick="hello('beijing')" >Hello
+        World.</a> (<a
+        href="javascript:map.clearOverlays()">Clear.</a>)
+      </div>
+    </div>
+
+
+    <div class="float" id="marker">
+      <div class="semiopaque"></div>
+      <div class="content">Marker Geometry:<br/>
+      <a href="javascript:void(0)"
+         onclick="markerBubble()">Bubble</a>,
+      <a href="javascript:void(0)"
+         onclick="markerPin()">Pin</a>.
+      (<a href="javascript:void(0)"
+      onclick="map.clearOverlays()">Clear.</a>)
+      </div>
+    </div>
+
+    <div class="float" id="geocoder">
+      <div class="semiopaque"></div>
+      <form action="javascript:void(0)">
+        <div class="content" style="white-space: nowrap">Geocoding:&nbsp;
+        <input type="text" size="40" name="address" 
+               value="1600 Amphitheatre Pky, Mountain View, CA"
+               onkeyup="event.stopPropagation();"/>
+        <input type="submit" onclick="showAddress(this.form.address)"
+               value="Go!"/>
+        </div>   
+      </form>
+    </div>
+    
+    <div class="float" id="directions">
+      <div class="semiopaque"></div>
+      <form action="javascript:void(0)">
+        <div class="content" style="white-space: nowrap">Directions:&nbsp;
+        <input type="text" size="40" name="query" 
+               value="Berlin to Hamburg"
+               onkeyup="event.stopPropagation();"/>
+        <input type="submit" onclick="showDirections(this.form.query)"
+               value="Go!"/>
+        </div>
+      </form>
+    </div>
+    
+    <div id="workshop" onhide="wsClear()">
+      <div id="wsrun">
+        <a href="javascript:wsRun()">Run</a>,
+        <a href="javascript:wsEditEnd()">Done</a>,
+        <a href="javascript:map.clearOverlays()">Clear</a>.
+      </div>        
+      <div class="content" id="wscontent">
+        <textarea id="wsedit" onblur="wsEditEnd()"
+        style="display:none"
+        onkeypress="event.stopPropagation()"
+        onkeydown="event.stopPropagation()"
+        onkeyup="event.stopPropagation()"
+        ></textarea>
+        <div id="wscode" onclick="wsEdit()"></div>
+      </div>
+    </div>
+
+    <div class="float" id="behavior">
+      <div class="semiopaque"></div>
+      <div class="content">Events, Behavior, and Animation:<br/>
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerOver()">Rollover</a>,
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerSet()">Set</a>,
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerMove()">Move</a>,
+      <a href="javascript:void(0)"
+         onclick="behaviorMarkerDrag()">Drag</a>.
+      (<a href="javascript:void(0)"
+      onclick="map.clearOverlays()">Clear.</a>)
+      </div>
+    </div>
+  </body>
+</html>

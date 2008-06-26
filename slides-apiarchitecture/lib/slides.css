@@ -1,0 +1,303 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  color: black;
+  background-color: white;
+  height: 100%;
+  font-family: 'Lucida Grande', sans-serif;
+}
+
+.header { 
+  position: fixed;
+  top: 3px;
+  height: 10px;
+}
+
+#navigator div {
+  float: left;
+  width: 8px;
+  height: 6px;
+  font-size: 1px;
+  border: 1px solid silver;
+  background-color: white;
+  cursor: pointer;
+  margin: 2px;
+}
+
+#navigator.large div {
+  width: 12px;
+  height: 9px;
+}
+
+#navigator div.active { 
+  background-color: orange !important;
+  border: 1px solid silver !important;
+  cursor: default;
+}
+
+#navigator div.title, #navigator div.intermission { 
+  background-color: white;
+  border-color: silver;
+}
+
+#navigator div.content { 
+  background-color: silver;
+  border-color: silver;
+}
+
+.slides {
+  position: absolute;
+  height: 85%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  overflow: auto;
+}
+
+.slides .slide { 
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-size: 25px;
+}
+
+.slide H1 {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 0px;
+  margin-bottom: 0.7em;
+  width: 100%;
+  border-bottom: 1px solid silver;
+}
+
+.slides.bolder .slide H1 { 
+  font-size: 70px;
+}
+
+.slides .comment { 
+  display: none;
+}
+
+.slide H2 { 
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.slide.title H1 { 
+  text-align: center;
+}
+
+.slide.title H2 { 
+  text-align: center;
+}
+
+.slide.title H2.author { 
+  font-weight: bold;
+}
+
+.slide.title .venue {
+  font-size: 20px !important;
+}
+
+.slide.title DIV.notice { 
+  font-size: 20px;
+  text-align: center;
+}
+
+.slide > .bottom { 
+  /* NOTE(mesch): width 100% causes scrollbars around slides. */
+  width: 95%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.semiopaque {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url(white.gif);
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+
+.slide LI { 
+  margin-top: 0.2em;
+}
+
+.slides.bolder .slide LI { 
+  font-weight: bold;
+}
+
+.slide UL LI { 
+  list-style-type: circle;
+}
+
+.slide TABLE { 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slide TH { 
+  font-size: 20px;
+  font-family: sans-serif;
+  padding: 5px;
+}
+
+.slide TD { 
+  font-size: 20px;
+  font-family: sans-serif;
+  padding: 5px;
+}
+
+.slide UL, .slide OL { 
+  margin-top: 0.3em;
+}
+
+.slide > DIV { 
+  margin-top: 0.5em;
+}
+
+.slide P { 
+  font-size: 20px;
+  font-family: sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.slide DT { 
+  font-size: 20px;
+  font-family: sans-serif;
+  margin-bottom: 0.3em;
+}
+
+.slide DD { 
+  font-size: 20px;
+  font-family: sans-serif;
+  margin-bottom: 2em;
+}
+
+
+.slide CODE { 
+  color: green;
+  font-size: 100%;
+}
+
+.slide .code { 
+  color: green;
+  font-size: 100%;
+  font-family: monospace;
+  background-color: silver;
+  border: 1px solid gray;
+  margin: 10px 30px 10px 10px;
+  padding: 10px;
+}
+
+.slide CODE.b { 
+  font-weight: bold;
+}
+
+.prettyprint .h { 
+  background-color: #ffff50;
+ }
+
+.slide PRE {
+  overflow: hidden;
+  line-height: 140%;
+  font-weight: bold;
+}
+
+.slide DIV.hint { 
+  font-size: 80%;
+  color: #c0c0c0;
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  bottom: 3px;
+  width: 100%;
+  color: gray;
+}
+
+.footer .title { 
+  position: absolute;
+  height: 2em;
+  bottom: 0px;
+  right: 10px;
+}
+
+.footer .author { 
+  position: absolute;
+  height: 2em;
+  bottom: 0px;
+  left: 10px;
+}
+
+.banner { 
+  position: absolute;
+  /* NOTE(mesch): 100% gives scrollbars on slides. */
+  width: 95%;
+  top: 45%;
+  border: 1px solid silver;
+  overflow: hidden;
+}
+
+.banner DIV.content { 
+  font-size: 130%;
+  text-align: center;
+  padding: 0.5em;
+  margin-top: 0px;
+}
+
+/* Code snippets. */
+
+iframe.example { 
+  width: 99%;
+  height: 75%;
+  border: 1px solid silver;
+}
+
+pre {
+  border: 1px solid silver;
+}
+
+div.snippet {
+  position: relative;
+}
+
+div.snippet > div.label {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border: 1px solid silver;
+  color: green;
+  font-family: monospace;
+  background-color: #f0f0f0;
+  padding: 0.2em;
+}
+
+
+/* Tables on slides. */
+
+.slide table.data-table {
+ width: 80%;
+ border: 1px solid silver;
+ padding: 1em;
+ border-collapse: collapse;
+ margin: 2em;
+}
+
+.slide table.data-table td, .slide table.data-table th {
+ border: 1px solid silver;
+}
+
+.slide table td, .slide table th {
+ vertical-align: top;
+}

@@ -1,0 +1,362 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  color: black;
+  background-color: white;
+  height: 100%;
+  font-family: 'Lucida Grande', sans-serif;
+}
+
+body {
+  position: relative;
+  font-size: 150%;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+pre { 
+  margin: 0;
+}
+
+.header { 
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  color: gray;
+}
+
+.footer {
+  position: absolute;
+  bottom: 3px;
+  left: 5px;
+  color: gray;
+}
+
+#navigator div {
+  float: left;
+  width: 12px;
+  height: 9px;
+  font-size: 1px;
+  border: 1px solid silver;
+  background-color: white;
+  cursor: pointer;
+  margin: 2px;
+}
+
+#navigator div.active { 
+  background-color: #1a75cf;
+  cursor: default;
+}
+
+#copyright { 
+  font-size: 60%;
+}
+
+.source {
+  font-size: 60%;
+  color: gray;
+}
+
+.source A {
+  color: green;
+  text-decoration: none;
+}
+
+.position-corner-lr { 
+  position:absolute;
+  bottom: 3px;
+  right: 8px;
+}
+
+/* The Slide Set. */
+
+.slides {
+  position: absolute;
+  height: 85%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  overflow: auto;
+}
+
+.slides .slide { 
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-size: 100%;
+  color: #101010; // #505050; // #7d7d7d;
+}
+
+/* Slide content. */
+
+.slide H1 {
+  font-size: 130%;
+  font-weight: bold;
+  color: #3c3c3c;
+  text-align: left;
+  margin-top: 0px;
+  padding-bottom: 0.4em;
+  width: 100%;
+  border-bottom: 2px dotted silver;
+}
+
+.slide H2 {
+  font-size: 120%;
+  font-weight: bold;
+  color: #3c3c3c;
+  padding-top: 0.4em;
+}
+
+.slide.title H1 {
+  text-align: center;
+}
+
+.slide.title H2 { 
+  text-align: center;
+}
+
+.slide.title H2.author { 
+  font-weight: bold;
+}
+
+.slide > UL { 
+  list-style: none;
+}
+
+.slide > UL { 
+  margin-left: 0;
+  padding-left: 0.5em;
+}
+
+.slide > UL > LI, .slide > OL > LI { 
+  margin-bottom: 0.8em;
+  margin-left: 0.2em;
+}
+
+.slide > UL > LI > UL { 
+  font-size: 90%;
+  margin-left: 0;
+  padding-left: 1em;
+  margin-right: 3em;
+}
+
+.slide > UL > LI  > UL > LI { 
+  margin-top: 0.2em;
+  margin-bottom: 0.4em;
+  margin-left: 0.2em;
+}
+
+.slide > UL > LI  > UL.wider > LI { 
+  margin-top: 0.6em;
+  margin-bottom: 0.8em;
+  margin-left: 0.4em;
+}
+
+.slide DIV.bottom { 
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.slide .example {
+  position: relative;
+  z-index: 0;
+  margin-top: 1em;
+  overflow: hidden;
+  border: 1px solid silver;
+}
+
+.slide .codequote { 
+  position: relative;
+  z-index: 0;
+  margin-top: 0.5em;
+  margin-left: 1em;
+  margin-right: 3em;
+  margin-bottom: 0.5em;
+  overflow: hidden;
+  border: 1px solid silver;  
+}
+
+.example .content, .codequote .content  { 
+  padding: 0.5em;
+}
+
+.slide TABLE { 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slide TH { 
+  padding: 0.2em;
+}
+
+.slide TD { 
+  padding: 0.2em;
+  vertical-align: top;
+}
+
+.slide P { 
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+CODE {
+  font-size: 110%;
+  color: green;
+}
+
+
+/** Increased background opacity. Used in banners and floaters. */
+
+.semiopaque {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url(white.gif);
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+
+/* Banner. */
+
+.banner { 
+  position: absolute;
+  /* NOTE(mesch): 100% gives scrollbars on slides. */
+  width: 95%;
+  top: 45%;
+  border: 1px solid silver;
+  font-size: 150%;
+}
+
+.flowbanner { 
+  width: 80%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 110%;
+  border: 1px solid silver;
+}
+
+.banner .content, .flowbanner .content { 
+  text-align: center;
+  padding: 0.5em;
+}
+
+/* Floaters. */
+
+.float { 
+  display: none;
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+}
+
+.float .content { 
+  padding: 0.5em;
+  font-size: 100%;
+}
+
+/* Workshop floater. */
+
+#workshop {
+  display: none;
+  position: absolute;
+  bottom: 22px;
+  right: 10%;
+  width: 80%;
+  height: 45%;
+  font-size: 130%;
+  border: 1px solid silver;
+  padding: 0;
+  overflow: hidden;
+}
+
+#wscontent {
+  margin: 0;
+  border: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#wscode {
+  padding: 5px;
+  background-color: #f0f0f0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#wsedit {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  font-size: 100%;
+  padding: 5px;
+  background-color: white;
+  overflow: auto;
+}
+
+#wsrun { 
+  position:absolute;
+  bottom:-1px;
+  right:-1px;
+  padding: 2px;
+  border: 1px dashed silver;
+  background-color: white;
+  font-size: 60%;
+  z-index: 1;
+}
+
+/* New! */
+
+.new { 
+  color: red;
+  font-size: 60%;
+  vertical-align: super;
+}
+
+.mark { 
+  background-color: #fff529;
+}
+
+/* Layering follows -- set z-index only in the section below. */
+
+body {
+  z-index: 0;
+}
+
+
+.background { 
+  z-index: 1;
+}
+
+
+.shade { 
+  z-index: 2;
+}
+
+
+.slides, .header, .footer, #navigator { 
+  z-index: 3;
+}
+
+
+.logo { 
+  z-index: 4;
+}
+
+.float, #workshop { 
+  z-index: 5;
+}

@@ -1,0 +1,104 @@
+body {
+  font-family: 'Lucida Grande', sans-serif;
+}
+
+td, th {
+  vertical-align: top;
+  border: 1px solid black;
+}
+
+#navigator div {
+  display: none;
+}
+
+#bgpage { 
+  display: none;
+}
+
+A[target=example], A[target=example2] { 
+  display: none;
+}
+
+.footer { 
+  font-size: smaller;
+}
+
+.clear { 
+  page-break-before: always;
+}
+
+.slides .slide.print { 
+  display: block !important;
+}
+
+.slides .slide { 
+  page-break-inside: avoid;
+  /* page-break-after: always; */
+  border: 1px solid black;
+  margin-bottom: 5mm;
+  padding: 5mm;
+  /* height: 150mm; */
+  position: relative;
+}
+
+.slide H1 {
+  margin-top: 0px;
+  font-size: 120%;
+}
+
+.slide H2 {
+  font-size: 120%;
+}
+
+.slides .comment { 
+  margin-left: 1.5cm;
+  margin-right: 1.5cm;
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
+}
+
+.slide.title H1 { 
+  text-align: center;
+}
+
+.slide .bottom { 
+  margin-top: 4em;
+}
+
+.slide.title DIV.notice { 
+  text-align: center;
+}
+
+.slide.title H2 { 
+  text-align: center;
+}
+
+.slide.title H2.author { 
+  font-weight: bold;
+}
+
+.banner { 
+  display: none;
+}
+
+.semiopaque {
+  display: none;
+}
+
+.noprint { 
+  /* display: none; */
+}
+
+.slide TABLE { 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#state { 
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  top: -2px;
+  left: -2px;
+}

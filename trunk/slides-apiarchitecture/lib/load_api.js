@@ -1,9 +1,3 @@
-// Copyright 2006 Google
-//
-// Author: Steffen Meschkat <mesch@google.com>
-//
-// Base testing javascript functionality.
-
 // Key for googlecode.com. Needed
 // to make geocoding work.
 var key =

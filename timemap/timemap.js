@@ -743,11 +743,11 @@ TimeMapItem.openInfoWindowBasic = function() {
     }
     // open window
     if (this.getType() == "marker") {
-        this.placemark.openInfoWindowHtml(this.opts.infoHtml, {maxWidth: 400});
+        this.placemark.openInfoWindowHtml(this.opts.infoHtml);
     } else if (this.placemark instanceof GOverlay) {
         this.map.openInfoWindowHtml(this.getInfoPoint(), this.opts.infoHtml);
     } else {
-        this.map.openInfoWindowHtml(this.map.getCenter(), this.opts.infoHtml, {maxWidth: 400});
+        this.map.openInfoWindowHtml(this.map.getCenter(), this.opts.infoHtml);
     }
 }
 

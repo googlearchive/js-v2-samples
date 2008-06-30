@@ -77,17 +77,23 @@ $(document).ready(function(){
 	
 });
 
+function stripHTML(htmlString){
+  var re= /<\S[^><]*>/g
+  var textString = htmlString.replace(re, "")
+  return textString;
+}
+
 function transformGCal(entry) {
     var newData = {};
     newData["title"] = entry.title.$t;
     newData["options"] = {};
     // html for info window
-    if (entry.content.$t.length > 120)
-        var content = entry.content.$t.substring(0,120) + '...';
-    else var content = entry.content.$t;
-    newData["options"]["infoHtml"] = '<p><strong>' + entry.title.$t 
-        + '</strong></p><p>' + content + ' ' +
-        '<a href="' + entry.link[0].href + '" target=_blank>more &gt;&gt;</a></p>';
+    var content = stripHTML(entry.content.$t);
+    if (content.length > 300)
+        content = content.substring(0, 300) + '...';
+    newData["options"]["infoHtml"] = '<p><strong>' + entry.title.$t + ' (' + 
+        entry.gd$when[0].startTime + ')' + '</strong></p><p>' + content + ' ' +
+        '<a href="' + entry.link[0].href + '" target="_blank">more &gt;&gt;</a></p>';
     newData["start"] = entry['gd$when'][0].startTime;
     // get geolocation
     var location = entry['gd$where'][0].valueString;

@@ -1,0 +1,10 @@
+URL queryUrl = new URL(SERVICE_URL + "/feeds/features/" + MAPID + "/full");
+GoogleService myService = new MapsService("exampleCo-exampleApp-1");
+myService.setUserCredentials(USERNAME, PASSWORD);
+FeatureFeed feed = myService.getFeed(queryUrl, FeatureFeed.class);
+for (FeatureEntry entry : feed.getEntries()) {
+  XmlBlob xml = ((OtherContent)entry.getContent()).getXml();
+  xml.setBlob(xml.getBlob().replaceAll(
+      "(<Icon>\\s*<href>)[^<]*", "$1" + NEW_ICON));
+  myService.update(new URL(entry.getEditLink().getHref()), entry);
+}

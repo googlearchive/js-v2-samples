@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>My Maps for developers</title>
+    <link rel="stylesheet" href="slides.css" />
+    <link rel="SHORTCUT ICON" href="favicon.ico" />
+   <script
+      type="text/javascript"
+      src="http://ditu.google.com/?file=api&v=2.x&key=ABQIAAAA7bxEL3-Ta4XVuslyRWojuBQf_1-NfZMLlNUMPzR_zV6D7e0Y2BTlIAO6-8toFRHg7mUgyknXMBvWMg">
+    </script>
+    <script
+      type="text/javascript"
+      src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js">
+    </script>
+    <script
+      type="text/javascript"
+      src="http://www.google.com/apis/maps/include/prettify.js">
+    </script>
+    <script type="text/javascript" src="slides/new.js"></script>
+    <script type="text/javascript" src="slides.js"></script>
+    <script type="text/javascript">
+      var map;
+    </script>
+  </head>
+  <body onload="startSlideShow()">
+    <!-- The frame used to measure the screen size -->
+    <div id="frame" class="frame"></div>
+    <!-- The node that holds slide squares -->
+    <div id="slidecontrols" class="slidecontrols"></div>
+    <!-- The node that holds the map -->
+    <div id="map" class="map"></div>
+    <div id="curtain" class="curtain"></div>
+    <!-- The node used to show the title -->
+    <div id="central" class="central"></div>
+    <!-- The node used to show screen shots -->
+    <div id="screenshot" class="screenshot" onclick="hideScreenshot()"></div>
+    <!-- Screen shot shadow -->
+    <div id="shadow" class="shadow"></div>
+    <!-- The content part of the slide, as in, not a map -->
+    <div id="content" class="content">
+      <!-- The slide title -->
+      <div id="title" class="title"></div>
+      <!-- The node that holds the text -->
+      <div id="text" class="text">
+        <div class="filler"></div>
+        <div id="points" class="points"></div>
+      </div>
+      <!-- The node that holds the code -->
+      <div id="code" class="code">
+        <div class="filler"></div>
+        <!-- The node holding the live code -->
+        <div class="livecode" id="livecode">
+          <textarea id="editor" class="editor" rows="11" wrap="off"
+            onkeydown="return handleEditKeys(event)"></textarea><br/>
+          <input type="button" id="run" class="run" value="Run!" onclick="runCode()"/>
+        </div>
+        <!-- The node that holds code samples -->
+        <div class="samplecode" id="samplecode"></div>
+      </div>
+    </div>
+    <!-- The footer -->
+    <div id="footer" class="footer"></div>
+  </body>
+</html>

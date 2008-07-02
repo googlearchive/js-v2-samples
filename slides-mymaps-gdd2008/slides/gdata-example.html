@@ -1,0 +1,29 @@
+<p>
+<h2> GData client example </h2>
+<p>
+<div style="height:100%; width:100%; font-size:17pt; font-family:monospace;padding-left:1em">
+<font color="green">URL</font> queryUrl =
+<br> 
+     &nbsp;&nbsp;&nbsp;&nbsp;<font color="red">new</font> <font color="green">URL</font>(SERVICE_URL + <font color="blue">"/feeds/features/"</font> + MAPID
+		       + <font color="blue">"/full"</font>);
+<br>
+<br>
+<font color="green">GoogleService</font> myService = <font color="red">new</font> <font color="green">MapsService</font>(<font color="blue">"exampleCo-exampleApp-1"</font>);
+<br>
+myService.setUserCredentials(USERNAME, PASSWORD);
+<br>
+<br><font color="green">FeatureFeed</font> feed = myService.getFeed(queryUrl, FeatureFeed.<font color="red">class</font>);
+<br>
+<br>
+<font color="red">for</font> (<font color="green">FeatureEntry</font> entry : feed.getEntries()) {
+<br>
+	&nbsp;&nbsp;  <font color="green">XmlBlob</font> xml = ((<font color="green">OtherContent</font>)entry.getContent()).getXml();
+<br>
+&nbsp;&nbsp;  xml.setBlob(xml.getBlob().replaceAll(
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;      <font color="blue">"(&lt;Icon&gt;\\s*&lt;href&gt;)[^&lt;]*"</font>, <font color="blue">"$1"</font> + NEW_ICON));
+<br>
+&nbsp;&nbsp;  myService.update(<font color="red">new</font> <font color="green">URL</font>(entry.getEditLink().getHref()), entry);
+<br>
+}
+</div>

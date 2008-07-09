@@ -651,12 +651,16 @@ function Frame() {
     
     
     // constructor
-    var className = (cityStatus == TorchMgr.STATUS_NOTORCH) ? "noTorch" : "torched";
+    var cityClassName = (cityStatus == TorchMgr.STATUS_NOTORCH) ? "noTorch" : "torched";
     for (var i = startIndex; i <= endIndex; i++) {
       var city = cityList[i];
-      city.type = cityType;
+      if('undefined' == typeof(city))
+	  {
+	  	continue;
+	  }
+	  city.type = cityType;
       city.id = cityType + city.index;
-	  className = (TorchMgr.torchCity == cityList[i]) ? "hasTorch torched" : className;
+	  className = (TorchMgr.torchCity == cityList[i]) ? "hasTorch torched" : cityClassName;
       var cityNode = createCityNode(city, className);
       createNameNode(city.name, cityNode);
       createDateNode(city.date, cityNode);
@@ -1261,7 +1265,7 @@ function Map(mapDiv) {
       	//markers.push(marker);
 		points.push(point);
 	}
-    if (city.type != TorchMgr.TYPE_CHINA_PROVINCE && points.length > 0) {
+    if ('undefined' != typeof(city) && city.type != TorchMgr.TYPE_CHINA_PROVINCE && points.length > 0) {
       var polylineColor = (cityStatus == TorchMgr.STATUS_NOTORCH) ? grayLineColor : redLineColor;
       for(var i = 1, point; point = points[i]; i++){
 		var polyline = new google.maps.Polyline([points[i-1], point], polylineColor, 2, 1);
@@ -1650,12 +1654,11 @@ TorchMgr.toEnLocaleDate = function(date){
 }
 
 TorchMgr.toFrDate = function(date){
-	var months = [	"Janvier", 	"Février", 	"Mars", 
-					"Avril", 	"Mai", 		"Juin", 
-					"Juillet", 	"Août", 	"Septembre", 
-					"Octobre", 	"Novembre", "Décembre" ];
-					
-   if (date.indexOf("-") != -1) {
+	var months = [	"Janvier", 	"Février", 	"Mars",
+                    "Avril", 	"Mai", 		"Juin",
+                    "Juillet", 	"Août", 	"Septembre",
+                    "Octobre", 	"Novembre", "Décembre" ];
+    if (date.indexOf("-") != -1) {
      var dateArray = date.split("-");
      var dateA = new Date(dateArray[0]);
      var dateB = new Date(dateArray[1]);

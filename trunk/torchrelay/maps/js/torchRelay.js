@@ -261,6 +261,10 @@ function Frame() {
     var className = (cityStatus == TorchMgr.STATUS_NOTORCH) ? "noTorch" : "torched";
     for (var i = startIndex; i <= endIndex; i++) {
       var city = cityList[i];
+	  if(city == undefined)
+	  {
+	  	continue;
+	  }
       city.type = cityType;
       city.id = cityType + city.index;
 	  className = (TorchMgr.torchCity == cityList[i]) ? "hasTorch torched" : className;
@@ -926,10 +930,14 @@ function Map(mapDiv) {
 		var points = [];
 		if(startIndex != 0 && cityList[startIndex-1]){
 			var city = cityList[startIndex-1];
-		  points.push(new google.maps.LatLng(city.lat, city.lng));
+		  	points.push(new google.maps.LatLng(city.lat, city.lng));
 		}
     for (var i = startIndex; i <= endIndex; i++) {
       var city = cityList[i];
+	  if(city == undefined)
+	  {
+	  	continue;
+	  }
 	  var point = new google.maps.LatLng(city.lat, city.lng);
       var marker = new google.maps.Marker(point, { icon: icon, title: city.name });
       

@@ -947,18 +947,19 @@ function Map(mapDiv) {
       	// Hack in support for GMarkerManager
       	//markers.push(marker);
 		points.push(point);
-    if (city.type != TorchMgr.TYPE_CHINA_PROVINCE && points.length > 0) {
+	}
+	var city = cityList[startIndex - 1];
+	
+    if ('undefined' != typeof(city) && city.type != TorchMgr.TYPE_CHINA_PROVINCE && points.length > 0) {
       var polylineColor = (cityStatus == TorchMgr.STATUS_NOTORCH) ? grayLineColor : redLineColor;
-	      for(var i = 1, point; point = points[i]; i++){
-			var polyline = new google.maps.Polyline([points[i-1], point], polylineColor, 2, 1);
-	        
-	        overlayManager.addPolyline(polyline, cityType);
-	        // Hack in support for GMarkerManager
-	        //polylines.push(polyline);
-	       }
-        }
+      for(var i = 1, point; point = points[i]; i++){
+		var polyline = new google.maps.Polyline([points[i-1], point], polylineColor, 2, 1);
+        
+        overlayManager.addPolyline(polyline, cityType);
+        // Hack in support for GMarkerManager
+        //polylines.push(polyline);
+	  }
     }
-
     
 /* Hack in support for GMarkerManager
     switch(cityType)

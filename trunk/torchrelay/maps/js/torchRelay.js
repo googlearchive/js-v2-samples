@@ -258,8 +258,9 @@ function Frame() {
     
     
     // constructor
-    var className = (cityStatus == TorchMgr.STATUS_NOTORCH) ? "noTorch" : "torched";
+    var cityClassName = (cityStatus == TorchMgr.STATUS_NOTORCH) ? "noTorch" : "torched";
     for (var i = startIndex; i <= endIndex; i++) {
+	  
       var city = cityList[i];
 	  if('undefined' == typeof(city))
 	  {
@@ -267,7 +268,7 @@ function Frame() {
 	  }
       city.type = cityType;
       city.id = cityType + city.index;
-	  className = (TorchMgr.torchCity == cityList[i]) ? "hasTorch torched" : className;
+	  className = (TorchMgr.torchCity == cityList[i]) ? "hasTorch torched" : cityClassName;
       var cityNode = createCityNode(city, className);
       createNameNode(city.name, cityNode);
       createDateNode(city.date, cityNode);

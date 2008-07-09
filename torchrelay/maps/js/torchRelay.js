@@ -261,7 +261,7 @@ function Frame() {
     var className = (cityStatus == TorchMgr.STATUS_NOTORCH) ? "noTorch" : "torched";
     for (var i = startIndex; i <= endIndex; i++) {
       var city = cityList[i];
-	  if(city == undefined)
+	  if('undefined' == typeof(city))
 	  {
 	  	continue;
 	  }

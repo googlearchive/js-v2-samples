@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps - Moving Polygon Boundaries Prototype</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAy2Koch6OAmSa9Q9upKoJvhSfSWg1lTZg2POgFC8HPFp77dCgJRRV8iquZ6e-WjbZlDlla3FNHwQzJg"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+      // Set up various global variables used across functions
+      // The Google Map object
+      var map;
+      // The current (GMarker) location of the virtual "car"
+      var currentLocation;
+      // Array of GMarker objects to contain all of the locations/stores of interest
+      var markerArray;
+      // GPolygon object that represents the area of interest within a specific radius of the virtual car
+      var polygon;
+      // "Radius" (so to speak) around the virtual car.  The polygon is not an true circle, so the radius is an estimated distance around the car.
+      var radiusInMiles;
+      // An estimated number of miles per latitude segment (see the GPolygon.prototype.Contains method below)
+      var milesPerLat = 69.047;
+      // An estimated number of miles per longitude segment (see the GPolygon.prototype.Contains method below)
+      var milesPerLng = 53;
+      // Value that defines how quickly the car moves across the map, in seconds
+      var timeStepSecs = 1;
+      // Javascript timer object created by the setTimeout function
+      var motionTimer;
+      // Value that defines how far the virtual car travels in each time segment, in miles
+      var deltaDistance = 0.035;
+      // Direction (compass) in which the virtual car will travel
+      var direction;
+      // Google Spreadsheet key
+      var param_ssKey = "o00714943191012983869.550012061068570671";
+      // Google Spreadsheet worksheet ID
+      var param_wsId = "od5";
+      // Starting point of the map
+      var startPoint = new GLatLng(40.765539, -73.975967);
+
+      /*
+       * Initializing function.
+       * Creates the GMap2 object used throughout, and sets initial controls and start location.
+       * Calls getJSON() to load map points from a Google Spreadsheet.
+       */
+      function init() {
+        if (GBrowserIsCompatible()) {
+          // create the Map object
+          map = new GMap2(document.getElementById("map"));
+          map.addControl(new GLargeMapControl());
+          map.addControl(new GMapTypeControl());
+          map.disableDoubleClickZoom();
+          map.enableScrollWheelZoom();
+          map.setCenter(startPoint, 15);
+          // Create the virtual car marker, add it to the map, and then reset the map
+          currentLocation = createCarMarker(startPoint);
+          map.addOverlay(currentLocation);
+          resetMap();
+          // Retrieve the store location data from Google Spreadsheets
+          getJSON();
+        }
+      }
+      /*
+       * Function to reset back to standard content, removing markers, 
+       * setting the polygon radius, fixing up controls, etc.
+       */
+      function resetMap()
+      {
+        // Pan the map back to the original start location
+        map.panTo(startPoint, 15);
+        // Set the virtual car location back to the start location
+        currentLocation.setLatLng(startPoint);
+        // Set the polygon radius and direction based upon user selection
+        radiusInMiles = document.getElementById('radius').options[document.getElementById('radius').selectedIndex].value;
+        direction = document.getElementById('direction').options[document.getElementById('direction').selectedIndex].value;
+        // Enable the "Start" button, and check the auto-move option
+        document.getElementById("startButton").disabled = false;
+        document.getElementById("autoMove").checked = true;
+        // Redraw the polygon around the car
+        redrawPoly();
+      }
+      /*
+       * Function to create the car marker, returning a GMarker object.
+       * @param {GLatLng} latlng - the location object defining where to create the GMarker
+       * @returns GMarker for the virtual car
+       */
+      function createCarMarker(latlng)
+      {
+        // create a custom "car" icon from an image, setting the size and other attributes
+        var func_icon = new GIcon();
+        func_icon.image = "http://gsacs1.enterprisedemo-google.com/googleMaps/car.gif";
+        func_icon.iconSize = new GSize(40, 40);
+        func_icon.shadowSize = new GSize(30, 30);
+        func_icon.iconAnchor = new GPoint(20, 20);
+        func_icon.infoWindowAnchor = new GPoint(5, 1);
+        var func_markerOpts = {};
+        func_markerOpts.icon = func_icon;
+        // allow the marker to be moved around
+        func_markerOpts.draggable = true;
+        // create the GMarker object with the specified options
+        var func_marker = new GMarker(latlng, func_markerOpts);
+        // capture marker drag events
+        GEvent.addListener(func_marker, "dragstart", function() {
+          pointBeingMoved = func_marker.getLatLng().lat() + ';' + func_marker.getLatLng().lng();
+        });
+        GEvent.addListener(func_marker, "dragend", function() {
+          currentLocation = func_marker;
+          // redraw the polygon surrounding the marker when the user stops dragging the marker around
+          redrawPoly();
+        });
+        // other events to listen for, if desired
+        GEvent.addListener(func_marker, "click", function() {
+        });
+        GEvent.addListener(func_marker, "dblclick", function() {
+        });
+        return func_marker;
+      }
+      /*
+       * Function to redraw the polygon surrounding the car icon.
+       * Polygon is essentially an octagon shape, but could include more points for a
+       * more circular-looking shape.
+       */
+      function redrawPoly()
+      {
+        // Since we're redrawing the polygon, let's remove it first from the map.
+        // For a smoother transition, this could be enhanced to slowly fade the old polygon while fading in the new one.
+        if (polygon)
+        {
+          map.removeOverlay(polygon);
+        }
+        // Create the eight points of the polygon, using the current "radius"
+        var func_points = new Array(9);
+        var func_newLat = currentLocation.getLatLng().lat() + radiusInMiles/milesPerLat;
+        var func_newLng = currentLocation.getLatLng().lng() - ((0.50 * radiusInMiles)/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() + (0.50*radiusInMiles)/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() - (radiusInMiles/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() - (0.50*radiusInMiles)/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() - (radiusInMiles/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() - radiusInMiles/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() - (0.50*radiusInMiles/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() - radiusInMiles/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() + (0.50*radiusInMiles/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() - (0.50*radiusInMiles)/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() + (radiusInMiles/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() + (0.50*radiusInMiles)/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() + (radiusInMiles/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() + radiusInMiles/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() + (0.50*radiusInMiles/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        func_newLat = currentLocation.getLatLng().lat() + radiusInMiles/milesPerLat;
+        func_newLng = currentLocation.getLatLng().lng() - ((0.50 * radiusInMiles)/milesPerLng);
+        func_points.push(new GLatLng(func_newLat, func_newLng));
+        // create the polygon with a transparency level that allows viewing the map underneath
+        polygon = new GPolygon(func_points, "#f33f00", 1, 1, "#ff0000", 0.2);
+        // add the polygon to the map
+        map.addOverlay(polygon);
+        // finally, check the array of (store) locations to determine if any are now within the bounds of the polygon.
+        checkPoints();
+      }
+      /*
+       * Function that is called whenever the user changes the radius of the polygon surrounding the car, effectively
+       * changing the search area around the car for interesting points of interest - the redraws the surrounding polygon.
+       */
+      function changeRadius()
+      {
+        radiusInMiles = document.getElementById('radius').options[document.getElementById('radius').selectedIndex].value;
+        if (currentLocation)
+          redrawPoly();
+      }
+      /*
+       * Function that is called when the user changes the direction that the virtual car should travel.
+       */
+      function changeDirection()
+      {
+        direction = document.getElementById('direction').options[document.getElementById('direction').selectedIndex].value;
+      }
+      /*
+       * Extension to the GPolygon object.
+       * This is a method for testing if a point is inside a polygon
+       * The origins of this function can be traced to the code posted at http://alienryderflex.com/polygon/
+       * @param {GLatLng} point - the point of interest
+       * @returns boolean - true if poly contains point
+       */
+      GPolygon.prototype.Contains = function(point) {
+        var j=0;
+        var func_oddNodes = false;
+        var x = point.lng();
+        var y = point.lat();
+        for (var i=0; i < this.getVertexCount(); i++) {
+          j++;
+          if (j == this.getVertexCount()) {j = 0;}
+          if (((this.getVertex(i).lat() < y) && (this.getVertex(j).lat() >= y))
+          || ((this.getVertex(j).lat() < y) && (this.getVertex(i).lat() >= y))) {
+            if ( this.getVertex(i).lng() + (y - this.getVertex(i).lat())
+            /  (this.getVertex(j).lat()-this.getVertex(i).lat())
+            *  (this.getVertex(j).lng() - this.getVertex(i).lng())<x ) {
+              func_oddNodes = !func_oddNodes
+            }
+          }
+        }
+        return func_oddNodes;
+      }
+      /*
+       * Function to retrieve data from a Google Spreadsheet, published as a JSON feed.
+       */
+      function getJSON() {
+        // Create and insert a <script/> element in the document, where the source of the
+        //  script is the feed from the Google Spreadsheet with a defined call-back function.
+        var script = document.createElement('script');
+        script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list'
+                               + '/' + param_ssKey + '/' + param_wsId + '/public/values' +
+                              '?alt=json-in-script&callback=loadJSON');
+        script.setAttribute('id', 'jsonScript');
+        script.setAttribute('type', 'text/javascript');
+        document.documentElement.firstChild.appendChild(script);
+      }
+      /*
+       * Function called when the Google Spreadsheet data has been returned to the browser.
+       * @param {String} json - the JavaScript Object Notation string containing data retrieved from the
+       *  Google Spreadsheet.
+       */
+      function loadJSON(json)
+      {
+        // Create a new array of GMarkers to contain all of the locations of interest
+        markerArray = new Array();
+        // Iterate through the JSON feed, extracting data elements of interest.
+        // Each row in the spreadsheet should at a minimum contain a "lat" and "lng" column.
+        // Other interesting data could include a store manager, phone number, image (URL), and sales data if this is
+        // an internal-facing application.
+        for (var i = 0; i < json.feed.entry.length; i++)
+        {
+          var func_entry = json.feed.entry[i];
+          // User a location/store number if it's available, otherwise use the index of the array
+          var func_num = (func_entry["gsx$storeid"].$t) ? func_entry["gsx$storeid"].$t : i;
+          var func_storeNum = "<b>Store # " + func_num + "</b>";
+          var func_lat = parseFloat(func_entry["gsx$lat"].$t);
+          var func_lng = parseFloat(func_entry["gsx$lng"].$t);
+          var func_point = new GLatLng(func_lat,func_lng);
+          var func_mgr = (func_entry["gsx$manager"]) ? func_entry["gsx$manager"].$t : "";
+          var func_ph = (func_entry["gsx$phonenumber"]) ? func_entry["gsx$phonenumber"].$t : "";
+          if (func_ph.indexOf("(") < 0)
+            func_ph = "(" + func_ph.substring(0,3) + ") " + func_ph.substring(3,6) + "-" + func_ph.substring(6);
+          var func_mthly = (func_entry["gsx$monthlysales"]) ? func_entry["gsx$monthlysales"].$t : "";
+          var func_lastQ = (func_entry["gsx$lastqtr"]) ? func_entry["gsx$lastqtr"].$t : "";
+          var func_lastFY = (func_entry["gsx$lastfy"]) ? func_entry["gsx$lastfy"].$t : "";
+          var func_imgUrl = (func_entry["gsx$imgurl"]) ? func_entry["gsx$imgurl"].$t : "";
+          // Create some interesting HTML to appear when a location marker is selected
+          var func_html = "<div><b>" + func_storeNum + "</b><br/><span style='font-size:10px;'>";
+          func_html += (func_mgr.length > 0) ? "Manager: " + func_mgr + " - " : "";
+          func_html += (func_ph.length > 0) ? func_ph  : "";
+          func_html += "</span><hr width='50%'/>"
+          func_html += "<table style='font-size:10px;'>";
+          func_html += (func_mthly.length > 0 || func_lastQ.length > 0 || func_lastFY.length > 0) ? "<tr><th colspan='2'>Sales Performance:</th></tr>" : "";
+          func_html += (func_imgUrl.length > 0) ? "<tr><td></td><td rowspan='3'><img src='" + func_imgUrl + "'></td></tr>" : "";
+          func_html += (func_mthly.length > 0) ? "<tr><td>Monthly Avg:</td><td>" + func_mthly + "</td></tr>" : "";
+          func_html += (func_lastQ.length > 0) ? "<tr><td>Last Qtr:</td><td>" + func_lastQ + "</td></tr>" : "";
+          func_html += (func_lastFY.length > 0) ? "<tr><td>Last FY:</td><td>" + func_lastFY + "</td></tr>" : "";
+          func_html += "</table></div>";
+          // Call a function to create a marker, then push it into the array of locations
+          var func_marker = createStoreMarker(func_point, func_storeNum, func_html);
+          markerArray.push(func_marker);
+          func_marker.hide();
+          map.addOverlay(func_marker);
+        }
+        // Now that the points have been loaded, check to see if any fall within the starting polygon
+        checkPoints();
+      }
+      /*
+       * Function that creates a GMarker object for the location of interest, using a custom icon
+       * @param {GLatLng} point - place to create the marker
+       * @param {String} storeNum - HTML string containing a "store number" (i.e. for a retail location)
+       * @param {String} html - HTML string containing descriptive content for the InfoWindow
+       * @returns GMarker for the location
+       */
+      function createStoreMarker(point, storeNum, html)
+      {
+        var func_icon = new GIcon();
+        func_icon.image = "http://gsacs1.enterprisedemo-google.com/googleMaps/starbucks-icon.gif";
+        func_icon.iconSize = new GSize(30, 30);
+        func_icon.shadowSize = new GSize(41, 30);
+        func_icon.iconAnchor = new GPoint(6, 20);
+        func_icon.infoWindowAnchor = new GPoint(5, 1);
+        var func_markerOpts = {};
+        func_markerOpts.icon = func_icon;
+        func_markerOpts.title = storeNum;
+        var func_marker = new GMarker(point, func_markerOpts);
+        GEvent.addListener(func_marker, "click", function() {
+          func_marker.openInfoWindowHtml(html, {maxWidth:400});
+        });
+        return func_marker;
+      }
+      /*
+       * Function to check all locations/stores of interest to determine if any fall within the polygon surrounding the virtual car
+       */
+      function checkPoints()
+      {
+        // If there are no points in the array, just return
+        if (!markerArray || markerArray.length == 0)
+          return;
+        // Iterate over the location/store array to see if any are within the current polygon area, and show/hide accordingly.
+        for (n=0 ; n < markerArray.length ; n++ )
+        {
+          if (polygon.Contains(markerArray[n].getLatLng()))
+          {
+            markerArray[n].show();
+          }
+          else
+          {
+            markerArray[n].hide();
+          }
+        }
+      }
+      /*
+       * Function called on a timer, or manually, to move the location of the virtual car
+       */
+      function moveLocation()
+      {
+        // Return immediately if the virtual car isn't already drawn on the map
+        if (!currentLocation)
+          return;
+        // calculate the lat/lng distance to travel
+        var func_latDist = deltaDistance/milesPerLat;
+        var func_lngDist = deltaDistance/milesPerLng;
+        var func_newLat = currentLocation.getLatLng().lat();
+        var func_newLng = currentLocation.getLatLng().lng();
+        // determine the direction to travel, and set the new lat/lng accordingly
+        if (direction == "NW")
+        {
+          func_newLat = func_newLat + func_latDist;
+          func_newLng = func_newLng - func_lngDist;
+        }
+        else if (direction == "N")
+        {
+          func_newLat = func_newLat + func_latDist;
+        }
+        else if (direction == "NE")
+        {
+          func_newLat = func_newLat + func_latDist;
+          func_newLng = func_newLng + func_lngDist;
+        }
+        else if (direction == "E")
+        {
+          func_newLng = func_newLng + func_lngDist;
+        }
+        else if (direction == "SE")
+        {
+          func_newLat = func_newLat - func_latDist;
+          func_newLng = func_newLng + func_lngDist;
+        }
+        else if (direction == "S")
+        {
+          func_newLat = func_newLat - func_latDist;
+        }
+        else if (direction == "SW")
+        {
+          func_newLat = func_newLat - func_latDist;
+          func_newLng = func_newLng - func_lngDist;
+        }
+        else if (direction == "W")
+        {
+          func_newLng = func_newLng + func_lngDist;
+        }
+        // move the current virtual car GMarker
+        currentLocation.setLatLng(new GLatLng(func_newLat, func_newLng));
+        // redraw the polygon surrounding the virtual car
+        redrawPoly();
+        checkBounds();
+        // if the user has chosen the option to have the car move automatically, set up a Javascript timer to 
+        //  have it move within a defined number of seconds.
+        if (document.getElementById("autoMove").checked)
+        {
+          document.getElementById("startButton").disabled = true;
+          motionTimer = setTimeout('moveLocation()', timeStepSecs*1000);
+        }
+      }
+      /*
+       * Function to pan the map if the polygon has moved outside of the bounds, and pans the map
+       * to where the current location is centered on the map.
+       */
+       function checkBounds()
+       {
+         var polyBounds = polygon.getBounds();
+         if (!map.getBounds().containsBounds(polyBounds))
+         {
+            map.panTo(currentLocation.getLatLng());
+         }
+       }
+      // wait for a split second and then initialize the map
+      setTimeout('init()', 100);
+    //]]>
+    </script>
+  </head>
+  <body onunload="GUnload()" style="font-family:Arial,sans-serif; font-size:12px;">
+    <table>
+      <tr>
+        <td width="20%">
+          <b>Instructions:</b>
+          <br/>
+          Press the "Start" button to set the car in motion.  Starbucks icons will appear
+          as they fall within the radius around the car.
+          <br/>
+          Change the radius and/or direction at any time, or drag the car around.
+          <br/>
+          Reset takes you back to the original location.
+          <hr width="30%"/>
+          Select Radius:
+          <select id="radius" name="radius" onChange="changeRadius();">
+            <option value="0.25" selected>1/4 mile</option>
+            <option value="0.50">1/2 mile</option>
+            <option value="1">1 mile</option>
+            <option value="2">2 miles</option>
+            <option value="5">5 miles</option>
+            <option value="10">10 miles</option>
+            <option value="20">20 miles</option>
+            <option value="1000">1000 miles</option>
+          </select>
+          <hr width="30%"/>
+          Select Direction to Travel:
+          <select id="direction" name="direction" onChange="changeDirection();">
+            <option value="NW">NW</option>
+            <option value="N">N</option>
+            <option value="NE">NE</option>
+            <option value="E">E</option>
+            <option value="SE">SE</option>
+            <option value="S">S</option>
+            <option value="SW" selected>SW</option>
+            <option value="W">W</option>
+          </select>
+          <hr width="30%"/>
+          Move automatically: <input type="checkbox" id="autoMove" checked>
+          <hr width="30%"/>
+          <input type="submit" id="startButton" onClick="moveLocation();" value="Start"/>
+          <input type="submit" id="stopButton" onClick="clearTimeout(motionTimer);document.getElementById('startButton').disabled=false;" value="Stop"/>
+          <input type="submit" onClick="resetMap();" value="Reset"/>
+        </td>
+        <td rowspan="2">
+          <div id="map" style="width: 800px; height: 700px"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

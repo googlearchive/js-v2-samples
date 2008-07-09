@@ -929,10 +929,10 @@ function Map(mapDiv) {
   this.importCity = function(cityList, startIndex, endIndex, cityStatus, cityType) {
 		var icon = (cityStatus == TorchMgr.STATUS_NOTORCH) ? grayIcon : redIcon;
 		var points = [];
-		if(startIndex != 0 && cityList[startIndex-1]){
-			var city = cityList[startIndex-1];
-		  	points.push(new google.maps.LatLng(city.lat, city.lng));
-		}
+        /* Start with first city */
+		//var city = cityList[startIndex];
+	  	//points.push(new google.maps.LatLng(city.lat, city.lng));
+
     for (var i = startIndex; i <= endIndex; i++) {
       var city = cityList[i];
 	  if('undefined' == typeof(city))
@@ -949,7 +949,7 @@ function Map(mapDiv) {
       	//markers.push(marker);
 		points.push(point);
 	}
-	var city = cityList[startIndex - 1];
+	var city = cityList[startIndex];
 	
     if ('undefined' != typeof(city) && city.type != TorchMgr.TYPE_CHINA_PROVINCE && points.length > 0) {
       var polylineColor = (cityStatus == TorchMgr.STATUS_NOTORCH) ? grayLineColor : redLineColor;
@@ -1454,8 +1454,8 @@ TorchMgr.start = function(mapDiv,locale,date) {
         var provinceIndex = parseInt(TorchMgr.torchCity.prtIndex);
         importCity(provinceList, 0, provinceIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_PROVINCE);
         importCity(provinceList, provinceIndex + 1, provinceList.length - 1, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_PROVINCE);
-        importCity(cityList, TorchMgr.CHINA_LIST_START_INDEX, cityIndex, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_CITY);
-        importCity(cityList, cityIndex + 1, TorchMgr.CHINA_LIST_END_INDEX, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_CITY);
+        importCity(cityList, 0, cityIndex - TorchMgr.CHINA_LIST_START_INDEX, TorchMgr.STATUS_TORCHED, TorchMgr.TYPE_CHINA_CITY);
+        importCity(cityList, cityIndex - TorchMgr.CHINA_LIST_START_INDEX + 1, cityList.length - 1, TorchMgr.STATUS_NOTORCH, TorchMgr.TYPE_CHINA_CITY);
       }
     }
   }

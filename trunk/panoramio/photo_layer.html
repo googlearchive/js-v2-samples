@@ -3,17 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>Google Maps API Example - Panoramio layer</title>
+    <title>Google Maps API Example - Ugly Photo Layer</title>
     <style type="text/css">
       body { 
         font-family: Arial, sans serif;
         font-size: 11px;
       }
     </style>
-    <script src="http://maps.google.com/maps?file=api&amp;v=2.117&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.95&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
       type="text/javascript"></script>
     <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js" type="text/javascript"></script>
-    <script src="pano_layer.js" type="text/javascript"></script>
+    <script src="photo_layer.js" type="text/javascript"></script>
     <script type="text/javascript">
     //<![CDATA[
 
@@ -22,13 +22,15 @@ var geocoder = null;
 function setupMap() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
-    map.setCenter(new GLatLng(37.419322,-122.085228), 8);
+    map.setCenter(new GLatLng(43.707, -101.25), 4);
+    map.addMapType(G_PHYSICAL_MAP);
+    map.setMapType(G_PHYSICAL_MAP);
     map.enableGoogleBar();
     map.addControl(new GSmallMapControl());
     map.enableDoubleClickZoom();
     map.enableScrollWheelZoom();
-    var pano_layer = new PanoramioLayer(map);
-    pano_layer.enable();
+    var photo_layer = new PhotoLayer(map);
+    photo_layer.enable();
   }
 }
 
@@ -38,7 +40,7 @@ function setupMap() {
   </head>
 
   <body onload="setupMap()" onunload="GUnload()">
-    <div id="map" style="border:2px solid green; width: 550px; height: 500px"></div>
+    <div id="map" style="border:2px solid green; width: 650px; height: 500px"></div>
     <br/>
     Photos provided by Panoramio are under the copyright of their owners.
   </body>

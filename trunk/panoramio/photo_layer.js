@@ -9,9 +9,7 @@ function PhotoLayerCallback(json, panoLayer) {
       var marker = this.createMarker(photo, panoLayer.markerIcon);
       panoLayer.ids[this.getId(photo)] = "exists";
       batch.push(marker);
-    } else {
-      console.log("already saw");
-    }
+    } 
   }
   panoLayer.mgr.addMarkers(batch, panoLayer.map.getZoom());
   panoLayer.mgr.refresh();

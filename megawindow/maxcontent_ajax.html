@@ -19,7 +19,7 @@
         GEvent.addListener(marker, 'click', function() {
           var maxContentDiv = document.createElement('div');
           maxContentDiv.innerHTML = 'Loading...'
-          marker.openInfoWindowHtml("<div style='padding:5px'>Click maximize button for more info about the Google Bar!</div>",
+          marker.openInfoWindow("<div style='padding:5px'>Click maximize button for more info about the Google Bar!</div>",
             {maxContent: maxContentDiv, 
              maxTitle: "More Info"});
 

@@ -18,7 +18,7 @@ function loadMap() {
   map = new GMap2(document.getElementById("map"));
   map.setCenter(new GLatLng(37.4419, -122.1419), 6);
   map.addOverlay(new GMarker(map.getCenter()));
-  if (G_API_VERSION != undefined) {
+  if (G_API_VERSION) {
     GLog.write(G_API_VERSION);  
   } else {
     GLog.write("No version information available");

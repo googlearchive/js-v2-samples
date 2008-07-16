@@ -1,0 +1,23 @@
+<html>
+  <head>
+ <script type="text/javascript"  src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQGj0PqsCtxKvarsoS-iqLdqZSKfxRdmoPmGl7Y9335WLC36wIGYa6o5Q"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"), {backgroundColor:"#99B3CC"});
+        map.setCenter(new GLatLng(33.956461,-118.45), 13);
+        var omc = new GOverviewMapControl();
+        omc.setMapType(G_SATELLITE_MAP);
+        map.addControl(omc);
+        map.addControl(new GMapTypeControl());
+      }
+    }
+
+    //]]>
+    </script>
+  </head>
+  <body onload="load()" onunload="GUnload()">
+    <div id="map" style="width:550px;height:400px"></div>
+  </body>
+</body>

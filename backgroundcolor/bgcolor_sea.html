@@ -1,0 +1,37 @@
+<html>
+  <head>
+ <script type="text/javascript"  src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQGj0PqsCtxKvarsoS-iqLdqZSKfxRdmoPmGl7Y9335WLC36wIGYa6o5Q">
+    <script type="text/javascript">
+    //<![CDATA[
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"), {backgroundColor:"#99B3CC"});
+        map.setCenter(new GLatLng(33.956461,-118.45), 13);
+      }
+    }
+
+    //]]>
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background-color: #99B3CC;
+      }
+      div.map {
+        position: absolute;
+        right: 0;
+        text-align: right;
+        width: 50%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body onload="load()" onunload="GUnload()">
+    <div id="map" class="map"></div>
+  </body>
+</body>

@@ -2,7 +2,6 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 <title>Google Maps JavaScript API Example</title>
 <script type="text/javascript">
 function getURLParam(name) {
@@ -15,7 +14,7 @@ var script = '<script src="http://maps.google.com/maps?file=api&v=' + getURLPara
 document.write(script);
 
 function loadMap() {
-  map = new GMap2(document.getElementById("map"));
+  var map = new GMap2(document.getElementById("map"));
   map.setCenter(new GLatLng(37.4419, -122.1419), 6);
   map.addOverlay(new GMarker(map.getCenter()));
   if (window.G_API_VERSION) {

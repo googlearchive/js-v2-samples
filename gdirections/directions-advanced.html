@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example: Advanced Directions</title>
+    <script src=" http://maps.google.com/?file=api&amp;v=2.x&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA"
+      type="text/javascript"></script>
+    <style type="text/css">
+      body {
+        font-family: Verdana, Arial, sans serif;
+        font-size: 11px;
+        margin: 2px;
+      }
+      table.directions th {
+        background-color:#EEEEEE;
+      }
+      img {
+        color: #000000;
+      }
+    </style>
+    <script type="text/javascript">
+ 
+    var map;
+    var gdir;
+    var geocoder = null;
+    var addressMarker;
+
+    function initialize() {
+      if (GBrowserIsCompatible()) {      
+        map = new GMap2(document.getElementById("map_canvas"));
+        gdir = new GDirections(map, document.getElementById("directions"));
+        GEvent.addListener(gdir, "addoverlay", onGDirectionsLoad);
+        GEvent.addListener(gdir, "error", handleErrors);
+
+        setDirections("Palo Alto", "Mountain View", "en_US");
+      }
+    }
+    
+    function setDirections(fromAddress, toAddress, locale) {
+      gdir.load("from: " + fromAddress + " to: " + toAddress,
+                { "locale": locale });
+    }
+
+    function handleErrors(){
+   if (gdir.getStatus().code == G_GEO_UNKNOWN_ADDRESS)
+     alert("No corresponding geographic location could be found for one of the specified addresses. This may be due to the fact that the address is relatively new, or it may be incorrect.\nError code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_SERVER_ERROR)
+     alert("A geocoding or directions request could not be successfully processed, yet the exact reason for the failure is not known.\n Error code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_MISSING_QUERY)
+     alert("The HTTP q parameter was either missing or had no value. For geocoder requests, this means that an empty address was specified as input. For directions requests, this means that no query was specified in the input.\n Error code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_BAD_KEY)
+     alert("The given key is either invalid or does not match the domain for which it was given. \n Error code: " + gdir.getStatus().code);
+   else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
+     alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
+   else alert("An unknown error occurred.");
+    }
+
+  function onGDirectionsLoad(){ 
+   var poly = gdir.getPolyline();
+   if (poly.getVertexCount() > 100) {
+     alert("This route has too many vertices");
+     return;
+   }
+   var baseUrl = "http://maps.google.com/staticmap?";
+
+   var params = [];
+   params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
+
+   var markersArray = [];
+   console.log(poly);
+   markersArray.push(poly.getVertex(0).toUrlValue(5) + ",greena");
+   markersArray.push(poly.getVertex(poly.getVertexCount()-1).toUrlValue(5) + ",greenb");
+  
+   params.push("markers=" + markersArray.join("|"));
+
+   var polyParams = "rgba:0x0000FF80,weight:5|";
+   var polyLatLngs = [];
+   for (var j = 0; j < poly.getVertexCount(); j++) {
+     polyLatLngs.push(poly.getVertex(j).lat().toFixed(5) + "," + poly.getVertex(j).lng().toFixed(5));
+   }
+   params.push("path=" + polyParams + polyLatLngs.join("|"));
+   params.push("zoom=" + map.getZoom());
+   params.push("size=310x400");
+   var img = document.createElement("img");
+   img.src = baseUrl + params.join("&") + "&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw";
+   document.getElementById("staticMapIMG").innerHTML = "";
+   document.getElementById("staticMapIMG").appendChild(img);
+
+   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "&key=YOUR_KEY_HERE";
+}
+    </script>
+
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+  
+  <h2>Maps API Directions Illustrated</h2>
+  <form action="#" onsubmit="setDirections(this.from.value, this.to.value, this.locale.value); return false">
+
+  <table>
+
+   <tr><th align="right">From:&nbsp;</th>
+
+   <td><input type="text" size="25" id="fromAddress" name="from"
+     value="Palo Alto"/></td>
+   <th align="right">&nbsp;&nbsp;To:&nbsp;</th>
+   <td align="right"><input type="text" size="25" id="toAddress" name="to"
+     value="Mountain View" /></td></tr>
+
+   <tr><th>Language:&nbsp;</th>
+   <td colspan="3"><select id="locale" name="locale">
+
+    <option value="en" selected>English</option>
+    <option value="fr">French</option>
+
+    <option value="de">German</option>
+    <option value="ja">Japanese</option>
+    <option value="es">Spanish</option>
+    </select>
+
+    <input name="submit" type="submit" value="Get Directions!" />
+   </td></tr>
+   </table>
+
+    
+  </form>
+
+    <br/>
+    <table class="directions">
+    <tr><th>Formatted Directions</th><th>Map</th></tr>
+
+    <tr>
+    <td valign="top"><div id="directions" style="width: 275px"></div></td>
+    <td valign="top"><div id="map_canvas" style="width: 310px; height: 400px"></div></td>
+
+    </tr>
+    </table> 
+
+ <div id="staticMapIMG" style="width: 500px; margin-left: 20px; height: 410px"></div>
+<br clear="all"/>
+
+<h3><img src="http://www.google.com/uds/solutions/wizards/img/3b.gif" 
+style="vertical-align:middle"/>Generate URL</h3>
+<p>The Static Maps API requires a free API key that's associated with your
+<a href="http://www.google.com/accounts/"> Google Account</a> and the URL of your web site.
+You can sign up for one <a
+href="http://code.google.com/apis/maps/signup.html">here</a>, and substitute it
+as the value of the "&key=" parameter in the URL below.
+
+<br/>
+<p>
+</p>
+<pre id="staticMapURL" class="code">
+</pre>
+
+  </body>
+</html>

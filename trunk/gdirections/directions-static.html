@@ -68,7 +68,6 @@
    params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
 
    var markersArray = [];
-   console.log(poly);
    markersArray.push(poly.getVertex(0).toUrlValue(5) + ",greena");
    markersArray.push(poly.getVertex(poly.getVertexCount()-1).toUrlValue(5) + ",greenb");
   

@@ -23,8 +23,8 @@
           map.addOverlay(polygon);
         }
         createImageMap();
-        //createStaticMap();
-  //      addMapper();
+       //createStaticMap();
+        addMapper();
       }
     }   
   
@@ -45,7 +45,7 @@
       staticMap.usemap = "#states";
       staticMap.width =  map.getSize().width;
       staticMap.height = map.getSize().height;
-//      staticMap.className = "mapper";
+      staticMap.className = "mapper";
       document.body.appendChild(staticMap);
     }
 

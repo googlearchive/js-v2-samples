@@ -22,6 +22,20 @@ v\:* {
       }
     }
 
+/**
+ * Fixes the 'Ads by Google' PNG so that it looks good in IE6.
+ */
+function fixPngInIE() {
+  var obj = document.getElementById('abg');
+  if (obj && obj.firstChild && obj.firstChild.style) {
+    obj.style.height = '78px';
+    obj.style.width = '16px';
+    obj.style.display = 'inline-block';
+    obj.style.filter = 'progid:DXImageTransform.Microsoft.AlphaImageLoader (src=\'http://pagead2.googlesyndication.com/pagead/abglogo/abg-en-100c-000000.png\')';
+    obj.firstChild.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=0)';
+  }
+} 
+
     function addHighlight(map, area) {
       var coords = area.getAttribute("coords");
       var coordsArray = coords.split(",");
@@ -71,7 +85,7 @@ v\:* {
 <div id="holder">
 <img id="states_img" style="position: absolute; height: 300px; width: 500px; left: 0px; top: 0px;" src="http://maps.google.com/staticmap?center=42,-99&zoom=3&size=500x300&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"/>
 <canvas id="states_canvas" style="height: 300px; width: 500px; position: absolute; left: 0px; top: 0px; opacity: 1;" height="300" width="500"></canvas>
-<img id="states_img" class="mapper" width="500" height="300" style="position: absolute; height: 300px; width: 500px; left: 0px; top: 0px; -moz-user-select: none; opacity: 0;" src="http://maps.google.com/staticmap?center=42,-99&zoom=3&size=500x300&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" usemap="#states"/>    
+<img id="states_img" class="mapper" width="500" height="300" style="visibility:none; position: absolute; height: 300px; width: 500px; left: 0px; top: 0px; -moz-user-select: none; opacity: 0;" src="http://maps.google.com/staticmap?center=42,-99&zoom=3&size=500x300&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" usemap="#states"/>    
 <!--
 <img id="states_img" class="mapper" width="500" height="300" src="http://maps.google.com/staticmap?center=42,-99&zoom=3&size=500x300&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" usemap="#states"/>    
 -->

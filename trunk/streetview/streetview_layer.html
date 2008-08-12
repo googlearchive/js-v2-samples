@@ -45,9 +45,14 @@ function openPanoramaBubble() {
   contentNode.style.width = '500px';
   contentNode.style.height = '300px';
   contentNode.innerHTML = 'Loading panorama';
-  marker.openInfoWindow("<div id='pano' style='width:200px;height:200px;'></div>", {maxContent: contentNode, maxTitle: "Full screen"});
 
-  panorama = new GStreetviewPanorama(document.getElementById("pano"));
+  var smallNode = document.createElement('div');
+  smallNode.style.width = '200px';
+  smallNode.style.height = '200px';
+  smallNode.id = 'pano';
+  marker.openInfoWindow(smallNode, {maxContent: contentNode, maxTitle: "Full screen"});
+
+  panorama = new GStreetviewPanorama(smallNode);
   panorama.setLocationAndPOV(marker.getLatLng(), null);
   GEvent.addListener(panorama, "newpano", onNewLocation);
   GEvent.addListener(panorama, "yawchanged", onYawChange); 

@@ -6,11 +6,15 @@
 
   function initialize() {
     var latlng = new google.maps.LatLng(37.4419, -122.1419);
+    console.log(google.loader.ClientLocation.latitude);
     if (google.loader.ClientLocation) {
       latlng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
     } 
+    console.log(latlng);
     var map = new google.maps.Map2(document.getElementById('map'));
     map.setCenter(latlng, 13);
+    map.addControl(new GLargeMapControl());
+    map.addControl(new GMapTypeControl());
   }
 </script>
 </head>

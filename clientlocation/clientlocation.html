@@ -1,0 +1,20 @@
+<html>
+<head>
+  <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow"></script>
+  <script>
+  google.load("maps", "2", {callback: initialize});
+
+  function initialize() {
+    var latlng = new google.maps.LatLng(37.4419, -122.1419);
+    if (google.loader.ClientLocation) {
+      latlng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
+    } 
+    var map = new google.maps.Map2(document.getElementById('map'));
+    map.setCenter(latlng, 13);
+  }
+</script>
+</head>
+<body>
+<div style="width:400;height:400" id="map"></div>
+</body>
+</html>

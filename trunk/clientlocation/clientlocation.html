@@ -5,12 +5,21 @@
   google.load("maps", "2", {callback: initialize});
 
   function initialize() {
-    var latlng = new google.maps.LatLng(37.4419, -122.1419);
+    // Initialize default values
+    var zoom = 3;
+    var latlng = new google.maps.LatLng(37.4419, -100.1419);
+    var location = "Showing default location for map.";
+
+    // If ClientLocation was filled in by the loader, use that info instead
     if (google.loader.ClientLocation) {
+      zoom = 13;
       latlng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
+      location = "Showing IP-based location of: " + google.loader.ClientLocation.address.city;
     } 
+   
+    document.getElementById("location").innerHTML = location;
     var map = new google.maps.Map2(document.getElementById('map'));
-    map.setCenter(latlng, 13);
+    map.setCenter(latlng, zoom);
     map.addControl(new GLargeMapControl());
     map.addControl(new GMapTypeControl());
   }
@@ -18,5 +27,6 @@
 </head>
 <body>
 <div style="width:400;height:400" id="map"></div>
+<div id="location"></div>
 </body>
 </html>

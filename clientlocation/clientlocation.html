@@ -14,7 +14,7 @@
     if (google.loader.ClientLocation) {
       zoom = 13;
       latlng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
-      location = "Showing IP-based location of: " + google.loader.ClientLocation.address.city;
+      location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
     } 
    
     document.getElementById("location").innerHTML = location;
@@ -23,6 +23,18 @@
     map.addControl(new GLargeMapControl());
     map.addControl(new GMapTypeControl());
   }
+
+  function getFormattedLocation() {
+    if (google.loader.ClientLocation.address.country_code == "US" &&
+      google.loader.ClientLocation.address.region) {
+      return google.loader.ClientLocation.address.city + ", " 
+          + google.loader.ClientLocation.address.region.toUpperCase();
+    } else {
+      return  google.loader.ClientLocation.address.city + ", "
+          + google.loader.ClientLocation.address.country_code;
+    }
+  }
+
 </script>
 </head>
 <body>

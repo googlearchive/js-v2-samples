@@ -107,6 +107,12 @@ PhotoLayerCallback.prototype.createMarker = function(photo, baseIcon) {
 
   marker.html = html;
   GEvent.addListener(marker, "click", function() {
+    if (me.photoLayer.lastMarker) {
+      me.photoLayer.lastMarker.resetBorder();
+    }
+    marker.highlightBorder();
+    me.photoLayer.lastMarker = marker;
+
     if (me.photoLayer.sidebar) {
       me.photoLayer.sidebar.innerHTML = marker.html;
     } else {

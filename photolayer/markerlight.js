@@ -126,3 +126,10 @@ MarkerLight.prototype.setImage = function(image) {
   this.div_.style.background = 'url("' + image + '")';
 }
 
+MarkerLight.prototype.highlightBorder = function() {
+  this.div_.style.border = "2px solid yellow";
+}
+
+MarkerLight.prototype.resetBorder = function() {
+  this.div_.style.border = "1px solid white";
+}

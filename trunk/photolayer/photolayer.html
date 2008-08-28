@@ -73,14 +73,25 @@ function changeTag() {
   </head>
 
   <body onload="setupMap()" onunload="GUnload()">
-<div>
+<div style="margin-bottom:5px">
 <form action="demogallery.html" onsubmit="changeTag(); return false;" method="get">
-Enter tag or comma-separated tags:<input type="text" value="eye-fi" id="tag"/><input type="submit" value="Refresh" onclick="changeTag()"/> <em>(Suggestions: funny, eye-fi, sunset, weird, farmhouse)</enter>
+Enter tag or comma-separated tags:<input type="text" value="eye-fi" id="tag"/><input type="submit" value="Refresh" onclick="changeTag()"/> <em>(Suggestions: funny, eye-fi, sunset, weird, farmhouse)</em>
 </form>
 </div>
 <div id="map" style="width:65%; height:600px; border:2px solid black; float:left; clear:both;"></div>
 <div id="sidebar" style="overflow-y:auto; overflow-x: hidden; padding-left:10px; text-align:center; height:600px; float:left; border:2px solid black; width:25%">
+<div style="text-align:left;font-size:13px">
+<br/>
 Click a photo on a map to see it in detail.
+
+To navigate around the map, you can:
+<ul>
+<li>Double click to zoom in</li>
+<li>Drag the map to pan</li>
+<li>Click the control on the left and drag a rectangle to zoom into a particular region</li>
+<li>Pop out the search control on the bottom and enter a city name or address</li>
+</ul>
+</div>
 </div>
 </body>
 </html>

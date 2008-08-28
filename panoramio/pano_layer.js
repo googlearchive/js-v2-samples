@@ -1,18 +1,15 @@
 function PanoramioLayerCallback(json, panoLayer) {
   this.panoLayer = panoLayer;
 
-  var batch = [];
   for (var i = 0; i < json.photos.length; i++) {
     var photo = json.photos[i];
     if (!panoLayer.ids[photo.photo_id]) {
       var marker = this.createMarker(photo, panoLayer.markerIcon);
       panoLayer.mgr.addMarker(marker, 0);
       panoLayer.ids[photo.photo_id] = "exists";
+      panoLayer.mgr.addMarker(marker, panoLayer.map.getZoom());
     }
   }
-//  panoLayer.mgr.addMarkers(batch, 0);
-  panoLayer.mgr.addMarkers(batch, panoLayer.map.getZoom());
-  panoLayer.mgr.refresh();
 }
 
 PanoramioLayerCallback.prototype.formImgUrl = function(photoId, imgType) {

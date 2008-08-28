@@ -219,7 +219,7 @@ PhotoLayer.prototype.load = function(photoLayer, options) {
   document.documentElement.firstChild.appendChild(script);
 
   var url =
-  "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a0de4a213ab1191732ec4db4daf586a3&extras=geo,owner_name&tags=" + this.tag + "&sort=interestingness-desc&per_page=30&bbox=" + options.west + "," + options.south + "," + options.east + "," + options.north + "&format=json&";
+  "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a0de4a213ab1191732ec4db4daf586a3&extras=geo,owner_name&tag_mode=all&tags=" + this.tag + "&sort=interestingness-desc&per_page=30&bbox=" + options.west + "," + options.south + "," + options.east + "," + options.north + "&format=json&";
    
   var callbackName = "PhotoLayerCallback.loader" + uniqueID; 
   eval(callbackName + " = function(json) { var pa = new PhotoLayerCallback(json, photoLayer);}");

@@ -73,8 +73,11 @@ function changeTag() {
   </head>
 
   <body onload="setupMap()" onunload="GUnload()">
-<input type="text" value="eye-fi" id="tag"/><input type="button" value="Change Tag" onclick="changeTag()"/> (Suggestions: ugly, eye-fi, sunset, weird, farmhouse)
-<br/>
+<div>
+<form action="demogallery.html" onsubmit="changeTag(); return false;" method="get">
+Enter tag or comma-separated tags:<input type="text" value="eye-fi" id="tag"/><input type="submit" value="Refresh" onclick="changeTag()"/> <em>(Suggestions: funny, eye-fi, sunset, weird, farmhouse)</enter>
+</form>
+</div>
 <div id="map" style="width:65%; height:600px; border:2px solid black; float:left; clear:both;"></div>
 <div id="sidebar" style="overflow-y:auto; overflow-x: hidden; padding-left:10px; text-align:center; height:600px; float:left; border:2px solid black; width:25%">
 Click a photo on a map to see it in detail.

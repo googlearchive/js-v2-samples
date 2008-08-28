@@ -25,6 +25,14 @@ PhotoLayerCallback.prototype.getPhotos = function(json) {
   return (json.feed && json.feed.entry) || (json.photos && json.photos.photo);
 }
 
+PhotoLayerCallback.prototype.getLogo = function(photo) {
+  if (photo.id && photo.id.$t) {
+    return "https://www.google.com/accounts/lh2/picasaweblogo-en.gif";
+  } else {
+    return "http://l.yimg.com/g/images/flickr_logo_gamma.gif.v59209.14";
+  }
+}
+
 PhotoLayerCallback.prototype.getId = function(photo) {
   return (photo.id && photo.id.$t) || (photo.id);
 }
@@ -94,6 +102,7 @@ PhotoLayerCallback.prototype.createMarker = function(photo, baseIcon) {
              "<p><a target='_blank' class='photo_title' href='" + link +
              "'><strong>" + title + "<\/strong><\/a></p><p>" + description + "</p>" +
              "<p>Posted by " + author + "</p><\/div>" +
+             "<img src='" + this.getLogo(photo) + "'/>" + 
              "<\/div>";
 
   marker.html = html;
@@ -191,9 +200,9 @@ PhotoLayer.prototype.load = function(photoLayer, options) {
     }
   }
   var url =
-  "http://picasaweb.google.com/data/feed/api/all?kind=photo&tag=eye-fi&bbox=" + 
+  "http://picasaweb.google.com/data/feed/api/all?kind=photo&tag=" + this.tag + "&bbox=" + 
     options.west + "," + options.south + "," + options.east + "," + options.north + 
-    "&max-results=20&alt=json-in-script&";
+    "&max-results=30&alt=json-in-script&";
  
   var callbackName = "PhotoLayerCallback.loader" + uniqueID; 
   eval(callbackName + " = function(json) { var pa = new PhotoLayerCallback(json, photoLayer);}");
@@ -201,10 +210,10 @@ PhotoLayer.prototype.load = function(photoLayer, options) {
   var script = document.createElement('script');
   script.setAttribute('src', url + 'callback=' + callbackName);
   script.setAttribute('type', 'text/javascript');
-//  document.documentElement.firstChild.appendChild(script);
+  document.documentElement.firstChild.appendChild(script);
 
   var url =
-  "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a0de4a213ab1191732ec4db4daf586a3&extras=geo,owner_name&tags=" + this.tag + "&sort=interestingness-desc&per_page=100&bbox=" + options.west + "," + options.south + "," + options.east + "," + options.north + "&format=json&";
+  "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a0de4a213ab1191732ec4db4daf586a3&extras=geo,owner_name&tags=" + this.tag + "&sort=interestingness-desc&per_page=30&bbox=" + options.west + "," + options.south + "," + options.east + "," + options.north + "&format=json&";
    
   var callbackName = "PhotoLayerCallback.loader" + uniqueID; 
   eval(callbackName + " = function(json) { var pa = new PhotoLayerCallback(json, photoLayer);}");

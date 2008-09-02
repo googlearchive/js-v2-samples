@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+<ModulePrefs title="MyMap Gadget" height="400"/>
+ <UserPref name="MyMapURL" display_name="My Map URL" datatype="string" 
+   default_value="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;om=1&amp;msa=0&amp;output=nl&amp;msid=115773198488464018854.000001127d2af9d0e0135" />
+<UserPref name="lat" 
+    display_name="Latitude" 
+    datatype="string" 
+    default_value="37.5"/> 
+<UserPref name="lng" 
+    display_name="Longitude" 
+    datatype="string" 
+    default_value="-122" /> 
+<UserPref name="zoom" 
+    display_name="Zoom" 
+    datatype="enum" 
+    default_value="8">
+  <EnumValue value="1"/>
+  <EnumValue value="2"/>
+  <EnumValue value="3"/>
+  <EnumValue value="4"/>
+  <EnumValue value="5"/>
+  <EnumValue value="6"/>
+  <EnumValue value="7"/>
+  <EnumValue value="8"/>
+  <EnumValue value="9"/>
+  <EnumValue value="10"/>
+  <EnumValue value="11"/>
+  <EnumValue value="12"/>
+  <EnumValue value="13"/>
+  <EnumValue value="14"/>
+  <EnumValue value="15"/>
+  <EnumValue value="16"/>
+  <EnumValue value="17"/>
+</UserPref> 
+<Content type="html">
+<![CDATA[
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxTZqGWfQErE9pT-IucjscazSdFnjBSVJi1QvGAa6mnnnj-jtxBVena-uw"
+      type="text/javascript"></script>
+
+<script>
+  var map;
+  var feed;
+  var prefs = new _IG_Prefs(__MODULE_ID__);
+
+  function load() {
+   if(GBrowserIsCompatible()) {
+     map = new GMap2(document.getElementById("map"));
+     map.addControl(new GSmallMapControl());
+     map.setCenter(new GLatLng(parseFloat(prefs.getString("lat")), parseFloat(prefs.getString("lng"))), prefs.getInt("zoom"));
+     var url = prefs.getString("MyMapURL");
+     map.addOverlay(new GGeoXml(url));
+   }
+  }
+
+ 
+  _IG_RegisterOnloadHandler(load);
+
+</script>
+</script>
+
+<h3>My Map</h3>
+<div id="map" style="width:100%; height:200px;"></div>
+
+]]>
+</Content>
+</Module>

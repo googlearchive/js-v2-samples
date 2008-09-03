@@ -22,9 +22,6 @@
           polys.push(polygon);
           map.addOverlay(polygon);
         }
-        createImageMap();
-        createStaticMap();
-        addMapper();
       }
     }   
   
@@ -67,13 +64,21 @@
         imageMap.appendChild(area);    
       }
       document.getElementById("result").appendChild(imageMap);   
+      document.getElementById("resultHtml").style.display = "block";
+      document.getElementById("resultHtml").innerHTML = document.getElementById("result").innerHTML;
     }
     </script>
   </head>
 
   <body onload="initialize()" onunload="GUnload()">
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
+    <br/>
+    <input type="button" onclick="createImageMap();createStaticMap();" value="Create Static Map + Image Map"/>
+    |
+    <input type="button" onclick="addMapper();" value="Add Mapper"/>
+    <br/>
     <div id="result"></div>
+    <textarea id="resultHtml" style="width: 500px; height: 300px;display:none;"></textarea>
   </body>
 </html>
 

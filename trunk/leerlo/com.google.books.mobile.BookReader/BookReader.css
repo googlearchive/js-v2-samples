@@ -1,0 +1,271 @@
+/** Add css rules here for your application. */
+
+
+/**
+ //Colors
+ //nav-background-top: F0F1FA
+ //nav-background-bottom: CED5E5
+ //nav-bottom-border: D9D9D9
+ //nav-button-border: B5BBD5
+ //nav-button-background-selected: 
+ //border: B8B8B8
+ //search-background:  5D708A (E8EEFA)
+ //nav-button: D2D8E8
+ //nav-button-sel: 9094A3
+ //search-result-title: 5078C8
+ //search-result-text: 788DAA
+ //disabled-text: 808080
+ 
+ 
+ //header-title: 3E4E65
+ //header-top: F6F6F8
+ //header-bottom: CDCCD1
+ //header-bottom-border: ACACAE
+ //search-top: B2BCC6
+ //search-bottom: 748398
+ //search-bottom-border: 273848
+
+*/
+
+body {
+  font-family:arial,sans-serif
+}
+
+td {
+  padding: 0px;
+}
+
+button {
+  display: block;
+  font-size: 16pt
+}
+
+.rdr-ContentManager-AppPanel {
+  /* width: 320px; */
+  width: 100%;
+}
+
+.rdr-NavPanel {
+  height: 42px;
+  width: 100%;
+  background-image: url(images/white_gray_gradient_42h.png); 
+  background-repeat: repeat-x;
+  border-bottom: 2px solid #D9D9D9;
+}
+
+.rdr-NavPanel-Button {
+  height: 25px;
+  border: 1px solid #B5BBD5;
+  color: black;
+  background: #F0F1FA;
+  background-image: url(images/nav_button_gradient_25h.png); 
+  background-repeat: repeat-x;
+}
+.rdr-NavPanel-Button-Selected {
+  color: #FFFFFF;
+  background: #8D91A1;
+  background-image: url(images/nav_button_gradient_selected_25h.png); 
+  background-repeat: repeat-x;
+}
+
+.rdr-SearchBoxPanel-Button {
+  height: 25px;
+  width: 100%;
+  border: 1px solid #B5BBD5;
+  color: black;
+  background: #F0F1FA;
+  background-image: url(images/nav_button_gradient_25h.png); 
+  background-repeat: repeat-x;
+}
+
+.rdr-BackButton {
+  height: 25px;
+  width: 100%;
+  border: 1px solid #B5BBD5;
+  color: black;
+  background: #F0F1FA;
+  background-image: url(images/nav_button_gradient_25h.png); 
+  background-repeat: repeat-x;
+}
+
+.rdr-TopControlPanel {
+  height: 45px;
+  width: 100%;
+  background: #5D708A;
+  background-image: url(images/search_gradient_blue_45h.png); 
+  background-repeat: repeat-x;
+  border-bottom: 2px solid #273848; 
+}
+
+.rdr-TopControlPanel-Title {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 14px;
+  width:100%;
+}
+
+.rdr-TopControlPanel-SubTitle {
+  color: #FFFFFF;
+  /* font-weight: bold; */
+  font-size: 14px;
+  width:100%;
+}
+
+.rdr-SearchBoxPanel-TextBox {
+  width: 100%;
+  height: 25px;
+}
+
+.rdr-SearchBoxPanel-TextBox-inactive {
+  color: #808080;
+}
+
+.rdr-SearchContentPanel {
+  width: 100%;
+}
+
+.rdr-SearchResultsPanel {
+  width: 100%;
+}
+
+.rdr-SearchResultsPanel-Table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.rdr-SearchResultsTableCell {
+  width: 100%;
+  height: 45px;
+  padding: 10px 20px 10px 20px;
+  margin: 0px;
+  border-top: 0px;
+  border-bottom: 2px solid #D9D9D9;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.rdr-SearchResultsTableCell-Selected {
+  color: black;
+  background-color: #E8EEFA;
+}
+
+.rdr-SearchResultsTableCell-BookTitle {
+  font-weight: bold;
+  font-size: 13px;
+  color: #000;
+  /* white-space:nowrap; */
+}
+
+.rdr-SearchResultsTableCell-BookTitle-Selected {
+  color: #000;
+}
+
+.rdr-SearchResultsTableCell-BookSubTitle {
+  /* font-weight: bold; */
+  font-size: 12px;
+  color: #000;
+  /* white-space:nowrap; */
+}
+
+.rdr-SearchResultsTableCell-BookSubTitle-Selected {
+  color: #000;
+}
+
+.rdr-SearchResultsTableCell-BookAuthor {
+  font-size: 12px;
+  color: #808080;
+}
+
+.rdr-SearchResultsTableCell-BookDesc {
+  font-size: 10px;
+  color: #000;
+}
+
+.rdr-SearchResultsTableCell-BookDesc-Selected {
+  color: black;
+}
+
+.rdr-HomePanel {
+  width: 100%;
+}
+
+.rdr-MyBooksPanel {
+  width: 100%;
+}
+
+.rdr-BrowseContentPanel {
+  width: 100%;
+}
+
+.rdr-HeaderPanel {
+  width: 100%;
+  height: 42px;
+  background-image: url(images/header_gradient_gray_42h.png); 
+  background-repeat: repeat-x;
+  border-bottom: 2px solid #ACACAE;
+}
+
+.rdr-HeaderPanel-Title {
+  color: #3E4E65;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.rdr-BrowseContentPanel-Table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.rdr-CategoryTableCell {
+  width: 100%;
+  height: 45px;
+  padding: 10px 20px 10px 20px;
+  margin: 0px;
+  border-top: 0px;
+  border-bottom: 2px solid #D9D9D9;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.rdr-CategoryTableCell-Selected {
+  color: black;
+  background-color: #E8EEFA;
+}
+
+.rdr-CategoryTableCell-Title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #000;
+}
+
+.rdr-CategoryTableCell-Title-Selected {
+  color: #000;
+}
+
+.rdr-ReadContentPanel {
+  width: 100%;
+}
+
+.rdr-ReadBookContentPanel-TextPanel {
+  width: 100%;
+  padding: 10px;
+}
+
+.rdr-LoadingPopupPanel {
+
+  width: 200px;
+  height: 100px;
+  padding 20px;
+}
+
+
+
+
+
+

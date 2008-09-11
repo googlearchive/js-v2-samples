@@ -57,6 +57,15 @@ function updateImage() {
      }
      params.push("path=" + polyParams + polyLatLngs.join("|"));
    }
+   if (map.getCurrentMapType() == G_SATELLITE_MAP) {
+     params.push("maptype=satellite");
+   }
+   if (map.getCurrentMapType() == G_HYBRID_MAP) {
+     params.push("maptype=hybrid");
+   }
+   if (map.getCurrentMapType() == G_PHYSICAL_MAP) {
+     params.push("maptype=terrain");
+   }
 
    params.push("zoom=" + map.getZoom());
    params.push("size=" + document.getElementById("mapWidthTEXT").value + "x" + document.getElementById("mapHeightTEXT").value);
@@ -73,8 +82,13 @@ function load() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
     map.setCenter(new GLatLng(37.400470,-122.072981), 13);
+    map.addMapType(G_PHYSICAL_MAP);
     map.addControl(new GSmallMapControl());
+    map.addControl(new GMapTypeControl());
     GEvent.addListener(map, "moveend", function(marker, point) {
+      updateImage();
+    });
+    GEvent.addListener(map, "maptypechanged", function(marker, point) {
       updateImage();
     });
     GEvent.addListener(map, "click", function(overlay, latlng) {

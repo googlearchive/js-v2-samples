@@ -25,78 +25,23 @@ var layers = {
 
 function onLoad() {
   map = new GMap2(document.getElementById("map")); 
-
-  map.setCenter(new GLatLng(37.422341, -122.085018), 5);
+  map.setCenter(new GLatLng(37.71859,-96.328125), 3);
   map.addControl(new GSmallMapControl());
 
-  
-  for(var layer in layers) {
-    addTR(layer, layers[layer].name);
-  }
   window.setTimeout(function() {
     for(var layer in layers) {
-      document.getElementById(layer).checked = true;
-      toggleGeoXML(layer, true);
+      map.addOverlay(new GGeoXml(layers[layer].url));
     }
   }, 1000);
 } 
 
-
-function addTR(id) {
-  var layerTR = document.createElement("tr");
-
-  var inputTD = document.createElement("td");
-  var input = document.createElement("input");
-  input.type = "checkbox";
-  input.id = id;
-  input.onclick = function () { toggleGeoXML(this.id, this.checked) };
-  inputTD.appendChild(input);
-
-  var nameTD = document.createElement("td");
-  var nameA = document.createElement("a");
-  nameA.href = layers[id].url;
-  var name = document.createTextNode(layers[id].name);
-  nameA.appendChild(name);
-  nameTD.appendChild(nameA);
-
-  layerTR.appendChild(inputTD);
-  layerTR.appendChild(nameTD);
-  document.getElementById("sidebarTBODY").appendChild(layerTR);
-}
-
-function toggleGeoXML(id, checked) {
-  if (checked) {
-    var geoXml = new GGeoXml(layers[id].url);
-    GEvent.addListener(geoXml, 'load', function() {
-      if (geoXml.loadedCorrectly()) {
-        geoXml.gotoDefaultViewport(map);
-        layers[id].geoxml = geoXml;
-        document.getElementById("status").innerHTML = "";
-      }
-    });
-    layers[id].geoXml = geoXml;
-    map.addOverlay(layers[id].geoXml);
-    document.getElementById("status").innerHTML = "Loading...";
-  
-  } else if (layers[id].geoXml) {
-    map.removeOverlay(layers[id].geoXml);
-  }
-}
 
   </script>
 
   </head>
 
   <body onload="onLoad()">
-    <br/>
-    <div id="map" style="width: 400px; height: 400px; float:left; border: 1px solid black;"></div>
-    <div id="sidebar" style="float:left; overflow-vertical:scroll; height: 400px; width:150px; border:1px solid black">
-    <table id="sidebarTABLE">
-    <tbody id="sidebarTBODY">
-    </tbody>
-    </table>
-    <div id="status" style="text-align:center; color: #ff0000"></div>
-    </div>
+    <div id="map" style="width: 500px; height: 400px; float:left; border: 1px solid black;"></div>
 
   </body>
 </html>

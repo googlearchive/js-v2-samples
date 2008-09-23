@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <style type="text/css">
+    body {
+     font-family: Arial, sans serif;
+    }
+    </style>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+   <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/markermanager/release/src/markermanager.js" type="text/javascript"></script>
+   <script src="calendarlayer.js"></script>
+   <script type="text/javascript">
+    //<![CDATA[
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var dom_elements = createMapWithSidebar(document.getElementById("container"));
+        var map = new GMap2(dom_elements.map_div);
+        map.setCenter(new GLatLng(20.6301, 110.98883), 4);
+        map.setMapType(G_SATELLITE_MAP);
+        var feed = 'http://www.google.com/calendar/feeds/' +
+      '7hfvmbllpupp8jsfdehm09esn0@group.calendar.google.com/public/full?' +
+      'orderby=starttime&sortorder=ascending&singleevents=true&max-results=1000';
+        var spreadsheetsLayer = new SpreadsheetsLayer(map, {url: feed, sidebar: dom_elements.sidebar_div});
+        spreadsheetsLayer.enable();
+      }
+    }
+
+function createMapWithSidebar(wrapper_div) {
+  var table = document.createElement('table');
+  table.style.width = '100%';
+  if (window.innerHeight) {
+    var height = window.innerHeight - 20;
+  } else {
+    var height = document.documentElement.offsetHeight - 20;
+  }
+  height = height + "px";
+
+  var tbody = document.createElement('tbody');
+  table.appendChild(tbody);
+
+  var tr = document.createElement('tr');
+
+  var map_td = document.createElement('td');
+  map_td.height = height;
+  var map_div = document.createElement('div');
+  map_div.style.width = '100%';
+  map_div.style.height = '100%';
+  map_div.style.border = '1px solid #eeeeee';
+  map_td.appendChild(map_div);
+
+  var sidebar_td = document.createElement('td');
+  sidebar_td.width = '40%';
+  sidebar_td.height = height;
+  var sidebar_div = document.createElement('div');
+  sidebar_div.id = 'sidebar';
+  sidebar_div.style.overflow = 'none';
+  sidebar_div.style.border = '1px solid #eeeeee';
+  sidebar_div.style.backgroundColor = '#000';
+  sidebar_div.style.height = height;
+  sidebar_td.appendChild(sidebar_div);
+
+  tr.appendChild(map_td);
+  tr.appendChild(sidebar_td);
+  tbody.appendChild(tr);
+
+  wrapper_div.appendChild(table);
+
+  return {map_div: map_div, sidebar_div: sidebar_div};
+}
+
+    //]]>
+    </script>
+  </head>
+
+  <body onload="load()" onunload="GUnload()">
+   <div id="container"></div>
+  </body>
+</html>
+
+

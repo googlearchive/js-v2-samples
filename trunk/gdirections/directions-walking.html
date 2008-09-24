@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <title>Google Maps JavaScript API Example: Simple Directions</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.129e&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript"> 
+	// Create a directions object and register a map and DIV to hold the 
+    // resulting computed directions
+
+    var map;
+    var directionsPanel;
+    var directions;
+
+    function initialize() {
+      map = new GMap2(document.getElementById("map_canvas"));
+      map.setCenter(new GLatLng(42.351505,-71.094455), 15);
+      directionsPanel = document.getElementById("route");
+      directions = new GDirections(map, directionsPanel);
+      directions.load("from: 100 Thompson Square Mountain View, CA to: 2551 California St, Mountain View, CA (BevMo)", {travelMode:G_TRAVEL_MODE_WALKING});
+    }
+    </script>
+  </head>
+
+  <body onload="initialize()">
+    <div id="map_canvas" style="width: 65%; height: 480px; float:left; border: 1px solid black;"></div>
+    <div id="route" style="width: 30%; height:480px; float:right; border; 1px solid black;"></div>
+    <br/>
+  </body>
+</html>

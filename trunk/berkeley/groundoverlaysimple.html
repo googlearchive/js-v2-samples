@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+  <script src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" 
+    type="text/javascript"></script>
+  <script type="text/javascript">
+  var groundOverlay = null;
+
+  function onLoad() {
+    var map = new GMap2(document.getElementById("map"));
+    map.setCenter(new GLatLng(37.75, -120.25), 8);
+    map.addControl(new GLargeMapControl());
+
+    groundOverlay = new GGroundOverlay (
+      "http://digitalassets.lib.berkeley.edu/vtm/ucb/images/VTM00000075a_j.jpg",
+      new GLatLngBounds(new GLatLng(37.5, -120.5),
+                        new GLatLng(38, -120)));
+    map.addOverlay(groundOverlay);
+  }
+  
+  function toggleGround() {
+    if (!groundOverlay.isHidden()) {
+      groundOverlay.hide();
+    } else {
+      groundOverlay.show();
+    } 
+  }
+  </script>
+  </head>
+
+  <body onload="onLoad()">
+
+    <div id="map" style="width: 800px; height: 600px"></div>
+    <input type="button" onclick="toggleGround()" value="Toggle Map"/>
+  </body>
+</html>
+

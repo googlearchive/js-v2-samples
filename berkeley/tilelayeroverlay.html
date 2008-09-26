@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Google Maps</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAPDUET0Qt7p2VcSk6JNU1sBRRwPhutbWBmyj82Go_H6JlE7EvFBSKFFFHFePAwvib9UM0geoA3Pgafw" type="text/javascript"></script>
+  </head>
+  <body onunload="GUnload()">
+
+    <div id="map" style="width: 800px; height: 600px"></div>
+    
+    <script type="text/javascript">
+    //<![CDATA[
+
+    if (GBrowserIsCompatible()) {
+
+      var map = new GMap(document.getElementById("map"));
+      map.setCenter(new GLatLng(37.75, -120.25), 8);
+      map.addControl(new GLargeMapControl());
+      map.addControl(new GScaleControl());
+      
+      var copyright = new GCopyright(1,
+          new GLatLngBounds(new GLatLng(37.5, -120.5),
+                        new GLatLng(38, -120)),
+          14, "Berkeley");
+      var copyrightCollection = new GCopyrightCollection('Map Data:');
+      copyrightCollection.addCopyright(copyright);
+      var tilelayer = new GTileLayer(new GCopyrightCollection(), 0, 17);
+      tilelayer.getTileUrl = function(tile, zoom) {
+          return "tiles/" + zoom + "_" + tile.x + "_" + tile.y +".png"
+      };
+      tilelayer.getOpacity = function() {return 1.0;};
+      map.addOverlay(new GTileLayerOverlay(tilelayer)); 
+    }
+
+    
+    // display a warning if the browser was not compatible
+    else {
+      alert("Sorry, the Google Maps API is not compatible with this browser");
+    }
+
+    // This Javascript is based on code provided by the
+    // Blackpool Community Church Javascript Team
+    // http://www.commchurch.freeserve.co.uk/   
+    // http://econym.googlepages.com/index.htm
+
+    //]]>
+    </script>
+  </body>
+
+</html>
+
+
+
+

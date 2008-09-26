@@ -14,6 +14,21 @@
     google.earth.createInstance('map3d', initCB, failureCB);
   }
   
+  function addListener() {
+   google.earth.addEventListener(ge.getGlobe(), "mousedown",
+                              function(event) {
+     console.log("md");
+     var placemark = ge.createPlacemark('');
+     placemark.setName("Sudden Oak Death!");
+     ge.getFeatures().appendChild(placemark);
+  
+     // Create point
+     var point = ge.createPoint('');
+     point.setLatitude(event.getLatitude());
+     point.setLongitude(event.getLongitude());
+     placemark.setGeometry(point);
+   });
+  }
   function initCB(instance) {
     ge = instance;
     ge.getWindow().setVisibility(true);
@@ -24,7 +39,6 @@
     // add some layers
     ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
     ge.getLayerRoot().enableLayerById(ge.LAYER_ROADS, true);
-
     // in this sample we will attempt
     // to fetch a  KML file and show it
     
@@ -76,6 +90,7 @@
     <tr><td><input type="checkbox" checked/></td><td><img src="suddenoakdeath_confirmation.jpg"/></td></tr>
     <tr><td><input type="checkbox" checked/></td><td><img src="suddenoakdeath_photos.jpg"/></td></tr>
     <tr><td><input type="checkbox" onclick="addKml()"/></td><td><img src="suddenoakdeath_ramorum.jpg"/></td></tr>
+    <tr><td><input type="checkbox" onclick="addListener()"/></td><td>Turn on Tree Adding</td></tr>
     </div>
 </body>
 </html>

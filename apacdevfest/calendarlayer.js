@@ -8,7 +8,7 @@ function SpreadsheetsLayerCallback(json, spreadsheetsLayer) {
     var content = entry.content.$t || "";
     if (content.length > 300)
         content = content.substring(0, 300) + '...';
-    var infoHtml = '<div style="height:100px;margin-top:5px;padding:10px;color: rgb(255, 255, 255); background-color:#000">' +
+    var infoHtml = '<div style="height:100px;margin-top:5px;padding:10px;">' +
         '<strong>' + entry.title.$t + '</strong>' + '<br/>' + entry.gd$when[0].startTime  + '<br/>' + content + ' ' +
         '</div>';
     var start = entry.gd$when[0].startTime;
@@ -25,7 +25,7 @@ function SpreadsheetsLayerCallback(json, spreadsheetsLayer) {
         div.innerHTML += infoHtml;
 
         var sidebar_div = document.createElement('div');
-        var city = title.split(" ")[0].toUpperCase(); 
+        var city = title.split(" DevFest")[0].toUpperCase(); 
         sidebar_div.innerHTML = '<div style="color: rgb(255, 255, 255); cursor: pointer; font-weight: bold; font-size: 24px; padding-left: 10px; padding-top: 10px;">' + city + '</div><div style="padding-right:10px;text-align: right; color: rgb(255, 255, 255); font-style: italic; font-size: 12px;">' + start + '</div>';
         var marker = this.createMarker(spreadsheetsLayer, latlng, title, div, sidebar_div);
         spreadsheetsLayer.mgr.addMarker(marker, 0);

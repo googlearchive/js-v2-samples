@@ -9,7 +9,7 @@ function SpreadsheetsLayerCallback(json, spreadsheetsLayer) {
     if (content.length > 300)
         content = content.substring(0, 300) + '...';
     var infoHtml = '<div style="height:100px;margin-top:5px;padding:10px;">' +
-        '<strong>' + entry.title.$t + '</strong>' + '<br/>' + entry.gd$when[0].startTime  + '<br/>' + content + ' ' +
+        '<strong>' + entry.title.$t + '</strong>' + '<br/>' + entry.gd$when[0].startTime  + '<p>' + content + '</p>' +
         '</div>';
     var start = entry.gd$when[0].startTime;
     // get geolocation

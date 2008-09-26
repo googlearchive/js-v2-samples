@@ -44,7 +44,17 @@
     google.earth.fetchKml(ge, url, finished);
     
   }
-  
+  function addKml(){
+    var url = 'http://gmaps-samples.googlecode.com/svn/trunk/berkeley/ramorum.kml';
+    google.earth.fetchKml(ge, url, function(object) {
+      if (!object) {
+        alert('bad or NULL kml');
+        return;
+      }
+      ge.getFeatures().appendChild(object);
+    });
+  }
+
   function failureCB() {
     alert('Google earth loading failed!');
   }
@@ -60,8 +70,12 @@
     <div id="map3d_container" style="float:left;border: 1px solid #000; width: 500px; height: 500px;">
       <div id="map3d" style="height: 100%;"></div>
     </div>
-    <div style="float:left">
-    <img src="legend.png"/>
+    <div style="float:left;width:300px">
+    <table>
+    <tr><td></td><td><img src="suddenoakdeath_instructions.jpg"/></td></tr>
+    <tr><td><input type="checkbox" checked/></td><td><img src="suddenoakdeath_confirmation.jpg"/></td></tr>
+    <tr><td><input type="checkbox" checked/></td><td><img src="suddenoakdeath_photos.jpg"/></td></tr>
+    <tr><td><input type="checkbox" onclick="addKml()"/></td><td><img src="suddenoakdeath_ramorum.jpg"/></td></tr>
     </div>
 </body>
 </html>

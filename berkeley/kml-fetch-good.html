@@ -34,14 +34,13 @@
         return;
       }
       ge.getFeatures().appendChild(object);
-   //   var la = ge.createLookAt('');
-   //   la.set(37.77976, -122.418307, 25, ge.ALTITUDE_RELATIVE_TO_GROUND, 
-    //         180, 60, 500);
-   //   ge.getView().setAbstractView(la);         
+      var la = ge.createLookAt('');
+      la.set(38.18942, -122.506857, 0, ge.ALTITUDE_RELATIVE_TO_GROUND, -.63, 0, 99809);
+      ge.getView().setAbstractView(la);         
     }
     
     // fetch the KML
-    var url = 'suddenoakdeath.kmz';
+    var url = 'http://gmaps-samples.googlecode.com/svn/trunk/berkeley/suddenoakdeath.kmz';
     google.earth.fetchKml(ge, url, finished);
     
   }
@@ -54,15 +53,15 @@
   </script>
 </head>
 <body onload="init();">
-  <h1>Google Earth API Samples - Fetch Good KML</h1>
+  <h1>Google Earth API & Sudden Oak Death</h1>
   <dl>
-            <dt>Last Modified:</dt><dd>08/04/08</dd>
   </dl>
   <div style="clear: both;"></div>
-  
-  <div id="ui" style="position: relative;">
-    <div id="map3d_container" style="border: 1px solid #000; width: 500px; height: 500px;">
+    <div id="map3d_container" style="float:left;border: 1px solid #000; width: 500px; height: 500px;">
       <div id="map3d" style="height: 100%;"></div>
+    </div>
+    <div style="float:left">
+    <img src="legend.png"/>
     </div>
 </body>
 </html>

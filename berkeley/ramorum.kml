@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<NetworkLink>
+	<name>Host Species for Phytophthora ramorum</name>
+	<Style>
+		<ListStyle>
+			<listItemType>checkHideChildren</listItemType>
+			<bgColor>00ffffff</bgColor>
+			<maxSnippetLines>2</maxSnippetLines>
+		</ListStyle>
+	</Style>
+	<Url>
+		<href>http://kellylab.berkeley.edu/SODmonitoring/GEarth/Host_Species_for_Phytophthora_ramorum.kmz</href>
+	</Url>
+</NetworkLink>
+</kml>

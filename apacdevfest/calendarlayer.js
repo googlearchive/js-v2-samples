@@ -105,7 +105,7 @@ function SpreadsheetsLayer(map, userOptions) {
   me.mgr = new MarkerManager(map, {maxZoom: 19});
 
   var icon = new GIcon();
-  icon.image = 'http://pamela.fox.googlepages.com/mapsicon.png';
+  icon.image = 'mapsicon.png';
   icon.shadow = null;
   icon.iconSize = new GSize(32, 32);
   icon.shadowSize = new GSize(0, 0);

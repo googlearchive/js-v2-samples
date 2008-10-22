@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>Google Maps API Example: Reverse Geocoding</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.133d&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+
+    var map = null;
+    var geocoder = null;
+
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+        map.addControl(new GSmallZoomControl());
+        geocoder = new GClientGeocoder();
+        GEvent.addListener(map, "click", clicked);
+        map.openInfoWindow(map.getCenter(), "Click the map!");
+      }
+    }
+
+    function clicked(overlay, latlng) {
+      if (latlng) {
+        geocoder.getLocations(latlng, function(addresses) {
+          if(addresses.Status.code != 200) {
+            alert("reverse geocoder failed to find an address for " + latlng.toUrlValue());
+          }
+          else {
+            address = addresses.Placemark[0];
+            var myHtml = address.address;
+            map.openInfoWindow(latlng, myHtml);
+          }
+        });
+      }
+    }
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+      <div id="map_canvas" style="width: 500px; height: 300px"></div>
+    </form>
+  </body>
+</html>

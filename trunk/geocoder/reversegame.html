@@ -72,7 +72,6 @@
       map.addOverlay(userMarker);
       currentDistance += Math.floor(dist/1000);
       drawLine(currentLatLng, latlng);
-      //drawCircle(latlng.lat(), latlng.lng(), dist);
       document.getElementById("score").innerHTML = currentDistance;
       getRandomLocation();
     }
@@ -81,24 +80,6 @@
       var line = new GPolyline([latlngStart, latlngEnd], "#ff0000", 4, 1.0);
       map.addOverlay(line);
     }
-
-    function drawCircle(lat, lng, radius) { 
-      var d2r = Math.PI/180;
-      var r2d = 180/Math.PI;
-      var Clat = (radius/6371000) * r2d;  
-      var Clng = Clat/Math.cos(lat*d2r); 
-      var Cpoints = []; 
-      for (var i=0; i < 33; i++) { 
-        var theta = Math.PI * (i/16); 
-        Cy = lat + (Clat * Math.sin(theta)); 
-        Cx = lng + (Clng * Math.cos(theta)); 
-        var P = new GPoint(Cx,Cy); 
-        Cpoints.push(P); 
-      }
-
-      var polygon = new GPolygon(Cpoints, "#ff0000", 1, 0.0, "#ff0000", 0.5, {clickable: false});
-      map.addOverlay(polygon);
-     }
 
     function startGame() {
       gameSeconds = 0;

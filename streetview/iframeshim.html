@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example: Streetview with Iframe Shim</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA4LJStHsgAtSA5jS_jFqighRmPK-2DsQz56BLk2ZVuRIXiLpJIxQ8s6K2dEqHNsG8L_vzBr6n2nquDQ"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+    function initialize() {
+      var myPano = new GStreetviewPanorama(document.getElementById("pano"));
+      fenwayPark = new GLatLng(37.808979,-122.477164);
+      myPOV = {yaw:0,pitch:5};
+      myPano.setLocationAndPOV(fenwayPark, myPOV);
+    }
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+    <div id="container" style="position: relative; width: 500px; height: 300px;">
+     <div name="pano" id="pano" style="width: 100%; height: 100%;z:index: 0"></div>
+    <iframe src="javascript:false;" frameborder="0" style="position: absolute;
+      right: 185px; top: 5px; width: 150px; height: 55px; z-index: 1"></iframe>
+    <div style="position: absolute; right: 185px; top: 5px; width: 150px;
+      height: 55px; z-index: 2;">
+      <img
+      src="http://www.google.com/intl/en_uk/websiteoptimizer/images/logo_sm.gif"></div>
+    </div>
+
+<p> The iframe shim trick lets you overlay DIVs over the Street View panorama in all browsers (including Chrome and Firefox).
+The trick is to insert an iFrame above the Flash container but below the div one needs to protect. The iFrame should have the same size and position as the div.
+In the example above, the flash container has z-index 0, the iframe has z-index 1, and the div has z-index 2. 
+<a href="http://www.oratransplant.nl/2007/10/26/using-iframe-shim-to-partly-cover-a-java-applet/">This link</a> is a good reference about iframe shims.
+</p>
+  </body>  
+</html>
+
+

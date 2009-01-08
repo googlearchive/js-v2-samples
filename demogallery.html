@@ -112,7 +112,13 @@ function updateGallery() {
       for (var j = 0; j < classes.length; j++) {
         var classColumnName = 'gsx$' + classes[j].toLowerCase();
         if (entry[classColumnName] && entry[classColumnName].$t == 'yes') {
-          classesUsed.push(classes[j]);
+          if (classes[j].charAt(0) == 'G') {
+            classesUsed.push('<a target="_blank" href="http://code.google.com/apis/maps/documentation/reference.html#'
+              + classes[j] + '">'
+              + classes[j] + '</a>');
+          } else {
+            classesUsed.push(classes[j]);
+          }
         }
       }
       var html = '<tr><td><a target="_blank" href="' + url + '"><img style="width: 160px; height: 128px" src="' + thumbnailurl + '"/></a></td><td valign="top"><strong><a target="_blank" href="' + url + '">' + title + '</a></strong> <br/>' + description + '<br/><br/>';

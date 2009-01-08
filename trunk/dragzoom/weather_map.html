@@ -11,7 +11,7 @@
     <script type="text/javascript">
     //<![CDATA[
 
-    var IMAGES = [ "sun", "rain", "snow", "storm" ];
+    var IMAGES = [ "sun", "rain"];
     var ICONS = [];
     var map = null;
     var mgr = null;
@@ -50,13 +50,11 @@
       var i = Math.floor(IMAGES.length*Math.random());
       if (!ICONS[i]) {
         var icon = new GIcon();
-        icon.image = "http://www.google.com/apis/maps/documentation/markermanager/" 
-            + IMAGES[i] + ".png";
+        icon.image =  IMAGES[i] + ".png";
         icon.iconAnchor = new GPoint(16, 16);
         icon.infoWindowAnchor = new GPoint(16, 0);
         icon.iconSize = new GSize(32, 32);
-        icon.shadow = "http://www.google.com/apis/maps/documentation/markermanager/" 
-            + IMAGES[i] + "-shadow.png";
+        icon.shadow = ""; 
         icon.shadowSize = new GSize(59, 32);
         ICONS[i] = icon;
       }

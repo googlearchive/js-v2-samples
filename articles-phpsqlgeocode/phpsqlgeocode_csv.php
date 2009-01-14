@@ -17,7 +17,7 @@ if (!$db_selected) {
 }
 
 // Select all the rows in the markers table
-$query = "SELECT * FROM markers WHERE 1";
+$query = "SELECT * FROM markers2 WHERE 1";
 $result = mysql_query($query);
 if (!$result) {
   die("Invalid query: " . mysql_error());
@@ -25,7 +25,7 @@ if (!$result) {
 
 // Initialize delay in geocode speed
 $delay = 0;
-$base_url = "http://" . MAPS_HOST . "/maps/geo?output=xml" . "&key=" . KEY;
+$base_url = "http://" . MAPS_HOST . "/maps/geo?output=csv&key=" . KEY;
 
 // Iterate through the rows, geocoding each address
 while ($row = @mysql_fetch_assoc($result)) {
@@ -35,21 +35,21 @@ while ($row = @mysql_fetch_assoc($result)) {
     $address = $row["address"];
     $id = $row["id"];
     $request_url = $base_url . "&q=" . urlencode($address);
-    $xml = simplexml_load_file($request_url) or die("url not loading");
+    $csv = file_get_contents($request_url) or die("url not loading");
 
-    $status = $xml->Response->Status->code;
+    $csvSplit = split(",", $csv);
+    $status = $csvSplit[0];
+    $lat = $csvSplit[2];
+    $lng = $csvSplit[3];
     if (strcmp($status, "200") == 0) {
-      // Successful geocode
+      // successful geocode
       $geocode_pending = false;
-      $coordinates = $xml->Response->Placemark->Point->coordinates;
-      $coordinatesSplit = split(",", $coordinates);
-      // Format: Longitude, Latitude, Altitude
-      $lat = $coordinatesSplit[1];
-      $lng = $coordinatesSplit[0];
+      $lat = $csvSplit[2];
+      $lng = $csvSplit[3];
 
-      $query = sprintf("UPDATE markers " .
+      $query = sprintf("UPDATE markers2 " .
              " SET lat = '%s', lng = '%s' " .
-             " WHERE id = '%s' LIMIT 1;",
+             " WHERE id = %s LIMIT 1;",
              mysql_real_escape_string($lat),
              mysql_real_escape_string($lng),
              mysql_real_escape_string($id));

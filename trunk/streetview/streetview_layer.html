@@ -62,6 +62,9 @@ function openPanoramaBubble() {
     panorama.setContainer(contentNode);  
     window.setTimeout("panorama.checkResize()", 5);
   });
+  GEvent.addListener(iw, "closeclick", function() {
+    panorama.remove();
+  });
 }
 
 function toggleOverlay() {

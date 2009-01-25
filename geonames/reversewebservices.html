@@ -27,7 +27,7 @@
           var selectedWebService = document.getElementById('webserviceSelect').value;
           var script = document.createElement('script');
           document.body.appendChild(script);
-          script.src = 'http://ws.geonames.org/' + selectedWebService + 'JSON?lat=' + latlng.lat() + '&lng=' + latlng.lng() + '&callback=loadJSON';
+          script.src = 'http://ws5.geonames.org/' + selectedWebService + 'JSON?lat=' + latlng.lat() + '&lng=' + latlng.lng() + '&callback=loadJSON';
           document.getElementById('result').innerHTML = 'Sending request to ' + script.src;
         });
       }

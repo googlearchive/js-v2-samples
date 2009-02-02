@@ -65,12 +65,9 @@
    var baseUrl = "http://maps.google.com/staticmap?";
 
    var params = [];
-   params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
-
    var markersArray = [];
    markersArray.push(poly.getVertex(0).toUrlValue(5) + ",greena");
    markersArray.push(poly.getVertex(poly.getVertexCount()-1).toUrlValue(5) + ",greenb");
-  
    params.push("markers=" + markersArray.join("|"));
 
    var polyParams = "rgba:0x0000FF80,weight:5|";
@@ -79,15 +76,34 @@
      polyLatLngs.push(poly.getVertex(j).lat().toFixed(5) + "," + poly.getVertex(j).lng().toFixed(5));
    }
    params.push("path=" + polyParams + polyLatLngs.join("|"));
-   params.push("zoom=" + map.getZoom());
-   params.push("size=310x400");
-   var img = document.createElement("img");
-   img.src = baseUrl + params.join("&") + "&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw";
-   document.getElementById("staticMapIMG").innerHTML = "";
-   document.getElementById("staticMapIMG").appendChild(img);
+   params.push("size=300x300");
+   params.push("key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw");
 
-   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "&key=YOUR_KEY_HERE";
+   baseUrl += params.join("&");
+
+   var extraParams = [];
+   extraParams.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
+   extraParams.push("zoom=" + map.getZoom());
+   addImg(baseUrl + "&" + extraParams.join("&"), "staticMapOverviewIMG");
+
+   var extraParams = [];
+   extraParams.push("center=" + poly.getVertex(0).toUrlValue(5));
+   extraParams.push("zoom=" + 15);
+   addImg(baseUrl + "&" + extraParams.join("&"), "staticMapStartIMG");
+
+   var extraParams = [];
+   extraParams.push("center=" + poly.getVertex(poly.getVertexCount()-1).toUrlValue(5));
+   extraParams.push("zoom=" + 15);
+   addImg(baseUrl + "&" + extraParams.join("&"), "staticMapEndIMG");
 }
+
+function addImg(url, id) {
+ var img = document.createElement("img");
+ img.src = url;
+ document.getElementById(id).innerHTML = "";
+ document.getElementById(id).appendChild(img);
+}
+
     </script>
 
   </head>
@@ -135,22 +151,13 @@
     </tr>
     </table> 
 
- <div id="staticMapIMG" style="width: 500px; margin-left: 20px; height: 410px"></div>
+<hr>
+Static Maps (printable) version:
+
+ <div id="staticMapOverviewIMG"></div>
+ <div id="staticMapStartIMG"></div>
+ <div id="staticMapEndIMG"></div>
 <br clear="all"/>
-
-<h3><img src="http://www.google.com/uds/solutions/wizards/img/3b.gif" 
-style="vertical-align:middle"/>Generate URL</h3>
-<p>The Static Maps API requires a free API key that's associated with your
-<a href="http://www.google.com/accounts/"> Google Account</a> and the URL of your web site.
-You can sign up for one <a
-href="http://code.google.com/apis/maps/signup.html">here</a>, and substitute it
-as the value of the "&key=" parameter in the URL below.
-
-<br/>
-<p>
-</p>
-<pre id="staticMapURL" class="code">
-</pre>
 
   </body>
 </html>

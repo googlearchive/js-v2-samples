@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Map -> Spreadsheets Form with Geocoding</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+ 
+    var geocoder;
+    var map;
+ 
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        geocoder = new GClientGeocoder();
+        map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(37.4419, -122.1419), 2);
+        map.addControl(new GSmallMapControl());
+        map.addControl(new GMapTypeControl());
+        map.enableScrollWheelZoom();
+      }
+    }
+
+    function showAddress(address) {
+      geocoder.getLatLng(
+        address,
+        function(point) {
+          if (!point) {
+            alert(address + " not found");
+          } else {
+            map.clearOverlays();
+            map.setCenter(point, 13);
+            var marker = new GMarker(point);
+            var latlng = marker.getLatLng();
+            document.getElementById("place").value = address;
+            document.getElementById("latbox").value = latlng.lat();
+            document.getElementById("lonbox").value = latlng.lng();
+            map.addOverlay(marker);
+          }
+        }
+      );
+    }
+
+    </script>
+  </head>
+
+  <body onload="initialize()" onunload="GUnload()"><div align="center">
+  
+ <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+* Check below to make sure you're not submitting a place that's already in the spreadsheet.
+<br>
+  Enter a place in the form of "City, Country" and click to geocode:<br>
+        <input type="text" size="60" name="address" value="" />
+        <input type="submit" value="Locate" />
+      </p>
+ </form>
+<div id="map_canvas" style="width: 600px; height: 380px" align="right"></div><br>
+
+This is the information that will be entered in the spreadsheet. Click to add the row:
+<form action="http://spreadsheets.google.com/formResponse?formkey=cDlwZHdzYWkyaERPOVR6QWY1WEduY1E6MA.." method="POST">
+  <input size="60" type="text" id="place" name="entry.0.single" value="" />
+  <input size="19" type="text" id="latbox" class="ss-q-short" name="entry.1.single" value="" >
+  <input size="19" type="text" id="lonbox" class="ss-q-short" name="entry.2.single" value="" >
+  <input type="submit" value="Submit" name="submit" />
+  </form>
+
+The current spreadsheet is shown below:
+<br>
+<iframe width='600' height='300' frameborder='0' src='http://spreadsheets.google.com/pub?key=p9pdwsai2hDO9TzAf5XGncQ&output=html&gid=0&single=true&widget=true'></iframe>
+</div>
+  </body>
+</html>

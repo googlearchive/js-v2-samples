@@ -99,13 +99,13 @@ function makeMap() {
   for (locationName in locations) {
     maxCount = Math.max(maxCount, locations[locationName].stuff.length);
   }
-  var multiplier = maxSize/(maxCount+20);
+  var multiplier = maxSize/(maxCount+5);
   var bounds = new GLatLngBounds();
   // create markers
   for (var locationName in locations) {
     var location = locations[locationName];
     if (location.stuff.length == 0) continue;
-    var size = Math.round((location.stuff.length+20) * multiplier);
+    var size = Math.round((location.stuff.length+5) * multiplier);
     var label = location.stuff.length + "";
     var html = "<div style='width:100%; color: #FFFFFF; text-align:center; font-size: 18px; background-color:" + colorSelected + ";'>" + locationName + "</div><br/>" + createStuffHtml(location.stuff);
     var marker = createMarkerForLocation(location.latlng, locationName, html, size, label);

@@ -29,6 +29,8 @@ var classes = [
 'MarkerManager',
 'MarkerManager',
 'MarkerTracker',
+'PopupMarker',
 'ProgressBarControl',
-'SnapToRoute'
+'SnapToRoute',
+'TabbedMaxContent'
 ];

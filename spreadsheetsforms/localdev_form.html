@@ -3,13 +3,19 @@
 <title>World-Wide Developer Events & Groups</title>
 <link type="text/css" rel="stylesheet" href="//spreadsheets.google.com/client/css/487085060-published_form_compiled.css">
 <script>
+var locations = [];
+
 function fillPlaces(root) {
   var entries = root.feed.entry || [];
   var placeSelect = document.getElementById("entry_3");
   for (var i = 0; i < entries.length; i++) {
+    locations.push(entries[i].gsx$place.$t);
+  }
+  locations.sort();
+  for (var i = 0; i < locations.length; i++) {
     var placeOption = document.createElement("option");
-    placeOption.setAttribute("value", entries[i].gsx$place.$t);
-    placeOption.appendChild(document.createTextNode(entries[i].gsx$place.$t));
+    placeOption.setAttribute("value", locations[i]);
+    placeOption.appendChild(document.createTextNode(locations[i]));
     placeSelect.appendChild(placeOption);
   }
 }

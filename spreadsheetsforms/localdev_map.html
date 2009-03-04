@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>World-Wide Developer Events & Groups: Map</title>
+</head>
+<style type="text/css"> 
+table {
+  border: 0px;
+  border-spacing:0;
+  margin:0px;
+}
+td {
+  border:0px;
+  padding:0px;
+  margin:0px;
+  height:40px;
+  text-align:center;
+  font-size:11pt;
+}
+body {
+  font-family:Arial, sans serif;
+  font-size:11pt;
+}
+li {
+  padding-bottom: 5px;
+}
+</style>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" type="text/javascript"></script> 
+<script src="http://gmaps-utility-library-dev.googlecode.com/svn/trunk/mapiconmaker/src/mapiconmaker.js"></script> 
+<script>
+var locations = {};
+var map = null;
+var baseIcon = null;
+var markerSelected = null;
+var color = "#4169FF";
+var colorSelected = "#0000FF";
+
+function onBodyLoad() {
+  loadSpreadsheet('p9pdwsai2hDO9TzAf5XGncQ', 'onPlacesLoad');
+  loadMap();
+}
+
+function onPlacesLoad(root) {
+  var entries = root.feed.entry || [];
+  for (var i = 0; i < entries.length; i++) {
+    var entry = entries[i];
+    var place = entry.gsx$place.$t;
+    locations[place] = {};
+    locations[place].latlng = new GLatLng(parseFloat(entry.gsx$latitude.$t), parseFloat(entry.gsx$longitude.$t));
+    locations[place].stuff = [];
+  }
+  loadSpreadsheet('p9pdwsai2hDN387sqQYcZCA', 'onStuffLoad');
+}
+
+/**
+ * Loads the map into div with 'map' id.
+ * Adds controls, sets initial center.
+ * Initializes geocoder.
+ */
+function loadMap() {
+  map = new GMap2(document.getElementById("map"));
+  map.addControl(new GSmallMapControl());
+  map.addControl(new GMapTypeControl());
+  map.setCenter(new GLatLng(18.646245,-137.109375), 2);
+  baseIcon = new GIcon();
+  baseIcon.shadow = "http://www.google.com/mapfiles/shadow50.png";
+  baseIcon.iconSize = new GSize(20, 34);
+  baseIcon.shadowSize = new GSize(37, 34);
+  baseIcon.iconAnchor = new GPoint(9, 34);
+  baseIcon.infoWindowAnchor = new GPoint(9, 2);
+  baseIcon.infoShadowAnchor = new GPoint(18, 25);
+}
+
+function loadSpreadsheet(key, callback) {
+  var script = document.createElement('script');
+  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list'
+                         + '/' + key + '/od6/public/values' +
+                        '?alt=json-in-script&callback=' + callback);
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+
+function onStuffLoad(root) {
+  var entries = root.feed.entry || [];
+  for (var i = 0; i < entries.length; i++) {
+    var entry = entries[i];
+    var place = entry.gsx$place.$t;
+    var location = locations[place];
+    if (location) {
+      location.stuff.push(entry);
+    }
+  }
+  makeMap();
+}
+
+function makeMap() {
+  // find max
+  var maxSize = 50;
+  var maxCount = 0;
+  for (locationName in locations) {
+    maxCount = Math.max(maxCount, locations[locationName].stuff.length);
+  }
+  var multiplier = maxSize/(maxCount+20);
+  var bounds = new GLatLngBounds();
+  // create markers
+  for (var locationName in locations) {
+    var location = locations[locationName];
+    if (location.stuff.length == 0) continue;
+    var size = Math.round((location.stuff.length+20) * multiplier);
+    var label = location.stuff.length + "";
+    var html = "<div style='width:100%; color: #FFFFFF; text-align:center; font-size: 18px; background-color:" + colorSelected + ";'>" + locationName + "</div><br/>" + createStuffHtml(location.stuff);
+    var marker = createMarkerForLocation(location.latlng, locationName, html, size, label);
+    map.addOverlay(marker);
+    bounds.extend(location.latlng);
+  }
+  map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
+}
+
+function createStuffHtml(stuff) {
+  var html = [];
+  for (var i = 0; i < stuff.length; i++) {
+    html.push('<li><a target="_blank" href="' + stuff[i].gsx$website.$t + '">' + stuff[i].gsx$name.$t + "</a></li>");
+  }
+  return "<ul>" + html.join("") + "</ul>";
+}
+
+function createMarkerForLocation(latlng, title, html, size, label) {
+  var iconNormal = MapIconMaker.createFlatIcon({width: size, height: size, label: label, labelColor: "#ffffff", primaryColor: color});
+  var iconSelected = MapIconMaker.createFlatIcon({width: size, height: size, label: label, labelColor: "#ffffff", primaryColor: colorSelected});
+  
+  var marker = new GMarker(latlng, {icon: iconNormal, title: title});
+  marker.iconNormal = iconNormal;
+  marker.iconSelected = iconSelected;
+ 
+  GEvent.addListener(marker, "click", function() {
+    if (markerSelected) { markerSelected.setImage(markerSelected.iconNormal.image); } 
+    document.getElementById("infoDIV").innerHTML = html;
+    marker.setImage(iconSelected.image);
+    markerSelected = marker;
+  });
+  return marker;
+}
+</script>
+<body onload="onBodyLoad()">
+<div id="map" style="width:65%; height:100%; border:2px solid black; float:left; clear:both;"></div> 
+ 
+<div id="infoDIV" style="overflow-y:auto; overflow-x: hidden; padding:5px; height:100%; float:left; border:2px solid black; width:25%">
+<p> 
+Click on a marker on the map to see events/group for each location. The numbers on the markers indicate the amount of events/groups listed for that location.
+</p>
+<p>
+If you know of an event or group that isn't listed here, <a href="http://gmaps-samples.googlecode.com/svn/trunk/spreadsheetsforms/localdev_form.html">submit it here</a>. 
+</p>
+</div> 
+</body>
+</html>

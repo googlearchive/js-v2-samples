@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html><head><link rel="shortcut icon" href="http://www.google.com/images/spreadsheets/forms/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>World-Wide Developer Events & Groups</title>
+<link type="text/css" rel="stylesheet" href="//spreadsheets.google.com/client/css/487085060-published_form_compiled.css">
+<script>
+function fillPlaces(root) {
+  var entries = root.feed.entry || [];
+  var placeSelect = document.getElementById("entry_3");
+  for (var i = 0; i < entries.length; i++) {
+    var placeOption = document.createElement("option");
+    placeOption.setAttribute("value", entries[i].gsx$place.$t);
+    placeOption.appendChild(document.createTextNode(entries[i].gsx$place.$t));
+    placeSelect.appendChild(placeOption);
+  }
+}
+</script>
+</head>
+<body class="ss-base-body">
+<div class="ss-form-container">
+<h1>World-Wide Developer Events & Groups</h1>
+<br>
+<p>After my travels around Asia and Australia for the past few months, I've seen
+that there are local developer groups and events *everywhere* - but it's not always
+easy to find a full list of all of them in one place. Wouldn't it be nifty if
+you could just consult a map of the world to see what was happening in your neck of the woods?
+Well, I think so, cuz I think maps solve everything.
+</p>
+<p>
+So, let's see how big of a list (or how crowded of a map) we can make. 
+If you know of a user group, local event (e.g. BarCamp Sydney), or local events
+aggregation site/calendar, then submit that link below.
+</p>
+
+<hr class="ss-email-break" style="display:none;">
+
+<form action="http://spreadsheets.google.com/formResponse?formkey=cDlwZHdzYWkyaEROMzg3c3FRWWNaQ0E6MA.." method="POST">
+
+<br>
+<div class="errorbox-good">
+<div class="ss-form-entry"><label class="ss-q-title" for="entry_3">Place
+</label>
+<label class="ss-q-help" for="entry_3"></label>
+<select name="entry.3.single" id="entry_3">
+</select>
+<br>
+If the city isn't listed there, please submit it on <a href="http://gmaps-samples.googlecode.com/svn/trunk/spreadsheetsforms/cities_form.html">this form</a> and reload this page after.
+<br/>
+</div></div>
+
+<div class="errorbox-good">
+<div class="ss-form-entry"><label class="ss-q-title" for="entry_0">Name
+</label>
+<label class="ss-q-help" for="entry_0"></label>
+<input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0"></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-form-entry"><label class="ss-q-title" for="entry_2">Website
+</label>
+<label class="ss-q-help" for="entry_2"></label>
+<input type="text" name="entry.2.single" value="" class="ss-q-short" id="entry_2"></div></div>
+<br> <div class="errorbox-good">
+<div class="ss-form-entry"><label class="ss-q-title" for="entry_1">Type
+</label>
+<label class="ss-q-help" for="entry_1"></label>
+<ul class="ss-choices"><li class="ss-choice-item"><input type="radio" name="entry.1.group" value="User Group/Meetup" class="ss-form-input" id="group_1_1">
+<label class="ss-choice-label" for="group_1_1">User Group/Meetup</label></li> <li class="ss-choice-item"><input type="radio" name="entry.1.group" value="Event" class="ss-form-input" id="group_1_2">
+<label class="ss-choice-label" for="group_1_2">Event</label></li> <li class="ss-choice-item"><input type="radio" name="entry.1.group" value="Events Calendar/Site" class="ss-form-input" id="group_1_3">
+<label class="ss-choice-label" for="group_1_3">Events Calendar/Site</label></li>
+<li class="ss-choice-item"><input type="radio" name="entry.1.group" value="__option__" class="ss-form-input" id="other_option:1">
+<label for="other_option:1">Other:</label>
+<input type="text" name="entry.1.group.other_option_" value=""></li></ul></div></div>
+<br>
+<p></p>
+<input type="submit" value="Submit"></form>
+<p></p>
+<span class="ss-powered-by">Powered by <a href="http://docs.google.com">Google Docs</a></span>
+<p></p>
+<small><a href="http://www.google.com/accounts/TOS">Terms of Service</a>
+-
+<a href="http://www.google.com/google-d-s/terms.html">Additional Terms</a></small></div>
+<script src="http://spreadsheets.google.com/feeds/list/p9pdwsai2hDO9TzAf5XGncQ/od6/public/values?alt=json-in-script&callback=fillPlaces"> 
+</script> 
+</body></html>

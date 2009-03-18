@@ -62,7 +62,7 @@ function openPanoramaBubble() {
     panorama.setContainer(contentNode);  
     window.setTimeout("panorama.checkResize()", 5);
   });
-  GEvent.addListener(iw, "closeclick", function() {
+  GEvent.addListener(marker, "infowindowbeforeclose", function() {
     panorama.remove();
   });
 }

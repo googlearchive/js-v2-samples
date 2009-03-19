@@ -1,0 +1,17 @@
+<html>
+ <head>
+  <script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxQGj0PqsCtxKvarsoS-iqLdqZSKfxS27kJqGZajBjvuzOBLizi931BUow"></script>
+  <script>
+  google.load("maps", "2.x", {base_domain: "maps.google.co.kr"});
+  google.setOnLoadCallback(drawMap);
+
+  function drawMap() {
+    var map = new google.maps.Map2(document.getElementById('map'));
+    map.setCenter(new google.maps.LatLng(35.907757, 127.766922), 7);
+  }
+ </script>
+ </head>
+<body>
+<div style="width:400;height:400" id="map"></div>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Shuttle Stops"
+             description="Shuttle stops for a company in the SF Bay Area."
+             author="Pamela Fox"
+             author_email="maps-devtools+shuttlestops@google.com"
+             author_affiliation="Google, Inc."
+             author_location="Mountain View, CA"
+             height="150">
+  <Require feature="sharedmap"/>
+</ModulePrefs>
+<Content type="html"><![CDATA[
+
+This example zooms out to a world map and adds a "Hello World!" info window.
+
+<script>
+ var stops = [];
+ var stop;
+      
+ stop = {};
+ stop.latitude = "37.7286320952121";
+ stop.longitude = "-122.492114002324";
+ stop.name = "Lake Merced";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7332217740962";
+ stop.longitude = "-122.434080052031";
+ stop.name = "Glen Park";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.765651525458";
+ stop.longitude = "-122.449986934662";
+ stop.name = "Cole and Carl";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7970938108692";
+ stop.longitude = "-122.435159683228";
+ stop.name = "Union and Fillmore (Cow)";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7987808692514";
+ stop.longitude = "-122.422553300858";
+ stop.name = "Union and Polk";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.7908982809794";
+ stop.longitude = "-122.426081044399";
+ stop.name = "Sacramento and Gough";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.7784805078316";
+ stop.longitude = "-122.414611402581";
+ stop.name = "Civic Center AM";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7517619548437";
+ stop.longitude = "-122.427354454994";
+ stop.name = "24th and Church";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7519528215759";
+ stop.longitude = "-122.420761585236";
+ stop.name = "24th and Valencia";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7113624038562";
+ stop.longitude = "-122.386042721994";
+ stop.name = "Monster Park";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.9702577430126";
+ stop.longitude = "-122.047059937549";
+ stop.name = "Concord";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.8120157993184";
+ stop.longitude = "-121.991859978086";
+ stop.name = "Danville";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.661615";
+ stop.longitude = "-121.895196";
+ stop.name = "Pleasanton";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.5573793443493";
+ stop.longitude = "-121.976723468383";
+ stop.name = "Fremont BART";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.5402183849665";
+ stop.longitude = "-121.923296294164";
+ stop.name = "238 and 680";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.4335822779536";
+ stop.longitude = "-121.895124582224";
+ stop.name = "Milpitas";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.8741250692152";
+ stop.longitude = "-122.283153533936";
+ stop.name = "N. Berkeley BART";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.8540028970338";
+ stop.longitude = "-122.269530877372";
+ stop.name = "Ashby BART";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.8288467634179";
+ stop.longitude = "-122.266226436811";
+ stop.name = "MacArthur BART";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.8053037605834";
+ stop.longitude = "-122.295363957586";
+ stop.name = "W. Oakland BART";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.8031968306484";
+ stop.longitude = "-122.288211444932";
+ stop.name = "W. Oakland P&R";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.6981258251981";
+ stop.longitude = "-122.129286955612";
+ stop.name = "Bayfair BART";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.5520278838514";
+ stop.longitude = "-122.296813268422";
+ stop.name = "Hwy 92 P&R";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.888142";
+ stop.longitude = "-122.306853";
+ stop.name = "Albany";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.7797292830694";
+ stop.longitude = "-122.413691282272";
+ stop.name = "Civic Center PM";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.7426549188762";
+ stop.longitude = "-122.476015090942";
+ stop.name = "19th Ave, @ Taraval";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.7595192304663";
+ stop.longitude = "-122.477130889893";
+ stop.name = "19th Ave. @ Kirkham";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.7803483036516";
+ stop.longitude = "-122.472538948059";
+ stop.name = "Park Presidio @ Geary";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.6380197741317";
+ stop.longitude = "-122.416282296181";
+ stop.name = "San Bruno BART";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.626792";
+ stop.longitude = "-122.424765";
+ stop.name = "850 Cherry, San Bruno";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.8003661603556";
+ stop.longitude = "-122.410558462143";
+ stop.name = "Columbus";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.7712320657013";
+ stop.longitude = "-122.436833381653";
+ stop.name = "Haight";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7757012828134";
+ stop.longitude = "-122.433078289032";
+ stop.name = "Hayes";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.3868588107878";
+ stop.longitude = "-122.042709589005";
+ stop.name = "Central at N. Mary";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.3824940687891";
+ stop.longitude = "-122.032377719879";
+ stop.name = "Mathilda at W. California";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.3714532065157";
+ stop.longitude = "-122.048106193542";
+ stop.name = "S. Mary at El Camino (Sunnyvale)";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.145391";
+ stop.longitude = "-121.983991";
+ stop.name = "Summit";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.035785";
+ stop.longitude = "-122.02369";
+ stop.name = "Scotts Valley Hilton";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "36.97596965";
+ stop.longitude = "-122.02449202";
+ stop.name = "Downtown Santa Cruz";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.2534728443972";
+ stop.longitude = "-121.951367089622";
+ stop.name = "Los Gatos Blvd. at 85";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.2498160788062";
+ stop.longitude = "-121.909422238409";
+ stop.name = "Camden Ave. at 85";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.2509469311502";
+ stop.longitude = "-121.841232776642";
+ stop.name = "Blossom Hill at 85";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.3254333681078";
+ stop.longitude = "-122.012100363992";
+ stop.name = "Cupertino";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.378317835976";
+ stop.longitude = "-122.030829672668";
+ stop.name = "Sunnyvale Caltrain";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.3901129676286";
+ stop.longitude = "-122.081659697682";
+ stop.name = "MV Performing Arts";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.371180361543";
+ stop.longitude = "-121.930046081543";
+ stop.name = "San Jose International Airport";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.3235390346287";
+ stop.longitude = "-121.946608381889";
+ stop.name = "Santana Row/Valley Fair";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.316777516129";
+ stop.longitude = "-121.915622739379";
+ stop.name = "Parkmoore";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.2984333357613";
+ stop.longitude = "-121.800676817977";
+ stop.name = "Yerba Buena at Silver Creek";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.3330149257795";
+ stop.longitude = "-121.879856586456";
+ stop.name = "San Jose State";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.2481688163696";
+ stop.longitude = "-121.773417843277";
+ stop.name = "Bernal at 101";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.4083293000933";
+ stop.longitude = "-122.055637836456";
+ stop.name = "Moffett";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.6158631516588";
+ stop.longitude = "-122.386665344238";
+ stop.name = "OnDemand: SFO (Placeholder only - read description";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.6376374531482";
+ stop.longitude = "-122.416035532951";
+ stop.name = "OnDemand: San Bruno BART (Placeholder only - read ";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.6292641303071";
+ stop.longitude = "-122.425503730774";
+ stop.name = "YouTube";
+ stops.push(stop);
+    
+ stop = {};
+ stop.latitude = "37.5503276105919";
+ stop.longitude = "-122.047204971313";
+ stop.name = "Fremont PandR (Newark Blvd)";
+ stops.push(stop);
+      
+ stop = {};
+ stop.latitude = "37.7771344280569";
+ stop.longitude = "-122.395173311234";
+ stop.name = "SOMA ";
+ stops.push(stop);
+
+ var map = new GMap2();
+ map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+ var bounds = new GLatLngBounds();
+
+ for (var i = 0; i < stops.length; i++) {
+   var stop = stops[i];
+   stop.latlng = new GLatLng(stop.latitude, stop.longitude);
+   stop.marker = new GMarker(stop.latlng);
+   stop.marker.bindInfoWindow(stop.name);
+   map.addOverlay(stop.marker);
+   bounds.extend(stop.latlng);
+ }
+
+ map.setCenter(bounds.getCenter());
+ map.getBoundsZoomLevelAsync(bounds, function(zoom) {
+ map.setZoom(zoom);
+});
+</script>
+
+]]></Content>
+</Module>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Youtube Playlist"
+             description="Displays geotagged Youtube videos on the map and in the sidebar."
+             author="Pamela FOx"
+             author_email="maps-devtools+youtubeplaylist@google.com"
+             author_affiliation="Google, Inc."
+             author_location="Mountain View, CA"
+             height="150">
+  <Require feature="sharedmap"/>
+</ModulePrefs>
+<Content type="html"><![CDATA[
+
+<form action="demogallery.html" onsubmit="getPlaylistFeed(); return false;" method="get">
+Enter playlist ID <input type="text" id="playlistinput" value="B4983C4850562FF8" style="width:200px"/> 
+<input type="submit" value="Convert Playlist to Markers" onclick="getPlaylistFeed()" />
+</form>
+
+<div id="results"></div>
+
+<script type="text/javascript">
+var map = new GMap2();
+
+//<![CDATA[
+function createMarker(html, latlng, thumbnail) {
+  var icon = new GIcon(G_DEFAULT_ICON);
+  icon.image = thumbnail;
+  icon.shadow = null;
+  icon.iconSize = new GSize(32, 32);
+  var marker = new GMarker(latlng, {icon: icon});
+  marker.bindInfoWindow(html);
+  map.addOverlay(marker);
+}
+
+function convertFeed(json) {
+  for (var i = 0; i < json.feed.entry.length; i++) {
+      var entry = json.feed.entry[i];
+      var html = '<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/' + getId(entry) + '&hl=en&fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/' + getId(entry) + '&hl=en&fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>';
+      var latlng = getLatLng(entry);    
+      createMarker(html, latlng, getThumbnail(entry));
+  }
+}
+
+function getId(entry) {
+  var youtubeId = getUrl(entry).split('v=')[1];
+  youtubeId = youtubeId.replace(/[^a-zA-Z0-9_-]/gi,'').substr(0, 11);
+  return youtubeId;
+}
+
+function getTitle(entry) {
+  return (entry.title && entry.title.$t);
+}
+
+function getAuthor(entry) {
+  return (entry.author && entry.author[0] && entry.author[0].name && entry.author[0].name.$t);
+}
+  
+function getDescription(entry) {
+  return (entry.content && entry.content.$t);
+}
+
+function getThumbnail(entry) {
+  return (entry.media$group && entry.media$group.media$thumbnail && entry.media$group.media$thumbnail[0].url);
+}
+
+function getLatLng(photo) {
+  if (photo.georss$where) {
+    var pos = photo.georss$where.gml$Point.gml$pos.$t;
+    var lat = parseFloat(pos.split(" ")[0]);
+    var lng = parseFloat(pos.split(" ")[1]);
+  } else {
+    var lat = parseFloat(photo.latitude);
+    var lng = parseFloat(photo.longitude);
+  }
+  return new GLatLng(lat, lng);
+}
+  
+function getUrl(entry) {
+  return (entry.link && entry.link[0] && entry.link[0].href);
+}
+
+function getDate(entry) {
+  if (entry.yt$recorded) {
+    var recorded = entry.yt$recorded.$t;
+    var recordedSplit = recorded.split('-');
+    var year = recordedSplit[0];
+    var month = recordedSplit[1];
+    var day = recordedSplit[2];
+    return month + '/' + day + '/' + year;
+  } else {
+    return '';
+  }
+}
+  
+function getDuration(entry) {
+  var duration = parseInt(entry.media$group.yt$duration.seconds);
+  var totalMinutes = Math.floor(duration/60);
+  var hours = Math.floor(totalMinutes/60);
+  var seconds = duration % 60;
+  var minutes = totalMinutes % 60;
+  if (hours > 0) {
+    return hours + ':' + padZero(minutes) + ':' + padZero(seconds);
+  } else {
+    return padZero(minutes) + ':' + padZero(seconds);
+  }
+}
+
+function padZero(number) {
+  if (number < 10) {
+    return "0" + number;
+  } else {
+    return number;
+  }
+}
+
+/**
+ * Creates a script tag in the page that loads in the 
+ * JSON feed for the specified key/ID. 
+ * Once loaded, it calls cm_loadMapJSON.
+ */
+function getPlaylistFeed() {
+  var playlistId = document.getElementById('playlistinput').value;
+  loadJSONP('http://gdata.youtube.com/feeds/api/playlists/' + playlistId + '?alt=json-in-script&callback=convertFeed');
+}
+ 
+function loadJSONP(url) {
+  var script = document.createElement('script');
+  script.setAttribute('src', url);
+  script.setAttribute('type', 'text/javascript');
+  document.documentElement.firstChild.appendChild(script);
+}
+
+
+</script>
+
+]]></Content>
+</Module>

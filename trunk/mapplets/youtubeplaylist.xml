@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
 <ModulePrefs title="Youtube Playlist"
-             description="Displays geotagged Youtube videos on the map and in the sidebar."
+             description="Displays geotagged Youtube videos on the map for a given playlist ID."
              author="Pamela FOx"
              author_email="maps-devtools+youtubeplaylist@google.com"
              author_affiliation="Google, Inc."

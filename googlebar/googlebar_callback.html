@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+  <script src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var map;
+
+    function load() {
+      var opts = {showOnLoad: true, style: 'new', onGenerateMarkerHtmlCallback: changeHtml};
+      map  = new GMap2(document.getElementById("map"), {googleBarOptions: opts});
+      map.addControl(new GSmallMapControl());
+      map.setCenter(new GLatLng(55.943408,-3.183267), 16);
+      map.enableGoogleBar();
+    }
+
+    function changeHtml(marker, htmlDiv, result) {
+      var div = document.createElement("div");
+      div.innerHTML = "<br>More info here!";
+      htmlDiv.appendChild(div);
+      return htmlDiv;
+    }
+    //]]>
+    </script>
+  </head>
+
+  <body onload="load()" onunload="GUnload()">
+    <div id="map" style="width: 600px; height: 550px"></div>
+  </body>
+</body>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Streetview Landing Page Prototype</title>
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAoB0i6SDqobDYkh2Eosh8_hQGj0PqsCtxKvarsoS-iqLdqZSKfxT27Tcg2ix6Afd9vvmyviwJPUO5IQ&sensor=true"></script>
+<script type="text/javascript" src="spreadsheet-loader-binary.js"></script>
+<script type="text/javascript" src="ClusterMarker.js"></script>
+<style>
+  body {
+    font-family: Tahoma,Arial,Sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #mapContainer {
+    margin: 0 auto;
+  }
+  
+  .infoWindow, .clusterInfoWindow {
+    width: 200px;
+    font-size: 0.8em;
+    text-align: left;
+  }
+  .infoWindow h3{
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  .infoWindow img {
+    border: 0;
+    margin-bottom: 5px;
+  }
+  
+  .clusterInfoWindow p {
+    margin: 0;
+    padding: 0;
+  }
+  .clusterInfoWindow ul {
+    list-style-type: disc;
+    padding: 0 0 0 15px;
+    margin: 5px 0 0 0;
+  }
+  .clusterInfoWindow li {
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 1px 0 1px 0;
+  }
+  .clusterInfoWindow .enableOverflow {
+    height: 100px;
+    overflow: auto;
+  }
+  
+  .buttonControl {
+    background-color: #fff;
+    border: 2px outset #676767;
+    padding: 2px 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #36c;
+  }
+  .highlight {
+    background-color: #ffd;
+    color: #00c;
+  }
+</style>
+</head>
+<body>
+
+
+<!-- Main Canvas -->
+<div id="mapContainer"></div>
+
+
+<script>
+// If Firebug's console object is undefined, use maps API GLog instead.
+if (!console) {
+  console = {};
+}
+if (!console.debug) {
+  console.debug = function(str) {
+    if (str.indexOf('http://') == 0) {
+      GLog.writeUrl(str);
+    } else {
+      GLog.write(str);
+    }
+  };
+}
+if (!console.log) {
+  console.log = console.debug;
+}
+
+
+/**
+ * Class instance of a marker point on the map.
+ */
+function AppMarker() {
+  // Column data from spreadsheet.
+  this.data = {
+    title: null,
+    lat: null,
+    lng: null,
+    destinationUrl: null
+  };
+  
+  // Additional properties.
+  this.index = null;
+  this.image = null;
+  
+  // Map objects
+  this.marker = null;
+}
+
+/**
+ * Opens the info window for this marker.
+ */
+AppMarker.prototype.openInfoWindow = function() {
+  var html = [
+    '<div class="infoWindow">',
+    '<h3>' + this.data.title + '</h3>',
+    '<a target="_blank" href="' + this.data.destinationUrl + '">',
+      '<img width="' + this.image.width + '" ',
+          'height="' + this.image.height + '" ',
+          'src="' + this.image.src + '"/>',
+    '</a>',
+    '<div>',
+      '<a target="_blank" href="' + this.data.destinationUrl + '">',
+      'Enter Street View!',
+      '</a>',
+    '</div>',
+    '</div>'
+  ];
+  this.marker.openInfoWindowHtml(html.join(''), {
+    maxWidth: App.INFO_WINDOW_MAX_WIDTH
+  });
+};
+
+/**
+ * Initialize a new GMarker for this AppMarker.
+ */
+AppMarker.prototype.createMarker = function() {
+  // If marker was already created, return it.
+  if (this.marker) {
+    return this.marker;
+  }
+  
+  // Initialize the marker and place overlay on map.
+  var latLng = new GLatLng(this.data.lat, this.data.lng);
+  this.marker = new GMarker(latLng, {
+    title: this.data.title,
+    icon: App.createMarkerIcon(App.MARKER_ICON_URL, new GSize(32, 32))
+  });
+  
+  // Add event listeners to open info windows on click and highlight
+  // store markers onmouseover.
+  GEvent.bind(this.marker, 'click', this, this.openInfoWindow);
+  return this.marker;
+};
+
+
+/**
+ * Application object.
+ */
+var App = {
+  // Constants
+  INFO_WINDOW_MAX_WIDTH: 200,
+  INFO_WINDOW_IMAGE_SIZE: new GSize(180, 150),
+  MARKER_ICON_URL: 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png',
+  CLUSTER_MARKER_ICON_URL: 'http://maps.google.com/mapfiles/ms/micons/blue.png',
+ 
+  // API
+  map_: null,
+  geocoder_: new GClientGeocoder(),
+  cluster_: null,
+  
+  // HTML nodes
+  mapContainerNode_: document.getElementById('mapContainer'),
+  
+  // Private members
+  appMarkers_: [],
+  markerSheet_: new Spreadsheet('pSHsr7Q2703owXiEayLOtSA', 'od6')
+};
+
+/**
+ * Creates a GIcon based on the URL and specified size.
+ * @return {GIcon}
+ */
+App.createMarkerIcon = function(url, size) {
+  var midWidth = Math.floor(size.width / 2);
+  var icon = new GIcon(G_DEFAULT_ICON);
+  icon.image = url;
+  icon.iconSize = size;
+  icon.iconAnchor = new GPoint(midWidth, 32);
+  icon.infoWindowAnchor = new GPoint(midWidth, 2);
+  return icon;
+};
+
+/**
+ * Creates the streetview image URL.
+ * @return {string} Image URL.
+ */
+App.createStreetviewImageUrl_ = function(lat, lng) {
+  return [
+    'http://maps.google.com/cbk?output=thumbnail',
+    'w=' + App.INFO_WINDOW_IMAGE_SIZE.width,
+    'h=' + App.INFO_WINDOW_IMAGE_SIZE.height,
+    'll=' + lat + ',' + lng
+  ].join('&');
+};
+
+// Copyright 2006 Google Inc.
+// All Rights Reserved.
+
+/**
+ * @fileoverview Library for supporting gadgets that want to support
+ * multiple sizes.  Typical use cases include:
+ * - gadget ads trying to support multiple IAB/AdSense sizes
+ * - gadgets that look/behave differently on the homepage (300px+ wide)
+ *   vs. blogs (180/200px wide).
+ *
+ * Test gadgets:
+ * /ig/modules/test_multisizelib.xml
+ *
+ * Internal docs:
+ * http://wiki.corp.google.com/twiki/bin/view/Main/RemoteModuleMultiSize
+ *
+ * @author asah@google.com (Adam Sah)
+ */
+
+/**
+ * Determines the dimensions of this window/frame.
+ * @return {GSize} Window/frame size.
+ */
+App.getWindowSize_ = function() {
+  var size = new GSize(0, 0);
+  if (self.innerHeight) {
+    // all except Explorer
+    size.width = self.innerWidth;
+    size.height = self.innerHeight;
+  }
+  else if (document.documentElement && document.documentElement.clientHeight) {
+    // Explorer 6 Strict Mode 
+    size.width = document.documentElement.clientWidth;
+    size.height = document.documentElement.clientHeight;
+  }
+  else if (document.body) {
+    // other Explorers
+    size.width = document.body.clientWidth;
+    size.height = document.body.clientHeight;
+  }
+  return size;
+};
+
+/**
+ * Click handler for the marker title links displayed in the cluster marker
+ * info window.  The marker specified marker's info window is opened.  When
+ * closed, the cluster marker info window is reopened.
+ * @param {GMarker} Selected marker to open.
+ * @param {GMarker} Cluster marker whose info window was previously opened.
+ */
+App.clickMarker_ = function(marker, clusterMarker) {
+  App.map_.addOverlay(marker);
+  var listener = GEvent.addListener(marker, 'infowindowclose', function() {
+    GEvent.removeListener(listener);
+    App.map_.removeOverlay(marker);
+    GEvent.trigger(clusterMarker, 'click');
+  });
+  GEvent.trigger(marker, 'click');
+};
+
+/**
+ * Click handler whenever a cluster marker is clicked.
+ * Lists all child locations as clickable links to see more details.
+ * @param {Object} args
+ */
+App.clickClusterMarker_ = function(args) {
+  var clusteredMarkers = args.clusteredMarkers;
+  var clusterMarker = args.clusterMarker;
+  var clusterLatLng = clusterMarker.getLatLng();
+  
+  // Generate the header description for each info window.
+  var div = document.createElement('div');
+  div.className = 'clusterInfoWindow';
+  div.innerHTML = [
+    '<p>',
+      'The following cities exist near this location. ',
+      '<a onclick="App.map_.setCenter(new GLatLng(',
+          clusterLatLng.lat() + ',' + clusterLatLng.lng() + '),',
+          (App.map_.getZoom() + 2) + ');" ',
+          'href="javascript:void(0);">',
+        'Zoom in',
+      '</a> ',
+      'or click on a name to see more details.',
+    '</p>'
+  ].join('');
+  
+  // Apply additional class name which sets fixed height and overflow if
+  // there are more than X number of child markers to display.
+  var ul = document.createElement('ul');
+  if (clusteredMarkers.length > 6) {
+    ul.className = 'enableOverflow';
+  }
+  for (var n = 0, marker; marker = clusteredMarkers[n]; n++) {
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = 'javascript:void(0);';
+    a.innerHTML = marker.getTitle();
+    a.onclick =
+        GEvent.callbackArgs(App, App.clickMarker_, marker, clusterMarker);
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
+  div.appendChild(ul);
+  
+  // Open this cluster marker's info window.
+  clusterMarker.openInfoWindow(div);
+};
+
+/**
+ * Parse data fetched from spreadsheet.
+ */
+App.parseData_ = function(sheets) {
+  if (!App.markerSheet_.isParsed) {
+    alert('Marker sheet was not successfully retrieved.  Try reloading.');
+  }
+  
+  // Create array of markers to be passed into ClusterMarker.
+  var markers = [];
+  
+  // Iterate through all data rows and generate map content for each one.
+  var dataRows = App.markerSheet_.getRows();
+  for (var n = 0, dataRow; dataRow = dataRows[n]; n++) {
+    // AppMarker's property names should match with spreadsheet column names.
+    // Iterate through property names to initialize the Object.
+    var appMarker = new AppMarker();
+    appMarker.index = n;
+    for (var name in appMarker.data) {
+      var value = dataRow.getData(name);
+      if (value) {
+        appMarker.data[name] = value;
+      }
+    }
+    
+    // Only save the app marker if the display and title fields are not empty.
+    if (appMarker.data.title) {
+      // Start pre-fetching marker images.
+      appMarker.image = new Image();
+      appMarker.image.src =
+          App.createStreetviewImageUrl_(appMarker.data.lat, appMarker.data.lng);
+    
+      // Add new AppMarker to the markers collection.
+      App.appMarkers_.push(appMarker);
+      
+      // Add marker to cluster marker array.
+      markers.push(appMarker.createMarker());
+    }
+  }
+  
+  // Create the clustering.
+  var clusterIcon =
+      App.createMarkerIcon(App.CLUSTER_MARKER_ICON_URL, new GSize(32, 32));
+  var cluster = new ClusterMarker(App.map_, {
+    markers: markers,
+    borderPadding: 512,
+    intersectPadding: -5,
+    clusterMarkerTitle: 'There are %count locations behind this marker.',
+    clusterMarkerIcon: clusterIcon,
+    clusterMarkerClick: GEvent.callback(App, App.clickClusterMarker_)
+  });
+  cluster.refresh(true);
+  
+  // Create a custom zoom control that resets the view to fit all markers.
+  var ClusterZoomControl = function() {
+  };
+  
+  // To "subclass" the GControl, we set the prototype object to
+  // an instance of the GControl object
+  ClusterZoomControl.prototype = new GControl();
+  
+  // Create a single button that takes the user back to the initial zoom level
+  // where all cluster markers are visible.
+  ClusterZoomControl.prototype.initialize = function(map) {
+    var buttonContainer = document.createElement('div');
+    buttonContainer.className = 'buttonControl';
+    buttonContainer.innerHTML = [
+      'Go back to default view'
+    ].join('');
+    GEvent.addDomListener(buttonContainer, 'click', function() {
+      App.map_.returnToSavedPosition();
+    });
+    GEvent.addDomListener(buttonContainer, 'mouseover', function() {
+      buttonContainer.className += ' highlight';
+    });
+    GEvent.addDomListener(buttonContainer, 'mouseout', function() {
+      buttonContainer.className =
+          buttonContainer.className.replace(' highlight', '');
+    });
+    
+    // Add new element to map container.
+    map.getContainer().appendChild(buttonContainer);
+    return buttonContainer;
+  };
+  
+  // By default, the control will appear in the top left corner of the
+  // map with 7 pixels of padding.
+  ClusterZoomControl.prototype.getDefaultPosition = function() {
+    return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(75, 15));
+  }
+  
+  // Add custom control to map.
+  App.map_.addControl(new ClusterZoomControl());
+};
+
+/**
+ * Initialize the google map.
+ */
+App.initMap_ = function() {
+  var map = App.map_ = new GMap2(App.mapContainerNode_, {
+    size: App.getWindowSize_(),
+    backgroundColor: '#eee'
+  });
+  map.enableContinuousZoom();
+  map.enableScrollWheelZoom();
+  map.setUIToDefault();
+  map.setCenter(new GLatLng(25,-118), 2);
+  map.savePosition();
+};
+
+/**
+ * Initializes the store locator application.
+ */
+App.init = function() {
+  // Initialize map with various controls
+  App.initMap_();
+  
+  // Fetch marker data from spreadsheets.
+  var sheetLoader = new SpreadsheetLoader();
+  sheetLoader.addSheet(App.markerSheet_);
+  sheetLoader.loadSheets(App.parseData_);
+};
+
+
+// Register unload event handler to reduce memory leaks.
+GEvent.bindDom(window, 'load', App, App.init);
+GEvent.addDomListener(window, 'unload', GUnload);
+</script>
+</body>
+</html>

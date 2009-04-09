@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+      type="text/javascript"></script>
+    <script src="http://gmaps-utility-library.googlecode.com/svn/trunk/mapiconmaker/1.0/src/mapiconmaker.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var locations = {};
+
+    function load() {
+      var map = new GMap2(document.getElementById("map"));
+      map.setCenter(new GLatLng(47.614495, -122.341861), 13);
+
+      GDownloadUrl("markerdata.xml", function(data) {
+        var xml = GXml.parse(data);
+        var markers = xml.documentElement.getElementsByTagName("marker");
+        for (var i = 0; i < markers.length; i++) {
+          var name = markers[i].getAttribute("name");
+          var address = markers[i].getAttribute("address");
+          var type = markers[i].getAttribute("type");
+          var latlng = new GLatLng(parseFloat(markers[i].getAttribute("lat")),
+                                  parseFloat(markers[i].getAttribute("lng")));
+          var store = {latlng: latlng, name: name, address: address, type: type};
+          var latlngHash = (latlng.lat().toFixed(6) + "" + latlng.lng().toFixed(6));
+          latlngHash = latlngHash.replace(".","").replace(".", "").replace("-","");
+          if (locations[latlngHash] == null) {
+            locations[latlngHash] = []
+          }
+          locations[latlngHash].push(store);
+        }
+        for (var latlngHash in locations) {
+          var stores = locations[latlngHash];
+          if (stores.length > 1) {
+            map.addOverlay(createClusteredMarker(stores));
+          } else {
+            map.addOverlay(createMarker(stores));
+          }
+         }
+      });
+    }
+
+    function createMarker(stores) {
+      var store = stores[0];
+      var newIcon = MapIconMaker.createMarkerIcon({width: 32, height: 32, primaryColor: "#00ff00"});
+      var marker = new GMarker(store.latlng, {icon: newIcon});
+      var html = "<b>" + store.name + "</b> <br/>" + store.address;
+      GEvent.addListener(marker, 'click', function() {
+        marker.openInfoWindowHtml(html);
+      });
+      return marker;
+    }
+
+    function createClusteredMarker(stores) {
+      var newIcon = MapIconMaker.createMarkerIcon({width: 44, height: 44, primaryColor: "#00ff00"});
+      var marker = new GMarker(stores[0].latlng, {icon: newIcon});
+      var html = "";
+      for (var i = 0; i < stores.length; i++) {
+        html += "<b>" + stores[i].name + "</b> <br/>" + stores[i].address + "<br/>";
+      }
+      GEvent.addListener(marker, 'click', function() {
+        marker.openInfoWindowHtml(html);
+      });
+      return marker;
+    }
+    //]]>
+  </script>
+  </head>
+  <body style="font-family:Arial, sans serif" onload="load()" onunload="GUnload()">
+    <div id="map" style="float:left; width: 600px; height: 500px; border: 1px solid black"></div>
+  </body>
+</html>

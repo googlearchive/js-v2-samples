@@ -89,11 +89,11 @@ function AppMarker() {
     lng: null,
     destinationUrl: null
   };
-  
+
   // Additional properties.
   this.index = null;
   this.image = null;
-  
+
   // Map objects
   this.marker = null;
 }
@@ -130,14 +130,16 @@ AppMarker.prototype.createMarker = function() {
   if (this.marker) {
     return this.marker;
   }
-  
+
   // Initialize the marker and place overlay on map.
   var latLng = new GLatLng(this.data.lat, this.data.lng);
   this.marker = new GMarker(latLng, {
     title: this.data.title,
-    icon: App.createMarkerIcon(App.MARKER_ICON_URL, new GSize(32, 32))
+    icon: App.createMarkerIcon(
+        'http://maps.google.com/mapfiles/ms/micons/red-dot.png',
+        new GSize(32, 32))
   });
-  
+
   // Add event listeners to open info windows on click and highlight
   // store markers onmouseover.
   GEvent.bind(this.marker, 'click', this, this.openInfoWindow);
@@ -152,17 +154,17 @@ var App = {
   // Constants
   INFO_WINDOW_MAX_WIDTH: 200,
   INFO_WINDOW_IMAGE_SIZE: new GSize(180, 150),
-  MARKER_ICON_URL: 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png',
-  CLUSTER_MARKER_ICON_URL: 'http://maps.google.com/mapfiles/ms/micons/blue.png',
- 
+  CLUSTER_MARKER_FILL_COLOR: '33cc66',
+  CLUSTER_MARKER_TEXT_COLOR: '000000',
+
   // API
   map_: null,
   geocoder_: new GClientGeocoder(),
   cluster_: null,
-  
+
   // HTML nodes
   mapContainerNode_: document.getElementById('mapContainer'),
-  
+
   // Private members
   appMarkers_: [],
   markerSheet_: new Spreadsheet('pSHsr7Q2703owXiEayLOtSA', 'od6')
@@ -178,8 +180,22 @@ App.createMarkerIcon = function(url, size) {
   icon.image = url;
   icon.iconSize = size;
   icon.iconAnchor = new GPoint(midWidth, 32);
-  icon.infoWindowAnchor = new GPoint(midWidth, 2);
+  icon.infoWindowAnchor = new GPoint(midWidth, 4);
   return icon;
+};
+
+/**
+ * Creates a labeled marker icon.
+ * @param {string} label
+ * @return {GIcon}
+ */
+App.createLabeledMarkerIcon = function(label) {
+  var iconUrl = 'http://www.google.com/chart?chst=d_map_pin_letter&chld=' + [
+    label,
+    App.CLUSTER_MARKER_FILL_COLOR,
+    App.CLUSTER_MARKER_TEXT_COLOR
+  ].join('|');
+  return App.createMarkerIcon(iconUrl, new GSize(21, 34));
 };
 
 /**
@@ -207,7 +223,7 @@ App.getWindowSize_ = function() {
     size.height = self.innerHeight;
   }
   else if (document.documentElement && document.documentElement.clientHeight) {
-    // Explorer 6 Strict Mode 
+    // Explorer 6 Strict Mode
     size.width = document.documentElement.clientWidth;
     size.height = document.documentElement.clientHeight;
   }
@@ -245,7 +261,7 @@ App.clickClusterMarker_ = function(args) {
   var clusteredMarkers = args.clusteredMarkers;
   var clusterMarker = args.clusterMarker;
   var clusterLatLng = clusterMarker.getLatLng();
-  
+
   // Generate the header description for each info window.
   var div = document.createElement('div');
   div.className = 'clusterInfoWindow';
@@ -261,7 +277,7 @@ App.clickClusterMarker_ = function(args) {
       'or click on a name to see more details.',
     '</p>'
   ].join('');
-  
+
   // Apply additional class name which sets fixed height and overflow if
   // there are more than X number of child markers to display.
   var ul = document.createElement('ul');
@@ -279,7 +295,7 @@ App.clickClusterMarker_ = function(args) {
     ul.appendChild(li);
   }
   div.appendChild(ul);
-  
+
   // Open this cluster marker's info window.
   clusterMarker.openInfoWindow(div);
 };
@@ -291,10 +307,10 @@ App.parseData_ = function(sheets) {
   if (!App.markerSheet_.isParsed) {
     alert('Marker sheet was not successfully retrieved.  Try reloading.');
   }
-  
+
   // Create array of markers to be passed into ClusterMarker.
   var markers = [];
-  
+
   // Iterate through all data rows and generate map content for each one.
   var dataRows = App.markerSheet_.getRows();
   for (var n = 0, dataRow; dataRow = dataRows[n]; n++) {
@@ -308,17 +324,17 @@ App.parseData_ = function(sheets) {
         appMarker.data[name] = value;
       }
     }
-    
+
     // Only save the app marker if the display and title fields are not empty.
     if (appMarker.data.title) {
       // Start pre-fetching marker images.
       appMarker.image = new Image();
       appMarker.image.src =
           App.createStreetviewImageUrl_(appMarker.data.lat, appMarker.data.lng);
-    
+
       // Add new AppMarker to the markers collection.
       App.appMarkers_.push(appMarker);
-      
+
       // Add marker to cluster marker array.
       markers.push(appMarker.createMarker());
     }
@@ -330,21 +346,20 @@ App.parseData_ = function(sheets) {
   var cluster = new ClusterMarker(App.map_, {
     markers: markers,
     borderPadding: 512,
-    intersectPadding: -5,
+    intersectPadding: -3,
     clusterMarkerTitle: 'There are %count locations behind this marker.',
-    clusterMarkerIcon: clusterIcon,
     clusterMarkerClick: GEvent.callback(App, App.clickClusterMarker_)
   });
   cluster.refresh(true);
-  
+
   // Create a custom zoom control that resets the view to fit all markers.
   var ClusterZoomControl = function() {
   };
-  
+
   // To "subclass" the GControl, we set the prototype object to
   // an instance of the GControl object
   ClusterZoomControl.prototype = new GControl();
-  
+
   // Create a single button that takes the user back to the initial zoom level
   // where all cluster markers are visible.
   ClusterZoomControl.prototype.initialize = function(map) {
@@ -363,18 +378,18 @@ App.parseData_ = function(sheets) {
       buttonContainer.className =
           buttonContainer.className.replace(' highlight', '');
     });
-    
+
     // Add new element to map container.
     map.getContainer().appendChild(buttonContainer);
     return buttonContainer;
   };
-  
+
   // By default, the control will appear in the top left corner of the
   // map with 7 pixels of padding.
   ClusterZoomControl.prototype.getDefaultPosition = function() {
     return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(75, 15));
   }
-  
+
   // Add custom control to map.
   App.map_.addControl(new ClusterZoomControl());
 };
@@ -400,7 +415,7 @@ App.initMap_ = function() {
 App.init = function() {
   // Initialize map with various controls
   App.initMap_();
-  
+
   // Fetch marker data from spreadsheets.
   var sheetLoader = new SpreadsheetLoader();
   sheetLoader.addSheet(App.markerSheet_);

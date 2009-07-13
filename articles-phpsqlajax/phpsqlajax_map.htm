@@ -35,7 +35,8 @@
         map.addControl(new GMapTypeControl());
         map.setCenter(new GLatLng(47.614495, -122.341861), 13);
 
-        GDownloadUrl("phpsqlajax_expectedoutput.xml", function(data) {
+        // Change this depending on the name of your PHP file
+        GDownloadUrl("phpsqlajax_genxml.php", function(data) {
           var xml = GXml.parse(data);
           var markers = xml.documentElement.getElementsByTagName("marker");
           for (var i = 0; i < markers.length; i++) {

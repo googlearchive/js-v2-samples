@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://earth.google.com/kml/2.1'>
+  <Folder>
+    <Placemark id='linestring1'>
+      <name>My path</name>
+      <description>This is the path that I took through my favorite restaurants in Seattle</description>
+      <LineString>
+        <extrude>1</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates>-122.340141,47.608940,100 -122.356445,47.624561,100 
+                     -122.337654,47.606365,100 -122.340363,47.605961,100
+                     -122.342834,47.610126,100
+        </coordinates>
+     </LineString>
+    </Placemark>
+  </Folder>
+</kml>

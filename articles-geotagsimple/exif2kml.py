@@ -78,9 +78,9 @@ def DmsToDecimal(degree_num, degree_den, minute_num, minute_den,
     A deciminal degree.
   """
 
-  degree = float(degree_num/degree_den)
-  minute = float(minute_num/minute_den)/60
-  second = float(second_num/second_den)/3600
+  degree = float(degree_num)/float(degree_den)
+  minute = float(minute_num)/float(minute_den)/60
+  second = float(second_num)/float(second_den)/3600
   return degree + minute + second
 
 

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns = 'http://earth.google.com/kml/2.1'>
+  <Folder>
+    <NetworkLink>
+      <Link>
+        <href>http://example.com/phpsql_genkml.kml</href>
+        <refreshMode>onInterval</refreshMode>
+        <refreshInterval>3600</refreshInterval>
+      </Link>
+    </NetworkLink>
+    <NetworkLink>
+      <Link>
+        <href>http://example.com/phpsql_genkml_ls.kml</href>
+        <refreshMode>onInterval</refreshMode>
+        <refreshInterval>3600</refreshInterval>
+      </Link>
+    </NetworkLink>
+  </Folder>
+</kml>

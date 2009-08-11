@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns = "http://earth.google.com/kml/2.1">
+  <Document>
+    <Style id="restaurantStyle">
+      <IconStyle id="restuarantIcon">
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/pal2/icon63.png</href>
+      </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="barStyle">
+      <IconStyle id="barIcon">
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/pal2/icon27.png</href>
+      </Icon>
+      </IconStyle>
+      </Style>
+    <Placemark id="placemark1">
+      <name>Pan Africa Market</name>
+      <description>1521 1st Ave, Seattle, WA</description>
+      <styleUrl>#restaurantStyle</styleUrl>
+      <Point>
+        <coordinates>-122.340141,47.608940</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark2">
+      <name>Buddha Thai &amp; Bar</name>
+      <description>2222 2nd Ave, Seattle, WA</description>
+      <styleUrl>#barStyle</styleUrl>
+      <Point>
+        <coordinates>-122.344391,47.613590</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark3">
+      <name>The Melting Pot</name>
+      <description>14 Mercer St, Seattle, WA</description>
+      <styleUrl>#restaurantStyle</styleUrl>
+      <Point>
+        <coordinates>-122.356445,47.624561</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark4">
+      <name>Ipanema Grill</name>
+      <description>1225 1st Ave, Seattle, WA</description>
+      <styleUrl>#restaurantStyle</styleUrl>
+      <Point>
+        <coordinates>-122.337654,47.606365</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark5">
+      <name>Sake House</name>
+      <description>2230 1st Ave, Seattle, WA</description>
+      <styleUrl>#barStyle</styleUrl>
+      <Point>
+      <coordinates>-122.345673,47.612823</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark6">
+      <name>Crab Pot</name>
+      <description>1301 Alaskan Way, Seattle, WA</description>
+      <styleUrl>#restaurantStyle</styleUrl>
+      <Point>
+        <coordinates>-122.340363,47.605961</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark7">
+      <name>Mama's Mexican Kitchen</name>
+      <description>2234 2nd Ave, Seattle, WA</description>
+      <styleUrl>#barStyle</styleUrl>
+      <Point>
+        <coordinates>-122.345467,47.613976</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark8">
+      <name>Wingdome</name>
+      <description>1416 E Olive Way, Seattle, WA</description>
+      <styleUrl>#barStyle</styleUrl>
+      <Point>
+        <coordinates>-122.326584,47.617214</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark id="placemark9">
+      <name>Piroshky Piroshky</name>
+      <description>1908 Pike pl, Seattle, WA</description>
+      <styleUrl>#restaurantStyle</styleUrl>
+      <Point>
+        <coordinates>-122.342834,47.610126</coordinates>
+      </Point>
+    </Placemark>
+ </Document>
+</kml>

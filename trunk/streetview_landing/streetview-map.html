@@ -407,6 +407,9 @@ App.initMap_ = function() {
   map.setUIToDefault();
   map.setCenter(new GLatLng(25,-118), 2);
   map.savePosition();
+  
+  // Add streetview overlays.
+  map.addOverlay(new GStreetviewOverlay());
 };
 
 /**

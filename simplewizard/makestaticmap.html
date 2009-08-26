@@ -7,11 +7,7 @@
  -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-<title>Static Map Wizard</title>
-<!--
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxTZdFmpiU8vv3PBIA-hr88t-5BzzxSWLKKXiJcvC2EABsDlfXq6gJWAxA"
-      type="text/javascript"></script>
--->
+<title>Static Maps API v2 Wizard</title>
 <script type="text/javascript"
       src="http://maps.google.com/maps?file=api&amp;&v=2&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"></script>
 <style type="text/css">
@@ -35,32 +31,48 @@ var markers = [];
 var editingNow = false;
 
 function updateImage() {
-   var baseUrl = "http://maps.google.com/staticmap?";
+   var baseUrl = "http://maps.google.com/maps/api/staticmap?";
 
    var params = [];
-   params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
+
+   if (!document.getElementById("mapFitCHECKBOX").checked) {
+     params.push("center=" + map.getCenter().lat().toFixed(6) + "," + map.getCenter().lng().toFixed(6));
+     params.push("zoom=" + map.getZoom());
+   }
 
    var markerSize = document.getElementById("markerSizeSELECT").value;
    var markerColor = document.getElementById("markerColorSELECT").value;
    var markerLetter = document.getElementById("markerLetterSELECT").value;
-   var markerParams = markerSize + markerColor + markerLetter;
-   var markersArray = [];
-   for (var i = 0; i < markers.length; i++) {  
-     markersArray.push(markers[i].getLatLng().lat().toFixed(6) + "," + markers[i].getLatLng().lng().toFixed(6) + "," + markerParams);
-   }
-   if (markersArray.length) params.push("markers=" + markersArray.join("|"));
+   var markerParams = [];
+   if (markerSize != "") markerParams.push(markerSize);
+   if (markerColor != "") markerParams.push(markerColor);
+   if (markerLetter != "") markerParams.push(markerLetter);
 
-   var polyColor = document.getElementById("polyColorSELECT").value;
-   var polyAlpha = document.getElementById("polyAlphaSELECT").value;
-   var polyWeight = document.getElementById("polyWeightSELECT").value;
-   var polyParams = "rgba:0x" + polyColor + polyAlpha + ",weight:" + polyWeight + "|";
+   var markersArray = [];
+   for (var i = 0; i < markers.length; i++) {
+     if (document.getElementById("markerTypeCHECKBOX").checked) {
+       markersArray.push(markers[i].getTitle().replace(" ", "+", "g"));
+     } else {
+       markersArray.push(markers[i].getLatLng().lat().toFixed(6) + "," + markers[i].getLatLng().lng().toFixed(6));
+     }
+   }
+   if (markersArray.length) {
+     var markersString = markerParams.join("|");
+     if (markerParams.length) markersString += "|";
+     markersString += markersArray.join("|");
+     params.push("markers=" + markersString);
+   }
+
+   var polyColor = "color:0x" + document.getElementById("polyColorSELECT").value + document.getElementById("polyAlphaSELECT").value;
+   var polyWeight = "weight:" + document.getElementById("polyWeightSELECT").value;
+   var polyParams = polyColor + "|" + polyWeight;
    for (var i = 0; i < polys.length; i++) {
      var poly = polys[i];
      var polyLatLngs = [];
      for (var j = 0; j < poly.getVertexCount(); j++) {
        polyLatLngs.push(poly.getVertex(j).lat().toFixed(5) + "," + poly.getVertex(j).lng().toFixed(5));
      }
-     params.push("path=" + polyParams + polyLatLngs.join("|"));
+     params.push("path=" + polyParams + "|" + polyLatLngs.join("|"));
    }
    if (map.getCurrentMapType() == G_SATELLITE_MAP) {
      params.push("maptype=satellite");
@@ -72,15 +84,14 @@ function updateImage() {
      params.push("maptype=terrain");
    }
 
-   params.push("zoom=" + map.getZoom());
    params.push("size=" + document.getElementById("mapWidthTEXT").value + "x" + document.getElementById("mapHeightTEXT").value);
    var img = document.createElement("img");
-   //img.src = baseUrl + params.join("&") + "&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxTZdFmpiU8vv3PBIA-hr88t-5BzzxSWLKKXiJcvC2EABsDlfXq6gJWAxA";
-   img.src = baseUrl + params.join("&") + "&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw";
+   //img.src = baseUrl + params.join("&") + "&sensor=false&key=ABQIAAAA-O3c-Om9OcvXMOJXreXHAxSsTL4WIgxhMZ0ZK_kHjwHeQuOD4xSbZqVZW2U_OWOxMp3YPfzZl2GavQ";
+   img.src = baseUrl + params.join("&") + "&sensor=false&key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw";
    document.getElementById("staticMapIMG").innerHTML = "";
    document.getElementById("staticMapIMG").appendChild(img);
 
-   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "&key=YOUR_KEY_HERE";
+   document.getElementById("staticMapURL").innerHTML = baseUrl + params.join("&") + "&sensor=TRUE_OR_FALSE&key=YOUR_KEY_HERE";
 }
 
 function load() {
@@ -128,8 +139,8 @@ function createPolyAt(latlng) {
   polys.push(poly);
 }
 
-function createMarkerAt(latlng) {
-  var marker = new GMarker(latlng, {draggable:true});
+function createMarkerAt(latlng, address) {
+  var marker = new GMarker(latlng, {draggable:true, title: address});
   GEvent.addListener(marker, 'dragend', function() {
     updateImage();
   });
@@ -162,7 +173,7 @@ function showAddress() {
         alert(address + " not found");
       } else {
         map.setCenter(latlng, 13);
-        createMarkerAt(latlng);
+        createMarkerAt(latlng, address);
         updateImage();
       }
     }
@@ -188,25 +199,27 @@ function disableSelects() {
 <body onload="load()">
 <h2>Create a map with a marker and optional info window.</h2>
   <p>
-  This wizard uses the <a href="http://code.google.com/apis/maps/documentation/staticmaps" target="_blank">Google Static Maps API</a>.
+  This wizard uses the <a href="http://code.google.com/apis/maps/documentation/staticmaps" target="_blank">Google Static Maps API v2</a>. It originally used Static Maps API v1, but that API is now deprecated. Please see the 
+<a href="http://code.google.com/apis/maps/documentation/staticmaps/upgrade.html">upgrade guide</a>
+for information on upgrading.
   </p>
 
 <h3><img src="http://www.google.com/uds/solutions/wizards/img/1b.gif" 
 style="vertical-align:middle"/> Customize Map View, Marker Location, & Paths</h3>
 <br/>
-  <b>To change the map view:</b>
+  <p><b>To change the map view:</b></p>
   <p>
   Use the map control to zoom in/out to the desired zoom level.
   </p>
 <br/>
-   <b>To create a marker:</b>
+   <p><b>To create a marker:</b></p>
   <p>Enter the desired address/location in the box and press the button. If the marker is a little off, drag it around to where it should be.
   <br/>
   <input type="text" size="30" id="addressTEXT" value="Mountain View, CA" />
   <input type="button" value="Create Marker Here" onclick="showAddress()"/>
   </p>
 <br/>
-  <b>To add a path:</b>
+  <p><b>To add a path:</b></p>
   <p>
   You can optionally click on the map to indicate a starting point for a path. Clicking multiple times afterwards builds out the path.
   </p>
@@ -236,35 +249,65 @@ style="vertical-align:middle"/>Customize Size & Preview</h3>
   <td>size: 
   <select id="markerSizeSELECT" onchange="disableSelects(); updateImage();">
     <option value="" SELECTED>normal</option>
-    <option value="mid">mid</option>
-    <option value="small">small</option>
-    <option value="tiny">tiny</option>
+    <option value="size:mid">mid</option>
+    <option value="size:small">small</option>
+    <option value="size:tiny">tiny</option>
   </select>
   </td>
   <td>Color:
   <select id="markerColorSELECT" onchange="updateImage();">
-    <option value="black">black</option>
-    <option value="brown">brown</option>
-    <option value="green">green</option>
-    <option value="purple">purple</option>
-    <option value="yellow">yellow</option>
-    <option value="blue">blue</option>
-    <option value="gray">gray</option>
-    <option value="orange">orange</option>
-    <option value="red" SELECTED>red</option>
-    <option value="white">white</option>
+    <option value="" SELECTED>normal</option>
+    <option value="color:black">black</option>
+    <option value="color:brown">brown</option>
+    <option value="color:green">green</option>
+    <option value="color:purple">purple</option>
+    <option value="color:yellow">yellow</option>
+    <option value="color:blue">blue</option>
+    <option value="color:gray">gray</option>
+    <option value="color:orange">orange</option>
+    <option value="color:red">red</option>
+    <option value="color:white">white</option>
   </select>
   </td>
   <td>Letter:
   <select id="markerLetterSELECT" onchange="updateImage();">
     <option value="">None</option>
-    <option value="a">A</option>
-    <option value="b">B</option>
-    <option value="c">C</option>
-    <option value="d">D</option>
-    <option value="e">E</option>
-    <option value="f">F</option>
-    <option value="g">G</option>
+    <option value="label:A">A</option>
+    <option value="label:B">B</option>
+    <option value="label:C">C</option>
+    <option value="label:D">D</option>
+    <option value="label:E">E</option>
+    <option value="label:F">F</option>
+    <option value="label:G">G</option>
+    <option value="label:H">H</option>
+    <option value="label:I">I</option>
+    <option value="label:J">J</option>
+    <option value="label:K">K</option>
+    <option value="label:L">L</option>
+    <option value="label:M">M</option>
+    <option value="label:N">N</option>
+    <option value="label:O">O</option>
+    <option value="label:P">P</option>
+    <option value="label:Q">Q</option>
+    <option value="label:R">R</option>
+    <option value="label:S">S</option>
+    <option value="label:T">T</option>
+    <option value="label:U">U</option>
+    <option value="label:V">V</option>
+    <option value="label:W">W</option>
+    <option value="label:X">X</option>
+    <option value="label:Y">Y</option>
+    <option value="label:Z">Z</option>
+    <option value="label:0">0</option>
+    <option value="label:1">1</option>
+    <option value="label:2">2</option>
+    <option value="label:3">3</option>
+    <option value="label:4">4</option>
+    <option value="label:5">5</option>
+    <option value="label:6">6</option>
+    <option value="label:7">7</option>
+    <option value="label:8">8</option>
+    <option value="label:9">9</option>
   </select>
   </td>
   </tr>
@@ -315,6 +358,12 @@ style="vertical-align:middle"/>Customize Size & Preview</h3>
   </select>
   </td>
   </tr>
+  <tr>
+  <td colspan="4"><input id="markerTypeCHECKBOX" type="checkbox" onchange="updateImage();">Store markers as addresses, not coordinates.</td>
+  </tr>
+  <tr>
+  <td colspan="4"><input id="mapFitCHECKBOX" type="checkbox" onchange="updateImage();">Automatically zoom to fit all overlays.</td>
+  </tr>
   </table>
   </p>
   <div id="staticMapIMG" style="width: 500px; margin-left: 20px; height: 300px"></div>
@@ -328,10 +377,6 @@ You can sign up for one <a
 href="http://code.google.com/apis/maps/signup.html">here</a>, and substitute it
 as the value of the "&key=" parameter in the URL below.
 <br/>
-<p>
-<!--<input id="keyBUTTON" type="button" onclick="generateKey();"
-value="Generate Key"/>-->
-</p>
 <pre id="staticMapURL" class="code">
 </pre>
 

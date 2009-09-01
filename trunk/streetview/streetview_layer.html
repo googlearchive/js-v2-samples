@@ -26,8 +26,8 @@ function load() {
   map.setCenter(latlng, 13);
 
   var guyIcon = new GIcon(G_DEFAULT_ICON);
-  guyIcon.image = "http://maps.google.com/intl/en_us/mapfiles/cb/man_arrow-0.png";
-  guyIcon.transparent = "http://maps.google.com/intl/en_us/mapfiles/cb/man-pick.png";
+  guyIcon.image = "http://maps.gstatic.com/mapfiles/cb/man_arrow-0.png";
+  guyIcon.transparent = "http://maps.gstatic.com/mapfiles/cb/man-pick.png";
   guyIcon.imageMap = [
         26,13, 30,14, 32,28, 27,28, 28,36, 18,35, 18,27, 16,26,
         16,20, 16,14, 19,13, 22,8
@@ -89,7 +89,7 @@ function onYawChange(newYaw) {
     newYaw += 360;
   }
   guyImageNum = Math.round(newYaw/GUY_ANGULAR_RES) % GUY_NUM_ICONS;
-  guyImageUrl = "http://maps.google.com/intl/en_us/mapfiles/cb/man_arrow-" + guyImageNum + ".png";
+  guyImageUrl = "http://maps.gstatic.com/mapfiles/cb/man_arrow-" + guyImageNum + ".png";
   marker.setImage(guyImageUrl);
 }
 

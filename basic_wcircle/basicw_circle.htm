@@ -4,7 +4,7 @@
   <head> 
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
     <title>Google Maps JavaScript API Example</title> 
-    <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw"
             type="text/javascript"></script>
     <script type="text/javascript"> 
     //<![CDATA[ 
@@ -32,11 +32,11 @@
       var Clng = Clat/Math.cos(lat*d2r); 
       var Cpoints = []; 
       for (var i=0; i < 33; i++) { 
-        var theta = Math.PI * (i/16); 
-        Cy = lat + (Clat * Math.sin(theta)); 
-        Cx = lng + (Clng * Math.cos(theta)); 
-        var P = new GLatLng(Cx,Cy); 
-        Cpoints.push(P); 
+        var theta = Math.PI * (i/16);
+        Cy = lat + (Clat * Math.sin(theta));
+        Cx = lng + (Clng * Math.cos(theta));
+        var P = new GLatLng(Cy, Cx);
+        Cpoints.push(P);
       }
 
       var polygon = new GPolygon(Cpoints, strokeColor, strokeWidth, strokeOpacity, fillColor, fillOpacity);
@@ -44,11 +44,9 @@
      }
 
     function load() { 
-      if (GBrowserIsCompatible()) { 
-        map = new GMap2(document.getElementById("map")); 
-        map.setCenter(new GLatLng(53.479874, -2.246704), 9); 
-        drawCircle(53.479874, -2.246704, 10.0, "#000080", 1, 0.75, "#0000FF",.5);   
-      } 
+      map = new GMap2(document.getElementById("map")); 
+      map.setCenter(new GLatLng(53.479874, -2.246704), 9); 
+      drawCircle(53.479874, -2.246704, 10.0, "#000080", 1, 0.75, "#0000FF",.5);   
     } 
     //]]> 
     </script> 

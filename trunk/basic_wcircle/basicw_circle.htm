@@ -35,7 +35,7 @@
         var theta = Math.PI * (i/16); 
         Cy = lat + (Clat * Math.sin(theta)); 
         Cx = lng + (Clng * Math.cos(theta)); 
-        var P = new GPoint(Cx,Cy); 
+        var P = new GLatLng(Cx,Cy); 
         Cpoints.push(P); 
       }
 

@@ -9,6 +9,8 @@
 <head>
 <title>Google Maps JavaScript API Example</title>
 <script type="text/javascript">
+var map;
+
 function getURLParam(name) {
   var regexS = "[\\?&]" + name + "=([^&#]*)";
   var regex = new RegExp(regexS);
@@ -19,8 +21,9 @@ var script = '<script src="http://maps.google.com/maps?file=api&v=' + getURLPara
 document.write(script);
 
 function loadMap() {
-  var map = new GMap2(document.getElementById("map"));
+  map = new GMap2(document.getElementById("map"));
   map.setCenter(new GLatLng(37.4419, -122.1419), 6);
+  map.addControl(new GMapTypeControl());
   map.addOverlay(new GMarker(map.getCenter()));
   if (window.G_API_VERSION) {
     GLog.write(G_API_VERSION);  

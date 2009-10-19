@@ -21,12 +21,13 @@
     var map;
 
     function load() {
-      map = new GMap2(document.getElementById("map"));
+      map = new GMap(document.getElementById("map"));
       map.setCenter(new GLatLng(37.4419, -122.1419), 13);
       map.addControl(new GSmallMapControl());
       map.addControl(new GMapTypeControl());
       map.addOverlay(new GLayer("com.panoramio.all"));
       map.addOverlay(new GLayer("org.wikipedia.en"));
+      map.addOverlay(new GLayer("com.google.webcams"));
     }
 
     //]]>
@@ -37,4 +38,3 @@
     <div id="map" style="width: 550px; height: 430px"></div>
   </body>
 </html>
-

@@ -19,6 +19,9 @@ var lastMarkerLocation;
 var panorama;
 var mapT;
 
+var maximizeendHandler = function() {};
+var infowindowbeforecloseHandler = function() { console.debug('original'); };
+
 function load() {
   client = new GStreetviewClient();
   var latlng = new GLatLng(45.511889, -122.675578);
@@ -42,8 +45,15 @@ function load() {
   GEvent.addListener(marker, "dragend", onDragEnd);
   GEvent.addListener(marker, "click", openPanoramaBubble);
   toggleOverlay();
-}
-
+  
+  // Register event listeners to marker and info window.
+  GEvent.addListener(map.getInfoWindow(), "maximizeend", function() {
+    maximizeendHandler();
+  });
+  GEvent.addListener(marker, "infowindowbeforeclose", function() {
+    infowindowbeforecloseHandler();
+  });
+}
 function openPanoramaBubble() {
   var contentNode = document.createElement('div');
   contentNode.style.textAlign = 'center';
@@ -55,21 +65,30 @@ function openPanoramaBubble() {
   smallNode.style.width = '200px';
   smallNode.style.height = '200px';
   smallNode.id = 'pano';
-  marker.openInfoWindow(smallNode, {maxContent: contentNode, maxTitle: "Full screen"});
+  document.body.appendChild(smallNode);
 
-  panorama = new GStreetviewPanorama(smallNode);
+  marker.openInfoWindow(smallNode, {
+    maxContent: contentNode,
+    maxTitle: "Full screen",
+    onOpenFn: function() {
+      alert('Will I ever get called??? No I wont');
+    }
+  });
+
+  panorama = panorama || new GStreetviewPanorama(smallNode);
+  panorama.setContainer(smallNode);
   panorama.setLocationAndPOV(marker.getLatLng(), null);
   GEvent.addListener(panorama, "newpano", onNewLocation);
-  GEvent.addListener(panorama, "yawchanged", onYawChange); 
-
-  var iw = map.getInfoWindow();
-  GEvent.addListener(iw, "maximizeend", function() {
-    panorama.setContainer(contentNode);  
+  GEvent.addListener(panorama, "yawchanged", onYawChange);
+  
+  // Update handlers for info window and marker event listeners.
+  maximizeendHandler = function() {
+    panorama.setContainer(contentNode);
     window.setTimeout("panorama.checkResize()", 5);
-  });
-  GEvent.addListener(marker, "infowindowbeforeclose", function() {
+  };
+  infowindowbeforecloseHandler = function() {
     panorama.remove();
-  });
+  };
 }
 
 function toggleOverlay() {

@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
 
 public class WebMapActivity extends Activity implements LocationListener {
     /** Called when the activity is first created. */
-	private static final String Map_URL = "http://example.com/android/simple-android-map.html";
+	private static final String Map_URL = "http://gmaps-samples.googlecode.com/svn/trunk/articles-android-webmap/simple-android-map.html";
 	private WebView webView;
 	private Location mostRecentLocation;
  

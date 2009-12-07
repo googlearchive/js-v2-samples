@@ -70,6 +70,7 @@ var g_infowindow = null;      // The current open infowindow, if any.
 /* Initialization */
 
 google.load('gdata', '2.x', {'packages': ['maps']});
+google.load("maps", "3",  {other_params: "sensor=false", region: "US"});
 google.setOnLoadCallback(initialize);
 
 function $(id) {
@@ -80,7 +81,6 @@ function $(id) {
  * Sets up the Map and SearchService objects, and adds event handlers to trigger searches.
  */
 function initialize() {
-  console.log('init');
   g_searchService = new google.code.mapsearch.SearchService('com.google.code.College-Finder-Demo');
   
   g_map = new google.maps.Map($("map"), {
@@ -124,8 +124,6 @@ function initialize() {
  * The callback function finds bounds containing the results, and displays them.
  */
 function doAddressSearch() {
-  console.log('Address search: ' + address);
-
   var address = $("search_input").value;
   var radius = $("select_radius").value;
   var showPublic = $('cb_public').checked;
@@ -142,8 +140,6 @@ function doAddressSearch() {
     // Filter everything, and show no results.
     filters.push('[Type:None]');
   }
-  
-  console.log(filters);
   
   g_searchService.search({
     address: address,
@@ -166,8 +162,6 @@ function doBoundsSearch() {
     return;
   }
   
-  console.log('Bounds search');
-
   var showPublic = $('cb_public').checked;
   var showPrivate = $('cb_private').checked;
   

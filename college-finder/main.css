@@ -17,7 +17,7 @@ limitations under the License.
 /* TODO: remove after TOS change */
 
 #auth {
-  display: none;
+  display: block;
 }
 
 /* END Remove */

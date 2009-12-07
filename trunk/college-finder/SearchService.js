@@ -107,7 +107,6 @@ google.code.mapsearch.SearchService.prototype.handleGeocodeResponse_ = function(
   return function (results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       request.latLng = results[0].geometry.location;
-      console.log("Successfully geocoded " + request.address + ": " + request.latLng);
       me.parseRequest_(request, callback);
     } else {
       // TODO: improve error handling.

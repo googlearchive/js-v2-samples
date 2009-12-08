@@ -163,17 +163,18 @@ if __name__ == '__main__':
             school_type = 'Unknown'
         
         # Group counts of student population into buckets
-        size = row['Size']
-        if size == '' or not size >= 0:
+        try:
+            size = int(row['Size'])
+            if size < 100:
+                size = '0-100'
+            elif size < 1000:
+                size = '101-1000'
+            elif size < 10000:
+                size = '1001-10000'
+            else:
+                size = '10000-'
+        except:
             size = 'Unknown'
-        elif size < 100:
-            size = '0-100 students'
-        elif size < 1000:
-            size = '101-1000 students'
-        elif size < 10000:
-            size = '1001-10000 students'
-        else:
-            size = '10000+ students'
         
         row['description'] = '%s <br /> <b>Type:</b> %s <br /> <b>Size:</b> %s' % (row['address'], school_type, size)
         row['Website'] = row['Website'].lower()

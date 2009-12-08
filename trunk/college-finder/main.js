@@ -4,10 +4,10 @@
  * colleges, and displays the results on both a map and table.
  *
  * Two types of searches are performed:
- *   doAddressSearch -- triggered when the 'Search' button is clicked
+ *   doAddressSearch -- triggered when the 'Search' form is submitted.
  *     Geocodes the address, searches for the closest markers, finds bounds
  *     containing all results, and updates the map and results.
- *   doBoundsSearch -- triggered when the map bounds change (e.g. user drags or zooms)
+ *   doBoundsSearch -- triggered when the map bounds change (e.g. user drags or zooms).
  *     Searches for all markers within the current map bounds, and displays them.
  *
  *
@@ -28,28 +28,11 @@
  * @author Matt Holden
  */
 
-/*
-TODO:
-- bounds search should respect filters
-- move to a test account
-- cache or supress duplicate requests
-- errorHandler?
-- modified Thor's DataSearch class:
-  - updated documentation, some clean up
-  - renamed class to SearchService and put everything in the google.code.mapssearch namespace
-  - (I tried google.gdata.maps.search, but couldn't find a way to share an existing namespace)
-  - when Thor is ready to release a more official version of his class (e.g. as an API extension), I can update my project to use that instead.
-*/
-
-
-
-
-
 /* Constants */
 
 // ID of the map over which to search: this can be taken from the Maps Data API maps
 // meta-feed, or extracted from a map's 'Link' in the Google My Maps UI.
-var MAP_ID = '117642110941523913437/00047a1602f4d04e31567';
+var MAP_ID = '106502860966716127538.00047a323e6dd19a69ecd';
 
 // Since the map has thousands of results, we'll only show search results above a certain zoom.
 var RESULTS_MIN_ZOOM_LEVEL = 8;
@@ -90,8 +73,16 @@ function initialize() {
     });
   
   google.maps.event.addListener(g_map, 'click', closeInfowindow);
-    
-  // Do a 'bounds search' when map is dragged or zoomed.
+  
+  // Update the search in the current bounds whenever a filter changes.
+  $('select_size').onchange = doBoundsSearch;
+  $('cb_public').onchange = doBoundsSearch;
+  $('cb_private').onchange = doBoundsSearch;
+  
+  // Perform a new geocode search when the radius changes.
+  $('select_radius').onchange = doAddressSearch;
+  
+  // Search within the bounds whenever the map is dragged or zoomed.
   google.maps.event.addListener(g_map, 'dragstart', function() {
       this.dragging = true;
     });
@@ -126,25 +117,11 @@ function initialize() {
 function doAddressSearch() {
   var address = $("search_input").value;
   var radius = $("select_radius").value;
-  var showPublic = $('cb_public').checked;
-  var showPrivate = $('cb_private').checked;
-  
-  var filters = new Array();
-  if (showPublic && showPrivate) {
-    // Do nothing, since no type filtering is needed.
-  } else if (showPublic) {
-    filters.push('[Type:Public]');
-  } else if (showPrivate) {
-    filters.push('[Type:Private]');
-  } else {
-    // Filter everything, and show no results.
-    filters.push('[Type:None]');
-  }
   
   g_searchService.search({
     address: address,
     radius: radius,
-    filters: filters,
+    filters: getFilters(),
     maxResults: MAX_RESULTS,
     sortBy: 'distance',
     mapId: MAP_ID,
@@ -162,29 +139,48 @@ function doBoundsSearch() {
     return;
   }
   
-  var showPublic = $('cb_public').checked;
-  var showPrivate = $('cb_private').checked;
-  
-  var filters = new Array();
-  if (showPublic && showPrivate) {
-    // Do nothing, since no type filtering is needed.
-  } else if (showPublic) {
-    filters.push('[Type:Public]');
-  } else if (showPrivate) {
-    filters.push('[Type:Private]');
-  } else {
-    // Filter everything, and show no results.
-    filters.push('[Type:None]');
-  }
-  
   g_searchService.search({
     latLng: g_map.getCenter(),
     bounds: g_map.getBounds(),
-    filters: filters,
+    filters: getFilters(),
     maxResults: MAX_RESULTS,
     sortBy: 'distance',
     mapId: MAP_ID,
   }, showResults);
+}
+
+/**
+ * Return the array of attribute filters based on checkbox states.
+ */
+function getFilters() {
+  
+  // Should we show public and/or private schools?
+  var showPublic = $('cb_public').checked;
+  var showPrivate = $('cb_private').checked;
+  var type = null;
+  if (showPublic && showPrivate) {
+    type = 'Both';
+  } else if (showPublic) {
+    type = 'Public';
+  } else if (showPrivate) {
+    type = 'Private';
+  } else {
+    type = 'None';
+  }
+  
+  // Should we filter by student body size?
+  var size = $("select_size").value;
+  
+  // Create the corresponding attribute filters.
+  var filters = new Array();
+  if (type != 'Both') {
+    filters.push('[Type:' + type + ']');
+  }
+  if (size != 'Any size') {
+    filters.push('[Size:' + size + ']');
+  }
+
+  return filters;
 }
 
 

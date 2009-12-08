@@ -12,6 +12,8 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+@author Matt Holden
 */
 
 /* TODO: remove after TOS change */
@@ -39,54 +41,89 @@ a:active {
   color: #f00;
 }
 
-/* layout */
-
 #container {
-  width: 760px;
-  padding: 10px 10px 30px 10px;
+  width: 1000px;
+  padding: 10px;
   margin: 0 auto;
 }
 
+/* Header */
+
 #header {
   position: relative;
-  padding-left: 320px;
-  margin-bottom: 0.5em;
-  min-height: 78px;
+  padding-right: 100px;
+  margin-bottom: 10px;
 }
 
 #logo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 40px;
+  float: right;
+  width: 150px;
   height: 40px;
   background: transparent url(images/gdata-maps_40x40.png) no-repeat scroll top left;
 }
 
-#logo #slogan {
-  position: absolute;
-  left: 75px;
-  top: 10px;
-/*  left: 84px;
-  top: 53px; */
-  width: 194px;
-  height: 25px;
+#logo > #title {
+  font-family: helvetica;
+  font-size: 35pt;
+  color: #333;
+  padding-left: 50px;
+}
+
+#logo > #slogan {
   color: #888;
 }
 
 #search_form {
+  padding: 10px;
+  width: 380px;
+  background-color: aliceblue;
+  border: 2px solid forestgreen;
   font-size: 1.3em;
+  font-weight: bold;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
 }
 
-#search_form #search_input {
+#search_form > #search_input {
   margin-top: 5px;
-  font-size: 1.0em;
-  width: 350px;
+  padding-left: 3px;
+  font-size: 1.2em;
+  width: 300px;
 }
 
-#search_form #select_radius {
-  width: 75px;
+#search_form > #search_button {
+  margin: 5px;
 }
+
+#filters_panel {
+  padding: 5px;
+}
+
+#filters_panel > #left_filters {
+  float: left;
+  padding-right: 60px;
+}
+
+#filters_panel > #right_filters {
+  padding: 5px;
+}
+
+#filters_panel span.label {
+  float: left;
+  margin: 3px 3px 3px 0;
+  padding: 2px 2px 2px 0;
+}
+
+#filters_panel select {
+  float: right;
+  margin: 3px;
+  text-align: right;
+  width: 120px;
+}
+
+/* Content */
 
 #map_container {
   border: 1px solid #aaa;
@@ -133,7 +170,7 @@ a:active {
   padding-left: 25px;
 }
 
-/* footer */
+/* Footer */
 
 #footer {
   margin-top: 30px;

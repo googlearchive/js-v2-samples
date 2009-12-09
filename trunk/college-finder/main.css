@@ -75,7 +75,7 @@ a:active {
 
 #search_form {
   padding: 10px;
-  width: 380px;
+  width: 400px;
   background-color: aliceblue;
   border: 2px solid forestgreen;
   font-size: 1.3em;
@@ -156,18 +156,21 @@ a:active {
 }
 
 .infowindow {
-  font-size: 1.0em;
+  font-size: 1.2em;
+  height: 100px;
+  padding: 5px;
   overflow: auto;
-  min-height: 65px;
 }
 
-.infowindow h2 {
-  color: #333;
+.infowindow > .title {
+  color: #111;
   font-weight: bold;
-  font-size: 1.6em;
-  margin-bottom: 0.5em;
-  padding-top: 0.5em;
-  padding-left: 25px;
+  font-size: 1.5em;
+  padding-bottom: 10px;
+}
+
+.infowindow > .description {
+  color: #333;
 }
 
 /* Footer */

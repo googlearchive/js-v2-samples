@@ -128,7 +128,7 @@ google.code.mapsearch.SearchService.prototype.parseRequest_ = function(request, 
   var params = [];
   
   if (request.mapId) {
-    featureFeedUrl += '/' + request.mapId + '/snippet?';
+    featureFeedUrl += '/' + request.mapId + '/full?';
   } else {
     throw new Error('mapId is required');
   }
@@ -226,8 +226,7 @@ google.code.mapsearch.SearchService.prototype.returnResults_ = function(entries,
     results[i]['updated']   = entries[i].getUpdated().getValue().getDate();
     results[i]['title']     = entries[i].getTitle().getText();
     results[i]['name'] = this.getNodeContent_(placemark, 'name');
-    // TODO: when the /full search projection is added, we will have descriptions.
-    // results[i]['description'] = this.getNodeContent(placemark, 'description');
+    results[i]['description'] = this.getNodeContent_(placemark, 'description');
     results[i]['marker'] = this.getMarker_(placemark);
     
     results[i]['properties'] = {};

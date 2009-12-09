@@ -222,7 +222,7 @@ function showResults(results) {
       marker = results[i].marker;
       marker.setMap(g_map);
       google.maps.event.addListener(marker, "click",
-        getMarkerClickHandler(marker, results[i].title)
+        getMarkerClickHandler(marker, results[i].title, results[i].description)
       );
     }
     newMarkers[i] = marker;
@@ -245,11 +245,15 @@ function showResults(results) {
 /**
  * Return the event handler to call when a marker gets clicked.
  */
-function getMarkerClickHandler(marker, title) {
+function getMarkerClickHandler(marker, title, description) {
   return function() {
     // Close one infowindow before opening another.
     closeInfowindow();
-    var content = '<div class="infowindow"><h2>' + title + '</h2></div>';
+    
+    var content = '<div class="infowindow">' +
+                    '<div class="title">' + title + '</div>' +
+                    '<div class="description">' + description + '</div>' +
+                  '</div>';
     g_infowindow = new google.maps.InfoWindow({
       'content': content,
       });
@@ -261,7 +265,7 @@ function getMarkerClickHandler(marker, title) {
  * Display the results in a table below the map.
  */
 function listResultsInTable(results) {
-  var html = '<div class="store" id="results_header">' +
+  var html = '<div id="results_header">' +
              '  <div>Results</div>' +
              '</div>';
   

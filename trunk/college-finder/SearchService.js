@@ -64,7 +64,8 @@ google.code.mapsearch.SearchService = function(application_name) {
  *   <ul>
  *   <li>latLng {google.maps.LatLng}: A location around which to search.  When a
  *       radius is specified, the search returns placemarks within the radius of
- *       this location.  The sortBy option can also indicate search results should
+ *       this location.  The 
+  option can also indicate search results should
  *       be sorted by distance to this location.  If an address and latLng are both
  *       supplied, the latLng takes precedence.
  *   <li>address {string}: A text address that is geocoded to a latLng prior to searching.
@@ -185,7 +186,7 @@ google.code.mapsearch.SearchService.prototype.parseRequest_ = function(request, 
   }
   
   if (request.sortBy) {
-    params.push('sortBy=' + request.sortBy);
+    params.push('sortby=' + request.sortBy);
   }
   
   if (request.maxResults) {

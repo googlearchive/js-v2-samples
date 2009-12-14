@@ -25,76 +25,80 @@
 	<script src="main.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="main.css" type="text/css" />
 </head>
-<body>	
-	<div id="auth">
-		***TODO: Eliminate after TOS change...***
-		<input id="login_button" type="button" value="Login" />
-		<input id="logout_button" type="button" value="Logout" />
-	</div>
-	<br />
-	<br />
+<body>
 	
-	<div id="container">
-		<div id="header">
-			<div id="logo">
-				<span id="title">College Finder</span>
-				<span id="slogan">
-					Demo of spatial + attribute search in the
-					<a href="http://code.google.com/apis/maps/documentation/mapsdata/">
-					Maps Data API</a>
-				</span>
-			</div>
+	<!--Left panel contains logo, search form, and search results table.-->
+	<div id="left_panel">
+
+		<div id="auth">
+			***TODO: Eliminate after TOS change...***
+			<input id="login_button" type="button" value="Login" />
+			<input id="logout_button" type="button" value="Logout" />
+		</div>
 		
-			<form id="search_form" action="" onsubmit="doAddressSearch(); return false;">
-				<label for="search_input">Search for colleges near:</label><br />
-				<input id="search_input" type="search" />
-				<input id="search_button" type="submit" value="Search" />
-				
-				<div id="filters_panel">
-					<div id="left_filters">
-						<div>
-							<span class="label">radius:</span>
-							<select id="select_radius" name="radius">
-								<option value="5 km" >5 km</option>
-								<option value="10 km" >10 km</option>
-								<option value="20 km" >20 km</option>
-								<option value="30 km" selected="true" >30 km</option>
-								<option value="50 km" >50 km</option>
-								<option value="100 km" >100 km</option>
-							</select>
-						</div>
-						<div>
-							<span class="label">size:</span>
-							<select id="select_size">
-								<option value="Any size" selected="true">Any size</option>
-								<option value="0-100">less than 100</option>
-								<option value="101-1000">100 to 1K</option>
-								<option value="1001-10000">1K - 10K</option>
-								<option value="10000-">10K +</option>
-							</select>
-						</div>
+		<div id="logo">
+			<div id="title">College Finder</div>
+			<div id="slogan">
+				Demo of spatial + attribute search in the
+				<a href="http://code.google.com/apis/maps/documentation/mapsdata/">
+				Maps Data API</a>
+			</div>
+		</div>
+		
+		<form id="search_form" action="" onsubmit="doAddressSearch(); return false;">
+			<label for="search_input">Search for colleges near:</label><br />
+			<input id="search_input" type="search" />
+			<input id="search_button" type="submit" value="Search" />
+			
+			<div id="filters_panel">
+				<div id="left_filters">
+					<div>
+						<select id="select_radius" name="radius">
+							<option value="5 km" >5 km</option>
+							<option value="10 km" >10 km</option>
+							<option value="20 km" >20 km</option>
+							<option value="30 km" selected="true" >30 km</option>
+							<option value="50 km" >50 km</option>
+							<option value="100 km" >100 km</option>
+						</select>
+						<span class="label">radius:</span>
 					</div>
-					
-					<div id="right_filters">
-						<input id="cb_public" type="checkbox" checked="checked"
-							value="Public" />
-						<label for="cb_public">public</label><br />
-						
-						<input id="cb_private" type="checkbox" checked="checked"
-							value="Private" />
-						<label for="cb_private">private</label>
+					<div>
+						<select id="select_size">
+							<option value="Any size" selected="true">Any size</option>
+							<option value="less than 100">less than 100</option>
+							<option value="100 to 1K">100 to 1K</option>
+							<option value="1K to 10K">1K to 10K</option>
+							<option value="more than 10K">more than 10K</option>
+						</select>
+						<span class="label">size:</span>
 					</div>
 				</div>
-			</form>
+				
+				<div id="right_filters">
+					<input id="cb_public" type="checkbox" checked="checked"
+						value="Public" />
+					<label for="cb_public">public</label><br />
+					
+					<input id="cb_private" type="checkbox" checked="checked"
+						value="Private" />
+					<label for="cb_private">private</label>
+				</div>
+			</div>
+		</form>
+		
+		<div id="results_container">
 		</div>
+	</div><!--END left_panel-->
 	
+	
+	<!--Right panel contains the map and footer text.-->
+	<div id="right_panel">
+		
 		<div id="map_container">
 			<div id="map"></div>
 		</div>
-
-		<div id="results_container">
-		</div>
-	
+		
 		<div id="footer">
 			<p>
 				DISCLAIMER: this is a demo application for the
@@ -109,10 +113,10 @@
 			</p>
 			<p>Copyright &copy; 2009, Google Inc.</p>
 		</div>
-		
-		<!--For authentication purposes, the GData JavaScript client library requires
-			a local image file to be hosted within the page, so we use a transparent GIF.-->
-		<p><img id="pixel_image" src="images/transparent.gif" /></p>
-	</div>
+	</div><!--END right_panel-->
+	
+	<!--For authentication purposes, the GData JavaScript client library requires
+		a local image file to be hosted within the page, so we use a transparent GIF.-->
+	<img id="pixel_image" src="images/transparent.gif" />
 </body>
 </html>

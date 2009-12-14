@@ -50,9 +50,10 @@ def create_placemark_element(kml_doc, name, description, coordinates, extended_d
     placemark_element.appendChild(name_element)
     
     # Add <description>
-    description_element = kml_doc.createElement('description')
-    description_element.appendChild(kml_doc.createTextNode(description))
-    placemark_element.appendChild(description_element)
+    if description:
+        description_element = kml_doc.createElement('description')
+        description_element.appendChild(kml_doc.createTextNode(description))
+        placemark_element.appendChild(description_element)
     
     # Add <ExtendedData>
     if len(extended_data) > 0:
@@ -113,23 +114,26 @@ def create_kml_document(document_name, csv_input_filename, kml_output_filename, 
             modify_row_dict(row)
         
         # Check that this row has all required fields.
-        required_fields = ['name', 'description', 'address']
+        standard_fields = ['name', 'address', 'description']
+        required_fields = ['name', 'address']
         for field in required_fields:
             if not field in row or not row[field]:
                 raise Exception('Line %d is missing a required field: %s' % (line_num + 1, field))
         
+        name        = row.get('name')
+        address     = row.get('address')
+        description = row.get('description', None)
+        coordinates = geocode(address)
+        
         # Add any non-required fields as extended data.
         extended_data = {}
         for field in row:
-            if not field in required_fields:
+            if not field in standard_fields:
                 extended_data[field] = row[field]
         
         # Delay for a moment to avoid exceeding geocoder quota.
         time.sleep(0.05)
         
-        name = row['name']
-        description = row['description']
-        coordinates = geocode(row['address'])
         if coordinates != None:
             print 'Adding Placemark: %s' % name
             placemark_element = create_placemark_element(kml_doc, name, description, coordinates, extended_data)
@@ -159,27 +163,25 @@ if __name__ == '__main__':
         elif 'Private' in school_type:
             school_type = 'Private'
         else:
-            raise 's'
-            school_type = 'Unknown'
+            raise Exception('Unknown school type')
         
         # Group counts of student population into buckets
         try:
             size = int(row['Size'])
             if size < 100:
-                size = '0-100'
+                size = 'less than 100'
             elif size < 1000:
-                size = '101-1000'
+                size = '100 to 1K'
             elif size < 10000:
-                size = '1001-10000'
+                size = '1K to 10K'
             else:
-                size = '10000-'
+                size = 'more than 10K'
         except:
             size = 'Unknown'
         
-        row['description'] = '%s <br /> <b>Type:</b> %s <br /> <b>Size:</b> %s' % (row['address'], school_type, size)
-        row['Website'] = row['Website'].lower()
+        row['Address'] = row['address']
         row['Type'] = school_type
         row['Size'] = size
-    
+        row['Website'] = row['Website'].lower()
     
     create_kml_document("4-Year U.S. Colleges", csv_input_filename, kml_output_filename, modify_row_dict)

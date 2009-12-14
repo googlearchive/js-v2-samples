@@ -32,7 +32,7 @@
 
 // ID of the map over which to search: this can be taken from the Maps Data API maps
 // meta-feed, or extracted from a map's 'Link' in the Google My Maps UI.
-var MAP_ID = '106502860966716127538.00047a323e6dd19a69ecd';
+var MAP_ID = '106502860966716127538.00047aa72348d4e75dff1';
 
 // Since the map has thousands of results, we'll only show search results above a certain zoom.
 var RESULTS_MIN_ZOOM_LEVEL = 8;
@@ -195,13 +195,14 @@ function showAddressSearchResults(results) {
     bounds.extend(results[i].marker.getPosition());
   }
   g_map.fitBounds(bounds);   // The bounds change triggers doBoundsSearch
-  closeInfowindow();
 }
 
 /**
  * Display search results on the map and in the results table.
  */
 function showResults(results) {
+  // Close any open IW, since the results may have changed.
+  closeInfowindow();
   
   // We could easily clear the map and then add the new markers, but this would
   // cause some markers to flicker when they are removed/added.  So instead, we add markers
@@ -222,7 +223,7 @@ function showResults(results) {
       marker = results[i].marker;
       marker.setMap(g_map);
       google.maps.event.addListener(marker, "click",
-        getMarkerClickHandler(marker, results[i].title, results[i].description)
+        getMarkerClickHandler(marker, results[i].title, results[i]['ExtendedData'])
       );
     }
     newMarkers[i] = marker;
@@ -245,17 +246,27 @@ function showResults(results) {
 /**
  * Return the event handler to call when a marker gets clicked.
  */
-function getMarkerClickHandler(marker, title, description) {
+function getMarkerClickHandler(marker, title, extendedData) {
   return function() {
     // Close one infowindow before opening another.
     closeInfowindow();
+    
+    var schoolType = extendedData['Type'] + ' school with ' + extendedData['Size'] + ' students';
+    var website = extendedData['Website'];
+    var description = '<div class="address">' + extendedData['Address'] + '</div>'
+                    + '<div class="type">' + schoolType + '</div>';
+    if (website) {
+      description += '<a target="_blank" href="http://' + website + '">' + website + '</a>';
+    }
     
     var content = '<div class="infowindow">' +
                     '<div class="title">' + title + '</div>' +
                     '<div class="description">' + description + '</div>' +
                   '</div>';
+    
     g_infowindow = new google.maps.InfoWindow({
       'content': content,
+      'disableAutoPan': true    // otherwise, the autopan will trigger a new search
       });
     g_infowindow.open(g_map, marker);
   }
@@ -265,10 +276,7 @@ function getMarkerClickHandler(marker, title, description) {
  * Display the results in a table below the map.
  */
 function listResultsInTable(results) {
-  var html = '<div id="results_header">' +
-             '  <div>Results</div>' +
-             '</div>';
-  
+  var html = '';
   for (var i = 0; i < results.length; i++) {
     html += '<div onclick="showResult(' + i + ')" class="result" id="result_' + i + '">';
     html += '  <div>';

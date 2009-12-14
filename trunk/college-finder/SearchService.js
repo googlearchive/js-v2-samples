@@ -219,30 +219,25 @@ google.code.mapsearch.SearchService.prototype.returnResults_ = function(entries,
   var results = new Array(entries.length);
   for (var i in entries) {
     var kml = this.parseKml_(entries[i].getContent().getText());
-    var placemark = kml.getElementsByTagNameNS('http://www.opengis.net/kml/2.2', 'Placemark').item(0);
+    var placemark = this.getTags_(kml, 'Placemark').item(0);
     
+    // Get standard Atom properties.
     results[i] = {};
     results[i]['id']        = entries[i].getId().getValue();
     results[i]['published'] = entries[i].getPublished().getValue().getDate();
     results[i]['updated']   = entries[i].getUpdated().getValue().getDate();
     results[i]['title']     = entries[i].getTitle().getText();
-    results[i]['name'] = this.getNodeContent_(placemark, 'name');
-    results[i]['description'] = this.getNodeContent_(placemark, 'description');
-    results[i]['marker'] = this.getMarker_(placemark);
+    results[i]['name']        = this.getFirstTagContent_(placemark, 'name');
+    results[i]['description'] = this.getFirstTagContent_(placemark, 'description');
     
-    results[i]['properties'] = {};
-    var properties = entries[i].getCustomProperties();
-    for (var j = 0; j < properties.length; j++) {
-      var prop = properties[j];
-      var name = prop.getName();
-      var type = prop.getType();
-      var unit = prop.getUnit();
-      var value = prop.getValue();
-      if (! results[i]['properties'][name]) {
-        results[i]['properties'][name] = [];
-      }
-      results[i]['properties'][name].push(value);
-    }
+    // Get any GData custom properties
+    results[i]['properties'] = this.getCustomProperties_(entries[i]);
+    
+    // Get any KML ExtendedData elements.
+    results[i]['ExtendedData'] = this.getExtendedData_(placemark);
+    
+    // Construct a google.maps.Marker from the parsed KML Placemark.
+    results[i]['marker'] = this.getMarker_(placemark);
   }
   callback(results);
 }
@@ -258,11 +253,24 @@ google.code.mapsearch.SearchService.prototype.parseKml_ = function(kmlString) {
 }
 
 /**
- * Return the value of the first tag of the given type within a KML node.
+ * Return all tags of the give type in an XML DOM node.
  * @private
  */
-google.code.mapsearch.SearchService.prototype.getNodeContent_ = function(node, tag) {
-  return node.getElementsByTagNameNS('http://www.opengis.net/kml/2.2', tag).item(0).childNodes[0].nodeValue;
+google.code.mapsearch.SearchService.prototype.getTags_ = function(node, tag) {
+  return node.getElementsByTagNameNS('http://www.opengis.net/kml/2.2', tag);
+}
+
+/**
+ * Return the contents of first tag of the given type within an XML DOM node.
+ * @private
+ */
+google.code.mapsearch.SearchService.prototype.getFirstTagContent_ = function(node, tag) {
+  var tags = this.getTags_(node, tag);
+  if (tags.length > 0 && tags.item(0).childNodes.length > 0) {
+    return tags.item(0).childNodes[0].nodeValue;
+  } else {
+    return null;
+  }
 }
 
 /**
@@ -273,19 +281,58 @@ google.code.mapsearch.SearchService.prototype.getNodeContent_ = function(node, t
  * @private
  */
 google.code.mapsearch.SearchService.prototype.getMarker_ = function(placemark) {
-  var coords = this.getNodeContent_(placemark, 'coordinates').split(',');
+  var coords = this.getFirstTagContent_(placemark, 'coordinates').split(',');
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(coords[1], coords[0]),
     title: name,
   });
-
-  var iconNode = placemark.getElementsByTagNameNS('http://www.opengis.net/kml/2.2', 'Icon').item(0);
+  
+  var iconNode = this.getTags_(placemark, 'Icon').item(0);
   if (iconNode) {
-    var iconHref = this.getNodeContent_(iconNode, 'href');
+    var iconHref = this.getFirstTagContent_(iconNode, 'href');
     marker.setIcon(iconHref);
   }
 
   return marker;
+}
+
+/**
+ * Extract any ExtendedData name/value pairs from the given Placemark element,
+ * and return them as a dictionary.
+ * @private
+ */
+google.code.mapsearch.SearchService.prototype.getExtendedData_ = function(placemark) {
+  var extData = {}
+  var extDataTags = this.getTags_(placemark, 'ExtendedData');
+  if (extDataTags) {
+    var dataTags = this.getTags_(extDataTags[0], 'Data');
+    for (var i=0; i < dataTags.length; i++) {
+      var name = dataTags[i].getAttribute('name');
+      var value = this.getFirstTagContent_(dataTags[i], 'value');
+      extData[name] = value;
+    }
+  }
+  return extData;
+}
+
+/**
+ * Return the GData CustomProperties for a feature, as a dictionary of name/value pairs.
+ * @param featureEntry {google.gdata.maps.FeatureEntry}
+ */
+google.code.mapsearch.SearchService.prototype.getCustomProperties_ = function(featureEntry) {
+  var properties = featureEntry.getCustomProperties();
+  var results = {};
+  for (var j=0; j < properties.length; j++) {
+    var name  = properties[j].getName();
+    var value = properties[j].getValue();
+//    var type  = properties[j].getType();
+//    var unit  = properties[j].getUnit();
+    if (! results[name]) {
+      results[name] = [];
+    }
+    results[name].push(value);
+  }
+  return results;
 }
 
 /**

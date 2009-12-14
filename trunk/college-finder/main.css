@@ -16,20 +16,9 @@ limitations under the License.
 @author Matt Holden
 */
 
-/* TODO: remove after TOS change */
-
-#auth {
-  display: block;
-}
-
-/* END Remove */
-
-
-/* page globals */
-
 body {
   font-family: helvetica, arial, sans-serif;
-  font-size: 62.5%;
+  font-size: 70%;
   color: #333;
 }
 
@@ -41,41 +30,63 @@ a:active {
   color: #f00;
 }
 
-#container {
-  width: 1000px;
+#pixel_image {
+  position: absolute;
+  top: -1000px;
+}
+
+#left_panel {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 400px;
   padding: 10px;
-  margin: 0 auto;
 }
 
-/* Header */
-
-#header {
-  position: relative;
-  padding-right: 100px;
-  margin-bottom: 10px;
+#right_panel {
+  position: absolute;
+  top: 0px;
+  left: 420px;
+  width: 700px;
+  padding: 10px;
 }
+
+
+
+/**** left_panel contents ****/
+
+
+
+/* TODO: REMOVE after TOS change */
+#auth {
+  padding: 10px;
+  background-color: #DDD;
+}
+
+/* logo */
 
 #logo {
-  float: right;
-  width: 150px;
-  height: 40px;
+  margin-top: 20px;
+  height: 70px;
   background: transparent url(images/gdata-maps_40x40.png) no-repeat scroll top left;
 }
 
 #logo > #title {
+  padding-left: 50px;
   font-family: helvetica;
   font-size: 35pt;
   color: #333;
-  padding-left: 50px;
 }
 
 #logo > #slogan {
+  padding-left: 50px;
   color: #888;
 }
 
+/* search form */
+
 #search_form {
   padding: 10px;
-  width: 400px;
   background-color: aliceblue;
   border: 2px solid forestgreen;
   font-size: 1.3em;
@@ -87,14 +98,9 @@ a:active {
 }
 
 #search_form > #search_input {
-  margin-top: 5px;
+  margin: 5px 5px 0 0;
   padding-left: 3px;
-  font-size: 1.2em;
   width: 300px;
-}
-
-#search_form > #search_button {
-  margin: 5px;
 }
 
 #filters_panel {
@@ -106,12 +112,8 @@ a:active {
   padding-right: 60px;
 }
 
-#filters_panel > #right_filters {
-  padding: 5px;
-}
-
 #filters_panel span.label {
-  float: left;
+  float: right;
   margin: 3px 3px 3px 0;
   padding: 2px 2px 2px 0;
 }
@@ -120,10 +122,27 @@ a:active {
   float: right;
   margin: 3px;
   text-align: right;
-  width: 120px;
+  width: 110px;
 }
 
-/* Content */
+/* results table */
+
+#results_container {
+  overflow: auto;
+  font-size: 1.2em;
+}
+
+.result {
+  border-bottom: 1px solid #666666;
+  padding: 5px;
+  margin: 5px 0 5px 0;
+  cursor: pointer;
+}
+
+
+
+/**** right_panel contents ****/
+
 
 #map_container {
   border: 1px solid #aaa;
@@ -136,24 +155,17 @@ a:active {
   height: 100%;
 }
 
-#results_container {
-  overflow: auto;
+#footer {
+  margin-top: 30px;
   font-size: 1.2em;
-  margin-top: 10px;
+  color: #888;
 }
 
-#results_header {
-  border-bottom: 1px solid #666666;
-  font-size: 1.5em;
-  font-weight: bold;
+#footer p {
+  margin-bottom: 1.2em;
 }
 
-.result {
-  border-bottom: 1px solid #666666;
-  padding: 4px 0 4px 0;
-  margin: 4px 0 4px 0;
-  cursor: pointer;
-}
+/* infowindows */
 
 .infowindow {
   font-size: 1.2em;
@@ -173,19 +185,6 @@ a:active {
   color: #333;
 }
 
-/* Footer */
-
-#footer {
-  margin-top: 30px;
-  font-size: 1.2em;
-  color: #888;
-}
-
-#footer p {
-  margin-bottom: 1.2em;
-}
-
-#pixel_image {
-  position: absolute;
-  top: -1000px;
+.infowindow .address {
+  padding-bottom: 10px;
 }

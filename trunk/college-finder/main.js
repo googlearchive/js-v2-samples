@@ -95,15 +95,6 @@ function initialize() {
         doBoundsSearch();
       }
     });
-  
-  // TODO: REMOVE after TOS change
-  $("login_button").onclick = function() {
-    var token = google.accounts.user.login(google.code.mapsearch.MAPS_FEEDS_URI_);
-  }
-  $("logout_button").onclick = function() {
-    google.accounts.user.logout();
-  }
-  // END: REMOVE
 }
 
 

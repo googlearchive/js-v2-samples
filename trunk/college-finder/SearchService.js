@@ -273,10 +273,10 @@ google.code.mapsearch.SearchService.prototype.getFirstTagContent_ = function(nod
 }
 
 /**
- * Construct a Google Maps API LatLng object from a Google Data API search result.
+ * Construct a Google Maps API Marker object from a Google Data API search result.
  *
  * @param entry  {google.gdata.maps.FeatureEntry} A Maps Data API feature search result.
- * @return {google.maps.LatLng}
+ * @return {google.maps.Marker}
  * @private
  */
 google.code.mapsearch.SearchService.prototype.getMarker_ = function(placemark) {

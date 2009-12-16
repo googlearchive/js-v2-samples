@@ -110,7 +110,6 @@ google.code.mapsearch.SearchService.prototype.handleGeocodeResponse_ = function(
       request.latLng = results[0].geometry.location;
       me.parseRequest_(request, callback);
     } else {
-      // TODO: improve error handling.
       alert("Sorry, we couldn't find a location matching " + request.address);
     }
   }

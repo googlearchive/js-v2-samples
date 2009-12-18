@@ -19,8 +19,9 @@ var lastMarkerLocation;
 var panorama;
 var mapT;
 
+var maximizeclickHandler = function() {};
 var maximizeendHandler = function() {};
-var infowindowbeforecloseHandler = function() { console.debug('original'); };
+var infowindowbeforecloseHandler = function() {};
 
 function load() {
   client = new GStreetviewClient();
@@ -47,13 +48,17 @@ function load() {
   toggleOverlay();
   
   // Register event listeners to marker and info window.
+  GEvent.addListener(map.getInfoWindow(), "maximizeclick", function() {
+    maximizeclickHandler();
+  });
   GEvent.addListener(map.getInfoWindow(), "maximizeend", function() {
     maximizeendHandler();
   });
   GEvent.addListener(marker, "infowindowbeforeclose", function() {
     infowindowbeforecloseHandler();
   });
-}
+}
+
 function openPanoramaBubble() {
   var contentNode = document.createElement('div');
   contentNode.style.textAlign = 'center';
@@ -82,6 +87,9 @@ function openPanoramaBubble() {
   GEvent.addListener(panorama, "yawchanged", onYawChange);
   
   // Update handlers for info window and marker event listeners.
+  maximizeclickHandler = function() {
+    panorama.remove();
+  };
   maximizeendHandler = function() {
     panorama.setContainer(contentNode);
     window.setTimeout("panorama.checkResize()", 5);

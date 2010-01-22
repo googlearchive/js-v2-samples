@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example: Aerial Rotation</title>
+    <script src="http://maps.google.com?file=api&amp;v=2.x&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    var map;
+
+    var cities = {
+      "Oakland, CA": [ 37.8043722, -122.2708026 ],
+      "Portland, OR": [ 45.49755, -122.6848 ],
+      "Sacramento, CA": [ 38.5815719, -121.4943996 ],
+      "San Diego, CA": [ 32.7153292, -117.1572551],
+      "San Jose, CA": [ 37.3393857, -121.8949555 ]
+   };
+
+    function initialize() {
+      map = new GMap2(document.getElementById("map_canvas"));
+      map.setCenter(new GLatLng(45.49755,-122.6848), 18);
+
+      // Select a map type which supports obliques
+      map.setMapType(G_SATELLITE_MAP);
+      map.setUIToDefault();
+
+      // Enable the additional map types within
+      //the map type collection
+      map.enableRotation();
+    }
+
+    function autoRotate() {
+      // Determine if we're showing aerial imagery
+      if (map.isRotatable()) {
+        setTimeout('map.changeHeading(90)', 3000);
+        setTimeout('map.changeHeading(180)',6000);
+        setTimeout('map.changeHeading(270)',9000);
+        setTimeout('map.changeHeading(0)',12000);
+      }
+    }
+
+    function changeCity() {
+      var coords = cities[document.getElementById("city").value];
+      var latlng = new GLatLng(coords[0], coords[1]);
+      map.setCenter(latlng);
+    }
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+  <select id="city" onChange="changeCity()">
+    <option value="Oakland, CA">Oakland, CA</option>
+    <option value="Portland, OR" selected>Portland, OR</option>
+    <option value="Sacramento, CA">Sacramento, CA</option>
+    <option value="San Diego, CA">San Diego</option>
+    <option value="San Jose, CA">San Jose, CA</option>
+  </select>
+  <input type="button" value="Auto Rotate" onclick="autoRotate();"/>
+  <div id="map_canvas" style="width: 500px; height: 300px"></div>
+</html>

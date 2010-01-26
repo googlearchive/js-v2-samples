@@ -217,7 +217,8 @@ google.code.mapsearch.SearchService.prototype.parseRequest_ = function(request, 
 google.code.mapsearch.SearchService.prototype.returnResults_ = function(entries, callback) {
   var results = new Array(entries.length);
   for (var i in entries) {
-    var kml = this.parseKml_(entries[i].getContent().getText());
+    var kmlString = entries[i].getContent().getText();
+    var kml = this.parser_.parseFromString(kmlString, 'text/xml');
     var placemark = this.getTags_(kml, 'Placemark').item(0);
     
     // Get standard Atom properties.
@@ -239,16 +240,6 @@ google.code.mapsearch.SearchService.prototype.returnResults_ = function(entries,
     results[i]['marker'] = this.getMarker_(placemark);
   }
   callback(results);
-}
-
-/**
- * Parse the KML returned by the Maps Data API for a feature.
- * @private
- */
-google.code.mapsearch.SearchService.prototype.parseKml_ = function(kmlString) {
-  // The Data API returns a KML <Placemark>, so we must wrap it before parsing it.
-  var string = '<?xml version="1.0"?><kml xmlns:kml="http://www.opengis.net/kml/2.2">' + kmlString + '</kml>';
-  return this.parser_.parseFromString(string, 'text/xml');
 }
 
 /**

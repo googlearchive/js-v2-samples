@@ -47,10 +47,14 @@ namespace SignUrl {
     class Program {
 
         static void Main(string[] args) {
+        
+          Uri url = new Uri("YOUR_URL_TO_SIGN");;
+          // Convert the string into a URL.
+          if (args.Length > 0) {
+            url = new Uri(args[0]);
+          }
 
            try {
-                // Convert the string into a URL.
-                Uri url = new Uri(args[0]);
 
                 // Create a new URL with the signature added.
                 Uri new_url = GoogleSignedUrl.Sign(url);

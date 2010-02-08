@@ -13,13 +13,12 @@ import java.io.InputStreamReader;
 public class UrlSigner {
 
   // Note: Generally, you should store your private key someplace safe
-  // and read them into your code, though keys are shown here for
-  // convenience.
+  // and read them into your code
 
   private static String keyString = "YOUR_PRIVATE_KEY";
   
-  // The URL shown in these examples is a static URL already
-  // URL-encoded. In practice, you will likely have code
+  // The URL shown in these examples is a static URL which should already
+  // be URL-encoded. In practice, you will likely have code
   // which assembles your URL from user or web service input
   // and plugs those values into its parameters.
   private static String urlString = "YOUR_URL_TO_SIGN";

@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>Google Maps API v2 Geocoder Tool</title>
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAA4nur-ime_GQysVNAB3EOPBRhC1JQpprKw5IE5Y7ut7QvwxCPmhQ0O4-CmudgJL48-bwHTQ6aKgAXqQ"></script> 
+<script type="text/javascript">
+
+var MAPFILES_URL = "http://www.google.com/mapfiles/";
+
+var map = null;
+var markers = null;
+var polylines = null;
+var bounds = null;
+var info = null;
+var details = null;
+var selected = null;
+var reverseIcon = null;
+var clickMarker = null;
+var hashFragment = "";
+
+var GGeoStatusCode = {
+  "200": "G_GEO_SUCCESS",
+  "400": "G_GEO_BAD_REQUEST",
+  "500": "G_GEO_SERVER_ERROR",
+  "601": "G_GEO_MISSING_QUERY",
+  "602": "G_GEO_UNKNOWN_ADDRESS",
+  "603": "G_GEO_UNAVAILABLE_ADDRESS",
+  "604": "G_GEO_UNKNOWN_DIRECTIONS",
+  "610": "G_GEO_BAD_KEY",
+  "620": "G_GEO_TOO_MANY_QUERIES"
+};
+
+var GGeoStatusDescription = {
+  "200": "No errors occurred. The address was successfully parsed and its geocode has been returned.",
+  "400": "A directions request could not be successfully parsed.",
+  "500": "A geocoding or directions request could not be successfully processed,<br/>yet the exact reason for the failure is not known.",
+  "601": "The HTTP q parameter was either missing or had no value.<br/>For geocoding requests, this means that an empty address was specified as input.</br>For directions requests, this means that no query was specified in the input.",
+  "602": "No corresponding geographic location could be found for the specified address.<br/>This may be due to the fact that the address is relatively new, or it may be incorrect.",
+  "603": "The geocode for the given address or the route for the given<br/>directions query cannot be returned due to legal or contractual reasons.",
+  "604": "The GDirections object could not compute directions between the points mentioned in the query.<br/>This is usually because there is no route available between the two points, or because we do not have data for routing in that region.",
+  "610": "The given key is either invalid or does not match the domain for which it was given.",
+  "620": "The given key has gone over the requests limit in the 24 hour period." 
+};
+
+var GGeoAddressAccuracy = {
+  "0": "Unknown location.",
+  "1": "Country",
+  "2": "Region<br/>(state, province, prefecture, etc.) ",
+  "3": "Sub-region<br/>(county, municipality, etc.)",
+  "4": "Town (city, village)",
+  "5": "Post code (zip code)",
+  "6": "Street level accuracy.",
+  "7": "Intersection level accuracy.",
+  "8": "Address level accuracy.",
+  "9": "Premise<br/>(building name, property name, shopping center, etc.)"
+}
+
+function init() {
+  var params = parseUrlParams();
+  clearOptions();
+  setOptions(params);
+  
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map"));
+    map.setCenter(params.center ? params.center : new GLatLng(0.0, 0.0));
+    map.setZoom(params.zoom ? params.zoom : 1);
+    map.setUIToDefault();
+    
+    reverseIcon = new GIcon(G_DEFAULT_ICON);
+    reverseIcon.image = MAPFILES_URL + "dd-start.png";
+  
+    GEvent.addListener(map, "click", function(overlay, latlng) {
+      if (! overlay) {
+        document.getElementById("query").value = latlng.toUrlValue(6);
+        reverseGeocode(latlng);
+      }
+    });
+    
+    if (document.getElementById("query").value) {
+      geocode();
+    }
+    
+    document.getElementById("query").onkeyup = function() {
+      if (!e) var e = window.event;
+      if (e.keyCode != 13) return;
+      document.getElementById("query").blur();
+      geocode(document.getElementById("query").value);
+    }
+  }
+  
+  setInterval(checkHashFragment, 200);
+}
+
+function checkHashFragment() {
+  if (unescape(window.location.hash) != unescape(hashFragment)) {
+    var params = parseUrlParams();
+    clearOptions();
+    setOptions(params);
+    
+    if (params.zoom && params.center) {
+      map.setZoom(params.zoom);
+      map.setCenter(params.center);
+    }
+      
+    if (document.getElementById("query").value) {
+      geocode();
+    }
+  }
+}
+
+function parseUrlParams() {
+  var params = {};
+  
+  if (window.location.search) {
+    params.query = unescape(window.location.search.substring(1));
+  }
+  
+  if (window.location.hash) {
+    hashFragment = unescape(window.location.hash);
+    var args = hashFragment.substring(1).split('&');
+    for (var i in args) {
+      var param = args[i].split('=');
+      switch (param[0]) {
+        case 'q':
+          params.query = unescape(param[1]);
+          break;
+        case 'vpcenter':
+          var center = parseLatLng(param[1]);
+          if (center != null) {
+            params.center = center;
+          }
+          break;
+        case 'vpzoom':
+          var zoom = parseInt(param[1]);
+          if (! isNaN(zoom)) {
+            params.zoom = zoom;
+          }
+          break;
+        case 'country':
+          params.country = unescape(param[1]);
+          break;
+      }
+    }
+  }
+  
+  return params;
+}
+
+function clearOptions() {
+  document.getElementById("query").value = "";
+  document.getElementById("biasViewport").checked = false;
+  document.getElementById("country").value = "";
+}
+
+function setOptions(params) {
+  if (params.query) {
+    document.getElementById("query").value = params.query;
+  }
+  
+  if (params.zoom && params.center) {
+    document.getElementById("biasViewport").checked = true;
+  }
+  
+  if (params.country) {
+    document.getElementById("country").value = params.country;
+  }   
+}
+
+function geocode() {
+  var query = document.getElementById("query").value;
+  if (/\s*^\-?\d+(\.\d+)?\s*\,\s*\-?\d+(\.\d+)?\s*$/.test(query)) {
+    var latlng = parseLatLng(query);
+    if (latlng == null) {
+      document.getElementById("query").value = "";
+    } else {
+      reverseGeocode(latlng);
+    }
+  } else {
+    forwardGeocode(query);
+  }
+}
+
+function initGeocoder(query) {
+  selected = null;
+  map.clearOverlays();
+  
+  var hash = 'q=' + query;
+  var vpbias = document.getElementById("biasViewport").checked;
+  var country = document.getElementById("country").value;
+  var geocoder = new GClientGeocoder();
+  
+  if (vpbias) {
+    hash += '&vpcenter=' + map.getCenter().toUrlValue(6);
+    hash += '&vpzoom=' + map.getZoom();
+    geocoder.setViewport(map.getBounds());
+  }
+  
+  if (country) {
+    hash += '&country=' + country;
+    geocoder.setBaseCountryCode(country);
+  }
+  
+  hashFragment = '#' + escape(hash);
+  window.location.hash = escape(hash);
+  return geocoder;
+}
+
+function forwardGeocode(address) {
+  var geocoder = initGeocoder(address);
+  geocoder.getLocations(address, function(response) {
+    showResponse(response, false);
+  });  
+}
+
+function reverseGeocode(latlng) {
+  var geocoder = initGeocoder(latlng.toUrlValue(6));
+  geocoder.getLocations(latlng, function(response) {
+    showResponse(response, true);
+  });
+  map.panTo(latlng);
+  map.addOverlay(new GMarker(latlng, { 'icon': reverseIcon })); 
+}
+
+function parseLatLng(value) {
+  value.replace('/\s//g');
+  var coords = value.split(',');
+  var lat = parseFloat(coords[0]);
+  var lng = parseFloat(coords[1]);
+  if (isNaN(lat) || isNaN(lng)) {
+    return null;
+  } else {
+    return new GLatLng(lat, lng);
+  }
+}
+
+function showResponse(response, reverse) { 
+  if (! response) {
+    alert("Geocoder request failed");
+  } else {
+    document.getElementById("requestQuery").innerHTML = response.name;
+    document.getElementById("statusValue").innerHTML = response.Status.code;
+    document.getElementById("statusConstant").innerHTML = GGeoStatusCode[response.Status.code];
+    document.getElementById("statusDescription").innerHTML = GGeoStatusDescription[response.Status.code];
+
+    document.getElementById("responseInfo").style.display = "block";    
+    document.getElementById("responseStatus").style.display = "block";
+  
+    if (response.Status.code == 200) {
+      document.getElementById("matchCount").innerHTML = response.Placemark.length;       
+      document.getElementById("responseCount").style.display = "block";
+      plotMatchesOnMap(response, reverse);
+    } else {
+      document.getElementById("responseCount").style.display = "none";
+      document.getElementById("matches").style.display = "none";
+      document.getElementById("query").value = "";
+      if (! reverse) {
+        map.setCenter(new GLatLng(0.0, 0.0), 1);
+      }
+    }
+  }
+}
+
+function plotMatchesOnMap(response, reverse) {
+  var resultCount = response.Placemark.length;
+  
+  info      = new Array(resultCount);
+  details   = new Array(resultCount);
+  markers   = new Array(resultCount);
+  polylines = new Array(resultCount);
+  bounds    = new Array(resultCount);
+  
+  var icons   = new Array(resultCount);
+  var latlngs = new Array(resultCount);
+  
+  var infoListHtml = "";
+  
+  for (var i = 0; i < resultCount; i++) {
+    icons[i] = new GIcon(G_DEFAULT_ICON);
+    icons[i].image = MAPFILES_URL + "marker" + String.fromCharCode(65 + i) + ".png";
+    latlngs[i] = new GLatLng(response.Placemark[i].Point.coordinates[1],
+                             response.Placemark[i].Point.coordinates[0]);
+    markers[i] = new GMarker(latlngs[i], { icon: icons[i] } );
+    polylines[i] = getPolyline(response.Placemark[i]);
+    bounds[i] = getBounds(response.Placemark[i]);
+    info[i] = getInfoHtml(response.Placemark[i]);
+    details[i] = getAddressDetailHtml(response.Placemark[i]);
+    
+    infoListHtml += getInfoListItem(i, icons[i].image, info[i]);
+  }
+  
+  document.getElementById("matches").innerHTML = infoListHtml;
+  document.getElementById("p0").style.border = "none";
+  document.getElementById("matches").style.display = "block";
+  
+  if (! reverse) {
+    zoomToBounds(bounds, map);
+  }
+    
+  for (var i = 0; i < resultCount; i++) {
+    map.addOverlay(markers[i]);
+    addInfoWindowListener(i, markers[i], details[i]);
+  }
+  
+  GEvent.trigger(markers[0], "click");
+}
+
+function getInfoListItem(i, iconUrl, info) {
+  var html  = '<a onclick="selectMarker(' + i + ')">';
+      html += '<div class="info" id="p' + i + '">';
+      html += '<table><tr valign="top">';
+      html += '<td style="padding: 2px"><img src="' + iconUrl + '"/></td>';
+      html += '<td style="padding: 2px">' + info + '</td>';
+      html += '</tr></table>';
+      html += '</div></a>';
+  return html;
+}
+
+function selectMarker(n) {
+  GEvent.trigger(markers[n], "click");
+}
+
+function zoomToBounds(bounds, map) {
+  var b = new GLatLngBounds();
+
+  for (var i = 0; i < markers.length; i++) {
+    b.extend(bounds[i].getSouthWest());
+    b.extend(bounds[i].getNorthEast());
+  }
+
+  var center = b.getCenter();
+  var zoom   = map.getBoundsZoomLevel(b);
+  map.setCenter(center, zoom);
+}
+
+function addInfoWindowListener(i, marker, details) {
+  GEvent.addListener(marker, "click", function() {
+    if (selected != null) {
+      document.getElementById('p' + selected).style.backgroundColor = "white";
+      map.removeOverlay(polylines[selected]);
+    }
+    var zoomDelta = map.getBoundsZoomLevel(bounds[i]) - map.getZoom();
+    if (zoomDelta < 0 || zoomDelta > 5) {
+      map.setZoom(map.getBoundsZoomLevel(bounds[i]));
+    }
+    marker.openInfoWindowHtml(details);
+    if (! map.getBounds().containsBounds(bounds[i])) {
+      map.zoomOut();
+      map.panTo(bounds[i].getCenter());
+    }
+    map.addOverlay(polylines[i]);
+    document.getElementById('p' + i).style.backgroundColor = "#eeeeff";
+    document.getElementById('matches').scrollTop = document.getElementById('p' + i).offsetTop - document.getElementById('matches').offsetTop;
+    selected = i;
+  });
+}
+
+function getPolyline(placemark) {
+  var ne = new GLatLng(placemark.ExtendedData.LatLonBox.north, placemark.ExtendedData.LatLonBox.east);
+  var se = new GLatLng(placemark.ExtendedData.LatLonBox.south, placemark.ExtendedData.LatLonBox.east);
+  var sw = new GLatLng(placemark.ExtendedData.LatLonBox.south, placemark.ExtendedData.LatLonBox.west);
+  var nw = new GLatLng(placemark.ExtendedData.LatLonBox.north, placemark.ExtendedData.LatLonBox.west);
+  var polyline = new GPolyline([ne, se, sw, nw, ne], '#ff0000', 2, 1.0);
+  return polyline;
+}
+
+function getBounds(placemark) {
+  var ne = new GLatLng(placemark.ExtendedData.LatLonBox.north, placemark.ExtendedData.LatLonBox.east);
+  var sw = new GLatLng(placemark.ExtendedData.LatLonBox.south, placemark.ExtendedData.LatLonBox.west);
+  var bounds = new GLatLngBounds(sw, ne);
+  return bounds;
+}
+
+function getInfoHtml(placemark) {
+  var html  = '<table class="tabContent">';
+      html += tr('Address', placemark.address);
+      html += tr('Coordinates', latlngtxt(placemark.Point.coordinates));
+      html += tr('Bounds', boundstxt(placemark.ExtendedData.LatLonBox));
+      html += tr('Accuracy', accuracytxt(placemark.AddressDetails.Accuracy));
+      html += '</table>';
+  return html;
+}
+
+function getAddressDetailHtml(placemark) {
+  return html = '<table class="tabContent">' + getAddressDetailDt(placemark.AddressDetails) + '</table>';
+}
+
+function getAddressDetailDt(feature) {
+  var html = '';
+  for (var key in feature) {
+    if (feature[key] instanceof Array) {
+      html += tr(key, feature[key][0]);
+    } else if (feature[key] instanceof Object) {
+      html += getAddressDetailDt(feature[key]);
+    } else {
+      html += tr(key, feature[key]);
+    }
+  }
+  return html;
+}
+
+function tr(key, value) {
+  return '<tr><td style="text-align: right; font-weight: bold; vertical-align: top; white-space: nowrap;">' + key + ':</td><td>' + value + '</td></tr>';
+}
+
+function latlngtxt(coordinates) {
+  return '(' + coordinates[1] + ', ' + coordinates[0] + ')';
+}
+
+function boundstxt(latlonbox) {
+  return latlngtxt([latlonbox.west, latlonbox.south]) + ' - ' + latlngtxt([latlonbox.east, latlonbox.north]);
+}
+
+function accuracytxt(accuracy) {
+  return accuracy + ' - ' + GGeoAddressAccuracy[accuracy];
+}
+</script>
+
+<style>
+#map {
+  width: 640px;
+  height: 480px;
+  border: 1px solid black;
+  margin: 10px;
+  float: left;
+}
+
+#responseStatus {
+  display: none;
+}
+
+#responseCount {
+  display: none;
+}
+
+#responseInfo {
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #eeeeee;
+  border: 1px solid #999999;
+  padding: 10px;
+  width: 620px;
+  display: none;
+}
+
+#statusDescription {
+  margin-left: 10px;
+}
+
+.info {
+  border-top: 1px solid #666666;
+  padding: 4px;
+  padding-left: 8px;
+  font: 10pt sans-serif;
+  margin-left: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.tabContent {
+  font: 10pt sans-serif;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+#matches {
+  margin-top: 10px;
+  width: 320px;
+  height: 490px;
+  float: left;
+  border: 1px solid #666666;
+  display: none;
+  overflow: auto;
+}
+
+h1 {
+  border-bottom: 1px solid #999999;
+  font-family: sans-serif;
+  padding-bottom: 12px;
+  width: 650px;
+  margin-bottom: 0px;
+}
+
+#inputForm {
+  width: 650px;
+  margin: 10px;
+}
+
+#footer {
+  padding-top: 4px;
+  font-family: sans-serif;
+  font-size: 8pt;
+  clear: both;
+  width: 650px;
+  border-top: 1px solid #999999;
+}
+
+#instructions {
+  padding-bottom: 8px;
+}
+
+#options {
+  margin-top: 5px;
+}
+
+#biasViewport {
+  margin-right: 16px;
+}
+
+#newFeatures {
+  position: absolute;
+  top: 1px;
+  right: -2px;
+  background-color: #ffffd0;
+  border: 1px solid black;
+  font-family: sans-serif;
+  font-size: 8pt;
+  padding: 2px;
+}
+</style>
+</head>
+
+<body onload="init()" onunload="GUnload()">
+<h1>Google Maps API v2 Geocoder Tool</h1>
+<div id="inputForm">
+  <div id="instructions">Enter a query to forward geocode, or click on the map to reverse geocode.</div>
+  <div>
+    <span style="font-weight: bold">Query:</span>
+    <input type="text" size="60" id="query"/>
+    <input type="button" value="Geocode" onclick="geocode()"/>
+  </div>
+  <div id="options">
+    <span style="font-weight: bold">Bias this viewport:</span>
+    <input type="checkbox" id="biasViewport"/>
+    <span style="font-weight: bold">Country bias:</span>
+    <input type="text" size="2" id="country"/>
+  </div>
+</div>
+<div id="responseInfo">
+  <div id="responseStatus">
+    <div>
+      <span style="font-weight: bold">Geocoder query: </span>
+      <span id="requestQuery"></span>
+    </div>
+    <div>
+      <span style="font-weight: bold">Geocoder response: </span>
+      <span id="statusValue"></span> (<span id="statusConstant"></span>)
+      <div id="statusDescription"></div>
+    </div>
+  </div>
+  <div id="responseCount">
+    <span style="font-weight: bold;">Matches returned: </span>
+    <span id="matchCount"></span>
+  </div>
+</div>
+<div id="map"></div>
+<div id="matches"></div>
+</body>
+</html>

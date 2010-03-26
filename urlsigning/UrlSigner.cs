@@ -27,7 +27,7 @@ namespace SignUrl {
       string signature = Convert.ToBase64String(hash).Replace("+", "-").Replace("/", "_");
             
       // Add the signature to the existing URI.
-      return url +"&signature=" + signature; 
+      return uri.Scheme+"://"+uri.Host+uri.LocalPath + uri.Query +"&signature=" + signature;
     }
   }
 

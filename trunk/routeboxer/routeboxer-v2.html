@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Search Along a Route Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA4nur-ime_GQysVNAB3EOPBQGj0PqsCtxKvarsoS-iqLdqZSKfxRtPER6ChX1NbD32p8Z0Q1DQjXQ1Q&amp;sensor=false" type="text/javascript"></script>
+    <script src="http://gmaps-utility-library-dev.googlecode.com/svn/trunk/routeboxer/src/RouteBoxer.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    
+    var map = null;
+    var directions = null;
+    var routeBoxer = null;
+    var distance = null; // km
+    
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        // Default the map view to the continental U.S.
+        map = new GMap2(document.getElementById("map"));
+        map.setCenter(new GLatLng(37.09024, -95.712891), 4);
+        map.setUIToDefault();
+        
+        directions = new GDirections(map);
+        routeBoxer = new RouteBoxer();
+        
+        GEvent.addListener(directions, 'load', function() {
+          // Generate the boxes along the polyline for this route
+          var polyline = directions.getPolyline();          
+          var boxes = routeBoxer.box(polyline, distance);
+          drawBoxes(boxes);
+        }); 
+
+        GEvent.addListener(directions, 'error', function() {
+          alert("Directions request failed: " + directions.getStatus().code);
+        }); 
+      }
+    }
+    
+    function route() {
+      // Clear any previous routes or boxes from the map
+      map.clearOverlays();
+      
+      // Convert the distance to box around the route from miles to km
+      distance = parseFloat(document.getElementById("distance").value)
+                  * 1.609344;
+      
+      // Make the directions request
+      var from = document.getElementById("from").value;
+      var to = document.getElementById("to").value;
+      directions.load("from:" + from + " to:" + to);
+    }
+    
+    // Draw an array of boxes as Polylines on the map
+    function drawBoxes(boxes) {
+      if (boxes != null) {
+        for (var i = 0; i < boxes.length; i++) {
+          var vertices = [
+            boxes[i].getSouthWest(),
+            new GLatLng(boxes[i].getSouthWest().lat(),
+                        boxes[i].getNorthEast().lng()),
+            boxes[i].getNorthEast(),
+            new GLatLng(boxes[i].getNorthEast().lat(),
+                        boxes[i].getSouthWest().lng()),
+            boxes[i].getSouthWest()
+          ];
+          var polygon = new GPolyline(vertices, '#000000', 1, 1.0);
+          map.addOverlay(polygon);
+        }
+      }
+    }
+    </script>
+  <style>
+    #map {
+      border: 1px solid black;
+    }
+  </style>
+  </head>
+  <body onload="initialize();" onunload="GUnload();">
+    <div id="map" style="width: 800px; height: 600px;"></div>
+    Box within at least <input type="text" id="distance" value="30" size="2">miles
+    of the route from <input type="text" id="from" value="Denver"/>
+    to <input type="text" id="to" value="Dallas"/>
+    <input type="submit" onclick="route()"/>
+  </body>
+</html>

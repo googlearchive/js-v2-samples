@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>Streetview Landing Page Prototype</title>
-<script type="text/javascript" src="http://maps.google.com/maps?file=api&v=2.x&key=ABQIAAAAoB0i6SDqobDYkh2Eosh8_hQGj0PqsCtxKvarsoS-iqLdqZSKfxT27Tcg2ix6Afd9vvmyviwJPUO5IQ&sensor=true"></script>
+<script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAoB0i6SDqobDYkh2Eosh8_hQGj0PqsCtxKvarsoS-iqLdqZSKfxT27Tcg2ix6Afd9vvmyviwJPUO5IQ&amp;sensor=true"></script>
 <script type="text/javascript" src="spreadsheet-loader-binary.js"></script>
 <script type="text/javascript" src="ClusterMarker.js"></script>
 <style>
@@ -60,7 +60,7 @@
     border: 2px outset #676767;
     padding: 2px 4px;
     cursor: pointer;
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-weight: bold;
     color: #36c;
   }
@@ -387,7 +387,7 @@ App.parseData_ = function(sheets) {
   // By default, the control will appear in the top left corner of the
   // map with 7 pixels of padding.
   ClusterZoomControl.prototype.getDefaultPosition = function() {
-    return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(75, 15));
+    return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(75, 8));
   }
 
   // Add custom control to map.
@@ -405,7 +405,7 @@ App.initMap_ = function() {
   map.enableContinuousZoom();
   map.enableScrollWheelZoom();
   map.setUIToDefault();
-  map.setCenter(new GLatLng(25,-118), 2);
+  map.setCenter(new GLatLng(20, 0), 1);
   map.savePosition();
   
   // Add streetview overlays.

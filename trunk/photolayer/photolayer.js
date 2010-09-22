@@ -206,7 +206,7 @@ PhotoLayer.prototype.load = function(photoLayer, options) {
     }
   }
   var url =
-  "http://picasaweb.google.com/data/feed/api/all?kind=photo&tag=" + this.tag + "&bbox=" + 
+  "http://picasaweb.google.com/data/feed/api/all?kind=photo&tag=" + this.tag.replace('-','') + "&bbox=" + 
     options.west + "," + options.south + "," + options.east + "," + options.north + 
     "&max-results=30&alt=json-in-script&";
  

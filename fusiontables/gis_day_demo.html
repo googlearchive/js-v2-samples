@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+
+<title>Google Maps JavaScript API v3 Example: Fusion Tables Layer</title> 
+
+<style>
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+</style>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript"> 
+
+var layer;
+ 
+//initialize the map
+function initialize() {
+  
+  var centerpt = new google.maps.LatLng(40.75, -73.98);
+ 
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: centerpt,
+    zoom: 12,
+    mapTypeId: 'roadmap'
+  });
+  
+  layer = new google.maps.FusionTablesLayer(311501);
+  layer.setMap(map);
+
+}
+
+//change the query to the FusionTablesLayer
+function setLayerQuery(query) {
+  layer.setQuery(query);
+}
+
+function changeQuery(type, radius) {
+  radius = parseInt(radius) * 1609.344;
+  if (radius == "All")
+    setLayerQuery("SELECT Address FROM 311501 WHERE Type='" + type + "'");
+  else
+    setLayerQuery("SELECT Address FROM 311501 WHERE Type LIKE '" + type + "' AND ST_INTERSECTS(Address, CIRCLE(LATLNG(40.75, -73.98), " + radius + "))");
+}
+</script> 
+</head> 
+
+<body onload="initialize();"> 
+  <div id="queries">
+    <p>
+      Some queries to try:<br />
+      <a href="javascript:setLayerQuery('SELECT Address FROM 311501 WHERE Type=\'American\'');">
+        SELECT Address FROM 311501 WHERE Type='American'
+      </a><br />
+      <a href="javascript:setLayerQuery('SELECT Address FROM 311501 WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(40.75, -73.98), 500))');">
+        SELECT Address FROM 311501 WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(40.75, -73.98), 500))
+      </a><br />
+      <a href="javascript:setLayerQuery('SELECT Address FROM 311501 WHERE ST_INTERSECTS(Address, RECTANGLE(LATLNG(40.74, -73.99), LATLNG(40.76, -73.97)))');">
+        SELECT Address FROM 311501 WHERE ST_INTERSECTS(Address, RECTANGLE(LATLNG(40.74, -73.99), LATLNG(40.76, -73.97)))
+      </a>
+    </p>
+    <p>
+      Or enter your own:
+      <input type="text" name="query" id="query" style="width:800px;" />
+      <input type="button" value="Query!" onclick="setLayerQuery(document.getElementById('query').value);" />
+    </p>
+  </div>
+
+  <div id="map_canvas"></div>
+  
+  <p>Or how you might really do it..</p>
+  <div id="real">
+    Type: <select id="type">
+      <option value="%">All</option>
+      <option value="American">American</option>
+      <option value="Australian">Australian</option>
+      <option value="Barbeque">Barbeque</option>
+      <option value="Belgian">Belgian</option>
+      <option value="Sushi">Sushi</option>
+    </select>
+    Radius <select id="radius">
+      <option value="All">All</option>
+      <option value="1">1 mile</option>
+      <option value="2">2 miles</option>
+      <option value="3">3 miles</option>
+    </select>
+    <input type="button" onclick="changeQuery(document.getElementById('type').value, document.getElementById('radius').value);" value="Go!" />
+  </div>
+</body> 
+</html> 

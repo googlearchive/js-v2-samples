@@ -40,7 +40,7 @@ function setLayerQuery(query) {
 function changeQuery(type, radius) {
   radius = parseInt(radius) * 1609.344;
   if (radius == "All")
-    setLayerQuery("SELECT Address FROM 311501 WHERE Type='" + type + "'");
+    setLayerQuery("SELECT Address FROM 311501 WHERE Type LIKE '" + type + "'");
   else
     setLayerQuery("SELECT Address FROM 311501 WHERE Type LIKE '" + type + "' AND ST_INTERSECTS(Address, CIRCLE(LATLNG(40.75, -73.98), " + radius + "))");
 }

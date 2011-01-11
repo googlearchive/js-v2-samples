@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+
+  This sample uses the Google Visualization library to retrieve data from
+  a Fusion Table via Javascript. To find out more about the Visualization library,
+  visit this URL:
+  http://code.google.com/apis/visualization/documentation/reference.html
+
+  Table used in example is http://www.google.com/fusiontables/DataSource?dsrcid=197026
+-->
+
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<title>Using GViz to request Fusion Table Data</title>
+
+<!-- Import the visualization javascript -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<!-- Initialize -->
+<script type="text/javascript">
+  google.load('visualization', '1', {});
+</script>
+
+<script type="text/javascript">
+
+function changeData(scorer) {
+  //set the query using the parameter
+  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026 WHERE 'Scoring Team' LIKE '" + scorer + "'");
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+  
+  //set the callback function
+  query.send(getData);
+}
+
+//define callback function, this is called when the results are returned
+function getData(response) {
+
+  //for more information on the response object, see the documentation
+  //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+  numRows = response.getDataTable().getNumberOfRows();
+  numCols = response.getDataTable().getNumberOfColumns();
+  
+  //concatenate the results into a string, you can build a table here
+  fusiontabledata = "<b>";
+  for(i = 0; i < numCols; i++) {
+    fusiontabledata += response.getDataTable().getColumnLabel(i) + ",";
+  }
+  fusiontabledata += "</b><br />";
+  
+  for(i = 0; i < numRows; i++) {
+    for(j = 0; j < numCols; j++) {
+      fusiontabledata += response.getDataTable().getValue(i, j) + ", ";
+    }
+    fusiontabledata += "<br />";
+  }  
+  //display the results on the page
+  document.getElementById('ftdata').innerHTML = fusiontabledata;
+}
+
+</script>
+</head>
+<body onload="changeData('%');">
+
+Scoring Team: <select id="selections" onchange="changeData(this.value);">
+  <option value="%">All</option>
+  <option value="Germany">Germany</option>
+  <option value="New Zealand">New Zealand</option>
+  <option value="Uruguay">Uruguay</option>
+</select>
+
+<div id="ftdata"></div>
+
+</body>
+</html>

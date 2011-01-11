@@ -1,0 +1,198 @@
+<!DOCTYPE html> 
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+
+-->
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+
+<title>Google Maps JavaScript API v3 Example: Fusion Tables Layer</title> 
+
+<!-- Style -->
+<style type="text/css">
+  body { height: 100%; margin: 0px; padding: 10px; }
+  #map_canvas { height: 600px; width: 700px; }
+</style>
+
+<!-- Google Maps API javascript -->
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<!-- Import the visualization javascript -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<!-- Initialize visualization -->
+<script type="text/javascript">
+  google.load('visualization', '1', {});
+</script>
+
+<script type="text/javascript">
+
+var tableid = 297050; //the table id
+var map;
+var geocoder;
+var lastWindow;
+
+/* INITIALIZE - initialize the map and geocoder */
+
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(37.4, -122.1), //the center lat and long
+    zoom: 10, //zoom
+    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
+  });
+  
+  //make gviz request
+  setData();
+  
+}
+
+/* GVIZ - get data from Fusion Tables */
+
+function setData() {
+  //create a viz query to send to Fusion Tables
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + encodeURIComponent("SELECT 'Store Name', Address, delivery FROM 297050"));
+  
+  //set the callback function that will be called when the query returns
+  query.send(getData);
+}
+
+//define callback function, this is called when the results are returned
+function getData(response) {
+
+  //for more information on the response object, see the documentation
+  //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+  numRows = response.getDataTable().getNumberOfRows();
+  numCols = response.getDataTable().getNumberOfColumns();
+
+  //create an array of row values
+  for (i = 0; i < numRows; i++) {
+    var row = [];
+    for (j = 0; j < numCols; j++) {
+      row.push(response.getDataTable().getValue(i, j));
+    }
+    codeAddress(row);
+  }
+}
+
+/* GEOCODING - geocode data in Fusion Tables, if the data is a String Address */
+
+//geocode the address, and create a new marker and InfoWindow at the geocoded location
+function codeAddress(row) {
+  geocoder.geocode( { 'address': row[1] }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var coordinate = results[0].geometry.location;
+      
+      //create the marker
+      var marker = new google.maps.Marker({
+          map: map, 
+          position: coordinate,
+          //this is where the magic happens!
+          icon: new google.maps.MarkerImage("http://www.google.com/images/icons/product/fusion_tables-32.png")
+      });
+      
+      //add a click listener to the marker to open an InfoWindow,
+      google.maps.event.addListener(marker, 'click', function(event) {
+        if(lastWindow) lastWindow.close(); //close the last window if it exists
+        lastWindow = new google.maps.InfoWindow( {
+          position: coordinate,
+          content: row[0] //this is the row data, you can use HTML here for the content
+        });
+        lastWindow.open(map);
+      });
+    } 
+  });
+}
+
+</script>
+
+</head>
+<body onload="initialize()">
+  <div id="map_canvas"></div>
+  <p>The Code:</p>
+  <pre>
+var tableid = 297050; //the table id
+var map;
+var geocoder;
+var lastWindow;
+
+/* INITIALIZE - initialize the map and geocoder */
+
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(37.4, -122.1), //the center lat and long
+    zoom: 10, //zoom
+    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
+  });
+  
+  //make gviz request
+  setData();
+  
+}
+
+/* GVIZ - get data from Fusion Tables */
+
+function setData() {
+  //create a viz query to send to Fusion Tables
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + encodeURIComponent("SELECT 'Store Name', Address, delivery FROM 297050"));
+  
+  //set the callback function that will be called when the query returns
+  query.send(getData);
+}
+
+//define callback function, this is called when the results are returned
+function getData(response) {
+
+  //for more information on the response object, see the documentation
+  //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+  numRows = response.getDataTable().getNumberOfRows();
+  numCols = response.getDataTable().getNumberOfColumns();
+
+  //create an array of row values
+  for (i = 0; i &lt; numRows; i++) {
+    var row = [];
+    for (j = 0; j &lt; numCols; j++) {
+      row.push(response.getDataTable().getValue(i, j));
+    }
+    codeAddress(row);
+  }
+}
+
+/* GEOCODING - geocode data in Fusion Tables, if the data is a String Address */
+
+//geocode the address, and create a new marker and InfoWindow at the geocoded location
+function codeAddress(row) {
+  geocoder.geocode( { 'address': row[1] }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      var coordinate = results[0].geometry.location;
+      
+      //create the marker
+      var marker = new google.maps.Marker({
+          map: map, 
+          position: coordinate,
+          //this is where the magic happens!
+          icon: new google.maps.MarkerImage("http://www.google.com/images/icons/product/fusion_tables-32.png")
+      });
+      
+      //add a click listener to the marker to open an InfoWindow,
+      google.maps.event.addListener(marker, 'click', function(event) {
+        if(lastWindow) lastWindow.close(); //close the last window if it exists
+        lastWindow = new google.maps.InfoWindow( {
+          position: coordinate,
+          content: row[0] //this is the row data, you can use HTML here for the content
+        });
+        lastWindow.open(map);
+      });
+    } 
+  });
+}
+</pre>
+</body> 
+</html> 
+

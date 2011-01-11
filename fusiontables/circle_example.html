@@ -38,7 +38,7 @@ function initialize() {
   
 
   layer = new google.maps.FusionTablesLayer(tableid, {
-      query: "SELECT Address FROM " + tableid + " WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),10000))",
+      query: "SELECT Address FROM " + tableid + " WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),10000))"
     }
   );
   layer.setMap(map);

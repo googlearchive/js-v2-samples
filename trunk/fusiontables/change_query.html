@@ -51,6 +51,7 @@ function changeMap(delivery) {
   <div id="map_canvas"></div>
   <p>The Code:</p>
   <pre>
+&lt;script type="text/javascript">
 var tableid = 297050; 
 var layer = new google.maps.FusionTablesLayer(tableid); 
 
@@ -68,7 +69,13 @@ function initialize() {
 function changeMap(delivery) {
   layer.setQuery("SELECT Address FROM " + tableid + " WHERE delivery LIKE '" + delivery + "'");
 }
-  
+&lt;/script>
+
+Delivers? &lt;select onchange="changeMap(this.value);">
+  &lt;option value="%">--Select--&lt;/option>
+  &lt;option value="yes">Yes&lt;/option>
+  &lt;option value="no">No&lt;/option>
+&lt;/select>
   </pre>
 </body>
 </html>

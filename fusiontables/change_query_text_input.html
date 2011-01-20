@@ -46,7 +46,7 @@ function changeMap(store_name) {
   store_name = store_name.replace("'", "\\'");
   
   //change the query
-  layer.setQuery("SELECT 'Address' FROM " + tableid + " WHERE 'Store Name' = '" + store_name + "'");
+  layer.setQuery("SELECT Address FROM " + tableid + " WHERE 'Store Name' = '" + store_name + "'");
 }
 
 </script> 

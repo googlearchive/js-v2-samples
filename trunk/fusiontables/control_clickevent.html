@@ -104,6 +104,13 @@ $(document).ready(function() {
 		$("#large").fadeOut("slow");
 	});
 	
+	$(document).keypress(function(e){
+		if(e.keyCode==27) {
+			$("#background").fadeOut("slow");
+			$("#large").fadeOut("slow");
+		}
+	});
+	
 	$("#large").click(function(){
 		$("#background").fadeOut("slow");
 		$("#large").fadeOut("slow");

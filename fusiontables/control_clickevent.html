@@ -16,6 +16,7 @@
 <style>
   body { font-family: Arial, sans-serif; }
   #map_canvas { height: 800px; width:900px; }
+  
   #large {
 		display: none;
 		position: absolute;
@@ -29,7 +30,7 @@
 		border-radius: 15px;
 	}
 	
-	#background{
+	#background {
 		display: none;
 		position: absolute;
 		height: 100%;
@@ -38,6 +39,11 @@
 		left: 0;
 		background: #000000;
 		z-index: 1;
+	}
+	
+	#close {
+	  margin: 0px;
+	  cursor: pointer;
 	}
 	
 	#mug {
@@ -72,7 +78,8 @@ function initialize() {
   	$("#background").css({"opacity" : "0.7"})
                             .fadeIn("slow");
  
-		$("#large").html("<img id='mug' src='images/face.jpg' /><h2>" + e.row['name'].value + "<br />" + 
+		$("#large").html("<p style='float:right' id='close'>[X]</p>" +
+										 "<img id='mug' src='images/face.jpg' /><h2>" + e.row['name'].value + "<br />" + 
 										 e.row['cid'].value + "</h2>" +
 										 "<p style='clear:both'>Voting history:</p>" + 
 										 "<p>Bill 3: " + e.row['h2011-3.xml'].value + "<br />" +
@@ -92,7 +99,7 @@ jQuery.fn.center = function () {
 }
  
 $(document).ready(function() {	
-	$("#background").click(function(){
+	$("#background #close").click(function(){
 		$("#background").fadeOut("slow");
 		$("#large").fadeOut("slow");
 	});

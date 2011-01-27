@@ -63,6 +63,93 @@
 <script type="text/javascript">
 
 var tableid = 411160;
+
+function initialize() {
+  var map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(37.4, -110.1),
+    zoom: 4,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  var layer = new google.maps.FusionTablesLayer(tableid);
+  layer.setMap(map);
+  layer.setOptions({suppressInfoWindows: true});
+  
+  google.maps.event.addListener(layer, 'click', function(e) {
+		
+  	$("#background").css({"opacity" : "0.7"})
+                            .fadeIn("slow");
+ 
+		$("#large").html("<p style='float:right' id='close'>[X]</p>" +
+										 "<div id='mini_map_canvas'></div>" + 
+										 "<h2>" + e.row['name'].value + "<br />" + 
+										 e.row['cid'].value + "</h2>" +
+										 "<p>Voting history:</p>" + 
+										 "<p>Bill 3: " + e.row['h2011-3.xml'].value + "<br />" +
+										 "Bill 4: " + e.row['h2011-4.xml'].value + "</p>" +
+										 "<p><a href='" + e.row['url'].value + "'>Website</a></p>")
+					 .center()
+					 .fadeIn("slow", function() {
+					 		var mini_map = new google.maps.Map(document.getElementById('mini_map_canvas'), {
+								center: new google.maps.LatLng(37.4, -110.1),
+								zoom: 13,
+								mapTypeId: google.maps.MapTypeId.ROADMAP,
+								disableDefaultUI: true
+							});
+							
+						  extent = states[e.row['state'].value].extent;
+							var bounds = new google.maps.LatLngBounds();
+							$.each(extent, function(i, ll){
+								bounds.extend(new google.maps.LatLng(ll[1],ll[0]));
+							});
+							mini_map.fitBounds(bounds);
+							
+							var layer = new google.maps.FusionTablesLayer(tableid);
+							layer.setOptions({suppressInfoWindows: true, clickable: false});
+							layer.setMap(mini_map);
+							layer.setQuery("SELECT shape FROM " + tableid + " WHERE cid = '" + e.row['cid'].value + "'");
+					 });
+  });
+}
+
+jQuery.fn.center = function () {
+	this.css("position","absolute");
+	this.css("top", ( $(window).height() - this.height() ) / 2+$(window).scrollTop() + "px");
+	this.css("left", ( $(window).width() - this.width() ) / 2+$(window).scrollLeft() + "px");
+	return this;
+}
+ 
+$(document).ready(function() {	
+	$("#background #close").click(function(){
+		$("#background").fadeOut("slow");
+		$("#large").fadeOut("slow");
+	});
+	
+	$(document).keydown(function(e){
+		if(e.keyCode==27) {
+			$("#background").fadeOut("slow");
+			$("#large").fadeOut("slow");
+		}
+	});
+	
+	$("#large").click(function(){
+		$("#background").fadeOut("slow");
+		$("#large").fadeOut("slow");
+	});
+
+});
+
+</script> 
+
+
+</head> 
+<body onload="initialize();"> 
+  <div id="map_canvas"></div>
+  <div id="large"></div>
+  <div id="background"></div>
+  
+<script type="text/javascript">
+
 var states = [
  {
   "fp": 2, 
@@ -1353,83 +1440,6 @@ var states = [
   "abbr": "WY"
  }
 ]
-  
-function initialize() {
-  var map = new google.maps.Map(document.getElementById('map_canvas'), {
-    center: new google.maps.LatLng(37.4, -110.1),
-    zoom: 4,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  
-  var layer = new google.maps.FusionTablesLayer(tableid);
-  layer.setMap(map);
-  layer.setOptions({suppressInfoWindows: true});
-  
-  google.maps.event.addListener(layer, 'click', function(e) {
-		
-  	$("#background").css({"opacity" : "0.7"})
-                            .fadeIn("slow");
- 
-		$("#large").html("<p style='float:right' id='close'>[X]</p>" +
-										 "<div id='mini_map_canvas'></div>" + 
-										 "<h2>" + e.row['name'].value + "<br />" + 
-										 e.row['cid'].value + "</h2>" +
-										 "<p style='clear:both'>Voting history:</p>" + 
-										 "<p>Bill 3: " + e.row['h2011-3.xml'].value + "<br />" +
-										 "Bill 4: " + e.row['h2011-4.xml'].value + "</p>" +
-										 "<p><a href='" + e.row['url'].value + "'>Website</a></p>" +
-										 "<br /><small>*Image courtesy of <a href='http://www.flickr.com/photos/katerha/'>katerha</a></small>")
-					 .center()
-					 .fadeIn("slow", function() {
-					 		var mini_map = new google.maps.Map(document.getElementById('mini_map_canvas'), {
-								center: new google.maps.LatLng(37.4, -110.1),
-								zoom: 13,
-								mapTypeId: google.maps.MapTypeId.ROADMAP,
-								disableDefaultUI: true
-							});
-							
-						  extent = states[e.row['state'].value].extent;
-							var bounds = new google.maps.LatLngBounds();
-							$.each(extent, function(i, ll){
-								bounds.extend(new google.maps.LatLng(ll[1],ll[0]));
-							});
-							mini_map.fitBounds(bounds);
-							
-							var layer = new google.maps.FusionTablesLayer(tableid);
-							layer.setOptions({suppressInfoWindows: true, clickable: false});
-							layer.setMap(mini_map);
-							layer.setQuery("SELECT shape FROM " + tableid + " WHERE cid = '" + e.row['cid'].value + "'");
-					 });
-  });
-}
-
-jQuery.fn.center = function () {
-	this.css("position","absolute");
-	this.css("top", ( $(window).height() - this.height() ) / 2+$(window).scrollTop() + "px");
-	this.css("left", ( $(window).width() - this.width() ) / 2+$(window).scrollLeft() + "px");
-	return this;
-}
- 
-$(document).ready(function() {	
-	$("#background #close").click(function(){
-		$("#background").fadeOut("slow");
-		$("#large").fadeOut("slow");
-	});
-	
-	$(document).keydown(function(e){
-		if(e.keyCode==27) {
-			$("#background").fadeOut("slow");
-			$("#large").fadeOut("slow");
-		}
-	});
-	
-	$("#large").click(function(){
-		$("#background").fadeOut("slow");
-		$("#large").fadeOut("slow");
-	});
-
-});
-
 addStates(states);
 function addStates(obj) {
   //make available for later since we need extents on zoom
@@ -1439,15 +1449,7 @@ function addStates(obj) {
     states[state.abbr] = state;
   });
 }
-
-</script> 
-
-
-</head> 
-<body onload="initialize();"> 
-  <div id="map_canvas"></div>
-  <div id="large"></div>
-  <div id="background"></div>
+</script>
 </body> 
 </html> 
 

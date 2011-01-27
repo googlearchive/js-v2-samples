@@ -108,6 +108,11 @@ function initialize() {
 							layer.setOptions({suppressInfoWindows: true, clickable: false});
 							layer.setMap(mini_map);
 							layer.setQuery("SELECT shape FROM " + tableid + " WHERE cid = '" + e.row['cid'].value + "'");
+							
+							$("#close").click(function(){
+								$("#background").fadeOut("slow");
+								$("#large").fadeOut("slow");
+							});
 					 });
   });
 }
@@ -120,7 +125,7 @@ jQuery.fn.center = function () {
 }
  
 $(document).ready(function() {	
-	$("#background #close").click(function(){
+	$("#background").click(function(){
 		$("#background").fadeOut("slow");
 		$("#large").fadeOut("slow");
 	});
@@ -130,11 +135,6 @@ $(document).ready(function() {
 			$("#background").fadeOut("slow");
 			$("#large").fadeOut("slow");
 		}
-	});
-	
-	$("#large").click(function(){
-		$("#background").fadeOut("slow");
-		$("#large").fadeOut("slow");
 	});
 
 });

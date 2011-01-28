@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+  
+  Fusion Table: http://www.google.com/fusiontables/DataSource?dsrcid=345328
+
+-->
+
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+
+<!-- Style -->
+<style type="text/css">
+  body { height: 100%; margin: 0px; padding: 10px; }
+  #map_canvas { height: 600px; width: 700px; }
+</style>
+
+<!-- Google Maps API javascript -->
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<!-- Initialize gviz -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1', {});
+</script>
+
+<script>
+
+var tableid = 345328; // The table id
+
+// Run a gviz query to get the latitude and longitude points from the table
+function gvizSelect() {
+  // Select lat/long points from table
+  var queryText = encodeURIComponent("SELECT Latitude,Longitude FROM " + tableid);
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+  
+  // Set the callback function
+  query.send(getData);
+}
+
+// Run through the results of the gviz query to get a list of coordinates
+function getData(response) {
+
+  // Get the number of rows returned
+  numRows = response.getDataTable().getNumberOfRows();
+
+  // Create a list of lat/long coordinates
+  coordinates = [];
+  for(i = 0; i < numRows; i++) {
+     coordinates.push(new google.maps.LatLng(response.getDataTable().getValue(i, 0), 
+                                         response.getDataTable().getValue(i, 1))) ;
+  }  
+  
+  initialize(coordinates);
+
+}
+
+// Initialize the map and the FusionTablesLayer, use the lat/long coordinates
+// from the table to set the bounds of the map
+function initialize(coordinates) {
+
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(0, 0), //the center lat and long
+    zoom: 15, //zoom
+    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
+  });
+  
+  // Initialize bounds for the map
+  bounds = new google.maps.LatLngBounds();
+  
+  // Keep extending the bounds for each coordinate from FT
+  for (i = 0; i < coordinates.length; i++) {
+    bounds.extend(coordinates[i]);
+  }
+  
+  // Now fit the map to the bounds
+  map.fitBounds(bounds);
+  
+  // Create the FusionTablesLayer and set the map of the layer
+  var layer = new google.maps.FusionTablesLayer(tableid); //create a new FusionTablesLayer
+  layer.setMap(map);
+  
+}
+</script>
+
+</head>
+<body onload="gvizSelect();">
+
+  <div id="map_canvas"></div>
+  <p>The Code:</p>
+  <pre>
+
+var tableid = 345328; // The table id
+
+// Run a gviz query to get the latitude and longitude points from the table
+function gvizSelect() {
+  // Select lat/long points from table
+  var queryText = encodeURIComponent("SELECT Latitude,Longitude FROM " + tableid);
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+  
+  // Set the callback function
+  query.send(getData);
+}
+
+// Run through the results of the gviz query to get a list of coordinates
+function getData(response) {
+
+  // Get the number of rows returned
+  numRows = response.getDataTable().getNumberOfRows();
+
+  // Create a list of lat/long coordinates
+  coordinates = [];
+  for(i = 0; i &lt; numRows; i++) {
+     coordinates.push(new google.maps.LatLng(response.getDataTable().getValue(i, 0), 
+                                         response.getDataTable().getValue(i, 1))) ;
+  }  
+  
+  initialize(coordinates);
+
+}
+
+// Initialize the map and the FusionTablesLayer, use the lat/long coordinates
+// from the table to set the bounds of the map
+function initialize(coordinates) {
+
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(0, 0), //the center lat and long
+    zoom: 15, //zoom
+    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
+  });
+  
+  // Initialize bounds for the map
+  bounds = new google.maps.LatLngBounds();
+  
+  // Keep extending the bounds for each coordinate from FT
+  for (i = 0; i &lt; coordinates.length; i++) {
+    bounds.extend(coordinates[i]);
+  }
+  
+  // Now fit the map to the bounds
+  map.fitBounds(bounds);
+  
+  // Create the FusionTablesLayer and set the map of the layer
+  var layer = new google.maps.FusionTablesLayer(tableid); //create a new FusionTablesLayer
+  layer.setMap(map);
+  
+}
+
+  </pre>
+
+</body>
+</html>
+
+

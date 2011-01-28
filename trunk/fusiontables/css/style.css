@@ -1,0 +1,28 @@
+#header {
+  background-color: #DCF6DB;
+  border-top-color: #090;
+  border-top-style: solid;
+  border-top-width: 1px;
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  height: 25px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 1px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 1px;
+  width: 1155px;
+}
+
+#header p {
+  padding: 6px 0px;
+  height: 25px;
+  line-height: 13px;
+  display: block;
+  height: 14px;
+  margin: 0 0 0 10px;
+}

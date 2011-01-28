@@ -16,10 +16,11 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
 
-<!-- Style -->
+<title>Google Maps JavaScript API v3 Example: Fusion Tables Layer</title> 
+
 <style type="text/css">
-  body { height: 100%; margin: 0px; padding: 10px; }
-  #map_canvas { height: 600px; width: 700px; }
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 500px; width:600px; }
 </style>
 
 <!-- Google Maps API javascript -->
@@ -92,11 +93,10 @@ function initialize(coordinates) {
 
 </head>
 <body onload="gvizSelect();">
-
+  
   <div id="map_canvas"></div>
   <p>The Code:</p>
   <pre>
-
 var tableid = 345328; // The table id
 
 // Run a gviz query to get the latitude and longitude points from the table
@@ -155,6 +155,7 @@ function initialize(coordinates) {
 
   </pre>
 
+<script type="text/javascript" src="script/script.js"></script>
 </body>
 </html>
 

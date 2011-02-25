@@ -43,16 +43,17 @@ function initialize() {
 }
 
 function zoomtoaddress() {
-  //use the geocoder to geocode the address
+
+  // Use the geocoder to geocode the address
   geocoder.geocode( { 'address': document.getElementById("address").value }, function(results, status) {
-    //if the status of the geocode is OK
+    // If the status of the geocode is OK
     if (status == google.maps.GeocoderStatus.OK) {
-      //change the center and zoom of the map
+      // Change the center and zoom of the map
       map.setCenter(results[0].geometry.location);
       map.setZoom(10);
       
-      //find the new map bounds, and run a spatial query to return
-      //Fusion Tables results within those bounds
+      // OPTIONAL: find the new map bounds, and run a spatial query to return
+      // Fusion Tables results within those bounds. 
       sw = map.getBounds().getSouthWest();
       ne = map.getBounds().getNorthEast();
       layer.setQuery("SELECT lat FROM " + tableid + " WHERE ST_INTERSECTS(lat, RECTANGLE(LATLNG(" + sw.lat() + "," + sw.lng() + "), LATLNG(" + ne.lat() + "," + ne.lng() + ")))") 
@@ -60,10 +61,19 @@ function zoomtoaddress() {
   });
 }
 
+// Reset the zoom, center, and FusionTablesLayer query
 function reset() {
   map.setCenter(center);
   map.setZoom(zoom);
   layer.setQuery("SELECT lat FROM " + tableid);
+}
+
+// Register Enter key press to submit form
+window.onkeypress = enterSubmit;
+function enterSubmit() {
+  if(event.keyCode==13) {
+    zoomtoaddress();
+  }
 }
 
 </script> 
@@ -97,16 +107,17 @@ function initialize() {
 }
 
 function zoomtoaddress() {
-  //use the geocoder to geocode the address
+
+  // Use the geocoder to geocode the address
   geocoder.geocode( { 'address': document.getElementById("address").value }, function(results, status) {
-    //if the status of the geocode is OK
+    // If the status of the geocode is OK
     if (status == google.maps.GeocoderStatus.OK) {
-      //change the center and zoom of the map
+      // Change the center and zoom of the map
       map.setCenter(results[0].geometry.location);
       map.setZoom(10);
       
-      //find the new map bounds, and run a spatial query to return
-      //Fusion Tables results within those bounds
+      // OPTIONAL: find the new map bounds, and run a spatial query to return
+      // Fusion Tables results within those bounds. 
       sw = map.getBounds().getSouthWest();
       ne = map.getBounds().getNorthEast();
       layer.setQuery("SELECT lat FROM " + tableid + " WHERE ST_INTERSECTS(lat, RECTANGLE(LATLNG(" + sw.lat() + "," + sw.lng() + "), LATLNG(" + ne.lat() + "," + ne.lng() + ")))") 
@@ -114,12 +125,23 @@ function zoomtoaddress() {
   });
 }
 
+// Reset the zoom, center, and FusionTablesLayer query
 function reset() {
   map.setCenter(center);
   map.setZoom(zoom);
   layer.setQuery("SELECT lat FROM " + tableid);
 }
+
+// Register Enter key press to submit form
+window.onkeypress = enterSubmit;
+function enterSubmit() {
+  if(event.keyCode==13) {
+    zoomtoaddress();
+  }
+}
   </pre>
+  
+<script type="text/javascript" src="script/script.js"></script>
 </body> 
 </html> 
 

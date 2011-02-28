@@ -278,6 +278,7 @@ function updateTextArea() {
 		"&lt;html>\n" +
 		"&lt;head>\n" +
 		"&lt;style>\n" +
+		"  body { font-family: Arial, sans-serif; }\n" +
 		"  #map_canvas { width: " + currentWidth + "px; height: " + currentHeight + "px; }\n" +
 		"&lt;/style>\n\n" +
 		
@@ -373,6 +374,11 @@ function showDiv(which) {
   var other = new Array();
   other['text'] = 'select';
   other['select'] = 'text';
-  document.getElementById(which).style.display = "inline";
+  document.getElementById(which).style.display = "block";
+  document.getElementById("query" + which).className = "selected";
   document.getElementById(other[which]).style.display = "none";
+  document.getElementById("query" + other[which]).className = "notselected";
 }
+
+
+

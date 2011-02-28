@@ -18,6 +18,24 @@
   body { font-family: Arial, sans-serif; }
   .right { float: right; }
   label { clear: both; }
+  .selected { 
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+  }
+  .notselected {
+    border-bottom: 1px solid;
+  }
+  a { 
+    text-decoration: none;
+    color: black;
+    display: block;
+    float: left;
+    width: 137px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
 </style>
 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -46,18 +64,16 @@
 	<input type="button" onclick="addLayer();" value="Add Layer" class="right" />
 
 	<h2>Add search</h2>
-	<select id="queryType" onchange="showDiv(this.value)">
-		<option value="text">Add text based search</option>
-		<option value="select">Add select based search</option>
-	</select><br /><br />
-	<div id="text">
+  <a id="querytext" href="javascript:showDiv('text');" class="selected">Text</a>
+  <a id="queryselect" href="javascript:showDiv('select');" class="notselected">Drop-down menu</a>
+	<div id="text" style="clear: both;">
 		<label>Text Label: </label><input type="text" id="textQueryLabel" class="right" /><br /><br />
 		<label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
 			<option value="">--Select--</option>
 		</select><br /><br />
 		<input type="button" onclick="addQuery();" value="Add Search" class="right" />
 	</div>
-	<div id="select" style="display: none;">
+	<div id="select" style="display: none; clear: both;">
 		<label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" /><br /><br />
 		<label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
 			<option value="">--Select--</option>

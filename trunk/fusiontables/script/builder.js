@@ -200,7 +200,7 @@ function addSelectQueryUnderMap() {
 	div.appendChild(select);
 	mapDiv.appendChild(div);
 	
-	query = "SELECT%20'" + document.getElementById('selectQueryColumn').value + "'%20FROM%20" + currentTableId;
+	query = "SELECT%20'" + document.getElementById('selectQueryColumn').value + "',COUNT()%20FROM%20" + currentTableId + " GROUP BY '" + document.getElementById('selectQueryColumn').value + "'";
 	var script = document.createElement("script");
 	script.setAttribute("src", "https://www.google.com/fusiontables/api/query?sql=" + query + "&jsonCallback=selectData");
 	document.body.appendChild(script);
@@ -211,11 +211,12 @@ function selectData(response) {
   selectOptions = "  &lt;select id=\"searchString\" onchange=\"changeMap(this.value);\"&gt;\n"
   selectOptions += "    &lt;option value=\"%\"&gt;--Select--&lt;/option&gt;\n";
   for(var i = 0; i < response['table']['rows'].length; i++) {
+    rowValue = response['table']['rows'][i][0];
 		option = document.createElement("option");
-		option.setAttribute("value", response['table']['rows'][i]);
-		option.innerHTML = response['table']['rows'][i];
+		option.setAttribute("value", rowValue);
+		option.innerHTML = rowValue;
 		selectMenu.appendChild(option);
-		selectOptions += "    &lt;option value=\"" + response['table']['rows'][i] + "\"&gt;" + response['table']['rows'][i] + "&lt;/option&gt;\n";
+		selectOptions += "    &lt;option value=\"" + rowValue + "\"&gt;" + rowValue + "&lt;/option&gt;\n";
   }
   selectMenu.disabled = false;
   selectOptions += "  &lt;/select&gt;\n";

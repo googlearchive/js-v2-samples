@@ -369,7 +369,7 @@ function textQueryChangeMap() {
 }
 
 function selectQueryChangeMap() {
-  var searchString = document.getElementById('textSearch').value.replace("'", "\\'");
+  var searchString = document.getElementById('selectSearch').value.replace("'", "\\'");
 	layer.setQuery("SELECT '" + currentLocationColumn + 
 		"' FROM " + currentTableId + 
 		" WHERE '" + currentSelectQueryColumn + "' LIKE '" + searchString + "'");

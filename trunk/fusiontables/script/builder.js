@@ -315,7 +315,8 @@ function updateTextArea() {
 		textArea +=
 			"\n" +
 			"function changeMap() {\n" +
-			"  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \" WHERE '" + currentTextQueryColumn + "' = '\" + document.getElementById('searchString').value + \"'\");\n" +
+			"  var searchString = document.getElementById('searchString').value.replace(\"'\", \"\\\\'\");\n" +
+			"  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \" WHERE '" + currentTextQueryColumn + "' = '\" + searchString + \"'\");\n" +
 			"}\n";
 	}
 	
@@ -323,7 +324,8 @@ function updateTextArea() {
 		textArea +=
 			"\n" +
 			"function changeMap() {\n" +
-			"  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \" WHERE '" + currentSelectQueryColumn + "' LIKE '\" + document.getElementById('searchString').value + \"'\");\n" +
+			"  var searchString = document.getElementById('searchString').value.replace(\"'\", \"\\\\'\");\n" +
+			"  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \" WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"'\");\n" +
 			"}\n";
 	}
 	
@@ -360,15 +362,17 @@ function updateTextArea() {
 }
 
 function textQueryChangeMap() {
+  var searchString = document.getElementById('textSearch').value.replace("'", "\\'");
 	layer.setQuery("SELECT '" + currentLocationColumn + 
 		"' FROM " + currentTableId + 
-		" WHERE '" + currentTextQueryColumn + "' = '" + document.getElementById('textSearch').value + "'");
+		" WHERE '" + currentTextQueryColumn + "' = '" + searchString + "'");
 }
 
 function selectQueryChangeMap() {
+  var searchString = document.getElementById('textSearch').value.replace("'", "\\'");
 	layer.setQuery("SELECT '" + currentLocationColumn + 
 		"' FROM " + currentTableId + 
-		" WHERE '" + currentSelectQueryColumn + "' LIKE '" + document.getElementById('selectSearch').value + "'");
+		" WHERE '" + currentSelectQueryColumn + "' LIKE '" + searchString + "'");
 }
 
 function showDiv(which) {

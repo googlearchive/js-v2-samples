@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+
+<title>Google Maps JavaScript API v3 Example: Fusion Tables Layer</title> 
+
+<style>
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+  .goog-slider-horizontal {
+    border: solid 1px #CCCCCC;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .goog-slider-thumb {
+    position: absolute;
+    background-color: #3399CC;
+    overflow: hidden;
+    width: 10px;
+    height: 100%;
+    top: 0;
+  }
+</style>
+
+<link rel="stylesheet" href="http://gmaps-samples-v3.googlecode.com/svn/trunk/fusiontables/common.css"> 
+<link rel="stylesheet" href="http://gmaps-samples-v3.googlecode.com/svn/trunk/fusiontables/dialog.css"> 
+<script type="text/javascript" src="http://gmaps-samples-v3.googlecode.com/svn/trunk/fusiontables/closurec.js"></script> 
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=abcdefg&sensor=true_or_false"
+            type="text/javascript"></script>
+<script type="text/javascript">
+
+var tableid = 517517;
+var layers = [new GLayer("ft:560372"), //Mar 1
+							new GLayer("ft:561371"), //Mar 2
+							new GLayer("ft:560652"), //Mar 3
+							new GLayer("ft:560929"), //Mar 4
+							new GLayer("ft:561028"), //Mar 5
+							new GLayer("ft:560374"), //Mar 6
+							new GLayer("ft:560846"), //Mar 7
+							new GLayer("ft:561214")  //Mar 8
+							];
+var currentLayer = 0;
+var map;
+
+function initialize() {
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map_canvas"));
+    map.setCenter(new google.maps.LatLng(30.28, -97.80), 12);
+    for(l in layers) {
+			layers[l].setParameter("h", "true");
+			layers[l].setParameter("ha", "255"); //255 
+			layers[l].setParameter("he", "4"); 
+			layers[l].setParameter("hd", "85");
+			layers[l].setParameter("hn", "0.0");
+		}
+    map.addOverlay(layers[currentLayer]);
+    map.setUIToDefault();
+    map.enableScrollWheelZoom();
+    map.addControl(new GMapTypeControl());
+    map.addMapType(G_PHYSICAL_MAP);
+  }
+}
+
+// Update the query used to filter Fusion Tables data using the
+// current value of the slider.
+function updateMap(layer) {
+  map.removeOverlay(layers[currentLayer]);
+  map.addOverlay(layers[layer]);
+  currentLayer = layer;
+}
+
+</script> 
+</head> 
+<body onload="initialize();" onunload="GUnload()"> 
+  <div id="map_canvas"></div>
+  <ul>
+  	<li><a href="javascript:updateMap(0);">Mar 1</a></li>
+  	<li><a href="javascript:updateMap(1);">Mar 2</a></li>
+  	<li><a href="javascript:updateMap(2);">Mar 3</a></li>
+  	<li><a href="javascript:updateMap(3);">Mar 4</a></li>
+  	<li><a href="javascript:updateMap(4);">Mar 5</a></li>
+  	<li><a href="javascript:updateMap(5);">Mar 6</a></li>
+  	<li><a href="javascript:updateMap(6);">Mar 7</a></li>
+  	<li><a href="javascript:updateMap(7);">Mar 8</a></li>
+  </ul>
+</body> 
+</html>
+
+
+
+

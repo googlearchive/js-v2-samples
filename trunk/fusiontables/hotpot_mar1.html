@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+
+<title>Google Maps JavaScript API v3 Example: Fusion Tables Layer</title> 
+
+<style>
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+</style>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript"> 
+
+var tableid = 560372;
+var zoom = 12;
+var latlng = new google.maps.LatLng(30.28, -97.80);
+var slider, sliderTimer;
+
+function initialize() {
+  var stylez = [{
+      featureType: "all",
+      elementType: "all",
+      stylers: [
+        { visibility: "simplified" },
+        { saturation: -90 },
+        { hue: "#000000" }
+      ]
+    }
+  ];
+   
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: latlng,
+    zoom: zoom,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  var styledMapType =  new google.maps.StyledMapType(stylez, {
+    map: map,
+    name: 'Hotpot map!'
+  });
+   
+  map.mapTypes.set('hotpot-style', styledMapType);
+  map.setMapTypeId('hotpot-style'); 
+  
+
+  layer = new google.maps.FusionTablesLayer(tableid, {
+    heatmap: true
+  });
+  layer.setMap(map);
+}
+
+</script> 
+</head> 
+<body onload="initialize();"> 
+  <div id="map_canvas"></div>
+</body> 
+</html>
+
+
+
+

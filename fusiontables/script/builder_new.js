@@ -427,12 +427,18 @@ function updateTextArea() {
 		
 		"&lt;script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=false\">&lt;/script>\n" +
 		"&lt;script type=\"text/javascript\">\n" +
-		"var map;\n";
+		"var map;\n\n";
 			
 	if(currentTableId) {
 		textArea += 
 			"var layer;\n" +
 			"var tableid = " + currentTableId + ";\n\n";
+	}
+	
+	if(currentAnotherTableId) {
+		textArea += 
+			"var layer2;\n" +
+			"var tableid2 = " + currentAnotherTableId + ";\n\n";
 	}
 			
 	textArea += 
@@ -445,9 +451,33 @@ function updateTextArea() {
 	
 	if(currentTableId) {
 		textArea += 
-			"  layer = new google.maps.FusionTablesLayer(tableid);\n" +
-			"  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid);\n" +
+			"  layer = new google.maps.FusionTablesLayer(tableid);\n";
+		if(currentFilter) {
+		  textArea += 
+		    "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
+		    " WHERE " + currentFilter + "\");\n";
+		} else {
+		  textArea += 
+		    "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid);\n";
+		}
+		textArea +=
 			"  layer.setMap(map);\n";
+	}
+
+  alert(currentAnotherTableId);
+	if(currentAnotherTableId) {
+		textArea += 
+			"\n  layer2 = new google.maps.FusionTablesLayer(tableid2);\n";
+		if(currentAnotherFilter) {
+		  textArea += 
+		    "  layer2.setQuery(\"SELECT '" + currentAnotherLocationColumn + "' FROM \" + tableid2 + \"" +
+		    " WHERE " + currentAnotherFilter + "\");\n";
+		} else {
+		  textArea += 
+		    "  layer2.setQuery(\"SELECT '" + currentAnotherLocationColumn + "' FROM \" + tableid2);\n";
+		}
+		textArea +=
+			"  layer2.setMap(map);\n";
 	}
 	
 	textArea += 
@@ -457,8 +487,18 @@ function updateTextArea() {
 		textArea +=
 			"\n" +
 			"function changeMap() {\n" +
-			"  var searchString = document.getElementById('searchString').value.replace(\"'\", \"\\\\'\");\n" +
-			"  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \" WHERE '" + currentTextQueryColumn + "' = '\" + searchString + \"'\");\n" +
+			"  var searchString = document.getElementById('searchString').value.replace(\"'\", \"\\\\'\");\n";
+		if(currentFilter) {
+		  textArea +=
+		    "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
+		    " WHERE '" + currentTextQueryColumn + "' = '\" + searchString + \"'" +
+		    " AND " + currentFilter + "\");\n";
+		} else {
+		  textArea +=
+		    "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
+		    " WHERE '" + currentTextQueryColumn + "' = '\" + searchString + \"'\");\n";
+		}
+		textArea +=
 			"}\n";
 	}
 	
@@ -466,8 +506,18 @@ function updateTextArea() {
 		textArea +=
 			"\n" +
 			"function changeMap() {\n" +
-			"  var searchString = document.getElementById('searchString').value.replace(\"'\", \"\\\\'\");\n" +
-			"  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \" WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"'\");\n" +
+			"  var searchString = document.getElementById('searchString').value.replace(\"'\", \"\\\\'\");\n";
+	  if(currentFilter) {
+		  textArea +=
+			  "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
+			  " WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"" +
+			  " AND " + currentFilter + "'\");\n";
+	  } else {
+		  textArea +=
+			  "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
+			  " WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"'\");\n";
+		}
+		textArea +=
 			"}\n";
 	}
 	

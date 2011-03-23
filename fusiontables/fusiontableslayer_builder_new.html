@@ -1,0 +1,134 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+<html>
+
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+
+<title>FusionTablesLayer Builder</title>
+
+<style>
+  body { font-family: Arial, sans-serif; padding-left: 10px; }
+  .right { float: right; }
+  label { clear: both; }
+  .selected { 
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+  }
+  .notselected {
+    border-bottom: 1px solid;
+  }
+</style>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="script/builder_new.js"></script>
+
+</head>
+
+<body onload="initialize(); initializeMap();">
+
+<h1>FusionTablesLayer Builder</h1>
+
+<p>This wizard helps you create the HTML for a map with a FusionTablesLayer
+and search element (either text-based search or select menu). After creating
+your map, you can copy and paste the HTML code in the textarea below
+to display the map on your own website!</p>
+
+<div style="float:left; width: 350px; margin: 0 50px 20px 0;">
+	
+	<h2>Edit Map</h2>
+	<label>Width: </label><input type="text" id="mapwidth" class="right" /><br /><br />
+	<label>Height: </label><input type="text" id="mapheight" class="right" /><br /><br />
+	<label>Map Center: </label><input type="text" id="mapCenter" class="right" /><br /><br />
+	<label>Zoom: </label> <input type="text" id="mapZoom" class="right" /><br /><br />
+	<input type="button" onclick="editMap();" value="Edit Map" class="right" />
+	
+	<h2>Add layer</h2>
+	<label>Your table id: </label><input type="text" id="tableid" class="right" onblur="fillSelectColumns();" /><br /><br />
+	<label>Location Column: </label><select id="locationColumn" class="right" disabled="true">
+		<option value="">--Select--</option>
+	</select><br /><br />
+	<label>Filter (opt.): </label>WHERE <input type="text" id="filter" class="right" /><br /><br />
+	<input type="button" onclick="addLayer();" value="Add Layer" class="right" />
+	
+	<h2 style="clear:both;">Add another feature</h2>
+  <select onchange="showDiv(this.value)">
+    <option value="">--SELECT--</option>
+    <option value="layer">Another layer</option>
+    <option value="text">Text-based search</option>
+    <option value="select">Select-menu search</option>
+  </select><br /><br />
+  <div id="layer" style="display: none; clear: both;">
+	  <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" /><br /><br />
+	  <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="true">
+		  <option value="">--Select--</option>
+	  </select><br /><br />
+	  <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" /><br /><br />
+	  <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
+	</div>
+	<div id="text" style="display: none; clear: both;">
+		<label>Text Label: </label><input type="text" id="textQueryLabel" class="right" /><br /><br />
+		<label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
+			<option value="">--Select--</option>
+		</select><br /><br />
+		<input type="button" onclick="addQuery();" value="Add Search" class="right" />
+	</div>
+	<div id="select" style="display: none; clear: both;">
+		<label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" /><br /><br />
+		<label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
+			<option value="">--Select--</option>
+		</select><br /><br />
+		<input type="button" onclick="addSelectQuery();" value="Add Search" class="right" />
+	</div>
+	
+</div>
+
+<div id="map_section" style="float: left;">
+	<h2>Preview</h2>
+	<div id="map_canvas"></div>
+</div>
+
+<div style="clear: both;">
+  <h2>Your HTML</h2>
+	<textarea id="htmlCode" style="width: 900px; height: 500px;">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  #map_canvas { width: 500px; height: 400px; }
+&lt;/style&gt;
+
+&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+var map;
+
+function initialize() {
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(0, 0),
+    zoom: 1, //zoom
+    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
+  });
+}
+&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body onload="initialize();"&gt;
+
+&lt;div id="map_canvas"&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+	</textarea>
+</div>
+
+</body>
+
+</html>

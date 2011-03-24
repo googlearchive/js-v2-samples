@@ -60,12 +60,13 @@ to display the map on your own website!</p>
 	<input type="button" onclick="addLayer();" value="Add Layer" class="right" />
 	
 	<h2 style="clear:both;">Add another feature</h2>
-  <select onchange="showDiv(this.value)">
+  <select id="addFeature" onchange="showDiv(this.value)">
     <option value="">--SELECT--</option>
     <option value="layer">Another layer</option>
     <option value="text">Text-based search</option>
     <option value="select">Select-menu search</option>
-  </select><br /><br />
+  </select>
+  <input type="button" value="Reset" onclick="resetAddFeature()" /><br /><br />
   <div id="layer" style="display: none; clear: both;">
 	  <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" /><br /><br />
 	  <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="true">

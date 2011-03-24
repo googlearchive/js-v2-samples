@@ -40,7 +40,8 @@
 <p>This wizard helps you create the HTML for a map with a FusionTablesLayer
 and search element (either text-based search or select menu). After creating
 your map, you can copy and paste the HTML code in the textarea below
-to display the map on your own website!</p>
+to display the map on your own website! Please submit bug reports here:
+<a href="http://code.google.com/p/fusiontableslayer-builder/issues/list">Issue Tracker</a></p>
 
 <div style="float:left; width: 350px; margin: 0 50px 20px 0;">
 	
@@ -65,29 +66,40 @@ to display the map on your own website!</p>
     <option value="layer">Another layer</option>
     <option value="text">Text-based search</option>
     <option value="select">Select-menu search</option>
-  </select>
-  <input type="button" value="Reset" onclick="resetAddFeature()" /><br /><br />
+  </select><br /><br />
+  
   <div id="layer" style="display: none; clear: both;">
-	  <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" /><br /><br />
-	  <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="true">
-		  <option value="">--Select--</option>
-	  </select><br /><br />
-	  <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" /><br /><br />
-	  <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
+    <form>
+	    <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" /><br /><br />
+	    <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="true">
+		    <option value="">--Select--</option>
+	    </select><br /><br />
+	    <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" /><br /><br />
+      <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
+	    <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
+	  </form>
 	</div>
+	
 	<div id="text" style="display: none; clear: both;">
-		<label>Text Label: </label><input type="text" id="textQueryLabel" class="right" /><br /><br />
-		<label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
-			<option value="">--Select--</option>
-		</select><br /><br />
-		<input type="button" onclick="addQuery();" value="Add Search" class="right" />
+	  <form>
+		  <label>Text Label: </label><input type="text" id="textQueryLabel" class="right" /><br /><br />
+		  <label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
+			  <option selected="selected" value="">--Select--</option>
+		  </select><br /><br />
+      <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
+		  <input type="button" onclick="addQuery();" value="Add Search" class="right" />
+		</form>
 	</div>
+	
 	<div id="select" style="display: none; clear: both;">
-		<label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" /><br /><br />
-		<label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
-			<option value="">--Select--</option>
-		</select><br /><br />
-		<input type="button" onclick="addSelectQuery();" value="Add Search" class="right" />
+	  <form>
+		  <label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" /><br /><br />
+		  <label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
+			  <option selected="selected" value="">--Select--</option>
+		  </select><br /><br />
+      <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
+		  <input type="button" onclick="addSelectQuery();" value="Add Search" class="right" />
+		</form>
 	</div>
 	
 </div>

@@ -205,10 +205,6 @@ function addSelectQuery() {
 	}
 }
 
-function switchSelectMenu() {
-	document.getElementById('addFeature').disabled = 
-		document.getElementById('addFeature').disabled ? false : true;
-}
 
 //show the correct form (add layer, select or text query)
 function showDiv(which) {
@@ -217,31 +213,67 @@ function showDiv(which) {
   lastDisplayed = which;
 }
 
+/*** RESET EXTRA FEATURE ***/
+
+//remove any extra feature that was added
 function resetAddFeature() {
 	if(layerAdded) {
-		currentAnotherTableId = defaultAnotherTableId;
-		currentAnotherLocationColumn = defaultAnotherLocationColumn;
-		currentAnotherFilter = defaultAnotherFilter;
 		removeAnotherLayer();
-		layerAdded = false;
+	  switchSelectMenu();
 		
 	} else if(queryAdded) {
-		currentTextQueryLabel = defaultTextQueryLabel;
-		currentTextQueryColumn = defaultTextQueryColumn;
 		removeTextQuery();
-		queryAdded = false;
+	  switchSelectMenu();
 		
 	} else if(selectQueryAdded) {
-		currentSelectQueryLabel = defaultSelectQueryLabel;
-  	currentSelectQueryColumn = defaultSelectQueryColumn;
   	removeSelectQuery();
-		selectQueryAdded = false;
+	  switchSelectMenu();
 	}
 	
 	updateTextArea();
-	switchSelectMenu();
 }
 
+//removes the layer from the map and resets the form
+function removeAnotherLayer() {
+	currentAnotherTableId = defaultAnotherTableId;
+	currentAnotherLocationColumn = defaultAnotherLocationColumn;
+	currentAnotherFilter = defaultAnotherFilter;
+  if(anotherLayer) anotherLayer.setMap(null); 
+  clearForm();
+	layerAdded = false;
+}
+
+//reset the form
+function clearForm() {
+  //remove values from select menu
+  removeChildren(document.getElementById('anotherLocationColumn'));
+  //disable select menu
+  document.getElementById('anotherLocationColumn').disabled = true;
+}
+
+function removeTextQuery() {
+	currentTextQueryLabel = defaultTextQueryLabel;
+	currentTextQueryColumn = defaultTextQueryColumn;
+	removeQueryElement('textSearchDiv');
+	queryAdded = false;
+}
+
+function removeSelectQuery() {
+	currentSelectQueryLabel = defaultSelectQueryLabel;
+	currentSelectQueryColumn = defaultSelectQueryColumn;
+	removeQueryElement('selectSearchDiv');
+	selectQueryAdded = false;
+}
+
+function removeQueryElement(elementId) {
+  searchDiv = document.getElementById(elementId);
+  if(searchDiv.hasChildNodes()) {
+    while (searchDiv.childNodes.length > 0) {
+      searchDiv.removeChild(searchDiv.lastChild);       
+    }
+  }
+  searchDiv.parentNode.removeChild(searchDiv);
+}
 
 /*** FORM CHECKS ***/
 
@@ -318,6 +350,7 @@ function checkSelectForm(message) {
 function addTextQuery() {
 	var mapDiv = document.getElementById('map_section');
 	var div = document.createElement("div");
+	div.setAttribute("id", "textSearchDiv");
 	div.style.marginTop = "10px";
 	
 	var label = document.createElement("label");
@@ -342,6 +375,7 @@ function addTextQuery() {
 function addSelectQueryUnderMap() {
   var mapDiv = document.getElementById('map_section');
 	var div = document.createElement("div");
+	div.setAttribute("id", "selectSearchDiv");
 	div.style.marginTop = "10px";
 	
 	var label = document.createElement("label");
@@ -460,7 +494,6 @@ function updateTextArea() {
 		"&lt;html>\n" +
 		"&lt;head>\n" +
 		"&lt;style>\n" +
-		"  body { font-family: Arial, sans-serif; }\n" +
 		"  #map_canvas { width: " + currentWidth + "px; height: " + currentHeight + "px; }\n" +
 		"&lt;/style>\n\n" +
 		
@@ -486,11 +519,11 @@ function updateTextArea() {
 		"    center: new google.maps.LatLng(" + currentCenter.lat() + ", " + currentCenter.lng() + "),\n" +
 		"    zoom: " + currentZoom + ", //zoom\n" +
 		"    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style\n" +
-		"  });\n\n";
+		"  });\n";
 	
 	if(currentTableId) {
 		textArea += 
-			"  layer = new google.maps.FusionTablesLayer(tableid);\n";
+			"\n  layer = new google.maps.FusionTablesLayer(tableid);\n";
 		if(currentFilter) {
 		  textArea += 
 		    "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
@@ -600,4 +633,10 @@ function removeChildren(menu) {
       menu.removeChild(menu.lastChild);       
     } 
   }
+}
+
+//if select menu on, turn off. if off, turn on
+function switchSelectMenu() {
+	document.getElementById('addFeature').disabled = 
+		document.getElementById('addFeature').disabled ? false : true;
 }

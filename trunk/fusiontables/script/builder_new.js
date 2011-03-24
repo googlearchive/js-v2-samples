@@ -24,6 +24,8 @@ var selectOptions = "";
 
 var queryAdded = false;
 var selectQueryAdded = false;
+var layerAdded = false;
+
 var lastDisplayed = "";
 
 /*** Form Functionality ***/
@@ -159,8 +161,12 @@ function addAnotherLayer() {
  	currentAnotherFilter = document.getElementById('anotherFilter').value ?
  	  document.getElementById('anotherFilter').value : defaultAnotherFilter;
  	
-	addAnotherLayerToMap();
-	updateTextArea();
+ 	if(!layerAdded) {
+		addAnotherLayerToMap();
+		updateTextArea();
+		layerAdded = true;
+		switchSelectMenu();
+	}
 }
 
 
@@ -178,6 +184,7 @@ function addQuery() {
 		addTextQuery();
 		updateTextArea();
 		queryAdded = true;
+		switchSelectMenu();
 	}
 }
 
@@ -194,7 +201,13 @@ function addSelectQuery() {
 	if(!selectQueryAdded) {
 		addSelectQueryUnderMap();
 		selectQueryAdded = true;
+		switchSelectMenu();
 	}
+}
+
+function switchSelectMenu() {
+	document.getElementById('addFeature').disabled = 
+		document.getElementById('addFeature').disabled ? false : true;
 }
 
 //show the correct form (add layer, select or text query)
@@ -203,6 +216,32 @@ function showDiv(which) {
   if(lastDisplayed) document.getElementById(lastDisplayed).style.display = "none";
   lastDisplayed = which;
 }
+
+function resetAddFeature() {
+	if(layerAdded) {
+		currentAnotherTableId = defaultAnotherTableId;
+		currentAnotherLocationColumn = defaultAnotherLocationColumn;
+		currentAnotherFilter = defaultAnotherFilter;
+		removeAnotherLayer();
+		layerAdded = false;
+		
+	} else if(queryAdded) {
+		currentTextQueryLabel = defaultTextQueryLabel;
+		currentTextQueryColumn = defaultTextQueryColumn;
+		removeTextQuery();
+		queryAdded = false;
+		
+	} else if(selectQueryAdded) {
+		currentSelectQueryLabel = defaultSelectQueryLabel;
+  	currentSelectQueryColumn = defaultSelectQueryColumn;
+  	removeSelectQuery();
+		selectQueryAdded = false;
+	}
+	
+	updateTextArea();
+	switchSelectMenu();
+}
+
 
 /*** FORM CHECKS ***/
 
@@ -464,7 +503,6 @@ function updateTextArea() {
 			"  layer.setMap(map);\n";
 	}
 
-  alert(currentAnotherTableId);
 	if(currentAnotherTableId) {
 		textArea += 
 			"\n  layer2 = new google.maps.FusionTablesLayer(tableid2);\n";
@@ -510,8 +548,8 @@ function updateTextArea() {
 	  if(currentFilter) {
 		  textArea +=
 			  "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
-			  " WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"" +
-			  " AND " + currentFilter + "'\");\n";
+			  " WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"'" +
+			  " AND " + currentFilter + "\");\n";
 	  } else {
 		  textArea +=
 			  "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +

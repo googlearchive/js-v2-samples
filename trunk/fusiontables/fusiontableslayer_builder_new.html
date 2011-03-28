@@ -18,6 +18,7 @@
 	body { font-family: Arial, sans-serif; padding-left: 10px; }
 	h2 { font-size: 18px; clear: both; }
 	#formelement { clear: both; margin-bottom: 15px; }
+	#specifics { clear: both; }
 	.right { float: right; }
 	.left {float: left; }
 	label { clear: both; }
@@ -34,6 +35,8 @@
 		background-color: white;
 		position: relative;
 		overflow: hidden;
+		width: 150px;
+		height: 15px;
 	}
 	.goog-slider-thumb {
 		position: absolute;
@@ -67,7 +70,7 @@ your map, you can copy and paste the HTML code in the textarea below
 to display the map on your own website! Please submit bug reports here:
 <a href="http://code.google.com/p/fusiontableslayer-builder/issues/list">Issue Tracker</a></p>
 
-<div style="float:left; width: 350px; margin: 0 50px 20px 0;">
+<div style="float:left; width: 375px; margin: 0 50px 20px 0;">
 	
 	<h2>Edit Map</h2>
 	<div id="formelement">
@@ -91,22 +94,45 @@ to display the map on your own website! Please submit bug reports here:
 	<div id="formelement">
 		<label>Show: </label>
 		<div class="right" style="width: 200px;">
-			<div class="left">
-				<input type="checkbox" id="highway" checked="checked" onchange="styleMap()" /> Highways<br />
-				<input type="checkbox" id="arterial" checked="checked" onchange="styleMap()" /> Arterial<br />
-			</div>
-			<div class="right">
-				<input type="checkbox" id="local" checked="checked" onchange="styleMap()" /> Local<br />
-				<input type="checkbox" id="transit" checked="checked" onchange="styleMap()" /> Transit
-			</div>
+		  <div class="right">
+		    <input type="checkbox" id="allfeatures" checked="checked" onchange="styleMapAll()" /> All features<br />
+		    <a href="javascript:specs();">More options</a>
+		  </div>
 		</div>
-	</div>
+		<div id="specifics" style="display: none;">
+		  <br style="clear: both;" />
+		  <form name="specform">
+		    <div class="left" style="margin: 0px 5px 15px 0px;">
+		      <b>Roads</b><br />
+			    <input type="checkbox" name="specs" id="road.highway" checked="checked" onchange="styleMap()" /> Highways<br />
+			    <input type="checkbox" name="specs" id="road.arterial" checked="checked" onchange="styleMap()" /> Arterial<br />
+			    <input type="checkbox" name="specs" id="road.local" checked="checked" onchange="styleMap()" /> Local
+		    </div>
+		    <div class="left" style="margin: 0px 5px 15px 0px;">
+		      <b>Administrative</b><br />
+			    <input type="checkbox" name="specs" id="administrative.country" checked="checked" onchange="styleMap()" /> Country<br />
+			    <input type="checkbox" name="specs" id="administrative.province" checked="checked" onchange="styleMap()" /> Province<br />
+			    <input type="checkbox" name="specs" id="administrative.locality" checked="checked" onchange="styleMap()" /> Locality<br />
+			    <input type="checkbox" name="specs" id="administrative.neighborhood" checked="checked" onchange="styleMap()" /> Neighborhood<br />
+			    <input type="checkbox" name="specs" id="administrative.land_parcel" checked="checked" onchange="styleMap()" /> Land parcel
+		    </div>
+		    <div class="left" style="margin: 0px 5px 15px 0px;">
+		      <b>Other</b><br />
+			    <input type="checkbox" name="specs" id="poi" checked="checked" onchange="styleMap()" /> Point of Interest<br />
+			    <input type="checkbox" name="specs" id="transit" checked="checked" onchange="styleMap()" /> Transit
+		    </div>
+		  </form>
+		</div>
+	</div><br />
 	<div id="formelement">
 		<label>Saturation:</label>
-		<div id="s1" class="goog-slider right" style="width: 200px; height: 20px"> 
-			<div class="goog-slider-thumb"></div> 
+		<div class="right">
+		  <div class="left">Gray&nbsp;</div>
+		  <div id="s1" class="goog-slider left"> 
+			  <div class="goog-slider-thumb"></div> 
+		  </div>
+		  <div class="left">&nbsp;Bright</div>
 		</div>
-		<div class="right" style="margin-right: 10px;" id="saturationValue">0</div>
 	</div>
 	
 	<h2>Add layer</h2>

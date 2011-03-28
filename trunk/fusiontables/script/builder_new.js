@@ -3,6 +3,7 @@ var map;
 var defaultWidth = currentWidth = "500";
 var defaultHeight = currentHeight = "400";
 var defaultCenter = currentCenter = new google.maps.LatLng(0, 0);
+var lastCenter = "0, 0";
 var defaultZoom = currentZoom = 1;
 var defaultSaturation = currentSaturation = 0;
 
@@ -60,32 +61,54 @@ function editMap() {
   currentSaturation = s.getValue() ?
   	parseInt(s.getValue()) : defaultSaturation;
 	
+	//resize
 	document.getElementById('map_canvas').style.width = currentWidth + "px";
 	document.getElementById('map_canvas').style.height = currentHeight + "px";
+	google.maps.event.trigger(map, 'resize');
 
-	geocoder = new google.maps.Geocoder();
-	geocoder.geocode( { 'address': document.getElementById("mapCenter").value }, function(results, status) {
-		currentCenter = defaultCenter;
-		if (status == google.maps.GeocoderStatus.OK) {
-			currentCenter = results[0].geometry.location;
-		}
-		
-		map = new google.maps.Map(document.getElementById('map_canvas'), {
-			center: currentCenter,
-			zoom: currentZoom, //zoom
-			mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
-		});
-		styleMap();
-		
-		if(currentTableId && currentLocationColumn) addLayerToMap();
-		if(currentAnotherTableId && currentAnotherLocationColumn) addAnotherLayerToMap();
-	});
+  //center
+  if(document.getElementById("mapCenter").value != lastCenter) {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': document.getElementById("mapCenter").value }, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+		    currentCenter = results[0].geometry.location;
+        lastCenter = document.getElementById("mapCenter").value;
+        map.setCenter(currentCenter);
+	    } else {
+	      alert('Map Center failed to geocode, keeping map center at last value');
+	      map.setCenter(currentCenter);
+	    }
+    });
+  }
+	
+	//zoom
+	map.setZoom(currentZoom);
+	
+	styleMap();
+	if(currentTableId && currentLocationColumn) addLayerToMap();
+	if(currentAnotherTableId && currentAnotherLocationColumn) addAnotherLayerToMap();
 }
 
-//STYLE
-function styleMap() {
+//STYLE MAP
+
+function specs() {
+  document.getElementById('specifics').style.display = 
+    document.getElementById('specifics').style.display == "none" ? "inline" : "none";
+}
+
+function styleMapAll() {
+  var setCheck = false;
+  if(document.getElementById('allfeatures').checked) {
+    setCheck = true;
+	} 
+	for(var i = 0; i < document.specform.specs.length; i++) {
+    document.specform.specs[i].checked = setCheck;
+  }
+	styleMap();
+}
+
+function styleMap(value) {
   style = []
-	document.getElementById('saturationValue').innerHTML = s.getValue();
 	currentSaturation = s.getValue();
 	if(currentSaturation != 0) {
 		style.push ({
@@ -96,42 +119,24 @@ function styleMap() {
 			]
 		});
 	}
-	if(!document.getElementById('highway').checked) {
-		style.push ({
-			featureType: "road.highway",
-			elementType: "all",
-			stylers: [
-				{ visibility: "off" },
-			]
-		});
+	
+	var unchecked = false; //is one unchecked?
+	for(var i = 0; i < document.specform.specs.length; i++) {
+	  if(!document.specform.specs[i].checked) {
+	    style.push ({
+			  featureType: document.specform.specs[i].id,
+			  elementType: "all",
+			  stylers: [
+				  { visibility: "off" },
+			  ]
+		  });
+		  unchecked = true;
+	  }
 	}
-	if(!document.getElementById('arterial').checked) {
-		style.push ({
-			featureType: "road.arterial",
-			elementType: "all",
-			stylers: [
-				{ visibility: "off" },
-			]
-		});
-	}
-	if(!document.getElementById('local').checked) {
-		style.push ({
-			featureType: "road.local",
-			elementType: "all",
-			stylers: [
-				{ visibility: "off" },
-			]
-		});
-	}
-	if(!document.getElementById('local').checked) {
-		style.push ({
-			featureType: "transit.line",
-			elementType: "all",
-			stylers: [
-				{ visibility: "off" },
-			]
-		});
-	}
+	
+	//if one is unchecked, uncheck the all features, otherwise, check it
+	if(unchecked) document.getElementById('allfeatures').checked = false;
+	else document.getElementById('allfeatures').checked = true;
 	
 	var styledMapType =  new google.maps.StyledMapType(style, {
 		map: map,
@@ -514,6 +519,7 @@ function initializeMap() {
 		zoom: defaultZoom, //zoom
 		mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
 	});
+  addListeners();
 }
 
 //add the layer to the map
@@ -597,10 +603,16 @@ function updateTextArea() {
 		"    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style\n" +
 		"  });\n";
 		
-	if(currentSaturation != 0 || 
-		 !document.getElementById('highway').checked ||
-		 !document.getElementById('arterial').checked ||
-		 !document.getElementById('local').checked) {
+	
+	// Is there a feature that has been checked? show style if so
+	var oneChecked = false;
+	for(var i = 0; i < document.specform.specs.length; i++) {
+    if(!document.specform.specs[i].checked) {
+      oneChecked = true;
+      break;
+    }
+  }
+	if(currentSaturation != 0 || oneChecked) {
 	
 		textArea +=
 			"\n  var style = [\n";
@@ -618,57 +630,20 @@ function updateTextArea() {
 		  oneabove = true;
 		}
 		
-		if(!document.getElementById('highway').checked) {
-			if(oneabove) textArea += " ,\n";
-			textArea +=
-			  "    {\n" +
-				"      featureType: 'road.highway',\n" +
-    		"      elementType: 'all',\n" +
-				"      stylers: [\n" +
-      	"        { visibility: 'off' }\n" +
-    		"      ]\n" +
-		    "    }";
-		  oneabove = true;
-		}
-		
-		if(!document.getElementById('arterial').checked) {
-			if(oneabove) textArea += " ,\n";
-			textArea +=
-			  "    {\n" +
-				"      featureType: 'road.arterial',\n" +
-    		"      elementType: 'all',\n" +
-				"      stylers: [\n" +
-      	"        { visibility: 'off' }\n" +
-    		"      ]\n" +
-		    "    }";
-		  oneabove = true;
-		}
-		
-		if(!document.getElementById('local').checked) {
-			if(oneabove) textArea += " ,\n";
-			textArea +=
-			  "    {\n" +
-				"      featureType: 'road.local',\n" +
-    		"      elementType: 'all',\n" +
-				"      stylers: [\n" +
-      	"        { visibility: 'off' }\n" +
-    		"      ]\n" +
-		    "    }";
+		for(var i = 0; i < document.specform.specs.length; i++) {
+	    if(!document.specform.specs[i].checked) {
+	      if(oneabove) textArea += " ,\n";
+			  textArea +=
+			    "    {\n" +
+				  "      featureType: '" + document.specform.specs[i].id + "',\n" +
+      		"      elementType: 'all',\n" +
+				  "      stylers: [\n" +
+        	"        { visibility: 'off' }\n" +
+      		"      ]\n" +
+		      "    }";
 		    oneabove = true;
-		}
-		
-		if(!document.getElementById('transit').checked) {
-			if(oneabove) textArea += " ,\n";
-			textArea +=
-			  "    {\n" +
-				"      featureType: 'transit.line',\n" +
-    		"      elementType: 'all',\n" +
-				"      stylers: [\n" +
-      	"        { visibility: 'off' }\n" +
-    		"      ]\n" +
-		    "    }";
-		    oneabove = true;
-		}
+	    }
+	  }
 		
 		textArea +=
 		  "\n  ];\n\n" +
@@ -801,3 +776,20 @@ function switchSelectMenu() {
 	document.getElementById('addFeature').disabled = 
 		document.getElementById('addFeature').disabled ? false : true;
 }
+
+//add listeners to the map
+function addListeners() {
+	google.maps.event.addListener(map, 'zoom_changed', function() {
+	  document.getElementById('mapZoom').value = map.getZoom();
+	  currentZoom = map.getZoom();
+	  updateTextArea(); 
+	});
+	
+	google.maps.event.addListener(map, 'center_changed', function() {
+	  document.getElementById('mapCenter').value = map.getCenter().lat() + ", " + map.getCenter().lng();
+	  lastCenter = map.getCenter().lat() + ", " + map.getCenter().lng();
+	  currentCenter = map.getCenter();
+	  updateTextArea();
+	});
+}
+

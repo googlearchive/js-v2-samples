@@ -4,6 +4,7 @@ var defaultWidth = currentWidth = "500";
 var defaultHeight = currentHeight = "400";
 var defaultCenter = currentCenter = new google.maps.LatLng(0, 0);
 var defaultZoom = currentZoom = 1;
+var defaultSaturation = currentSaturation = 0;
 
 var layer;
 var anotherLayer;
@@ -27,6 +28,7 @@ var selectQueryAdded = false;
 var layerAdded = false;
 
 var lastDisplayed = "";
+var s = new goog.ui.Slider();
 
 /*** Form Functionality ***/
 
@@ -36,6 +38,13 @@ function initialize() {
   document.getElementById('mapheight').value = defaultHeight;
   document.getElementById('mapCenter').value = defaultCenter.lat() + ", " + defaultCenter.lng();
   document.getElementById('mapZoom').value = defaultZoom;
+  
+  //initialize slider
+  var el = document.getElementById('s1');
+	s.decorate(el);
+	s.setMinimum(-99);
+	s.setMaximum(99);
+	s.addEventListener(goog.ui.Component.EventType.CHANGE, styleMap);
 }
 
 //edit the map based on user-entered values
@@ -48,6 +57,8 @@ function editMap() {
   	parseInt(document.getElementById('mapheight').value) : defaultHeight;
   currentZoom = document.getElementById('mapZoom').value ? 
   	parseInt(document.getElementById('mapZoom').value) : defaultZoom;
+  currentSaturation = s.getValue() ?
+  	parseInt(s.getValue()) : defaultSaturation;
 	
 	document.getElementById('map_canvas').style.width = currentWidth + "px";
 	document.getElementById('map_canvas').style.height = currentHeight + "px";
@@ -58,15 +69,79 @@ function editMap() {
 		if (status == google.maps.GeocoderStatus.OK) {
 			currentCenter = results[0].geometry.location;
 		}
+		
 		map = new google.maps.Map(document.getElementById('map_canvas'), {
 			center: currentCenter,
 			zoom: currentZoom, //zoom
 			mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
 		});
-		updateTextArea();
+		styleMap();
+		
 		if(currentTableId && currentLocationColumn) addLayerToMap();
 		if(currentAnotherTableId && currentAnotherLocationColumn) addAnotherLayerToMap();
 	});
+}
+
+//STYLE
+function styleMap() {
+  style = []
+	document.getElementById('saturationValue').innerHTML = s.getValue();
+	currentSaturation = s.getValue();
+	if(currentSaturation != 0) {
+		style.push ({
+			featureType: "all",
+			elementType: "all",
+			stylers: [
+				{ saturation: currentSaturation },
+			]
+		});
+	}
+	if(!document.getElementById('highway').checked) {
+		style.push ({
+			featureType: "road.highway",
+			elementType: "all",
+			stylers: [
+				{ visibility: "off" },
+			]
+		});
+	}
+	if(!document.getElementById('arterial').checked) {
+		style.push ({
+			featureType: "road.arterial",
+			elementType: "all",
+			stylers: [
+				{ visibility: "off" },
+			]
+		});
+	}
+	if(!document.getElementById('local').checked) {
+		style.push ({
+			featureType: "road.local",
+			elementType: "all",
+			stylers: [
+				{ visibility: "off" },
+			]
+		});
+	}
+	if(!document.getElementById('local').checked) {
+		style.push ({
+			featureType: "transit.line",
+			elementType: "all",
+			stylers: [
+				{ visibility: "off" },
+			]
+		});
+	}
+	
+	var styledMapType =  new google.maps.StyledMapType(style, {
+		map: map,
+		name: 'Styled Map'
+	});
+	
+	map.mapTypes.set('map-style', styledMapType);
+	map.setMapTypeId('map-style');
+	
+	updateTextArea();
 }
 
 //fill the select columns in the form after user enters table id
@@ -107,7 +182,6 @@ function selectColumns(response) {
 	selectMenu2.disabled = false;
 	selectMenu3.disabled = false;
 }
-
 
 //start adding the layer to the map, button click add layer
 function addLayer() {
@@ -255,6 +329,7 @@ function removeTextQuery() {
 	currentTextQueryLabel = defaultTextQueryLabel;
 	currentTextQueryColumn = defaultTextQueryColumn;
 	removeQueryElement('textSearchDiv');
+	layer.setQuery("SELECT '" + currentLocationColumn + "' FROM " + currentTableId);
 	queryAdded = false;
 }
 
@@ -262,6 +337,7 @@ function removeSelectQuery() {
 	currentSelectQueryLabel = defaultSelectQueryLabel;
 	currentSelectQueryColumn = defaultSelectQueryColumn;
 	removeQueryElement('selectSearchDiv');
+	layer.setQuery("SELECT '" + currentLocationColumn + "' FROM " + currentTableId);
 	selectQueryAdded = false;
 }
 
@@ -520,6 +596,91 @@ function updateTextArea() {
 		"    zoom: " + currentZoom + ", //zoom\n" +
 		"    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style\n" +
 		"  });\n";
+		
+	if(currentSaturation != 0 || 
+		 !document.getElementById('highway').checked ||
+		 !document.getElementById('arterial').checked ||
+		 !document.getElementById('local').checked) {
+	
+		textArea +=
+			"\n  var style = [\n";
+			
+		oneabove = false;
+		if(currentSaturation != 0) {
+			textArea +=
+			  "    {\n" +
+				"      featureType: 'all',\n" +
+    		"      elementType: 'all',\n" +
+				"      stylers: [\n" +
+      	"        { saturation: " + currentSaturation + " }\n" +
+    		"      ]\n" +
+		    "    }";
+		  oneabove = true;
+		}
+		
+		if(!document.getElementById('highway').checked) {
+			if(oneabove) textArea += " ,\n";
+			textArea +=
+			  "    {\n" +
+				"      featureType: 'road.highway',\n" +
+    		"      elementType: 'all',\n" +
+				"      stylers: [\n" +
+      	"        { visibility: 'off' }\n" +
+    		"      ]\n" +
+		    "    }";
+		  oneabove = true;
+		}
+		
+		if(!document.getElementById('arterial').checked) {
+			if(oneabove) textArea += " ,\n";
+			textArea +=
+			  "    {\n" +
+				"      featureType: 'road.arterial',\n" +
+    		"      elementType: 'all',\n" +
+				"      stylers: [\n" +
+      	"        { visibility: 'off' }\n" +
+    		"      ]\n" +
+		    "    }";
+		  oneabove = true;
+		}
+		
+		if(!document.getElementById('local').checked) {
+			if(oneabove) textArea += " ,\n";
+			textArea +=
+			  "    {\n" +
+				"      featureType: 'road.local',\n" +
+    		"      elementType: 'all',\n" +
+				"      stylers: [\n" +
+      	"        { visibility: 'off' }\n" +
+    		"      ]\n" +
+		    "    }";
+		    oneabove = true;
+		}
+		
+		if(!document.getElementById('transit').checked) {
+			if(oneabove) textArea += " ,\n";
+			textArea +=
+			  "    {\n" +
+				"      featureType: 'transit.line',\n" +
+    		"      elementType: 'all',\n" +
+				"      stylers: [\n" +
+      	"        { visibility: 'off' }\n" +
+    		"      ]\n" +
+		    "    }";
+		    oneabove = true;
+		}
+		
+		textArea +=
+		  "\n  ];\n\n" +
+
+			"  var styledMapType = new google.maps.StyledMapType(style, {\n" +
+			"    map: map,\n" +
+			"    name: 'Styled Map'\n" +
+			"  });\n\n" +
+			
+			"  map.mapTypes.set('map-style', styledMapType);\n" +
+			"  map.setMapTypeId('map-style');\n";
+	}
 	
 	if(currentTableId) {
 		textArea += 

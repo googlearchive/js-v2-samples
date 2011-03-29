@@ -46,6 +46,8 @@ function initialize() {
 	s.setMinimum(-99);
 	s.setMaximum(99);
 	s.addEventListener(goog.ui.Component.EventType.CHANGE, styleMap);
+	
+	updateTextArea();
 }
 
 //edit the map based on user-entered values
@@ -572,15 +574,15 @@ function selectQueryChangeMap() {
 
 function updateTextArea() {
 	var textArea =
-	  "&lt;!DOCTYPE html&gt;\n" +
-		"&lt;html>\n" +
-		"&lt;head>\n" +
-		"&lt;style>\n" +
+	  "<!DOCTYPE html>\n" +
+		"<html>\n" +
+		"<head>\n" +
+		"<style>\n" +
 		"  #map_canvas { width: " + currentWidth + "px; height: " + currentHeight + "px; }\n" +
-		"&lt;/style>\n\n" +
+		"</style>\n\n" +
 		
-		"&lt;script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=false\">&lt;/script>\n" +
-		"&lt;script type=\"text/javascript\">\n" +
+		"<script type=\"text/javascript\" src=\"http://maps.google.com/maps/api/js?sensor=false\"></script>\n" +
+		"<script type=\"text/javascript\">\n" +
 		"var map;\n\n";
 			
 	if(currentTableId) {
@@ -599,8 +601,8 @@ function updateTextArea() {
 		"function initialize() {\n" +
 		"  map = new google.maps.Map(document.getElementById('map_canvas'), {\n" +
 		"    center: new google.maps.LatLng(" + currentCenter.lat() + ", " + currentCenter.lng() + "),\n" +
-		"    zoom: " + currentZoom + ", //zoom\n" +
-		"    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style\n" +
+		"    zoom: " + currentZoom + ",\n" +
+		"    mapTypeId: google.maps.MapTypeId.ROADMAP\n" +
 		"  });\n";
 		
 	
@@ -729,35 +731,35 @@ function updateTextArea() {
 	}
 	
 	textArea +=
-		"&lt;/script>\n\n" +
+		"</script>\n\n" +
 		
-		"&lt;/head>\n" +
-		"&lt;body onload=\"initialize();\">\n\n" +
+		"</head>\n" +
+		"<body onload=\"initialize();\">\n\n" +
 		
-		"&lt;div id=\"map_canvas\">&lt;/div>\n\n";
+		"<div id=\"map_canvas\"></div>\n\n";
 	
 	if(currentTextQueryLabel) {
 		textArea += 
-		  "&lt;div style=\"margin-top: 10px;\">\n" +
-			"  &lt;label>" + currentTextQueryLabel + " &lt;/label>\n" +
-			"  &lt;input type=\"text\" id=\"searchString\" />\n" +
-			"  &lt;input type=\"button\" onclick=\"changeMap();\" value=\"Search\" />\n" +
-			"&lt;\div>\n\n";
+		  "<div style=\"margin-top: 10px;\">\n" +
+			"  <label>" + currentTextQueryLabel + " &lt;/label>\n" +
+			"  <input type=\"text\" id=\"searchString\" />\n" +
+			"  <input type=\"button\" onclick=\"changeMap();\" value=\"Search\" />\n" +
+			"<\div>\n\n";
 	}
 	
 	if(currentSelectQueryLabel) {
 	  textArea += 
-		  "&lt;div style=\"margin-top: 10px;\">\n" +
-	    "  &lt;label>" + currentSelectQueryLabel + " &lt;/label>\n" +
+		  "<div style=\"margin-top: 10px;\">\n" +
+	    "  <label>" + currentSelectQueryLabel + " &lt;/label>\n" +
 	    selectOptions +
-			"&lt;\div>\n\n";
+			"<\div>\n\n";
 	}
 	
 	textArea +=
-		"&lt;/body>\n" +
-		"&lt;/html>";
+		"</body>\n" +
+		"</html>";
 		
-	document.getElementById('htmlCode').innerHTML = textArea;
+	document.getElementById('htmlCode').value = textArea;
 }
 
 /*** UTILS ***/

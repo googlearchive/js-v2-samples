@@ -162,35 +162,57 @@ to display the map on your own website! Please submit bug reports here:
   
   <div id="layer" style="display: none; clear: both;">
     <form>
-	    <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" /><br /><br />
-	    <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="true">
-		    <option value="">--Select--</option>
-	    </select><br /><br />
-	    <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" /><br /><br />
-      <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
-	    <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
+      <div id="formelement">
+	      <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" />
+	    </div>
+	    <div id="formelement">
+	      <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="true">
+		      <option value="">--Select--</option>
+	      </select>
+	    </div>
+	    <div id="formelement">
+	      <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" />
+      </div>
+      <div id="formelement">
+        <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
+	    </div>
+	    <div id="formelement">
+	      <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
+	    </div>
 	  </form>
 	</div>
 	
 	<div id="text" style="display: none; clear: both;">
 	  <form>
-		  <label>Text Label: </label><input type="text" id="textQueryLabel" class="right" /><br /><br />
-		  <label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
-			  <option selected="selected" value="">--Select--</option>
-		  </select><br /><br />
-      <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
-		  <input type="button" onclick="addQuery();" value="Add Search" class="right" />
+	    <div id="formelement">
+		    <label>Text Label: </label><input type="text" id="textQueryLabel" class="right" />
+	    </div>
+	    <div id="formelement">
+		    <label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
+			    <option selected="selected" value="">--Select--</option>
+		    </select>
+	    </div>
+	    <div id="formelement">
+        <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
+		    <input type="button" onclick="addQuery();" value="Add Search" class="right" />
+		  </div>
 		</form>
 	</div>
 	
 	<div id="select" style="display: none; clear: both;">
 	  <form>
-		  <label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" /><br /><br />
-		  <label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
-			  <option selected="selected" value="">--Select--</option>
-		  </select><br /><br />
-      <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
-		  <input type="button" onclick="addSelectQuery();" value="Add Search" class="right" />
+	    <div id="formelement">
+		    <label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" />
+	    </div>
+	    <div id="formelement">
+		    <label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
+			    <option selected="selected" value="">--Select--</option>
+		    </select>
+	    </div>
+	    <div id="formelement">
+        <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
+		    <input type="button" onclick="addSelectQuery();" value="Add Search" class="right" />
+	    </div>
 		</form>
 	</div>
 	

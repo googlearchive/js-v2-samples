@@ -173,10 +173,8 @@ to display the map on your own website! Please submit bug reports here:
 	    <div id="formelement">
 	      <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" />
       </div>
-      <div id="formelement">
+      <div id="formelement" style="text-align: right;">
         <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
-	    </div>
-	    <div id="formelement">
 	      <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
 	    </div>
 	  </form>
@@ -192,9 +190,9 @@ to display the map on your own website! Please submit bug reports here:
 			    <option selected="selected" value="">--Select--</option>
 		    </select>
 	    </div>
-	    <div id="formelement">
-        <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
-		    <input type="button" onclick="addQuery();" value="Add Search" class="right" />
+	    <div id="formelement" style="text-align: right;">
+		    <input type="button" onclick="addQuery();" value="Add Search" />
+		    <input type="reset" value="Reset" onclick="resetAddFeature()" />
 		  </div>
 		</form>
 	</div>
@@ -209,9 +207,9 @@ to display the map on your own website! Please submit bug reports here:
 			    <option selected="selected" value="">--Select--</option>
 		    </select>
 	    </div>
-	    <div id="formelement">
-        <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
-		    <input type="button" onclick="addSelectQuery();" value="Add Search" class="right" />
+	    <div id="formelement" style="text-align: right;">
+		    <input type="button" onclick="addSelectQuery();" value="Add Search" />
+        <input type="reset" value="Reset" onclick="resetAddFeature()" />
 	    </div>
 		</form>
 	</div>

@@ -492,18 +492,18 @@ function addSelectQueryUnderMap() {
 //fill the select menu with data from table
 function selectData(response) {
   var selectMenu = document.getElementById('selectSearch');
-  selectOptions = "  &lt;select id=\"searchString\" onchange=\"changeMap(this.value);\"&gt;\n"
-  selectOptions += "    &lt;option value=\"%\"&gt;--Select--&lt;/option&gt;\n";
+  selectOptions = "  <select id=\"searchString\" onchange=\"changeMap(this.value);\">\n"
+  selectOptions += "    <option value=\"%\">--Select--</option>\n";
   for(var i = 0; i < response['table']['rows'].length; i++) {
     rowValue = response['table']['rows'][i][0];
 		option = document.createElement("option");
 		option.setAttribute("value", rowValue);
 		option.innerHTML = rowValue;
 		selectMenu.appendChild(option);
-		selectOptions += "    &lt;option value=\"" + rowValue + "\"&gt;" + rowValue + "&lt;/option&gt;\n";
+		selectOptions += "    <option value=\"" + rowValue + "\">" + rowValue + "</option>\n";
   }
   selectMenu.disabled = false;
-  selectOptions += "  &lt;/select&gt;\n";
+  selectOptions += "  </select>\n";
   updateTextArea();
 }
 

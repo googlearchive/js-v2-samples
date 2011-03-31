@@ -20,7 +20,11 @@ google.load('visualization', '1', {'packages':['table']});
 
 function changeData(scorer) {
   // Set the query using the parameter
-  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026 WHERE 'Scoring Team' LIKE '" + scorer + "'");
+  var whereClause = "";
+  if(scorer) {
+    whereClause =  " WHERE 'Scoring Team' = '" + scorer + "'";
+  }
+  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026" + whereClause);
   var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
   
   //set the callback function
@@ -38,10 +42,10 @@ function getData(response) {
 
 </script>
 </head>
-<body onload="changeData('%');">
+<body onload="changeData();">
 
 Scoring Team: <select id="selections" onchange="changeData(this.value);">
-  <option value="%">All</option>
+  <option value="">All</option>
   <option value="Germany">Germany</option>
   <option value="New Zealand">New Zealand</option>
   <option value="Uruguay">Uruguay</option>
@@ -55,7 +59,11 @@ google.load('visualization', '1', {'packages':['table']});
 
 function changeData(scorer) {
   // Set the query using the parameter
-  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026 WHERE 'Scoring Team' LIKE '" + scorer + "'");
+  var whereClause = "";
+  if(scorer) {
+    whereClause =  " WHERE 'Scoring Team' = '" + scorer + "'";
+  }
+  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026" + whereClause);
   var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
   
   //set the callback function

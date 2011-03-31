@@ -149,6 +149,8 @@ function styleMap(value) {
 	map.setMapTypeId('map-style');
 	
 	updateTextArea();
+	if(currentTableId && currentLocationColumn) addLayerToMap();
+	if(currentAnotherTableId && currentAnotherLocationColumn) addAnotherLayerToMap();
 }
 
 //fill the select columns in the form after user enters table id
@@ -468,7 +470,7 @@ function addSelectQueryUnderMap() {
 	select.setAttribute("onchange", "javascript:selectQueryChangeMap();");
 	
 	var option = document.createElement("option");
-	option.setAttribute("value", "%");
+	option.setAttribute("value", "");
 	option.innerHTML = "--Select--";
 	select.appendChild(option);
 	
@@ -476,13 +478,14 @@ function addSelectQueryUnderMap() {
 	div.appendChild(select);
 	mapDiv.appendChild(div);
 	
-	if(currentFilter)
+	if(currentFilter) {
 	  query = "SELECT%20'" + document.getElementById('selectQueryColumn').value + "',COUNT()%20FROM%20" + currentTableId + 
 	    " WHERE " + currentFilter +
 	    " GROUP BY '" + document.getElementById('selectQueryColumn').value + "'";
-	else
+	} else {
 	  query = "SELECT%20'" + document.getElementById('selectQueryColumn').value + "',COUNT()%20FROM%20" + currentTableId + 
 	    " GROUP BY '" + document.getElementById('selectQueryColumn').value + "'";
+	}
 	
 	var script = document.createElement("script");
 	script.setAttribute("src", "https://www.google.com/fusiontables/api/query?sql=" + query + "&jsonCallback=selectData");
@@ -493,7 +496,7 @@ function addSelectQueryUnderMap() {
 function selectData(response) {
   var selectMenu = document.getElementById('selectSearch');
   selectOptions = "  <select id=\"searchString\" onchange=\"changeMap(this.value);\">\n"
-  selectOptions += "    <option value=\"%\">--Select--</option>\n";
+  selectOptions += "    <option value=\"\">--Select--</option>\n";
   for(var i = 0; i < response['table']['rows'].length; i++) {
     rowValue = response['table']['rows'][i][0];
 		option = document.createElement("option");
@@ -559,29 +562,42 @@ function addAnotherLayerToMap() {
 //change the map based on query
 function textQueryChangeMap() {
   var searchString = document.getElementById('textSearch').value.replace("'", "\\'");
-  if(currentFilter)
+  if(currentFilter) {
 	  layer.setQuery("SELECT '" + currentLocationColumn + 
 		  "' FROM " + currentTableId + 
-		  " WHERE '" + currentTextQueryColumn + "' = '" + searchString + "'" +
+		  " WHERE '" + currentTextQueryColumn + "' CONTAINS IGNORING CASE '" + searchString + "'" +
 		  " AND " + currentFilter);
-	else
+	} else {
 		layer.setQuery("SELECT '" + currentLocationColumn + 
 		  "' FROM " + currentTableId + 
-		  " WHERE '" + currentTextQueryColumn + "' = '" + searchString + "'");
+		  " WHERE '" + currentTextQueryColumn + "' CONTAINS IGNORING CASE '" + searchString + "'");
+  }
 }
 
 //change the map based on select menu
 function selectQueryChangeMap() {
   var searchString = document.getElementById('selectSearch').value.replace("'", "\\'");
-  if(currentFilter)
+  if(currentFilter) {
+    if(searchString == "") {
+      layer.setQuery("SELECT '" + currentLocationColumn + 
+		  "' FROM " + currentTableId + 
+		  " WHERE " + currentFilter);
+		  return;
+    }
 	  layer.setQuery("SELECT '" + currentLocationColumn + 
 		  "' FROM " + currentTableId + 
-		  " WHERE '" + currentSelectQueryColumn + "' LIKE '" + searchString + "'" +
+		  " WHERE '" + currentSelectQueryColumn + "' = '" + searchString + "'" +
 		  " AND " + currentFilter);
-  else
+  } else {
+    if(searchString == "") {
+      layer.setQuery("SELECT '" + currentLocationColumn + 
+		    "' FROM " + currentTableId);
+		  return;
+    }
 	  layer.setQuery("SELECT '" + currentLocationColumn + 
 		  "' FROM " + currentTableId + 
-		  " WHERE '" + currentSelectQueryColumn + "' LIKE '" + searchString + "'");
+		  " WHERE '" + currentSelectQueryColumn + "' = '" + searchString + "'");
+	}
 }
 
 /*** HTML CODE - TEXTAREA ***/
@@ -714,12 +730,12 @@ function updateTextArea() {
 		if(currentFilter) {
 		  textArea +=
 		    "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
-		    " WHERE '" + currentTextQueryColumn + "' = '\" + searchString + \"'" +
+		    " WHERE '" + currentTextQueryColumn + "' CONTAINS IGNORING CASE '\" + searchString + \"'" +
 		    " AND " + currentFilter + "\");\n";
 		} else {
 		  textArea +=
 		    "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
-		    " WHERE '" + currentTextQueryColumn + "' = '\" + searchString + \"'\");\n";
+		    " WHERE '" + currentTextQueryColumn + "' CONTAINS IGNORING CASE '\" + searchString + \"'\");\n";
 		}
 		textArea +=
 			"}\n";
@@ -731,14 +747,25 @@ function updateTextArea() {
 			"function changeMap() {\n" +
 			"  var searchString = document.getElementById('searchString').value.replace(\"'\", \"\\\\'\");\n";
 	  if(currentFilter) {
+	    textArea +=
+	      "  if(searchString == \"\") {\n" +
+	      "    layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
+			  " WHERE " + currentFilter + "\");\n" +
+			  "    return;\n" +
+			  "  }\n"
 		  textArea +=
 			  "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
-			  " WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"'" +
+			  " WHERE '" + currentSelectQueryColumn + "' = '\" + searchString + \"'" +
 			  " AND " + currentFilter + "\");\n";
 	  } else {
+	    textArea +=
+	      "  if(searchString == \"\") {\n" +
+	      "    layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid);\n" +
+			  "    return;\n" +
+			  "  }\n"
 		  textArea +=
 			  "  layer.setQuery(\"SELECT '" + currentLocationColumn + "' FROM \" + tableid + \"" +
-			  " WHERE '" + currentSelectQueryColumn + "' LIKE '\" + searchString + \"'\");\n";
+			  " WHERE '" + currentSelectQueryColumn + "' = '\" + searchString + \"'\");\n";
 		}
 		textArea +=
 			"}\n";

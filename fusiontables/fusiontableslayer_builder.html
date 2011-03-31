@@ -17,7 +17,7 @@
 <style>
 	body { font-family: Arial, sans-serif; padding-left: 10px; }
 	h2 { font-size: 18px; clear: both; }
-	#formelement { clear: both; margin-bottom: 15px; }
+	.formelement { clear: both; margin-bottom: 15px; }
 	#specifics { clear: both; }
 	.right { float: right; }
 	.left {float: left; }
@@ -73,25 +73,25 @@ to display the map on your own website! Please submit bug reports here:
 <div style="float:left; width: 375px; margin: 0 50px 20px 0;">
 	
 	<h2>Edit Map</h2>
-	<div id="formelement">
+	<div class="formelement">
 		<label>Dimensions:</label>
 		<div class="right">
 			W: <input type="text" id="mapwidth" style="width: 35px;" /> px,
 			H: <input type="text" id="mapheight" style="width: 35px;" /> px
 		</div>
 	</div>
-	<div id="formelement">
+	<div class="formelement">
 		<label>Map Center: </label><input type="text" id="mapCenter" class="right" />
 	</div>
-	<div id="formelement">
+	<div class="formelement">
 		<label>Zoom: </label> <input type="text" id="mapZoom" class="right" />
 	</div>
-	<div id="formelement">
+	<div class="formelement">
 		<input type="button" onclick="editMap();" value="Edit Map" class="right" />
 	</div>
 	
 	<h2>Style Map</h2>
-	<div id="formelement">
+	<div class="formelement">
 		<label>Show: </label>
 		<div class="right" style="width: 200px;">
 		  <div class="right">
@@ -124,7 +124,7 @@ to display the map on your own website! Please submit bug reports here:
 		  </form>
 		</div>
 	</div><br />
-	<div id="formelement">
+	<div class="formelement">
 		<label>Saturation:</label>
 		<div class="right">
 		  <div class="left">Gray&nbsp;</div>
@@ -136,19 +136,19 @@ to display the map on your own website! Please submit bug reports here:
 	</div>
 	
 	<h2>Add layer</h2>
-	<div id="formelement">
+	<div class="formelement">
 		<label>Your table id: </label><input type="text" id="tableid" class="right" onblur="fillSelectColumns();" />
 	</div>
-	<div id="formelement">
-		<label>Location Column: </label><select id="locationColumn" class="right" disabled="true">
+	<div class="formelement">
+		<label>Location Column: </label><select id="locationColumn" class="right" disabled="disabled">
 			<option value="">--Select--</option>
 		</select>
 	</div>
-	<div id="formelement">
+	<div class="formelement">
 		<label>Filter (opt.): </label>
 		<div class="right">WHERE <input type="text" id="filter" /></div>
 	</div>
-	<div id="formelement">
+	<div class="formelement">
 		<input type="button" onclick="addLayer();" value="Add Layer" class="right" />
 	</div>
 	
@@ -162,18 +162,18 @@ to display the map on your own website! Please submit bug reports here:
   
   <div id="layer" style="display: none; clear: both;">
     <form>
-      <div id="formelement">
+      <div class="formelement">
 	      <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" />
 	    </div>
-	    <div id="formelement">
-	      <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="true">
+	    <div class="formelement">
+	      <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="disabled">
 		      <option value="">--Select--</option>
 	      </select>
 	    </div>
-	    <div id="formelement">
+	    <div class="formelement">
 	      <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" />
       </div>
-      <div id="formelement" style="text-align: right;">
+      <div class="formelement" style="text-align: right;">
         <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
 	      <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
 	    </div>
@@ -182,15 +182,15 @@ to display the map on your own website! Please submit bug reports here:
 	
 	<div id="text" style="display: none; clear: both;">
 	  <form>
-	    <div id="formelement">
+	    <div class="formelement">
 		    <label>Text Label: </label><input type="text" id="textQueryLabel" class="right" />
 	    </div>
-	    <div id="formelement">
+	    <div class="formelement">
 		    <label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
 			    <option selected="selected" value="">--Select--</option>
 		    </select>
 	    </div>
-	    <div id="formelement" style="text-align: right;">
+	    <div class="formelement" style="text-align: right;">
 		    <input type="button" onclick="addQuery();" value="Add Search" />
 		    <input type="reset" value="Reset" onclick="resetAddFeature()" />
 		  </div>
@@ -199,15 +199,15 @@ to display the map on your own website! Please submit bug reports here:
 	
 	<div id="select" style="display: none; clear: both;">
 	  <form>
-	    <div id="formelement">
+	    <div class="formelement">
 		    <label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" />
 	    </div>
-	    <div id="formelement">
+	    <div class="formelement">
 		    <label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
 			    <option selected="selected" value="">--Select--</option>
 		    </select>
 	    </div>
-	    <div id="formelement" style="text-align: right;">
+	    <div class="formelement" style="text-align: right;">
 		    <input type="button" onclick="addSelectQuery();" value="Add Search" />
         <input type="reset" value="Reset" onclick="resetAddFeature()" />
 	    </div>

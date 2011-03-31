@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<title>GViz API Example: Fusion Tables Data Source</title>
+
+<!-- Import the visualization javascript -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<!-- Initialize -->
+<script type="text/javascript">
+google.load('visualization', '1', {'packages':['table']});
+
+function changeData(scorer) {
+  // Set the query using the parameter
+  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026 WHERE 'Scoring Team' LIKE '" + scorer + "'");
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+  
+  //set the callback function
+  query.send(getData);
+}
+
+// Define callback function, this is called when the results are returned
+function getData(response) {
+
+  // For more information on the response object, see the documentation
+  // http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+  var table = new google.visualization.Table(document.getElementById('table_div'));
+  table.draw(response.getDataTable(), {showRowNumber: true});
+}
+
+</script>
+</head>
+<body onload="changeData('%');">
+
+Scoring Team: <select id="selections" onchange="changeData(this.value);">
+  <option value="%">All</option>
+  <option value="Germany">Germany</option>
+  <option value="New Zealand">New Zealand</option>
+  <option value="Uruguay">Uruguay</option>
+</select>
+
+<div id="table_div"></div>
+
+<p>The Code:</p>
+<pre>
+google.load('visualization', '1', {'packages':['table']});
+
+function changeData(scorer) {
+  // Set the query using the parameter
+  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026 WHERE 'Scoring Team' LIKE '" + scorer + "'");
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+  
+  //set the callback function
+  query.send(getData);
+}
+
+// Define callback function, this is called when the results are returned
+function getData(response) {
+
+  // For more information on the response object, see the documentation
+  // http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
+  var table = new google.visualization.Table(document.getElementById('table_div'));
+  table.draw(response.getDataTable(), {showRowNumber: true});
+}
+</pre>
+
+<script type="text/javascript" src="script/script.js"></script>
+</body>
+</html>

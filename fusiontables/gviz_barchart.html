@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<title>GViz API Example: Fusion Tables Data Source</title>
+
+<style>
+  body { font-family: Arial, sans-serif; }
+</style>
+
+<!-- Import the visualization javascript -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" id="script">
+google.load('visualization', '1', {'packages':['corechart']});
+
+function changeData() {
+  var queryText = encodeURIComponent("SELECT Year, Austria, Bulgaria, Denmark, Greece FROM 641716");
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+  query.send(getData);
+}
+
+function getData(response) {
+  new google.visualization.BarChart(document.getElementById('visualization')).
+      draw(response.getDataTable(),
+           {title:"Yearly Coffee Consumption by Country",
+            width:600, height:400,
+            vAxis: {title: "Year"},
+            hAxis: {title: "Cups"}}
+      );
+}
+</script>
+</head>
+<body onload="changeData();">
+
+<div id="visualization"></div>
+
+<div id="code"></div>
+<script type="text/javascript" src="script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<title>GViz API Example: Fusion Tables Data Source</title>
+
+<style>
+  body { font-family: Arial, sans-serif; }
+</style>
+
+<!-- Import the visualization javascript and CSS from http://visapi-gadgets.googlecode.com -->
+<link rel="stylesheet" type="text/css" href="http://visapi-gadgets.googlecode.com/svn/trunk/termcloud/tc.css"/>
+<script type="text/javascript" src="http://visapi-gadgets.googlecode.com/svn/trunk/termcloud/tc.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<script type="text/javascript" id="script">
+google.load('visualization', '1');
+
+function loadData(year) {
+  var queryText = encodeURIComponent("SELECT 'Male name', 'Reverse rank' FROM 642040 WHERE year = '" + year + "' ORDER BY 'Male name'");
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+  query.send(getData);
+}
+
+function getData(response) {
+  var outputDiv = document.getElementById('visualization');
+  var tc = new TermCloud(outputDiv);
+  tc.draw(response.getDataTable(), null);
+}
+</script>
+</head>
+<body onload="loadData(1900);">
+
+<select id="menu" onchange="loadData(this.value)"></select>
+<div id="visualization" style="width: 30%"></div>
+
+<div id="code"></div>
+<script type="text/javascript" src="script/script.js"></script>
+<script type="text/javascript">
+for(var i = 0; i <= 2008-1900; i++) {
+  var option = document.createElement("option");
+  option.setAttribute("value", 1900+i);
+  option.innerHTML = 1900+i;
+  document.getElementById("menu").appendChild(option);
+}
+</script>
+</body>
+</html>

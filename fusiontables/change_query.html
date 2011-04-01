@@ -20,7 +20,7 @@
 </style>
 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
-<script type="text/javascript">
+<script type="text/javascript" id="script">
 
 var tableid = 297050; 
 var layer = new google.maps.FusionTablesLayer(tableid); 
@@ -35,50 +35,27 @@ function initialize() {
   layer.setMap(map);
 }
 
-//Change the query based on the user's selection
+// Change the query based on the user's selection
 function changeMap(delivery) {
-  layer.setQuery("SELECT Address FROM " + tableid + " WHERE delivery LIKE '" + delivery + "'");
+  var whereClause = "";
+  if(delivery) {
+    whereClause = " WHERE delivery = '" + delivery + "'";
+  }
+  layer.setQuery("SELECT Address FROM " + tableid + whereClause);
 }
 
 </script>
 
 </head>
 <body onload="initialize();">
-  Delivers? <select onchange="changeMap(this.value);">
-    <option value="%">--Select--</option>
-    <option value="yes">Yes</option>
-    <option value="no">No</option>
-  </select>
-  <div id="map_canvas"></div>
-  <p>The Code:</p>
-  <pre>
-&lt;script type="text/javascript">
-var tableid = 297050; 
-var layer = new google.maps.FusionTablesLayer(tableid); 
+Delivers? <select onchange="changeMap(this.value);">
+  <option value="">--Select--</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+</select>
+<div id="map_canvas"></div>
 
-function initialize() {
-  map = new google.maps.Map(document.getElementById('map_canvas'), {
-    center: new google.maps.LatLng(37.4, -122.1),
-    zoom: 10,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  
-  layer.setMap(map);
-}
-
-//Change the query based on the user's selection
-function changeMap(delivery) {
-  layer.setQuery("SELECT Address FROM " + tableid + " WHERE delivery LIKE '" + delivery + "'");
-}
-&lt;/script>
-
-Delivers? &lt;select onchange="changeMap(this.value);">
-  &lt;option value="%">--Select--&lt;/option>
-  &lt;option value="yes">Yes&lt;/option>
-  &lt;option value="no">No&lt;/option>
-&lt;/select>
-  </pre>
-
+<div id="code"></div>
 <script type="text/javascript" src="script/script.js"></script>
 </body>
 </html>

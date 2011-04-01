@@ -1,47 +1,39 @@
 <!DOCTYPE html>
-
 <!--
   copyright (c) 2011 Google inc.
 
   You are free to copy and use this sample.
   License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
 -->
-
-
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 
 <title>GViz API Example: Fusion Tables Data Source</title>
 
-<!-- Import the visualization javascript -->
+<style>
+  body { font-family: Arial, sans-serif; }
+</style>
+
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-
-<!-- Initialize -->
-<script type="text/javascript">
-  google.load('visualization', '1', {});
-</script>
-
-<script type="text/javascript">
+<script type="text/javascript" id="script">
+google.load('visualization', '1');
 
 function changeData(scorer) {
-  //set the query using the parameter
-  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026 WHERE 'Scoring Team' LIKE '" + scorer + "'");
+  var whereClause = "";
+  if(scorer) {
+    whereClause = " WHERE 'Scoring Team' LIKE '" + scorer + "'";
+  }
+  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026" + whereClause);
   var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
   
-  //set the callback function
   query.send(getData);
 }
 
-//define callback function, this is called when the results are returned
 function getData(response) {
-
-  //for more information on the response object, see the documentation
-  //http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
   numRows = response.getDataTable().getNumberOfRows();
   numCols = response.getDataTable().getNumberOfColumns();
   
-  //concatenate the results into a string, you can build a table here
   fusiontabledata = "<b>";
   for(i = 0; i < numCols; i++) {
     fusiontabledata += response.getDataTable().getColumnLabel(i) + ",";
@@ -54,23 +46,22 @@ function getData(response) {
     }
     fusiontabledata += "<br />";
   }  
-  //display the results on the page
   document.getElementById('ftdata').innerHTML = fusiontabledata;
 }
 
 </script>
 </head>
-<body onload="changeData('%');">
+<body onload="changeData();">
 
 Scoring Team: <select id="selections" onchange="changeData(this.value);">
-  <option value="%">All</option>
+  <option value="">All</option>
   <option value="Germany">Germany</option>
   <option value="New Zealand">New Zealand</option>
   <option value="Uruguay">Uruguay</option>
 </select>
-
 <div id="ftdata"></div>
 
+<div id="code"></div>
 <script type="text/javascript" src="script/script.js"></script>
 </body>
 </html>

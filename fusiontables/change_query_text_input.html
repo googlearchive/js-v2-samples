@@ -20,14 +20,12 @@
 </style>
 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
-<script type="text/javascript"> 
-
+<script type="text/javascript" id="script"> 
 var tableid = 297050;
 var zoom = 10;
 var center = new google.maps.LatLng(37.4, -122.1);
  
 function initialize() {
- 
   map = new google.maps.Map(document.getElementById('map_canvas'), {
     center: center,
     zoom: zoom,
@@ -38,55 +36,27 @@ function initialize() {
   layer.setMap(map);
 }
 
-/* The following function updates the query to the layer, which
-in turn updates the data displayed on the map */
+// The following function updates the query to the layer, which
+// in turn updates the data displayed on the map
 function changeMap(store_name) {
-  //since some of the store names contain single quotes, we need to escape 
-  //the single quotes before adding them to the query
+  // Since some of the store names contain single quotes, we need to escape 
+  // the single quotes before adding them to the query
   store_name = store_name.replace("'", "\\'");
   
-  //change the query
-  layer.setQuery("SELECT Address FROM " + tableid + " WHERE 'Store Name' = '" + store_name + "'");
+  // Change the query
+  layer.setQuery("SELECT Address FROM " + tableid + " WHERE 'Store Name' LIKE '" + store_name + "'");
 }
 
 </script> 
 </head> 
 <body onload="initialize();"> 
-  Store name: <input type="text" id="store_name" />
-  <input type="button" value="Search!" onclick="changeMap(document.getElementById('store_name').value);" />
-  <small>Possible values: John's Pizza, JJs Express, John Paul's Pizzeria</small><br />
-  <div id="map_canvas"></div>
-  
-  <p>The Code:</p>
-  <pre>
-var tableid = 297050;
-var zoom = 10;
-var center = new google.maps.LatLng(37.4, -122.1);
- 
-function initialize() {
- 
-  map = new google.maps.Map(document.getElementById('map_canvas'), {
-    center: center,
-    zoom: zoom,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  
-  layer = new google.maps.FusionTablesLayer(tableid);
-  layer.setMap(map);
-}
 
-/* The following function updates the query to the layer, which
-in turn updates the data displayed on the map */
-function changeMap(store_name) {
-  //since some of the store names contain single quotes, we need to escape 
-  //the single quotes before adding them to the query
-  store_name = store_name.replace("'", "\\'");
+Store name: <input type="text" id="store_name" />
+<input type="button" value="Search!" onclick="changeMap(document.getElementById('store_name').value);" />
+<small>Possible values: John's Pizza, JJs Express, John Paul's Pizzeria</small><br />
+<div id="map_canvas"></div>
   
-  //change the query
-  layer.setQuery("SELECT 'Address' FROM " + tableid + " WHERE 'Store Name' = '" + store_name + "'");
-}
-  </pre>
-  
+<div id="code"></div> 
 <script type="text/javascript" src="script/script.js"></script>
 </body> 
 </html> 

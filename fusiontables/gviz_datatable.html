@@ -11,15 +11,15 @@
 
 <title>GViz API Example: Fusion Tables Data Source</title>
 
-<!-- Import the visualization javascript -->
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<style>
+  body { font-family: Arial, sans-serif; }
+</style>
 
-<!-- Initialize -->
-<script type="text/javascript">
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" id="script">
 google.load('visualization', '1', {'packages':['table']});
 
 function changeData(scorer) {
-  // Set the query using the parameter
   var whereClause = "";
   if(scorer) {
     whereClause =  " WHERE 'Scoring Team' = '" + scorer + "'";
@@ -27,16 +27,11 @@ function changeData(scorer) {
   var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026" + whereClause);
   var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
   
-  //set the callback function
   query.send(getData);
 }
 
-// Define callback function, this is called when the results are returned
 function getData(response) {
-
-  // For more information on the response object, see the documentation
-  // http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-  var table = new google.visualization.Table(document.getElementById('table_div'));
+  var table = new google.visualization.Table(document.getElementById('visualization'));
   table.draw(response.getDataTable(), {showRowNumber: true});
 }
 
@@ -50,36 +45,9 @@ Scoring Team: <select id="selections" onchange="changeData(this.value);">
   <option value="New Zealand">New Zealand</option>
   <option value="Uruguay">Uruguay</option>
 </select>
+<div id="visualization"></div>
 
-<div id="table_div"></div>
-
-<p>The Code:</p>
-<pre>
-google.load('visualization', '1', {'packages':['table']});
-
-function changeData(scorer) {
-  // Set the query using the parameter
-  var whereClause = "";
-  if(scorer) {
-    whereClause =  " WHERE 'Scoring Team' = '" + scorer + "'";
-  }
-  var queryText = encodeURIComponent("SELECT 'Scoring Team', 'Receiving Team', 'Minute of goal' FROM 197026" + whereClause);
-  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-  
-  //set the callback function
-  query.send(getData);
-}
-
-// Define callback function, this is called when the results are returned
-function getData(response) {
-
-  // For more information on the response object, see the documentation
-  // http://code.google.com/apis/visualization/documentation/reference.html#QueryResponse
-  var table = new google.visualization.Table(document.getElementById('table_div'));
-  table.draw(response.getDataTable(), {showRowNumber: true});
-}
-</pre>
-
+<div id="code">The Code:</div>
 <script type="text/javascript" src="script/script.js"></script>
 </body>
 </html>

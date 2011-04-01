@@ -54,7 +54,8 @@ function initialize() {
   // Add a click listener to the layer that creates a new infowindow
   // with directions text input
   google.maps.event.addListener(layer, 'click', function(e) {
-    infowindow = new google.maps.InfoWindow();
+    if(infowindow) infowindow.close();
+    else infowindow = new google.maps.InfoWindow();
     infowindow.setContent("<p><b>" + e.row['Name'].value + "</b></p>" +
       "<label>Get Directions:</label> " +
       "<input type=\"text\" id=\"begin\" />" +

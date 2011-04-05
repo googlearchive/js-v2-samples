@@ -82,6 +82,24 @@ to display the map on your own website! Please submit bug reports here:
 <a href="http://code.google.com/p/fusiontableslayer-builder/issues/list">Issue Tracker</a></p>
 
 <div style="float:left; width: 375px; margin: 0 50px 20px 0;">
+		
+	<h2 style="margin-bottom: 0;">Add layer</h2>
+	<p style="margin-top: 0px;"><small style="color: #666666;"><i>Table needs to be public or unlisted.</i></small></p>
+	<div class="formelement">
+		<label>Your table id: </label><input type="text" id="tableid" class="right" onblur="fillSelectColumns();" />
+	</div>
+	<div class="formelement">
+		<label>Location Column: </label><select id="locationColumn" class="right" disabled="disabled">
+			<option value="">--Select--</option>
+		</select>
+	</div>
+	<div class="formelement">
+		<label>Filter (optional): </label>
+		<div class="right">WHERE <input type="text" id="filter" /></div>
+	</div>
+	<div class="formelement">
+		<input type="button" onclick="addLayer();" value="Add Layer" class="right" />
+	</div>
 	
 	<h2>Edit Map</h2>
 	<div class="formelement">
@@ -98,7 +116,7 @@ to display the map on your own website! Please submit bug reports here:
 		<label>Zoom: </label> <input type="text" id="mapZoom" class="right" />
 	</div>
 	<div class="formelement">
-		<input type="button" onclick="editMap();" value="Edit Map" class="right" />
+		<input type="button" onclick="editMap();" value="Update Map" class="right" />
 	</div>
 	
 	<h2>Style Map</h2>
@@ -146,23 +164,6 @@ to display the map on your own website! Please submit bug reports here:
 		</div>
 	</div>
 	
-	<h2>Add layer</h2>
-	<div class="formelement">
-		<label>Your table id: </label><input type="text" id="tableid" class="right" onblur="fillSelectColumns();" />
-	</div>
-	<div class="formelement">
-		<label>Location Column: </label><select id="locationColumn" class="right" disabled="disabled">
-			<option value="">--Select--</option>
-		</select>
-	</div>
-	<div class="formelement">
-		<label>Filter (opt.): </label>
-		<div class="right">WHERE <input type="text" id="filter" /></div>
-	</div>
-	<div class="formelement">
-		<input type="button" onclick="addLayer();" value="Add Layer" class="right" />
-	</div>
-	
 	<h2>Add another feature</h2>
   <select id="addFeature" onchange="showDiv(this.value)">
     <option value="">--SELECT--</option>
@@ -182,7 +183,7 @@ to display the map on your own website! Please submit bug reports here:
 	      </select>
 	    </div>
 	    <div class="formelement">
-	      <label>Filter (opt.): </label>WHERE <input type="text" id="anotherFilter" class="right" />
+	      <label>Filter (optional): </label>WHERE <input type="text" id="anotherFilter" class="right" />
       </div>
       <div class="formelement" style="text-align: right;">
         <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />

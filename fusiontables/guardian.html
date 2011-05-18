@@ -97,8 +97,14 @@ function initialize() {
   
   init_selectmenu();
 
-  addStyle('% white British');
+  addStyle(getKey());
   layer.setMap(map);
+}
+
+function getKey() {
+  for(key in colors) {
+    return key;
+  }
 }
 
 function init_selectmenu() {

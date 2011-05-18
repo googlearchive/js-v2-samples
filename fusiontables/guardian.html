@@ -1,0 +1,199 @@
+<html>
+<head>
+
+<title>Guardian</title>
+<style type="text/css">
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+</style>
+<meta />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+
+<script>
+
+var colors = new Array();
+var divisions = new Array();
+
+//EXAMPLE:
+//divisions['columnname'] = [50, 80, 90];
+//colors['columnname'] = ['#851715','#CC433F', '#E6726F', '#E6918E'];
+ 
+//divides 'coloumnname' into buckets:
+//0-50 with color: #851715
+//50-80 with color: #CC433F
+//80-90 with color: #E6726F
+//90-100 with color: #E6918E
+
+//UPDATE WITH YOUR OWN COLORS AND RANGE NUMBERS:
+
+divisions['% white British'] = [50, 80, 90]; 
+colors['% white British'] = ['#851715','#CC433F', '#E6726F', '#E6918E'];
+
+divisions['% White: Irish'] = [0.5, 0.8, 1];
+colors['% White: Irish'] = ['#090974', '#313186', '#4F4FD9', '#7373D9'];
+
+divisions['% White: Other White'] = [1, 5, 10];
+colors['% White: Other White'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['%  Mixed: White and Black Caribbean'] = [1, 5, 10];
+colors['%  Mixed: White and Black Caribbean'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Mixed: White and Black African'] = [1, 5, 10];
+colors['% Mixed: White and Black African'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Mixed: White and Asian'] = [1, 5, 10];
+colors['% Mixed: White and Asian'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Mixed: Other Mixed'] = [1, 5, 10];
+colors['% Mixed: Other Mixed'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Asian or Asian British: Indian'] = [1, 5, 10];
+colors['% Asian or Asian British: Indian'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Asian or Asian British: Pakistani'] = [1, 5, 10];
+colors['% Asian or Asian British: Pakistani'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Asian or Asian British: Bangladeshi'] = [1, 5, 10];
+colors['% Asian or Asian British: Bangladeshi'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Asian or Asian British: Other Asian'] = [1, 5, 10];
+colors['% Asian or Asian British: Other Asian'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Black or Black British: Black Caribbean'] = [1, 5, 10];
+colors['% Black or Black British: Black Caribbean'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Black or Black British: Black African'] = [1, 5, 10];
+colors['% Black or Black British: Black African'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Black or Black British: Other Black'] = [1, 5, 10];
+colors['% Black or Black British: Other Black'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Chinese or Other Ethnic Group: Chinese'] = [1, 5, 10];
+colors['% Chinese or Other Ethnic Group: Chinese'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+divisions['% Chinese or Other Ethnic Group: Other'] = [1, 5, 10];
+colors['% Chinese or Other Ethnic Group: Other'] = ['#078600', '#2D9B27', '#42E73A', '#6EE768'];
+
+
+var tableid = 854369;
+var map, layer;
+var center = new google.maps.LatLng(52.979455724, -1.474779827647);
+var zoom = 6;
+
+function initialize() {
+  
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: center,
+    zoom: zoom,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: "geometry",
+      from: tableid
+    }
+  });
+  
+  init_selectmenu();
+
+  addStyle('% white British');
+  layer.setMap(map);
+}
+
+function init_selectmenu() {
+  var selectmenu = document.getElementById('selector');
+  for(key in colors) {
+    var option = document.createElement('option');
+    option.setAttribute('value', key);
+    option.innerHTML = key;
+    selectmenu.appendChild(option);
+  }
+}
+
+function addStyle(column) {
+  var styles = [
+    {
+      where: generateWhere(column, divisions[column][2], 100),
+      polygonOptions: {
+        fillColor: colors[column][3]
+      }
+    },
+    {
+      where: generateWhere(column, divisions[column][1], divisions[column][2]),
+      polygonOptions: {
+        fillColor: colors[column][2]
+      }
+    },
+    {
+      where: generateWhere(column, divisions[column][0], divisions[column][1]),
+      polygonOptions: {
+        fillColor: colors[column][1]
+      }
+    },
+    {
+      where: generateWhere(column, 0, divisions[column][0]),
+      polygonOptions: {
+        fillColor: colors[column][0]
+      }
+    }
+  ];
+
+  layer.set('styles', styles);
+  updateLegend(column);
+}
+
+function generateWhere(column_name, low, high) {
+  return "'" + column_name + "' >= " + low + " AND '" + column_name + "' < " + high;
+}
+
+function updateLegend(column) {
+  var legendDiv = document.createElement('div');
+  var legend = new Legend(legendDiv, column);
+  legendDiv.index = 1;
+  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].pop();
+  map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+}
+
+function Legend(controlDiv, column) {
+  controlDiv.style.padding = '10px';
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = 'white';
+  controlUI.style.borderStyle = 'solid';
+  controlUI.style.borderWidth = '1px';
+  controlUI.style.width = '125px';
+  controlUI.title = 'Legend';
+  controlDiv.appendChild(controlUI);
+  var controlText = document.createElement('div');
+  controlText.style.fontFamily = 'Arial,sans-serif';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+  controlText.innerHTML = '<p><b>' + column + '</b></p>' +
+    '<div style="background-color: ' + colors[column][3] + '; height: 20px; width: 20px; margin: 3px; float: left;"></div>' +
+    divisions[column][2] + ' - 100<br style="clear: both;"/>' +
+    '<div style="background-color: ' + colors[column][2] + '; height: 20px; width: 20px; margin: 3px; float: left;"></div>' +
+    divisions[column][1] + ' - ' + divisions[column][2] + '<br style="clear: both;" />' +
+    '<div style="background-color: ' + colors[column][1] + '; height: 20px; width: 20px; margin: 3px; float: left;"></div>' +
+    divisions[column][0] + ' - ' + divisions[column][1] + '<br style="clear: both;" />' +
+    '<div style="background-color: ' + colors[column][0] + '; height: 20px; width: 20px; margin: 3px; float: left;"></div>' +
+    '0 - ' + divisions[column][0] + '<br style="clear: both;" /><br />';
+  controlUI.appendChild(controlText);
+}
+
+
+</script>
+</head>
+
+<body>
+
+<select onchange="addStyle(this.value);" id="selector"></select>
+
+<div id="map_canvas"></div>
+
+<script type="text/javascript">
+initialize();
+</script>
+
+</body>
+</html>

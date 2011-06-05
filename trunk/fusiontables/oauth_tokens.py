@@ -1,18 +1,25 @@
-'''
-Created on Jun 5, 2011
+#!/usr/bin/python
+#
+# Copyright (C) 2011 Google Inc.
 
-@author: kbrisbin
-'''
+""" Fusion Tables OAuth Helper
+
+Retrieve OAuth 2.0 access and refresh tokens for Fusion Tables.
+"""
+
 import urllib2, urllib, json
 
 def retrieve_tokens(client_id, client_secret, redirect_uri):
 
-  print '\nVisit the URL below in a browser to authorize\n'
-  print '%s?client_id=%s&redirect_uri=%s&scope=%s&response_type=code\n' % \
+  print
+  print 'Visit the URL below in a browser to authorize'
+  print
+  print '%s?client_id=%s&redirect_uri=%s&scope=%s&response_type=code' % \
     ('https://accounts.google.com/o/oauth2/auth', 
     client_id,
     redirect_uri,
     'https://www.google.com/fusiontables/api/query')
+  print
   
   auth_code = raw_input('Enter authorization code ("code" parameter of URL): ')
   
@@ -50,6 +57,8 @@ if __name__ == "__main__":
   access_token, refresh_token = retrieve_tokens(client_id,
                                                 client_secret,
                                                 redirect_uri)
-  print "\nAccess Token: %s" % (access_token)
+  print
+  print "Access Token: %s" % (access_token)
   print "Refresh Token: %s" % (refresh_token)
+  print
 

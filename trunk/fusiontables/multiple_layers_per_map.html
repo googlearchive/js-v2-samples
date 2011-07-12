@@ -21,7 +21,7 @@
 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
 <script type="text/javascript" id="script">
-var map, infoWindow, layer_1, layer_2;
+var map, info_window, layer_1, layer_2;
 var tableid_1 = 359908;
 var tableid_2 = 404027;
 var zoom = 5;
@@ -34,7 +34,7 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  infoWindow = new google.maps.InfoWindow();
+  info_window = new google.maps.InfoWindow();
 
   layer_1 = new google.maps.FusionTablesLayer({
     query: {
@@ -58,12 +58,12 @@ function initialize() {
 }
 
 function windowControl(event) {
-  infoWindow.setOptions({
+  info_window.setOptions({
     content: event.infoWindowHtml,
     position: event.latLng,
     pixelOffset: event.pixelOffset
   });
-  infoWindow.open(map);
+  info_window.open(map);
 }
 </script> 
 </head> 

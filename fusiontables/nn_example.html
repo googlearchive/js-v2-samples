@@ -36,7 +36,7 @@ function initialize() {
   
 
   layer = new google.maps.FusionTablesLayer(tableid, {
-      query: "SELECT Address FROM " + tableid + " ORDER BY ST_DISTANCE(Address, LATLNG(37.4,-122.1)) LIMIT 10"
+      query: "SELECT Address FROM " + tableid + " ORDER BY ST_DISTANCE(Address, LATLNG(37.4,-122.1)) LIMIT 3"
     }
   );
   layer.setMap(map);

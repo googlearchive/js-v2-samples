@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+
+<title>Google Maps JavaScript API v3 Example: Fusion Tables Layer</title> 
+
+<style>
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+</style>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript" id="script">
+var map, layer;
+var tableid = 297050;
+var zoom = 10;
+var center = new google.maps.LatLng(37.5, -122.1);
+ 
+function initialize() {
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: center,
+    zoom: zoom,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'Address',
+      from: tableid
+    },
+    map: map
+  });
+}
+
+function filterData() {
+  var filter = [];
+  var stores = document.getElementsByName('store');
+  for (var i = 0, store; store = stores[i]; i++) {
+    if (store.checked) {
+      filter.push('\'' + store.value + '\'');
+    }
+  }
+
+  if (filter.length) {
+    if (!layer.getMap()) {
+      layer.setMap(map);
+    }
+    layer.setOptions({
+      query: {
+        select: 'Address',
+        from: tableid,
+        where: '\'Store Name\' IN (' + filter.join(',') + ')'
+      }
+    });
+
+  } else {
+    layer.setMap(null);
+  }
+}
+</script> 
+</head> 
+<body onload="initialize();"> 
+
+<form>
+<input type="checkbox" checked="checked" name="store" value="John\'s Pizza" onclick="filterData()">
+  John's Pizza
+<input type="checkbox" checked="checked" name="store" value="JJs Express" onclick="filterData()">
+  JJs Express
+<input type="checkbox" checked="checked" name="store" value="John Paul\'s Pizzeria" onclick="filterData()">
+  John Paul's Pizzeria
+</form>
+
+<div id="map_canvas"></div>
+  
+<div id="code"></div>
+<script type="text/javascript" src="script/script.js"></script>
+</body> 
+</html> 

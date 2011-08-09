@@ -26,7 +26,6 @@ var layer;
 var circle;
  
 function initialize() {
- 
   map = new google.maps.Map(document.getElementById('map_canvas'), {
     center: new google.maps.LatLng(37.4, -122.1),
     zoom: 10,
@@ -35,14 +34,16 @@ function initialize() {
     navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  
 
-  layer = new google.maps.FusionTablesLayer(tableid, {
-      query: "SELECT Address FROM " + tableid + " WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),10000))"
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'Address',
+      from: tableid,
+      where: 'ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),10000))'
     }
-  );
+  });
   layer.setMap(map);
-  
+
   circle = new google.maps.Circle({
     center: new google.maps.LatLng(37.4, -122.1),
     radius: 10000,
@@ -51,13 +52,17 @@ function initialize() {
     strokeOpacity: 0.5,
     strokeWeight: 1
   });
-  
 }
 
 function changeRadius(meters) {
   if (meters != "") {
-    query = "SELECT Address FROM " + tableid + " WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1)," + meters + "))";
-    layer.setQuery(query);
+    layer.setOptions({
+      query: {
+        select: 'Address',
+        from: tableid,
+        where:  'WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),' + meters + '))'
+      }
+    });
     circle.setRadius(parseInt(meters));
   }
 }

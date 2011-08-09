@@ -33,7 +33,12 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
   
-  var layer = new google.maps.FusionTablesLayer(tableid);
+  var layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'Address',
+      from: tableid
+    }
+  });
   layer.setMap(map);
   
   //add a click listener to the layer

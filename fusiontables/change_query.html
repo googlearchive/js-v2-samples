@@ -23,7 +23,12 @@
 <script type="text/javascript" id="script">
 
 var tableid = 297050; 
-var layer = new google.maps.FusionTablesLayer(tableid); 
+var layer = new google.maps.FusionTablesLayer({
+  query: {
+    select: 'Address',
+    from: tableid
+  }
+});
 
 function initialize() {
   map = new google.maps.Map(document.getElementById('map_canvas'), {
@@ -31,17 +36,29 @@ function initialize() {
     zoom: 10,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  
+
   layer.setMap(map);
 }
 
 // Change the query based on the user's selection
 function changeMap(delivery) {
-  var whereClause = "";
   if(delivery) {
+    layer.setOptions({
+      query: {
+        select: 'Address',
+        from: tableid,
+        where: 'delivery = \'' + delivery + '\''
+      }
+    });
     whereClause = " WHERE delivery = '" + delivery + "'";
+  } else {
+    layer.setOptions({
+      query: {
+        select: 'Address',
+        from: tableid
+      }
+    });
   }
-  layer.setQuery("SELECT Address FROM " + tableid + whereClause);
 }
 
 </script>

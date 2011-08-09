@@ -38,8 +38,12 @@ function initialize() {
   });
   
   // Initialize the layer
-  var layer = new google.maps.FusionTablesLayer(tableid);
-  layer.setQuery("SELECT middleLocation FROM " + tableid);
+  var layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'middleLocation',
+      from: tableid
+    }
+  });
   layer.setMap(map);
   
   // Add a listener to listen for zoom changed events
@@ -48,15 +52,30 @@ function initialize() {
     
     // Show a coarser geometry when the map is zoomed out
     if (zoomLevel <= coarseZoom) {
-      layer.setQuery("SELECT coarseLocation FROM " + tableid);
+      layer.setOptions({
+      	query: {
+      	  select: 'coarseLocation',
+      	  from: tableid
+      	}
+      });
       
     // Show a finer geometry when the map is zoomed in
     } else if (zoomLevel >= fineZoom) {
-      layer.setQuery("SELECT fineLocation FROM " + tableid);
+      layer.setOptions({
+      	query: {
+      	  select: 'fineLocation',
+      	  from: tableid
+      	}
+      });
     
     // Otherwise, show a medium geometry
     } else {
-      layer.setQuery("SELECT middleLocation FROM " + tableid);
+      layer.setOptions({
+      	query: {
+      	  select: 'middleLocation',
+      	  from: tableid
+      	}
+      });
     }
 
     // Change the zoom level value in the HTML page

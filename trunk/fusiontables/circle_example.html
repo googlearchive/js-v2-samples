@@ -60,7 +60,7 @@ function changeRadius(meters) {
       query: {
         select: 'Address',
         from: tableid,
-        where:  'WHERE ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),' + meters + '))'
+        where:  'ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),' + meters + '))'
       }
     });
     circle.setRadius(parseInt(meters));
@@ -73,7 +73,7 @@ function changeRadius(meters) {
   <select onchange="changeRadius(this.value);">
       <option value="">--Select--</option>
       <option value="5000">5000 meters</option> 
-      <option value="10000">10,000 meters</option> 
+      <option value="10000" selected="selected">10,000 meters</option> 
       <option value="15000">15,000 meters</option>
       <option value="20000">20,000 meters</option>
       <option value="25000">25,000 meters</option>

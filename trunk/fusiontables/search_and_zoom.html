@@ -21,7 +21,7 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
 <script type="text/javascript" id="script">
 var layer;
-var tableid = 497450;
+var tableid =  497450;
 var center = new google.maps.LatLng(10, 10);
 var zoom = 2;
 var map;
@@ -37,8 +37,13 @@ function initialize() {
   });
   
   // Initialize the layer
-  layer = new google.maps.FusionTablesLayer(tableid);
-  layer.setMap(map);
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'lat',
+      from: tableid
+    },
+    map: map
+  });
 }
 
 function zoomtoaddress() {
@@ -55,7 +60,13 @@ function zoomtoaddress() {
       // Fusion Tables results within those bounds. 
       sw = map.getBounds().getSouthWest();
       ne = map.getBounds().getNorthEast();
-      layer.setQuery("SELECT lat FROM " + tableid + " WHERE ST_INTERSECTS(lat, RECTANGLE(LATLNG(" + sw.lat() + "," + sw.lng() + "), LATLNG(" + ne.lat() + "," + ne.lng() + ")))") 
+      layer.setOptions({
+        query: {
+          select: 'lat',
+          from: tableid,
+          where: "ST_INTERSECTS(lat, RECTANGLE(LATLNG(" + sw.lat() + "," + sw.lng() + "), LATLNG(" + ne.lat() + "," + ne.lng() + ")))"
+        }
+      });
     } 
   });
 }
@@ -64,7 +75,12 @@ function zoomtoaddress() {
 function reset() {
   map.setCenter(center);
   map.setZoom(zoom);
-  layer.setQuery("SELECT lat FROM " + tableid);
+  layer.setOptions({
+    query: {
+      select: 'lat',
+      from: tableid
+    }
+  });
 }
 
 // Register Enter key press to submit form

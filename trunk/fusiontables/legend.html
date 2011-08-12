@@ -34,8 +34,13 @@ function initialize() {
   });
   
   // Initialize the layer
-  var layer = new google.maps.FusionTablesLayer(tableid);
-  layer.setMap(map);
+  var layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'Location',
+      from: tableid
+    },
+    map: map
+  });
   
   // Create the legend and display on the map
   var legendDiv = document.createElement('DIV');

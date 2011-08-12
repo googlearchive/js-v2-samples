@@ -46,7 +46,11 @@ function initialize() {
   directionsService = new google.maps.DirectionsService();
   
   // Initialize the layer
-  layer = new google.maps.FusionTablesLayer(tableid, {
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'Location',
+      from: tableid
+    },
     suppressInfoWindows: true,
     map: map
   });

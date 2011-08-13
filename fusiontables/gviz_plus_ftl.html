@@ -21,16 +21,12 @@
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
-<!-- Initialize -->
 <script type="text/javascript">
-  google.load('visualization', '1', {});
-</script>
-
-<script type="text/javascript">
+google.load('visualization', '1', {});
 
 var cachedFirstOption = ""; // Save the selected option
 var tableid = 297050; // table id
-var layer = new google.maps.FusionTablesLayer(tableid);
+var layer = new google.maps.FusionTablesLayer();
 
 // Initialize the map and set the layer
 function initialize() {
@@ -39,8 +35,13 @@ function initialize() {
     zoom: 10, //zoom
     mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
   });
-  
-  layer.setQuery("SELECT Address FROM " + tableid);
+
+  layer.setOptions({
+    query: {
+      select: 'Address',
+      from: tableid
+    }
+  });
   layer.setMap(map);
 }
 
@@ -57,24 +58,27 @@ function changeData(firstOption) {
 	for(i = 1; i < numChildren; i++) {
 		secondSelect.removeChild(secondSelect.childNodes[1]);
 	}
-	
+
 	if(firstOption == "%") {
-	  // Show all results on the map
-		layer.setQuery("SELECT Address FROM " + tableid);
-	
+		layer.setOptions({
+		  query: {
+		    select: 'Address',
+		    from: tableid
+		  }
+		});
+
 	} else {
 	  // Save the option and update the map
 	  cachedFirstOption = firstOption;
 	  updateMap(firstOption, "%");
-	  
+
 		// Set the query to gviz. Run COUNT() here to find only unique values (don't need
 		// duplicates in the select menu).
 		var queryText = encodeURIComponent("SELECT 'Store Name', COUNT() FROM " + tableid + " WHERE delivery LIKE '" + firstOption + "' GROUP BY 'Store Name'");
 		var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-		
+
 		// Set the callback function which will update the second menu
 		query.send(getData);
-		
 	}
 }
 
@@ -98,7 +102,13 @@ function getData(response) {
 // Update the data displayed on the map
 function updateMap(firstOption, secondOption) {
   secondOption = secondOption.replace("'", "\\'");
-	layer.setQuery("SELECT Address FROM " + tableid + " WHERE delivery LIKE '" + firstOption + "' AND 'Store Name' LIKE '" + secondOption + "'");
+	layer.setOptions({
+	  query: {
+	    select: 'Address',
+	    from: tableid,
+	    where: "delivery LIKE '" + firstOption + "' AND 'Store Name' LIKE '" + secondOption + "'"
+	  }
+	});
 }
 
 </script>

@@ -30,15 +30,24 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  layer = new google.maps.FusionTablesLayer(tableid);
-  layer.setMap(map);
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'LATITUDE',
+      from: tableid
+    },
+    map: map
+  });
 }
 
 // Update the heatmap property of the FusionTablesLayer when
 // the checkbox value changes.
 function updateHeatmap() {
   var heatmap = document.getElementById('heatmap');
-  layer.set('heatmap', heatmap.checked);
+  layer.setOptions({
+    heatmap: {
+      enabled: heatmap.checked
+    }
+  });
 }
 
 </script> 

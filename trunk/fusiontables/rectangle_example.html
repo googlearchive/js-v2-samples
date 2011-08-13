@@ -24,8 +24,8 @@
 var tableid = 297050;
  
 function initialize() {
- 
-  map = new google.maps.Map(document.getElementById('map_canvas'), {
+
+  var map = new google.maps.Map(document.getElementById('map_canvas'), {
     center: new google.maps.LatLng(37.4, -122.1),
     zoom: 10,
     disableDefaultUI: true,
@@ -33,13 +33,16 @@ function initialize() {
     navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  
 
-  layer = new google.maps.FusionTablesLayer(tableid, {
-      query: "SELECT Address FROM " + tableid + " WHERE ST_INTERSECTS(Address, RECTANGLE(LATLNG(37.2, -122.3), LATLNG(37.6, -121.9)))",
-      map: map
+  var layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'Address',
+      from: tableid,
+      where: "ST_INTERSECTS(Address, RECTANGLE(LATLNG(37.2, -122.3), LATLNG(37.6, -121.9)))"
+    },
+    map: map
   });
-  
+
   new google.maps.Rectangle({
     bounds:new google.maps.LatLngBounds(new google.maps.LatLng(37.2, -122.3), new google.maps.LatLng(37.6, -121.9)),
     map:map,
@@ -47,7 +50,6 @@ function initialize() {
     strokeOpacity: 0.5,
     strokeWeight: 1
   });
-  
 }
 </script> 
 </head> 

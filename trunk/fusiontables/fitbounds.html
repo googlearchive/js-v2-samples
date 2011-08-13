@@ -30,20 +30,17 @@ google.load('visualization', '1');
 
 var tableid = 345328; // The table id
 
-// Run a gviz query to get the latitude and longitude points from the table
+// Run a Google Chart Tools query to get the latitude and
+// longitude points from the table
 function gvizSelect() {
-  // Select lat/long points from table
   var queryText = encodeURIComponent("SELECT Latitude,Longitude FROM " + tableid);
   var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-  
-  // Set the callback function
   query.send(getData);
 }
 
 // Run through the results of the gviz query to get a list of coordinates
 function getData(response) {
 
-  // Get the number of rows returned
   numRows = response.getDataTable().getNumberOfRows();
 
   // Create a list of lat/long coordinates
@@ -52,7 +49,6 @@ function getData(response) {
      coordinates.push(new google.maps.LatLng(response.getDataTable().getValue(i, 0), 
                                          response.getDataTable().getValue(i, 1))) ;
   }  
-  
   initialize(coordinates);
 }
 
@@ -61,26 +57,25 @@ function getData(response) {
 function initialize(coordinates) {
 
   map = new google.maps.Map(document.getElementById('map_canvas'), {
-    center: new google.maps.LatLng(0, 0), //the center lat and long
-    zoom: 15, //zoom
-    mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
+    center: new google.maps.LatLng(0, 0),
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
-  
-  // Initialize bounds for the map
+
+  // Create the bounds for the map from the Fusion Table data
   bounds = new google.maps.LatLngBounds();
-  
-  // Keep extending the bounds for each coordinate from FT
   for (i = 0; i < coordinates.length; i++) {
     bounds.extend(coordinates[i]);
   }
-  
-  // Now fit the map to the bounds
   map.fitBounds(bounds);
-  
-  // Create the FusionTablesLayer and set the map of the layer
-  var layer = new google.maps.FusionTablesLayer(tableid); //create a new FusionTablesLayer
-  layer.setMap(map);
-  
+
+  var layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'Latitude',
+      from: tableid
+    },
+    map: map
+  });
 }
 </script>
 

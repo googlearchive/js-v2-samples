@@ -26,7 +26,7 @@
 <script type="text/javascript" id="script">
 google.load('visualization', '1');
 
-var tableid = 297050; // The table id
+var tableid = 297050;
 var map;
 var geocoder;
 var lastWindow;
@@ -40,7 +40,7 @@ function initialize() {
     zoom: 10, //zoom
     mapTypeId: google.maps.MapTypeId.ROADMAP //the map style
   });
-  
+
   setData();
 }
 
@@ -48,9 +48,10 @@ function initialize() {
 
 function setData() {
   // Create a viz query to send to Fusion Tables
-  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + encodeURIComponent("SELECT 'Store Name', Address, delivery FROM 297050"));
-  
-  // Set the callback function that will be called when the query returns
+  var query = new google.visualization.Query(
+      'http://www.google.com/fusiontables/gvizdata?tq=' +
+      encodeURIComponent("SELECT 'Store Name', Address, delivery FROM 297050")
+  );
   query.send(getData);
 }
 

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+  <title>Google Maps JavaScript API v3 Example: Fusion Tables Layer Styling</title> 
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+  <script type="text/javascript">
+
+    var tableid = "1296453";
+    var layer, map;
+    
+    function initialize() {
+ 
+      var center = new google.maps.LatLng(30, 0);
+ 
+      map = new google.maps.Map(document.getElementById('map_canvas'), {
+        center: center,
+        zoom: 2,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+ 
+      layer = new google.maps.FusionTablesLayer({
+        query: {
+          select: "kml_4326",
+          from: tableid
+        },
+        styles: [{
+          where: "'Num Movies' = 3",
+          polygonOptions: {
+            fillColor: "#FF6600",
+            strokeColor: "#FFFFFF",
+            strokeWeight: 2
+          }
+        }, {
+          where: "'Num Movies' = 4",
+          polygonOptions: {
+            fillColor: "#FFFF33",
+            strokeColor: "#FFFFFF",
+            strokeWeight: 2
+          }
+        }, {
+          where: "'Num Movies' = 5",
+          polygonOptions: {
+            fillColor: "#00FF00",
+            strokeColor: "#FFFFFF",
+            strokeWeight: 3
+          }
+        }, {
+          where: "'Num Movies' = 6",
+          polygonOptions: {
+            fillColor: "#00CCCC",
+            strokeColor: "#FFFFFF",
+            strokeWeight: 3
+          }
+        }]
+      });
+      
+      layer.setMap(map);
+    }
+  </script> 
+</head> 
+<body onload="initialize()"> 
+  <div id="map_canvas" style="height: 700px; width: 1100px; margin: 15px"></div>
+</body> 
+</html>

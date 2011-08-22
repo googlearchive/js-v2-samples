@@ -20,26 +20,27 @@
 <script type="text/javascript" id="script">
 google.load('visualization', '1', {'packages':['corechart']});
 
-function changeData() {
-  var queryText = encodeURIComponent("SELECT Year, Austria, Bulgaria, Denmark, Greece FROM 641716");
-  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
-  query.send(getData);
+function drawVisualization() {
+  google.visualization.drawChart({
+    "containerId": "visualization",
+    "dataSourceUrl": "http://www.google.com/fusiontables/gvizdata?tq=",
+    "query": "SELECT Year, Austria, Bulgaria, Denmark, Greece FROM 641716",
+    "refreshInterval": 5,
+    "chartType": "BarChart",
+    "options": {
+      "title":"Yearly Coffee Consumption by Country",
+      "vAxis": {"title": "Year"},
+      "hAxis": {"title": "Cups"}
+    }
+  });
 }
 
-function getData(response) {
-  new google.visualization.BarChart(document.getElementById('visualization')).
-      draw(response.getDataTable(),
-           {title:"Yearly Coffee Consumption by Country",
-            width:600, height:400,
-            vAxis: {title: "Year"},
-            hAxis: {title: "Cups"}}
-      );
-}
+google.setOnLoadCallback(drawVisualization);
 </script>
 </head>
-<body onload="changeData();">
+<body>
 
-<div id="visualization"></div>
+<div id="visualization" style="width: 600px; height: 400px;"></div>
 
 <div id="code"></div>
 <script type="text/javascript" src="script/script.js"></script>

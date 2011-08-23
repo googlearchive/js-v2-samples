@@ -65,15 +65,41 @@
 var tableid = 411160;
 
 function initialize() {
+
   var map = new google.maps.Map(document.getElementById('map_canvas'), {
     center: new google.maps.LatLng(37.4, -110.1),
     zoom: 4,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
   
-  var layer = new google.maps.FusionTablesLayer(tableid);
-  layer.setMap(map);
-  layer.setOptions({suppressInfoWindows: true});
+  var styles = [{
+    polygonOptions: {
+      fillColor: "#00FF00",
+      fillOpacity: 0.5
+    }
+  }, {
+    where: "party = 'Republican'",
+    polygonOptions: {
+      fillColor: "#FF0000"
+    }
+  }, {
+    where: "party = 'Democrat'",
+    polygonOptions: {
+      fillColor: "#0000FF"
+    }
+  }];
+
+  var layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: "shape",
+      from: tableid
+    },
+    map: map,
+    options: {
+      suppressInfoWindows: true
+    },
+    styles: styles
+  });
   
   google.maps.event.addListener(layer, 'click', function(e) {
 		
@@ -104,11 +130,20 @@ function initialize() {
 							});
 							mini_map.fitBounds(bounds);
 							
-							var layer = new google.maps.FusionTablesLayer(tableid);
-							layer.setOptions({suppressInfoWindows: true, clickable: false});
-							layer.setMap(mini_map);
-							layer.setQuery("SELECT shape FROM " + tableid + " WHERE cid = '" + e.row['cid'].value + "'");
-							
+							var layer = new google.maps.FusionTablesLayer({
+							  query: {
+							    select: "shape",
+							    from: tableid,
+							    where: "cid = '" + e.row['cid'].value + "'"
+							  },
+							  options: {
+							    suppressInfoWindows: true,
+							    clickable: false
+							  },
+							  map: mini_map,
+							  styles: styles
+							});
+
 							$("#close").click(function(){
 								$("#background").fadeOut("slow");
 								$("#large").fadeOut("slow");

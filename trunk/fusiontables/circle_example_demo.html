@@ -23,10 +23,13 @@
 var tableid = 297050;
 var layer;
 var circle;
+var meters = 10000;
+var lat = 37.4;
+var lng = -122.1;
  
 function initialize() {
   map = new google.maps.Map(document.getElementById('map_canvas'), {
-    center: new google.maps.LatLng(37.4, -122.1),
+    center: new google.maps.LatLng(lat, lng),
     zoom: 10,
     disableDefaultUI: true,
     navigationControl: true,
@@ -34,18 +37,22 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
+  google.maps.event.addListener(map, 'click', function(event) {
+    changeCenter(event);
+  });
+
   layer = new google.maps.FusionTablesLayer({
     query: {
       select: 'Address',
       from: tableid,
-      where: 'ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),10000))'
+      where: 'ST_INTERSECTS(Address, CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
     }
   });
   layer.setMap(map);
 
   circle = new google.maps.Circle({
-    center: new google.maps.LatLng(37.4, -122.1),
-    radius: 10000,
+    center: new google.maps.LatLng(lat, lng),
+    radius: meters,
     map: map,
     fillOpacity: 0.2,
     strokeOpacity: 0.5,
@@ -53,17 +60,31 @@ function initialize() {
   });
 }
 
-function changeRadius(meters) {
-  if (meters != "") {
+function changeRadius(new_meters) {
+  if (new_meters != "") {
+    meters = new_meters;
     layer.setOptions({
       query: {
         select: 'Address',
         from: tableid,
-        where:  'ST_INTERSECTS(Address, CIRCLE(LATLNG(37.4, -122.1),' + meters + '))'
+        where:  'ST_INTERSECTS(Address, CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
       }
     });
     circle.setRadius(parseInt(meters));
   }
+}
+
+function changeCenter(event) {
+  lat = event.latLng.lat();
+  lng = event.latLng.lng();
+  layer.setOptions({
+    query: {
+      select: 'Address',
+      from: tableid,
+      where:  'ST_INTERSECTS(Address, CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
+    }
+  });
+  circle.setCenter(event.latLng);
 }
 </script> 
 </head> 

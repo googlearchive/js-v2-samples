@@ -21,7 +21,6 @@ if (demo != "#demo") {
   header.appendChild(para);
 
   document.body.insertBefore(header, document.body.childNodes[0]);
-
+}
   document.getElementById('code').innerHTML = 
     "<p>The Code:</p>" + "<pre>" + document.getElementById('script').innerHTML.replace(/</g, "&lt;") + "</pre>";
-}

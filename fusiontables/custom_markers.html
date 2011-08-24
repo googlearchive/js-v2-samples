@@ -65,10 +65,26 @@ function getData(response) {
 
   // Create an array of row values
   for (i = 0; i < numRows; i++) {
-    var row = [];
-    for (j = 0; j < numCols; j++) {
-      row.push(response.getDataTable().getValue(i, j));
-    }
+    var string_coordinates = response.getDataTable().getValue(i, j);
+    var split_coordinates = string_coordinates.split(",");
+    var coordinate = results[0].geometry.location;
+      
+    // Create the marker
+    var marker = new google.maps.Marker({
+      map: map, 
+      position: coordinate,
+      icon: new google.maps.MarkerImage("http://www.google.com/images/icons/product/fusion_tables-32.png")
+    });
+    
+    // Add a click listener to the marker to open an InfoWindow
+    google.maps.event.addListener(marker, 'click', function(event) {
+      if(lastWindow) lastWindow.close(); // Close the last window if it exists
+      lastWindow = new google.maps.InfoWindow( {
+        position: coordinate,
+        content: row[0] + "<br />" + row[1] //this is the row data, you can use HTML here for the content
+      });
+      lastWindow.open(map);
+    });
     codeAddress(row);
   }
 }
@@ -79,24 +95,7 @@ function getData(response) {
 function codeAddress(row) {
   geocoder.geocode( { 'address': row[1] }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      var coordinate = results[0].geometry.location;
       
-      // Create the marker
-      var marker = new google.maps.Marker({
-        map: map, 
-        position: coordinate,
-        icon: new google.maps.MarkerImage("http://www.google.com/images/icons/product/fusion_tables-32.png")
-      });
-      
-      // Add a click listener to the marker to open an InfoWindow
-      google.maps.event.addListener(marker, 'click', function(event) {
-        if(lastWindow) lastWindow.close(); // Close the last window if it exists
-        lastWindow = new google.maps.InfoWindow( {
-          position: coordinate,
-          content: row[0] + "<br />" + row[1] //this is the row data, you can use HTML here for the content
-        });
-        lastWindow.open(map);
-      });
     } 
   });
 }

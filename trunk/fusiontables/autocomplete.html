@@ -1,0 +1,99 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+
+<title>Google Maps JavaScript API v3 Example: Fusion Tables Layer</title> 
+
+<style>
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+</style>
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css" type="text/css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" id="script">
+google.load('visualization', '1', {});
+
+var map, layer;
+var tableid = "297050";
+var zoom = 10;
+var latlng = new google.maps.LatLng(37.5, -122.1);
+
+function initialize() {
+
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: latlng,
+    zoom: zoom,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: "Address",
+      from: tableid
+    },
+    map: map
+  });
+
+  createAutocompleteOptions();
+}
+
+function createAutocompleteOptions() { 
+  var queryText = encodeURIComponent("SELECT 'Store Name', COUNT() FROM " + tableid + " GROUP BY 'Store Name'"); 
+  var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText); 
+  query.send(getData); 
+} 
+
+function getData(response) { 
+  numRows = response.getDataTable().getNumberOfRows(); 
+  // Create the list of results for display of autocomplete 
+  results = []; 
+  for(i = 0; i < numRows; i++) { 
+    results.push(response.getDataTable().getValue(i, 0)) ; 
+  } 
+
+  // Use the results to create the autocomplete options
+  $("#example").autocomplete({ 
+    source: results, 
+    minLength: 2
+  }); 
+}
+
+function changeQuery(value) {
+  value = value.replace("'", "\\'");
+  layer.setOptions({
+    query: {
+      select: "Address",
+      from: tableid,
+      where: "'Store Name' = '" + value + "'"
+    }
+  });
+}
+
+</script> 
+</head> 
+<body onload="initialize();">
+  <input type="text" id="example" />
+  <input type="button" value="Go!" onclick="changeQuery(document.getElementById('example').value);" />
+  <div id="map_canvas"></div>
+
+  <div id="code"></div>
+  <script type="text/javascript" src="script/script.js"></script>
+</body> 
+</html> 

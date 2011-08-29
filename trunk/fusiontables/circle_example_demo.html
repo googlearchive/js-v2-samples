@@ -43,9 +43,9 @@ function initialize() {
 
   layer = new google.maps.FusionTablesLayer({
     query: {
-      select: 'Address',
+      select: '\'Delivery Zone\'',
       from: tableid,
-      where: 'ST_INTERSECTS(Address, CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
+      where: 'ST_INTERSECTS(\'Delivery Zone\', CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
     }
   });
   layer.setMap(map);
@@ -65,9 +65,9 @@ function changeRadius(new_meters) {
     meters = new_meters;
     layer.setOptions({
       query: {
-        select: 'Address',
+        select: '\'Delivery Zone\'',
         from: tableid,
-        where:  'ST_INTERSECTS(Address, CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
+        where:  'ST_INTERSECTS(\'Delivery Zone\', CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
       }
     });
     circle.setRadius(parseInt(meters));
@@ -79,9 +79,9 @@ function changeCenter(event) {
   lng = event.latLng.lng();
   layer.setOptions({
     query: {
-      select: 'Address',
+      select: '\'Delivery Zone\'',
       from: tableid,
-      where:  'ST_INTERSECTS(Address, CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
+      where:  'ST_INTERSECTS(\'Delivery Zone\', CIRCLE(LATLNG(' + lat + ',' + lng + '),' + meters + '))'
     }
   });
   circle.setCenter(event.latLng);
@@ -91,6 +91,8 @@ function changeCenter(event) {
 <body onload="initialize();"> 
   <select onchange="changeRadius(this.value);">
       <option value="">--Select--</option>
+      <option value="0.5">0.5 meters</option> 
+      <option value="1">1 meters</option> 
       <option value="5000">5000 meters</option> 
       <option value="10000" selected="selected">10,000 meters</option> 
       <option value="15000">15,000 meters</option>

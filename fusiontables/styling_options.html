@@ -30,30 +30,23 @@
         query: {
           select: "kml_4326",
           from: tableid
-        },
+        }
+      });
+      layer.updateStyles(4);
+      layer.setMap(map);
+    }
+
+    function updateStyles(division) {
+      layer.setOptions({
         styles: [{
-          where: "'Num Movies' = 3",
+          where: "'Num Movies' < " + division,
           polygonOptions: {
             fillColor: "#FF6600",
             strokeColor: "#FFFFFF",
             strokeWeight: 2
           }
         }, {
-          where: "'Num Movies' = 4",
-          polygonOptions: {
-            fillColor: "#FFFF33",
-            strokeColor: "#FFFFFF",
-            strokeWeight: 2
-          }
-        }, {
-          where: "'Num Movies' = 5",
-          polygonOptions: {
-            fillColor: "#00FF00",
-            strokeColor: "#FFFFFF",
-            strokeWeight: 3
-          }
-        }, {
-          where: "'Num Movies' = 6",
+          where: "'Num Movies' >= " + division,
           polygonOptions: {
             fillColor: "#00CCCC",
             strokeColor: "#FFFFFF",
@@ -61,12 +54,11 @@
           }
         }]
       });
-      
-      layer.setMap(map);
     }
   </script> 
 </head> 
-<body onload="initialize()"> 
+<body onload="initialize()">
+  3 <input type="range" onchange="updateStyles(this.value);" step="1" min="3" max="6" value="4" /> 6
   <div id="map_canvas"></div>
 </body> 
 </html>

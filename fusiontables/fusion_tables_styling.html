@@ -1,4 +1,3 @@
-
 <!DOCTYPE html> 
 <html> 
 <head> 
@@ -28,38 +27,9 @@
  
       layer = new google.maps.FusionTablesLayer({
         query: {
-          select: "kml_4326",
+          select: "col4",
           from: tableid
-        },
-        styles: [{
-          where: "'Num Movies' = 3",
-          polygonOptions: {
-            fillColor: "#FF6600",
-            strokeColor: "#FFFFFF",
-            strokeWeight: 2
-          }
-        }, {
-          where: "'Num Movies' = 4",
-          polygonOptions: {
-            fillColor: "#FFFF33",
-            strokeColor: "#FFFFFF",
-            strokeWeight: 2
-          }
-        }, {
-          where: "'Num Movies' = 5",
-          polygonOptions: {
-            fillColor: "#00FF00",
-            strokeColor: "#FFFFFF",
-            strokeWeight: 3
-          }
-        }, {
-          where: "'Num Movies' = 6",
-          polygonOptions: {
-            fillColor: "#00CCCC",
-            strokeColor: "#FFFFFF",
-            strokeWeight: 3
-          }
-        }]
+        }
       });
       
       layer.setMap(map);

@@ -23,7 +23,6 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" id="script">
 var directionsService;
-var infowindow;
 var layer;
 var tableid = 222171;
 var map;
@@ -51,28 +50,22 @@ function initialize() {
       select: 'Location',
       from: tableid
     },
-    suppressInfoWindows: true,
     map: map
   });
   
   // Add a click listener to the layer that creates a new infowindow
   // with directions text input
   google.maps.event.addListener(layer, 'click', function(e) {
-    if(infowindow) infowindow.close();
-    else infowindow = new google.maps.InfoWindow();
-    infowindow.setContent("<p><b>" + e.row['Name'].value + "</b></p>" +
-      "<label>Get Directions:</label> " +
+    e.infoWindowHtml = e.infoWindowHtml +
+      "<br /><label>Get Directions to here:</label> " +
       "<input type=\"text\" id=\"begin\" />" +
       "<input type=\"button\" value=\"go\" onclick=\"computeDirections(document.getElementById('begin').value, " +
-        e.latLng.lat() + ", " + e.latLng.lng() + ");\" />");
-    infowindow.setPosition(e.latLng);
-    infowindow.open(map);
+        e.latLng.lat() + ", " + e.latLng.lng() + ");\" />";
   });
 }
 
 // Get the directions
 function computeDirections(start, endlat, endlng) {
-  infowindow.close();
   var request = {
     origin: start, 
     destination: new google.maps.LatLng(endlat, endlng),

@@ -31,22 +31,23 @@ var buckets = [
   {
     'min': 200000,
     'max': 3150000,
-    'color': '#FE7276'
+    'color': '#5CCCCC'
   },
   {
     'min': 3150000,
     'max': 6100000,
-    'color': '#FE3F44'
+    'color': '#009999'
   },
   {
     'min': 6100000,
     'max': 9050000,
-    'color': '#BE2F33'
+    'color': '#1D7373'
   },
   {
     'min': 9050000,
     'max': 13000000,
-    'color': '#A40004'
+    'color': '#006363',
+    'borderWidth': 2
   }
 ];
 
@@ -83,7 +84,9 @@ function addStyle() {
       where: generateWhere(style.min, style.max),
       polygonOptions: {
         fillColor: style.color,
-        fillOpacity: style.opacity ? style.opacity : 0.8
+        fillOpacity: style.opacity ? style.opacity : 0.8,
+        strokeColor: style.borderColor ? style.borderColor : '#FFFFFF',
+        strokeWeight: style.borderWidth ? style.borderWidth : 1
       }
     });
   }

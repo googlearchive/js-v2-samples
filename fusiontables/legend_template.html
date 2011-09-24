@@ -1,0 +1,170 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<html>
+<head>
+
+<title>Legend Template</title>
+<style type="text/css">
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+</style>
+<meta />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+
+<script type="text/javascript" id="script">
+
+var center = new google.maps.LatLng(43.5, -110);
+var zoom = 3;
+var legend_width = '150px';
+var legend_position = google.maps.ControlPosition.RIGHT_BOTTOM;
+var tableid = 869453;
+var location_column = 'geo';
+var column_name = 'Total Urban and Rural Housing Units';
+var buckets = [
+  {
+    'min': 200000,
+    'max': 3150000,
+    'color': '#FE7276'
+  },
+  {
+    'min': 3150000,
+    'max': 6100000,
+    'color': '#FE3F44'
+  },
+  {
+    'min': 6100000,
+    'max': 9050000,
+    'color': '#BE2F33'
+  },
+  {
+    'min': 9050000,
+    'max': 13000000,
+    'color': '#A40004'
+  }
+];
+
+
+
+var map, layer;
+
+function initialize() {
+  
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: center,
+    zoom: zoom,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: location_column,
+      from: tableid
+    }
+  });
+  layer.setMap(map);
+  
+  addStyle();
+}
+
+// Apply the style to the layer
+function addStyle() {
+  var styles = new Array();
+  
+  for(bucket in buckets) {
+    var style = buckets[bucket];
+    styles.push({
+      where: generateWhere(style.min, style.max),
+      polygonOptions: {
+        fillColor: style.color,
+        fillOpacity: style.opacity ? style.opacity : 0.8
+      }
+    });
+  }
+
+  layer.set('styles', styles);
+  updateLegend();
+}
+
+// Create the where clause
+function generateWhere(low, high) {
+  var whereClause = new Array();
+  whereClause.push("'");
+  whereClause.push(column_name);
+  whereClause.push("' >= ");
+  whereClause.push(low);
+  whereClause.push(" AND '");
+  whereClause.push(column_name);
+  whereClause.push("' < ");
+  whereClause.push(high);
+  return whereClause.join('');
+}
+
+// Create the legend with the corresponding colors
+function updateLegend() {
+  var legendDiv = document.createElement('div');
+  var legend = new Legend(legendDiv);
+  legendDiv.index = 1;
+  map.controls[legend_position].pop();
+  map.controls[legend_position].push(legendDiv);
+}
+
+// Generate the content for the legend
+function Legend(controlDiv) {
+  controlDiv.style.padding = '10px';
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = 'white';
+  controlUI.style.borderStyle = 'solid';
+  controlUI.style.borderWidth = '1px';
+  controlUI.style.width = legend_width;
+  controlUI.title = 'Legend';
+  controlDiv.appendChild(controlUI);
+  var controlText = document.createElement('div');
+  controlText.style.fontFamily = 'Arial,sans-serif';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+
+  controlText.innerHTML = legendContent();
+  controlUI.appendChild(controlText);
+}
+
+function legendContent() {
+  // Generate the content for the legend using colors from object
+  var controlTextList = new Array();
+  controlTextList.push('<p><b>');
+  controlTextList.push(column_name);
+  controlTextList.push('</b></p>');
+  for(bucket in buckets) {
+    var style = buckets[bucket];
+    controlTextList.push('<div style="background-color: ');
+    controlTextList.push(style.color);
+    controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
+    controlTextList.push(style.min);
+    controlTextList.push(' - ');
+    controlTextList.push(style.max);
+    controlTextList.push('<br style="clear: both;"/>');
+  }
+
+  controlTextList.push('<br />');
+  return controlTextList.join('');
+}
+
+
+</script>
+</head>
+
+<body onload="initialize();">
+
+<div id="map_canvas"></div>
+
+<div id="code"></div>
+<script type="text/javascript" src="script/script.js"></script>
+</body>
+</html>

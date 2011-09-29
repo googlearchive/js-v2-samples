@@ -1,0 +1,134 @@
+<html>
+<head>
+
+<style type="text/css">
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 100%; width: 100%; }
+</style>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+
+<script>
+
+var tableid = 1670859;
+var map;
+var center = new google.maps.LatLng(37.1, -110);
+var zoom = 4;
+var infowindow = new google.maps.InfoWindow();
+
+function init() {
+
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: center,
+    zoom: zoom,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  init_polys();
+
+}
+
+/* Run the undocumented, unsupported JSONP interface */
+function init_polys() {
+  var script = document.createElement('script');
+  // Note that a simplified geometry and the NAME column are being requested
+  script.setAttribute('src', 'http://www.google.com/fusiontables/api/query?sql=SELECT geometry_simplified,NAME FROM ' + tableid + '&jsonCallback=overlay');
+  document.getElementById('body').appendChild(script);
+}
+
+/* Overlay the data from the response */
+function overlay(data) {
+  // The rows of data from the table
+  var rows = data['table']['rows'];
+  for (i in rows) {
+    // The simplified geometry
+    var geometry = rows[i][0];
+
+    // The data from the name column
+    var name = rows[i][1];
+
+    var type = geometry['type'];
+    if (type == 'Polygon') {
+      // If the geometry is a Polygon, simply map it
+      var coordinate_list = gen_coors(geometry);
+      map_poly(coordinate_list, name);
+    
+    } else if (type == 'GeometryCollection') {
+      // If it's a multigeometry, find the coordinate list for each polygon
+      var geometries = geometry['geometries'];
+      var coordinate_list_list = [];
+      for (j in geometries) {
+        var type = geometries[j]['type'];
+        if (type == 'Polygon') {
+          var coordinate_list = gen_coors(geometries[j]);
+          coordinate_list_list.push(coordinate_list);
+        }
+      }
+
+      // Then find the longest one to map (since it would be
+      // difficult to get the mouseover events to correspond for
+      // each polygon in the multigeometry)
+      var longest_coordinate_list;
+      var max_list_length = 0;
+      for (k in coordinate_list_list) {
+        var list_length = coordinate_list_list[k].length;
+        if (list_length > max_list_length) {
+          longest_coordinate_list = coordinate_list_list[k];
+          max_list_length = list_length;
+        }
+      }
+      map_poly(longest_coordinate_list, name);
+    }
+  }
+}
+
+/* Generate a list of LatLng objects for a geometry */
+function gen_coors(geometry) {
+  var coordinates = geometry['coordinates'];
+  var coordinate_list = coordinates[0];
+  var lat_long_list = [];
+  for (j in coordinate_list) {
+    var lat_long = new google.maps.LatLng(coordinate_list[j][1], coordinate_list[j][0]);
+    lat_long_list.push(lat_long);
+  }
+  return lat_long_list;
+}
+
+/* Place the polygon on the map */
+function map_poly(lat_long_list, name) {
+  var state_poly = new google.maps.Polygon({
+    paths: lat_long_list,
+    strokeColor: "#000000",
+    strokeOpacity: 0.8,
+    strokeWeight: 1,
+    fillColor: "#000000",
+    fillOpacity: 0.3
+  });
+  google.maps.event.addListener(state_poly, 'mouseover', function() {
+    this.setOptions({fillOpacity: 1});
+  });
+  google.maps.event.addListener(state_poly, 'mouseout', function() {
+    this.setOptions({fillOpacity: 0.3});
+  });
+
+  // When someone clicks on a polygon, open the info window
+  // where they clicked, set the content using some data from
+  // the NAME column in the table
+  google.maps.event.addListener(state_poly, 'click', function(e) {
+    infowindow.setContent(name);
+    infowindow.setPosition(e.latLng);
+    infowindow.open(map);
+  });
+  state_poly.setMap(map);
+}
+
+</script>
+
+</head>
+
+<body id="body" onload="init()">
+
+<div id="map_canvas"></div>
+
+</body>
+</html>

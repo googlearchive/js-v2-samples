@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<html>
+<head>
+
+<style type="text/css">
+  #map_canvas { height: 600px; width:700px; }
+</style>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" id="script">
+
+var map, layer, infowindow, marker, coordinate;
+var geocoder = new google.maps.Geocoder();
+var tableid = 297050;
+	
+google.load('visualization', '1', {'packages':['table']});
+
+// Initialize the map and layer
+function initialize() {
+
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(37.5, -122.1),
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  marker = new google.maps.Marker({
+    map: map,
+    animation: google.maps.Animation.DROP
+  });
+
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: '\'Delivery Zone\'',
+      from: tableid
+    },
+    options: {suppressInfoWindows: true},
+    map: map
+  });
+  
+  // Add click listener to the layer
+  google.maps.event.addListener(layer, 'click', function (e) {
+    openInfoWindow(e.row['Store Name'].value, e.row['Address'].value, e.latLng);
+  });
+  
+  // On key press, run enter submit function
+  window.onkeypress = enterSubmit;
+}
+
+// Submit on Enter
+function enterSubmit() {
+  if(event.keyCode==13) {
+    zoomtoaddress();
+  }
+}
+
+// Geocodes the user-entered address
+function zoomtoaddress() {
+  geocoder.geocode({'address': document.getElementById("address").value }, geocoderResults);
+}
+
+// Get the results of the geocode, run the query to get the corresponding Fusion Tables content
+function geocoderResults(results, status) {
+  if (status == google.maps.GeocoderStatus.OK) {
+
+    coordinate = results[0].geometry.location;
+
+    marker.setAnimation(google.maps.Animation.DROP);
+    marker.setPosition(coordinate);
+
+    // Note this query is approximate to 0.1 meters!
+    var queryText = encodeURIComponent("SELECT 'Store Name', Address FROM " + tableid +
+        " WHERE ST_INTERSECTS('Delivery Zone', " + 
+        "CIRCLE(LATLNG(" + coordinate.lat() + "," + coordinate.lng() + "), 0.1))");
+    var query = new google.visualization.Query(
+        'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+    query.send(queryResponse);
+
+  } else {
+    alert('Error geocoding address');
+  }
+}
+
+// Callback function for the Google Chart Tools API request
+function queryResponse(response) {
+  var datatable = response.getDataTable();
+  if(datatable && datatable.getNumberOfRows()) {
+    var store = datatable.getValue(0, 0);
+    var address = datatable.getValue(0, 1);
+    openInfoWindow(store, address, coordinate);
+
+  } else {
+    openInfoWindow('No store', 'No store for this location', coordinate);
+  }
+}
+
+// Open the info window
+function openInfoWindow(header, content, location) {
+  if(infowindow) infowindow.close();
+  else infowindow = new google.maps.InfoWindow();
+  infowindow.setContent(
+    '<h3>' + header + '</h3>' +
+    '<p>' + content + '</p>');
+  infowindow.setPosition(location);
+  infowindow.open(map);
+}
+</script>
+</head>
+<body onload="initialize()">
+
+<input type="text" value="Milpitas, CA" id="address" />
+<input type="button" onclick="zoomtoaddress();" value="Go" />
+<div id="map_canvas"></div>
+
+<div id="code"></div> 
+<script type="text/javascript" src="script/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<html>
+<head>
+
+<title>Map + Chart</title>
+<style type="text/css">
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { height: 600px; width:700px; }
+</style>
+<meta />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+<script type="text/javascript" id="script">
+
+google.load('visualization', '1', {'packages':['corechart']});
+
+function initialize() {
+  
+  var map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(37.1, -105),
+    zoom: 4,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  var layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: 'STATE_OR_REGION',
+      from: 1351373 // https://www.google.com/fusiontables/DataSource?dsrcid=1351373
+    },
+    suppressInfoWindows: true
+  });
+  layer.setMap(map);
+
+  // Add a listener to the layer that constructs a chart from
+  // the data returned on click
+  google.maps.event.addListener(layer, 'click', function(e) {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Year');
+    data.addColumn('number', 'Population');
+    data.addRows([
+      ['1910', parseInt(e.row['1910_POPULATION'].value)],
+      ['1920', parseInt(e.row['1920_POPULATION'].value)],
+      ['1930', parseInt(e.row['1930_POPULATION'].value)],
+      ['1940', parseInt(e.row['1940_POPULATION'].value)],
+      ['1950', parseInt(e.row['1950_POPULATION'].value)],
+      ['1960', parseInt(e.row['1960_POPULATION'].value)],
+      ['1970', parseInt(e.row['1970_POPULATION'].value)],
+      ['1980', parseInt(e.row['1980_POPULATION'].value)],
+      ['1990', parseInt(e.row['1990_POPULATION'].value)],
+      ['2000', parseInt(e.row['2000_POPULATION'].value)],
+      ['2010', parseInt(e.row['2010_POPULATION'].value)]
+    ]);
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart'));
+    var options = {
+      'title': e.row['STATE_OR_REGION'].value + ' Population',
+      'height': 400,
+      'width': 600
+    };
+    chart.draw(data, options);
+  });
+}
+
+</script>
+</head>
+
+<body onload="initialize();">
+
+<div id="map_canvas"></div>
+<div id="chart"></div>
+
+</body>
+</html>

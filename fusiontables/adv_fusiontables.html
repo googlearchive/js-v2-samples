@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<title>Google Chart Tools API Example: Fusion Tables Data Source</title>
+
+<style>
+  body { font-family: Arial, sans-serif; }
+  #map_canvas { width: 750px; height: 450px; }
+</style>
+
+<!-- Import the visualization javascript -->
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript" id="script">
+google.load('visualization', '1', {'packages':['corechart']});
+
+var map, layer;
+
+var tableid = 1761814;
+var location_column = 'geometry';
+
+var layer_styles = {
+  'Residential': {
+    'min': 0,
+    'max': 10000,
+    'colors': [
+      '#f4cccc',
+      '#ea9999',
+      '#e06666',
+      '#cc0000',
+      '#990000'
+    ]
+  },
+  'Non-Residential': {
+    'min': 0,
+    'max': 10000,
+    'colors': [
+      '#d0e0e3',
+      '#a2c4c9',
+      '#76a5af',
+      '#45818e',
+      '#134f5c'
+    ]
+  },
+  'Total': {
+    'min': 0,
+    'max': 20000,
+    'colors': [
+      '#d9d2e9',
+      '#b4a7d6',
+      '#8e7cc3',
+      '#674ea7',
+      '#351c75'
+    ]
+  }
+}
+
+var sector = 'Residential';
+
+function initialize() {
+  // Initialize map
+  map = new google.maps.Map(document.getElementById('map_canvas'), {
+    center: new google.maps.LatLng(37.405073750176946, -119.8828125),
+    zoom: 5,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.SMALL
+    },
+  });
+
+  // Initialize layer
+  layer = new google.maps.FusionTablesLayer({
+    query: {
+      select: location_column,
+      from: tableid,
+      where: "Sector = '" + sector + "'"
+    }
+  });
+  layer.setMap(map);
+
+  // Legend
+  createLegend('Residential');
+
+  // Dynamic Styles
+  document.getElementById('sector').style.display = 'inline';
+  styleLayer();
+
+  // Styled Map
+  styleMap();
+
+  // Google Chart Tools
+  document.getElementById('map_canvas').style.width = '350px';
+  drawVisualization('Alameda');
+
+  // Click listener - update graph
+  google.maps.event.addListener(layer, 'click', function(e) {
+    drawVisualization(e.row['County'].value);
+
+    // Click listener - update info window contents
+    customInfoWindow(e);
+  });
+}
+
+// Dynamic Styles
+function styleLayer() {
+  var defined_styles = layer_styles[sector];
+  var colors = defined_styles.colors;
+  var min_num = defined_styles.min;
+  var max_num = defined_styles.max;
+  var step = (max_num - min_num) * 1.0 / colors.length;
+
+  var styles = new Array();
+  for(i in colors) {
+    styles.push({
+      where: generateWhere(min_num, max_num, i, step),
+      polygonOptions: {
+        fillColor: colors[i]
+      }
+    });
+  }
+
+  layer.setOptions({
+    query: {
+      select: location_column,
+      from: tableid,
+      where: "Sector = '" + sector + "'"
+    }
+  });
+  layer.set('styles', styles);
+}
+
+// Create the where clause
+function generateWhere(min_num, max_num, i, step) {
+  var step = step * i;
+  var new_min = min_num + step;
+  var whereClause = new Array();
+  whereClause.push("Sector = '");
+  whereClause.push(sector);
+  whereClause.push("' AND '2010' > ");
+  whereClause.push(new_min);
+  return whereClause.join('');
+}
+
+// Legend
+function createLegend(type) {
+  var legendDiv = document.createElement('div');
+  var legend = new Legend(legendDiv, type);
+  legendDiv.index = 1;
+  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].pop();
+  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legendDiv);
+}
+
+// Generate the content for the legend
+function Legend(controlDiv, type) {
+  controlDiv.style.padding = '10px';
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = 'white';
+  controlUI.style.borderStyle = 'solid';
+  controlUI.style.borderWidth = '1px';
+  controlUI.style.padding = '5px';
+  controlUI.style.width = '120px';
+  controlUI.style.height = '140px';
+  controlUI.title = 'Legend';
+  controlDiv.appendChild(controlUI);
+  var controlText = document.createElement('div');
+  legendContent(controlText, type);
+  controlUI.appendChild(controlText);
+}
+
+function legendContent(controlText, type) {
+  controlText.style.fontFamily = 'Arial,sans-serif';
+  controlText.style.fontSize = '14px';
+  controlText.style.padding = '4px';
+
+  var header = document.createElement('p');
+  header.style.margin = '0px 0px 5px 0px';
+  header.style.fontWeight = 'bold';
+  header.innerHTML = type + ' Electricity Consumption';
+  controlText.appendChild(header);
+
+  var defined_styles = layer_styles[type];
+  var colors = defined_styles.colors;
+  var min_num = defined_styles.min;
+  var max_num = defined_styles.max;
+  var step = (max_num - min_num) * 1.0 / colors.length;
+  for (var j = 0; j < colors.length; j++) {
+    var colorBlock = document.createElement('div');
+    colorBlock.style.height = '15px';
+    colorBlock.style.width = '10px';
+    colorBlock.style.margin = '0px 3px 0px 0px';
+    colorBlock.style.cssFloat = 'left';
+    colorBlock.style.styleFloat = 'left';
+    colorBlock.style.clear = 'both';
+    colorBlock.style.background = colors[j];
+    controlText.appendChild(colorBlock);
+
+    var textBlock = document.createElement('p');
+    textBlock.style.margin = '0px';
+    textBlock.style.cssFloat = 'left';
+    textBlock.style.styleFloat = 'left';
+    textBlock.style.display = 'inline';
+    var lower = step * j;
+    var upper = step * (j + 1);
+    if (j == colors.length - 1) {
+      textBlock.innerHTML = lower + '+';
+    } else {
+      textBlock.innerHTML = lower + ' - ' + upper;
+    }
+    controlText.appendChild(textBlock);
+  }
+}
+
+
+// Styled Map
+function styleMap() {
+  var style = [{
+    featureType: 'all',
+    elementType: 'all',
+    stylers: [
+      { saturation: -99 }
+    ]
+  } ,
+  {
+    featureType: 'road.arterial',
+    elementType: 'all',
+    stylers: [
+      { visibility: 'off' }
+    ]
+  } ,
+  {
+    featureType: 'road.local',
+    elementType: 'all',
+    stylers: [
+      { visibility: 'off' }
+    ]
+  } ,
+  {
+    featureType: 'administrative.country',
+    elementType: 'all',
+    stylers: [
+      { visibility: 'off' }
+    ]
+  } ,
+  {
+    featureType: 'administrative.locality',
+    elementType: 'all',
+    stylers: [
+      { visibility: 'off' }
+    ]
+  } ,
+  {
+    featureType: 'administrative.neighborhood',
+    elementType: 'all',
+    stylers: [
+      { visibility: 'off' }
+    ]
+  } ,
+  {
+    featureType: 'administrative.land_parcel',
+    elementType: 'all',
+    stylers: [
+      { visibility: 'off' }
+    ]
+  } ,
+  {
+    featureType: 'transit',
+    elementType: 'all',
+    stylers: [
+      { visibility: 'off' }
+    ]
+  }];
+
+  var styledMapType = new google.maps.StyledMapType(style, {
+    map: map,
+    name: 'Styled Map'
+  });
+  map.mapTypes.set('map-style', styledMapType);
+  map.setMapTypeId('map-style');
+}
+
+// Google Chart Tools API
+function drawVisualization(county) {
+  google.visualization.drawChart({
+    "containerId": "visualization",
+    "dataSourceUrl": "http://www.google.com/fusiontables/gvizdata?tq=",
+    "query": "SELECT Sector,'2006','2007','2008','2009','2010' FROM 1761814 WHERE County = '" + county + "'",
+    "chartType": "ColumnChart",
+    "options": {
+      "title": county,
+      "height": 400,
+      "width": 400
+    }
+  });
+}
+
+// Custom info windows
+function customInfoWindow(event) {
+  var electricity = event.row['2010'].value;
+  if (electricity > 5000) {
+    event.infoWindowHtml = '<p style="color: red; font-weight: bold;">High Usage!</p>';
+  } else if (electricity > 2500) {
+    event.infoWindowHtml = '<p style="color: orange; font-weight: bold;">Medium Usage</p>';
+  } else {
+    event.infoWindowHtml = '<p style="color: green; font-weight: bold;">Low Usage</p>';
+  }
+}
+
+// Change the map feature styles on sector drop-down menu change
+function changeStyle(type) {
+  sector = type;
+  styleLayer();
+  createLegend(type);
+}
+
+// Change the query to the layer on county drop-down menu change
+function changeMap(county) {
+  if (county == "") {
+    layer.setOptions({
+      query: {
+        select: location_column,
+        from: tableid,
+        where: "Sector = '" + sector + "'"
+      }
+    }); 
+    return;
+  }
+
+  layer.setOptions({
+    query: {
+      select: location_column,
+      from: tableid,
+      where: "Sector = '" + sector + "' AND 'County' = '" + county + "'"
+    }
+  });
+
+  drawVisualization(county);
+}
+</script>
+</head>
+<body onload="initialize()">
+
+<div id="sector" style="display:none;">
+  <label>Sector </label>
+  <select id="sector" onchange="changeStyle(this.value);">
+    <option value="Residential">Residential</option>
+    <option value="Non-Residential">Non-Residential</option>
+    <option value="Total">Total</option>
+  </select>
+</div>
+
+<label>County </label>
+<select id="searchString" onchange="changeMap(this.value);">
+  <option value="Alameda">Alameda</option>
+  <option value="Alpine">Alpine</option>
+  <option value="Amador">Amador</option>
+  <option value="Butte">Butte</option>
+  <option value="Calaveras">Calaveras</option>
+  <option value="Colusa">Colusa</option>
+  <option value="Contra Costa">Contra Costa</option>
+  <option value="Del Norte">Del Norte</option>
+  <option value="El Dorado">El Dorado</option>
+  <option value="Fresno">Fresno</option>
+  <option value="Glenn">Glenn</option>
+  <option value="Humboldt">Humboldt</option>
+  <option value="Imperial">Imperial</option>
+  <option value="Inyo">Inyo</option>
+  <option value="Kern">Kern</option>
+  <option value="Kings">Kings</option>
+  <option value="Lake">Lake</option>
+  <option value="Lassen">Lassen</option>
+  <option value="Los Angeles">Los Angeles</option>
+  <option value="Madera">Madera</option>
+  <option value="Marin">Marin</option>
+  <option value="Mariposa">Mariposa</option>
+  <option value="Mendocino">Mendocino</option>
+  <option value="Merced">Merced</option>
+  <option value="Modoc">Modoc</option>
+  <option value="Mono">Mono</option>
+  <option value="Monterey">Monterey</option>
+  <option value="Napa">Napa</option>
+  <option value="Nevada">Nevada</option>
+  <option value="Orange">Orange</option>
+  <option value="Placer">Placer</option>
+  <option value="Plumas">Plumas</option>
+  <option value="Riverside">Riverside</option>
+  <option value="Sacramento">Sacramento</option>
+  <option value="San Benito">San Benito</option>
+  <option value="San Bernardino">San Bernardino</option>
+  <option value="San Diego">San Diego</option>
+  <option value="San Francisco">San Francisco</option>
+  <option value="San Joaquin">San Joaquin</option>
+  <option value="San Luis Obispo">San Luis Obispo</option>
+  <option value="San Mateo">San Mateo</option>
+  <option value="Santa Barbara">Santa Barbara</option>
+  <option value="Santa Clara">Santa Clara</option>
+  <option value="Santa Cruz">Santa Cruz</option>
+  <option value="Shasta">Shasta</option>
+  <option value="Sierra">Sierra</option>
+  <option value="Siskiyou">Siskiyou</option>
+  <option value="Solano">Solano</option>
+  <option value="Sonoma">Sonoma</option>
+  <option value="Stanislaus">Stanislaus</option>
+  <option value="Sutter">Sutter</option>
+  <option value="Tehama">Tehama</option>
+  <option value="Trinity">Trinity</option>
+  <option value="Tulare">Tulare</option>
+  <option value="Tuolumne">Tuolumne</option>
+  <option value="Ventura">Ventura</option>
+  <option value="Yolo">Yolo</option>
+  <option value="Yuba">Yuba</option>
+</select>
+
+<table>
+<tr>
+<td>
+<div id="map_canvas"></div>
+</td>
+<td>
+<div id="visualization"></div>
+</td>
+</tr>
+</table>
+
+<div id="code"></div>
+<script type="text/javascript" src="script/script.js"></script>
+</body>
+</html>

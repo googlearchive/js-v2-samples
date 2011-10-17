@@ -61,37 +61,35 @@ function getData(response) {
     var lng = split_coordinates[1];
     var coordinate = new google.maps.LatLng(lat, lng);
 
-    // Create the marker
-    var marker = new google.maps.Marker({
-      map: map, 
-      position: coordinate,
-      icon: new google.maps.MarkerImage("http://www.google.com/images/icons/product/fusion_tables-32.png")
-    });
-
     // Get row data for the info window
     var store = response.getDataTable().getValue(i, 0);
     var delivery = response.getDataTable().getValue(i, 2);
 
-    google.maps.event.addListener(marker, 'click', function(event) {
-      if (lastWindow) {
-        lastWindow.close();
-      } else {
-        lastWindow = new google.maps.InfoWindow();
-      }
-
-      // Find the position of the click event
-      var lat = event.latLng.lat()
-      var lng = event.latLng.lng()
-      var coordinate = new google.maps.LatLng(lat, lng);
-
-      // Set the position and contents of the info window, and open the window
-      lastWindow.setPosition(coordinate);
-      lastWindow.setContent(store + "<br />" + delivery);
-      lastWindow.open(map);
-    });
+    createMarker(store, delivery, coordinate);
   }
 }
 
+function createMarker(store, delivery, coordinate) {
+  // Create the marker
+  var marker = new google.maps.Marker({
+    map: map, 
+    position: coordinate,
+    icon: new google.maps.MarkerImage("http://www.google.com/images/icons/product/fusion_tables-32.png")
+  });
+
+  google.maps.event.addListener(marker, 'click', function(event) {
+    if (lastWindow) {
+      lastWindow.close();
+    } else {
+      lastWindow = new google.maps.InfoWindow();
+    }
+
+    // Set the position and contents of the info window, and open the window
+    lastWindow.setPosition(coordinate);
+    lastWindow.setContent(store + "<br />Delivers? " + delivery);
+    lastWindow.open(map);
+  });
+}
 </script>
 
 </head>

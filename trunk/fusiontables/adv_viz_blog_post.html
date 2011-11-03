@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<!--
+  copyright (c) 2011 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+  <title>Advanced Fusion Tables Visualizations</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #map-canvas {
+      width: 750px;
+      height: 450px;
+    }
+
+    #legend {
+      background-color: #FFF;
+      margin: 10px;
+      padding: 5px;
+      width: 150px;
+    }
+
+    #legend h4 {
+      font-weight: bold;
+      margin-top: 3px;
+    }
+
+    #legend div {
+      clear: both;
+    }
+
+    .color {
+      height: 12px;
+      width: 12px;
+      margin-right: 3px;
+      float: left;
+      display: block;
+    }
+  </style>
+
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+  <script type="text/javascript">
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    function initialize() {
+      // Initialize map
+      var map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: new google.maps.LatLng(37.40507, -119.8828),
+        zoom: 5,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoomControlOptions: {
+          style: google.maps.ZoomControlStyle.SMALL
+        },
+      });
+
+      // Initialize layer
+      var layer = new google.maps.FusionTablesLayer({
+        query: {
+          select: 'geometry',
+          from: 1761814,
+          where: 'Sector = \'Total\''
+        }
+      });
+      layer.setMap(map);
+
+      // Add Legend
+      createLegend(map);
+
+      // Add Chart
+      drawVisualization('Alameda');
+
+      // Click listener to change chart
+      google.maps.event.addListener(layer, 'click', function(e) {
+        drawVisualization(e.row['County'].value);
+      });
+    }
+
+    // Legend
+    function createLegend(map) {
+      var legendDiv = document.createElement('div');
+      legendDiv.id = 'legendDiv';
+      legendContent(legendDiv);
+      legendDiv.index = 1;
+
+      var position = google.maps.ControlPosition.RIGHT_BOTTOM;
+      map.controls[position].push(legendDiv);
+    }
+
+    function legendContent(legendDiv) {
+      var legend = document.createElement('div');
+      legend.id = 'legend';
+
+      // Add title
+      var title = document.createElement('h4');
+      title.innerHTML = 'Electricity Consumption';
+      legend.appendChild(title);
+
+      var minNum = 0;
+      var maxNum = 20000;
+      var colors = [
+        '#d9d2e9',
+        '#b4a7d6',
+        '#8e7cc3',
+        '#674ea7',
+        '#351c75'
+      ];
+      var step = (maxNum - minNum) * 1.0 / colors.length;
+      for (var j = 0; j < colors.length; j++) {
+        // Add colored blocks and associated descriptive text
+        var legendItem = document.createElement('div');
+
+        var color = document.createElement('span');
+        color.setAttribute('class', 'color');
+        color.style.backgroundColor = colors[j];
+        legendItem.appendChild(color);
+
+        var minMax = document.createElement('span');
+        var lower = step * j;
+        var upper = step * (j + 1);
+        if (j == colors.length - 1) {
+          minMax.innerHTML = lower + '+';
+        } else {
+          minMax.innerHTML = lower + ' - ' + upper;
+        }
+        legendItem.appendChild(minMax);
+
+        legend.appendChild(legendItem);
+      }
+
+      legendDiv.appendChild(legend);
+    }
+
+    // Google Chart Tools API
+    function drawVisualization(county) {
+      google.visualization.drawChart({
+        'containerId': 'visualization',
+        'dataSourceUrl': 'http://www.google.com/fusiontables/gvizdata?tq=',
+        'query': 'SELECT \'2007\',\'2008\',\'2009\',\'2010\' FROM 1761814' +
+            ' WHERE County = \'' + county + '\' AND Sector = \'Total\'',
+        'chartType': 'ColumnChart',
+        'options': {
+          'title': county,
+          'height': 400,
+          'width': 400
+        }
+      });
+    }
+  </script>
+  </head>
+  <body onload="initialize()">
+
+    <div id="map-canvas"></div>
+    <div id="visualization"></div>
+
+  </body>
+</html>

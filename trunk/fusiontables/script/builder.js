@@ -785,7 +785,7 @@ function updateTextArea() {
 			"  <label>" + currentTextQueryLabel + " </label>\n" +
 			"  <input type=\"text\" id=\"searchString\" />\n" +
 			"  <input type=\"button\" onclick=\"changeMap();\" value=\"Search\" />\n" +
-			"<\div>\n\n";
+			"</div>\n\n";
 	}
 	
 	if(currentSelectQueryLabel) {
@@ -793,7 +793,7 @@ function updateTextArea() {
 		  "<div style=\"margin-top: 10px;\">\n" +
 	    "  <label>" + currentSelectQueryLabel + " </label>\n" +
 	    selectOptions +
-			"<\div>\n\n";
+			"</div>\n\n";
 	}
 	
 	textArea +=

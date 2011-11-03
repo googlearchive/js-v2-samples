@@ -18,7 +18,7 @@
     }
 
     #map-canvas {
-      width: 750px;
+      width: 550px;
       height: 450px;
     }
 
@@ -26,7 +26,7 @@
       background-color: #FFF;
       margin: 10px;
       padding: 5px;
-      width: 150px;
+      width: 140px;
     }
 
     #legend h4 {
@@ -54,9 +54,16 @@
     google.load('visualization', '1', {'packages':['corechart']});
 
     function initialize() {
+      var demo = window.location.hash;
+      demo = demo.replace('#', '');
+      var demomap = {
+        'legend': 1,
+        'chart': 2
+      }
+
       // Initialize map
       var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: new google.maps.LatLng(37.40507, -119.8828),
+        center: new google.maps.LatLng(37.40507, -116.8828),
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         zoomControlOptions: {
@@ -74,16 +81,20 @@
       });
       layer.setMap(map);
 
-      // Add Legend
-      createLegend(map);
+      if (demomap[demo] >= demomap['legend']) {
+        // Add Legend
+        createLegend(map);
+      }
 
-      // Add Chart
-      drawVisualization('Alameda');
+      if (demomap[demo] >= demomap['chart']) {
+        // Add Chart
+        drawVisualization('Alameda');
 
-      // Click listener to change chart
-      google.maps.event.addListener(layer, 'click', function(e) {
-        drawVisualization(e.row['County'].value);
-      });
+        // Click listener to change chart
+        google.maps.event.addListener(layer, 'click', function(e) {
+          drawVisualization(e.row['County'].value);
+        });
+      }
     }
 
     // Legend
@@ -103,7 +114,7 @@
 
       // Add title
       var title = document.createElement('h4');
-      title.innerHTML = 'Electricity Consumption';
+      title.innerHTML = '2010 Electricity Consumption';
       legend.appendChild(title);
 
       var minNum = 0;
@@ -156,9 +167,11 @@
         }
       });
     }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
   </script>
   </head>
-  <body onload="initialize()">
+  <body>
 
     <div id="map-canvas"></div>
     <div id="visualization"></div>

@@ -68,7 +68,6 @@
 
       function initialize() {
         var demo = window.location.hash.substring(1);
-        var legend = demo == 'chart' || demo == 'legend';
         var chart = demo == 'chart';
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -89,9 +88,7 @@
         });
         layer.setMap(map);
 
-        if (legend) {
-          createLegend(map);
-        }
+        createLegend(map);
 
         if (chart) {
           drawVisualization('Alameda');

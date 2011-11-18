@@ -25,10 +25,15 @@
         font-family: Arial, sans-serif;
       }
 
-      #map-canvas {
-        width: 500px;
+      #visualization {
+        float: right;
         height: 350px;
-        float: left;
+        width: 400px;
+      }
+
+      #map-canvas {
+        width: auto;
+        height: 350px;
       }
 
       #legend {
@@ -150,9 +155,7 @@
               " WHERE County = '" + county + "' AND Sector = 'Total'",
           chartType: 'ColumnChart',
           options: {
-            title: county,
-            height: 350,
-            width: 400
+            title: county
           }
         });
       }
@@ -161,7 +164,7 @@
     </script>
   </head>
   <body>
-    <div id="map-canvas"></div>
     <div id="visualization"></div>
+    <div id="map-canvas"></div>
   </body>
 </html>

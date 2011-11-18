@@ -1,180 +1,167 @@
-
 <!DOCTYPE html>
 <!--
-  copyright (c) 2011 Google inc.
+  Copyright 2011 Google Inc. All Rights Reserved.
 
-  You are free to copy and use this sample.
-  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
 -->
 <html>
   <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8">
 
-  <title>Advanced Fusion Tables Visualizations</title>
+    <title>Advanced Fusion Tables Visualizations</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-
-    #map-canvas {
-      width: 550px;
-      height: 450px;
-    }
-
-    #legend {
-      background-color: #FFF;
-      margin: 10px;
-      padding: 5px;
-      width: 140px;
-    }
-
-    #legend h4 {
-      font-weight: bold;
-      margin-top: 3px;
-    }
-
-    #legend div {
-      clear: both;
-    }
-
-    .color {
-      height: 12px;
-      width: 12px;
-      margin-right: 3px;
-      float: left;
-      display: block;
-    }
-  </style>
-
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-  <script type="text/javascript">
-    google.load('visualization', '1', {'packages':['corechart']});
-
-    function initialize() {
-      var demo = window.location.hash;
-      demo = demo.replace('#', '');
-      var demomap = {
-        'legend': 1,
-        'chart': 2
+    <style type="text/css">
+      body {
+        font-family: Arial, sans-serif;
       }
 
-      // Initialize map
-      var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: new google.maps.LatLng(37.40507, -116.8828),
-        zoom: 5,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoomControlOptions: {
-          style: google.maps.ZoomControlStyle.SMALL
-        },
-      });
-
-      // Initialize layer
-      var layer = new google.maps.FusionTablesLayer({
-        query: {
-          select: 'geometry',
-          from: 1761814,
-          where: 'Sector = \'Total\''
-        }
-      });
-      layer.setMap(map);
-
-      if (demomap[demo] >= demomap['legend']) {
-        // Add Legend
-        createLegend(map);
+      #map-canvas {
+        width: 500px;
+        height: 350px;
+        float: left;
       }
 
-      if (demomap[demo] >= demomap['chart']) {
-        // Add Chart
-        drawVisualization('Alameda');
+      #legend {
+        background: #FFF;
+        margin: 10px;
+        padding: 5px;
+        width: 140px;
+      }
 
-        // Click listener to change chart
-        google.maps.event.addListener(layer, 'click', function(e) {
-          drawVisualization(e.row['County'].value);
+      #legend h4 {
+        font-weight: bold;
+        margin-top: 3px;
+      }
+
+      #legend div {
+        clear: both;
+      }
+
+      .color {
+        height: 12px;
+        width: 12px;
+        margin-right: 3px;
+        float: left;
+      }
+    </style>
+
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+    <script type="text/javascript">
+      google.load('visualization', '1', { packages: ['corechart'] });
+
+      function initialize() {
+        var demo = window.location.hash.substring(1);
+        var legend = demo == 'chart' || demo == 'legend';
+        var chart = demo == 'chart';
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+          center: new google.maps.LatLng(37.40507, -116.8828),
+          zoom: 5,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+          }
         });
+
+        var layer = new google.maps.FusionTablesLayer({
+          query: {
+            select: 'geometry',
+            from: 1761814,
+            where: "Sector = 'Total'"
+          }
+        });
+        layer.setMap(map);
+
+        if (legend) {
+          createLegend(map);
+        }
+
+        if (chart) {
+          drawVisualization('Alameda');
+
+          google.maps.event.addListener(layer, 'click', function(e) {
+            drawVisualization(e.row['County'].value);
+          });
+        }
       }
-    }
 
-    // Legend
-    function createLegend(map) {
-      var legendDiv = document.createElement('div');
-      legendDiv.id = 'legendDiv';
-      legendContent(legendDiv);
-      legendDiv.index = 1;
+      function createLegend(map) {
+        var legendWrapper = document.createElement('div');
+        legendWrapper.id = 'legendWrapper';
+        legendContent(legendWrapper);
+        legendWrapper.index = 1;
 
-      var position = google.maps.ControlPosition.RIGHT_BOTTOM;
-      map.controls[position].push(legendDiv);
-    }
+        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+            legendWrapper);
+      }
 
-    function legendContent(legendDiv) {
-      var legend = document.createElement('div');
-      legend.id = 'legend';
+      function legendContent(legendWrapper) {
+        var legend = document.createElement('div');
+        legend.id = 'legend';
 
-      // Add title
-      var title = document.createElement('h4');
-      title.innerHTML = '2010 Electricity Consumption';
-      legend.appendChild(title);
+        var title = document.createElement('h4');
+        title.innerHTML = '2010 Electricity Consumption';
+        legend.appendChild(title);
 
-      var minNum = 0;
-      var maxNum = 20000;
-      var colors = [
-        '#d9d2e9',
-        '#b4a7d6',
-        '#8e7cc3',
-        '#674ea7',
-        '#351c75'
-      ];
-      var step = (maxNum - minNum) * 1.0 / colors.length;
-      for (var j = 0; j < colors.length; j++) {
-        // Add colored blocks and associated descriptive text
+        var colors = ['#d9d2e9', '#b4a7d6', '#8e7cc3', '#674ea7', '#351c75'];
+        var step = 20000 / colors.length;
+        for (var i = 0; i < colors.length; i++) {
+          var lower = step * i;
+          var upper = lower + step;
+          var minMaxText = lower + ' - ' + upper;
+          addItem(legend, colors[i], minMaxText);
+        }
+        legendWrapper.appendChild(legend);
+      }
+
+      function addItem(legend, backgroundColor, minMaxText) {
         var legendItem = document.createElement('div');
 
-        var color = document.createElement('span');
+        var color = document.createElement('div');
         color.setAttribute('class', 'color');
-        color.style.backgroundColor = colors[j];
+        color.style.backgroundColor = backgroundColor;
         legendItem.appendChild(color);
 
         var minMax = document.createElement('span');
-        var lower = step * j;
-        var upper = step * (j + 1);
-        if (j == colors.length - 1) {
-          minMax.innerHTML = lower + '+';
-        } else {
-          minMax.innerHTML = lower + ' - ' + upper;
-        }
+        minMax.innerHTML = minMaxText;
         legendItem.appendChild(minMax);
 
         legend.appendChild(legendItem);
       }
 
-      legendDiv.appendChild(legend);
-    }
+      function drawVisualization(county) {
+        google.visualization.drawChart({
+          containerId: 'visualization',
+          dataSourceUrl: 'http://www.google.com/fusiontables/gvizdata?tq=',
+          query: "SELECT '2007','2008','2009','2010' FROM 1761814" +
+              " WHERE County = '" + county + "' AND Sector = 'Total'",
+          chartType: 'ColumnChart',
+          options: {
+            title: county,
+            height: 400,
+            width: 400
+          }
+        });
+      }
 
-    // Google Chart Tools API
-    function drawVisualization(county) {
-      google.visualization.drawChart({
-        'containerId': 'visualization',
-        'dataSourceUrl': 'http://www.google.com/fusiontables/gvizdata?tq=',
-        'query': 'SELECT \'2007\',\'2008\',\'2009\',\'2010\' FROM 1761814' +
-            ' WHERE County = \'' + county + '\' AND Sector = \'Total\'',
-        'chartType': 'ColumnChart',
-        'options': {
-          'title': county,
-          'height': 400,
-          'width': 400
-        }
-      });
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-  </script>
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
   </head>
   <body>
-
     <div id="map-canvas"></div>
     <div id="visualization"></div>
-
   </body>
 </html>

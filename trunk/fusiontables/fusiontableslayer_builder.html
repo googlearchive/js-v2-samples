@@ -1,248 +1,368 @@
-<!DOCTYPE html> 
-
+<!DOCTYPE html>
 <!--
-  copyright (c) 2011 Google inc.
-
-  You are free to copy and use this sample.
-  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+  Copyright (c) 2011 Google Inc.
 -->
 <html>
 
-<head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
 
-<title>FusionTablesLayer Builder</title>
+    <title>FusionTablesLayer Builder</title>
 
-<style>
-	body { font-family: Arial, sans-serif; padding-left: 10px; }
-	h2 { font-size: 18px; clear: both; }
-	.formelement { clear: both; margin-bottom: 15px; }
-	#specifics { clear: both; }
-	.right { float: right; }
-	.left {float: left; }
-	label { clear: both; }
-	.selected { 
-		border-top: 1px solid;
-		border-left: 1px solid;
-		border-right: 1px solid;
-	}
-	.notselected {
-		border-bottom: 1px solid;
-	}
-	.goog-slider {
-		border: solid 1px #CCCCCC;
-		background-color: white;
-		position: relative;
-		overflow: hidden;
-		width: 150px;
-		height: 15px;
-	}
-	.goog-slider-thumb {
-		position: absolute;
-		background-color: #3399CC;
-		overflow: hidden;
-		width: 10px;
-		height: 100%;
-		top: 0;
-	}
-</style>
+    <script
+      type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false">
+    </script>
+    <script type="text/javascript" src="builder_compiled.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css"></link>
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="script/closure/closure/goog/base.js"></script> 
-<script>
-goog.require('goog.dom');
-goog.require('goog.ui.Slider');
-goog.require('goog.ui.Component');
-</script>
+  </head>
 
-<script type="text/javascript" src="script/builder.js"></script>
+  <body>
 
-</head>
+    <h1>FusionTablesLayer Builder</h1>
 
-<body onload="initialize(); initializeMap();">
+    <p>
+      This wizard helps you create the HTML for a map with a FusionTablesLayer
+      and search element (either text-based search or select menu). After
+      creating your map, you can copy and paste the HTML code in the text area
+      below to display the map on your own website. Please submit bug reports
+      to our 
+      <a href="http://code.google.com/p/fusiontableslayer-builder/issues/list">
+      Issue Tracker</a>
+    </p>
+    <p>
+      Note: This code uses the Google Maps API and is therefore subject to the
+      same <a href="http://code.google.com/apis/maps/faq.html#usagelimits">usage
+      limits</a> and
+      <a href="http://googlegeodevelopers.blogspot.com/2011/04/updates-to-google-maps-apigoogle-earth.html">
+      TOS</a> as any other use of the Maps API. For details,
+      see the
+      <a href="http://googlegeodevelopers.blogspot.com/2011/11/understanding-how-maps-api-usage-limits.html">
+      Google Geo Developers blog</a>.
+    </p>
+    <p>
+      Want to embed this code in Google Sites? See the instructions
+      <a href="embed_google_site.html">here</a>.
+    </p>
 
-<h1>FusionTablesLayer Builder</h1>
-
-<p>This wizard helps you create the HTML for a map with a FusionTablesLayer
-and search element (either text-based search or select menu). After creating
-your map, you can copy and paste the HTML code in the textarea below
-to display the map on your own website! Please submit bug reports here:
-<a href="http://code.google.com/p/fusiontableslayer-builder/issues/list">Issue Tracker</a></p>
-
-<p>Want to embed this code in Google Sites? See the instructions
-<a href="embed_google_site.html">here</a>.</p>
-
-<div style="float:left; width: 375px; margin: 0 50px 20px 0;">
-		
-	<h2 style="margin-bottom: 0;">Add layer</h2>
-	<p style="margin-top: 0px;"><small style="color: #666666;"><i>Table needs to be <b>public or unlisted and exportable</b>. To find the table id, click File &gt; About in the Fusion Tables menu.</i></small></p>
-	<div class="formelement">
-		<label>Your table id: </label><input type="text" id="tableid" class="right" onblur="fillSelectColumns();" />
-	</div>
-	<div class="formelement">
-		<label>Location Column: </label><select id="locationColumn" class="right" disabled="disabled">
-			<option value="">--Select--</option>
-		</select>
-	</div>
-	<div class="formelement">
-		<label>Filter (optional): </label>
-		<div class="right">WHERE <input type="text" id="filter" /></div>
-	</div>
-	<div class="formelement">
-		<input type="button" onclick="addLayer();" value="Add Layer" class="right" />
-	</div>
-	
-	<h2>Edit Map</h2>
-	<div class="formelement">
-		<label>Dimensions:</label>
-		<div class="right">
-			W: <input type="text" id="mapwidth" style="width: 35px;" /> px,
-			H: <input type="text" id="mapheight" style="width: 35px;" /> px
-		</div>
-	</div>
-	<div class="formelement">
-		<label>Map Center: </label><input type="text" id="mapCenter" class="right" />
-	</div>
-	<div class="formelement">
-		<label>Zoom: </label> <input type="text" id="mapZoom" class="right" />
-	</div>
-	<div class="formelement">
-		<input type="button" onclick="editMap();" value="Update Map" class="right" />
-	</div>
-	
-	<h2>Style Map</h2>
-	<div class="formelement">
-		<label>Show: </label>
-		<div class="right" style="width: 200px;">
-		  <div class="right">
-		    <input type="checkbox" id="allfeatures" checked="checked" onclick="styleMapAll()" /> All features<br />
-		    <a href="javascript:specs();">More options</a>
-		  </div>
-		</div>
-		<div id="specifics" style="display: none;">
-		  <br style="clear: both;" />
-		  <form name="specform">
-		    <div class="left" style="margin: 0px 5px 15px 0px;">
-		      <b>Roads</b><br />
-			    <input type="checkbox" name="specs" id="road.highway" checked="checked" onclick="styleMap()" /> Highways<br />
-			    <input type="checkbox" name="specs" id="road.arterial" checked="checked" onclick="styleMap()" /> Arterial<br />
-			    <input type="checkbox" name="specs" id="road.local" checked="checked" onclick="styleMap()" /> Local
-		    </div>
-		    <div class="left" style="margin: 0px 5px 15px 0px;">
-		      <b>Administrative</b><br />
-			    <input type="checkbox" name="specs" id="administrative.country" checked="checked" onclick="styleMap()" /> Country<br />
-			    <input type="checkbox" name="specs" id="administrative.province" checked="checked" onclick="styleMap()" /> Province<br />
-			    <input type="checkbox" name="specs" id="administrative.locality" checked="checked" onclick="styleMap()" /> Locality<br />
-			    <input type="checkbox" name="specs" id="administrative.neighborhood" checked="checked" onclick="styleMap()" /> Neighborhood<br />
-			    <input type="checkbox" name="specs" id="administrative.land_parcel" checked="checked" onclick="styleMap()" /> Land parcel
-		    </div>
-		    <div class="left" style="margin: 0px 5px 15px 0px;">
-		      <b>Other</b><br />
-			    <input type="checkbox" name="specs" id="poi" checked="checked" onclick="styleMap()" /> Point of Interest<br />
-			    <input type="checkbox" name="specs" id="transit" checked="checked" onclick="styleMap()" /> Transit
-		    </div>
-		  </form>
-		</div>
-	</div><br />
-	<div class="formelement">
-		<label>Saturation:</label>
-		<div class="right">
-		  <div class="left">Gray&nbsp;</div>
-		  <div id="s1" class="goog-slider left"> 
-			  <div class="goog-slider-thumb"></div> 
-		  </div>
-		  <div class="left">&nbsp;Bright</div>
-		</div>
-	</div>
-	
-	<h2>Add another feature</h2>
-  <select id="addFeature" onchange="showDiv(this.value)">
-    <option value="">--SELECT--</option>
-    <option value="layer">Another layer</option>
-    <option value="text">Text-based search</option>
-    <option value="select">Select-menu search</option>
-  </select><br /><br />
-  
-  <div id="layer" style="display: none; clear: both;">
-    <form>
-      <div class="formelement">
-	      <label>Second table id: </label><input type="text" id="anotherTableid" class="right" onblur="fillAnotherSelectColumns();" />
-	    </div>
-	    <div class="formelement">
-	      <label>Location Column: </label><select id="anotherLocationColumn" class="right" disabled="disabled">
-		      <option value="">--Select--</option>
-	      </select>
-	    </div>
-	    <div class="formelement">
-	      <label>Filter (optional): </label>WHERE <input type="text" id="anotherFilter" class="right" />
+    <div id="form-div">
+      <h2>
+        Add layer
+      </h2>
+      <p class="note">
+        The table needs to be <b>public or unlisted and exportable</b>.
+        To find the table id, click <b>File &gt; About</b> in the Fusion
+        Tables menu.
+      </p>
+      <div class="form-element">
+        <label>
+          Your table id:
+        </label>
+        <input type="text" id="table-id" class="right">
       </div>
-      <div class="formelement" style="text-align: right;">
-        <input type="reset" value="Reset" onclick="resetAddFeature()" class="right" />
-	      <input type="button" onclick="addAnotherLayer();" value="Add Layer" class="right" />
-	    </div>
-	  </form>
-	</div>
-	
-	<div id="text" style="display: none; clear: both;">
-	  <form>
-	    <div class="formelement">
-		    <label>Text Label: </label><input type="text" id="textQueryLabel" class="right" />
-	    </div>
-	    <div class="formelement">
-		    <label>Column to query: </label><select id="textQueryColumn" class="right" disabled="true">
-			    <option selected="selected" value="">--Select--</option>
-		    </select>
-	    </div>
-	    <div class="formelement" style="text-align: right;">
-		    <input type="button" onclick="addQuery();" value="Add Search" />
-		    <input type="reset" value="Reset" onclick="resetAddFeature()" />
-		  </div>
-		</form>
-	</div>
-	
-	<div id="select" style="display: none; clear: both;">
-	  <form>
-	    <div class="formelement">
-		    <label>Select Label: </label><input type="text" id="selectQueryLabel" class="right" />
-	    </div>
-	    <div class="formelement">
-		    <label>Column to query: </label><select id="selectQueryColumn" class="right" disabled="true">
-			    <option selected="selected" value="">--Select--</option>
-		    </select>
-	    </div>
-	    <div class="formelement" style="text-align: right;">
-		    <input type="button" onclick="addSelectQuery();" value="Add Search" />
-        <input type="reset" value="Reset" onclick="resetAddFeature()" />
-	    </div>
-		</form>
-	</div>
-	
-</div>
+      <div class="form-element">
+        <label>
+          Location Column:
+        </label>
+        <select id="location-column" class="right" disabled="disabled">
+          <option value="">
+            --Select--
+          </option>
+        </select>
+      </div>
+      <div class="form-element">
+        <label>
+          Filter (optional):
+        </label>
+        <div class="right">
+          <label>
+            WHERE
+          </label>
+          <input type="text" id="filter">
+        </div>
+      </div>
+      <div class="form-element">
+        <input type="button" id="add-layer" value="Add Layer" class="right">
+      </div>
 
-<div id="map_section" style="float: left;">
-	<h2>Preview</h2>
-	<div id="map_canvas"></div>
-</div>
+      <h2>
+        Edit Map
+      </h2>
+      <div class="form-element">
+        <label>
+          Dimensions:
+        </label>
+        <div class="right">
+          W: <input type="text" id="mapwidth" class="short-input"> px,
+          H: <input type="text" id="mapheight" class="short-input"> px
+        </div>
+      </div>
+      <div class="form-element">
+        <label>
+          Map Center:
+        </label>
+        <input type="text" id="map-center" class="right">
+      </div>
+      <div class="form-element">
+        <label>
+          Zoom:
+        </label>
+        <input type="text" id="map-zoom" class="right">
+      </div>
+      <div class="form-element">
+        <input type="button" id="edit-map" value="Update Map" class="right">
+      </div>
 
-<div style="clear: both;">
-  <h2>Your HTML</h2>
-	<textarea id="htmlCode" style="width: 900px; height: 600px;"></textarea>
-</div>
+      <h2>
+        Style Map
+      </h2>
+      <p class="note">
+        Style Map options qualify for stricter Maps API
+        <a href="http://code.google.com/apis/maps/faq.html#usagelimits">usage
+        limits</a>.
+      </p>
+      <div class="form-element">
+        <label>
+          Show:
+        </label>
+        <div class="right">
+          <div class="right">
+            <input type="checkbox" id="all-features" checked="checked">
+            <label>
+              All features
+            </label><br>
+            <a id="specs">
+              More options
+            </a>
+          </div>
+        </div>
+        <div class="clear">
+          <form id="specform" class="hide">
+            <div class="left right-padding">
+              <b>
+                Roads
+              </b><br>
+              <input type="checkbox" name="specs" id="road.highway"
+                checked="checked">
+              <label>
+                Highways
+              </label><br>
+              <input type="checkbox" name="specs" id="road.arterial"
+                checked="checked">
+              <label>
+                Arterial
+              </label><br>
+              <input type="checkbox" name="specs" id="road.local"
+                checked="checked">
+              <label>
+                Local
+              </label>
+            </div>
+            <div class="left right-padding">
+              <b>
+                Administrative
+              </b><br>
+              <input type="checkbox" name="specs" id="administrative.country"
+                checked="checked">
+              <label>
+                Country
+              </label><br>
+              <input type="checkbox" name="specs" id="administrative.province"
+                checked="checked">
+              <label>
+                Province
+              </label><br>
+              <input type="checkbox" name="specs" id="administrative.locality"
+                checked="checked">
+              <label>
+                Locality
+              </label><br>
+              <input type="checkbox" name="specs" id="administrative.neighborhood"
+                checked="checked">
+              <label>
+                Neighborhood
+              </label><br>
+              <input type="checkbox" name="specs" id="administrative.land_parcel"
+                checked="checked">
+              <label>
+                Land parcel
+              </label>
+            </div>
+            <div class="left">
+              <b>
+                Other
+              </b><br>
+              <input type="checkbox" name="specs" id="poi" checked="checked">
+              <label>
+                Point of Interest
+              </label><br>
+              <input type="checkbox" name="specs" id="transit" checked="checked">
+              <label>
+                Transit
+              </label>
+            </div>
+          </form>
+        </div>
+      </div><br>
+      <div class="form-element">
+        <label>
+          Saturation:
+        </label>
+        <div class="right">
+          <div class="left">
+            Gray&nbsp;
+          </div>
+          <div id="slider" class="goog-slider left">
+            <div class="goog-slider-thumb"></div> 
+          </div>
+          <div class="left">
+            &nbsp;Bright
+          </div>
+        </div>
+      </div>
 
+      <h2>
+        Add another feature
+      </h2>
+      <p class="note">
+        You can add a second layer with this wizard, but you can edit the
+        HTML code to have up to five layers, although you can only have styling
+        on one layer.
+      </p>
+      <select id="add-feature">
+        <option value="">
+          --SELECT--
+        </option>
+        <option value="layer">
+          Another layer
+        </option>
+        <option value="text">
+          Text-based search
+        </option>
+        <option value="select">
+          Select-menu search
+        </option>
+      </select><br><br>
 
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12846745-15']);
-  _gaq.push(['_trackPageview']);
+      <div id="layer" class="clear hide">
+        <form>
+          <div class="form-element">
+            <label>
+              Second table id:
+            </label>
+            <input type="text" id="second-table-id" class="right">
+          </div>
+          <div class="form-element">
+            <label>
+              Location Column:
+            </label>
+            <select id="second-location-column" class="right" disabled="disabled">
+              <option value="">
+                --Select--
+              </option>
+            </select>
+          </div>
+          <div class="form-element">
+            <label>
+              Filter (optional):
+            </label>
+            <div class="right">
+              <label>
+                WHERE
+              </label>
+              <input type="text" id="second-filter">
+            </div>
+          </div>
+          <div class="form-element text-right">
+            <input type="button" value="Add Layer" id="add-second-layer">
+            <input type="reset" value="Reset" id="reset-layer">
+          </div>
+        </form>
+      </div>
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+      <div id="text" class="clear hide">
+        <form>
+          <div class="form-element">
+            <label>
+              Text Label:
+            </label>
+            <input type="text" id="text-query-label" class="right">
+          </div>
+          <div class="form-element">
+            <label>
+              Column to query:
+            </label>
+            <select id="text-query-column" class="right" disabled="true">
+              <option selected="selected" value="">
+                --Select--
+              </option>
+            </select>
+          </div>
+          <div class="form-element text-right">
+            <input type="button" id="add-text-query" value="Add Search">
+            <input type="reset" value="Reset" id="reset-text-search">
+          </div>
+        </form>
+      </div>
 
-</body>
+      <div id="select" class="clear hide">
+        <form>
+          <div class="form-element">
+            <label>
+              Select Label:
+            </label>
+            <input type="text" id="select-query-label" class="right">
+          </div>
+          <div class="form-element">
+            <label>
+              Column to query:
+            </label>
+            <select id="select-query-column" class="right" disabled="true">
+              <option selected="selected" value="">
+                --Select--
+              </option>
+            </select>
+          </div>
+          <div class="form-element text-right">
+            <input type="button" id="add-select-query" value="Add Search">
+            <input type="reset" value="Reset" id="reset-select-search">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="map-section" class="left">
+      <h2>
+        Preview
+      </h2>
+      <div id="map-canvas"></div>
+    </div>
+
+    <div class="clear">
+      <h2>
+        Your HTML
+      </h2>
+      <textarea id="html-code"></textarea>
+    </div>
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12846745-15']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ?
+          'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+  </body>
 
 </html>

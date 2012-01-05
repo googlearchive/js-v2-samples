@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  padding-left: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  clear: both;
+  margin-bottom: 0px;
+}
+
+label {
+  clear: both;
+}
+
+#html-code {
+  width: 900px;
+  height: 600px;
+}
+
+#form-div {
+  float: left;
+  width: 400px;
+  margin: 0 50px 20px 0;
+}
+
+#specs {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clear {
+  clear: both;
+}
+
+.hide {
+  display: none;
+}
+
+.form-element {
+  clear: both;
+  margin-bottom: 15px;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.note {
+  margin-top: 0;
+  font-style: italic;
+  font-size: 0.7em;
+}
+
+.right-padding {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.short-input {
+  width: 35px;
+}
+
+.goog-slider {
+  border: solid 1px #ccc;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 15px;
+}
+
+.goog-slider-thumb {
+  position: absolute;
+  background-color: #39c;
+  overflow: hidden;
+  width: 10px;
+  height: 100%;
+  top: 0;
+}

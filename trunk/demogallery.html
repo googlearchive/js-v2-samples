@@ -28,8 +28,6 @@ var curNum;
 var param_wsId = "od6";
 var param_ssKey = "o16162288751915453340.4402783830945175750";
 function cm_load() {  
-  document.getElementById("searchbox").value = getURLParam("searchquery");
-  createClassSelect();
   cm_getJSON(true);
 }
 
@@ -50,9 +48,9 @@ function cm_loadMapJSON(json) {
   curNum = 0;
   if ( !feed.entry) {
     document.getElementById("sidebar").innerHTML = "Try again!";
-  } 
+  }
   updateGallery();
-    
+
   if (feed.entry.length <=5) {
     document.getElementById("nextBUTTON").disabled = true;
   } else {
@@ -65,35 +63,15 @@ function updateGallery() {
   var min = curNum;
   var max = Math.min(curNum+5, feed.entry.length);
   var htmlAll = ['<br/>Showing ' + (min + 1) + ' - ' + max + ' of ' + feed.entry.length];
-  var className = document.getElementById('classdropdown').value;
-  var searchTerm = document.getElementById('searchbox').value;
-  var searchLink = 'http://code.google.com/apis/maps/documentation/demogallery.html' + '?searchquery=' + searchTerm + '&classname=' + className;
-  htmlAll.push('  (<a href="' + searchLink + '" target="_blank">Link to this search</a>)');
   htmlAll.push('<table><tbody>');
   for (var i = min; i < max; i++) {
       var entry = feed.entry[i];
       var title = entry.gsx$title.$t;
       var author = entry.gsx$author.$t;
       var description = entry.gsx$description.$t;
-      var thumbnailurl = entry.gsx$thumbnailurl.$t;
+      var thumbnailurl = entry.gsx$thumbnailurl.$t.replace(/http[s]?:/, '');
       var url = entry.gsx$url.$t;
-      var classesUsed = [];
-      for (var j = 0; j < classes.length; j++) {
-        var classColumnName = 'gsx$' + classes[j].toLowerCase();
-        if (entry[classColumnName] && entry[classColumnName].$t == 'yes') {
-          if (classes[j].charAt(0) == 'G') {
-            classesUsed.push('<a target="_blank" href="http://code.google.com/apis/maps/documentation/reference.html#'
-              + classes[j] + '">'
-              + classes[j] + '</a>');
-          } else {
-            classesUsed.push(classes[j]);
-          }
-        }
-      }
       var html = '<tr><td><a target="_blank" href="' + url + '"><img style="width: 160px; height: 128px" src="' + thumbnailurl + '"/></a></td><td valign="top"><strong><a target="_blank" href="' + url + '">' + title + '</a></strong> <br/>' + description + '<br/><br/>';
-      if (classesUsed.length > 0) {
-        html += 'Classes used: <code>' + classesUsed.join(',') + '</code><br/><br/>';
-      }
       html += '<span style="font-size:10px; font-style: italic">' + 'Example by ' + author + '</span></td></tr>';
       htmlAll.push(html);
   }
@@ -116,31 +94,10 @@ function showPrevious() {
   if (curNum <= 0) {
     document.getElementById("previousBUTTON").disabled = true;
     document.getElementById("previousBUTTON2").disabled = true;
-  } 
+  }
   if (curNum < feed.entry.length) {
     document.getElementById("nextBUTTON").disabled = false;
     document.getElementById("nextBUTTON2").disabled = false;
-  }
-}
-function createClassSelect() {
-  var classSelect = document.getElementById("classdropdown");
-
-  var classOption = document.createElement("option");
-  classOption.setAttribute("value", '');
-  var txt = document.createTextNode('');
-  classOption.appendChild(txt);
-  classSelect.appendChild(classOption);
-
-  for (var j = 0; j < classes.length; j++){
-    var className = classes[j];
-    var classOption = document.createElement("option");
-    classOption.setAttribute("value",className);
-    var txt = document.createTextNode(className);
-    if(className.toLowerCase() == getURLParam("classname").toLowerCase()) {
-      classOption.setAttribute("selected", true);
-    }
-    classOption.appendChild(txt);
-    classSelect.appendChild(classOption);
   }
 }
 
@@ -151,25 +108,8 @@ function createClassSelect() {
  */
 function cm_getJSON(preferSearch) {
   var query = '';
-
-  var searchTerm = document.getElementById('searchbox').value;
-  if (searchTerm != '' && preferSearch) {
-    document.getElementById('classdropdown').selectedIndex = 0;
-    query = '&q=' + searchTerm.toLowerCase();
-  }
-
-  var className = document.getElementById('classdropdown').value;
-  if ((className != '' && !preferSearch) || (className != '' && searchTerm == '')) {
-    document.getElementById('searchbox').value = '';
-    query = '&sq=' + className.toLowerCase() + '%3Dyes';
-  }
-  
-  try {
-    urchinTracker('/search/' + query); 
-  } catch(err) {
-  }
   var script = document.createElement('script');
-  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od6/public/values' +
+  script.setAttribute('src', '//spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od6/public/values' +
                         '?reverse=true'+ query + 
                         '&alt=json-in-script&callback=cm_loadMapJSON');
   script.setAttribute('id', 'jsonScript');
@@ -185,12 +125,6 @@ function cm_getJSON(preferSearch) {
 </head>
 <body onload="cm_load()">
 
-<!-- ++Begin GSpreadsheets Map Wizard Generated Code++ -->
-<form action="demogallery.html" onsubmit="cm_getJSON(true); return false;" method="get">
-Enter keyword <input type="text" id="searchbox" value="" /> <input type="submit" value="Search" onclick="cm_getJSON(true)" />
- or select a class <select id="classdropdown" onchange="cm_getJSON(false)"></select>
-</form>
-<br/><br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>
 <br/>
@@ -198,10 +132,4 @@ Enter keyword <input type="text" id="searchbox" value="" /> <input type="submit"
 <br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON2"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON2"/>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-964209-7";
-urchinTracker();
-</script>
 </body> </html>

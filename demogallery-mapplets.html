@@ -24,7 +24,6 @@ var feed;
 var curNum;
 
 function cm_load() {  
-  document.getElementById("searchbox").value = getURLParam("searchquery");
   cm_getJSON(true);
 }
 
@@ -65,17 +64,13 @@ function updateGallery() {
   var feedLength = feed.entry && feed.entry.length || 0;
   var max = Math.min(curNum+5, feedLength);
   var htmlAll = ['<br/>Showing ' + (min + 1) + ' - ' + max + ' of ' + feedLength];
-  var className = document.getElementById('classdropdown').value;
-  var searchTerm = document.getElementById('searchbox').value;
-  var searchLink = 'http://code.google.com/apis/maps/documentation/mapplets/demogallery.html' + '?searchquery=' + searchTerm;
-  htmlAll.push('  (<a href="' + searchLink + '" target="_blank">Link to this search</a>)');
   htmlAll.push('<table><tbody>');
   for (var i = min; i < max; i++) {
       var entry = feed.entry[i];
       var title = entry.gsx$title.$t;
       var author = entry.gsx$author.$t;
       var description = entry.gsx$description.$t;
-      var thumbnailurl = entry.gsx$thumbnailurl.$t;
+      var thumbnailurl = entry.gsx$thumbnailurl.$t.replace('/http[s]?:/', '');
       var docurl = entry.gsx$docurl.$t;
       var sourceurl = entry.gsx$sourceurl.$t;
       var url = "http://maps.google.com/maps/mpl?moduleurl=" + sourceurl;
@@ -85,7 +80,7 @@ function updateGallery() {
       if (docurl) {
         html += ' | <a target="_blank" href="' + docurl + '">Read the docs</a>';
       }
-      html += '<br/><br/>'; 
+      html += '<br/><br/>';
       html += '<span style="font-size:10px; font-style: italic">' + 'Example by ' + author + '</span></td></tr>';
       htmlAll.push(html);
   }
@@ -123,20 +118,9 @@ function showPrevious() {
  * Once loaded, it calls onJSONLoad.
  */
 function cm_getJSON(preferSearch) {
-  var query = '';
-
-  var searchTerm = document.getElementById('searchbox').value;
-  if (searchTerm != '' && preferSearch) {
-    query = '&q=' + searchTerm.toLowerCase();
-  }
-  try {
-    urchinTracker('/search/' + query); 
-  } catch(err) {
-  }
   var script = document.createElement('script');
-  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od5/public/values' +
-                        '?reverse=true'+ query + 
-                        '&alt=json-in-script&callback=onJSONLoad');
+  script.setAttribute('src', '//spreadsheets.google.com/feeds/list/o03712292828507838454.7466931754443925657/od5/public/values' +
+                        '?reverse=true&alt=json-in-script&callback=onJSONLoad');
   script.setAttribute('id', 'jsonScript');
   script.setAttribute('type', 'text/javascript');
   document.documentElement.firstChild.appendChild(script);
@@ -149,15 +133,6 @@ function cm_getJSON(preferSearch) {
 
 </head>
 <body onload="cm_load()">
-
-<form action="demogallery-mapplets.html" onsubmit="cm_getJSON(true); return false;" method="get">
-Enter keyword <input type="text" id="searchbox" value="" /> 
-<input type="submit" value="Search" onclick="cm_getJSON(true)" />
-</form>
-<div style="display:none">
- or select a class <select id="classdropdown" onchange="cm_getJSON(false)"></select>
-</div>
-<br/><br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON"/>
 <br/>
@@ -165,10 +140,4 @@ Enter keyword <input type="text" id="searchbox" value="" />
 <br/>
 <input type="button" onclick="showPrevious()" value="Previous" id="previousBUTTON2"/>
 <input type="button" onclick="showNext()" value="Next" id="nextBUTTON2"/>
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-964209-7";
-urchinTracker();
-</script>
 </body> </html>

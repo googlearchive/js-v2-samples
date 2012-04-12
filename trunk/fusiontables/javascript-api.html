@@ -81,7 +81,8 @@
           var output = JSON.stringify(resp);
           document.getElementById('create-table-output').innerHTML = output;
           tableId = resp['tableId'];
-          document.getElementById('table-id').innerHTML = tableId;
+          document.getElementById('table-id-1').innerHTML = tableId;
+          document.getElementById('table-id-2').innerHTML = tableId;
           document.getElementById('insert-data').disabled = false;
           document.getElementById('select-data').disabled = false;
           document.getElementById('create-table').disabled = true;
@@ -192,7 +193,7 @@
     <p>
       Insert data into the newly created table.
     </p>
-    <pre>INSERT INTO <span id="table-id">[table_id]</span> (Name, Age) VALUES ([name], [age])</pre>
+    <pre>INSERT INTO <span id="table-id-1">[table_id]</span> (Name, Age) VALUES ([name], [age])</pre>
     <label>Name:</label>
     <input type="text" id="name">
     <label>Age:</label>
@@ -207,7 +208,7 @@
     <p>
       Select the data that has been inserted into the newly created table.
     </p>
-    <pre>SELECT * FROM <span id="table-id">[table_id]</span></pre>
+    <pre>SELECT * FROM <span id="table-id-2">[table_id]</span></pre>
     <input type="button" id="select-data" value="Select data"
         disabled="disabled">
     <p id="select-data-output"><i>select response goes here...</i></p>

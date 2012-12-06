@@ -1,0 +1,23 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#map_canvas {
+  width: 640px;
+  height: 480px;
+}
+
+#controls {
+  background: rgba(255, 255, 255, .95);
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid #333 1px;
+  font-size: 14px;
+}
+
+#controls select {
+  background: transparent;
+}

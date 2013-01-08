@@ -3,7 +3,7 @@ import simplejson
 import urllib
 
 ELEVATION_BASE_URL = 'http://maps.google.com/maps/api/elevation/json'
-CHART_BASE_URL = 'http://chart.apis.google.com/chart'
+CHART_BASE_URL = 'http://chart.googleapis.com/chart'
 
 def getChart(chartData, chartDataScaling="-500,5000", chartType="lc",chartLabel="Elevation in Meters",chartSize="500x160", chartColor="orange", **chart_args):
     chart_args.update({

@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DirectionsResponse>
+ <status>OK</status>
+ <route>
+  <summary>Massachusetts 2A W and Lexington Rd</summary>
+  <leg>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3584865</lat>
+     <lng>-71.0600970</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3580143</lat>
+     <lng>-71.0604583</lng>
+    </end_location>
+    <polyline>
+     <points>qcpaGr|upLB@ZN~@t@</points>
+    </polyline>
+    <duration>
+     <value>7</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Head &lt;b&gt;southwest&lt;/b&gt; on &lt;b&gt;Tremont St&lt;/b&gt; toward &lt;b&gt;School St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>60</value>
+     <text>197 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3580143</lat>
+     <lng>-71.0604583</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3582758</lat>
+     <lng>-71.0614805</lng>
+    </end_location>
+    <polyline>
+     <points>q`paGz~upLk@`DIh@</points>
+    </polyline>
+    <duration>
+     <value>23</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take the 1st &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Beacon St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>89</value>
+     <text>292 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3582758</lat>
+     <lng>-71.0614805</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3591913</lat>
+     <lng>-71.0616168</lng>
+    </end_location>
+    <polyline>
+     <points>gbpaGfevpLiBBu@HE@OJ</points>
+    </polyline>
+    <duration>
+     <value>19</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take the 1st &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Somerset St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>103</value>
+     <text>338 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3591913</lat>
+     <lng>-71.0616168</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3590974</lat>
+     <lng>-71.0624536</lng>
+    </end_location>
+    <polyline>
+     <points>}gpaGbfvpLBTD~@FnA</points>
+    </polyline>
+    <duration>
+     <value>19</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take the 1st &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Ashburton Pl&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>70</value>
+     <text>230 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3590974</lat>
+     <lng>-71.0624536</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3612953</lat>
+     <lng>-71.0628689</lng>
+    </end_location>
+    <polyline>
+     <points>kgpaGhkvpLGZCNCFCBEBC?I@K?E?C?A@CBEBiBDK?kCFoA@[C</points>
+    </polyline>
+    <duration>
+     <value>61</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take the 1st &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Bowdoin St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>261</value>
+     <text>0.2 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3612953</lat>
+     <lng>-71.0628689</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3612822</lat>
+     <lng>-71.0637044</lng>
+    </end_location>
+    <polyline>
+     <points>cupaG|mvpL@bA@`B</points>
+    </polyline>
+    <duration>
+     <value>35</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Cambridge St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>69</value>
+     <text>226 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3612822</lat>
+     <lng>-71.0637044</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3642647</lat>
+     <lng>-71.0632986</lng>
+    </end_location>
+    <polyline>
+     <points>_upaGbsvpLuDRU?o@?m@EOA_@E[ISEWIsAi@QISIw@@</points>
+    </polyline>
+    <duration>
+     <value>50</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take the 1st &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Staniford St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>338</value>
+     <text>0.2 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3642647</lat>
+     <lng>-71.0632986</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3668795</lat>
+     <lng>-71.0584648</lng>
+    </end_location>
+    <polyline>
+     <points>sgqaGrpvpLS[Wk@EK[q@a@w@ESw@eBcAwBq@cBIWe@gAO_@Yq@GMIQSe@[u@_AoBKU</points>
+    </polyline>
+    <duration>
+     <value>86</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take the 2nd &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Causeway St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>493</value>
+     <text>0.3 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3668795</lat>
+     <lng>-71.0584648</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3712946</lat>
+     <lng>-71.0616093</lng>
+    </end_location>
+    <polyline>
+     <points>_xqaGjrupLYFq@^UNSLQLYN_@VOHKFA@OJk@\]TiAr@w@b@SNWP]R]TUN]TMHYPc@VWPSPe@`@IJILEHCDCBEFEJGLGAC@C@A@C@GDEBE@E@C?C?MA</points>
+    </polyline>
+    <duration>
+     <value>100</value>
+     <text>2 mins</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;N Washington St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>561</value>
+     <text>0.3 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3712946</lat>
+     <lng>-71.0616093</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3762280</lat>
+     <lng>-71.0552005</lng>
+    </end_location>
+    <polyline>
+     <points>qsraG`fvpLs@iAKO[g@?Aa@q@Yc@MSmAqBy@qAu@gAc@m@MQQKi@q@OWQQOOg@k@IMc@g@a@i@a@i@QWQUOUIMIMIOMWg@aAIMCEYa@ACQSY[_BeB</points>
+    </polyline>
+    <duration>
+     <value>50</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Chelsea St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>762</value>
+     <text>0.5 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3762280</lat>
+     <lng>-71.0552005</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3770705</lat>
+     <lng>-71.0570588</lng>
+    </end_location>
+    <polyline>
+     <points>mrsaG~}tpLKVKP?@?@A?ADA@Yj@Yn@Yj@a@~@?H?B?@UhACJ?N</points>
+    </polyline>
+    <duration>
+     <value>41</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Vine St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>182</value>
+     <text>0.1 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3770705</lat>
+     <lng>-71.0570588</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3798688</lat>
+     <lng>-71.0644846</lng>
+    </end_location>
+    <polyline>
+     <points>uwsaGriupLWbAeAdEU`AYhA[lAWhAYjAYhAYfAU|@S|@Mh@y@dDCVc@hAELi@xAk@xAi@nA</points>
+    </polyline>
+    <duration>
+     <value>58</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Continue straight onto &lt;b&gt;Bunker Hill St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>686</value>
+     <text>0.4 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3798688</lat>
+     <lng>-71.0644846</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3795769</lat>
+     <lng>-71.0647239</lng>
+    </end_location>
+    <polyline>
+     <points>eitaG~wvpLn@h@HD</points>
+    </polyline>
+    <duration>
+     <value>26</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Sullivan St&lt;/b&gt;&lt;div style=&quot;font-size:0.9em&quot;&gt;Destination will be on the left&lt;/div&gt;</html_instructions>
+    <distance>
+     <value>38</value>
+     <text>125 ft</text>
+    </distance>
+   </step>
+   <duration>
+    <value>575</value>
+    <text>10 mins</text>
+   </duration>
+   <distance>
+    <value>3712</value>
+    <text>2.3 mi</text>
+   </distance>
+   <start_location>
+    <lat>42.3584865</lat>
+    <lng>-71.0600970</lng>
+   </start_location>
+   <end_location>
+    <lat>42.3795769</lat>
+    <lng>-71.0647239</lng>
+   </end_location>
+   <start_address>Boston, MA, USA</start_address>
+   <end_address>Charlestown, Boston, MA, USA</end_address>
+  </leg>
+  <leg>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3795769</lat>
+     <lng>-71.0647239</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3777626</lat>
+     <lng>-71.0673062</lng>
+    </end_location>
+    <polyline>
+     <points>kgtaGnyvpLr@d@l@`@h@^LNJVj@nAd@fAx@nBx@lB</points>
+    </polyline>
+    <duration>
+     <value>57</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Head &lt;b&gt;southwest&lt;/b&gt; on &lt;b&gt;Sullivan St&lt;/b&gt; toward &lt;b&gt;Russell Pl&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>299</value>
+     <text>0.2 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3777626</lat>
+     <lng>-71.0673062</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3834369</lat>
+     <lng>-71.0716963</lng>
+    </end_location>
+    <polyline>
+     <points>_|saGtiwpLe@j@STa@f@q@v@_A`As@x@cAbAyAvA{AvAcB~Ai@j@{@z@e@`@{@h@y@`@c@Rc@NE@i@Lq@FYBI?]IGCYK</points>
+    </polyline>
+    <duration>
+     <value>85</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Main St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>749</value>
+     <text>0.5 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3834369</lat>
+     <lng>-71.0716963</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3844810</lat>
+     <lng>-71.0728220</lng>
+    </end_location>
+    <polyline>
+     <points>o_uaGbexpLM\Uj@K^IFQDUPQJQJKHOPKFa@X</points>
+    </polyline>
+    <duration>
+     <value>43</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; to stay on &lt;b&gt;Main St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>153</value>
+     <text>0.1 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3844810</lat>
+     <lng>-71.0728220</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3857101</lat>
+     <lng>-71.0761351</lng>
+    </end_location>
+    <polyline>
+     <points>_fuaGblxpLIA[EWEQAO@GBGDMFIJEJCFCF?@CN?@AJ?F@H?FBPDJBHLZ`AZPf@@F?D?FCTIRs@jBM`@]bAIRWp@KRINg@l@</points>
+    </polyline>
+    <duration>
+     <value>61</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>At the traffic circle, continue straight to stay on &lt;b&gt;Main St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>419</value>
+     <text>0.3 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3857101</lat>
+     <lng>-71.0761351</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3909957</lat>
+     <lng>-71.0827411</lng>
+    </end_location>
+    <polyline>
+     <points>umuaGz`ypLc@d@e@j@EDGHKLEFEFADAH?@GHYVk@t@EB}@dAKHUXW^CBEHk@t@IJOVY^]f@w@fAe@p@UZIPSZ_@h@o@~@MNiCtDEHKNIJIJ}@rAk@t@GFIJ}@z@</points>
+    </polyline>
+    <duration>
+     <value>55</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Continue onto &lt;b&gt;MA-38 N/Mystic Ave&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>802</value>
+     <text>0.5 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3909957</lat>
+     <lng>-71.0827411</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4081198</lat>
+     <lng>-71.1011061</lng>
+    </end_location>
+    <polyline>
+     <points>wnvaGbjzpLIX_@^g@`@q@d@ABIFaAv@e@b@k@d@GFMHs@p@i@j@a@f@Y^g@t@OTKREFABEFEHEHCDA@U\s@fAU^ILINYd@CHEL_@z@c@f@_@h@U^q@`AsAvBA?cInLCBEFGHiA~AwC`E[`@i@p@_@`@m@v@MLuAzAwAtACB}@x@_Av@MJu@p@C@cA~@}BpBcBvA}ApAqAfA}@v@URaCpBCBuAnAgA|@e@^MJc@^cA|@uApAIHaCpB_@ZoAbA</points>
+    </polyline>
+    <duration>
+     <value>100</value>
+     <text>2 mins</text>
+    </duration>
+    <html_instructions>Merge onto &lt;b&gt;I-93 N&lt;/b&gt; via the ramp on the &lt;b&gt;left&lt;/b&gt; to &lt;b&gt;Lawrence&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>2442</value>
+     <text>1.5 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4081198</lat>
+     <lng>-71.1011061</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4109156</lat>
+     <lng>-71.1014917</lng>
+    </end_location>
+    <polyline>
+     <points>wyyaG||}pLICE@KDYPmAf@}@Xw@Lg@Di@?w@Ey@Gw@ESAe@I</points>
+    </polyline>
+    <duration>
+     <value>19</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take exit &lt;b&gt;31&lt;/b&gt; for &lt;b&gt;Massachusetts 16/Mystic Valley Pkwy&lt;/b&gt; toward &lt;b&gt;Arlington&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>319</value>
+     <text>0.2 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4109156</lat>
+     <lng>-71.1014917</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4147393</lat>
+     <lng>-71.1313878</lng>
+    </end_location>
+    <polyline>
+     <points>gkzaGh_~pL_@AqBMkABo@Lm@Ve@\m@j@Y^OXOXKTIZQn@GZe@zBALMl@CJk@|CU`AM`@M`@KRIRKP_AzAk@`Am@`AWf@m@`Ai@z@c@r@_AxAWb@Q\MTYx@Md@Qr@UfAYpAGZGXK`@GVITCLGNGJKTGLQVU^ILQZMVSj@UjACPCLIXAD?DADABADADIVITKVIRKNKRKREJCFCDCFEHYv@GXKf@CVAD?BC\Cd@?B?`@A`@Ad@A`BAj@Aj@AjA?P?`DCdCKtEQhI?PAx@?V?d@Bp@@h@@NBd@B`@?d@?h@Ah@Cp@?~@@L?R@P@ZBZBb@@ZD^Ff@Nv@Nl@d@dAJVV\RV@BXXPDJBLBDBB@FDFLDHBDBHDPDVH\ZlABHRl@FJP^Vf@HPJNLTT^h@t@^j@d@h@XZn@n@p@j@t@r@|@|@\\NLDRVb@DF@@FD</points>
+    </polyline>
+    <duration>
+     <value>315</value>
+     <text>5 mins</text>
+    </duration>
+    <html_instructions>Merge onto &lt;b&gt;MA-16 W/Mystic Valley Pkwy&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>3077</value>
+     <text>1.9 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4147393</lat>
+     <lng>-71.1313878</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3982572</lat>
+     <lng>-71.1416168</lng>
+    </end_location>
+    <polyline>
+     <points>cc{aGdzcqLBFBDDBD@B?DABA?ADE@E?AXO`@Qp@@b@Bv@@VAD?XEL?DA\IZKNEfAUFAb@C\CbA@t@Dr@@l@A@AXCPC\Ed@M`@KfB_@N@B?TAV?L@B@D?LDLD\RJHHDVTFFFDLPFH@BPVPTn@dBb@bAh@dA^n@T^TXLNX\j@d@x@r@RNRLPJVLRHTHTFXHP@\DN@`@?n@AzBE|A?jBALCT?N@P@H@XDFBHBRHJDLHLJLJJJRRLPVXVXb@`@PNl@d@h@^p@h@NT`@f@h@l@DDLLRZNVN\X|@N~@F`@Dh@JpDDr@Dl@Fb@Hb@Jb@J`@Tl@NTLTPXFHNPJRTRb@\JHVNNLHHPRJT</points>
+    </polyline>
+    <duration>
+     <value>252</value>
+     <text>4 mins</text>
+    </duration>
+    <html_instructions>At the traffic circle, continue straight onto &lt;b&gt;MA-16 W/Alewife Brook Pkwy&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>2289</value>
+     <text>1.4 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3982572</lat>
+     <lng>-71.1416168</lng>
+    </start_location>
+    <end_location>
+     <lat>42.3979636</lat>
+     <lng>-71.1426700</lng>
+    </end_location>
+    <polyline>
+     <points>c|waGbzeqLTn@X|@DP@P@V?P@T</points>
+    </polyline>
+    <duration>
+     <value>12</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Take the &lt;b&gt;Massachusetts 2 W&lt;/b&gt; ramp to &lt;b&gt;Concord&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>94</value>
+     <text>308 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.3979636</lat>
+     <lng>-71.1426700</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4216602</lat>
+     <lng>-71.2282348</lng>
+    </end_location>
+    <polyline>
+     <points>gzwaGt`fqL_AxEGVAF?BGTI\c@vBABq@|Cs@`Do@~CYrAAHwBnKiCxLYnAEXU~@o@dCK\e@lAi@xAKXWp@]x@{@xBm@vAABIRa@bAYh@Qb@[l@w@|A}AzCW^s@tAUj@MXYv@Uz@GTGTKb@WtAg@nCeAxFm@`DA?G^?@EROt@Mr@I`@Kj@c@|BYnAk@`CuAdFqA`Fe@dB_AjDy@tC_@xAuAvFOn@m@nCw@~DaAtFEP_AhGa@jDy@rIw@hIKbAOfAa@rC]tBABc@xBk@dC{@xDe@tBQl@u@fCITCHkArE_AxCq@xBo@hB_@nA_@fAQf@]hAADQdAe@`B_@nAk@xBg@tBOn@On@YvAaCdNQ|@s@jEe@nCMdAG^Kx@WbCQ~AMvAQ~BOnCI|AKjCEbCExCM|IKvHCpAAr@ChAGdBElAEx@IzAG`AMvBGx@Ix@OfBg@pE?BIr@q@vEm@fDa@rBg@vBg@xBGVWx@uAxEk@bBWz@i@fBe@hBQx@a@nBYbBS|AMrAK`AEx@IvACf@GnAAh@Ar@CrBE|B?|A</points>
+    </polyline>
+    <duration>
+     <value>313</value>
+     <text>5 mins</text>
+    </duration>
+    <html_instructions>Merge onto &lt;b&gt;MA-2 W&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>7591</value>
+     <text>4.7 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4216602</lat>
+     <lng>-71.2282348</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4430740</lat>
+     <lng>-71.2300860</lng>
+    </end_location>
+    <polyline>
+     <points>kn|aGlwvqLQd@CJCb@w@bMCPALCLEJCHGHGJCDGDIFODs@LYGOAQCWH{CWcBOeFa@uAKgBOkDQ{@EY?eAHy@VeDhAaCpAmF`Dw@f@ULMHkDnB_A^a@Jq@Ng@JcF`AmAToDt@YBu@HS@oFb@a@C_@EWKSK[YkAmAaAaAs@m@}@k@cBg@_A_@}AiAUUWUk@w@u@gAc@k@q@}@a@g@oBsBa@c@y@q@</points>
+    </polyline>
+    <duration>
+     <value>270</value>
+     <text>5 mins</text>
+    </duration>
+    <html_instructions>Take exit &lt;b&gt;54B&lt;/b&gt; to merge onto &lt;b&gt;Waltham St&lt;/b&gt; toward &lt;b&gt;Lexington&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>2776</value>
+     <text>1.7 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4430740</lat>
+     <lng>-71.2300860</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4426105</lat>
+     <lng>-71.2293360</lng>
+    </end_location>
+    <polyline>
+     <points>et`bG`cwqLr@iAP[To@</points>
+    </polyline>
+    <duration>
+     <value>14</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Winthrop Rd&lt;/b&gt;&lt;div style=&quot;font-size:0.9em&quot;&gt;Destination will be on the left&lt;/div&gt;</html_instructions>
+    <distance>
+     <value>81</value>
+     <text>266 ft</text>
+    </distance>
+   </step>
+   <duration>
+    <value>1596</value>
+    <text>27 mins</text>
+   </duration>
+   <distance>
+    <value>21091</value>
+    <text>13.1 mi</text>
+   </distance>
+   <start_location>
+    <lat>42.3795769</lat>
+    <lng>-71.0647239</lng>
+   </start_location>
+   <end_location>
+    <lat>42.4426105</lat>
+    <lng>-71.2293360</lng>
+   </end_location>
+   <start_address>Charlestown, Boston, MA, USA</start_address>
+   <end_address>Lexington, MA, USA</end_address>
+  </leg>
+  <leg>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4426105</lat>
+     <lng>-71.2293360</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4430740</lat>
+     <lng>-71.2300860</lng>
+    </end_location>
+    <polyline>
+     <points>iq`bGj~vqLUn@QZs@hA</points>
+    </polyline>
+    <duration>
+     <value>7</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Head &lt;b&gt;northwest&lt;/b&gt; on &lt;b&gt;Winthrop Rd&lt;/b&gt; toward &lt;b&gt;Waltham St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>81</value>
+     <text>266 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4430740</lat>
+     <lng>-71.2300860</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4358978</lat>
+     <lng>-71.2346539</lng>
+    </end_location>
+    <polyline>
+     <points>et`bG`cwqLx@p@`@b@nBrB`@f@p@|@b@j@t@fAj@v@VTTT|AhA~@^bBf@|@j@r@l@`A`AjAlAZXRJVJ^D`@BnFc@RAt@I</points>
+    </polyline>
+    <duration>
+     <value>127</value>
+     <text>2 mins</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;Waltham St&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>924</value>
+     <text>0.6 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4358978</lat>
+     <lng>-71.2346539</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4531813</lat>
+     <lng>-71.3097895</lng>
+    </end_location>
+    <polyline>
+     <points>kg_bGp_xqL@r@@`@@PPdCJlANvAPfAHb@Ll@|BtLrAlGNz@F`@?j@G^YdBq@|Dy@vEWpA]jBKl@SrB]jDWzCW`@Yb@MLwEbE{AnAm@b@UPq@Z_Bl@eA^qBt@a@LWJ[JSHWPWTIJOVO\Yf@{@jAw@|@s@`AYf@EFc@dAK\Uz@Yp@O`@_@vBITgB|I[xAGZADMn@ABUjA_@hBy@xD_@nBYlAY~@Kp@Sj@o@lAU\Yd@iA~AgBrCwGrJ_@b@ABa@`ACDQp@U|AUlB[xCGf@WhD[jFe@~F_@lESxBQrCAfAM~EKlDO~DCp@AhA@xADv@LbBDf@Hv@J|@Dh@Dh@@T@Z?d@@hC?hC?pH@jDBtD@zA?R@nA@`@EbAKz@o@nC]pA{@|Bw@|Ai@~@Q\sAtCi@xAu@jCWlAMp@I`AUnCOtBOtBW|DKtAq@pJY~Ds@~Ja@`GKfAg@fHYpG[lHc@fMM`DEtAAT</points>
+    </polyline>
+    <duration>
+     <value>462</value>
+     <text>8 mins</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;Massachusetts 2A W/Marrett Rd&lt;/b&gt;&lt;div style=&quot;font-size:0.9em&quot;&gt;Continue to follow Massachusetts 2A W&lt;/div&gt;</html_instructions>
+    <distance>
+     <value>6928</value>
+     <text>4.3 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4531813</lat>
+     <lng>-71.3097895</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4602738</lat>
+     <lng>-71.3485337</lng>
+    </end_location>
+    <polyline>
+     <points>ksbbGdufrLKNAHMh@U`A[nAO\_@x@mAdC_AlBYp@[v@Sl@]jAk@hBQb@Yr@o@jAkArBKR}AhCmAzBi@vAc@xASv@Mz@E^ItACfAAJCh@Gj@Mz@u@|Cy@tCw@nCeAjDYjAQx@MjAIh@C`@?v@HlAHfAB~@@bAGhDEnBEtA@vA@pAB`BFlBLzBHbAh@nGNnAH~@H`B@J@x@?|A?jABp@Fn@L|@b@|BLx@D`@Db@NlGFzARjET~CF|A?hAG~AI`CK~AG~@O~AK|@UfBg@fDO`@Yl@c@j@i@~@mAnBYn@a@nA[|@c@dASf@</points>
+    </polyline>
+    <duration>
+     <value>249</value>
+     <text>4 mins</text>
+    </duration>
+    <html_instructions>Continue onto &lt;b&gt;N Great Rd/Lexington Rd&lt;/b&gt;&lt;div style=&quot;font-size:0.9em&quot;&gt;Continue to follow Lexington Rd&lt;/div&gt;</html_instructions>
+    <distance>
+     <value>3471</value>
+     <text>2.2 mi</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4602738</lat>
+     <lng>-71.3485337</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4606840</lat>
+     <lng>-71.3487774</lng>
+    </end_location>
+    <polyline>
+     <points>u_dbGhgnrLe@FEDe@b@</points>
+    </polyline>
+    <duration>
+     <value>8</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;right&lt;/b&gt; onto &lt;b&gt;MA-62 E/Monument Square&lt;/b&gt;</html_instructions>
+    <distance>
+     <value>51</value>
+     <text>167 ft</text>
+    </distance>
+   </step>
+   <step>
+    <travel_mode>DRIVING</travel_mode>
+    <start_location>
+     <lat>42.4606840</lat>
+     <lng>-71.3487774</lng>
+    </start_location>
+    <end_location>
+     <lat>42.4602374</lat>
+     <lng>-71.3492460</lng>
+    </end_location>
+    <polyline>
+     <points>gbdbGzhnrLT^NTn@d@@@</points>
+    </polyline>
+    <duration>
+     <value>56</value>
+     <text>1 min</text>
+    </duration>
+    <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; onto &lt;b&gt;MA-62 W/Main St&lt;/b&gt;&lt;div style=&quot;font-size:0.9em&quot;&gt;Destination will be on the right&lt;/div&gt;</html_instructions>
+    <distance>
+     <value>63</value>
+     <text>207 ft</text>
+    </distance>
+   </step>
+   <duration>
+    <value>909</value>
+    <text>15 mins</text>
+   </duration>
+   <distance>
+    <value>11518</value>
+    <text>7.2 mi</text>
+   </distance>
+   <start_location>
+    <lat>42.4426105</lat>
+    <lng>-71.2293360</lng>
+   </start_location>
+   <end_location>
+    <lat>42.4602374</lat>
+    <lng>-71.3492460</lng>
+   </end_location>
+   <start_address>Lexington, MA, USA</start_address>
+   <end_address>Concord, MA, USA</end_address>
+  </leg>
+  <copyrights>Map data ©2013 Google</copyrights>
+  <overview_polyline>
+   <points>qcpaGr|upL^P~@t@k@`DIh@iBB{@JOJBTLnCSv@o@JgGPkBABdDkER}AE_BWqCgAw@@S[]w@{BcFeD{HkD}HKUYFgAn@_BbAyFjDcElCoAz@y@z@SZYXg@RQA_AyAwA_CkE_HmB}BkEoFgCiEi@y@k@o@_BeBKVKR?@EFmAfCa@nAcEhQwErRwAhEuAhDx@n@xCvBvC~Gx@lBe@j@u@|@iFvFcIzHaB|AuBjAwBr@kAJg@Ia@Oc@hAUf@g@V_Ar@m@`@e@GaAAe@d@K`ALn@LZ`AZRn@Mv@iBdFc@dAq@|@wA`B}@pAsDpEqFvHwGvJ}B`DyAhByGtFsBnBsBrCi@`AuBdDcAxBkCrDuN|S}FvHiFvFmGtF{^n[{FzEu@TkC`A_BRsESkE[{BPsAt@gB~Bo@|BwCfNaGbKeDlFgArCeB|HyAzC}@lBg@dC]nAgA|Bk@bBQhAO~He@b^LjHA~GJvBl@lD|ArCx@f@^NTf@p@tCp@bBz@~AdCjDpDjDzAzAT`@f@r@RRn@c@`@Qp@@zADdAGnA]pC_@zEFjAO~Dw@~@?d@LjAx@d@h@tAvCbCxEhBlBrB|AvAh@xARjHG~CC|@Lv@\z@v@`BfBzC~B`BpB`A~Ah@|BLjA^vHv@vCv@nAtAvA|@p@\h@n@lBHlAgAnGu@nDuLjk@eBnHgB~EgFbMsHfO_A~CqCbOeBbJuBzJmGxU_EvOmDvQaBtLqB|S{AtKmC|LwB`IaEpNaChH{EfR}DjToB`McAtJw@xNw@hf@mAxRcB`N_DlO{GvU}AdK_@zFO`HEzEUp@aAfOUl@]^cARi@Ii@D_Gg@oQoAuAE_C`@eDhAaCpAeHhEoGfD_JhBmIxAcGd@aAIk@WgBgBuBoBaDsA}CiBm@k@wDiFmFqFdAeBTo@Un@eAdBzAtAfFdGnCjD|ChB`DrA|EvEj@V`AHbGe@t@I@r@Br@\rEx@pFhF`XGjAkAbH{BbMq@~GWzCW`@g@p@sHrGcAt@qChAqFnBgAf@aAvAaErFoArCo@lBo@xCmClMiDtPsAjFiDpFaLnPe@fAg@nCqAxMuBrXm@hRStK|@bLJda@AhE{@jEyAnEgEpI_BdFe@~B_A|LoBdYiCp^gBhd@GjBMXoAxEgE~IyBzGgDvGiB|CwBrEkAlFSrEUfBoBrHiD`MWtBCxAXxGQfMZ|KlAbNLdGB|BTlB|@|FVhJh@jJFfDQ`Fo@|H}@nGi@nAuDjGuBzFk@Le@b@T^~@z@@@</points>
+  </overview_polyline>
+  <waypoint_index>0</waypoint_index>
+  <waypoint_index>1</waypoint_index>
+  <bounds>
+   <southwest>
+    <lat>42.3580143</lat>
+    <lng>-71.3492460</lng>
+   </southwest>
+   <northeast>
+    <lat>42.4606840</lat>
+    <lng>-71.0552005</lng>
+   </northeast>
+  </bounds>
+ </route>
+</DirectionsResponse>

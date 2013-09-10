@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GeocodeResponse>
+ <status>OK</status>
+ <result>
+  <type>subpremise</type>
+  <formatted_address>5/48 Pirrama Road, Pyrmont NSW 2009, Australia</formatted_address>
+  <address_component>
+   <long_name>5</long_name>
+   <short_name>5</short_name>
+   <type>subpremise</type>
+  </address_component>
+  <address_component>
+   <long_name>48</long_name>
+   <short_name>48</short_name>
+   <type>street_number</type>
+  </address_component>
+  <address_component>
+   <long_name>Pirrama Road</long_name>
+   <short_name>Pirrama Rd</short_name>
+   <type>route</type>
+  </address_component>
+  <address_component>
+   <long_name>Pyrmont</long_name>
+   <short_name>Pyrmont</short_name>
+   <type>locality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>New South Wales</long_name>
+   <short_name>NSW</short_name>
+   <type>administrative_area_level_1</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Australia</long_name>
+   <short_name>AU</short_name>
+   <type>country</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>2009</long_name>
+   <short_name>2009</short_name>
+   <type>postal_code</type>
+  </address_component>
+  <geometry>
+   <location>
+    <lat>-33.867</lat>
+    <lng>151.196</lng>
+   </location>
+   <location_type>APPROXIMATE</location_type>
+   <viewport>
+    <southwest>
+     <lat>-33.868</lat>
+     <lng>151.194</lng>
+    </southwest>
+    <northeast>
+     <lat>-33.865</lat>
+     <lng>151.197</lng>
+    </northeast>
+   </viewport>
+  </geometry>
+ </result>
+</GeocodeResponse>

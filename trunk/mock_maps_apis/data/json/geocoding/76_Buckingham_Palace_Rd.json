@@ -1,0 +1,63 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "76",
+               "short_name" : "76",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Buckingham Palace Road",
+               "short_name" : "Buckingham Palace Rd",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "London",
+               "short_name" : "London",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Greater London",
+               "short_name" : "Gt Lon",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "United Kingdom",
+               "short_name" : "GB",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "SW1W",
+               "short_name" : "SW1W",
+               "types" : [ "postal_code_prefix", "postal_code" ]
+            },
+            {
+               "long_name" : "London",
+               "short_name" : "London",
+               "types" : [ "postal_town" ]
+            }
+         ],
+         "formatted_address" : "76 Buckingham Palace Road, London, Greater London SW1W, UK",
+         "geometry" : {
+            "location" : {
+               "lat" : 51.494,
+               "lng" : -0.146
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 51.496,
+                  "lng" : -0.145
+               },
+               "southwest" : {
+                  "lat" : 51.493,
+                  "lng" : -0.148
+               }
+            }
+         },
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}

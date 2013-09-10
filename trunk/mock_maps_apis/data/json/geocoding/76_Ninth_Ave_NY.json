@@ -1,0 +1,73 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "76",
+               "short_name" : "76",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "9th Avenue",
+               "short_name" : "9th Ave",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Midtown",
+               "short_name" : "Midtown",
+               "types" : [ "neighborhood", "political" ]
+            },
+            {
+               "long_name" : "Manhattan",
+               "short_name" : "Manhattan",
+               "types" : [ "sublocality", "political" ]
+            },
+            {
+               "long_name" : "New York",
+               "short_name" : "New York",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "New York",
+               "short_name" : "New York",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "New York",
+               "short_name" : "NY",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "10011",
+               "short_name" : "10011",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "76 9th Avenue, New York, NY 10011, USA",
+         "geometry" : {
+            "location" : {
+               "lat" : 40.742,
+               "lng" : -74.004
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 40.743,
+                  "lng" : -74.003
+               },
+               "southwest" : {
+                  "lat" : 40.740,
+                  "lng" : -74.006
+               }
+            }
+         },
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}

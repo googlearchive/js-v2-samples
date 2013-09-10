@@ -1,0 +1,73 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "110",
+               "short_name" : "110",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "Brandschenkestrasse",
+               "short_name" : "Brandschenkestrasse",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Enge",
+               "short_name" : "Enge",
+               "types" : [ "sublocality", "political" ]
+            },
+            {
+               "long_name" : "District 2",
+               "short_name" : "District 2",
+               "types" : [ "sublocality", "political" ]
+            },
+            {
+               "long_name" : "Zurich",
+               "short_name" : "Zurich",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Zurich District",
+               "short_name" : "Zurich District",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "Canton of Zurich",
+               "short_name" : "ZH",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "Switzerland",
+               "short_name" : "CH",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "8002",
+               "short_name" : "8002",
+               "types" : [ "postal_code" ]
+            }
+         ],
+         "formatted_address" : "Brandschenkestrasse 110, 8002 Zurich, Switzerland",
+         "geometry" : {
+            "location" : {
+               "lat" : 47.365,
+               "lng" : 8.525
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 47.367,
+                  "lng" : 8.526
+               },
+               "southwest" : {
+                  "lat" : 47.364,
+                  "lng" : 8.524
+               }
+            }
+         },
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}

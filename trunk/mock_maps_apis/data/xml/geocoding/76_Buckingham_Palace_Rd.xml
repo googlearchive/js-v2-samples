@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GeocodeResponse>
+ <status>OK</status>
+ <result>
+  <type>street_address</type>
+  <formatted_address>76 Buckingham Palace Road, London, Greater London SW1W, UK</formatted_address>
+  <address_component>
+   <long_name>76</long_name>
+   <short_name>76</short_name>
+   <type>street_number</type>
+  </address_component>
+  <address_component>
+   <long_name>Buckingham Palace Road</long_name>
+   <short_name>Buckingham Palace Rd</short_name>
+   <type>route</type>
+  </address_component>
+  <address_component>
+   <long_name>London</long_name>
+   <short_name>London</short_name>
+   <type>locality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Greater London</long_name>
+   <short_name>Gt Lon</short_name>
+   <type>administrative_area_level_2</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>United Kingdom</long_name>
+   <short_name>GB</short_name>
+   <type>country</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>SW1W</long_name>
+   <short_name>SW1W</short_name>
+   <type>postal_code_prefix</type>
+   <type>postal_code</type>
+  </address_component>
+  <address_component>
+   <long_name>London</long_name>
+   <short_name>London</short_name>
+   <type>postal_town</type>
+  </address_component>
+  <geometry>
+   <location>
+    <lat>51.495</lat>
+    <lng>-0.146</lng>
+   </location>
+   <location_type>ROOFTOP</location_type>
+   <viewport>
+    <southwest>
+     <lat>51.493</lat>
+     <lng>-0.148</lng>
+    </southwest>
+    <northeast>
+     <lat>51.496</lat>
+     <lng>-0.145</lng>
+    </northeast>
+   </viewport>
+  </geometry>
+ </result>
+</GeocodeResponse>

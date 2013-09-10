@@ -1,0 +1,1840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DirectionsResponse>
+<status>OK</status>
+<route>
+<summary>Bayshore Blvd</summary>
+<leg>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7749412</lat>
+<lng>-122.4194304</lng>
+</start_location>
+<end_location>
+<lat>37.7755570</lat>
+<lng>-122.4186637</lng>
+</end_location>
+<polyline>
+<points>k|peFl`ejVQUSYa@k@UYOSMO</points>
+</polyline>
+<duration>
+<value>58</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Head <b>northeast</b> on <b>Market St</b> toward <b>S Van Ness Ave</b>
+</html_instructions>
+<distance>
+<value>96</value>
+<text>315 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7755570</lat>
+<lng>-122.4186637</lng>
+</start_location>
+<end_location>
+<lat>37.7706429</lat>
+<lng>-122.4124994</lng>
+</end_location>
+<polyline>
+<points>
+g`qeFr{djVRYd@m@bCaDv@eAl@}@d@m@jA{AtAmBxAsB|AuBv@gAfAwArD_F
+</points>
+</polyline>
+<duration>
+<value>158</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>11th St</b></html_instructions>
+<distance>
+<value>770</value>
+<text>0.5 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7706429</lat>
+<lng>-122.4124994</lng>
+</start_location>
+<end_location>
+<lat>37.7542373</lat>
+<lng>-122.4120646</lng>
+</end_location>
+<polyline>
+<points>
+oapeFbucjVRXZ^ZZd@\NJHDFBRLNFND`@LLBL@^DL@R?R?PAVAPApBG|@E`CMdAGbDSxAEjGYrFSbCMzBK`EQ|@Gt@ElES~H[~H]hBKF?jES
+</points>
+</polyline>
+<duration>
+<value>385</value>
+<text>6 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Harrison St</b></html_instructions>
+<distance>
+<value>1854</value>
+<text>1.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7542373</lat>
+<lng>-122.4120646</lng>
+</start_location>
+<end_location>
+<lat>37.7545666</lat>
+<lng>-122.4065016</lng>
+</end_location>
+<polyline>
+<points>_{leFjrcjVIyDKsDG{DMyDIsDK_E</points>
+</polyline>
+<duration>
+<value>88</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>23rd St</b></html_instructions>
+<distance>
+<value>490</value>
+<text>0.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7545666</lat>
+<lng>-122.4065016</lng>
+</start_location>
+<end_location>
+<lat>37.7510859</lat>
+<lng>-122.4062051</lng>
+</end_location>
+<polyline>
+<points>a}leFrobjVx@CrCOjBI`BK`AExAGp@EVFt@C</points>
+</polyline>
+<duration>
+<value>105</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Potrero Ave</b></html_instructions>
+<distance>
+<value>389</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7510859</lat>
+<lng>-122.4062051</lng>
+</start_location>
+<end_location>
+<lat>37.7492514</lat>
+<lng>-122.4054757</lng>
+</end_location>
+<polyline>
+<points>igleFxmbjVLBB?@?B?VCLAXKt@Yv@[rCkADA@A@?@?B?D@</points>
+</polyline>
+<duration>
+<value>30</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Slight <b>right</b> to stay on <b>Potrero Ave</b></html_instructions>
+<distance>
+<value>217</value>
+<text>0.1 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7492514</lat>
+<lng>-122.4054757</lng>
+</start_location>
+<end_location>
+<lat>37.7493048</lat>
+<lng>-122.4050146</lng>
+</end_location>
+<polyline>
+<points>y{keFfibjVAO?G?A?G?I@G?CAA?C?ECGCQ</points>
+</polyline>
+<duration>
+<value>30</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Turn <b>left</b> onto <b>San Francisco Bicycle Route 25/San Francisco Bicycle Route 60</b>
+</html_instructions>
+<distance>
+<value>42</value>
+<text>138 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7493048</lat>
+<lng>-122.4050146</lng>
+</start_location>
+<end_location>
+<lat>37.7490694</lat>
+<lng>-122.4046801</lng>
+</end_location>
+<polyline>
+<points>c|keFhfbjVJQBC@C@A@A@C?A@??ABCBE?A@?HO</points>
+</polyline>
+<duration>
+<value>6</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Turn <b>right</b> onto the ramp to <b>San Francisco Bicycle Route 25/San Francisco Bicycle Route 60</b>
+</html_instructions>
+<distance>
+<value>39</value>
+<text>128 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7490694</lat>
+<lng>-122.4046801</lng>
+</start_location>
+<end_location>
+<lat>37.7492212</lat>
+<lng>-122.4033977</lng>
+</end_location>
+<polyline>
+<points>uzkeFfdbjVCOC[?M?A?O?WAY?QAK?EAQEQG[AE?C?S</points>
+</polyline>
+<duration>
+<value>41</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Turn <b>left</b> onto <b>San Francisco Bicycle Route 25/San Francisco Bicycle Route 60</b>
+</html_instructions>
+<distance>
+<value>115</value>
+<text>377 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7492212</lat>
+<lng>-122.4033977</lng>
+</start_location>
+<end_location>
+<lat>37.7491836</lat>
+<lng>-122.4032607</lng>
+</end_location>
+<polyline>
+<points>s{keFf|ajVBO?C?A@C@A</points>
+</polyline>
+<duration>
+<value>34</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Slight <b>right</b> to stay on <b>San Francisco Bicycle Route 25/San Francisco Bicycle Route 60</b>
+</html_instructions>
+<distance>
+<value>13</value>
+<text>43 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7491836</lat>
+<lng>-122.4032607</lng>
+</start_location>
+<end_location>
+<lat>37.7463367</lat>
+<lng>-122.4026651</lng>
+</end_location>
+<polyline>
+<points>
+k{keFj{ajVJBf@Jb@HPBNBj@DH?B@\J\?D?F?F?PDTKNIRKVOFCREHAtBmAHGf@]
+</points>
+</polyline>
+<duration>
+<value>98</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>
+Turn <b>right</b> onto <b>San Francisco Bicycle Route 25</b>
+</html_instructions>
+<distance>
+<value>338</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7463367</lat>
+<lng>-122.4026651</lng>
+</start_location>
+<end_location>
+<lat>37.7437038</lat>
+<lng>-122.4033165</lng>
+</end_location>
+<polyline>
+<points>sikeFtwajVl@Lb@DvD\tATnCl@^J</points>
+</polyline>
+<duration>
+<value>52</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Slight <b>right</b> onto <b>Barneveld Ave</b></html_instructions>
+<distance>
+<value>299</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7437038</lat>
+<lng>-122.4033165</lng>
+</start_location>
+<end_location>
+<lat>37.7383702</lat>
+<lng>-122.4056505</lng>
+</end_location>
+<polyline>
+<points>
+cyjeFv{ajVF`@?@@@?@@@zE`DPHB@n@`@JFHB|B|@l@TfA`@`@Px@ZH@H@bFR|CN
+</points>
+</polyline>
+<duration>
+<value>137</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Loomis St</b></html_instructions>
+<distance>
+<value>646</value>
+<text>0.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7383702</lat>
+<lng>-122.4056505</lng>
+</start_location>
+<end_location>
+<lat>37.7380435</lat>
+<lng>-122.4068717</lng>
+</end_location>
+<polyline>
+<points>ywieFhjbjV^vB`@zB</points>
+</polyline>
+<duration>
+<value>22</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Industrial St</b></html_instructions>
+<distance>
+<value>113</value>
+<text>371 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7380435</lat>
+<lng>-122.4068717</lng>
+</start_location>
+<end_location>
+<lat>37.7340679</lat>
+<lng>-122.4053416</lng>
+</end_location>
+<polyline>
+<points>
+wuieF|qbjVTCxBKbEWZFTCHAHAZGDARGNGFCVKFEBC@?PM@ATQ~@q@VUz@o@`@YHG`@Y
+</points>
+</polyline>
+<duration>
+<value>175</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Bayshore Blvd</b></html_instructions>
+<distance>
+<value>475</value>
+<text>0.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7340679</lat>
+<lng>-122.4053416</lng>
+</start_location>
+<end_location>
+<lat>37.7329492</lat>
+<lng>-122.4047047</lng>
+</end_location>
+<polyline>
+<points>
+}|heFjhbjV@?TA@?@AB?@ADAfAo@@?@AHEBA@ADCFE@?LGDEv@c@
+</points>
+</polyline>
+<duration>
+<value>31</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Slight <b>right</b> to stay on <b>Bayshore Blvd</b>
+</html_instructions>
+<distance>
+<value>137</value>
+<text>449 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7329492</lat>
+<lng>-122.4047047</lng>
+</start_location>
+<end_location>
+<lat>37.7324523</lat>
+<lng>-122.4055926</lng>
+</end_location>
+<polyline>
+<points>
+}uheFjdbjVFL?@BD@B@@?@@@@DBB@B?@@@BD@DNZ@@?@?@LT@D@@@@DH?@Td@
+</points>
+</polyline>
+<duration>
+<value>18</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Silver Ave</b></html_instructions>
+<distance>
+<value>96</value>
+<text>315 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7324523</lat>
+<lng>-122.4055926</lng>
+</start_location>
+<end_location>
+<lat>37.7120230</lat>
+<lng>-122.4031418</lng>
+</end_location>
+<polyline>
+<points>
+yrheF|ibjVnBm@|@Wx@YNEHCfDcAv@WnFcBlDiA`A[dAYhDcAnFeBpFaBZI~Ag@pBm@bCu@jBo@f@O\MDADA@AB?BABA@AD?DAfCa@fDi@pAS`C]vB]hAQXEtCa@rAUxCa@HAHA@?B?B?@@B?HBNFTLDFDDDFBB@FDLH\RlAJd@ZzA@J@B?D?F?J?l@?J@H?D@DBB@F@@BB@BB@@BDBBBFDHBHBJBhBT`@Bh@?t@?b@CN@XZ?@Zj@Rb@BLDJN^PXDFBDB?FA
+</points>
+</polyline>
+<duration>
+<value>722</value>
+<text>12 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>San Bruno Ave</b></html_instructions>
+<distance>
+<value>2538</value>
+<text>1.6 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.7120230</lat>
+<lng>-122.4031418</lng>
+</start_location>
+<end_location>
+<lat>37.6929896</lat>
+<lng>-122.4049425</lng>
+</end_location>
+<polyline>
+<points>
+csdeFrzajV`@`@|B|ArA|@dAp@PJb@X`Aj@PLx@\ZJxAd@jBj@b@NtDnA`KhDbCv@nKnEz@^@?XJPFPDLBD@F@NBTDL@RDD@f@BX@R?X?^?^Cb@Er@OLAd@KZM^Mh@S~Ao@r@WbGaCvFyBb@Q^ObAa@XKj@U`@QtCiAPEHArBy@t@Yh@W
+</points>
+</polyline>
+<duration>
+<value>500</value>
+<text>8 mins</text>
+</duration>
+<html_instructions>Continue onto <b>Bayshore Blvd</b></html_instructions>
+<distance>
+<value>2272</value>
+<text>1.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6929896</lat>
+<lng>-122.4049425</lng>
+</start_location>
+<end_location>
+<lat>37.6677025</lat>
+<lng>-122.3958937</lng>
+</end_location>
+<polyline>
+<points>
+e|`eFzebjV|Ao@NGx@Yv@_@ZM~HaDhAo@v@e@dAu@`Ay@bAgAbAoAh@q@j@{@^i@n@}@l@y@fDsEDGl@{@FMBExAwBHM|@sAn@{@hAwAz@}@n@q@dA}@xAkAXUXUTO^Yd@[l@_@ZOr@[`@OHC^KZIj@KdAOv@Kx@Mp@K@?ZGZEDAr@QBAh@Ql@S`@Q~@e@LIl@_@bAq@RS~@{@PSr@q@dAcAx@w@l@m@h@g@JKdAaAVORMZOHEHCLEf@IPCl@AP?L@F?RBJ@H@LDTHl@VhCnAnCvA|Ax@NH~@h@f@Zx@d@zAz@JHFDDDHFr@l@j@j@j@j@TVNLLPf@l@|AhBV^LTT`@JTLVNXTXLLLLNL
+</points>
+</polyline>
+<duration>
+<value>649</value>
+<text>11 mins</text>
+</duration>
+<html_instructions>Keep <b>left</b> to stay on <b>Bayshore Blvd</b></html_instructions>
+<distance>
+<value>3365</value>
+<text>2.1 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6677025</lat>
+<lng>-122.3958937</lng>
+</start_location>
+<end_location>
+<lat>37.6614789</lat>
+<lng>-122.4035356</lng>
+</end_location>
+<polyline>
+<points>
+c~{dFhm`jVPNFFHFNL`@TTNPJVPZTTPr@v@fB`BNNfArAXZTXXZhAvAl@t@NRNT|@xA`@p@hAfB\h@^j@RZj@dArBpD`DxF
+</points>
+</polyline>
+<duration>
+<value>179</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Continue onto <b>Airport Blvd</b></html_instructions>
+<distance>
+<value>972</value>
+<text>0.6 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6614789</lat>
+<lng>-122.4035356</lng>
+</start_location>
+<end_location>
+<lat>37.6418242</lat>
+<lng>-122.4121188</lng>
+</end_location>
+<polyline>
+<points>
+gwzdFb}ajVDf@N^HRFRBP?R@Ve@~AiCzICRALAV@P?JBXDPH\NVJLLJFFNJNHpCr@zA^bBb@|A`@~A^~A`@~Ab@|A^~A^|A`@~A`@~A^`Bb@dBb@pAZLD~A`@dAVXFzA\nA\ZHnJ`Cj@N`@JhAVhCn@pLtCzBl@`B`@nFrAv@RF@rBf@ZFV?ZAZGZKVQRQRWPWL[L[Li@?EDKb@gBJ]FOXo@
+</points>
+</polyline>
+<duration>
+<value>501</value>
+<text>8 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Linden Ave</b></html_instructions>
+<distance>
+<value>2813</value>
+<text>1.7 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6418242</lat>
+<lng>-122.4121188</lng>
+</start_location>
+<end_location>
+<lat>37.6299015</lat>
+<lng>-122.4115085</lng>
+</end_location>
+<polyline>
+<points>
+k|vdFvrcjVHKBCBEZ]LIXQ@?PGRCJ?JMjJEtKKzDC|DCzCCl@?B?N?@?@?r@AD?D?^?rEEN?vIEPCV?R?NANE^SHCBA@AB?F?@?B@B@B@BBBFBH@D@DFZ
+</points>
+</polyline>
+<duration>
+<value>268</value>
+<text>4 mins</text>
+</duration>
+<html_instructions>Slight <b>right</b> onto <b>San Mateo Ave</b></html_instructions>
+<distance>
+<value>1361</value>
+<text>0.8 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6299015</lat>
+<lng>-122.4115085</lng>
+</start_location>
+<end_location>
+<lat>37.6289680</lat>
+<lng>-122.4113233</lng>
+</end_location>
+<polyline>
+<points>{qtdF|ncjVp@YPIDAJEL?RD`A?</points>
+</polyline>
+<duration>
+<value>47</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> to stay on <b>San Mateo Ave</b></html_instructions>
+<distance>
+<value>108</value>
+<text>354 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6289680</lat>
+<lng>-122.4113233</lng>
+</start_location>
+<end_location>
+<lat>37.6194302</lat>
+<lng>-122.4052038</lng>
+</end_location>
+<polyline>
+<points>
+altdFvmcjVDMLSHKJIrLyFjJqElHkDlDcBxA_AlA_Af@YlHkF`@Ul@W
+</points>
+</polyline>
+<duration>
+<value>219</value>
+<text>4 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Huntington Ave</b></html_instructions>
+<distance>
+<value>1194</value>
+<text>0.7 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6194302</lat>
+<lng>-122.4052038</lng>
+</start_location>
+<end_location>
+<lat>37.6126541</lat>
+<lng>-122.4001519</lng>
+</end_location>
+<polyline>
+<points>
+mprdFngbjVz@g@tA{@lCmB`C_B|B}A~CoBxCuBtB{AvB{AvBwAjCkB
+</points>
+</polyline>
+<duration>
+<value>165</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Continue onto <b>San Antonio Ave</b></html_instructions>
+<distance>
+<value>875</value>
+<text>0.5 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6126541</lat>
+<lng>-122.4001519</lng>
+</start_location>
+<end_location>
+<lat>37.6121917</lat>
+<lng>-122.4010795</lng>
+</end_location>
+<polyline>
+<points>afqdF|gajVzAxD</points>
+</polyline>
+<duration>
+<value>20</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+<b>San Antonio Ave</b> turns <b>right</b> and becomes <b>Santa Helena Ave</b>
+</html_instructions>
+<distance>
+<value>97</value>
+<text>318 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6121917</lat>
+<lng>-122.4010795</lng>
+</start_location>
+<end_location>
+<lat>37.6093379</lat>
+<lng>-122.3980495</lng>
+</end_location>
+<polyline>
+<points>
+ecqdFvmajVfC{BdBwAvAuApBqB~@q@~Aw@@A@C?A@C?WAC?AACAA]g@
+</points>
+</polyline>
+<duration>
+<value>72</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>San Anselmo Ave S</b></html_instructions>
+<distance>
+<value>453</value>
+<text>0.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6093379</lat>
+<lng>-122.3980495</lng>
+</start_location>
+<end_location>
+<lat>37.6088167</lat>
+<lng>-122.3973980</lng>
+</end_location>
+<polyline>
+<points>kqpdFxz`jVfBaC</points>
+</polyline>
+<duration>
+<value>16</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>San Anselmo Ave</b></html_instructions>
+<distance>
+<value>82</value>
+<text>269 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6088167</lat>
+<lng>-122.3973980</lng>
+</start_location>
+<end_location>
+<lat>37.6073358</lat>
+<lng>-122.3997851</lng>
+</end_location>
+<polyline>
+<points>cnpdFvv`jVnE~GL\|@fCJV</points>
+</polyline>
+<duration>
+<value>113</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Center St</b></html_instructions>
+<distance>
+<value>268</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6073358</lat>
+<lng>-122.3997851</lng>
+</start_location>
+<end_location>
+<lat>37.6052654</lat>
+<lng>-122.3975404</lng>
+</end_location>
+<polyline>
+<points>{dpdFteajVhFgFHIdAeAZc@fAeB</points>
+</polyline>
+<duration>
+<value>79</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Broadway</b></html_instructions>
+<distance>
+<value>304</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6052654</lat>
+<lng>-122.3975404</lng>
+</start_location>
+<end_location>
+<lat>37.6047647</lat>
+<lng>-122.3984592</lng>
+</end_location>
+<polyline>
+<points>}wodFrw`jVr@|Ap@xA</points>
+</polyline>
+<duration>
+<value>24</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Meadow Glen Ave</b></html_instructions>
+<distance>
+<value>98</value>
+<text>322 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.6047647</lat>
+<lng>-122.3984592</lng>
+</start_location>
+<end_location>
+<lat>37.5956364</lat>
+<lng>-122.3871704</lng>
+</end_location>
+<polyline>
+<points>
+wtodFj}`jVxBmBx@kAV]Te@LUR[d@eAPa@@IdAgD~@uAHK|@oAfB_CtBqCvCyD|CeEh@y@FIFIFEDGzCmCpDaDJIFG\YbB_CxByCxAqB
+</points>
+</polyline>
+<duration>
+<value>315</value>
+<text>5 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Magnolia Ave</b></html_instructions>
+<distance>
+<value>1431</value>
+<text>0.9 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5956364</lat>
+<lng>-122.3871704</lng>
+</start_location>
+<end_location>
+<lat>37.5974415</lat>
+<lng>-122.3846875</lng>
+</end_location>
+<polyline>
+<points>w{mdFxv~iVc@s@e@s@_@i@MSs@eAS[W]Ye@uBcD</points>
+</polyline>
+<duration>
+<value>96</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Murchison Dr</b></html_instructions>
+<distance>
+<value>297</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5974415</lat>
+<lng>-122.3846875</lng>
+</start_location>
+<end_location>
+<lat>37.5770794</lat>
+<lng>-122.3393664</lng>
+</end_location>
+<polyline>
+<points>
+_gndFhg~iVlAsARSd@g@d@m@^k@Xa@PWj@aAl@eAh@eAHQnDyKXw@z@{Bj@}Ax@_C|@aC`BkFdAgDdBsFlBeGlAsDdAgDnEoNfAkDdAeDbAoDfAgDbAiDj@qBTu@J]Tw@fC{HdDkKnDiKnHsTtCkJ|AiFxAoE|A}E`CwGb@eBDMb@{A~@}Cn@mAt@qA~@kBjAyDjDsKjD_L
+</points>
+</polyline>
+<duration>
+<value>820</value>
+<text>14 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>California Dr</b></html_instructions>
+<distance>
+<value>4605</value>
+<text>2.9 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5770794</lat>
+<lng>-122.3393664</lng>
+</start_location>
+<end_location>
+<lat>37.5735463</lat>
+<lng>-122.3340990</lng>
+</end_location>
+<polyline>
+<points>wgjdF`luiV`FeObDyDtCcDdDyD</points>
+</polyline>
+<duration>
+<value>132</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Continue onto <b>N San Mateo Dr</b></html_instructions>
+<distance>
+<value>617</value>
+<text>0.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5735463</lat>
+<lng>-122.3340990</lng>
+</start_location>
+<end_location>
+<lat>37.5763003</lat>
+<lng>-122.3301160</lng>
+</end_location>
+<polyline>
+<points>uqidFbktiV{BuDiBuCKQIOaDmFgC_E</points>
+</polyline>
+<duration>
+<value>87</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>E Bellevue Ave</b></html_instructions>
+<distance>
+<value>466</value>
+<text>0.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5763003</lat>
+<lng>-122.3301160</lng>
+</start_location>
+<end_location>
+<lat>37.5449970</lat>
+<lng>-122.3030110</lng>
+</end_location>
+<polyline>
+<points>
+{bjdFfrsiVfCyC`CoCpGeH~FyGlGgH`F{FrAuAtCeDzCiDtCaD|CmDrBaCbG{GdG{GtFiGjHgI~AkB|AgBxIsJrA{A~@eA~@eAJKjGcHLOpD_EbA}@PK^QPIRGTIf@KREd@G`@CLANA`BOLA`BKjAIrKq@JA~AIPAJAtBUlBK^If@MRKDCb@Yz@s@l@i@d@a@hAy@jBeAHE
+</points>
+</polyline>
+<duration>
+<value>876</value>
+<text>15 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>N Delaware St</b></html_instructions>
+<distance>
+<value>4327</value>
+<text>2.7 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5449970</lat>
+<lng>-122.3030110</lng>
+</start_location>
+<end_location>
+<lat>37.5386498</lat>
+<lng>-122.2977835</lng>
+</end_location>
+<polyline>
+<points>g_ddFxhniVf@SvA_AjEaDvCyBvOcMdCoBFKVWl@m@d@_@</points>
+</polyline>
+<duration>
+<value>152</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Slight <b>right</b> toward <b>Pacific Blvd</b></html_instructions>
+<distance>
+<value>844</value>
+<text>0.5 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5386498</lat>
+<lng>-122.2977835</lng>
+</start_location>
+<end_location>
+<lat>37.5298972</lat>
+<lng>-122.2872418</lng>
+</end_location>
+<polyline>
+<points>
+qwbdFbhmiVl@c@z@{@BCNK`@]FGHGRQJKLMNMRSFEFIRORQTSvEgEr@a@z@u@l@w@p@q@xBeD`B_Cp@cA|@oA|BeD|AoCzCkFvA{BLU~@aB`@u@Zi@r@oA
+</points>
+</polyline>
+<duration>
+<value>231</value>
+<text>4 mins</text>
+</duration>
+<html_instructions>Continue straight onto <b>Pacific Blvd</b></html_instructions>
+<distance>
+<value>1355</value>
+<text>0.8 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5298972</lat>
+<lng>-122.2872418</lng>
+</start_location>
+<end_location>
+<lat>37.5176984</lat>
+<lng>-122.2711522</lng>
+</end_location>
+<polyline>
+<points>
+{`adFffkiVbBwChAsBdF{IhFkITSlBmCRYBA|AaCdFqGdP}TzAsBPSNSlEiGzBwCh@s@zAuBfDuELO
+</points>
+</polyline>
+<duration>
+<value>374</value>
+<text>6 mins</text>
+</duration>
+<html_instructions>Continue onto <b>Old County Rd</b></html_instructions>
+<distance>
+<value>1965</value>
+<text>1.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5176984</lat>
+<lng>-122.2711522</lng>
+</start_location>
+<end_location>
+<lat>37.5210619</lat>
+<lng>-122.2672773</lng>
+</end_location>
+<polyline>
+<points>st~cFtahiVSWQGgCyCqNkQ</points>
+</polyline>
+<duration>
+<value>104</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Harbor Blvd</b></html_instructions>
+<distance>
+<value>508</value>
+<text>0.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.5210619</lat>
+<lng>-122.2672773</lng>
+</start_location>
+<end_location>
+<lat>37.4934472</lat>
+<lng>-122.2361214</lng>
+</end_location>
+<polyline>
+<points>
+si_dFnigiVnAuB|D{FrAqBj@w@b@o@BCd@k@ZUl@YfCi@vBY\Kd@SXQVUv@{@hD_ErBaCjEeF\c@dCuCn@eAf@_AzAcCNWr@_AtAuBz@}AbAaBfBsCJSlAoBJQlAoBzAaC`AaBZ]v@w@|AsAdGqFr@o@dFqELMTClD_D^[xDgDh@g@d@i@Va@Zg@jAoB~ByDBQf@y@PWxAaCxAaCnBaDbBoC\o@HCzBoD`BkCb@o@Z_@j@q@pBwB^_@tAmAlBcBlBiBnBeBlBkB
+</points>
+</polyline>
+<duration>
+<value>775</value>
+<text>13 mins</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Industrial Rd</b></html_instructions>
+<distance>
+<value>4168</value>
+<text>2.6 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4934472</lat>
+<lng>-122.2361214</lng>
+</start_location>
+<end_location>
+<lat>37.4874490</lat>
+<lng>-122.2311669</lng>
+</end_location>
+<polyline>
+<points>
+a}ycFvfaiVHKr@y@^i@Ra@FQAQ\uAXgA`@q@^g@l@s@pB_CnBcCpBaCb@e@X[RMRCFAxAC~CIHAhEO
+</points>
+</polyline>
+<duration>
+<value>197</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Continue onto <b>Winslow St</b></html_instructions>
+<distance>
+<value>859</value>
+<text>0.5 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4874490</lat>
+<lng>-122.2311669</lng>
+</start_location>
+<end_location>
+<lat>37.4875816</lat>
+<lng>-122.2230283</lng>
+</end_location>
+<polyline>
+<points>qwxcFxg`iVIcEGaEGcEQqJGmELgGJiE</points>
+</polyline>
+<duration>
+<value>150</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Marshall St</b></html_instructions>
+<distance>
+<value>719</value>
+<text>0.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4875816</lat>
+<lng>-122.2230283</lng>
+</start_location>
+<end_location>
+<lat>37.4848055</lat>
+<lng>-122.2249502</lng>
+</end_location>
+<polyline>
+<points>kxxcF|t~hV~CnBPJ\TjDvBlDtB</points>
+</polyline>
+<duration>
+<value>64</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Maple St</b></html_instructions>
+<distance>
+<value>352</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4848055</lat>
+<lng>-122.2249502</lng>
+</start_location>
+<end_location>
+<lat>37.4820997</lat>
+<lng>-122.2188598</lng>
+</end_location>
+<polyline>
+<points>agxcF|`_iVdAyCdAyCbA_DdA{CbAuCBIBI~@qC`AuCx@_C</points>
+</polyline>
+<duration>
+<value>111</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Stambaugh St</b></html_instructions>
+<distance>
+<value>616</value>
+<text>0.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4820997</lat>
+<lng>-122.2188598</lng>
+</start_location>
+<end_location>
+<lat>37.4810384</lat>
+<lng>-122.2164316</lng>
+</end_location>
+<polyline>
+<points>
+cvwcFzz}hVGCECWQ?A?A?A@CDBNHBG@CN_@HYHU@A?CAAMGCC@CB?b@TXaAbAuC`AyC
+</points>
+</polyline>
+<duration>
+<value>60</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Take the pedestrian overpass</html_instructions>
+<distance>
+<value>316</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4810384</lat>
+<lng>-122.2164316</lng>
+</start_location>
+<end_location>
+<lat>37.4801070</lat>
+<lng>-122.2170540</lng>
+</end_location>
+<polyline>
+<points>oowcFtk}hVfDnBPJ</points>
+</polyline>
+<duration>
+<value>21</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Willow St</b></html_instructions>
+<distance>
+<value>117</value>
+<text>384 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4801070</lat>
+<lng>-122.2170540</lng>
+</start_location>
+<end_location>
+<lat>37.4545415</lat>
+<lng>-122.1641000</lng>
+</end_location>
+<polyline>
+<points>
+uiwcFpo}hVbB{EVm@rA_Cd@}@FM?QhF{IxAgCzAkCNW`@m@FIBGBCr@mAlEqHfAkBx@yAp@kA`BuCnBaDhBcDhBiDlBcDpBcDhBsC^eENkCL}BD}@FcAHiALuDL}EPuFJwDJmAJq@H]r@mBrAgDxAkD~DoJ`DkIFMDMhCwGnDwIvBoFhEuKvGmP^aAlHaQVYVi@`AcCl@{APa@hEuKb@aAd@qAFMDOAQXq@xAsDxDmJv@oBPc@LEp@iB`C_Gl@yAbAeCN_@
+</points>
+</polyline>
+<duration>
+<value>1105</value>
+<text>18 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Middlefield Rd</b></html_instructions>
+<distance>
+<value>5559</value>
+<text>3.5 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4545415</lat>
+<lng>-122.1641000</lng>
+</start_location>
+<end_location>
+<lat>37.4525541</lat>
+<lng>-122.1668370</lng>
+</end_location>
+<polyline>
+<points>{ircFrdshV~AhBpBhCpAbB`@t@DF\z@b@pA</points>
+</polyline>
+<duration>
+<value>56</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Willow Rd</b></html_instructions>
+<distance>
+<value>330</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4525541</lat>
+<lng>-122.1668370</lng>
+</start_location>
+<end_location>
+<lat>37.4508289</lat>
+<lng>-122.1670878</lng>
+</end_location>
+<polyline>
+<points>m}qcFvushVh@YZC`@JXAv@JPDd@FH?L@HB`@T`@N</points>
+</polyline>
+<duration>
+<value>74</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Willow Pl</b></html_instructions>
+<distance>
+<value>200</value>
+<text>0.1 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4508289</lat>
+<lng>-122.1670878</lng>
+</start_location>
+<end_location>
+<lat>37.4492954</lat>
+<lng>-122.1670124</lng>
+</end_location>
+<polyline>
+<points>urqcFhwshV?D@FDHJLRPd@N~B^P@JMr@iAPa@</points>
+</polyline>
+<duration>
+<value>36</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Palo Alto Ave</b></html_instructions>
+<distance>
+<value>211</value>
+<text>0.1 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4492954</lat>
+<lng>-122.1670124</lng>
+</start_location>
+<end_location>
+<lat>37.4435469</lat>
+<lng>-122.1578623</lng>
+</end_location>
+<polyline>
+<points>
+ciqcFxvshVnEiIjA{BnA{BzCwFr@qAv@yAp@oA`D}FdCuETa@xCyF
+</points>
+</polyline>
+<duration>
+<value>187</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Continue onto <b>Bryant St</b></html_instructions>
+<distance>
+<value>1030</value>
+<text>0.6 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4435469</lat>
+<lng>-122.1578623</lng>
+</start_location>
+<end_location>
+<lat>37.4411279</lat>
+<lng>-122.1602802</lng>
+</end_location>
+<polyline>
+<points>eepcFr}qhVvBvBvBvB~@|@z@v@x@~@\\^^</points>
+</polyline>
+<duration>
+<value>62</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>Homer Ave</b></html_instructions>
+<distance>
+<value>343</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4411279</lat>
+<lng>-122.1602802</lng>
+</start_location>
+<end_location>
+<lat>37.4408616</lat>
+<lng>-122.1605757</lng>
+</end_location>
+<polyline>
+<points>avocFvlrhVVXLNNP</points>
+</polyline>
+<duration>
+<value>34</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Continue onto <b>Embarcadero Bike Path</b></html_instructions>
+<distance>
+<value>39</value>
+<text>128 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4408616</lat>
+<lng>-122.1605757</lng>
+</start_location>
+<end_location>
+<lat>37.4355230</lat>
+<lng>-122.1519855</lng>
+</end_location>
+<polyline>
+<points>
+ktocFrnrhVb@o@NK@C~@aBBYFQFQHUFSDSt@sA@ArG{LZg@?AfBaDfGeLpDsG
+</points>
+</polyline>
+<duration>
+<value>162</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>
+Turn <b>left</b> to stay on <b>Embarcadero Bike Path</b>
+</html_instructions>
+<distance>
+<value>966</value>
+<text>0.6 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4355230</lat>
+<lng>-122.1519855</lng>
+</start_location>
+<end_location>
+<lat>37.4346174</lat>
+<lng>-122.1526957</lng>
+</end_location>
+<polyline>
+<points>_sncF|xphVDGF?D@DBf@f@fBzAHJ</points>
+</polyline>
+<duration>
+<value>21</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Turn <b>right</b> to stay on <b>Embarcadero Bike Path</b>
+</html_instructions>
+<distance>
+<value>123</value>
+<text>404 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4346174</lat>
+<lng>-122.1526957</lng>
+</start_location>
+<end_location>
+<lat>37.4323267</lat>
+<lng>-122.1485633</lng>
+</end_location>
+<polyline>
+<points>
+kmncFj}phV@CFMvAiCBCfDkG~@eBvAgCLOLMLg@BM@K@I?GAMAICKEK
+</points>
+</polyline>
+<duration>
+<value>74</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Castilleja Ave</b></html_instructions>
+<distance>
+<value>458</value>
+<text>0.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4323267</lat>
+<lng>-122.1485633</lng>
+</start_location>
+<end_location>
+<lat>37.4316033</lat>
+<lng>-122.1482107</lng>
+</end_location>
+<polyline>
+<points>a_ncFncphVrBqAPDJD</points>
+</polyline>
+<duration>
+<value>15</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> to stay on <b>Castilleja Ave</b></html_instructions>
+<distance>
+<value>91</value>
+<text>299 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4316033</lat>
+<lng>-122.1482107</lng>
+</start_location>
+<end_location>
+<lat>37.4289314</lat>
+<lng>-122.1427141</lng>
+</end_location>
+<polyline>
+<points>
+ozmcFhaphVDOf@oAFM?GTm@@M@SMwAAU@UFc@DQFMhBiDv@uANYt@uAdB_DnBmD
+</points>
+</polyline>
+<duration>
+<value>97</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Park Blvd</b></html_instructions>
+<distance>
+<value>588</value>
+<text>0.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4289314</lat>
+<lng>-122.1427141</lng>
+</start_location>
+<end_location>
+<lat>37.4284007</lat>
+<lng>-122.1431129</lng>
+</end_location>
+<polyline>
+<points>yimcF|~nhVJHZR`Ap@</points>
+</polyline>
+<duration>
+<value>12</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>S California Ave</b></html_instructions>
+<distance>
+<value>69</value>
+<text>226 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4284007</lat>
+<lng>-122.1431129</lng>
+</start_location>
+<end_location>
+<lat>37.4171402</lat>
+<lng>-122.1236891</lng>
+</end_location>
+<polyline>
+<points>
+ofmcFlaohVJS|AuD~AqDfBiEFQJUTi@|@qB|DkJlAqChBkERc@tB_F`A_CPc@`@cAFKJIp@s@|AwCLWzAsCpByDnC_FrAgCNUf@g@LMJQZk@pDyILSx@iAlA_Br@mAdB}DFM
+</points>
+</polyline>
+<duration>
+<value>364</value>
+<text>6 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Park Blvd</b></html_instructions>
+<distance>
+<value>2130</value>
+<text>1.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4171402</lat>
+<lng>-122.1236891</lng>
+</start_location>
+<end_location>
+<lat>37.4155921</lat>
+<lng>-122.1249611</lng>
+</end_location>
+<polyline>
+<points>c`kcF`hkhV|@r@x@n@|DxC</points>
+</polyline>
+<duration>
+<value>37</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>W Meadow Dr</b></html_instructions>
+<distance>
+<value>206</value>
+<text>0.1 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4155921</lat>
+<lng>-122.1249611</lng>
+</start_location>
+<end_location>
+<lat>37.4092052</lat>
+<lng>-122.1182673</lng>
+</end_location>
+<polyline>
+<points>
+mvjcF~okhVTm@P]FKDGFGFGHGXOLILKV[`@m@tAuBJObBkCjBuClAmBFIFIDEHE~AiAzBeBtBaBxB_BnEiD
+</points>
+</polyline>
+<duration>
+<value>195</value>
+<text>3 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Wilkie Way</b></html_instructions>
+<distance>
+<value>934</value>
+<text>0.6 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4092052</lat>
+<lng>-122.1182673</lng>
+</start_location>
+<end_location>
+<lat>37.4083943</lat>
+<lng>-122.1176295</lng>
+</end_location>
+<polyline>
+<points>qnicFdfjhVIUAC@CLQFEFELEJANAHCHAFEHCHCFEJELGJGFI</points>
+</polyline>
+<duration>
+<value>23</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Turn <b>left</b> onto <b>Wilkie Way Bicycle Bridge</b>
+</html_instructions>
+<distance>
+<value>124</value>
+<text>407 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4083943</lat>
+<lng>-122.1176295</lng>
+</start_location>
+<end_location>
+<lat>37.4062401</lat>
+<lng>-122.1142245</lng>
+</end_location>
+<polyline>
+<points>miicFdbjhVp@_B`BwCh@eALSBCBC@ABABCBCFItAkClBmD</points>
+</polyline>
+<duration>
+<value>73</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Continue onto <b>Miller Ave</b></html_instructions>
+<distance>
+<value>385</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4062401</lat>
+<lng>-122.1142245</lng>
+</start_location>
+<end_location>
+<lat>37.4083324</lat>
+<lng>-122.1092284</lng>
+</end_location>
+<polyline>
+<points>_|hcFzlihV}@}@mCmCiAgAqDsD}C}C]c@?m@nD{Gp@Q</points>
+</polyline>
+<duration>
+<value>108</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Del Medio Ave</b></html_instructions>
+<distance>
+<value>668</value>
+<text>0.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4083324</lat>
+<lng>-122.1092284</lng>
+</start_location>
+<end_location>
+<lat>37.4078790</lat>
+<lng>-122.1082894</lng>
+</end_location>
+<polyline>
+<points>aiicFtmhhV?I?G@M@K@IBGHOLWPWDK@AJSP[</points>
+</polyline>
+<duration>
+<value>18</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>San Antonio Cir</b></html_instructions>
+<distance>
+<value>100</value>
+<text>328 ft</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4078790</lat>
+<lng>-122.1082894</lng>
+</start_location>
+<end_location>
+<lat>37.4030534</lat>
+<lng>-122.1061888</lng>
+</end_location>
+<polyline>
+<points>
+gficFxghhVT_@LSJMDKz@qA`@q@j@_AR]LS@AZm@HOLSt@}AZo@HOPWJIHGJINELELAP?L?vAJt@FXBl@BN@N?D@D@JDB@XN@@d@\RPd@b@bAbA
+</points>
+</polyline>
+<duration>
+<value>131</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Continue onto <b>Showers Dr</b></html_instructions>
+<distance>
+<value>689</value>
+<text>0.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.4030534</lat>
+<lng>-122.1061888</lng>
+</start_location>
+<end_location>
+<lat>37.3929977</lat>
+<lng>-122.0849866</lng>
+</end_location>
+<polyline>
+<points>
+ahhcFtzghVx@g@ZSZSPMPOTSPSTYl@cA@Ah@uAHWXcAZgAXaAV_A`@qAVo@LYFKZi@PWBCDEDIHIHIHIHIZWDGDELKLOHIJOFIBEDIFGFKLUDGBGBGBGBGBGDOh@cBl@oBRq@`@wAhAyDh@kBjDwLf@aB^qAZgApEuOX_@pB{G|AqFvA}ExA{ExAaF
+</points>
+</polyline>
+<duration>
+<value>472</value>
+<text>8 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>California St</b></html_instructions>
+<distance>
+<value>2210</value>
+<text>1.4 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.3929977</lat>
+<lng>-122.0849866</lng>
+</start_location>
+<end_location>
+<lat>37.3904593</lat>
+<lng>-122.0866425</lng>
+</end_location>
+<polyline>
+<points>gifcFdvchVpFrCZP~BlAJFRJNJNLPLZX</points>
+</polyline>
+<duration>
+<value>77</value>
+<text>1 min</text>
+</duration>
+<html_instructions>Turn <b>right</b> onto <b>S Shoreline Blvd</b></html_instructions>
+<distance>
+<value>318</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.3904593</lat>
+<lng>-122.0866425</lng>
+</start_location>
+<end_location>
+<lat>37.3883427</lat>
+<lng>-122.0823537</lng>
+</end_location>
+<polyline>
+<points>
+kyecFn`dhVV[PYPUNWDIDIh@wA~AyEh@}AdAyCL_@DKL_@BGn@cB
+</points>
+</polyline>
+<duration>
+<value>137</value>
+<text>2 mins</text>
+</duration>
+<html_instructions>Turn <b>left</b> onto <b>Church St</b></html_instructions>
+<distance>
+<value>448</value>
+<text>0.3 mi</text>
+</distance>
+</step>
+<step>
+<travel_mode>BICYCLING</travel_mode>
+<start_location>
+<lat>37.3883427</lat>
+<lng>-122.0823537</lng>
+</start_location>
+<end_location>
+<lat>37.3860146</lat>
+<lng>-122.0837505</lng>
+</end_location>
+<polyline>
+<points>clecFtechVlCtAJFj@Z|@b@l@^b@Pl@ZlAj@</points>
+</polyline>
+<duration>
+<value>78</value>
+<text>1 min</text>
+</duration>
+<html_instructions>
+Turn <b>right</b> onto <b>Castro St</b><div style="font-size:0.9em">Destination will be on the right</div>
+</html_instructions>
+<distance>
+<value>287</value>
+<text>0.2 mi</text>
+</distance>
+</step>
+<duration>
+<value>13255</value>
+<text>3 hours 41 mins</text>
+</duration>
+<distance>
+<value>64997</value>
+<text>40.4 mi</text>
+</distance>
+<start_location>
+<lat>37.7749412</lat>
+<lng>-122.4194304</lng>
+</start_location>
+<end_location>
+<lat>37.3860146</lat>
+<lng>-122.0837505</lng>
+</end_location>
+<start_address>San Francisco, CA, USA</start_address>
+<end_address>Mountain View, CA, USA</end_address>
+</leg>
+<copyrights>Map data ©2013 Google</copyrights>
+<overview_polyline>
+<points>
+k|peFl`ejV}AuB]c@x@gAnGsIxIsL~B_DrD_FRXv@z@t@h@t@^lAXbGEfc@qBhj@eCrESUmJk@iV`Su@lCQpGeCB_@N}ALcCOuDpDd@|BF`FgCtAOzEb@dFbAf@l@BF`HnEnJpDlFT|CN^vBv@vB|Hc@dA?dAY~@g@vEmDrDgBxA[FNn@tAHNTd@lDeAzFgBvOaFba@{LfEuAhc@wG~@Zz@zCz@lGl@^`E\xACh@\r@~Al@lAzI~FvL~Etd@tPtB^xEA`JuCjVsJrNuFlMiFhGeEbO{RpGmJ~KmKnGaDnIsArGyBjS_QhD]lG~BfOlIhE~DhFnHtB|BvEpD`KdLzGnKfIxOd@xAmDfNEjAdAnCrk@`Ohw@tRbLpCjBAzAgAz@yBdBgFzBkA|s@s@pKIrA[d@CNVBJx@@p@QtADRa@tXaNbSoKfYeRlP_LnFsDjCkBzAxDlFsEhEgEbDoBa@qAfBaCnE~GjAdDtFoEnAoAbBiCdBvD`F}FjFmLjSoXpNiNrEkGiAgBuB_Dq@cAuBcDlAsAx@{@dAyAdCaE|FiPzQij@rp@ctBzRkn@dFiLdSsn@xH}IdDyD{BuDuBgDkD}FgC_EfCyCrKuLbYs[xm@cr@b`@cc@nOqPvAo@xG{@xUyAjHy@xB}A~QgMv]cYbHmGtJwI~H{K|R{[|FeKrQiY~^ig@nMkQtDeFe@_@yReVlGqJfD}E`AaAtDcAtEkAlWyZdOeVdL_QnZuW`H{GjFcJhN{T|GkKrGwGxL_LpBqC|@aE`FmG~GgIhCWhDKhEOIcEOeKY_QXqMpDzBhElClDtBdAyChCyHhCqHhC{Hp@cC]U@IXDd@sAMOd@L|AwE`AyCfDnBtBoEjBmDvGyLfFyIdMgTdLeS~EgIhBsC^eE\iGLaCv@sUl@uI`LqXba@kcAhU_j@bKwWlKcWdIlKb@bAb@pAh@Y|@FpAHnANtB`BbEb@`JqPfUeb@xCyFvBvBvDtDrDtDd@h@r@]tAkCrJsRpQk[~CrCdB_DnJyQAi@IWdCkA`AgBXwAEgDnD_HzG}Lf@\lA\lHcQ~AqDtRud@nOgXxCsEfFkL`HuL|HnFhBgCfKgObBgCzIwGhIiGKY^a@xA]rFcJj@q@bEyHkEkEwL}LnDiIp@[Dk@`AiBdDmFxDcHvB_CrGZlBz@x@t@bAbAx@g@v@g@b@]jBeCnAsDxD{KhAsAvCwDnWu{@`Kg]xAaFpFrCzC~A~@l@l@f@h@u@l@aAxFiPd@sAn@cBlCtAv@b@|DpBlAj@
+</points>
+</overview_polyline>
+<warning>
+Bicycling directions are in beta. Use caution – This route may contain streets that aren't suited for bicycling.
+</warning>
+<bounds>
+<southwest>
+<lat>37.3860146</lat>
+<lng>-122.4194304</lng>
+</southwest>
+<northeast>
+<lat>37.7755570</lat>
+<lng>-122.0823537</lng>
+</northeast>
+</bounds>
+</route>
+</DirectionsResponse>

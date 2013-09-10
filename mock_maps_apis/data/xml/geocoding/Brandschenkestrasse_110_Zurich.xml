@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GeocodeResponse>
+ <status>OK</status>
+ <result>
+  <type>street_address</type>
+  <formatted_address>Brandschenkestrasse 110, 8002 Zurich, Switzerland</formatted_address>
+  <address_component>
+   <long_name>110</long_name>
+   <short_name>110</short_name>
+   <type>street_number</type>
+  </address_component>
+  <address_component>
+   <long_name>Brandschenkestrasse</long_name>
+   <short_name>Brandschenkestrasse</short_name>
+   <type>route</type>
+  </address_component>
+  <address_component>
+   <long_name>Enge</long_name>
+   <short_name>Enge</short_name>
+   <type>sublocality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>District 2</long_name>
+   <short_name>District 2</short_name>
+   <type>sublocality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Zurich</long_name>
+   <short_name>Zurich</short_name>
+   <type>locality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Zurich District</long_name>
+   <short_name>Zurich District</short_name>
+   <type>administrative_area_level_2</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Canton of Zurich</long_name>
+   <short_name>ZH</short_name>
+   <type>administrative_area_level_1</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Switzerland</long_name>
+   <short_name>CH</short_name>
+   <type>country</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>8002</long_name>
+   <short_name>8002</short_name>
+   <type>postal_code</type>
+  </address_component>
+  <geometry>
+   <location>
+    <lat>47.365</lat>
+    <lng>8.525</lng>
+   </location>
+   <location_type>ROOFTOP</location_type>
+   <viewport>
+    <southwest>
+     <lat>47.364</lat>
+     <lng>8.524</lng>
+    </southwest>
+    <northeast>
+     <lat>47.367</lat>
+     <lng>8.526</lng>
+    </northeast>
+   </viewport>
+  </geometry>
+ </result>
+</GeocodeResponse>

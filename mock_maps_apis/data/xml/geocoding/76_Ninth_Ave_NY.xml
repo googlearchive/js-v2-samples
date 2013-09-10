@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GeocodeResponse>
+ <status>OK</status>
+ <result>
+  <type>street_address</type>
+  <formatted_address>76 9th Avenue, New York, NY 10011, USA</formatted_address>
+  <address_component>
+   <long_name>76</long_name>
+   <short_name>76</short_name>
+   <type>street_number</type>
+  </address_component>
+  <address_component>
+   <long_name>9th Avenue</long_name>
+   <short_name>9th Ave</short_name>
+   <type>route</type>
+  </address_component>
+  <address_component>
+   <long_name>Midtown</long_name>
+   <short_name>Midtown</short_name>
+   <type>neighborhood</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Manhattan</long_name>
+   <short_name>Manhattan</short_name>
+   <type>sublocality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>New York</long_name>
+   <short_name>New York</short_name>
+   <type>locality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>New York</long_name>
+   <short_name>New York</short_name>
+   <type>administrative_area_level_2</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>New York</long_name>
+   <short_name>NY</short_name>
+   <type>administrative_area_level_1</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>United States</long_name>
+   <short_name>US</short_name>
+   <type>country</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>10011</long_name>
+   <short_name>10011</short_name>
+   <type>postal_code</type>
+  </address_component>
+  <geometry>
+   <location>
+    <lat>40.742</lat>
+    <lng>-74.004</lng>
+   </location>
+   <location_type>ROOFTOP</location_type>
+   <viewport>
+    <southwest>
+     <lat>40.740</lat>
+     <lng>-74.006</lng>
+    </southwest>
+    <northeast>
+     <lat>40.743</lat>
+     <lng>-74.003</lng>
+    </northeast>
+   </viewport>
+  </geometry>
+ </result>
+</GeocodeResponse>

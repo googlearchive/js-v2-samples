@@ -1,0 +1,527 @@
+{
+   "routes" : [
+      {
+         "bounds" : {
+            "northeast" : {
+               "lat" : 40.7287830,
+               "lng" : -73.78975029999999
+            },
+            "southwest" : {
+               "lat" : 40.64974840,
+               "lng" : -73.97767999999999
+            }
+         },
+         "copyrights" : "Map data ©2013 Google",
+         "legs" : [
+            {
+               "arrival_time" : {
+                  "text" : "9:08pm",
+                  "time_zone" : "America/New_York",
+                  "value" : 1371085719
+               },
+               "departure_time" : {
+                  "text" : "7:50pm",
+                  "time_zone" : "America/New_York",
+                  "value" : 1371081018
+               },
+               "distance" : {
+                  "text" : "15.5 mi",
+                  "value" : 24875
+               },
+               "duration" : {
+                  "text" : "59 mins",
+                  "value" : 3554
+               },
+               "end_address" : "Queens, NY, USA",
+               "end_location" : {
+                  "lat" : 40.72822590,
+                  "lng" : -73.79483320
+               },
+               "start_address" : "Brooklyn, NY, USA",
+               "start_location" : {
+                  "lat" : 40.64974840,
+                  "lng" : -73.94998180
+               },
+               "steps" : [
+                  {
+                     "distance" : {
+                        "text" : "469 ft",
+                        "value" : 143
+                     },
+                     "duration" : {
+                        "text" : "2 mins",
+                        "value" : 103
+                     },
+                     "end_location" : {
+                        "lat" : 40.65084299999999,
+                        "lng" : -73.9495750
+                     },
+                     "html_instructions" : "Walk to Church Av",
+                     "polyline" : {
+                        "points" : "}kbwFjjjbMAq@?SAK?QqDRc@?"
+                     },
+                     "start_location" : {
+                        "lat" : 40.64974840,
+                        "lng" : -73.94998180
+                     },
+                     "steps" : [
+                        {
+                           "distance" : {
+                              "text" : "141 ft",
+                              "value" : 43
+                           },
+                           "duration" : {
+                              "text" : "1 min",
+                              "value" : 31
+                           },
+                           "end_location" : {
+                              "lat" : 40.64976950,
+                              "lng" : -73.94947789999999
+                           },
+                           "html_instructions" : "Head \u003cb\u003eeast\u003c/b\u003e on \u003cb\u003eErasmus St\u003c/b\u003e toward \u003cb\u003eNostrand Ave\u003c/b\u003e",
+                           "polyline" : {
+                              "points" : "}kbwFjjjbMAq@?SAK?Q"
+                           },
+                           "start_location" : {
+                              "lat" : 40.64974840,
+                              "lng" : -73.94998180
+                           },
+                           "travel_mode" : "WALKING"
+                        },
+                        {
+                           "distance" : {
+                              "text" : "328 ft",
+                              "value" : 100
+                           },
+                           "duration" : {
+                              "text" : "1 min",
+                              "value" : 72
+                           },
+                           "end_location" : {
+                              "lat" : 40.65084299999999,
+                              "lng" : -73.9495750
+                           },
+                           "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eNostrand Ave\u003c/b\u003e",
+                           "polyline" : {
+                              "points" : "albwFfgjbMqDRc@?"
+                           },
+                           "start_location" : {
+                              "lat" : 40.64976950,
+                              "lng" : -73.94947789999999
+                           },
+                           "travel_mode" : "WALKING"
+                        }
+                     ],
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "3.0 mi",
+                        "value" : 4842
+                     },
+                     "duration" : {
+                        "text" : "12 mins",
+                        "value" : 720
+                     },
+                     "end_location" : {
+                        "lat" : 40.6843590,
+                        "lng" : -73.9776660
+                     },
+                     "html_instructions" : "Subway towards Eastchester - Dyre Av",
+                     "polyline" : {
+                        "points" : "wrbwFzgjbMic@zBae@`Cc_@a@oPpm@otAbyB"
+                     },
+                     "start_location" : {
+                        "lat" : 40.65084299999999,
+                        "lng" : -73.9495750
+                     },
+                     "transit_details" : {
+                        "arrival_stop" : {
+                           "location" : {
+                              "lat" : 40.6843590,
+                              "lng" : -73.9776660
+                           },
+                           "name" : "Atlantic Av"
+                        },
+                        "arrival_time" : {
+                           "text" : "8:04pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1371081840
+                        },
+                        "departure_stop" : {
+                           "location" : {
+                              "lat" : 40.65084299999999,
+                              "lng" : -73.9495750
+                           },
+                           "name" : "Church Av"
+                        },
+                        "departure_time" : {
+                           "text" : "7:52pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1371081120
+                        },
+                        "headsign" : "Eastchester - Dyre Av",
+                        "line" : {
+                           "agencies" : [
+                              {
+                                 "name" : "MTA New York City Transit",
+                                 "phone" : "(718) 330-1234",
+                                 "url" : "http://www.mta.info/"
+                              }
+                           ],
+                           "color" : "#00933c",
+                           "icon" : "//maps.gstatic.com/mapfiles/transit/iw/6/us-ny-mta/5.png",
+                           "name" : "Lexington Avenue Express",
+                           "short_name" : "5",
+                           "url" : "http://www.mta.info/nyct/service/pdf/t5cur.pdf",
+                           "vehicle" : {
+                              "icon" : "//maps.gstatic.com/mapfiles/transit/iw/6/metro.png",
+                              "name" : "Subway",
+                              "type" : "SUBWAY"
+                           }
+                        },
+                        "num_stops" : 5
+                     },
+                     "travel_mode" : "TRANSIT"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "197 ft",
+                        "value" : 60
+                     },
+                     "duration" : {
+                        "text" : "1 min",
+                        "value" : 60
+                     },
+                     "end_location" : {
+                        "lat" : 40.6849010,
+                        "lng" : -73.97767999999999
+                     },
+                     "html_instructions" : "Walk to Atlantic Terminal",
+                     "polyline" : {
+                        "points" : "gdiwFlwobMkB@"
+                     },
+                     "start_location" : {
+                        "lat" : 40.6843590,
+                        "lng" : -73.9776660
+                     },
+                     "steps" : [
+                        {
+                           "distance" : {
+                              "text" : "197 ft",
+                              "value" : 60
+                           },
+                           "duration" : {
+                              "text" : "1 min",
+                              "value" : 60
+                           },
+                           "end_location" : {
+                              "lat" : 40.6849010,
+                              "lng" : -73.97767999999999
+                           },
+                           "polyline" : {
+                              "points" : "gdiwFlwobMkB@"
+                           },
+                           "start_location" : {
+                              "lat" : 40.6843590,
+                              "lng" : -73.9776660
+                           },
+                           "travel_mode" : "WALKING"
+                        }
+                     ],
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "9.2 mi",
+                        "value" : 14883
+                     },
+                     "duration" : {
+                        "text" : "19 mins",
+                        "value" : 1140
+                     },
+                     "end_location" : {
+                        "lat" : 40.69960,
+                        "lng" : -73.80852999999999
+                     },
+                     "html_instructions" : "Train towards Long Beach",
+                     "polyline" : {
+                        "points" : "sgiwFnwobM\\_AnAaBfAkB|@wBf@cCXkCXkCVmCXkC`@gCb@gCb@iCb@gCb@gC`@gC\\kCZiC\\kCZiC\\kCZkC\\iCZkC\\iCZkC\\iCZkC\\iCZkC\\iCZkC\\iC\\kCZiC\\kCZkC\\iCPmCHoCFoCDoCFoCFmCBeABiAFoCDoCFoCFoCFoCFoCFoCFoCDoCFoCFoCFoCFmCFoCFoCFoCFoCFoCFoCFoCFoCFoCDoCFoCFmCFoCFoCFoCFoCFoCFoCFoCFoCFoCFoCFoCFmCFoCHoCFoCFoCFoCDoCFoCFoCFoCFoCFmCFoCFoCFoCDoCFoCFoCFoCFoCFoCFoCFoCFoCJmCNoCJ{ADq@PmCJmCBoCAoCEoCEoCEoCGoCMoCKmCMoCQmCSmCWkCUmCUmCYkC]iC[kC]iC]iC_@iCc@gCe@gCc@gCe@gCe@gCe@eCe@gCe@eCe@gCg@gCe@eCe@gCe@eCe@gCg@eCe@gCe@eCe@gCe@eCg@gCe@gCe@eCe@gCg@eCe@gCe@eCe@gCe@eCg@gCe@eCe@gCe@gCg@eCe@gCe@eCe@gCe@eCe@gCg@gCe@eCe@gCe@eCe@gCg@eCe@gCe@eCg@gCe@eCe@gCe@eCg@gCe@eCe@gCg@eCe@gCe@eCe@gCg@eCe@gCe@gCg@eCe@gCe@eCe@gCg@eCe@gCe@eCg@gCe@eCe@gCg@eCe@eCg@gCe@eCe@gCe@gCe@gCe@eCe@gCe@gCe@eCe@gCe@gCe@eCe@gCe@eCe@gCe@gCe@eCe@gCg@eCe@gCe@gCe@eCe@gCe@eCe@gCg@gCe@eCe@gCe@eCg@gCe@eCg@gCi@cCm@aCo@aCo@aCk@cCc@gC[kC[kCa@gCe@gCc@gC]iBKg@LE"
+                     },
+                     "start_location" : {
+                        "lat" : 40.6849010,
+                        "lng" : -73.97767999999999
+                     },
+                     "transit_details" : {
+                        "arrival_stop" : {
+                           "location" : {
+                              "lat" : 40.69960,
+                              "lng" : -73.80852999999999
+                           },
+                           "name" : "Jamaica"
+                        },
+                        "arrival_time" : {
+                           "text" : "8:31pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1371083460
+                        },
+                        "departure_stop" : {
+                           "location" : {
+                              "lat" : 40.6849010,
+                              "lng" : -73.97767999999999
+                           },
+                           "name" : "Atlantic Terminal"
+                        },
+                        "departure_time" : {
+                           "text" : "8:12pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1371082320
+                        },
+                        "headsign" : "Long Beach",
+                        "line" : {
+                           "agencies" : [
+                              {
+                                 "name" : "Long Island Rail Road",
+                                 "phone" : "(718) 558-7400",
+                                 "url" : "http://mta.info/lirr"
+                              }
+                           ],
+                           "color" : "#f25e18",
+                           "name" : "Long Beach",
+                           "text_color" : "#ffffff",
+                           "vehicle" : {
+                              "icon" : "//maps.gstatic.com/mapfiles/transit/iw/6/rail.png",
+                              "name" : "Train",
+                              "type" : "HEAVY_RAIL"
+                           }
+                        },
+                        "num_stops" : 3
+                     },
+                     "travel_mode" : "TRANSIT"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "367 ft",
+                        "value" : 112
+                     },
+                     "duration" : {
+                        "text" : "2 mins",
+                        "value" : 112
+                     },
+                     "end_location" : {
+                        "lat" : 40.7004890,
+                        "lng" : -73.8078840
+                     },
+                     "html_instructions" : "Walk to Archer Av - Sutphin Bl",
+                     "polyline" : {
+                        "points" : "oclwFhvnaMqDaC"
+                     },
+                     "start_location" : {
+                        "lat" : 40.69960,
+                        "lng" : -73.80852999999999
+                     },
+                     "steps" : [
+                        {
+                           "distance" : {
+                              "text" : "367 ft",
+                              "value" : 112
+                           },
+                           "duration" : {
+                              "text" : "2 mins",
+                              "value" : 112
+                           },
+                           "end_location" : {
+                              "lat" : 40.7004890,
+                              "lng" : -73.8078840
+                           },
+                           "polyline" : {
+                              "points" : "oclwFhvnaMqDaC"
+                           },
+                           "start_location" : {
+                              "lat" : 40.69960,
+                              "lng" : -73.80852999999999
+                           },
+                           "travel_mode" : "WALKING"
+                        }
+                     ],
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "2.9 mi",
+                        "value" : 4605
+                     },
+                     "duration" : {
+                        "text" : "20 mins",
+                        "value" : 1228
+                     },
+                     "end_location" : {
+                        "lat" : 40.7287830,
+                        "lng" : -73.79284699999999
+                     },
+                     "html_instructions" : "Bus towards Bayside 27 Av F Lewis Bl",
+                     "polyline" : {
+                        "points" : "ailwFfrnaMIDGa@MiAYyAC_@QkBIa@k@}CWoA[cBGm@w@_GUwAOgAA?E]Ei@qAgHKy@Kw@AYKaAY_CAWA[w@gFk@qDG[I[O}@?Ao@gE_AsCISm@aB_@yAmAsEI[uGjDUBMm@GYGUa@uBe@eC{@qEgAh@oFhCgDbByCxAqCtA|@hD?@H\\y@Bu@Es@GI@s@@kAJcAXu@VkAb@UJ}@L]@aAIWG]MGCeB}@uC{Ay@c@GCc@OQGc@EcDM]E[G_@MSGe@USOMIYWOMMQ[i@OWAUOa@SKa@S{@Ws@S[I_@MUYo@O_FA}@@gDB_BF}AHm@Rs@`@o@b@w@b@_B|@kBv@SHC@SB[FgAZcAZkBl@IB}FjBcAZAK"
+                     },
+                     "start_location" : {
+                        "lat" : 40.7004890,
+                        "lng" : -73.8078840
+                     },
+                     "transit_details" : {
+                        "arrival_stop" : {
+                           "location" : {
+                              "lat" : 40.7287830,
+                              "lng" : -73.79284699999999
+                           },
+                           "name" : "Utopia Py - 75 Av"
+                        },
+                        "arrival_time" : {
+                           "text" : "9:05pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1371085528
+                        },
+                        "departure_stop" : {
+                           "location" : {
+                              "lat" : 40.7004890,
+                              "lng" : -73.8078840
+                           },
+                           "name" : "Archer Av - Sutphin Bl"
+                        },
+                        "departure_time" : {
+                           "text" : "8:45pm",
+                           "time_zone" : "America/New_York",
+                           "value" : 1371084300
+                        },
+                        "headsign" : "Bayside 27 Av F Lewis Bl",
+                        "line" : {
+                           "agencies" : [
+                              {
+                                 "name" : "MTA New York City Transit",
+                                 "phone" : "(718) 330-1234",
+                                 "url" : "http://www.mta.info/"
+                              }
+                           ],
+                           "color" : "#f2a119",
+                           "name" : "Bayside - Jamaica LTD",
+                           "short_name" : "Q31",
+                           "text_color" : "#ffffff",
+                           "url" : "http://www.mta.info/nyct/bus/schedule/queens/q031cur.pdf",
+                           "vehicle" : {
+                              "icon" : "//maps.gstatic.com/mapfiles/transit/iw/6/bus.png",
+                              "name" : "Bus",
+                              "type" : "BUS"
+                           }
+                        },
+                        "num_stops" : 18
+                     },
+                     "travel_mode" : "TRANSIT"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.1 mi",
+                        "value" : 230
+                     },
+                     "duration" : {
+                        "text" : "3 mins",
+                        "value" : 191
+                     },
+                     "end_location" : {
+                        "lat" : 40.72822590,
+                        "lng" : -73.79483320
+                     },
+                     "html_instructions" : "Walk to Queens, NY, USA",
+                     "polyline" : {
+                        "points" : "{yqwFhtkaM@Jv@WDTJRd@rD^rDc@D"
+                     },
+                     "start_location" : {
+                        "lat" : 40.7287830,
+                        "lng" : -73.79284699999999
+                     },
+                     "steps" : [
+                        {
+                           "distance" : {
+                              "text" : "108 ft",
+                              "value" : 33
+                           },
+                           "duration" : {
+                              "text" : "1 min",
+                              "value" : 25
+                           },
+                           "end_location" : {
+                              "lat" : 40.72848730,
+                              "lng" : -73.79278669999999
+                           },
+                           "html_instructions" : "Head \u003cb\u003esouth\u003c/b\u003e on \u003cb\u003eUtopia Pkwy\u003c/b\u003e toward \u003cb\u003e75th Ave\u003c/b\u003e",
+                           "polyline" : {
+                              "points" : "{yqwFhtkaM@Jv@W"
+                           },
+                           "start_location" : {
+                              "lat" : 40.7287830,
+                              "lng" : -73.79284699999999
+                           },
+                           "travel_mode" : "WALKING"
+                        },
+                        {
+                           "distance" : {
+                              "text" : "0.1 mi",
+                              "value" : 177
+                           },
+                           "duration" : {
+                              "text" : "3 mins",
+                              "value" : 152
+                           },
+                           "end_location" : {
+                              "lat" : 40.72804680,
+                              "lng" : -73.79479909999999
+                           },
+                           "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003e75th Ave\u003c/b\u003e",
+                           "polyline" : {
+                              "points" : "axqwF|skaMDTJRd@rD^rD"
+                           },
+                           "start_location" : {
+                              "lat" : 40.72848730,
+                              "lng" : -73.79278669999999
+                           },
+                           "travel_mode" : "WALKING"
+                        },
+                        {
+                           "distance" : {
+                              "text" : "66 ft",
+                              "value" : 20
+                           },
+                           "duration" : {
+                              "text" : "1 min",
+                              "value" : 14
+                           },
+                           "end_location" : {
+                              "lat" : 40.72822590,
+                              "lng" : -73.79483320
+                           },
+                           "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e onto \u003cb\u003e175th St\u003c/b\u003e",
+                           "polyline" : {
+                              "points" : "iuqwFn`laMc@D"
+                           },
+                           "start_location" : {
+                              "lat" : 40.72804680,
+                              "lng" : -73.79479909999999
+                           },
+                           "travel_mode" : "WALKING"
+                        }
+                     ],
+                     "travel_mode" : "WALKING"
+                  }
+               ],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "}kbwFjjjbMCcBqDRc@?kiA|Fc_@a@oPpm@otAbyBkB@\\_AnAaBfAkB|@wBf@cCXkCp@yGXkC`@gCfAqGfAoG~@sGrBkPfFwa@fFya@\\iCPmCP_HXsNx@y`@zB}fA`C{fAzB}fA^_QR}GZkFV_EJmCBoCG_HK_HU_HY}Ge@{Gm@yGo@yGy@uG{@sGcAqGuC_PwC{OsHw`@gRqbAeRqbAiRobAuHw`@oHy`@aRsbAyC{OmAmGqAkG}AcG{AeGc@gC[kC}@sGsBaLLEqDaCIDGa@MiAYyAUkCmAoG[cBGm@mAwI]oC}AaJMqAe@aECs@cByKQw@O_Ao@gE_AsCw@uBmBmHI[uGjDUBMm@Oo@gA{F{@qEgAh@oFhCaI|DqCtA|@hDH^y@Bu@E}@Es@@kAJcAXu@VkAb@UJ}@L]@aAIu@UcG}Cy@c@k@Su@MaES{@USGy@e@g@a@]_@[i@OWAUOa@SKa@S{@Ws@S{@WUYo@O}G?gDB}DPm@Rs@`@gBfA_B|@cCbAo@JkCv@sJ|CcAZAK@Jv@WDTJRdAfJc@D"
+         },
+         "warnings" : [
+            "Walking directions are in beta.    Use caution – This route may be missing sidewalks or pedestrian paths."
+         ],
+         "waypoint_order" : []
+      }
+   ],
+   "status" : "OK"
+}

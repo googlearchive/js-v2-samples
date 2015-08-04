@@ -124,7 +124,7 @@ def makeMiniParty( kind, title, statenames, partyname, names ):
 				else:
 					win = 'color:white; background-color:#AA0031;'
 				if precincts['reporting'] == precincts['total']:
-					check = '<img src="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/checkmark.gif" style="width:7px; height:6px; margin:0 3px 2px 0" />'
+					check = '<img src="http://googlemaps.github.io/js-v2-samples/elections/2008/images/checkmark.gif" style="width:7px; height:6px; margin:0 3px 2px 0" />'
 			if name in votes and total > 0:
 				percent = '%d%%' % percentage( float(votes[name]) / float(total) )
 			else:

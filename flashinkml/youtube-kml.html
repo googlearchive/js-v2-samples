@@ -18,7 +18,7 @@ function load() {
 if (GBrowserIsCompatible()) {
 map = new GMap2(document.getElementById("map"));
 map.addControl(new GSmallMapControl());
-geoXml = new GGeoXml("http://gmaps-samples.googlecode.com/svn/trunk/flashinkml/youtube-sample.kml");
+geoXml = new GGeoXml("http://googlemaps.github.io/js-v2-samples/flashinkml/youtube-sample.kml");
 map.setCenter(new GLatLng(0,0), 1);
 map.addOverlay(geoXml);
 }

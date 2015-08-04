@@ -18,7 +18,7 @@ function load() {
 if (GBrowserIsCompatible()) {
 map = new GMap2(document.getElementById("map"));
 map.addControl(new GSmallMapControl());
-geoXml = new GGeoXml("http://gmaps-samples.googlecode.com/svn/trunk/vbr/vbr-example.kml");
+geoXml = new GGeoXml("http://googlemaps.github.io/js-v2-samples/vbr/vbr-example.kml");
 map.setCenter(new GLatLng(0,0), 1);
 map.addOverlay(geoXml);
 }

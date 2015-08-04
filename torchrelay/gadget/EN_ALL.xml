@@ -3,5 +3,5 @@
   <msg name="DEFAULT_LOCALE">en_us</msg>
   <msg name="gadget_title">2008 Global Torch Relay</msg>
   <msg name="gadget_description">Follow the path of the 2008 Torch Relay as it traverses the globe. The torch will travel through cities, oceans, and even the world's highest mountain, Mt. Qomolangma (Mt. Everest).</msg>
-  <msg name="gadget_screenshot">http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/images/screenshot.png</msg>
+  <msg name="gadget_screenshot">http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/images/screenshot.png</msg>
 </messagebundle>

@@ -12,7 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class WebMapActivityJSInterface extends Activity implements LocationListener {
-  private static final String MAP_URL = "http://gmaps-samples.googlecode.com/svn/trunk/articles-android-webmap/simple-android-map.html";
+  private static final String MAP_URL = "http://googlemaps.github.io/js-v2-samples/articles-android-webmap/simple-android-map.html";
   private WebView webView;
   private Location mostRecentLocation;
 

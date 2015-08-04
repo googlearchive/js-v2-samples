@@ -3,5 +3,5 @@
   <msg name="DEFAULT_LOCALE">nl_nl</msg>
   <msg name="gadget_title">2008 Global Torch Relay (NL)</msg>
   <msg name="gadget_description"></msg>
-  <msg name="gadget_screenshot">http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/images/screenshot.png</msg>
+  <msg name="gadget_screenshot">http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/images/screenshot.png</msg>
 </messagebundle>

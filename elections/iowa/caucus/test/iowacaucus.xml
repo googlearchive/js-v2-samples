@@ -50,9 +50,9 @@ e.custom(start,val,"");}});return true;});},queue:function(type,fn){if(jQuery.is
 <script type="text/javascript">
 	var time = (new Date).getTime();
 	document.write( [
-		'<script type="text/javascript" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/test/data.js?t=', time, '">',
+		'<script type="text/javascript" src="http://googlemaps.github.io/js-v2-samples/elections/iowa/caucus/test/data.js?t=', time, '">',
 		'<\/script>',
-		'<script type="text/javascript" src="http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/test/map.js?t=', time, '">',
+		'<script type="text/javascript" src="http://googlemaps.github.io/js-v2-samples/elections/iowa/caucus/test/map.js?t=', time, '">',
 		'<\/script>'
 	].join('') );
 </script>

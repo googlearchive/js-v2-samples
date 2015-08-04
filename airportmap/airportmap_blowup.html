@@ -58,7 +58,7 @@ function cm_load() {
     cm_map.setCenter(new GLatLng( 36.879620,-99.84375), 3);
 
     icon = new GIcon();
-    icon.image = 'http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png';
+    icon.image = 'http://googlemaps.github.io/js-v2-samples/markers/circular/greencirclemarker.png';
     icon.iconSize = new GSize(32, 32);
     icon.iconAnchor = new GPoint(16, 16);
     icon.infoWindowAnchor = new GPoint(25, 7);
@@ -76,7 +76,7 @@ function cm_load() {
  */
 function cm_markerClicked(markerNum) {
   cm_mapMarkers[markerNum].openInfoWindowHtml(cm_mapHTMLS[markerNum]);
-  cm_mapMarkers[markerNum].setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/yellowcirclemarker.png');
+  cm_mapMarkers[markerNum].setImage('http://googlemaps.github.io/js-v2-samples/markers/circular/yellowcirclemarker.png');
 }
 
 /** 
@@ -163,21 +163,21 @@ function cm_createMarker(point, title, html, rank) {
   var marker = new LabeledMarker(newPoint, markerOpts);
 
   GEvent.addListener(marker, "click", function() {
-    marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/yellowcirclemarker.png');
+    marker.setImage('http://googlemaps.github.io/js-v2-samples/markers/circular/yellowcirclemarker.png');
     marker.showMapBlowup();
     marker.openInfoWindowHtml(html);
   });
 
   GEvent.addListener(marker, "mouseover", function() {
-    marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/yellowcirclemarker.png');
+    marker.setImage('http://googlemaps.github.io/js-v2-samples/markers/circular/yellowcirclemarker.png');
   });
 
   GEvent.addListener(marker, "mouseout", function() {
-    marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png');
+    marker.setImage('http://googlemaps.github.io/js-v2-samples/markers/circular/greencirclemarker.png');
   });
 
   GEvent.addListener(marker, "infowindowclose", function() {
-    marker.setImage('http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/greencirclemarker.png');
+    marker.setImage('http://googlemaps.github.io/js-v2-samples/markers/circular/greencirclemarker.png');
   });
 
   return marker;

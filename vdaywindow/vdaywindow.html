@@ -121,7 +121,7 @@
 
    function updateURL(){
      
-     var mapURL = "http://gmaps-samples.googlecode.com/svn/trunk/vdaywindow/vdaywindow.html?message="+escape(reverseString(message))+"&mtype="+map.getCurrentMapType().getUrlArg()+"&lat="+marker.getLatLng().lat().toFixed(6)+"&lng="+marker.getLatLng().lng().toFixed(6)+"&zoom="+map.getZoom()+"&address="+escape(address);
+     var mapURL = "http://googlemaps.github.io/js-v2-samples/vdaywindow/vdaywindow.html?message="+escape(reverseString(message))+"&mtype="+map.getCurrentMapType().getUrlArg()+"&lat="+marker.getLatLng().lat().toFixed(6)+"&lng="+marker.getLatLng().lng().toFixed(6)+"&zoom="+map.getZoom()+"&address="+escape(address);
      document.getElementById("status").innerHTML = "3) <a target=\"_blank\" href='" + mapURL + "' >Permalink to this Map!</a>";
 
     }

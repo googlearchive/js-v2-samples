@@ -259,7 +259,7 @@ var mapplet = ! window.GBrowserIsCompatible;
 	var partyname = opt.party && ( opt.party.shortestName + ' ' );
 	var precinct = ( opt.party && opt.party.name == 'republican' ? [
 		'<p>',
-			'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/IowaRepublican2008PrelimCaucusResults.pdf" target="_blank">',
+			'<a href="http://googlemaps.github.io/js-v2-samples/elections/iowa/caucus/live/IowaRepublican2008PrelimCaucusResults.pdf" target="_blank">',
 				'Precinct Results ',
 				'<img style="width:17px; height:17px; border:0;" src="http://www.adobe.com/images/pdficon_small.gif" />',
 			'</a>',
@@ -1035,7 +1035,7 @@ function load() {
 		//if( testdata )
 		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );
 		//else
-			loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
+			loadScript( 'http://googlemaps.github.io/js-v2-samples/elections/iowa/caucus/live/' + party.name + '_results.js' );
 	}
 	
 	

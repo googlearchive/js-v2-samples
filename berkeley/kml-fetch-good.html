@@ -59,12 +59,12 @@
     }
     
     // fetch the KML
-    var url = 'http://gmaps-samples.googlecode.com/svn/trunk/berkeley/suddenoakdeath.kmz';
+    var url = 'http://googlemaps.github.io/js-v2-samples/berkeley/suddenoakdeath.kmz';
     google.earth.fetchKml(ge, url, finished);
     
   }
   function addKml(){
-    var url = 'http://gmaps-samples.googlecode.com/svn/trunk/berkeley/ramorum.kml';
+    var url = 'http://googlemaps.github.io/js-v2-samples/berkeley/ramorum.kml';
     google.earth.fetchKml(ge, url, function(object) {
       if (!object) {
         alert('bad or NULL kml');

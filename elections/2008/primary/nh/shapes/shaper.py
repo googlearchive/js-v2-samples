@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-iconBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/'
+iconBaseUrl = 'http://googlemaps.github.io/js-v2-samples/elections/2008/images/icons/'
 
 import private
 import reader

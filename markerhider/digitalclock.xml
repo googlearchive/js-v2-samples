@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
 <ModulePrefs title="Google Maps Digi-Clock" height="170" author="Pamela Fox"
- thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/markerhider/thumb_gmapdigiclock.png"
- screenshot="http://gmaps-samples.googlecode.com/svn/trunk/markerhider/screenshot_gmapdigiclock.png"/>
+ thumbnail="http://googlemaps.github.io/js-v2-samples/markerhider/thumb_gmapdigiclock.png"
+ screenshot="http://googlemaps.github.io/js-v2-samples/markerhider/screenshot_gmapdigiclock.png"/>
 <UserPref name="lat" display_name="Latitude" datatype="string" required="true" default_value="-17.925236" />
 <UserPref name="lng" display_name="Longitude" datatype="string" required="true" default_value="25.8573" />
 <UserPref name="zoom" display_name="Zoom" datatype="string" required="true" default_value="18" />
@@ -54,17 +54,17 @@
         map.setMapType(G_SATELLITE_MAP);
 
         var iconHorizontal = new GIcon();
-        iconHorizontal.image = "http://gmaps-samples.googlecode.com/svn/trunk/markerhider/marker_hor.png";
+        iconHorizontal.image = "http://googlemaps.github.io/js-v2-samples/markerhider/marker_hor.png";
         iconHorizontal.iconSize = new GSize(21, 8);
         iconHorizontal.iconAnchor = new GPoint(10, 4);
 
         var iconVertical = new GIcon();
-        iconVertical.image = "http://gmaps-samples.googlecode.com/svn/trunk/markerhider/marker_vert.png";
+        iconVertical.image = "http://googlemaps.github.io/js-v2-samples/markerhider/marker_vert.png";
         iconVertical.iconSize = new GSize(8, 21); 
         iconVertical.iconAnchor = new GPoint(4, 10);
 
         var iconColon = new GIcon();
-        iconColon.image = "http://gmaps-samples.googlecode.com/svn/trunk/markerhider/marker_colon.png";
+        iconColon.image = "http://googlemaps.github.io/js-v2-samples/markerhider/marker_colon.png";
         iconColon.iconSize = new GSize(8, 21); 
         iconColon.iconAnchor = new GPoint(4, 10);
 

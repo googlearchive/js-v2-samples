@@ -5,8 +5,8 @@
 	title_url="http://maps.google.com/decision2008"
 	description="View live election results for the 2008 primaries."
 	category="politics"
-	thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap-thumb.png"
-	screenshot="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap-screenshot.png"
+	thumbnail="http://googlemaps.github.io/js-v2-samples/elections/2008/primary/supermap-thumb.png"
+	screenshot="http://googlemaps.github.io/js-v2-samples/elections/2008/primary/supermap-screenshot.png"
 	author="Michael Geary"
 	author_affiliation="Google, Inc."
 	author_email="elections@google.com"
@@ -75,7 +75,7 @@ e.custom(start,val,"");}});return true;});},queue:function(type,fn){if(jQuery.is
 	GoogleElectionMapOptions = {
 		primary: true,
 		state: '',
-		baseUrl: 'http://gmaps-samples.googlecode.com/svn/trunk/',
+		baseUrl: 'http://googlemaps.github.io/js-v2-samples/',
 		_: null
 	};
 </script>
@@ -83,11 +83,11 @@ e.custom(start,val,"");}});return true;});},queue:function(type,fn){if(jQuery.is
 <script type="text/javascript">
 	document.write(
 		'<script type="text/javascript" src="',
-			_IG_GetCachedUrl( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/states/super/data.js', { refreshInterval:120 } ),
+			_IG_GetCachedUrl( 'http://googlemaps.github.io/js-v2-samples/elections/2008/primary/states/super/data.js', { refreshInterval:120 } ),
 		'">',
 		'<\/script>',
 		'<script type="text/javascript" src="',
-			_IG_GetCachedUrl( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/supermap.js', { refreshInterval:120 } ),
+			_IG_GetCachedUrl( 'http://googlemaps.github.io/js-v2-samples/elections/2008/primary/supermap.js', { refreshInterval:120 } ),
 		'">',
 		'<\/script>'
 	);

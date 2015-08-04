@@ -60,7 +60,7 @@ e.custom(start,val,"");}});return true;});},queue:function(type,fn){if(jQuery.is
 <script type="text/javascript">
 	document.write(
 		'<script type="text/javascript" src="',
-			_IG_GetCachedUrl( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/newmap.js', { refreshInterval:10 } ),
+			_IG_GetCachedUrl( 'http://googlemaps.github.io/js-v2-samples/elections/2008/primary/newmap.js', { refreshInterval:10 } ),
 		'">',
 		'<\/script>'
 	);

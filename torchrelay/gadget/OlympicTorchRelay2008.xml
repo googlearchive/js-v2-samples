@@ -9,12 +9,12 @@
              screenshot="__MSG_gadget_screenshot__"
              height="350">
 	<Require feature="tabs"/>
-	<Locale             messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/ALL_ALL.xml" />
-	<Locale lang="en"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/EN_ALL.xml" />
-	<Locale lang="it"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/IT_ALL.xml" />
-	<Locale lang="fr"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/FR_ALL.xml" />
-	<Locale lang="nl"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/NL_ALL.xml" />
-	<Locale lang="es"   messages="http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/gadget/ES_ALL.xml" />
+	<Locale             messages="http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/ALL_ALL.xml" />
+	<Locale lang="en"   messages="http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/EN_ALL.xml" />
+	<Locale lang="it"   messages="http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/IT_ALL.xml" />
+	<Locale lang="fr"   messages="http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/FR_ALL.xml" />
+	<Locale lang="nl"   messages="http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/NL_ALL.xml" />
+	<Locale lang="es"   messages="http://googlemaps.github.io/js-v2-samples/torchrelay/gadget/ES_ALL.xml" />
 </ModulePrefs>
 <UserPref name="locale" display_name="Info Language" datatype="enum" default_value="__MSG_DEFAULT_LOCALE__">
   <EnumValue value="en_us" display_value="English (US)" />
@@ -68,19 +68,19 @@ a.player{
 }
 a#prevButton__MODULE_ID__{
   width: 36px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/prevButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/prevButton.png");
 }
 a#playButton__MODULE_ID__{
   width: 49px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/playButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/playButton.png");
 }
 a#nextButton__MODULE_ID__{
   width: 36px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/nextButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/nextButton.png");
 }
 a#pauseButton__MODULE_ID__{
   width: 49px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/pauseButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/pauseButton.png");
   display:none;
 }
 a.player:hover{
@@ -103,7 +103,7 @@ div#regionLink__MODULE_ID__ a{
 div#regionLink__MODULE_ID__ a.selected{
   color: #000000;
   padding:0 0 2px 0;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/triangle.gif");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/triangle.gif");
   background-repeat: no-repeat;
   background-position: center 100%;
 }
@@ -150,7 +150,7 @@ html>body li{
 */
 li.noTorch{
   background:#f2f2f2;
-  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-gray.gif");
+  list-style-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/dot-gray.gif");
   list-style-position:inside;
 }
 
@@ -160,13 +160,13 @@ li.noTorch span.torch {
 
 li.torched{
   background:#fff;
-  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-red-transparent.png");
+  list-style-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/dot-red-transparent.png");
   list-style-position:inside;
 }
 li.selected{
   font-weight:bold;
   border:#999 solid 2px;
-  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-blue-transparent.png");
+  list-style-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/dot-blue-transparent.png");
   list-style-position:inside;
 }
 
@@ -176,7 +176,7 @@ li.hasTorch span.torch {
   right: 10px;
   width: 36px;
   height: 36px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/olympic-torch-36.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/olympic-torch-36.png");
   background-repeat: no-repeat;	
   visibility: visible;
 }
@@ -191,14 +191,14 @@ a.name{
   background-position:100%;
 }
 div.show a.name{
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/minus_sm.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/minus_sm.gif");
   background-repeat:no-repeat;
 }
 div.show ul{
   display:block;
 }
 div.hide a.name{
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/plus_sm.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/plus_sm.gif");
   background-repeat:no-repeat;
 }
 div.hide ul{
@@ -234,11 +234,11 @@ a.selected{
 }
 #scrollUp__MODULE_ID__{
 //  top:0;
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/scrollUp.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/scrollUp.gif");
 }
 #scrollDown__MODULE_ID__{
 //  bottom:0;
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/scrollDown.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/scrollDown.gif");
 }
 #scrollUp__MODULE_ID__:hover, #scrollDown__MODULE_ID__:hover{
   background-position:0 0;
@@ -1437,7 +1437,7 @@ function Map(mapDiv) {
  */
 function TorchMgr() {}
 
-TorchMgr.SITE_URL = 'http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/';
+TorchMgr.SITE_URL = 'http://googlemaps.github.io/js-v2-samples/torchrelay/maps/';
 TorchMgr.TORCH_DATA_URL = TorchMgr.SITE_URL + "data/torchRelayJSON-" + determineLocale() + ".json";
 TorchMgr.CITY_IMAGE_DATA_URL = TorchMgr.SITE_URL + "data/photolinks.json";
 TorchMgr.IMAGES_PATH = "images/";

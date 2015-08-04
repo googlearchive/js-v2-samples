@@ -59,7 +59,7 @@ function getParamsURL(){
 function generateKey() {
   var siteUrl = document.getElementById("siteURL").value;
   var targetPage = "http://www.google.com/maps/api_key";
-  var landingPage = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+  var landingPage = "http://googlemaps.github.io/js-v2-samples/" +
                     "spreadsheetsmapwizard/makecustommap.htm" + "?generated=1" +
                     getParamsURL();
 
@@ -703,15 +703,15 @@ function cm_createMarker(point, title, html, rank) {
   var nIcon = new GIcon(cm_baseIcon);
 
   if(rank &gt; 0 && rank &lt; 100) {
-    nIcon.imageOut = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    nIcon.imageOut = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconType + "/marker" + rank + ".png";
-    nIcon.imageOver = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    nIcon.imageOver = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconOverType + "/marker" + rank + ".png";
     nIcon.image = nIcon.imageOut; 
   } else { 
-    nIcon.imageOut = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    nIcon.imageOut = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconType + "/blank.png";
-    nIcon.imageOver = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    nIcon.imageOver = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconOverType + "/blank.png";
     nIcon.image = nIcon.imageOut;
   }

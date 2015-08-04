@@ -77,7 +77,7 @@
 var opt = window.GoogleElectionMapOptions || {};
 
 //var imgBaseUrl = 'http://mg.to/iowa/server/images/';
-var imgBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/images/icons/';
+var imgBaseUrl = 'http://googlemaps.github.io/js-v2-samples/elections/2008/images/icons/';
 
 function loadScript( url ) {
 	var script = document.createElement( 'script' );
@@ -353,9 +353,9 @@ var partyButtons = opt.party ? '' : [
 				'</div>',
 				'<div style="padding-bottom:6px; display:none;">',
 					'View in <a href="http://earth.google.com/" target="_blank">Google Earth</a>: ',
-					'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/', opt.state, '/earth-', opt.state, '-democrat.kml">Democratic</a>',
+					'<a href="http://googlemaps.github.io/js-v2-samples/elections/2008/primary/', opt.state, '/earth-', opt.state, '-democrat.kml">Democratic</a>',
 					' ',
-					'<a href="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/', opt.state, '/earth-', opt.state, '-republican.kml">Republican</a>',
+					'<a href="http://googlemaps.github.io/js-v2-samples/elections/2008/primary/', opt.state, '/earth-', opt.state, '-republican.kml">Republican</a>',
 				'</div>',
 				//'<div>',
 				//	'<select id="lstRegions">',
@@ -454,7 +454,7 @@ var feed = {
 var map;
 
 opt.state = opt.state || 'mi';
-opt.baseUrl = opt.baseUrl || 'http://gmaps-samples.googlecode.com/svn/trunk/';
+opt.baseUrl = opt.baseUrl || 'http://googlemaps.github.io/js-v2-samples/';
 
 var counties = Data.counties || [], state = Data.state || {};
 counties.index( 'name' );
@@ -1175,9 +1175,9 @@ function load() {
 		//if( testdata )
 		//	loadScript( 'http://gigapad/iowa/server/test.' + party + '_results.js' );
 		//else
-			//loadScript( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/iowa/caucus/live/' + party.name + '_results.js' );
+			//loadScript( 'http://googlemaps.github.io/js-v2-samples/elections/iowa/caucus/live/' + party.name + '_results.js' );
 		//var kmlBaseUrl = 'http://mg.to/', opt.state, '/';
-		//var kmlBaseUrl = 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/', opt.state, '/';
+		//var kmlBaseUrl = 'http://googlemaps.github.io/js-v2-samples/elections/2008/primary/', opt.state, '/';
 		//var kml = new GGeoXml( kmlBaseUrl + 'maps-', opt.state, '-' + party.name + '.kml?t=' + new Date().getTime() );
 		//map.addOverlay( kml );
 		//GEvent.addListener( kml, 'click', function( overlay, latlng ) {

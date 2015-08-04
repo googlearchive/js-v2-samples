@@ -6,7 +6,7 @@
 		//party: 'democrat',
 		//party: 'republican',
 		twitter: true,
-		baseUrl: 'http://gmaps-samples.googlecode.com/svn/trunk/',
+		baseUrl: 'http://googlemaps.github.io/js-v2-samples/',
 		_: null
 	};
 	var time = (new Date).getTime();

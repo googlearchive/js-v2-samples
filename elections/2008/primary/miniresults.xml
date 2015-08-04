@@ -5,8 +5,8 @@
 	title_url="http://maps.google.com/decision2008"
 	description="View live election results for the 2008 primaries."
 	category="politics"
-	thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/miniresults-thumb.png"
-	screenshot="http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/miniresults-screenshot.png"
+	thumbnail="http://googlemaps.github.io/js-v2-samples/elections/2008/primary/miniresults-thumb.png"
+	screenshot="http://googlemaps.github.io/js-v2-samples/elections/2008/primary/miniresults-screenshot.png"
 	author="Michael Geary"
 	author_affiliation="Google, Inc."
 	author_email="elections@google.com"
@@ -22,7 +22,7 @@
 	<script type="text/javascript">
 		document.write(
 			'<script type="text/javascript" src="',
-				_IG_GetCachedUrl( 'http://gmaps-samples.googlecode.com/svn/trunk/elections/2008/primary/miniresults.js', { refreshInterval:120 } ),
+				_IG_GetCachedUrl( 'http://googlemaps.github.io/js-v2-samples/elections/2008/primary/miniresults.js', { refreshInterval:120 } ),
 			'">',
 			'<\/script>'
 		);

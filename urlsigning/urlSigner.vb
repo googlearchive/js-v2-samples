@@ -1,5 +1,5 @@
 'Based on C# example code available here:
-'http://gmaps-samples.googlecode.com/svn/trunk/urlsigning/UrlSigner.cs
+'http://googlemaps.github.io/js-v2-samples/urlsigning/UrlSigner.cs
 'Converted to VB.NET by Danny Moules
 
 'Licensed under Creative Commons Attribution-Share Alike 2.0 UK: England & Wales

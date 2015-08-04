@@ -92,19 +92,19 @@ a.player{
 }
 a.prevButton{
   width: 36px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/prevButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/prevButton.png");
 }
 a.playButton{
   width: 49px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/playButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/playButton.png");
 }
 a.nextButton{
   width: 36px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/nextButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/nextButton.png");
 }
 a.pauseButton{
   width: 49px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/pauseButton.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/pauseButton.png");
   display:none;
 }
 a.player:hover{
@@ -140,7 +140,7 @@ div.regionLink a.selected{
   padding:3px 3px 2px 3px;
   background-color: white;
   /*
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/triangle.gif");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/triangle.gif");
   background-repeat: no-repeat;
   background-position: center 100%;
   */
@@ -190,7 +190,7 @@ li{
 }
 li.noTorch{
   background:#f2f2f2;
-  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-gray.gif");
+  list-style-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/dot-gray.gif");
   list-style-position:inside;
 }
 
@@ -200,13 +200,13 @@ li.noTorch span.torch {
 
 li.torched{
   background:#fff;
-  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-red-transparent.png");
+  list-style-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/dot-red-transparent.png");
   list-style-position:inside;
 }
 li.selected{
   font-weight:bold;
   border:#999 solid 2px;
-  list-style-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/dot-blue-transparent.png");
+  list-style-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/dot-blue-transparent.png");
   list-style-position:inside;
 }
 
@@ -217,7 +217,7 @@ li.hasTorch span.torch {
   right: 0px;
   width: 36px;
   height: 36px;
-  background-image: url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/olympic-torch-36.png");
+  background-image: url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/olympic-torch-36.png");
   background-repeat: no-repeat;	
   visibility: visible;
 }
@@ -232,14 +232,14 @@ a.name{
   background-position:100%;
 }
 div.show a.name{
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/minus_sm.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/minus_sm.gif");
   background-repeat:no-repeat;
 }
 div.show ul{
   display:block;
 }
 div.hide a.name{
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/plus_sm.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/plus_sm.gif");
   background-repeat:no-repeat;
 }
 div.hide ul{
@@ -276,11 +276,11 @@ a.selected{
 }
 .scrollUp{
   top:0;
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/scrollUp.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/scrollUp.gif");
 }
 .scrollDown{
   bottom:0;
-  background-image:url("http://gmaps-samples.googlecode.com/svn/trunk/torchrelay/maps/images/scrollDown.gif");
+  background-image:url("http://googlemaps.github.io/js-v2-samples/torchrelay/maps/images/scrollDown.gif");
 }
 .scrollUp:hover, .scrollDown:hover{
   background-position:0 0;

@@ -6,15 +6,15 @@
              author_email="maps-devtools@google.com"
              author_affiliation="Google, Inc."
              author_location="Mountain View, CA"
-             screenshot="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_screenshot.png"
-             thumbnail="http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/images/youtube_recent_mapplet_thumbnail.png"
+             screenshot="http://googlemaps.github.io/js-v2-samples/mapplets/youtube/images/youtube_recent_mapplet_screenshot.png"
+             thumbnail="http://googlemaps.github.io/js-v2-samples/mapplets/youtube/images/youtube_recent_mapplet_thumbnail.png"
              height="200">
   <Require feature="sharedmap"/>
 </ModulePrefs>
 <Content type="html"><![CDATA[
 
 <style type="text/css">
-      @import url("http://gmaps-samples.googlecode.com/svn/trunk/mapplets/youtube/youtube.css");
+      @import url("http://googlemaps.github.io/js-v2-samples/mapplets/youtube/youtube.css");
 </style>
 
 <div id="youtube" />

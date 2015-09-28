@@ -1,28 +1,23 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Signs a URL using a URL signing secret, and an optional client ID """
+""" Signs a URL using a URL signing secret """
 
-import sys
 import hashlib
-import urllib
 import hmac
 import base64
 import urlparse
 
-def sign_url(input_url=None, secret=None, client_id=None):
+def sign_url(input_url=None, secret=None):
   """ Sign a request URL with a URL signing secret.
 
       Usage:
       from urlsigner import sign_url
 
-      signed_url = sign_url(input_url=my_url,
-                            secret=CLIENT_SECRET,
-                            client_id=CLIENT_ID)
+      signed_url = sign_url(input_url=my_url, secret=SECRET)
 
       Args:
       input_url - The URL to sign
       secret    - Your URL signing secret
-      client_id - Your Client ID (optional)
 
       Returns:
       The signed request URL
@@ -30,10 +25,6 @@ def sign_url(input_url=None, secret=None, client_id=None):
 
   if not input_url or not secret:
     raise Exception("Both input_url and secret are required")
-
-  # Add the Client ID to the URL
-  if client_id:
-    input_url += "&client=%s" % (client_id)
 
   url = urlparse.urlparse(input_url)
 
@@ -59,6 +50,4 @@ def sign_url(input_url=None, secret=None, client_id=None):
 if __name__ == "__main__":
   input_url = raw_input("URL to Sign: ")
   secret = raw_input("URL signing secret: ")
-  client_id = raw_input("Client ID (optional, press enter to omit): ")
-  print "Signed URL: " + sign_url(input_url, secret, client_id)
-
+  print "Signed URL: " + sign_url(input_url, secret)

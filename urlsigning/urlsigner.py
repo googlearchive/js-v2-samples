@@ -1,5 +1,6 @@
 #!/usr/bin/python
-# coding: utf8
+# -*- coding: utf-8 -*-
+""" Signs a URL using a URL signing secret, and an optional client ID """
 
 import sys
 import hashlib
@@ -8,45 +9,56 @@ import hmac
 import base64
 import urlparse
 
-print("")
-print("URL Signer 1.0")
-print("")
+def sign_url(input_url=None, secret=None, client_id=None):
+  """ Sign a request URL with a URL signing secret.
 
-# Collect the URL input string (which must alrady be URL-encoded)
-# from the user and parse it into its collective components
-# For testing purposes, if no URL is entered, we use a default
-inputStr = raw_input('URL to Sign (Must be URL-Encoded) --> ')
-if not inputStr:
-  inputStr = "YOUR_URL_TO_SIGN"
+      Usage:
+      from urlsigner import sign_url
 
-print("URL To Sign: " + inputStr)
-url = urlparse.urlparse(inputStr)
+      signed_url = sign_url(input_url=my_url,
+                            secret=CLIENT_SECRET,
+                            client_id=CLIENT_ID)
 
-# Collect the private key. You may want to store this
-# in a private file.
-privateKey = raw_input('Private Key ---> ')
-if not privateKey:
-  privateKey = "YOUR_PRIVATE_KEY"
-  
-print("Private Key: " + privateKey)
+      Args:
+      input_url - The URL to sign
+      secret    - Your URL signing secret
+      client_id - Your Client ID (optional)
 
-#We only need to sign the path+query part of the string
-urlToSign = url.path + "?" + url.query
-print("")
-print("Original Path + Query: " + urlToSign)
+      Returns:
+      The signed request URL
+  """
 
-# Decode the private key into its binary format
-# We need toe decode the URL-encoded private key
-decodedKey = base64.urlsafe_b64decode(privateKey)
+  if not input_url or not secret:
+    raise Exception("Both input_url and secret are required")
 
-# Create a signature using the private key and the URL-encoded
-# string using HMAC SHA1. This signature will be binary.
-signature = hmac.new(decodedKey, urlToSign, hashlib.sha1)
+  # Add the Client ID to the URL
+  if client_id:
+    input_url += "&client=%s" % (client_id)
 
-# Encode the binary signature into base64 for use within a URL
-encodedSignature = base64.urlsafe_b64encode(signature.digest())
-print("")
-print("B64 Signature: " + encodedSignature)
-originalUrl = url.scheme + "://" + url.netloc + url.path + "?" + url.query
-print("")
-print("Full URL: " + originalUrl + "&signature=" + encodedSignature)
+  url = urlparse.urlparse(input_url)
+
+  # We only need to sign the path+query part of the string
+  url_to_sign = url.path + "?" + url.query
+
+  # Decode the private key into its binary format
+  # We need to decode the URL-encoded private key
+  decoded_key = base64.urlsafe_b64decode(secret)
+
+  # Create a signature using the private key and the URL-encoded
+  # string using HMAC SHA1. This signature will be binary.
+  signature = hmac.new(decoded_key, url_to_sign, hashlib.sha1)
+
+  # Encode the binary signature into base64 for use within a URL
+  encoded_signature = base64.urlsafe_b64encode(signature.digest())
+
+  original_url = url.scheme + "://" + url.netloc + url.path + "?" + url.query
+
+  # Return signed URL
+  return original_url + "&signature=" + encoded_signature
+
+if __name__ == "__main__":
+  input_url = raw_input("URL to Sign: ")
+  secret = raw_input("URL signing secret: ")
+  client_id = raw_input("Client ID (optional, press enter to omit): ")
+  print "Signed URL: " + sign_url(input_url, secret, client_id)
+

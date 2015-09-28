@@ -4,7 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+import java.util.Base64;  // JDK 1.8 only - older versions may need to use Apache Commons or similar.
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URL;
@@ -64,6 +64,7 @@ public class UrlSigner {
     keyString = keyString.replace('-', '+');
     keyString = keyString.replace('_', '/');
     System.out.println("Key: " + keyString);
+    // Base64 is JDK 1.8 only - older versions may need to use Apache Commons or similar.
     this.key = Base64.getDecoder().decode(keyString);
   }
 
@@ -84,6 +85,7 @@ public class UrlSigner {
     byte[] sigBytes = mac.doFinal(resource.getBytes());
 
     // base 64 encode the binary signature
+    // Base64 is JDK 1.8 only - older versions may need to use Apache Commons or similar.
     String signature = Base64.getEncoder().encodeToString(sigBytes);
     
     // convert the signature to 'web safe' base 64

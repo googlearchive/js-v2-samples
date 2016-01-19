@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+  <head>
+    <script src="http://google.github.io/closure-library/source/closure/goog/base.js"></script>
+    <script>
+    goog.require('goog.crypt.Hmac');
+    goog.require('goog.crypt.Sha1');
+    goog.require('goog.crypt.base64');
+    </script>
+  </head>
+  <body>
+    <script>
+    /**
+     * Sign a request URL with a URL signing secret.
+     *
+     * If URL field is empty, output is empty.
+     *
+     * @param{String} inputUrl The URL to be signed including the Client ID/API key.
+     * @param{String} secret The URL signing secret encoded in base64.
+     * @returns{String}
+     */
+      var signUrl = function(inputUrl, secret) {
+
+        if (inputUrl == '' || secret == null || secret == '') {
+          return "Both input url and secret are required";
+        }
+
+        // Create an HTML element to allow HTML parsing
+        var url = document.createElement('a');
+        url.href = inputUrl;
+
+        // We only need to sign the path+query part of the string
+        var urlToSign = url.pathname + url.search;
+
+        // Add first forward slash to paht if it is missing (Internet Explorer)
+        if (urlToSign.slice(0, 1) != '/') {
+           urlToSign = '/' + urlToSign;
+        }
+
+        // Decode the secret into a byte array, if it cannot be decoded, raise an error
+        try {
+          var decodedSecret = goog.crypt.stringToByteArray(
+            goog.crypt.base64.decodeString(secret, true));
+        } catch (e) {
+          return 'Invalid character in Secret'
+        }
+
+        // Create a signature using the private key and the URL-encoded
+        // String using HMAC SHA1. This signature will be binary.
+        var hmac = new goog.crypt.Hmac(new goog.crypt.Sha1(), decodedSecret, 64);
+        var signature = hmac.getHmac(urlToSign);
+
+        // Encode the binary signature into base64 for use within a URL
+        var encodedSignature = goog.crypt.base64.encodeString(
+            goog.crypt.byteArrayToString(signature), false);
+
+        // Return signed URL
+        return inputUrl + '&signature=' + encodedSignature;
+      };
+
+      var inputUrl = prompt('URL to sign:');
+      var secret = prompt('URL signing secret:');
+      prompt('You\'re signed URL is:', signUrl(inputUrl, secret));
+    </script>
+  </body>
+</html>

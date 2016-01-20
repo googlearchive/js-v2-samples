@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <head>
-    <script src="http://google.github.io/closure-library/source/closure/goog/base.js"></script>
+    <script src="https://google.github.io/closure-library/source/closure/goog/base.js"></script>
     <script>
     goog.require('goog.crypt.Hmac');
     goog.require('goog.crypt.Sha1');
@@ -32,19 +32,19 @@
           return "Both input url and secret are required";
         }
 
-        // Create an HTML element to allow HTML parsing
+        // Create an HTML element to allow HTML parsing.
         var url = document.createElement('a');
         url.href = inputUrl;
 
-        // We only need to sign the path+query part of the string
+        // We only need to sign the path+query part of the string.
         var urlToSign = url.pathname + url.search;
 
-        // Add first forward slash to path if it is missing (Internet Explorer)
-        if (urlToSign.slice(0, 1) != '/') {
+        // Add first forward slash to path if it is missing (Internet Explorer).
+        if (urlToSign[0] != '/') {
           urlToSign = '/' + urlToSign;
         }
 
-        // Decode the secret into a byte array, if it cannot be decoded, raise an error
+        // Decode the secret into a byte array, if it cannot be decoded, raise an error.
         try {
           var decodedSecret = goog.crypt.stringToByteArray(
               goog.crypt.base64.decodeString(secret, true));
@@ -57,11 +57,11 @@
         var hmac = new goog.crypt.Hmac(new goog.crypt.Sha1(), decodedSecret, 64);
         var signature = hmac.getHmac(urlToSign);
 
-        // Encode the binary signature into base64 for use within a URL
+        // Encode the binary signature into base64 for use within a URL.
         var encodedSignature = goog.crypt.base64.encodeString(
             goog.crypt.byteArrayToString(signature), false);
 
-        // Return signed URL
+        // Return signed URL.
         return inputUrl + '&signature=' + encodedSignature;
       };
     

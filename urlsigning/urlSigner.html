@@ -65,17 +65,17 @@
         return inputUrl + '&signature=' + encodedSignature;
       };
     
-/**
-* Gets URL and Secret from webpage and displays signed URL.
-*/
-var outputUrl = function() {
-document.getElementById('signing-result').value = signUrl(
-document.getElementById('signing-url').value,
-document.getElementById('signing-secret').value);
-};
-
-document.getElementById('signing-url').addEventListener('input', outputUrl);
-document.getElementById('signing-secret').addEventListener('input', outputUrl);
+      /**
+      * Gets URL and Secret from webpage and displays signed URL.
+      */
+      var outputUrl = function() {
+        document.getElementById('signing-result').value = signUrl(
+        document.getElementById('signing-url').value,
+        document.getElementById('signing-secret').value);
+      };
+      
+      document.getElementById('signing-url').addEventListener('input', outputUrl);
+      document.getElementById('signing-secret').addEventListener('input', outputUrl);
     </script>
   </body>
 </html>

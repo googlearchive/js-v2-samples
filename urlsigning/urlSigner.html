@@ -39,7 +39,7 @@
         // We only need to sign the path+query part of the string
         var urlToSign = url.pathname + url.search;
 
-        // Add first forward slash to paht if it is missing (Internet Explorer)
+        // Add first forward slash to path if it is missing (Internet Explorer)
         if (urlToSign.slice(0, 1) != '/') {
           urlToSign = '/' + urlToSign;
         }
@@ -65,17 +65,17 @@
         return inputUrl + '&signature=' + encodedSignature;
       };
     
-			/**
-			 * Gets URL and Secret from webpage and displays signed URL.
-			 */
-			var outputUrl = function() {
-			  document.getElementById('signing-result').value = signUrl(
-			      document.getElementById('signing-url').value,
-			      document.getElementById('signing-secret').value);
-			};
+/**
+* Gets URL and Secret from webpage and displays signed URL.
+*/
+var outputUrl = function() {
+document.getElementById('signing-result').value = signUrl(
+document.getElementById('signing-url').value,
+document.getElementById('signing-secret').value);
+};
 
-			document.getElementById('signing-url').addEventListener('input', outputUrl);
-			document.getElementById('signing-secret').addEventListener('input', outputUrl);
+document.getElementById('signing-url').addEventListener('input', outputUrl);
+document.getElementById('signing-secret').addEventListener('input', outputUrl);
     </script>
   </body>
 </html>
